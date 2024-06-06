@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "f": {
+      "item": "equigen:raw_folirite"
+    }
+  },
+  "pattern": [
+    "fff",
+    "fff",
+    "fff"
+  ],
+  "result": {
+    "count": 1,
+    "id": "equigen:raw_folirite_block"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "test_sound": {
+    "subtitle": "sounds.equigen.test_sound",
+    "sounds": [
+      "equigen:test_sound"
+    ]
+  }
+}

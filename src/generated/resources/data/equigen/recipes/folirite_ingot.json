@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "equigen:folirite_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "equigen:folirite_ingot"
+  }
+}

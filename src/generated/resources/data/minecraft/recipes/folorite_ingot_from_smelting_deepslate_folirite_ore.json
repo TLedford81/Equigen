@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 1,
+  "experience": 1.0,
+  "ingredient": {
+    "item": "equigen:deepslate_folirite_ore"
+  },
+  "result": {
+    "count": 1,
+    "id": "equigen:folirite_ingot"
+  }
+}
