@@ -32,12 +32,6 @@ public class EquigenMod {
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::addCreative);
         NeoForge.EVENT_BUS.register(this);
-
-        //CODE ADDED IN GITHUB
-
-        //Code Added in Github 2
-
-        //Code added in IntelliJ
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
