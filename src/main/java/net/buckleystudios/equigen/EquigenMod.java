@@ -35,6 +35,8 @@ public class EquigenMod {
 
         //CODE ADDED IN GITHUB
 
+        //Code Added in Github 2
+
         //Code added in IntelliJ
     }
 
