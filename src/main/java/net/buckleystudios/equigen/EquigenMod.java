@@ -34,6 +34,8 @@ public class EquigenMod {
         NeoForge.EVENT_BUS.register(this);
 
         //CODE ADDED IN GITHUB
+
+        //Code Added in Github 2
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
