@@ -176,7 +176,7 @@ public class InfusionTableBlockEntity extends BlockEntity implements MenuProvide
         for(int i = 0; i<this.itemStackHandler.getSlots(); i++){
             inventory.setItem(i, this.itemStackHandler.getStackInSlot(i));
         }
-
+//
 //        return this.level.getRecipeManager().getRecipeFor(InfusionTableRecipe., inventory, level);
         return this.level.getRecipeManager().getRecipeFor(ModRecipes.INFUSION_TABLE_RECIPE_TYPE, inventory, level);
     }
