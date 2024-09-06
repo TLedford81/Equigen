@@ -1,8 +1,8 @@
 package net.buckleystudios.equigen.block.entity;
 
-import net.buckleystudios.equigen.item.ModItems;
-import net.buckleystudios.equigen.recipe.InfusionTableRecipe;
-import net.buckleystudios.equigen.recipe.ModRecipes;
+//import net.buckleystudios.equigen.item.ModItems;
+//import net.buckleystudios.equigen.recipe.InfusionTableRecipe;
+//import net.buckleystudios.equigen.recipe.ModRecipes;
 import net.buckleystudios.equigen.screen.Infusion_Table.InfusionTableMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -15,16 +15,12 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Optional;
 
 public class InfusionTableBlockEntity extends BlockEntity implements MenuProvider {
 
@@ -57,10 +53,10 @@ public class InfusionTableBlockEntity extends BlockEntity implements MenuProvide
 
     //Constants for naming each slot
     //Based on concept art: 7 Slots: Input, Infusion 1, Infusion 2, Infusion 3, Infusion 4, Fuel, Output
-    private static final int INPUT_SLOT = 0;
-    private static final int FUEL_SLOT = 1;
-    private static final int EXTRA_SLOT = 2;
-    private static final int OUTPUT_SLOT = 3;
+//    private static final int INPUT_SLOT = 0;
+//    private static final int FUEL_SLOT = 1;
+//    private static final int EXTRA_SLOT = 2;
+//    private static final int OUTPUT_SLOT = 3;
 
 //    private Lazy<IItemHandler> lazyItemHandler = Lazy.of(null);
 
@@ -141,62 +137,62 @@ public class InfusionTableBlockEntity extends BlockEntity implements MenuProvide
     //Called Every tick (20x per second)
     public void tick(Level level, BlockPos pPos, BlockState pState) {
         //Ew, Java knowledge
-        if(isOutputSlotReceivable() && isValidRecipe()){
-            increaseCraftingProcess();
-            setChanged(level, pPos, pState);
-            
-            if(hasProgressFinished()){
-                craftItem();
-                resetProgress();
-            }
-        } else {
-            resetProgress();
-        }
-    }
-
-    private void resetProgress() {
-        this.progress = 0;
-    }
-
-    private void craftItem() {
-        this.itemStackHandler.extractItem(INPUT_SLOT, 1, false);
-        this.itemStackHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(ModItems.HIMALAYAN_ROCK_SALT.get(), this.itemStackHandler.getStackInSlot(OUTPUT_SLOT).getCount() + 1));
-    }
-
-    private boolean hasProgressFinished() {
-        return this.progress >= this.maxProgress;
-    }
-
-    private void increaseCraftingProcess() {
-        this.progress++;
-    }
-
-    private Optional<InfusionTableRecipe> getCurrentRecipe(){
-        SimpleContainer inventory = new SimpleContainer(this.itemStackHandler.getSlots());
-        for(int i = 0; i<this.itemStackHandler.getSlots(); i++){
-            inventory.setItem(i, this.itemStackHandler.getStackInSlot(i));
-        }
+//        if(isOutputSlotReceivable() && isValidRecipe()){
+//            increaseCraftingProcess();
+//            setChanged(level, pPos, pState);
 //
-//        return this.level.getRecipeManager().getRecipeFor(InfusionTableRecipe., inventory, level);
-        return this.level.getRecipeManager().getRecipeFor(ModRecipes.INFUSION_TABLE_RECIPE_TYPE, inventory, level);
-    }
-
-    private boolean inputHasRecipeItem() {
-        return this.itemStackHandler.getStackInSlot(INPUT_SLOT).getItem() == ModItems.SODIUM.get();
-    }
-
-    private boolean canOutputItem(Item item) {
-        return this.itemStackHandler.getStackInSlot(OUTPUT_SLOT).isEmpty() || this.itemStackHandler.getStackInSlot(OUTPUT_SLOT).is(item);
-    }
-
-    private boolean canOutputAmount(int count) {
-        return this.itemStackHandler.getStackInSlot(OUTPUT_SLOT).getMaxStackSize() >=
-                this.itemStackHandler.getStackInSlot(OUTPUT_SLOT).getCount() + count;
-    }
-
-    private boolean isOutputSlotReceivable() {
-        ItemStack outputItem = this.itemStackHandler.getStackInSlot(OUTPUT_SLOT);
-        return outputItem.isEmpty() ||
-                outputItem.getCount() < outputItem.getMaxStackSize();
+//            if(hasProgressFinished()){
+//                craftItem();
+//                resetProgress();
+//            }
+//        } else {
+//            resetProgress();
+//        }
+//    }
+//
+//    private void resetProgress() {
+//        this.progress = 0;
+//    }
+//
+//    private void craftItem() {
+//        this.itemStackHandler.extractItem(INPUT_SLOT, 1, false);
+//        this.itemStackHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(ModItems.HIMALAYAN_ROCK_SALT.get(), this.itemStackHandler.getStackInSlot(OUTPUT_SLOT).getCount() + 1));
+//    }
+//
+//    private boolean hasProgressFinished() {
+//        return this.progress >= this.maxProgress;
+//    }
+//
+//    private void increaseCraftingProcess() {
+//        this.progress++;
+//    }
+//
+//    private Optional<InfusionTableRecipe> getCurrentRecipe(){
+//        SimpleContainer inventory = new SimpleContainer(this.itemStackHandler.getSlots());
+//        for(int i = 0; i<this.itemStackHandler.getSlots(); i++){
+//            inventory.setItem(i, this.itemStackHandler.getStackInSlot(i));
+//        }
+//
+////        return this.level.getRecipeManager().getRecipeFor(InfusionTableRecipe., inventory, level);
+//        return this.level.getRecipeManager().getRecipeFor(ModRecipes.INFUSION_TABLE_RECIPE_TYPE, inventory, level);
+//    }
+//
+//    private boolean inputHasRecipeItem() {
+//        return this.itemStackHandler.getStackInSlot(INPUT_SLOT).getItem() == ModItems.SODIUM.get();
+//    }
+//
+//    private boolean canOutputItem(Item item) {
+//        return this.itemStackHandler.getStackInSlot(OUTPUT_SLOT).isEmpty() || this.itemStackHandler.getStackInSlot(OUTPUT_SLOT).is(item);
+//    }
+//
+//    private boolean canOutputAmount(int count) {
+//        return this.itemStackHandler.getStackInSlot(OUTPUT_SLOT).getMaxStackSize() >=
+//                this.itemStackHandler.getStackInSlot(OUTPUT_SLOT).getCount() + count;
+//    }
+//
+//    private boolean isOutputSlotReceivable() {
+//        ItemStack outputItem = this.itemStackHandler.getStackInSlot(OUTPUT_SLOT);
+//        return outputItem.isEmpty() ||
+//                outputItem.getCount() < outputItem.getMaxStackSize();
     }
 }
