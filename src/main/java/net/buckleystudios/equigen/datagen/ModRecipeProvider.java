@@ -74,6 +74,24 @@ public class ModRecipeProvider extends RecipeProvider implements RecipeBuilder {
         SimpleCookingRecipeBuilder.blasting(Ingredient.of(ModBlocks.DEEPSLATE_FOLIRITE_ORE.get()), RecipeCategory.MISC, ModItems.FOLIRITE_INGOT.get(), 0.1f, 100)
                 .unlockedBy("has_item", has(ModBlocks.DEEPSLATE_FOLIRITE_ORE))
                 .save(pRecipeOutput, "folorite_ingot_from_blasting_deepslate_folirite_ore");
+
+        //HIMALAYAN ROCK SALT ORE SMELTING
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.HIMALAYAN_ROCK_SALT_ORE.get()), RecipeCategory.MISC, ModItems.HIMALAYAN_ROCK_SALT.get(), 0.1f, 200)
+                .unlockedBy("has_item", has(ModBlocks.HIMALAYAN_ROCK_SALT_ORE))
+                .save(pRecipeOutput, "himalayan_rock_salt_from_smelting_himalayan_rock_salt_ore");
+
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(ModBlocks.HIMALAYAN_ROCK_SALT_ORE.get()), RecipeCategory.MISC, ModItems.HIMALAYAN_ROCK_SALT.get(), 0.1f, 100)
+                .unlockedBy("has_item", has(ModBlocks.HIMALAYAN_ROCK_SALT_ORE))
+                .save(pRecipeOutput, "himalayan_rock_salt_from_blasting_himalayan_rock_salt_ore");
+
+        //DEEPSLATE HIMALAYAN ROCK SALT ORE SMELTING
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.DEEPSLATE_HIMALAYAN_ROCK_SALT_ORE.get()), RecipeCategory.MISC, ModItems.HIMALAYAN_ROCK_SALT.get(), 0.1f, 200)
+                .unlockedBy("has_item", has(ModBlocks.DEEPSLATE_HIMALAYAN_ROCK_SALT_ORE))
+                .save(pRecipeOutput, "himalayan_rock_salt_from_smelting_deepslate_himalayan_rock_salt_ore");
+
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(ModBlocks.DEEPSLATE_HIMALAYAN_ROCK_SALT_ORE.get()), RecipeCategory.MISC, ModItems.HIMALAYAN_ROCK_SALT.get(), 0.1f, 100)
+                .unlockedBy("has_item", has(ModBlocks.DEEPSLATE_HIMALAYAN_ROCK_SALT_ORE))
+                .save(pRecipeOutput, "himalayan_rock_salt_from_blasting_deepslate_himalayan_rock_salt_ore");
     }
 
     @Override

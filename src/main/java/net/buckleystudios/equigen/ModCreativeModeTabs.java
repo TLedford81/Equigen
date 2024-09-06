@@ -19,11 +19,28 @@ public class ModCreativeModeTabs{
                     .title(Component.translatable("creativetab." + EquigenMod.MODID + ".main_tab"))
                     .icon(() -> new ItemStack(ModBlocks.FOLIRITE_BLOCK))
                     .displayItems(((pParameters, pOutput) -> {
+                        //Blocks
                         pOutput.accept(ModBlocks.FOLIRITE_BLOCK);
                         pOutput.accept(ModBlocks.RAW_FOLIRITE_BLOCK);
                         pOutput.accept(ModBlocks.FOLIRITE_ORE);
                         pOutput.accept(ModBlocks.DEEPSLATE_FOLIRITE_ORE);
+                        pOutput.accept(ModBlocks.HIMALAYAN_ROCK_SALT_ORE);
+                        pOutput.accept(ModBlocks.DEEPSLATE_HIMALAYAN_ROCK_SALT_ORE);
+                        pOutput.accept(ModBlocks.INFUSION_TABLE);
+
+                        //Materials
                         pOutput.accept(ModItems.FOLIRITE_INGOT);
                         pOutput.accept(ModItems.RAW_FOLIRITE);
+                        pOutput.accept(ModItems.HIMALAYAN_ROCK_SALT);
+                        pOutput.accept(ModItems.SODIUM);
+
+                        //Tools
+                        pOutput.accept(ModItems.FOLIRITE_SWORD);
+                        pOutput.accept(ModItems.FOLIRITE_PICKAXE);
+                        pOutput.accept(ModItems.FOLIRITE_AXE);
+                        pOutput.accept(ModItems.FOLIRITE_SHOVEL);
+                        pOutput.accept(ModItems.FOLIRITE_HOE);
+                        pOutput.accept(ModItems.SODIUM_GRENADE);
+
                     })).build());
 }

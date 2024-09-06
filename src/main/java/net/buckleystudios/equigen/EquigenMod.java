@@ -2,7 +2,10 @@ package net.buckleystudios.equigen;
 
 import com.mojang.logging.LogUtils;
 import net.buckleystudios.equigen.block.ModBlocks;
+import net.buckleystudios.equigen.block.entity.ModBlockEntities;
 import net.buckleystudios.equigen.item.ModItems;
+import net.buckleystudios.equigen.screen.Infusion_Table.InfusionTableScreen;
+import net.buckleystudios.equigen.screen.ModMenuTypes;
 import net.buckleystudios.equigen.sound.ModSounds;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -11,6 +14,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
@@ -28,6 +32,9 @@ public class EquigenMod {
         ModItems.ITEMS.register(modEventBus);
         ModCreativeModeTabs.CREATIVE_MODE_TABS.register(modEventBus);
         ModSounds.SOUND_EVENTS.register(modEventBus);
+        ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
+        ModMenuTypes.MENUS.register(modEventBus);
+
         //
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::addCreative);
@@ -55,6 +62,10 @@ public class EquigenMod {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
 
+        }
+        @SubscribeEvent
+        public static void registerScreens(RegisterMenuScreensEvent event){
+            event.register(ModMenuTypes.INFUSION_TABLE_MENU.get(), InfusionTableScreen::new);
         }
     }
 }

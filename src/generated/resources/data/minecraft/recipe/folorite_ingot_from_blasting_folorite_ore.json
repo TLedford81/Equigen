@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.1,
+  "ingredient": {
+    "item": "equigen:folirite_ore"
+  },
+  "result": {
+    "count": 1,
+    "id": "equigen:folirite_ingot"
+  }
+}

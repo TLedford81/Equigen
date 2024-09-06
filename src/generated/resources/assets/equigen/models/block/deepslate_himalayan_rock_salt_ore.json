@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "equigen:block/deepslate_himalayan_rock_salt_ore_bottomtop",
+    "side": "equigen:block/deepslate_himalayan_rock_salt_ore_side",
+    "top": "equigen:block/deepslate_himalayan_rock_salt_ore_bottomtop"
+  }
+}

@@ -15,5 +15,14 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         basicItem(ModItems.FOLIRITE_INGOT.get());
         basicItem(ModItems.RAW_FOLIRITE.get());
+        basicItem(ModItems.HIMALAYAN_ROCK_SALT.get());
+        basicItem(ModItems.SODIUM.get());
+        basicItem(ModItems.SODIUM_GRENADE.get());
+
+        basicItem(ModItems.FOLIRITE_PICKAXE.get());
+        basicItem(ModItems.FOLIRITE_AXE.get());
+        basicItem(ModItems.FOLIRITE_SWORD.get());
+        basicItem(ModItems.FOLIRITE_SHOVEL.get());
+        basicItem(ModItems.FOLIRITE_HOE.get());
     }
 }

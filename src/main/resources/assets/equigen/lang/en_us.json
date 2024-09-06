@@ -3,9 +3,21 @@
   "block.equigen.raw_folirite_block": "Block of Raw Folirite",
   "block.equigen.folirite_ore": "Folirite Ore",
   "block.equigen.deepslate_folirite_ore": "Deepslate Folirite Ore",
+  "block.equigen.himalayan_rock_salt_ore": "Himalayan Rock Salt Ore",
+  "block.equigen.deepslate_himalayan_rock_salt_ore": "Deepslate Himalayan Rock Salt Ore",
+  "block.equigen.infusion_table": "Infusion Table",
 
   "item.equigen.folirite_ingot": "Folirite Ingot",
   "item.equigen.raw_folirite": "Raw Folirite",
+  "item.equigen.himalayan_rock_salt": "Himalayan Rock Salt",
+  "item.equigen.sodium": "Sodium",
+
+  "item.equigen.sodium_grenade": "Sodium Grenade",
+  "item.equigen.folirite_sword": "Folirite Sword",
+  "item.equigen.folirite_axe": "Folirite Axe",
+  "item.equigen.folirite_pickaxe": "Folirite Pickaxe",
+  "item.equigen.folirite_shovel": "Folirite Shovel",
+  "item.equigen.folirite_hoe": "Folirite Hoe",
 
   "creativetab.equigen.main_tab": "Equigen"
 }

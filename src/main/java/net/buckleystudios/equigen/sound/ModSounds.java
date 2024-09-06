@@ -16,6 +16,6 @@ public class ModSounds {
 
     //Registers
     private static DeferredHolder<SoundEvent, SoundEvent> registerVariableSound(String name){
-        return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(EquigenMod.MODID, name)));
+        return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, name)));
     }
 }
