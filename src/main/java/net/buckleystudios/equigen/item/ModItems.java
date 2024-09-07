@@ -52,4 +52,5 @@ public class ModItems {
     public static final DeferredItem<Item> FOLIRITE_HOE = ITEMS.register("folirite_hoe", () -> new HoeItem(ModToolTiers.FOLIRITE_TIER,
             new Item.Properties().durability(256)
                     .attributes(HoeItem.createAttributes(ModToolTiers.FOLIRITE_TIER, 5f, -1f))));
+    public static final DeferredItem<Item> RAW_OATS = ITEMS.registerItem("raw_oats", Item::new, new Item.Properties().food(ModFoodProperties.RAW_OATS));
 }

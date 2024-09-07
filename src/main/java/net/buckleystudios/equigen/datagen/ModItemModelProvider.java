@@ -18,6 +18,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.HIMALAYAN_ROCK_SALT.get());
         basicItem(ModItems.SODIUM.get());
         basicItem(ModItems.SODIUM_GRENADE.get());
+        basicItem(ModItems.RAW_OATS.get());
 
         basicItem(ModItems.FOLIRITE_PICKAXE.get());
         basicItem(ModItems.FOLIRITE_AXE.get());
