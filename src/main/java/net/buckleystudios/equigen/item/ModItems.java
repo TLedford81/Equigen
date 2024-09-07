@@ -12,8 +12,8 @@ public class ModItems {
     public static final DeferredRegister.Items ITEMS =
             DeferredRegister.createItems(EquigenMod.MODID);
 
-    public static final DeferredItem<Item> TEST_ITEM = ITEMS.registerSimpleItem("test_item",
-            new Item.Properties());
+//    public static final DeferredItem<Item> TEST_ITEM = ITEMS.registerSimpleItem("test_item",
+//            new Item.Properties());
 
     //Block Items
 //    public static final DeferredItem<BlockItem> FOLIRITE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("folirite_block", ModBlocks.FOLIRITE_BLOCK);
