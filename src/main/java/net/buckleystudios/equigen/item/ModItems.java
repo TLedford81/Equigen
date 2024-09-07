@@ -12,7 +12,7 @@ public class ModItems {
     public static final DeferredRegister.Items ITEMS =
             DeferredRegister.createItems(EquigenMod.MODID);
 
-    // Test Item, just in case
+    // Test Item, just in case <3
 //    public static final DeferredItem<Item> TEST_ITEM = ITEMS.registerSimpleItem("test_item",
 //            new Item.Properties());
 
