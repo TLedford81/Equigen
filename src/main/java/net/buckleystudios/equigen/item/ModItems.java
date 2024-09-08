@@ -1,7 +1,6 @@
 package net.buckleystudios.equigen.item;
 
 import net.buckleystudios.equigen.EquigenMod;
-import net.buckleystudios.equigen.block.ModBlocks;
 import net.buckleystudios.equigen.item.custom.SodiumGrenadeItem;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -15,15 +14,6 @@ public class ModItems {
     // Test Item, just in case <3
 //    public static final DeferredItem<Item> TEST_ITEM = ITEMS.registerSimpleItem("test_item",
 //            new Item.Properties());
-
-    //Block Items
-//    public static final DeferredItem<BlockItem> FOLIRITE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("folirite_block", ModBlocks.FOLIRITE_BLOCK);
-//    public static final DeferredItem<BlockItem> RAW_FOLIRITE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("raw_folirite_block", ModBlocks.RAW_FOLIRITE_BLOCK);
-//    public static final DeferredItem<BlockItem> FOLIRITE_ORE_ITEM = ITEMS.registerSimpleBlockItem("folirite_ore", ModBlocks.FOLIRITE_ORE);
-//    public static final DeferredItem<BlockItem> DEEPSLATE_FOLIRITE_ORE_ITEM = ITEMS.registerSimpleBlockItem("deepslate_folirite_ore", ModBlocks.DEEPSLATE_FOLIRITE_ORE);
-//    public static final DeferredItem<BlockItem> HIMALAYAN_ROCK_SALT_ORE = ITEMS.registerSimpleBlockItem("himalayan_rock_salt_ore", ModBlocks.HIMALAYAN_ROCK_SALT_ORE);
-//    public static final DeferredItem<BlockItem> DEEPSLATE_HIMALAYAN_ROCK_SALT_ORE = ITEMS.registerSimpleBlockItem("deepslate_himalayan_rock_salt_ore", ModBlocks.DEEPSLATE_HIMALAYAN_ROCK_SALT_ORE);
-//    public static final DeferredItem<BlockItem> INFUSION_TABLE = ITEMS.registerSimpleBlockItem("infusion_table", ModBlocks.INFUSION_TABLE);
 
     //Items
     public static final DeferredItem<Item> FOLIRITE_INGOT = ITEMS.registerSimpleItem("folirite_ingot", new Item.Properties());

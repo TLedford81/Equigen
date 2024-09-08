@@ -26,7 +26,6 @@ public class ModCreativeModeTabs{
                         pOutput.accept(ModBlocks.DEEPSLATE_FOLIRITE_ORE);
                         pOutput.accept(ModBlocks.HIMALAYAN_ROCK_SALT_ORE);
                         pOutput.accept(ModBlocks.DEEPSLATE_HIMALAYAN_ROCK_SALT_ORE);
-                        pOutput.accept(ModBlocks.INFUSION_TABLE);
 
                         //Materials
                         pOutput.accept(ModItems.FOLIRITE_INGOT);
@@ -41,6 +40,9 @@ public class ModCreativeModeTabs{
                         pOutput.accept(ModItems.FOLIRITE_SHOVEL);
                         pOutput.accept(ModItems.FOLIRITE_HOE);
                         pOutput.accept(ModItems.SODIUM_GRENADE);
+
+                        //Food Items
+                        pOutput.accept(ModItems.RAW_OATS);
 
                     })).build());
 }

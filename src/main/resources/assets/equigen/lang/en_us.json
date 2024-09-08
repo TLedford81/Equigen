@@ -1,16 +1,18 @@
 {
-  "block.equigen.folirite_block": "Block of Folirite",
-  "block.equigen.raw_folirite_block": "Block of Raw Folirite",
   "block.equigen.folirite_ore": "Folirite Ore",
   "block.equigen.deepslate_folirite_ore": "Deepslate Folirite Ore",
   "block.equigen.himalayan_rock_salt_ore": "Himalayan Rock Salt Ore",
   "block.equigen.deepslate_himalayan_rock_salt_ore": "Deepslate Himalayan Rock Salt Ore",
+
   "block.equigen.infusion_table": "[WIP] Infusion Table",
 
+  "block.equigen.folirite_block": "Block of Folirite",
+  "block.equigen.raw_folirite_block": "Block of Raw Folirite",
   "item.equigen.folirite_ingot": "Folirite Ingot",
   "item.equigen.raw_folirite": "Raw Folirite",
   "item.equigen.himalayan_rock_salt": "Himalayan Rock Salt",
   "item.equigen.sodium": "Sodium",
+
   "item.equigen.raw_oats": "Raw Oats",
 
   "item.equigen.sodium_grenade": "Sodium Grenade",

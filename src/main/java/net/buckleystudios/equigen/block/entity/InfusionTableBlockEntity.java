@@ -26,7 +26,7 @@ public class InfusionTableBlockEntity extends BlockEntity implements MenuProvide
 
     // How Many Slots inside Block Entity Inventory?
     public static int slotCount = 4;
-    private int cookTime = 78;
+    private final int cookTime = 78;
 
 
     public final ItemStackHandler itemStackHandler = new ItemStackHandler(slotCount){
