@@ -19,6 +19,9 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(EquigenMod.MODID);
 
+    public static final DeferredBlock<Block> PLACEHOLDER_PLANKS = registerBlock("placeholder_planks",
+            () -> new Block(BlockBehaviour.Properties.of().strength(1f)));
+
     public static final DeferredBlock<Block> FOLIRITE_ORE = registerBlock("folirite_ore",
             () -> new DropExperienceBlock(UniformInt.of(2, 5),
                     BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));

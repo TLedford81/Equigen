@@ -16,6 +16,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
 
+        simpleBlockWithItem(ModBlocks.PLACEHOLDER_PLANKS.get(), cubeAll(ModBlocks.PLACEHOLDER_PLANKS.get()));
         simpleBlockWithItem(ModBlocks.FOLIRITE_BLOCK.get(), cubeAll(ModBlocks.FOLIRITE_BLOCK.get()));
         simpleBlockWithItem(ModBlocks.RAW_FOLIRITE_BLOCK.get(), cubeAll(ModBlocks.RAW_FOLIRITE_BLOCK.get()));
         simpleBlockWithItem(ModBlocks.FOLIRITE_ORE.get(), cubeAll(ModBlocks.FOLIRITE_ORE.get()));

@@ -16,3 +16,4 @@ public class ModLootTableProvider {
                 List.of(new LootTableProvider.SubProviderEntry(ModBlockLootTables::new, LootContextParamSets.BLOCK)), pRegistries);
     }
 }
+

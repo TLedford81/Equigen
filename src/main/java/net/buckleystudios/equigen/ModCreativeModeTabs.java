@@ -20,12 +20,16 @@ public class ModCreativeModeTabs{
                     .icon(() -> new ItemStack(ModBlocks.FOLIRITE_BLOCK))
                     .displayItems(((pParameters, pOutput) -> {
                         //Blocks
+                        pOutput.accept(ModBlocks.PLACEHOLDER_PLANKS);
                         pOutput.accept(ModBlocks.FOLIRITE_BLOCK);
                         pOutput.accept(ModBlocks.RAW_FOLIRITE_BLOCK);
                         pOutput.accept(ModBlocks.FOLIRITE_ORE);
                         pOutput.accept(ModBlocks.DEEPSLATE_FOLIRITE_ORE);
                         pOutput.accept(ModBlocks.HIMALAYAN_ROCK_SALT_ORE);
                         pOutput.accept(ModBlocks.DEEPSLATE_HIMALAYAN_ROCK_SALT_ORE);
+
+                        //Food Items
+                        pOutput.accept(ModItems.RAW_OATS);
 
                         //Materials
                         pOutput.accept(ModItems.FOLIRITE_INGOT);
@@ -40,9 +44,6 @@ public class ModCreativeModeTabs{
                         pOutput.accept(ModItems.FOLIRITE_SHOVEL);
                         pOutput.accept(ModItems.FOLIRITE_HOE);
                         pOutput.accept(ModItems.SODIUM_GRENADE);
-
-                        //Food Items
-                        pOutput.accept(ModItems.RAW_OATS);
 
                     })).build());
 }

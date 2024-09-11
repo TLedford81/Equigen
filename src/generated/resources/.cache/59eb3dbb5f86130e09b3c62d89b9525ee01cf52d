@@ -1,8 +1,9 @@
-// 1.21	2024-09-07T17:33:42.9966338	Loot Tables
+// 1.21	2024-09-11T15:57:15.8398019	Loot Tables
 3edabb7891abd306fbc266574c05188fa62773ed data/equigen/loot_table/blocks/deepslate_folirite_ore.json
 1fe87b4893f75c46d5fa6b42162955aad0e272d9 data/equigen/loot_table/blocks/deepslate_himalayan_rock_salt_ore.json
 8325e538e213b7ebc492bb14921c42c129bd6270 data/equigen/loot_table/blocks/folirite_block.json
 859e2f06ca0fd617519c78e1051ca52d78ace13e data/equigen/loot_table/blocks/folirite_ore.json
 0f9f4ca7ae4f5278fd022633b1a2fa4651b48898 data/equigen/loot_table/blocks/himalayan_rock_salt_ore.json
 792c68fc75335f9d3395e32119fbbfd710935971 data/equigen/loot_table/blocks/infusion_table.json
+5b80d956d30204180ff7dd7c6fe44dc55b1fdc78 data/equigen/loot_table/blocks/placeholder_planks.json
 e139d35419cf1157fdeeb6b8cd344c21cf84c68f data/equigen/loot_table/blocks/raw_folirite_block.json
