@@ -21,6 +21,8 @@ public class ModCreativeModeTabs{
                     .displayItems(((pParameters, pOutput) -> {
                         //Blocks
                         pOutput.accept(ModBlocks.PLACEHOLDER_PLANKS);
+                        pOutput.accept(ModBlocks.PLACEHOLDER_SLAB);
+                        pOutput.accept(ModBlocks.PLACEHOLDER_STAIRS);
                         pOutput.accept(ModBlocks.FOLIRITE_BLOCK);
                         pOutput.accept(ModBlocks.RAW_FOLIRITE_BLOCK);
                         pOutput.accept(ModBlocks.FOLIRITE_ORE);

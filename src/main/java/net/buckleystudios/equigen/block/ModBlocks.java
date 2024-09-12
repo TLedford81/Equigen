@@ -6,9 +6,7 @@ import net.buckleystudios.equigen.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.DropExperienceBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -21,6 +19,11 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> PLACEHOLDER_PLANKS = registerBlock("placeholder_planks",
             () -> new Block(BlockBehaviour.Properties.of().strength(1f)));
+    public static final DeferredBlock<Block> PLACEHOLDER_STAIRS = registerBlock("placeholder_stairs",
+            () -> new StairBlock(ModBlocks.PLACEHOLDER_PLANKS.get().defaultBlockState(),
+                    BlockBehaviour.Properties.of().strength(1f)));
+    public static final DeferredBlock<Block> PLACEHOLDER_SLAB = registerBlock("placeholder_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of().strength(1f)));
 
     public static final DeferredBlock<Block> FOLIRITE_ORE = registerBlock("folirite_ore",
             () -> new DropExperienceBlock(UniformInt.of(2, 5),

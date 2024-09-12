@@ -4,6 +4,8 @@ import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.block.ModBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.StairBlock;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -16,7 +18,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
 
+        //Decoration Blocks
         simpleBlockWithItem(ModBlocks.PLACEHOLDER_PLANKS.get(), cubeAll(ModBlocks.PLACEHOLDER_PLANKS.get()));
+        stairsBlock((StairBlock) ModBlocks.PLACEHOLDER_STAIRS.get(), blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()));
+        simpleBlockItem(ModBlocks.PLACEHOLDER_STAIRS.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/" + ModBlocks.PLACEHOLDER_STAIRS.getId().getPath())));
+        slabBlock((SlabBlock) ModBlocks.PLACEHOLDER_SLAB.get(),
+                blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()), blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()));
+        simpleBlockItem(ModBlocks.PLACEHOLDER_SLAB.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/" + ModBlocks.PLACEHOLDER_SLAB.getId().getPath())));
+
+        //Ore Blocks
         simpleBlockWithItem(ModBlocks.FOLIRITE_BLOCK.get(), cubeAll(ModBlocks.FOLIRITE_BLOCK.get()));
         simpleBlockWithItem(ModBlocks.RAW_FOLIRITE_BLOCK.get(), cubeAll(ModBlocks.RAW_FOLIRITE_BLOCK.get()));
         simpleBlockWithItem(ModBlocks.FOLIRITE_ORE.get(), cubeAll(ModBlocks.FOLIRITE_ORE.get()));
@@ -29,9 +41,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/deepslate_himalayan_rock_salt_ore_side"),
                 ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/deepslate_himalayan_rock_salt_ore_bottomtop"),
                 ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/deepslate_himalayan_rock_salt_ore_bottomtop")));
+
+        //Block Entities
         horizontalBlock(ModBlocks.INFUSION_TABLE.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/infusion_table")));
         simpleBlockItem(ModBlocks.INFUSION_TABLE.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/infusion_table")));
+
+        //Note: Later, Simplify the usage of SimpleBlockItem command
     }
 }

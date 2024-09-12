@@ -1,5 +1,7 @@
 {
-  "block.equigen.placeholder_planks": "[PH] Wooden Planks",
+  "block.equigen.placeholder_planks": "[PLACEHOLDER] Wooden Planks",
+  "block.equigen.placeholder_slab": "[PLACEHOLDER] Wooden Slab",
+  "block.equigen.placeholder_stairs": "[PLACEHOLDER] Wooden Stairs",
   "block.equigen.folirite_ore": "Folirite Ore",
   "block.equigen.deepslate_folirite_ore": "Deepslate Folirite Ore",
   "block.equigen.himalayan_rock_salt_ore": "Himalayan Rock Salt Ore",
