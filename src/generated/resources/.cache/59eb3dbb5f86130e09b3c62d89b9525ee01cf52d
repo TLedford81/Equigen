@@ -1,11 +1,16 @@
-// 1.21	2024-09-12T12:14:24.2443863	Loot Tables
+// 1.21	2024-09-16T12:10:23.9658533	Loot Tables
 3edabb7891abd306fbc266574c05188fa62773ed data/equigen/loot_table/blocks/deepslate_folirite_ore.json
 1fe87b4893f75c46d5fa6b42162955aad0e272d9 data/equigen/loot_table/blocks/deepslate_himalayan_rock_salt_ore.json
 8325e538e213b7ebc492bb14921c42c129bd6270 data/equigen/loot_table/blocks/folirite_block.json
 859e2f06ca0fd617519c78e1051ca52d78ace13e data/equigen/loot_table/blocks/folirite_ore.json
 0f9f4ca7ae4f5278fd022633b1a2fa4651b48898 data/equigen/loot_table/blocks/himalayan_rock_salt_ore.json
 792c68fc75335f9d3395e32119fbbfd710935971 data/equigen/loot_table/blocks/infusion_table.json
+0ad804af9386d7c45b2336801bafffff0d90c405 data/equigen/loot_table/blocks/placeholder_button.json
+081b4b68e1d81933c7e9992c6e8663b34f75756c data/equigen/loot_table/blocks/placeholder_fence.json
+c75cd4c1c469adcb158f4e634351139ac177c0c5 data/equigen/loot_table/blocks/placeholder_fence_gate.json
 5b80d956d30204180ff7dd7c6fe44dc55b1fdc78 data/equigen/loot_table/blocks/placeholder_planks.json
+8d26811d13eb3e3b848d9c6b56a67f61eae5b7d0 data/equigen/loot_table/blocks/placeholder_pressure_plate.json
 d411a62beb6573bf7cf7119d1aae5e1829a9b724 data/equigen/loot_table/blocks/placeholder_slab.json
 e1d22a0efef180bfb5c09cf5720123435741fe05 data/equigen/loot_table/blocks/placeholder_stairs.json
+e3d617822fac7582ea99226fe6f50394504b76b8 data/equigen/loot_table/blocks/placeholder_wall.json
 e139d35419cf1157fdeeb6b8cd344c21cf84c68f data/equigen/loot_table/blocks/raw_folirite_block.json

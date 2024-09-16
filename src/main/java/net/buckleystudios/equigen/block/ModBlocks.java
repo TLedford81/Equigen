@@ -8,6 +8,8 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -24,6 +26,17 @@ public class ModBlocks {
                     BlockBehaviour.Properties.of().strength(1f)));
     public static final DeferredBlock<Block> PLACEHOLDER_SLAB = registerBlock("placeholder_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.of().strength(1f)));
+    public static final DeferredBlock<Block> PLACEHOLDER_PRESSURE_PLATE = registerBlock("placeholder_pressure_plate",
+            () -> new PressurePlateBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f)));
+    public static final DeferredBlock<Block> PLACEHOLDER_BUTTON = registerBlock("placeholder_button",
+            () -> new ButtonBlock(BlockSetType.SPRUCE, 10, BlockBehaviour.Properties.of().strength(1f).noCollission()));
+    public static final DeferredBlock<Block> PLACEHOLDER_FENCE = registerBlock("placeholder_fence",
+            () -> new FenceBlock(BlockBehaviour.Properties.of().strength(1f)));
+    public static final DeferredBlock<Block> PLACEHOLDER_FENCE_GATE = registerBlock("placeholder_fence_gate",
+            () -> new FenceGateBlock(WoodType.OAK, BlockBehaviour.Properties.of().strength(1f)));
+    public static final DeferredBlock<Block> PLACEHOLDER_WALL = registerBlock("placeholder_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.of().strength(1f)));
+
 
     public static final DeferredBlock<Block> FOLIRITE_ORE = registerBlock("folirite_ore",
             () -> new DropExperienceBlock(UniformInt.of(2, 5),

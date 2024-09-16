@@ -4,8 +4,7 @@ import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.block.ModBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -20,13 +19,32 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         //Decoration Blocks
         simpleBlockWithItem(ModBlocks.PLACEHOLDER_PLANKS.get(), cubeAll(ModBlocks.PLACEHOLDER_PLANKS.get()));
+
         stairsBlock((StairBlock) ModBlocks.PLACEHOLDER_STAIRS.get(), blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()));
         simpleBlockItem(ModBlocks.PLACEHOLDER_STAIRS.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/" + ModBlocks.PLACEHOLDER_STAIRS.getId().getPath())));
+
         slabBlock((SlabBlock) ModBlocks.PLACEHOLDER_SLAB.get(),
                 blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()), blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()));
         simpleBlockItem(ModBlocks.PLACEHOLDER_SLAB.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/" + ModBlocks.PLACEHOLDER_SLAB.getId().getPath())));
+
+        pressurePlateBlock(((PressurePlateBlock) ModBlocks.PLACEHOLDER_PRESSURE_PLATE.get()), blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()));
+        simpleBlockItem(ModBlocks.PLACEHOLDER_PRESSURE_PLATE.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/" + ModBlocks.PLACEHOLDER_PRESSURE_PLATE.getId().getPath())));
+
+        buttonBlock(((ButtonBlock) ModBlocks.PLACEHOLDER_BUTTON.get()), blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()));
+            //Block Item Done in ModItemModelProvider.java
+
+        fenceBlock((FenceBlock) ModBlocks.PLACEHOLDER_FENCE.get(), blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()));
+            //Block Item Done in ModItemModelProvider.java
+
+        fenceGateBlock((FenceGateBlock) ModBlocks.PLACEHOLDER_FENCE_GATE.get(), blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()));
+        simpleBlockItem(ModBlocks.PLACEHOLDER_FENCE_GATE.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/" + ModBlocks.PLACEHOLDER_FENCE_GATE.getId().getPath())));
+
+        wallBlock((WallBlock) ModBlocks.PLACEHOLDER_WALL.get(), blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()));
+            //Block Item Done in ModItemModelProvider.java
 
         //Ore Blocks
         simpleBlockWithItem(ModBlocks.FOLIRITE_BLOCK.get(), cubeAll(ModBlocks.FOLIRITE_BLOCK.get()));

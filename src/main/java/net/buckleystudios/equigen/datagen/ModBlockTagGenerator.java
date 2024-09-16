@@ -20,6 +20,15 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
+        this.tag(BlockTags.WOODEN_FENCES)
+                .add(ModBlocks.PLACEHOLDER_FENCE.get());
+
+        this.tag(BlockTags.FENCE_GATES)
+                .add(ModBlocks.PLACEHOLDER_FENCE_GATE.get());
+
+        this.tag(BlockTags.WALLS)
+                .add(ModBlocks.PLACEHOLDER_WALL.get());
+
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.FOLIRITE_BLOCK.get(),
                         ModBlocks.RAW_FOLIRITE_BLOCK.get(),
