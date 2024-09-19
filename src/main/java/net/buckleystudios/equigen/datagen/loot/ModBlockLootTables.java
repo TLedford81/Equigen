@@ -39,6 +39,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.PLACEHOLDER_FENCE.get());
         this.dropSelf(ModBlocks.PLACEHOLDER_FENCE_GATE.get());
         this.dropSelf(ModBlocks.PLACEHOLDER_WALL.get());
+        this.dropSelf(ModBlocks.PLACEHOLDER_TRAPDOOR.get());
 
         this.dropSelf(ModBlocks.FOLIRITE_BLOCK.get());
         this.dropSelf(ModBlocks.RAW_FOLIRITE_BLOCK.get());
@@ -46,6 +47,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
         //SLAB DROPS
         this.add(ModBlocks.PLACEHOLDER_SLAB.get(), block -> createSlabItemTable(ModBlocks.PLACEHOLDER_SLAB.get()));
+
+        //DOOR DROPS
+        this.add(ModBlocks.PLACEHOLDER_DOOR.get(), block -> createDoorTable(ModBlocks.PLACEHOLDER_DOOR.get()));
 
         //ORE DROPS
         this.add(ModBlocks.FOLIRITE_ORE.get(),

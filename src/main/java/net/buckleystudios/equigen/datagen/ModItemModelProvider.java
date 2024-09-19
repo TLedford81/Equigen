@@ -34,6 +34,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         buttonItem(ModBlocks.PLACEHOLDER_BUTTON, ModBlocks.PLACEHOLDER_PLANKS);
         fenceItem(ModBlocks.PLACEHOLDER_FENCE, ModBlocks.PLACEHOLDER_PLANKS);
         wallItem(ModBlocks.PLACEHOLDER_WALL, ModBlocks.PLACEHOLDER_PLANKS);
+        basicItem(ModBlocks.PLACEHOLDER_DOOR.asItem());
     }
 
     public void buttonItem(DeferredBlock<Block> block, DeferredBlock<Block> baseBlock){

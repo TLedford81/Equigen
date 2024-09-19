@@ -28,6 +28,9 @@ public class ModCreativeModeTabs{
                         pOutput.accept(ModBlocks.PLACEHOLDER_FENCE);
                         pOutput.accept(ModBlocks.PLACEHOLDER_FENCE_GATE);
                         pOutput.accept(ModBlocks.PLACEHOLDER_WALL);
+                        pOutput.accept(ModBlocks.PLACEHOLDER_DOOR);
+                        pOutput.accept(ModBlocks.PLACEHOLDER_TRAPDOOR);
+
                         pOutput.accept(ModBlocks.FOLIRITE_BLOCK);
                         pOutput.accept(ModBlocks.RAW_FOLIRITE_BLOCK);
                         pOutput.accept(ModBlocks.FOLIRITE_ORE);

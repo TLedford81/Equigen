@@ -36,7 +36,10 @@ public class ModBlocks {
             () -> new FenceGateBlock(WoodType.OAK, BlockBehaviour.Properties.of().strength(1f)));
     public static final DeferredBlock<Block> PLACEHOLDER_WALL = registerBlock("placeholder_wall",
             () -> new WallBlock(BlockBehaviour.Properties.of().strength(1f)));
-
+    public static final DeferredBlock<Block> PLACEHOLDER_DOOR = registerBlock("placeholder_door",
+            () -> new DoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f).noOcclusion()));
+    public static final DeferredBlock<Block> PLACEHOLDER_TRAPDOOR = registerBlock("placeholder_trapdoor",
+            () -> new TrapDoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f).noOcclusion()));
 
     public static final DeferredBlock<Block> FOLIRITE_ORE = registerBlock("folirite_ore",
             () -> new DropExperienceBlock(UniformInt.of(2, 5),
