@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "equigen:block/fig_pressure_plate"
+    },
+    "powered=true": {
+      "model": "equigen:block/fig_pressure_plate_down"
+    }
+  }
+}

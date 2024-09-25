@@ -41,15 +41,66 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.PLACEHOLDER_WALL.get());
         this.dropSelf(ModBlocks.PLACEHOLDER_TRAPDOOR.get());
 
+        //FIG WOOD
+        this.dropSelf(ModBlocks.FIG_PLANKS.get());
+        this.dropSelf(ModBlocks.FIG_STAIRS.get());
+        this.dropSelf(ModBlocks.FIG_PRESSURE_PLATE.get());
+        this.dropSelf(ModBlocks.FIG_BUTTON.get());
+        this.dropSelf(ModBlocks.FIG_FENCE.get());
+        this.dropSelf(ModBlocks.FIG_FENCE_GATE.get());
+        this.dropSelf(ModBlocks.FIG_TRAPDOOR.get());
+        //MAPLE WOOD
+        this.dropSelf(ModBlocks.MAPLE_PLANKS.get());
+        this.dropSelf(ModBlocks.MAPLE_STAIRS.get());
+        this.dropSelf(ModBlocks.MAPLE_PRESSURE_PLATE.get());
+        this.dropSelf(ModBlocks.MAPLE_BUTTON.get());
+        this.dropSelf(ModBlocks.MAPLE_FENCE.get());
+        this.dropSelf(ModBlocks.MAPLE_FENCE_GATE.get());
+        this.dropSelf(ModBlocks.MAPLE_TRAPDOOR.get());
+        //CITRUS WOOD
+        this.dropSelf(ModBlocks.CITRUS_PLANKS.get());
+        this.dropSelf(ModBlocks.CITRUS_STAIRS.get());
+        this.dropSelf(ModBlocks.CITRUS_PRESSURE_PLATE.get());
+        this.dropSelf(ModBlocks.CITRUS_BUTTON.get());
+        this.dropSelf(ModBlocks.CITRUS_FENCE.get());
+        this.dropSelf(ModBlocks.CITRUS_FENCE_GATE.get());
+        this.dropSelf(ModBlocks.CITRUS_TRAPDOOR.get());
+        //APRICOT WOOD
+        this.dropSelf(ModBlocks.APRICOT_PLANKS.get());
+        this.dropSelf(ModBlocks.APRICOT_STAIRS.get());
+        this.dropSelf(ModBlocks.APRICOT_PRESSURE_PLATE.get());
+        this.dropSelf(ModBlocks.APRICOT_BUTTON.get());
+        this.dropSelf(ModBlocks.APRICOT_FENCE.get());
+        this.dropSelf(ModBlocks.APRICOT_FENCE_GATE.get());
+        this.dropSelf(ModBlocks.APRICOT_TRAPDOOR.get());
+        //PEAR WOOD
+        this.dropSelf(ModBlocks.PEAR_PLANKS.get());
+        this.dropSelf(ModBlocks.PEAR_STAIRS.get());
+        this.dropSelf(ModBlocks.PEAR_PRESSURE_PLATE.get());
+        this.dropSelf(ModBlocks.PEAR_BUTTON.get());
+        this.dropSelf(ModBlocks.PEAR_FENCE.get());
+        this.dropSelf(ModBlocks.PEAR_FENCE_GATE.get());
+        this.dropSelf(ModBlocks.PEAR_TRAPDOOR.get());
+
         this.dropSelf(ModBlocks.FOLIRITE_BLOCK.get());
         this.dropSelf(ModBlocks.RAW_FOLIRITE_BLOCK.get());
         this.dropSelf(ModBlocks.INFUSION_TABLE.get());
 
         //SLAB DROPS
         this.add(ModBlocks.PLACEHOLDER_SLAB.get(), block -> createSlabItemTable(ModBlocks.PLACEHOLDER_SLAB.get()));
+        this.add(ModBlocks.FIG_SLAB.get(), block -> createSlabItemTable(ModBlocks.FIG_SLAB.get()));
+        this.add(ModBlocks.MAPLE_SLAB.get(), block -> createSlabItemTable(ModBlocks.FIG_SLAB.get()));
+        this.add(ModBlocks.CITRUS_SLAB.get(), block -> createSlabItemTable(ModBlocks.FIG_SLAB.get()));
+        this.add(ModBlocks.APRICOT_SLAB.get(), block -> createSlabItemTable(ModBlocks.FIG_SLAB.get()));
+        this.add(ModBlocks.PEAR_SLAB.get(), block -> createSlabItemTable(ModBlocks.FIG_SLAB.get()));
 
         //DOOR DROPS
         this.add(ModBlocks.PLACEHOLDER_DOOR.get(), block -> createDoorTable(ModBlocks.PLACEHOLDER_DOOR.get()));
+        this.add(ModBlocks.FIG_DOOR.get(), block -> createDoorTable(ModBlocks.FIG_DOOR.get()));
+        this.add(ModBlocks.MAPLE_DOOR.get(), block -> createDoorTable(ModBlocks.FIG_DOOR.get()));
+        this.add(ModBlocks.CITRUS_DOOR.get(), block -> createDoorTable(ModBlocks.FIG_DOOR.get()));
+        this.add(ModBlocks.APRICOT_DOOR.get(), block -> createDoorTable(ModBlocks.FIG_DOOR.get()));
+        this.add(ModBlocks.PEAR_DOOR.get(), block -> createDoorTable(ModBlocks.FIG_DOOR.get()));
 
         //ORE DROPS
         this.add(ModBlocks.FOLIRITE_ORE.get(),

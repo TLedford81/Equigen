@@ -33,24 +33,174 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.PLACEHOLDER_PRESSURE_PLATE);
 
         buttonBlock(((ButtonBlock) ModBlocks.PLACEHOLDER_BUTTON.get()), blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()));
-            //Block Item Done in ModItemModelProvider.java
+        //Block Item Done in ModItemModelProvider.java
 
         fenceBlock((FenceBlock) ModBlocks.PLACEHOLDER_FENCE.get(), blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()));
-            //Block Item Done in ModItemModelProvider.java
+        //Block Item Done in ModItemModelProvider.java
 
         fenceGateBlock((FenceGateBlock) ModBlocks.PLACEHOLDER_FENCE_GATE.get(), blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()));
         blockItem(ModBlocks.PLACEHOLDER_FENCE_GATE);
 
         wallBlock((WallBlock) ModBlocks.PLACEHOLDER_WALL.get(), blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()));
-            //Block Item Done in ModItemModelProvider.java
+        //Block Item Done in ModItemModelProvider.java
 
         doorBlockWithRenderType(((DoorBlock) ModBlocks.PLACEHOLDER_DOOR.get()),
                 modLoc("block/placeholder_door_bottom"), modLoc("block/placeholder_door_top"), "cutout");
-            //Block Item Done in ModItemModelProvider.java
+        //Block Item Done in ModItemModelProvider.java
 
         trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.PLACEHOLDER_TRAPDOOR.get()),
                 modLoc("block/placeholder_trapdoor"), true, "cutout");
         blockItem(ModBlocks.PLACEHOLDER_TRAPDOOR, "_bottom");
+
+        //Fig Wood
+        blockWithItem(ModBlocks.FIG_PLANKS);
+
+        stairsBlock((StairBlock) ModBlocks.FIG_STAIRS.get(), blockTexture(ModBlocks.FIG_PLANKS.get()));
+        blockItem(ModBlocks.FIG_STAIRS);
+
+        slabBlock((SlabBlock) ModBlocks.FIG_SLAB.get(),
+                blockTexture(ModBlocks.FIG_PLANKS.get()), blockTexture(ModBlocks.FIG_PLANKS.get()));
+        blockItem(ModBlocks.FIG_SLAB);
+
+        pressurePlateBlock(((PressurePlateBlock) ModBlocks.FIG_PRESSURE_PLATE.get()), blockTexture(ModBlocks.FIG_PLANKS.get()));
+        blockItem(ModBlocks.FIG_PRESSURE_PLATE);
+
+        buttonBlock(((ButtonBlock) ModBlocks.FIG_BUTTON.get()), blockTexture(ModBlocks.FIG_PLANKS.get()));
+        //Block Item Done in ModItemModelProvider.java
+
+        fenceBlock((FenceBlock) ModBlocks.FIG_FENCE.get(), blockTexture(ModBlocks.FIG_PLANKS.get()));
+        //Block Item Done in ModItemModelProvider.java
+
+        fenceGateBlock((FenceGateBlock) ModBlocks.FIG_FENCE_GATE.get(), blockTexture(ModBlocks.FIG_PLANKS.get()));
+        blockItem(ModBlocks.FIG_FENCE_GATE);
+
+        doorBlockWithRenderType(((DoorBlock) ModBlocks.FIG_DOOR.get()),
+                modLoc("block/fig_door_bottom"), modLoc("block/fig_door_top"), "cutout");
+        //Block Item Done in ModItemModelProvider.java
+
+        trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.FIG_TRAPDOOR.get()),
+                modLoc("block/fig_trapdoor"), true, "cutout");
+        blockItem(ModBlocks.FIG_TRAPDOOR, "_bottom");
+
+        //Maple Wood
+        blockWithItem(ModBlocks.MAPLE_PLANKS);
+
+        stairsBlock((StairBlock) ModBlocks.MAPLE_STAIRS.get(), blockTexture(ModBlocks.MAPLE_PLANKS.get()));
+        blockItem(ModBlocks.MAPLE_STAIRS);
+
+        slabBlock((SlabBlock) ModBlocks.MAPLE_SLAB.get(),
+                blockTexture(ModBlocks.MAPLE_PLANKS.get()), blockTexture(ModBlocks.MAPLE_PLANKS.get()));
+        blockItem(ModBlocks.MAPLE_SLAB);
+
+        pressurePlateBlock(((PressurePlateBlock) ModBlocks.MAPLE_PRESSURE_PLATE.get()), blockTexture(ModBlocks.MAPLE_PLANKS.get()));
+        blockItem(ModBlocks.MAPLE_PRESSURE_PLATE);
+
+        buttonBlock(((ButtonBlock) ModBlocks.MAPLE_BUTTON.get()), blockTexture(ModBlocks.MAPLE_PLANKS.get()));
+        //Block Item Done in ModItemModelProvider.java
+
+        fenceBlock((FenceBlock) ModBlocks.MAPLE_FENCE.get(), blockTexture(ModBlocks.MAPLE_PLANKS.get()));
+        //Block Item Done in ModItemModelProvider.java
+
+        fenceGateBlock((FenceGateBlock) ModBlocks.MAPLE_FENCE_GATE.get(), blockTexture(ModBlocks.MAPLE_PLANKS.get()));
+        blockItem(ModBlocks.MAPLE_FENCE_GATE);
+
+        doorBlockWithRenderType(((DoorBlock) ModBlocks.MAPLE_DOOR.get()),
+                modLoc("block/maple_door_bottom"), modLoc("block/maple_door_top"), "cutout");
+        //Block Item Done in ModItemModelProvider.java
+
+        trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.MAPLE_TRAPDOOR.get()),
+                modLoc("block/maple_trapdoor"), true, "cutout");
+        blockItem(ModBlocks.MAPLE_TRAPDOOR, "_bottom");
+
+        //Citrus Wood
+        blockWithItem(ModBlocks.CITRUS_PLANKS);
+
+        stairsBlock((StairBlock) ModBlocks.CITRUS_STAIRS.get(), blockTexture(ModBlocks.CITRUS_PLANKS.get()));
+        blockItem(ModBlocks.CITRUS_STAIRS);
+
+        slabBlock((SlabBlock) ModBlocks.CITRUS_SLAB.get(),
+                blockTexture(ModBlocks.CITRUS_PLANKS.get()), blockTexture(ModBlocks.CITRUS_PLANKS.get()));
+        blockItem(ModBlocks.CITRUS_SLAB);
+
+        pressurePlateBlock(((PressurePlateBlock) ModBlocks.CITRUS_PRESSURE_PLATE.get()), blockTexture(ModBlocks.CITRUS_PLANKS.get()));
+        blockItem(ModBlocks.CITRUS_PRESSURE_PLATE);
+
+        buttonBlock(((ButtonBlock) ModBlocks.CITRUS_BUTTON.get()), blockTexture(ModBlocks.CITRUS_PLANKS.get()));
+        //Block Item Done in ModItemModelProvider.java
+
+        fenceBlock((FenceBlock) ModBlocks.CITRUS_FENCE.get(), blockTexture(ModBlocks.CITRUS_PLANKS.get()));
+        //Block Item Done in ModItemModelProvider.java
+
+        fenceGateBlock((FenceGateBlock) ModBlocks.CITRUS_FENCE_GATE.get(), blockTexture(ModBlocks.CITRUS_PLANKS.get()));
+        blockItem(ModBlocks.CITRUS_FENCE_GATE);
+
+        doorBlockWithRenderType(((DoorBlock) ModBlocks.CITRUS_DOOR.get()),
+                modLoc("block/citrus_door_bottom"), modLoc("block/citrus_door_top"), "cutout");
+        //Block Item Done in ModItemModelProvider.java
+
+        trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.CITRUS_TRAPDOOR.get()),
+                modLoc("block/citrus_trapdoor"), true, "cutout");
+        blockItem(ModBlocks.CITRUS_TRAPDOOR, "_bottom");
+
+        //Apricot Wood
+        blockWithItem(ModBlocks.APRICOT_PLANKS);
+
+        stairsBlock((StairBlock) ModBlocks.APRICOT_STAIRS.get(), blockTexture(ModBlocks.APRICOT_PLANKS.get()));
+        blockItem(ModBlocks.APRICOT_STAIRS);
+
+        slabBlock((SlabBlock) ModBlocks.APRICOT_SLAB.get(),
+                blockTexture(ModBlocks.APRICOT_PLANKS.get()), blockTexture(ModBlocks.APRICOT_PLANKS.get()));
+        blockItem(ModBlocks.APRICOT_SLAB);
+
+        pressurePlateBlock(((PressurePlateBlock) ModBlocks.APRICOT_PRESSURE_PLATE.get()), blockTexture(ModBlocks.APRICOT_PLANKS.get()));
+        blockItem(ModBlocks.APRICOT_PRESSURE_PLATE);
+
+        buttonBlock(((ButtonBlock) ModBlocks.APRICOT_BUTTON.get()), blockTexture(ModBlocks.APRICOT_PLANKS.get()));
+        //Block Item Done in ModItemModelProvider.java
+
+        fenceBlock((FenceBlock) ModBlocks.APRICOT_FENCE.get(), blockTexture(ModBlocks.APRICOT_PLANKS.get()));
+        //Block Item Done in ModItemModelProvider.java
+
+        fenceGateBlock((FenceGateBlock) ModBlocks.APRICOT_FENCE_GATE.get(), blockTexture(ModBlocks.APRICOT_PLANKS.get()));
+        blockItem(ModBlocks.APRICOT_FENCE_GATE);
+
+        doorBlockWithRenderType(((DoorBlock) ModBlocks.APRICOT_DOOR.get()),
+                modLoc("block/apricot_door_bottom"), modLoc("block/apricot_door_top"), "cutout");
+        //Block Item Done in ModItemModelProvider.java
+
+        trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.APRICOT_TRAPDOOR.get()),
+                modLoc("block/apricot_trapdoor"), true, "cutout");
+        blockItem(ModBlocks.APRICOT_TRAPDOOR, "_bottom");
+
+        //Pear Wood
+        blockWithItem(ModBlocks.PEAR_PLANKS);
+
+        stairsBlock((StairBlock) ModBlocks.PEAR_STAIRS.get(), blockTexture(ModBlocks.PEAR_PLANKS.get()));
+        blockItem(ModBlocks.PEAR_STAIRS);
+
+        slabBlock((SlabBlock) ModBlocks.PEAR_SLAB.get(),
+                blockTexture(ModBlocks.PEAR_PLANKS.get()), blockTexture(ModBlocks.PEAR_PLANKS.get()));
+        blockItem(ModBlocks.PEAR_SLAB);
+
+        pressurePlateBlock(((PressurePlateBlock) ModBlocks.PEAR_PRESSURE_PLATE.get()), blockTexture(ModBlocks.PEAR_PLANKS.get()));
+        blockItem(ModBlocks.PEAR_PRESSURE_PLATE);
+
+        buttonBlock(((ButtonBlock) ModBlocks.PEAR_BUTTON.get()), blockTexture(ModBlocks.PEAR_PLANKS.get()));
+        //Block Item Done in ModItemModelProvider.java
+
+        fenceBlock((FenceBlock) ModBlocks.PEAR_FENCE.get(), blockTexture(ModBlocks.PEAR_PLANKS.get()));
+        //Block Item Done in ModItemModelProvider.java
+
+        fenceGateBlock((FenceGateBlock) ModBlocks.PEAR_FENCE_GATE.get(), blockTexture(ModBlocks.PEAR_PLANKS.get()));
+        blockItem(ModBlocks.PEAR_FENCE_GATE);
+
+        doorBlockWithRenderType(((DoorBlock) ModBlocks.PEAR_DOOR.get()),
+                modLoc("block/pear_door_bottom"), modLoc("block/pear_door_top"), "cutout");
+        //Block Item Done in ModItemModelProvider.java
+
+        trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.PEAR_TRAPDOOR.get()),
+                modLoc("block/pear_trapdoor"), true, "cutout");
+        blockItem(ModBlocks.PEAR_TRAPDOOR, "_bottom");
 
         //Ore Blocks
         blockWithItem(ModBlocks.FOLIRITE_BLOCK);

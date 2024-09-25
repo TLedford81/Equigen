@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "equigen:block/citrus_planks",
+    "side": "equigen:block/citrus_planks",
+    "top": "equigen:block/citrus_planks"
+  }
+}

@@ -1,5 +1,10 @@
 {
   "values": [
-    "equigen:placeholder_fence"
+    "equigen:placeholder_fence",
+    "equigen:fig_fence",
+    "equigen:maple_fence",
+    "equigen:citrus_fence",
+    "equigen:apricot_fence",
+    "equigen:pear_fence"
   ]
 }

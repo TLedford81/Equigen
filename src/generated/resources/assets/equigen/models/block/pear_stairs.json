@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "equigen:block/pear_planks",
+    "side": "equigen:block/pear_planks",
+    "top": "equigen:block/pear_planks"
+  }
+}

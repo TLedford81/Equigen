@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "equigen:block/apricot_planks",
+    "side": "equigen:block/apricot_planks",
+    "top": "equigen:block/apricot_planks"
+  }
+}

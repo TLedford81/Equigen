@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "equigen:block/apricot_slab"
+    },
+    "type=double": {
+      "model": "equigen:block/apricot_planks"
+    },
+    "type=top": {
+      "model": "equigen:block/apricot_slab_top"
+    }
+  }
+}

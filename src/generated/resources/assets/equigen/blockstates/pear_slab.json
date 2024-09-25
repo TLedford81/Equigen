@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "equigen:block/pear_slab"
+    },
+    "type=double": {
+      "model": "equigen:block/pear_planks"
+    },
+    "type=top": {
+      "model": "equigen:block/pear_slab_top"
+    }
+  }
+}

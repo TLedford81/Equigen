@@ -1,4 +1,13 @@
-// 1.21	2024-09-18T19:53:09.580019	Item Models: equigen
+// 1.21	2024-09-25T15:41:22.3624046	Item Models: equigen
+5ae1230c38b3b623133f71019f46cc19c3d7d6d2 assets/equigen/models/item/apricot_button.json
+f7a8ff7ce56a1e5be13f1e8709b7bd18fe44b2c8 assets/equigen/models/item/apricot_door.json
+8e7d2947d9237b31588fe83db5a9799490d88bd4 assets/equigen/models/item/apricot_fence.json
+04c5a379995ce85c0b1df92761d002182b3f6ba7 assets/equigen/models/item/citrus_button.json
+22dd555a18d3a76872eb44630b50fade1f057c42 assets/equigen/models/item/citrus_door.json
+8a8bfb4929f611f7d350e8913fd032e2b1e5ba8e assets/equigen/models/item/citrus_fence.json
+ebd7cffb556b6b712c879bbad3043da3bc506fef assets/equigen/models/item/fig_button.json
+b8eb555fe8ab91a8d21e87688ba2604b538e3943 assets/equigen/models/item/fig_door.json
+61970e36775c6b6d45d4458f92d767ce47771d5a assets/equigen/models/item/fig_fence.json
 2b892e5d0cc124a9065b753499326d07f72721b4 assets/equigen/models/item/folirite_axe.json
 61ae4cae476b7fb661e3408ac6a041c0546af8fd assets/equigen/models/item/folirite_hoe.json
 da076093d590ed88668a244a9103f6f7314bacf2 assets/equigen/models/item/folirite_ingot.json
@@ -6,6 +15,12 @@ da076093d590ed88668a244a9103f6f7314bacf2 assets/equigen/models/item/folirite_ing
 4a8d4940f4f036fc5d1814e172752a4976ede7fd assets/equigen/models/item/folirite_shovel.json
 ae5fef4b22d94e5a03b9f3c78134aec0d0ac9b94 assets/equigen/models/item/folirite_sword.json
 52cd09c941ee9a6710e65521a2722b36bae7c3b0 assets/equigen/models/item/himalayan_rock_salt.json
+1cc853d7f61e5c3bfe98d6e65858254dfcc49ab5 assets/equigen/models/item/maple_button.json
+48e93bbdda410e628d2f8c9ce07288126aa18253 assets/equigen/models/item/maple_door.json
+75def7d88b8bd06b2e92aa6883bad9c1a6e12534 assets/equigen/models/item/maple_fence.json
+5f073601ef67b61f823d2806da480234c8e1e3fa assets/equigen/models/item/pear_button.json
+cf7e276573e5426397133896c2f0043fb91d2515 assets/equigen/models/item/pear_door.json
+201b7c6a4f9895480f6fb41bdf937fc2a9ddabd3 assets/equigen/models/item/pear_fence.json
 724f49277d3a55113a7ac93dc7b1eab6ffb4b639 assets/equigen/models/item/placeholder_button.json
 f4f2146794ba634fcc067d27117ac6a3b5ab6c29 assets/equigen/models/item/placeholder_door.json
 2dbfea7c9bbd36cbfa62c43da0ced1e34affc19a assets/equigen/models/item/placeholder_fence.json

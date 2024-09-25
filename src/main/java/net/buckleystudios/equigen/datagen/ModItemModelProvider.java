@@ -35,6 +35,22 @@ public class ModItemModelProvider extends ItemModelProvider {
         fenceItem(ModBlocks.PLACEHOLDER_FENCE, ModBlocks.PLACEHOLDER_PLANKS);
         wallItem(ModBlocks.PLACEHOLDER_WALL, ModBlocks.PLACEHOLDER_PLANKS);
         basicItem(ModBlocks.PLACEHOLDER_DOOR.asItem());
+
+        buttonItem(ModBlocks.FIG_BUTTON, ModBlocks.FIG_PLANKS);
+        fenceItem(ModBlocks.FIG_FENCE, ModBlocks.FIG_PLANKS);
+        basicItem(ModBlocks.FIG_DOOR.asItem());
+        buttonItem(ModBlocks.MAPLE_BUTTON, ModBlocks.MAPLE_PLANKS);
+        fenceItem(ModBlocks.MAPLE_FENCE, ModBlocks.MAPLE_PLANKS);
+        basicItem(ModBlocks.MAPLE_DOOR.asItem());
+        buttonItem(ModBlocks.CITRUS_BUTTON, ModBlocks.CITRUS_PLANKS);
+        fenceItem(ModBlocks.CITRUS_FENCE, ModBlocks.CITRUS_PLANKS);
+        basicItem(ModBlocks.CITRUS_DOOR.asItem());
+        buttonItem(ModBlocks.APRICOT_BUTTON, ModBlocks.APRICOT_PLANKS);
+        fenceItem(ModBlocks.APRICOT_FENCE, ModBlocks.APRICOT_PLANKS);
+        basicItem(ModBlocks.APRICOT_DOOR.asItem());
+        buttonItem(ModBlocks.PEAR_BUTTON, ModBlocks.PEAR_PLANKS);
+        fenceItem(ModBlocks.PEAR_FENCE, ModBlocks.PEAR_PLANKS);
+        basicItem(ModBlocks.PEAR_DOOR.asItem());
     }
 
     public void buttonItem(DeferredBlock<Block> block, DeferredBlock<Block> baseBlock){
