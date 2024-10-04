@@ -29,7 +29,7 @@ public class ModItems {
 
     public static final DeferredItem<Item> FOLIRITE_AXE = ITEMS.register("folirite_axe", () -> new AxeItem(ModToolTiers.FOLIRITE_TIER,
             new Item.Properties().durability(256)
-                    .attributes(AxeItem.createAttributes(ModToolTiers.FOLIRITE_TIER, 3, -3.0f))));
+                    .attributes(AxeItem.createAttributes(ModToolTiers.FOLIRITE_TIER, 6, -3.2f))));
 
     public static final DeferredItem<Item> FOLIRITE_SWORD = ITEMS.register("folirite_sword", () -> new SwordItem(ModToolTiers.FOLIRITE_TIER,
             new Item.Properties().durability(256)
@@ -41,6 +41,7 @@ public class ModItems {
 
     public static final DeferredItem<Item> FOLIRITE_HOE = ITEMS.register("folirite_hoe", () -> new HoeItem(ModToolTiers.FOLIRITE_TIER,
             new Item.Properties().durability(256)
-                    .attributes(HoeItem.createAttributes(ModToolTiers.FOLIRITE_TIER, 5f, -1f))));
+                    .attributes(HoeItem.createAttributes(ModToolTiers.FOLIRITE_TIER, 0f, -3f))));
+
     public static final DeferredItem<Item> RAW_OATS = ITEMS.registerItem("raw_oats", Item::new, new Item.Properties().food(ModFoodProperties.RAW_OATS));
 }

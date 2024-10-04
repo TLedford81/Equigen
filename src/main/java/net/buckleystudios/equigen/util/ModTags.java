@@ -17,6 +17,7 @@ public class ModTags {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath("neoforge", name));
         }
     }
+
     public static class Blocks{
         //Block Tags
         public static final TagKey<Block> NEEDS_FOLIRITE_TOOL = tag("needs_folirite_tool");

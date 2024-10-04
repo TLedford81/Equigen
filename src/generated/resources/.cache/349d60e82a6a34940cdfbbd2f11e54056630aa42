@@ -1,4 +1,4 @@
-// 1.21	2024-09-25T15:41:22.3624046	Item Models: equigen
+// 1.21	2024-10-04T13:40:45.2560005	Item Models: equigen
 5ae1230c38b3b623133f71019f46cc19c3d7d6d2 assets/equigen/models/item/apricot_button.json
 f7a8ff7ce56a1e5be13f1e8709b7bd18fe44b2c8 assets/equigen/models/item/apricot_door.json
 8e7d2947d9237b31588fe83db5a9799490d88bd4 assets/equigen/models/item/apricot_fence.json
@@ -8,12 +8,12 @@ f7a8ff7ce56a1e5be13f1e8709b7bd18fe44b2c8 assets/equigen/models/item/apricot_door
 ebd7cffb556b6b712c879bbad3043da3bc506fef assets/equigen/models/item/fig_button.json
 b8eb555fe8ab91a8d21e87688ba2604b538e3943 assets/equigen/models/item/fig_door.json
 61970e36775c6b6d45d4458f92d767ce47771d5a assets/equigen/models/item/fig_fence.json
-2b892e5d0cc124a9065b753499326d07f72721b4 assets/equigen/models/item/folirite_axe.json
-61ae4cae476b7fb661e3408ac6a041c0546af8fd assets/equigen/models/item/folirite_hoe.json
+f3ab246e2d4b5f9488cb016dafd48256edaa66de assets/equigen/models/item/folirite_axe.json
+d10a92946e46bcd8b0fc719bcb3d169f2fa49827 assets/equigen/models/item/folirite_hoe.json
 da076093d590ed88668a244a9103f6f7314bacf2 assets/equigen/models/item/folirite_ingot.json
-95070f6b63574623ea747abe2ad5ff8343ef7067 assets/equigen/models/item/folirite_pickaxe.json
-4a8d4940f4f036fc5d1814e172752a4976ede7fd assets/equigen/models/item/folirite_shovel.json
-ae5fef4b22d94e5a03b9f3c78134aec0d0ac9b94 assets/equigen/models/item/folirite_sword.json
+b9e324fed26d98e3da23cbcb9e28221dfa463ba2 assets/equigen/models/item/folirite_pickaxe.json
+50db1229355160c00acd7e9c941486d0aff3abe8 assets/equigen/models/item/folirite_shovel.json
+eaefbd4d81039b4a136ea0c2d06141044f480061 assets/equigen/models/item/folirite_sword.json
 52cd09c941ee9a6710e65521a2722b36bae7c3b0 assets/equigen/models/item/himalayan_rock_salt.json
 1cc853d7f61e5c3bfe98d6e65858254dfcc49ab5 assets/equigen/models/item/maple_button.json
 48e93bbdda410e628d2f8c9ce07288126aa18253 assets/equigen/models/item/maple_door.json

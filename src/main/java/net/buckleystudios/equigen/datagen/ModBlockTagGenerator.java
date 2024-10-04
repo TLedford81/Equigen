@@ -1,5 +1,6 @@
 package net.buckleystudios.equigen.datagen;
 
+import com.jcraft.jorbis.Block;
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.block.ModBlocks;
 import net.buckleystudios.equigen.util.ModTags;
@@ -57,13 +58,12 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(ModBlocks.HIMALAYAN_ROCK_SALT_ORE.get(),
                         ModBlocks.DEEPSLATE_HIMALAYAN_ROCK_SALT_ORE.get());
 
-        this.tag(ModTags.Blocks.NEEDS_FOLIRITE_TOOL);
+        this.tag(ModTags.Blocks.NEEDS_FOLIRITE_TOOL)
+                .addTag(BlockTags.NEEDS_IRON_TOOL);
 
         this.tag(ModTags.Blocks.INCORRECT_FOR_FOLIRITE_TOOL)
                 .remove(ModTags.Blocks.NEEDS_FOLIRITE_TOOL)
                 .addTag(BlockTags.INCORRECT_FOR_IRON_TOOL);
-
-        //Tier Sorting Registry is down for replacement
     }
 
     @Override

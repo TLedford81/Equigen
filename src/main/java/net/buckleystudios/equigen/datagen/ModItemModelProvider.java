@@ -5,10 +5,13 @@ import net.buckleystudios.equigen.block.ModBlocks;
 import net.buckleystudios.equigen.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 public class ModItemModelProvider extends ItemModelProvider {
     public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
@@ -24,11 +27,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.SODIUM_GRENADE.get());
         basicItem(ModItems.RAW_OATS.get());
 
-        basicItem(ModItems.FOLIRITE_PICKAXE.get());
-        basicItem(ModItems.FOLIRITE_AXE.get());
-        basicItem(ModItems.FOLIRITE_SWORD.get());
-        basicItem(ModItems.FOLIRITE_SHOVEL.get());
-        basicItem(ModItems.FOLIRITE_HOE.get());
+        handheldItem(ModItems.FOLIRITE_PICKAXE);
+        handheldItem(ModItems.FOLIRITE_AXE);
+        handheldItem(ModItems.FOLIRITE_SWORD);
+        handheldItem(ModItems.FOLIRITE_SHOVEL);
+        handheldItem(ModItems.FOLIRITE_HOE);
 
         //Block Items (Cont.)
         buttonItem(ModBlocks.PLACEHOLDER_BUTTON, ModBlocks.PLACEHOLDER_PLANKS);
@@ -68,5 +71,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         this.withExistingParent(block.getId().getPath(), mcLoc("block/wall_inventory"))
                 .texture("wall",  ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID,
                         "block/" + baseBlock.getId().getPath()));
+    }
+
+    private ItemModelBuilder handheldItem(DeferredItem<Item> item){
+        return withExistingParent(item.getId().getPath(), ResourceLocation.parse("item/handheld")).texture("layer0",
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "item/" + item.getId().getPath()));
     }
 }
