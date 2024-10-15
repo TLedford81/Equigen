@@ -20,7 +20,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
 
         //Decoration Blocks
+        simpleBlockWithItem(ModBlocks.PLACEHOLDER_LOG.get(), models().cubeBottomTop("placeholder_log",
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_log_side"),
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_log_bottomtop"),
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_log_bottomtop")));
+        simpleBlockWithItem(ModBlocks.PLACEHOLDER_STRIPPED_LOG.get(), models().cubeBottomTop("placeholder_stripped_log",
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_stripped_log_side"),
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_stripped_log_bottomtop"),
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_stripped_log_bottomtop")));
+
         blockWithItem(ModBlocks.PLACEHOLDER_PLANKS);
+        blockWithItem(ModBlocks.PLACEHOLDER_LEAVES);
 
         stairsBlock((StairBlock) ModBlocks.PLACEHOLDER_STAIRS.get(), blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()));
         blockItem(ModBlocks.PLACEHOLDER_STAIRS);

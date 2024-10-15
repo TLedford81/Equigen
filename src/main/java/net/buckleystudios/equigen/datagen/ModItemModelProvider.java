@@ -33,6 +33,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.FOLIRITE_SHOVEL);
         handheldItem(ModItems.FOLIRITE_HOE);
 
+        //Spawn Eggs
+        withExistingParent(ModItems.PILLAGER_KING_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+
         //Block Items (Cont.)
         buttonItem(ModBlocks.PLACEHOLDER_BUTTON, ModBlocks.PLACEHOLDER_PLANKS);
         fenceItem(ModBlocks.PLACEHOLDER_FENCE, ModBlocks.PLACEHOLDER_PLANKS);

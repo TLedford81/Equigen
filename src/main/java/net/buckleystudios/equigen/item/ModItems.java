@@ -1,8 +1,10 @@
 package net.buckleystudios.equigen.item;
 
 import net.buckleystudios.equigen.EquigenMod;
+import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.item.custom.SodiumGrenadeItem;
 import net.minecraft.world.item.*;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -44,4 +46,8 @@ public class ModItems {
                     .attributes(HoeItem.createAttributes(ModToolTiers.FOLIRITE_TIER, 0f, -3f))));
 
     public static final DeferredItem<Item> RAW_OATS = ITEMS.registerItem("raw_oats", Item::new, new Item.Properties().food(ModFoodProperties.RAW_OATS));
+
+    public static final DeferredItem<Item> PILLAGER_KING_SPAWN_EGG = ITEMS.register("pillager_king_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.PILLAGER_KING, 0xdebd47, 0xccbfbe,
+                    new Item.Properties()));
 }

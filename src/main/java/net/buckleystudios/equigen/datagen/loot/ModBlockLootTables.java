@@ -16,6 +16,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.neoforged.fml.common.Mod;
 
 import java.util.Set;
 
@@ -40,6 +41,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.PLACEHOLDER_FENCE_GATE.get());
         this.dropSelf(ModBlocks.PLACEHOLDER_WALL.get());
         this.dropSelf(ModBlocks.PLACEHOLDER_TRAPDOOR.get());
+        this.dropSelf(ModBlocks.PLACEHOLDER_LOG.get());
+        this.dropSelf(ModBlocks.PLACEHOLDER_STRIPPED_LOG.get());
+        this.dropSelf(ModBlocks.PLACEHOLDER_LEAVES.get());
 
         //FIG WOOD
         this.dropSelf(ModBlocks.FIG_PLANKS.get());

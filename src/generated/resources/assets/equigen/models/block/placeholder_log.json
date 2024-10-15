@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "equigen:block/placeholder_log_bottomtop",
+    "side": "equigen:block/placeholder_log_side",
+    "top": "equigen:block/placeholder_log_bottomtop"
+  }
+}

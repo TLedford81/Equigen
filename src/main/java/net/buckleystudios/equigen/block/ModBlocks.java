@@ -42,6 +42,12 @@ public class ModBlocks {
             () -> new DoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f).noOcclusion()));
     public static final DeferredBlock<Block> PLACEHOLDER_TRAPDOOR = registerBlock("placeholder_trapdoor",
             () -> new TrapDoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f).noOcclusion()));
+    public static final DeferredBlock<Block> PLACEHOLDER_LOG = registerBlock("placeholder_log",
+            () -> new Block(BlockBehaviour.Properties.of().strength(1f)));
+    public static final DeferredBlock<Block> PLACEHOLDER_STRIPPED_LOG = registerBlock("placeholder_stripped_log",
+            () -> new Block(BlockBehaviour.Properties.of().strength(1f)));
+    public static final DeferredBlock<Block> PLACEHOLDER_LEAVES = registerBlock("placeholder_leaves",
+            () -> new LeavesBlock(BlockBehaviour.Properties.of().strength(1f).noOcclusion()));
 
     //Fig Wood
     public static final DeferredBlock<Block> FIG_PLANKS = registerBlock("fig_planks",

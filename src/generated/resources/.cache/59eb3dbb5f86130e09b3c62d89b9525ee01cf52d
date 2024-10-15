@@ -1,4 +1,4 @@
-// 1.21	2024-09-25T15:41:22.3828021	Loot Tables
+// 1.21	2024-10-13T20:58:59.2032167	Loot Tables
 71acaac04ccc255e32842c81ded124ce90606f46 data/equigen/loot_table/blocks/apricot_button.json
 934a8e07f5ac8cf1b5cf3be22b3cf4a0d55a6a37 data/equigen/loot_table/blocks/apricot_door.json
 bf10ae583d08c9f2d14f91f64e347e08526ae4cb data/equigen/loot_table/blocks/apricot_fence.json
@@ -54,10 +54,13 @@ a33b1258460efbbc305bc94d7574032bd6beb1c1 data/equigen/loot_table/blocks/pear_pre
 95097a0b4858fb6e26623dae24450ff09d9ad805 data/equigen/loot_table/blocks/placeholder_door.json
 081b4b68e1d81933c7e9992c6e8663b34f75756c data/equigen/loot_table/blocks/placeholder_fence.json
 c75cd4c1c469adcb158f4e634351139ac177c0c5 data/equigen/loot_table/blocks/placeholder_fence_gate.json
+562163cffa75d14e505070c3107db68d7fd6815a data/equigen/loot_table/blocks/placeholder_leaves.json
+ca16073057fc192a751686a9a878083a69ec3656 data/equigen/loot_table/blocks/placeholder_log.json
 5b80d956d30204180ff7dd7c6fe44dc55b1fdc78 data/equigen/loot_table/blocks/placeholder_planks.json
 8d26811d13eb3e3b848d9c6b56a67f61eae5b7d0 data/equigen/loot_table/blocks/placeholder_pressure_plate.json
 d411a62beb6573bf7cf7119d1aae5e1829a9b724 data/equigen/loot_table/blocks/placeholder_slab.json
 e1d22a0efef180bfb5c09cf5720123435741fe05 data/equigen/loot_table/blocks/placeholder_stairs.json
+c2e0ddb4545388bdd9bcf5996f748b4f049de411 data/equigen/loot_table/blocks/placeholder_stripped_log.json
 e854b84e93b529ef67485aa34eb93c940d578b13 data/equigen/loot_table/blocks/placeholder_trapdoor.json
 e3d617822fac7582ea99226fe6f50394504b76b8 data/equigen/loot_table/blocks/placeholder_wall.json
 e139d35419cf1157fdeeb6b8cd344c21cf84c68f data/equigen/loot_table/blocks/raw_folirite_block.json

@@ -3,10 +3,13 @@ package net.buckleystudios.equigen;
 import com.mojang.logging.LogUtils;
 import net.buckleystudios.equigen.block.ModBlocks;
 import net.buckleystudios.equigen.block.entity.ModBlockEntities;
+import net.buckleystudios.equigen.entity.ModEntities;
+import net.buckleystudios.equigen.entity.client.PillagerKingRenderer;
 import net.buckleystudios.equigen.item.ModItems;
 import net.buckleystudios.equigen.screen.Infusion_Table.InfusionTableScreen;
 import net.buckleystudios.equigen.screen.ModMenuTypes;
 import net.buckleystudios.equigen.sound.ModSounds;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -14,6 +17,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
@@ -34,6 +38,7 @@ public class EquigenMod {
         ModSounds.SOUND_EVENTS.register(modEventBus);
         ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
         ModMenuTypes.MENUS.register(modEventBus);
+        ModEntities.ENTITY_TYPES.register(modEventBus);
 
         //
         modEventBus.addListener(this::commonSetup);
@@ -61,6 +66,7 @@ public class EquigenMod {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+            EntityRenderers.register(ModEntities.PILLAGER_KING.get(), PillagerKingRenderer::new);
 
         }
         @SubscribeEvent

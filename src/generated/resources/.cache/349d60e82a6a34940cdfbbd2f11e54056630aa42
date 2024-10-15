@@ -1,4 +1,4 @@
-// 1.21	2024-10-04T13:40:45.2560005	Item Models: equigen
+// 1.21	2024-10-14T20:18:44.6483036	Item Models: equigen
 5ae1230c38b3b623133f71019f46cc19c3d7d6d2 assets/equigen/models/item/apricot_button.json
 f7a8ff7ce56a1e5be13f1e8709b7bd18fe44b2c8 assets/equigen/models/item/apricot_door.json
 8e7d2947d9237b31588fe83db5a9799490d88bd4 assets/equigen/models/item/apricot_fence.json
@@ -21,6 +21,7 @@ eaefbd4d81039b4a136ea0c2d06141044f480061 assets/equigen/models/item/folirite_swo
 5f073601ef67b61f823d2806da480234c8e1e3fa assets/equigen/models/item/pear_button.json
 cf7e276573e5426397133896c2f0043fb91d2515 assets/equigen/models/item/pear_door.json
 201b7c6a4f9895480f6fb41bdf937fc2a9ddabd3 assets/equigen/models/item/pear_fence.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/equigen/models/item/pillager_king_spawn_egg.json
 724f49277d3a55113a7ac93dc7b1eab6ffb4b639 assets/equigen/models/item/placeholder_button.json
 f4f2146794ba634fcc067d27117ac6a3b5ab6c29 assets/equigen/models/item/placeholder_door.json
 2dbfea7c9bbd36cbfa62c43da0ced1e34affc19a assets/equigen/models/item/placeholder_fence.json

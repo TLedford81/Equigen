@@ -38,6 +38,9 @@ public class ModCreativeModeTabs{
                         pOutput.accept(ModItems.FOLIRITE_HOE);
                         pOutput.accept(ModItems.SODIUM_GRENADE);
 
+                        //Spawn Eggs
+                        pOutput.accept(ModItems.PILLAGER_KING_SPAWN_EGG);
+
                     })).build());
 
     public static final Supplier<CreativeModeTab> BLOCKS_TAB = CREATIVE_MODE_TABS.register("blocks_tab",
@@ -46,6 +49,8 @@ public class ModCreativeModeTabs{
                     .icon(() -> new ItemStack(ModBlocks.FOLIRITE_BLOCK))
                     .withTabsBefore(ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "main_tab"))
                     .displayItems((((parameters, pOutput) -> {
+                        pOutput.accept(ModBlocks.PLACEHOLDER_LOG);
+                        pOutput.accept(ModBlocks.PLACEHOLDER_LEAVES);
                         pOutput.accept(ModBlocks.PLACEHOLDER_PLANKS);
                         pOutput.accept(ModBlocks.PLACEHOLDER_SLAB);
                         pOutput.accept(ModBlocks.PLACEHOLDER_STAIRS);
