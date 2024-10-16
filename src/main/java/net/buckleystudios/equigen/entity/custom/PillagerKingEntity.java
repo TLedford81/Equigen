@@ -10,6 +10,7 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.Pillager;
 import net.minecraft.world.entity.monster.ZombifiedPiglin;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -26,17 +27,18 @@ public class PillagerKingEntity extends Monster {
         super.registerGoals();
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0, false));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0));
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setAlertOthers(ZombifiedPiglin.class));
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setAlertOthers(Pillager.class));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
     }
 
     public static AttributeSupplier.Builder createAttributes(){
         return Monster.createMonsterAttributes()
-                .add(Attributes.MAX_HEALTH, 20)
-                .add(Attributes.MOVEMENT_SPEED, 0.25)
+                .add(Attributes.MAX_HEALTH, 50)
+                .add(Attributes.MOVEMENT_SPEED, 0.5)
                 .add(Attributes.FOLLOW_RANGE, 24)
-                .add(Attributes.ATTACK_DAMAGE, 1);
+                .add(Attributes.ATTACK_DAMAGE, 5)
+                .add(Attributes.ATTACK_SPEED, 8);
     }
 
     private void setupAnimationStates(){

@@ -50,4 +50,7 @@ public class ModItems {
     public static final DeferredItem<Item> PILLAGER_KING_SPAWN_EGG = ITEMS.register("pillager_king_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.PILLAGER_KING, 0xdebd47, 0xccbfbe,
                     new Item.Properties()));
+    public static final DeferredItem<Item> EGRET_SPAWN_EGG = ITEMS.register("egret_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.EGRET, 0xdebd47, 0xccbfbe,
+                    new Item.Properties()));
 }

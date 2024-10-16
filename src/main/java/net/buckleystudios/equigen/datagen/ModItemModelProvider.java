@@ -35,6 +35,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         //Spawn Eggs
         withExistingParent(ModItems.PILLAGER_KING_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+        withExistingParent(ModItems.EGRET_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 
         //Block Items (Cont.)
         buttonItem(ModBlocks.PLACEHOLDER_BUTTON, ModBlocks.PLACEHOLDER_PLANKS);

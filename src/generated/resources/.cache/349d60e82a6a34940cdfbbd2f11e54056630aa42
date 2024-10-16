@@ -1,10 +1,11 @@
-// 1.21	2024-10-14T20:18:44.6483036	Item Models: equigen
+// 1.21	2024-10-16T08:31:00.0646068	Item Models: equigen
 5ae1230c38b3b623133f71019f46cc19c3d7d6d2 assets/equigen/models/item/apricot_button.json
 f7a8ff7ce56a1e5be13f1e8709b7bd18fe44b2c8 assets/equigen/models/item/apricot_door.json
 8e7d2947d9237b31588fe83db5a9799490d88bd4 assets/equigen/models/item/apricot_fence.json
 04c5a379995ce85c0b1df92761d002182b3f6ba7 assets/equigen/models/item/citrus_button.json
 22dd555a18d3a76872eb44630b50fade1f057c42 assets/equigen/models/item/citrus_door.json
 8a8bfb4929f611f7d350e8913fd032e2b1e5ba8e assets/equigen/models/item/citrus_fence.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/equigen/models/item/egret_spawn_egg.json
 ebd7cffb556b6b712c879bbad3043da3bc506fef assets/equigen/models/item/fig_button.json
 b8eb555fe8ab91a8d21e87688ba2604b538e3943 assets/equigen/models/item/fig_door.json
 61970e36775c6b6d45d4458f92d767ce47771d5a assets/equigen/models/item/fig_fence.json

@@ -1,6 +1,7 @@
 package net.buckleystudios.equigen.entity;
 
 import net.buckleystudios.equigen.EquigenMod;
+import net.buckleystudios.equigen.entity.custom.EgretEntity;
 import net.buckleystudios.equigen.entity.custom.PillagerKingEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.Entity;
@@ -17,5 +18,8 @@ public class ModEntities {
 
     public static final Supplier<EntityType<PillagerKingEntity>> PILLAGER_KING =
             ENTITY_TYPES.register("pillager_king", () -> EntityType.Builder.of(PillagerKingEntity::new, MobCategory.MONSTER)
-                    .sized(3f, 3f).build("pillager_king"));
+                    .sized(1.4f, 2.7f).build("pillager_king"));
+    public static final Supplier<EntityType<EgretEntity>> EGRET =
+            ENTITY_TYPES.register("egret", () -> EntityType.Builder.of(EgretEntity::new, MobCategory.MISC)
+                    .sized(0.5f, 0.5f).build("egret"));
 }

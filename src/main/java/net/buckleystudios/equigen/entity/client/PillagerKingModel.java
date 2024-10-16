@@ -8,7 +8,8 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
- public class PillagerKingModel extends HierarchicalModel<PillagerKingEntity> {
+
+public class PillagerKingModel extends HierarchicalModel<PillagerKingEntity> {
      private final ModelPart pillager_king;
      private final ModelPart head;
 

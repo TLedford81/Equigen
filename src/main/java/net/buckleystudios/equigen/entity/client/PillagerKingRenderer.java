@@ -8,11 +8,11 @@ import net.minecraft.resources.ResourceLocation;
 
 public class PillagerKingRenderer extends MobRenderer<PillagerKingEntity, PillagerKingModel> {
     public PillagerKingRenderer(EntityRendererProvider.Context context) {
-        super(context, new PillagerKingModel(context.bakeLayer(ModModelLayers.PILLAGER_KING)), 3f);
+        super(context, new PillagerKingModel(context.bakeLayer(ModModelLayers.PILLAGER_KING)), 1f);
     }
 
     @Override
     public ResourceLocation getTextureLocation(PillagerKingEntity entity) {
-        return ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/pillager_king/pillager_king.png");
+        return ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/pillager_king/egret.png");
     }
 }
