@@ -2,6 +2,7 @@ package net.buckleystudios.equigen.datagen;
 
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.block.ModBlocks;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
@@ -20,17 +21,28 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
 
         //Decoration Blocks
-        simpleBlockWithItem(ModBlocks.PLACEHOLDER_LOG.get(), models().cubeBottomTop("placeholder_log",
-                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_log_side"),
-                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_log_bottomtop"),
-                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_log_bottomtop")));
-        simpleBlockWithItem(ModBlocks.PLACEHOLDER_STRIPPED_LOG.get(), models().cubeBottomTop("placeholder_stripped_log",
-                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_stripped_log_side"),
-                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_stripped_log_bottomtop"),
-                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_stripped_log_bottomtop")));
+//        simpleBlockWithItem(ModBlocks.PLACEHOLDER_LOG.get(), models().cubeBottomTop("placeholder_log",
+//                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_log_side"),
+//                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_log_bottomtop"),
+//                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_log_bottomtop")));
+//        simpleBlockWithItem(ModBlocks.PLACEHOLDER_STRIPPED_LOG.get(), models().cubeBottomTop("placeholder_stripped_log",
+//                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_stripped_log_side"),
+//                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_stripped_log_bottomtop"),
+//                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_stripped_log_bottomtop")));
+//
+        logBlock(((RotatedPillarBlock) ModBlocks.PLACEHOLDER_LOG.get()));
+        blockItem(ModBlocks.PLACEHOLDER_LOG);
+        logBlock(((RotatedPillarBlock) ModBlocks.PLACEHOLDER_STRIPPED_LOG.get()));
+        blockItem(ModBlocks.PLACEHOLDER_STRIPPED_LOG);
+        axisBlock(((RotatedPillarBlock) ModBlocks.PLACEHOLDER_WOOD.get()), blockTexture(ModBlocks.PLACEHOLDER_LOG.get()), blockTexture(ModBlocks.PLACEHOLDER_LOG.get()));
+        blockItem(ModBlocks.PLACEHOLDER_WOOD);
+        axisBlock(((RotatedPillarBlock) ModBlocks.PLACEHOLDER_STRIPPED_WOOD.get()), blockTexture(ModBlocks.PLACEHOLDER_STRIPPED_LOG.get()), blockTexture(ModBlocks.PLACEHOLDER_STRIPPED_LOG.get()));
+        blockItem(ModBlocks.PLACEHOLDER_STRIPPED_WOOD);
 
         blockWithItem(ModBlocks.PLACEHOLDER_PLANKS);
-        blockWithItem(ModBlocks.PLACEHOLDER_LEAVES);
+        leavesBlock(ModBlocks.PLACEHOLDER_LEAVES);
+        saplingBlock(ModBlocks.PLACEHOLDER_SAPLING);
+
 
         stairsBlock((StairBlock) ModBlocks.PLACEHOLDER_STAIRS.get(), blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()));
         blockItem(ModBlocks.PLACEHOLDER_STAIRS);
@@ -233,6 +245,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 new ModelFile.UncheckedModelFile(modLoc("block/infusion_table")));
 
         //Note: Later, Simplify the usage of SimpleBlockItem command
+    }
+
+    private void leavesBlock(DeferredBlock<Block> deferredBlock) {
+        simpleBlockWithItem(deferredBlock.get(),
+                models().singleTexture(BuiltInRegistries.BLOCK.getKey(deferredBlock.get()).getPath(), ResourceLocation.parse("minecraft:block/leaves"),
+                        "all", blockTexture(deferredBlock.get())).renderType("cutout"));
+    }
+
+    private void saplingBlock(DeferredBlock<Block> deferredBlock) {
+        simpleBlock(deferredBlock.get(), models().cross(BuiltInRegistries.BLOCK.getKey(deferredBlock.get()).getPath(), blockTexture(deferredBlock.get())).renderType("cutout"));
     }
 
     private void blockWithItem(DeferredBlock<Block> deferredBlock){

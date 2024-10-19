@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class EgretRenderer extends MobRenderer<EgretEntity, EgretModel> {
     public EgretRenderer(EntityRendererProvider.Context context) {
-        super(context, new EgretModel(context.bakeLayer(ModModelLayers.EGRET)), 1f);
+        super(context, new EgretModel(context.bakeLayer(ModModelLayers.EGRET)), 0.25f);
     }
 
     @Override

@@ -13,6 +13,6 @@ public class PillagerKingRenderer extends MobRenderer<PillagerKingEntity, Pillag
 
     @Override
     public ResourceLocation getTextureLocation(PillagerKingEntity entity) {
-        return ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/pillager_king/egret.png");
+        return ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/pillager_king/pillager_king.png");
     }
 }

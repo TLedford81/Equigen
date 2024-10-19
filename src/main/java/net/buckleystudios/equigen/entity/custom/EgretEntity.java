@@ -16,9 +16,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Random;
+
 public class EgretEntity extends Animal {
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
+
+    Random random = new Random();
     public EgretEntity(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
     }
@@ -50,10 +54,23 @@ public class EgretEntity extends Animal {
     }
 
     private void setupAnimationStates(){
-        if(this.idleAnimationTimeout <= 0) {
-            this.idleAnimationTimeout = 10; //Time of Idle Animation in ticks
+//        if(this.idleAnimationTimeout <= 0 && idleAnimationsRemaining <= 0) {
+//            this.idleAnimationTimeout = 48; //Time of Headbob Animation in ticks
+//            this.headBobAnimationState.start(this.tickCount);
+//            this.idleAnimationsRemaining = random.nextInt(3, 10) + 3;
+//            System.out.println("Remaining Idles: " + this.idleAnimationsRemaining);
+//        } else if(this.idleAnimationTimeout <= 0) {
+//            this.idleAnimationTimeout = 20; //Time of Idle Animation in ticks
+//            this.idleAnimationState.start(this.tickCount);
+//            --this.idleAnimationsRemaining;
+//        } else {
+//            --this.idleAnimationTimeout;
+//        }
+
+        if (this.idleAnimationTimeout <= 0){
+            this.idleAnimationTimeout = 50; //Length (in ticks) of Idle Animation
             this.idleAnimationState.start(this.tickCount);
-        }else{
+        } else {
             --this.idleAnimationTimeout;
         }
     }

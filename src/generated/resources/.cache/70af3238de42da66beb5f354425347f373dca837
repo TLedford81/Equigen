@@ -1,7 +1,8 @@
-// 1.21	2024-10-04T13:40:45.2600375	Block Tags
+// 1.21	2024-10-19T10:35:36.6398577	Block Tags
 8849519eff594a9d261346f792a79ab31fa3944f data/equigen/tags/block/incorrect_for_folirite_tool.json
 32b13946c4cd1f944b029659ccce5fcb2adad4ff data/equigen/tags/block/needs_folirite_tool.json
 8287e55e14a2cbd380030b3e8116e641d3f5d3db data/minecraft/tags/block/fence_gates.json
+8c3d5a77bcfdeb8bc8d56b9ced0983c219e7c5ab data/minecraft/tags/block/logs_that_burn.json
 ec185c5bf7e7507e9e3930397f34b2fb64fb6f1f data/minecraft/tags/block/mineable/pickaxe.json
 3f80c7bcf5426ce8040c8d6ae46fb87e985ab9b4 data/minecraft/tags/block/needs_diamond_tool.json
 536d60a09545ac2c19d804febbcc2f1f5092d63a data/minecraft/tags/block/needs_iron_tool.json

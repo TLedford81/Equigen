@@ -21,6 +21,12 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
+        this.tag(BlockTags.LOGS_THAT_BURN)
+                .add(ModBlocks.PLACEHOLDER_LOG.get())
+                .add(ModBlocks.PLACEHOLDER_WOOD.get())
+                .add(ModBlocks.PLACEHOLDER_STRIPPED_LOG.get())
+                .add(ModBlocks.PLACEHOLDER_STRIPPED_WOOD.get());
+
         this.tag(BlockTags.WOODEN_FENCES)
                 .add(ModBlocks.PLACEHOLDER_FENCE.get())
                 .add(ModBlocks.FIG_FENCE.get())

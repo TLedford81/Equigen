@@ -2,7 +2,11 @@ package net.buckleystudios.equigen.block;
 
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.block.custom.InfusionTableBlock;
+import net.buckleystudios.equigen.block.custom.ModLeavesBlock;
+import net.buckleystudios.equigen.block.custom.ModLogBlock;
+import net.buckleystudios.equigen.block.custom.ModPlanksBlock;
 import net.buckleystudios.equigen.item.ModItems;
+import net.buckleystudios.equigen.worldgen.tree.ModTreeGrowers;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -22,7 +26,7 @@ public class ModBlocks {
     //Wood Types: Fig, Maple, Citrus, Apricot, Pear
     //Placeholder Wood
     public static final DeferredBlock<Block> PLACEHOLDER_PLANKS = registerBlock("placeholder_planks",
-            () -> new Block(BlockBehaviour.Properties.of().strength(1f)));
+            () -> new ModPlanksBlock(BlockBehaviour.Properties.of().strength(1f)));
     public static final DeferredBlock<Block> PLACEHOLDER_STAIRS = registerBlock("placeholder_stairs",
             () -> new StairBlock(ModBlocks.PLACEHOLDER_PLANKS.get().defaultBlockState(),
                     BlockBehaviour.Properties.of().strength(1f)));
@@ -43,15 +47,22 @@ public class ModBlocks {
     public static final DeferredBlock<Block> PLACEHOLDER_TRAPDOOR = registerBlock("placeholder_trapdoor",
             () -> new TrapDoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f).noOcclusion()));
     public static final DeferredBlock<Block> PLACEHOLDER_LOG = registerBlock("placeholder_log",
-            () -> new Block(BlockBehaviour.Properties.of().strength(1f)));
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
     public static final DeferredBlock<Block> PLACEHOLDER_STRIPPED_LOG = registerBlock("placeholder_stripped_log",
-            () -> new Block(BlockBehaviour.Properties.of().strength(1f)));
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
+    public static final DeferredBlock<Block> PLACEHOLDER_WOOD = registerBlock("placeholder_wood",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD)));
+    public static final DeferredBlock<Block> PLACEHOLDER_STRIPPED_WOOD = registerBlock("placeholder_stripped_wood",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD)));
     public static final DeferredBlock<Block> PLACEHOLDER_LEAVES = registerBlock("placeholder_leaves",
-            () -> new LeavesBlock(BlockBehaviour.Properties.of().strength(1f).noOcclusion()));
+            () -> new ModLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
+    public static final DeferredBlock<Block> PLACEHOLDER_SAPLING = registerBlock("placeholder_sapling",
+            () -> new SaplingBlock(ModTreeGrowers.PLACEHOLDER, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+
 
     //Fig Wood
     public static final DeferredBlock<Block> FIG_PLANKS = registerBlock("fig_planks",
-            () -> new Block(BlockBehaviour.Properties.of().strength(1f)));
+            () -> new ModPlanksBlock(BlockBehaviour.Properties.of().strength(1f)));
     public static final DeferredBlock<Block> FIG_STAIRS = registerBlock("fig_stairs",
             () -> new StairBlock(ModBlocks.FIG_PLANKS.get().defaultBlockState(),
                     BlockBehaviour.Properties.of().strength(1f)));
@@ -72,7 +83,7 @@ public class ModBlocks {
 
     //Maple Wood
     public static final DeferredBlock<Block> MAPLE_PLANKS = registerBlock("maple_planks",
-            () -> new Block(BlockBehaviour.Properties.of().strength(1f)));
+            () -> new ModPlanksBlock(BlockBehaviour.Properties.of().strength(1f)));
     public static final DeferredBlock<Block> MAPLE_STAIRS = registerBlock("maple_stairs",
             () -> new StairBlock(ModBlocks.MAPLE_PLANKS.get().defaultBlockState(),
                     BlockBehaviour.Properties.of().strength(1f)));
@@ -92,7 +103,7 @@ public class ModBlocks {
             () -> new TrapDoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f).noOcclusion()));
     //Citrus Wood
     public static final DeferredBlock<Block> CITRUS_PLANKS = registerBlock("citrus_planks",
-            () -> new Block(BlockBehaviour.Properties.of().strength(1f)));
+            () -> new ModPlanksBlock(BlockBehaviour.Properties.of().strength(1f)));
     public static final DeferredBlock<Block> CITRUS_STAIRS = registerBlock("citrus_stairs",
             () -> new StairBlock(ModBlocks.CITRUS_PLANKS.get().defaultBlockState(),
                     BlockBehaviour.Properties.of().strength(1f)));
@@ -112,7 +123,7 @@ public class ModBlocks {
             () -> new TrapDoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f).noOcclusion()));
     //Apricot Wood
     public static final DeferredBlock<Block> APRICOT_PLANKS = registerBlock("apricot_planks",
-            () -> new Block(BlockBehaviour.Properties.of().strength(1f)));
+            () -> new ModPlanksBlock(BlockBehaviour.Properties.of().strength(1f)));
     public static final DeferredBlock<Block> APRICOT_STAIRS = registerBlock("apricot_stairs",
             () -> new StairBlock(ModBlocks.APRICOT_PLANKS.get().defaultBlockState(),
                     BlockBehaviour.Properties.of().strength(1f)));
@@ -132,7 +143,7 @@ public class ModBlocks {
             () -> new TrapDoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f).noOcclusion()));
     //Pear Wood
     public static final DeferredBlock<Block> PEAR_PLANKS = registerBlock("pear_planks",
-            () -> new Block(BlockBehaviour.Properties.of().strength(1f)));
+            () -> new ModPlanksBlock(BlockBehaviour.Properties.of().strength(1f)));
     public static final DeferredBlock<Block> PEAR_STAIRS = registerBlock("pear_stairs",
             () -> new StairBlock(ModBlocks.PEAR_PLANKS.get().defaultBlockState(),
                     BlockBehaviour.Properties.of().strength(1f)));

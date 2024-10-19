@@ -41,9 +41,14 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.PLACEHOLDER_FENCE_GATE.get());
         this.dropSelf(ModBlocks.PLACEHOLDER_WALL.get());
         this.dropSelf(ModBlocks.PLACEHOLDER_TRAPDOOR.get());
+        this.dropSelf(ModBlocks.PLACEHOLDER_WOOD.get());
+        this.dropSelf(ModBlocks.PLACEHOLDER_STRIPPED_WOOD.get());
         this.dropSelf(ModBlocks.PLACEHOLDER_LOG.get());
         this.dropSelf(ModBlocks.PLACEHOLDER_STRIPPED_LOG.get());
-        this.dropSelf(ModBlocks.PLACEHOLDER_LEAVES.get());
+        this.dropSelf(ModBlocks.PLACEHOLDER_SAPLING.get());
+
+        this.add(ModBlocks.PLACEHOLDER_LEAVES.get(), block ->
+                createLeavesDrops(block, ModBlocks.PLACEHOLDER_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
         //FIG WOOD
         this.dropSelf(ModBlocks.FIG_PLANKS.get());

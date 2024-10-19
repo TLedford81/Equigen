@@ -38,6 +38,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent(ModItems.EGRET_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 
         //Block Items (Cont.)
+        saplingItem(ModBlocks.PLACEHOLDER_SAPLING);
         buttonItem(ModBlocks.PLACEHOLDER_BUTTON, ModBlocks.PLACEHOLDER_PLANKS);
         fenceItem(ModBlocks.PLACEHOLDER_FENCE, ModBlocks.PLACEHOLDER_PLANKS);
         wallItem(ModBlocks.PLACEHOLDER_WALL, ModBlocks.PLACEHOLDER_PLANKS);
@@ -58,6 +59,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         buttonItem(ModBlocks.PEAR_BUTTON, ModBlocks.PEAR_PLANKS);
         fenceItem(ModBlocks.PEAR_FENCE, ModBlocks.PEAR_PLANKS);
         basicItem(ModBlocks.PEAR_DOOR.asItem());
+    }
+
+    private ItemModelBuilder saplingItem(DeferredBlock<Block> item) {
+        return withExistingParent(item.getId().getPath(),
+                ResourceLocation.parse("item/generated")).texture("layer0",
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID,"block/" + item.getId().getPath()));
     }
 
     public void buttonItem(DeferredBlock<Block> block, DeferredBlock<Block> baseBlock){

@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "equigen:block/placeholder_log_top",
+    "end": "equigen:block/placeholder_log",
     "side": "equigen:block/placeholder_log"
   }
 }

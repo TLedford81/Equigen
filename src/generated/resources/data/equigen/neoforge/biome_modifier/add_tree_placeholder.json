@@ -1,0 +1,9 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "minecraft:plains",
+    "minecraft:forest"
+  ],
+  "features": "equigen:placeholder_placed",
+  "step": "vegetal_decoration"
+}
