@@ -2,9 +2,10 @@
   "values": [
     "equigen:placeholder_fence_gate",
     "equigen:fig_fence_gate",
-    "equigen:maple_fence_gate",
+    "equigen:magnolia_fence_gate",
     "equigen:citrus_fence_gate",
     "equigen:apricot_fence_gate",
-    "equigen:pear_fence_gate"
+    "equigen:mulberry_fence_gate",
+    "equigen:green_ash_fence_gate"
   ]
 }

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "equigen:block/citrus_stripped_wood_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "equigen:block/citrus_stripped_wood"
+    },
+    "axis=z": {
+      "model": "equigen:block/citrus_stripped_wood_horizontal",
+      "x": 90
+    }
+  }
+}

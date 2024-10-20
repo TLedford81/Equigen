@@ -13,14 +13,14 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "block": "equigen:fig_door",
+              "block": "equigen:apricot_door",
               "condition": "minecraft:block_state_property",
               "properties": {
                 "half": "lower"
               }
             }
           ],
-          "name": "equigen:fig_door"
+          "name": "equigen:apricot_door"
         }
       ],
       "rolls": 1.0

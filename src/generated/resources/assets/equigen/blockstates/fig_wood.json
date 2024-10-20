@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "equigen:block/fig_wood_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "equigen:block/fig_wood"
+    },
+    "axis=z": {
+      "model": "equigen:block/fig_wood_horizontal",
+      "x": 90
+    }
+  }
+}

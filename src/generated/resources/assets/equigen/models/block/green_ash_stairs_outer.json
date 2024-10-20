@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "equigen:block/green_ash_planks",
+    "side": "equigen:block/green_ash_planks",
+    "top": "equigen:block/green_ash_planks"
+  }
+}

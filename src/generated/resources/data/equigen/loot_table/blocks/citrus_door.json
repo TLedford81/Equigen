@@ -13,14 +13,14 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "block": "equigen:fig_door",
+              "block": "equigen:citrus_door",
               "condition": "minecraft:block_state_property",
               "properties": {
                 "half": "lower"
               }
             }
           ],
-          "name": "equigen:fig_door"
+          "name": "equigen:citrus_door"
         }
       ],
       "rolls": 1.0

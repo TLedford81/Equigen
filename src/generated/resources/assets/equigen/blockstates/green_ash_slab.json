@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "equigen:block/green_ash_slab"
+    },
+    "type=double": {
+      "model": "equigen:block/green_ash_planks"
+    },
+    "type=top": {
+      "model": "equigen:block/green_ash_slab_top"
+    }
+  }
+}

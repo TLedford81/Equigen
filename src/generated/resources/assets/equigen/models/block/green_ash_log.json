@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "equigen:block/green_ash_log_top",
+    "side": "equigen:block/green_ash_log"
+  }
+}

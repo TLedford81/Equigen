@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "equigen:block/mulberry_slab"
+    },
+    "type=double": {
+      "model": "equigen:block/mulberry_planks"
+    },
+    "type=top": {
+      "model": "equigen:block/mulberry_slab_top"
+    }
+  }
+}
