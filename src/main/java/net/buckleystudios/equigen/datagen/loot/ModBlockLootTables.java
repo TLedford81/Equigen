@@ -58,14 +58,28 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.FIG_FENCE.get());
         this.dropSelf(ModBlocks.FIG_FENCE_GATE.get());
         this.dropSelf(ModBlocks.FIG_TRAPDOOR.get());
-        //MAPLE WOOD
-        this.dropSelf(ModBlocks.MAPLE_PLANKS.get());
-        this.dropSelf(ModBlocks.MAPLE_STAIRS.get());
-        this.dropSelf(ModBlocks.MAPLE_PRESSURE_PLATE.get());
-        this.dropSelf(ModBlocks.MAPLE_BUTTON.get());
-        this.dropSelf(ModBlocks.MAPLE_FENCE.get());
-        this.dropSelf(ModBlocks.MAPLE_FENCE_GATE.get());
-        this.dropSelf(ModBlocks.MAPLE_TRAPDOOR.get());
+        this.dropSelf(ModBlocks.FIG_LOG.get());
+        this.dropSelf(ModBlocks.FIG_STRIPPED_LOG.get());
+        this.dropSelf(ModBlocks.FIG_WOOD.get());
+        this.dropSelf(ModBlocks.FIG_STRIPPED_WOOD.get());
+        this.dropSelf(ModBlocks.FIG_SAPLING.get());
+        this.add(ModBlocks.FIG_LEAVES.get(), block ->
+                createLeavesDrops(block, ModBlocks.FIG_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        //MAGNOLIA WOOD
+        this.dropSelf(ModBlocks.MAGNOLIA_PLANKS.get());
+        this.dropSelf(ModBlocks.MAGNOLIA_STAIRS.get());
+        this.dropSelf(ModBlocks.MAGNOLIA_PRESSURE_PLATE.get());
+        this.dropSelf(ModBlocks.MAGNOLIA_BUTTON.get());
+        this.dropSelf(ModBlocks.MAGNOLIA_FENCE.get());
+        this.dropSelf(ModBlocks.MAGNOLIA_FENCE_GATE.get());
+        this.dropSelf(ModBlocks.MAGNOLIA_TRAPDOOR.get());
+        this.dropSelf(ModBlocks.MAGNOLIA_LOG.get());
+        this.dropSelf(ModBlocks.MAGNOLIA_STRIPPED_LOG.get());
+        this.dropSelf(ModBlocks.MAGNOLIA_WOOD.get());
+        this.dropSelf(ModBlocks.MAGNOLIA_STRIPPED_WOOD.get());
+        this.dropSelf(ModBlocks.MAGNOLIA_SAPLING.get());
+        this.add(ModBlocks.MAGNOLIA_LEAVES.get(), block ->
+                createLeavesDrops(block, ModBlocks.MAGNOLIA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         //CITRUS WOOD
         this.dropSelf(ModBlocks.CITRUS_PLANKS.get());
         this.dropSelf(ModBlocks.CITRUS_STAIRS.get());
@@ -74,6 +88,13 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.CITRUS_FENCE.get());
         this.dropSelf(ModBlocks.CITRUS_FENCE_GATE.get());
         this.dropSelf(ModBlocks.CITRUS_TRAPDOOR.get());
+        this.dropSelf(ModBlocks.CITRUS_LOG.get());
+        this.dropSelf(ModBlocks.CITRUS_STRIPPED_LOG.get());
+        this.dropSelf(ModBlocks.CITRUS_WOOD.get());
+        this.dropSelf(ModBlocks.CITRUS_STRIPPED_WOOD.get());
+        this.dropSelf(ModBlocks.CITRUS_SAPLING.get());
+        this.add(ModBlocks.CITRUS_LEAVES.get(), block ->
+                createLeavesDrops(block, ModBlocks.CITRUS_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         //APRICOT WOOD
         this.dropSelf(ModBlocks.APRICOT_PLANKS.get());
         this.dropSelf(ModBlocks.APRICOT_STAIRS.get());
@@ -82,14 +103,43 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.APRICOT_FENCE.get());
         this.dropSelf(ModBlocks.APRICOT_FENCE_GATE.get());
         this.dropSelf(ModBlocks.APRICOT_TRAPDOOR.get());
-        //PEAR WOOD
-        this.dropSelf(ModBlocks.PEAR_PLANKS.get());
-        this.dropSelf(ModBlocks.PEAR_STAIRS.get());
-        this.dropSelf(ModBlocks.PEAR_PRESSURE_PLATE.get());
-        this.dropSelf(ModBlocks.PEAR_BUTTON.get());
-        this.dropSelf(ModBlocks.PEAR_FENCE.get());
-        this.dropSelf(ModBlocks.PEAR_FENCE_GATE.get());
-        this.dropSelf(ModBlocks.PEAR_TRAPDOOR.get());
+        this.dropSelf(ModBlocks.APRICOT_LOG.get());
+        this.dropSelf(ModBlocks.APRICOT_STRIPPED_LOG.get());
+        this.dropSelf(ModBlocks.APRICOT_WOOD.get());
+        this.dropSelf(ModBlocks.APRICOT_STRIPPED_WOOD.get());
+        this.dropSelf(ModBlocks.APRICOT_SAPLING.get());
+        this.add(ModBlocks.APRICOT_LEAVES.get(), block ->
+                createLeavesDrops(block, ModBlocks.APRICOT_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        //MULBERRY WOOD
+        this.dropSelf(ModBlocks.MULBERRY_PLANKS.get());
+        this.dropSelf(ModBlocks.MULBERRY_STAIRS.get());
+        this.dropSelf(ModBlocks.MULBERRY_PRESSURE_PLATE.get());
+        this.dropSelf(ModBlocks.MULBERRY_BUTTON.get());
+        this.dropSelf(ModBlocks.MULBERRY_FENCE.get());
+        this.dropSelf(ModBlocks.MULBERRY_FENCE_GATE.get());
+        this.dropSelf(ModBlocks.MULBERRY_TRAPDOOR.get());
+        this.dropSelf(ModBlocks.MULBERRY_LOG.get());
+        this.dropSelf(ModBlocks.MULBERRY_STRIPPED_LOG.get());
+        this.dropSelf(ModBlocks.MULBERRY_WOOD.get());
+        this.dropSelf(ModBlocks.MULBERRY_STRIPPED_WOOD.get());
+        this.dropSelf(ModBlocks.MULBERRY_SAPLING.get());
+        this.add(ModBlocks.MULBERRY_LEAVES.get(), block ->
+                createLeavesDrops(block, ModBlocks.MULBERRY_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        //GREEN ASH WOOD
+        this.dropSelf(ModBlocks.GREEN_ASH_PLANKS.get());
+        this.dropSelf(ModBlocks.GREEN_ASH_STAIRS.get());
+        this.dropSelf(ModBlocks.GREEN_ASH_PRESSURE_PLATE.get());
+        this.dropSelf(ModBlocks.GREEN_ASH_BUTTON.get());
+        this.dropSelf(ModBlocks.GREEN_ASH_FENCE.get());
+        this.dropSelf(ModBlocks.GREEN_ASH_FENCE_GATE.get());
+        this.dropSelf(ModBlocks.GREEN_ASH_TRAPDOOR.get());
+        this.dropSelf(ModBlocks.GREEN_ASH_LOG.get());
+        this.dropSelf(ModBlocks.GREEN_ASH_STRIPPED_LOG.get());
+        this.dropSelf(ModBlocks.GREEN_ASH_WOOD.get());
+        this.dropSelf(ModBlocks.GREEN_ASH_STRIPPED_WOOD.get());
+        this.dropSelf(ModBlocks.GREEN_ASH_SAPLING.get());
+        this.add(ModBlocks.GREEN_ASH_LEAVES.get(), block ->
+                createLeavesDrops(block, ModBlocks.GREEN_ASH_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
         this.dropSelf(ModBlocks.FOLIRITE_BLOCK.get());
         this.dropSelf(ModBlocks.RAW_FOLIRITE_BLOCK.get());
@@ -98,18 +148,20 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         //SLAB DROPS
         this.add(ModBlocks.PLACEHOLDER_SLAB.get(), block -> createSlabItemTable(ModBlocks.PLACEHOLDER_SLAB.get()));
         this.add(ModBlocks.FIG_SLAB.get(), block -> createSlabItemTable(ModBlocks.FIG_SLAB.get()));
-        this.add(ModBlocks.MAPLE_SLAB.get(), block -> createSlabItemTable(ModBlocks.FIG_SLAB.get()));
-        this.add(ModBlocks.CITRUS_SLAB.get(), block -> createSlabItemTable(ModBlocks.FIG_SLAB.get()));
-        this.add(ModBlocks.APRICOT_SLAB.get(), block -> createSlabItemTable(ModBlocks.FIG_SLAB.get()));
-        this.add(ModBlocks.PEAR_SLAB.get(), block -> createSlabItemTable(ModBlocks.FIG_SLAB.get()));
+        this.add(ModBlocks.MAGNOLIA_SLAB.get(), block -> createSlabItemTable(ModBlocks.MAGNOLIA_SLAB.get()));
+        this.add(ModBlocks.CITRUS_SLAB.get(), block -> createSlabItemTable(ModBlocks.CITRUS_SLAB.get()));
+        this.add(ModBlocks.APRICOT_SLAB.get(), block -> createSlabItemTable(ModBlocks.APRICOT_SLAB.get()));
+        this.add(ModBlocks.MULBERRY_SLAB.get(), block -> createSlabItemTable(ModBlocks.MULBERRY_SLAB.get()));
+        this.add(ModBlocks.GREEN_ASH_SLAB.get(), block -> createSlabItemTable(ModBlocks.GREEN_ASH_SLAB.get()));
 
         //DOOR DROPS
         this.add(ModBlocks.PLACEHOLDER_DOOR.get(), block -> createDoorTable(ModBlocks.PLACEHOLDER_DOOR.get()));
         this.add(ModBlocks.FIG_DOOR.get(), block -> createDoorTable(ModBlocks.FIG_DOOR.get()));
-        this.add(ModBlocks.MAPLE_DOOR.get(), block -> createDoorTable(ModBlocks.FIG_DOOR.get()));
-        this.add(ModBlocks.CITRUS_DOOR.get(), block -> createDoorTable(ModBlocks.FIG_DOOR.get()));
-        this.add(ModBlocks.APRICOT_DOOR.get(), block -> createDoorTable(ModBlocks.FIG_DOOR.get()));
-        this.add(ModBlocks.PEAR_DOOR.get(), block -> createDoorTable(ModBlocks.FIG_DOOR.get()));
+        this.add(ModBlocks.MAGNOLIA_DOOR.get(), block -> createDoorTable(ModBlocks.MAGNOLIA_DOOR.get()));
+        this.add(ModBlocks.CITRUS_DOOR.get(), block -> createDoorTable(ModBlocks.CITRUS_DOOR.get()));
+        this.add(ModBlocks.APRICOT_DOOR.get(), block -> createDoorTable(ModBlocks.APRICOT_DOOR.get()));
+        this.add(ModBlocks.MULBERRY_DOOR.get(), block -> createDoorTable(ModBlocks.MULBERRY_DOOR.get()));
+        this.add(ModBlocks.GREEN_ASH_DOOR.get(), block -> createDoorTable(ModBlocks.GREEN_ASH_DOOR.get()));
 
         //ORE DROPS
         this.add(ModBlocks.FOLIRITE_ORE.get(),

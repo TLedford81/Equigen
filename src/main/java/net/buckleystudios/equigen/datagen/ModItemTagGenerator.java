@@ -25,14 +25,40 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 .add(ModBlocks.PLACEHOLDER_LOG.get().asItem())
                 .add(ModBlocks.PLACEHOLDER_WOOD.get().asItem())
                 .add(ModBlocks.PLACEHOLDER_STRIPPED_LOG.get().asItem())
-                .add(ModBlocks.PLACEHOLDER_STRIPPED_WOOD.get().asItem());
+                .add(ModBlocks.PLACEHOLDER_STRIPPED_WOOD.get().asItem())
+                .add(ModBlocks.FIG_LOG.get().asItem())
+                .add(ModBlocks.FIG_WOOD.get().asItem())
+                .add(ModBlocks.FIG_STRIPPED_LOG.get().asItem())
+                .add(ModBlocks.FIG_STRIPPED_WOOD.get().asItem())
+                .add(ModBlocks.MAGNOLIA_LOG.get().asItem())
+                .add(ModBlocks.MAGNOLIA_WOOD.get().asItem())
+                .add(ModBlocks.MAGNOLIA_STRIPPED_LOG.get().asItem())
+                .add(ModBlocks.MAGNOLIA_STRIPPED_WOOD.get().asItem())
+                .add(ModBlocks.APRICOT_LOG.get().asItem())
+                .add(ModBlocks.APRICOT_WOOD.get().asItem())
+                .add(ModBlocks.APRICOT_STRIPPED_LOG.get().asItem())
+                .add(ModBlocks.APRICOT_STRIPPED_WOOD.get().asItem())
+                .add(ModBlocks.CITRUS_LOG.get().asItem())
+                .add(ModBlocks.CITRUS_WOOD.get().asItem())
+                .add(ModBlocks.CITRUS_STRIPPED_LOG.get().asItem())
+                .add(ModBlocks.CITRUS_STRIPPED_WOOD.get().asItem())
+                .add(ModBlocks.MULBERRY_LOG.get().asItem())
+                .add(ModBlocks.MULBERRY_WOOD.get().asItem())
+                .add(ModBlocks.MULBERRY_STRIPPED_LOG.get().asItem())
+                .add(ModBlocks.MULBERRY_STRIPPED_WOOD.get().asItem())
+                .add(ModBlocks.GREEN_ASH_LOG.get().asItem())
+                .add(ModBlocks.GREEN_ASH_WOOD.get().asItem())
+                .add(ModBlocks.GREEN_ASH_STRIPPED_LOG.get().asItem())
+                .add(ModBlocks.GREEN_ASH_STRIPPED_WOOD.get().asItem());
+
         this.tag(ItemTags.PLANKS)
                 .add(ModBlocks.PLACEHOLDER_PLANKS.asItem())
                 .add(ModBlocks.APRICOT_PLANKS.asItem())
-                .add(ModBlocks.PEAR_PLANKS.asItem())
+                .add(ModBlocks.MAGNOLIA_PLANKS.asItem())
                 .add(ModBlocks.CITRUS_PLANKS.asItem())
-                .add(ModBlocks.MAPLE_PLANKS.asItem())
-                .add(ModBlocks.FIG_PLANKS.asItem());
+                .add(ModBlocks.MULBERRY_PLANKS.asItem())
+                .add(ModBlocks.FIG_PLANKS.asItem())
+                .add(ModBlocks.GREEN_ASH_PLANKS.asItem());
     }
 
     @Override

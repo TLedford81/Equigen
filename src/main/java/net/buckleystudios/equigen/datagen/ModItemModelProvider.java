@@ -39,6 +39,13 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         //Block Items (Cont.)
         saplingItem(ModBlocks.PLACEHOLDER_SAPLING);
+        saplingItem(ModBlocks.FIG_SAPLING);
+        saplingItem(ModBlocks.MAGNOLIA_SAPLING);
+        saplingItem(ModBlocks.CITRUS_SAPLING);
+        saplingItem(ModBlocks.APRICOT_SAPLING);
+        saplingItem(ModBlocks.MULBERRY_SAPLING);
+        saplingItem(ModBlocks.GREEN_ASH_SAPLING);
+
         buttonItem(ModBlocks.PLACEHOLDER_BUTTON, ModBlocks.PLACEHOLDER_PLANKS);
         fenceItem(ModBlocks.PLACEHOLDER_FENCE, ModBlocks.PLACEHOLDER_PLANKS);
         wallItem(ModBlocks.PLACEHOLDER_WALL, ModBlocks.PLACEHOLDER_PLANKS);
@@ -47,18 +54,21 @@ public class ModItemModelProvider extends ItemModelProvider {
         buttonItem(ModBlocks.FIG_BUTTON, ModBlocks.FIG_PLANKS);
         fenceItem(ModBlocks.FIG_FENCE, ModBlocks.FIG_PLANKS);
         basicItem(ModBlocks.FIG_DOOR.asItem());
-        buttonItem(ModBlocks.MAPLE_BUTTON, ModBlocks.MAPLE_PLANKS);
-        fenceItem(ModBlocks.MAPLE_FENCE, ModBlocks.MAPLE_PLANKS);
-        basicItem(ModBlocks.MAPLE_DOOR.asItem());
+        buttonItem(ModBlocks.MAGNOLIA_BUTTON, ModBlocks.MAGNOLIA_PLANKS);
+        fenceItem(ModBlocks.MAGNOLIA_FENCE, ModBlocks.MAGNOLIA_PLANKS);
+        basicItem(ModBlocks.MAGNOLIA_DOOR.asItem());
         buttonItem(ModBlocks.CITRUS_BUTTON, ModBlocks.CITRUS_PLANKS);
         fenceItem(ModBlocks.CITRUS_FENCE, ModBlocks.CITRUS_PLANKS);
         basicItem(ModBlocks.CITRUS_DOOR.asItem());
         buttonItem(ModBlocks.APRICOT_BUTTON, ModBlocks.APRICOT_PLANKS);
         fenceItem(ModBlocks.APRICOT_FENCE, ModBlocks.APRICOT_PLANKS);
         basicItem(ModBlocks.APRICOT_DOOR.asItem());
-        buttonItem(ModBlocks.PEAR_BUTTON, ModBlocks.PEAR_PLANKS);
-        fenceItem(ModBlocks.PEAR_FENCE, ModBlocks.PEAR_PLANKS);
-        basicItem(ModBlocks.PEAR_DOOR.asItem());
+        buttonItem(ModBlocks.MULBERRY_BUTTON, ModBlocks.MULBERRY_PLANKS);
+        fenceItem(ModBlocks.MULBERRY_FENCE, ModBlocks.MULBERRY_PLANKS);
+        basicItem(ModBlocks.MULBERRY_DOOR.asItem());        
+        buttonItem(ModBlocks.GREEN_ASH_BUTTON, ModBlocks.GREEN_ASH_PLANKS);
+        fenceItem(ModBlocks.GREEN_ASH_FENCE, ModBlocks.GREEN_ASH_PLANKS);
+        basicItem(ModBlocks.GREEN_ASH_DOOR.asItem());
     }
 
     private ItemModelBuilder saplingItem(DeferredBlock<Block> item) {

@@ -24,6 +24,7 @@ public class ModBlocks {
             DeferredRegister.createBlocks(EquigenMod.MODID);
 
     //Wood Types: Fig, Maple, Citrus, Apricot, Pear
+    //Wood Tyoes: Fig, Apricot, Magnolia, Citrus, Mulberry, Green Ash
     //Placeholder Wood
     public static final DeferredBlock<Block> PLACEHOLDER_PLANKS = registerBlock("placeholder_planks",
             () -> new ModPlanksBlock(BlockBehaviour.Properties.of().strength(1f)));
@@ -61,6 +62,18 @@ public class ModBlocks {
 
 
     //Fig Wood
+    public static final DeferredBlock<Block> FIG_LOG = registerBlock("fig_log",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
+    public static final DeferredBlock<Block> FIG_STRIPPED_LOG = registerBlock("fig_stripped_log",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
+    public static final DeferredBlock<Block> FIG_WOOD = registerBlock("fig_wood",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
+    public static final DeferredBlock<Block> FIG_STRIPPED_WOOD = registerBlock("fig_stripped_wood",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
+    public static final DeferredBlock<Block> FIG_LEAVES = registerBlock("fig_leaves",
+            () -> new ModLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
+    public static final DeferredBlock<Block> FIG_SAPLING = registerBlock("fig_sapling",
+            () -> new SaplingBlock(ModTreeGrowers.FIG, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
     public static final DeferredBlock<Block> FIG_PLANKS = registerBlock("fig_planks",
             () -> new ModPlanksBlock(BlockBehaviour.Properties.of().strength(1f)));
     public static final DeferredBlock<Block> FIG_STAIRS = registerBlock("fig_stairs",
@@ -81,27 +94,51 @@ public class ModBlocks {
     public static final DeferredBlock<Block> FIG_TRAPDOOR = registerBlock("fig_trapdoor",
             () -> new TrapDoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f).noOcclusion()));
 
-    //Maple Wood
-    public static final DeferredBlock<Block> MAPLE_PLANKS = registerBlock("maple_planks",
+    //Magnolia Wood
+    public static final DeferredBlock<Block> MAGNOLIA_LOG = registerBlock("magnolia_log",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
+    public static final DeferredBlock<Block> MAGNOLIA_STRIPPED_LOG = registerBlock("magnolia_stripped_log",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
+    public static final DeferredBlock<Block> MAGNOLIA_WOOD = registerBlock("magnolia_wood",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
+    public static final DeferredBlock<Block> MAGNOLIA_STRIPPED_WOOD = registerBlock("magnolia_stripped_wood",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
+    public static final DeferredBlock<Block> MAGNOLIA_LEAVES = registerBlock("magnolia_leaves",
+            () -> new ModLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
+    public static final DeferredBlock<Block> MAGNOLIA_SAPLING = registerBlock("magnolia_sapling",
+            () -> new SaplingBlock(ModTreeGrowers.MAGNOLIA, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+    public static final DeferredBlock<Block> MAGNOLIA_PLANKS = registerBlock("magnolia_planks",
             () -> new ModPlanksBlock(BlockBehaviour.Properties.of().strength(1f)));
-    public static final DeferredBlock<Block> MAPLE_STAIRS = registerBlock("maple_stairs",
-            () -> new StairBlock(ModBlocks.MAPLE_PLANKS.get().defaultBlockState(),
+    public static final DeferredBlock<Block> MAGNOLIA_STAIRS = registerBlock("magnolia_stairs",
+            () -> new StairBlock(ModBlocks.MAGNOLIA_PLANKS.get().defaultBlockState(),
                     BlockBehaviour.Properties.of().strength(1f)));
-    public static final DeferredBlock<Block> MAPLE_SLAB = registerBlock("maple_slab",
+    public static final DeferredBlock<Block> MAGNOLIA_SLAB = registerBlock("magnolia_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.of().strength(1f)));
-    public static final DeferredBlock<Block> MAPLE_PRESSURE_PLATE = registerBlock("maple_pressure_plate",
+    public static final DeferredBlock<Block> MAGNOLIA_PRESSURE_PLATE = registerBlock("magnolia_pressure_plate",
             () -> new PressurePlateBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f)));
-    public static final DeferredBlock<Block> MAPLE_BUTTON = registerBlock("maple_button",
+    public static final DeferredBlock<Block> MAGNOLIA_BUTTON = registerBlock("magnolia_button",
             () -> new ButtonBlock(BlockSetType.SPRUCE, 10, BlockBehaviour.Properties.of().strength(1f).noCollission()));
-    public static final DeferredBlock<Block> MAPLE_FENCE = registerBlock("maple_fence",
+    public static final DeferredBlock<Block> MAGNOLIA_FENCE = registerBlock("magnolia_fence",
             () -> new FenceBlock(BlockBehaviour.Properties.of().strength(1f)));
-    public static final DeferredBlock<Block> MAPLE_FENCE_GATE = registerBlock("maple_fence_gate",
+    public static final DeferredBlock<Block> MAGNOLIA_FENCE_GATE = registerBlock("magnolia_fence_gate",
             () -> new FenceGateBlock(WoodType.SPRUCE, BlockBehaviour.Properties.of().strength(1f)));
-    public static final DeferredBlock<Block> MAPLE_DOOR = registerBlock("maple_door",
+    public static final DeferredBlock<Block> MAGNOLIA_DOOR = registerBlock("magnolia_door",
             () -> new DoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f).noOcclusion()));
-    public static final DeferredBlock<Block> MAPLE_TRAPDOOR = registerBlock("maple_trapdoor",
+    public static final DeferredBlock<Block> MAGNOLIA_TRAPDOOR = registerBlock("magnolia_trapdoor",
             () -> new TrapDoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f).noOcclusion()));
     //Citrus Wood
+    public static final DeferredBlock<Block> CITRUS_LOG = registerBlock("citrus_log",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
+    public static final DeferredBlock<Block> CITRUS_STRIPPED_LOG = registerBlock("citrus_stripped_log",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
+    public static final DeferredBlock<Block> CITRUS_WOOD = registerBlock("citrus_wood",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
+    public static final DeferredBlock<Block> CITRUS_STRIPPED_WOOD = registerBlock("citrus_stripped_wood",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
+    public static final DeferredBlock<Block> CITRUS_LEAVES = registerBlock("citrus_leaves",
+            () -> new ModLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
+    public static final DeferredBlock<Block> CITRUS_SAPLING = registerBlock("citrus_sapling",
+            () -> new SaplingBlock(ModTreeGrowers.CITRUS, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
     public static final DeferredBlock<Block> CITRUS_PLANKS = registerBlock("citrus_planks",
             () -> new ModPlanksBlock(BlockBehaviour.Properties.of().strength(1f)));
     public static final DeferredBlock<Block> CITRUS_STAIRS = registerBlock("citrus_stairs",
@@ -122,6 +159,18 @@ public class ModBlocks {
     public static final DeferredBlock<Block> CITRUS_TRAPDOOR = registerBlock("citrus_trapdoor",
             () -> new TrapDoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f).noOcclusion()));
     //Apricot Wood
+    public static final DeferredBlock<Block> APRICOT_LOG = registerBlock("apricot_log",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
+    public static final DeferredBlock<Block> APRICOT_STRIPPED_LOG = registerBlock("apricot_stripped_log",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
+    public static final DeferredBlock<Block> APRICOT_WOOD = registerBlock("apricot_wood",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
+    public static final DeferredBlock<Block> APRICOT_STRIPPED_WOOD = registerBlock("apricot_stripped_wood",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
+    public static final DeferredBlock<Block> APRICOT_LEAVES = registerBlock("apricot_leaves",
+            () -> new ModLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
+    public static final DeferredBlock<Block> APRICOT_SAPLING = registerBlock("apricot_sapling",
+            () -> new SaplingBlock(ModTreeGrowers.APRICOT, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
     public static final DeferredBlock<Block> APRICOT_PLANKS = registerBlock("apricot_planks",
             () -> new ModPlanksBlock(BlockBehaviour.Properties.of().strength(1f)));
     public static final DeferredBlock<Block> APRICOT_STAIRS = registerBlock("apricot_stairs",
@@ -141,26 +190,71 @@ public class ModBlocks {
             () -> new DoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f).noOcclusion()));
     public static final DeferredBlock<Block> APRICOT_TRAPDOOR = registerBlock("apricot_trapdoor",
             () -> new TrapDoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f).noOcclusion()));
-    //Pear Wood
-    public static final DeferredBlock<Block> PEAR_PLANKS = registerBlock("pear_planks",
+    //Mulberry Wood
+    public static final DeferredBlock<Block> MULBERRY_LOG = registerBlock("mulberry_log",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
+    public static final DeferredBlock<Block> MULBERRY_STRIPPED_LOG = registerBlock("mulberry_stripped_log",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
+    public static final DeferredBlock<Block> MULBERRY_WOOD = registerBlock("mulberry_wood",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
+    public static final DeferredBlock<Block> MULBERRY_STRIPPED_WOOD = registerBlock("mulberry_stripped_wood",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
+    public static final DeferredBlock<Block> MULBERRY_LEAVES = registerBlock("mulberry_leaves",
+            () -> new ModLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
+    public static final DeferredBlock<Block> MULBERRY_SAPLING = registerBlock("mulberry_sapling",
+            () -> new SaplingBlock(ModTreeGrowers.MULBERRY, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+    public static final DeferredBlock<Block> MULBERRY_PLANKS = registerBlock("mulberry_planks",
             () -> new ModPlanksBlock(BlockBehaviour.Properties.of().strength(1f)));
-    public static final DeferredBlock<Block> PEAR_STAIRS = registerBlock("pear_stairs",
-            () -> new StairBlock(ModBlocks.PEAR_PLANKS.get().defaultBlockState(),
+    public static final DeferredBlock<Block> MULBERRY_STAIRS = registerBlock("mulberry_stairs",
+            () -> new StairBlock(ModBlocks.MULBERRY_PLANKS.get().defaultBlockState(),
                     BlockBehaviour.Properties.of().strength(1f)));
-    public static final DeferredBlock<Block> PEAR_SLAB = registerBlock("pear_slab",
+    public static final DeferredBlock<Block> MULBERRY_SLAB = registerBlock("mulberry_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.of().strength(1f)));
-    public static final DeferredBlock<Block> PEAR_PRESSURE_PLATE = registerBlock("pear_pressure_plate",
+    public static final DeferredBlock<Block> MULBERRY_PRESSURE_PLATE = registerBlock("mulberry_pressure_plate",
             () -> new PressurePlateBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f)));
-    public static final DeferredBlock<Block> PEAR_BUTTON = registerBlock("pear_button",
+    public static final DeferredBlock<Block> MULBERRY_BUTTON = registerBlock("mulberry_button",
             () -> new ButtonBlock(BlockSetType.SPRUCE, 10, BlockBehaviour.Properties.of().strength(1f).noCollission()));
-    public static final DeferredBlock<Block> PEAR_FENCE = registerBlock("pear_fence",
+    public static final DeferredBlock<Block> MULBERRY_FENCE = registerBlock("mulberry_fence",
             () -> new FenceBlock(BlockBehaviour.Properties.of().strength(1f)));
-    public static final DeferredBlock<Block> PEAR_FENCE_GATE = registerBlock("pear_fence_gate",
+    public static final DeferredBlock<Block> MULBERRY_FENCE_GATE = registerBlock("mulberry_fence_gate",
             () -> new FenceGateBlock(WoodType.SPRUCE, BlockBehaviour.Properties.of().strength(1f)));
-    public static final DeferredBlock<Block> PEAR_DOOR = registerBlock("pear_door",
+    public static final DeferredBlock<Block> MULBERRY_DOOR = registerBlock("mulberry_door",
             () -> new DoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f).noOcclusion()));
-    public static final DeferredBlock<Block> PEAR_TRAPDOOR = registerBlock("pear_trapdoor",
+    public static final DeferredBlock<Block> MULBERRY_TRAPDOOR = registerBlock("mulberry_trapdoor",
             () -> new TrapDoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f).noOcclusion()));
+    //Green Ash Wood
+    public static final DeferredBlock<Block> GREEN_ASH_LOG = registerBlock("green_ash_log",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
+    public static final DeferredBlock<Block> GREEN_ASH_STRIPPED_LOG = registerBlock("green_ash_stripped_log",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
+    public static final DeferredBlock<Block> GREEN_ASH_WOOD = registerBlock("green_ash_wood",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
+    public static final DeferredBlock<Block> GREEN_ASH_STRIPPED_WOOD = registerBlock("green_ash_stripped_wood",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
+    public static final DeferredBlock<Block> GREEN_ASH_LEAVES = registerBlock("green_ash_leaves",
+            () -> new ModLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
+    public static final DeferredBlock<Block> GREEN_ASH_SAPLING = registerBlock("green_ash_sapling",
+            () -> new SaplingBlock(ModTreeGrowers.GREEN_ASH, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+    public static final DeferredBlock<Block> GREEN_ASH_PLANKS = registerBlock("green_ash_planks",
+            () -> new ModPlanksBlock(BlockBehaviour.Properties.of().strength(1f)));
+    public static final DeferredBlock<Block> GREEN_ASH_STAIRS = registerBlock("green_ash_stairs",
+            () -> new StairBlock(ModBlocks.GREEN_ASH_PLANKS.get().defaultBlockState(),
+                    BlockBehaviour.Properties.of().strength(1f)));
+    public static final DeferredBlock<Block> GREEN_ASH_SLAB = registerBlock("green_ash_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of().strength(1f)));
+    public static final DeferredBlock<Block> GREEN_ASH_PRESSURE_PLATE = registerBlock("green_ash_pressure_plate",
+            () -> new PressurePlateBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f)));
+    public static final DeferredBlock<Block> GREEN_ASH_BUTTON = registerBlock("green_ash_button",
+            () -> new ButtonBlock(BlockSetType.SPRUCE, 10, BlockBehaviour.Properties.of().strength(1f).noCollission()));
+    public static final DeferredBlock<Block> GREEN_ASH_FENCE = registerBlock("green_ash_fence",
+            () -> new FenceBlock(BlockBehaviour.Properties.of().strength(1f)));
+    public static final DeferredBlock<Block> GREEN_ASH_FENCE_GATE = registerBlock("green_ash_fence_gate",
+            () -> new FenceGateBlock(WoodType.SPRUCE, BlockBehaviour.Properties.of().strength(1f)));
+    public static final DeferredBlock<Block> GREEN_ASH_DOOR = registerBlock("green_ash_door",
+            () -> new DoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f).noOcclusion()));
+    public static final DeferredBlock<Block> GREEN_ASH_TRAPDOOR = registerBlock("green_ash_trapdoor",
+            () -> new TrapDoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f).noOcclusion()));
+
 
     public static final DeferredBlock<Block> FOLIRITE_ORE = registerBlock("folirite_ore",
             () -> new DropExperienceBlock(UniformInt.of(2, 5),

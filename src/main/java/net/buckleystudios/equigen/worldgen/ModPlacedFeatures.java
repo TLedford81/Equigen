@@ -18,12 +18,36 @@ import java.util.List;
 
 public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> PLACEHOLDER_PLACED_KEY = registerKey("placeholder_placed");
+    public static final ResourceKey<PlacedFeature> FIG_PLACED_KEY = registerKey("fig_placed");
+    public static final ResourceKey<PlacedFeature> MAGNOLIA_PLACED_KEY = registerKey("magnolia_placed");
+    public static final ResourceKey<PlacedFeature> CITRUS_PLACED_KEY = registerKey("citrus_placed");
+    public static final ResourceKey<PlacedFeature> APRICOT_PLACED_KEY = registerKey("apricot_placed");
+    public static final ResourceKey<PlacedFeature> MULBERRY_PLACED_KEY = registerKey("mulberry_placed");
+    public static final ResourceKey<PlacedFeature> GREEN_ASH_PLACED_KEY = registerKey("green_ash_placed");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context){
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
         register(context, PLACEHOLDER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.PLACEHOLDER_KEY),
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.1f, 2),
                         ModBlocks.PLACEHOLDER_SAPLING.get()));
+        register(context, FIG_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.FIG_KEY),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.1f, 2),
+                        ModBlocks.FIG_SAPLING.get()));
+        register(context, MAGNOLIA_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.MAGNOLIA_KEY),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.1f, 2),
+                        ModBlocks.MAGNOLIA_SAPLING.get()));
+        register(context, CITRUS_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.CITRUS_KEY),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.1f, 2),
+                        ModBlocks.CITRUS_SAPLING.get()));
+        register(context, APRICOT_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.APRICOT_KEY),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.1f, 2),
+                        ModBlocks.APRICOT_SAPLING.get()));
+        register(context, MULBERRY_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.MULBERRY_KEY),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.1f, 2),
+                        ModBlocks.MULBERRY_SAPLING.get()));
+        register(context, GREEN_ASH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.GREEN_ASH_KEY),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.1f, 2),
+                        ModBlocks.GREEN_ASH_SAPLING.get()));
     }
     private static ResourceKey<PlacedFeature> registerKey(String name){
         return ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, name));

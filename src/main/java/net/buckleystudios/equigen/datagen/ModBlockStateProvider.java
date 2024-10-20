@@ -38,7 +38,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.PLACEHOLDER_WOOD);
         axisBlock(((RotatedPillarBlock) ModBlocks.PLACEHOLDER_STRIPPED_WOOD.get()), blockTexture(ModBlocks.PLACEHOLDER_STRIPPED_LOG.get()), blockTexture(ModBlocks.PLACEHOLDER_STRIPPED_LOG.get()));
         blockItem(ModBlocks.PLACEHOLDER_STRIPPED_WOOD);
-
         blockWithItem(ModBlocks.PLACEHOLDER_PLANKS);
         leavesBlock(ModBlocks.PLACEHOLDER_LEAVES);
         saplingBlock(ModBlocks.PLACEHOLDER_SAPLING);
@@ -75,7 +74,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.PLACEHOLDER_TRAPDOOR, "_bottom");
 
         //Fig Wood
+        logBlock(((RotatedPillarBlock) ModBlocks.FIG_LOG.get()));
+        blockItem(ModBlocks.FIG_LOG);
+        logBlock(((RotatedPillarBlock) ModBlocks.FIG_STRIPPED_LOG.get()));
+        blockItem(ModBlocks.FIG_STRIPPED_LOG);
+        axisBlock(((RotatedPillarBlock) ModBlocks.FIG_WOOD.get()), blockTexture(ModBlocks.FIG_LOG.get()), blockTexture(ModBlocks.FIG_LOG.get()));
+        blockItem(ModBlocks.FIG_WOOD);
+        axisBlock(((RotatedPillarBlock) ModBlocks.FIG_STRIPPED_WOOD.get()), blockTexture(ModBlocks.FIG_STRIPPED_LOG.get()), blockTexture(ModBlocks.FIG_STRIPPED_LOG.get()));
+        blockItem(ModBlocks.FIG_STRIPPED_WOOD);
         blockWithItem(ModBlocks.FIG_PLANKS);
+        leavesBlock(ModBlocks.FIG_LEAVES);
+        saplingBlock(ModBlocks.FIG_SAPLING);
 
         stairsBlock((StairBlock) ModBlocks.FIG_STAIRS.get(), blockTexture(ModBlocks.FIG_PLANKS.get()));
         blockItem(ModBlocks.FIG_STAIRS);
@@ -104,38 +113,58 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 modLoc("block/fig_trapdoor"), true, "cutout");
         blockItem(ModBlocks.FIG_TRAPDOOR, "_bottom");
 
-        //Maple Wood
-        blockWithItem(ModBlocks.MAPLE_PLANKS);
+        //Magnolia Wood
+        logBlock(((RotatedPillarBlock) ModBlocks.MAGNOLIA_LOG.get()));
+        blockItem(ModBlocks.MAGNOLIA_LOG);
+        logBlock(((RotatedPillarBlock) ModBlocks.MAGNOLIA_STRIPPED_LOG.get()));
+        blockItem(ModBlocks.MAGNOLIA_STRIPPED_LOG);
+        axisBlock(((RotatedPillarBlock) ModBlocks.MAGNOLIA_WOOD.get()), blockTexture(ModBlocks.MAGNOLIA_LOG.get()), blockTexture(ModBlocks.MAGNOLIA_LOG.get()));
+        blockItem(ModBlocks.MAGNOLIA_WOOD);
+        axisBlock(((RotatedPillarBlock) ModBlocks.MAGNOLIA_STRIPPED_WOOD.get()), blockTexture(ModBlocks.MAGNOLIA_STRIPPED_LOG.get()), blockTexture(ModBlocks.MAGNOLIA_STRIPPED_LOG.get()));
+        blockItem(ModBlocks.MAGNOLIA_STRIPPED_WOOD);
+        blockWithItem(ModBlocks.MAGNOLIA_PLANKS);
+        leavesBlock(ModBlocks.MAGNOLIA_LEAVES);
+        saplingBlock(ModBlocks.MAGNOLIA_SAPLING);
 
-        stairsBlock((StairBlock) ModBlocks.MAPLE_STAIRS.get(), blockTexture(ModBlocks.MAPLE_PLANKS.get()));
-        blockItem(ModBlocks.MAPLE_STAIRS);
+        stairsBlock((StairBlock) ModBlocks.MAGNOLIA_STAIRS.get(), blockTexture(ModBlocks.MAGNOLIA_PLANKS.get()));
+        blockItem(ModBlocks.MAGNOLIA_STAIRS);
 
-        slabBlock((SlabBlock) ModBlocks.MAPLE_SLAB.get(),
-                blockTexture(ModBlocks.MAPLE_PLANKS.get()), blockTexture(ModBlocks.MAPLE_PLANKS.get()));
-        blockItem(ModBlocks.MAPLE_SLAB);
+        slabBlock((SlabBlock) ModBlocks.MAGNOLIA_SLAB.get(),
+                blockTexture(ModBlocks.MAGNOLIA_PLANKS.get()), blockTexture(ModBlocks.MAGNOLIA_PLANKS.get()));
+        blockItem(ModBlocks.MAGNOLIA_SLAB);
 
-        pressurePlateBlock(((PressurePlateBlock) ModBlocks.MAPLE_PRESSURE_PLATE.get()), blockTexture(ModBlocks.MAPLE_PLANKS.get()));
-        blockItem(ModBlocks.MAPLE_PRESSURE_PLATE);
+        pressurePlateBlock(((PressurePlateBlock) ModBlocks.MAGNOLIA_PRESSURE_PLATE.get()), blockTexture(ModBlocks.MAGNOLIA_PLANKS.get()));
+        blockItem(ModBlocks.MAGNOLIA_PRESSURE_PLATE);
 
-        buttonBlock(((ButtonBlock) ModBlocks.MAPLE_BUTTON.get()), blockTexture(ModBlocks.MAPLE_PLANKS.get()));
+        buttonBlock(((ButtonBlock) ModBlocks.MAGNOLIA_BUTTON.get()), blockTexture(ModBlocks.MAGNOLIA_PLANKS.get()));
         //Block Item Done in ModItemModelProvider.java
 
-        fenceBlock((FenceBlock) ModBlocks.MAPLE_FENCE.get(), blockTexture(ModBlocks.MAPLE_PLANKS.get()));
+        fenceBlock((FenceBlock) ModBlocks.MAGNOLIA_FENCE.get(), blockTexture(ModBlocks.MAGNOLIA_PLANKS.get()));
         //Block Item Done in ModItemModelProvider.java
 
-        fenceGateBlock((FenceGateBlock) ModBlocks.MAPLE_FENCE_GATE.get(), blockTexture(ModBlocks.MAPLE_PLANKS.get()));
-        blockItem(ModBlocks.MAPLE_FENCE_GATE);
+        fenceGateBlock((FenceGateBlock) ModBlocks.MAGNOLIA_FENCE_GATE.get(), blockTexture(ModBlocks.MAGNOLIA_PLANKS.get()));
+        blockItem(ModBlocks.MAGNOLIA_FENCE_GATE);
 
-        doorBlockWithRenderType(((DoorBlock) ModBlocks.MAPLE_DOOR.get()),
-                modLoc("block/maple_door_bottom"), modLoc("block/maple_door_top"), "cutout");
+        doorBlockWithRenderType(((DoorBlock) ModBlocks.MAGNOLIA_DOOR.get()),
+                modLoc("block/magnolia_door_bottom"), modLoc("block/magnolia_door_top"), "cutout");
         //Block Item Done in ModItemModelProvider.java
 
-        trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.MAPLE_TRAPDOOR.get()),
-                modLoc("block/maple_trapdoor"), true, "cutout");
-        blockItem(ModBlocks.MAPLE_TRAPDOOR, "_bottom");
+        trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.MAGNOLIA_TRAPDOOR.get()),
+                modLoc("block/magnolia_trapdoor"), true, "cutout");
+        blockItem(ModBlocks.MAGNOLIA_TRAPDOOR, "_bottom");
 
         //Citrus Wood
+        logBlock(((RotatedPillarBlock) ModBlocks.CITRUS_LOG.get()));
+        blockItem(ModBlocks.CITRUS_LOG);
+        logBlock(((RotatedPillarBlock) ModBlocks.CITRUS_STRIPPED_LOG.get()));
+        blockItem(ModBlocks.CITRUS_STRIPPED_LOG);
+        axisBlock(((RotatedPillarBlock) ModBlocks.CITRUS_WOOD.get()), blockTexture(ModBlocks.CITRUS_LOG.get()), blockTexture(ModBlocks.CITRUS_LOG.get()));
+        blockItem(ModBlocks.CITRUS_WOOD);
+        axisBlock(((RotatedPillarBlock) ModBlocks.CITRUS_STRIPPED_WOOD.get()), blockTexture(ModBlocks.CITRUS_STRIPPED_LOG.get()), blockTexture(ModBlocks.CITRUS_STRIPPED_LOG.get()));
+        blockItem(ModBlocks.CITRUS_STRIPPED_WOOD);
         blockWithItem(ModBlocks.CITRUS_PLANKS);
+        leavesBlock(ModBlocks.CITRUS_LEAVES);
+        saplingBlock(ModBlocks.CITRUS_SAPLING);
 
         stairsBlock((StairBlock) ModBlocks.CITRUS_STAIRS.get(), blockTexture(ModBlocks.CITRUS_PLANKS.get()));
         blockItem(ModBlocks.CITRUS_STAIRS);
@@ -165,7 +194,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.CITRUS_TRAPDOOR, "_bottom");
 
         //Apricot Wood
+        logBlock(((RotatedPillarBlock) ModBlocks.APRICOT_LOG.get()));
+        blockItem(ModBlocks.APRICOT_LOG);
+        logBlock(((RotatedPillarBlock) ModBlocks.APRICOT_STRIPPED_LOG.get()));
+        blockItem(ModBlocks.APRICOT_STRIPPED_LOG);
+        axisBlock(((RotatedPillarBlock) ModBlocks.APRICOT_WOOD.get()), blockTexture(ModBlocks.APRICOT_LOG.get()), blockTexture(ModBlocks.APRICOT_LOG.get()));
+        blockItem(ModBlocks.APRICOT_WOOD);
+        axisBlock(((RotatedPillarBlock) ModBlocks.APRICOT_STRIPPED_WOOD.get()), blockTexture(ModBlocks.APRICOT_STRIPPED_LOG.get()), blockTexture(ModBlocks.APRICOT_STRIPPED_LOG.get()));
+        blockItem(ModBlocks.APRICOT_STRIPPED_WOOD);
         blockWithItem(ModBlocks.APRICOT_PLANKS);
+        leavesBlock(ModBlocks.APRICOT_LEAVES);
+        saplingBlock(ModBlocks.APRICOT_SAPLING);
 
         stairsBlock((StairBlock) ModBlocks.APRICOT_STAIRS.get(), blockTexture(ModBlocks.APRICOT_PLANKS.get()));
         blockItem(ModBlocks.APRICOT_STAIRS);
@@ -194,35 +233,85 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 modLoc("block/apricot_trapdoor"), true, "cutout");
         blockItem(ModBlocks.APRICOT_TRAPDOOR, "_bottom");
 
-        //Pear Wood
-        blockWithItem(ModBlocks.PEAR_PLANKS);
+        //Mulberry Wood
+        logBlock(((RotatedPillarBlock) ModBlocks.MULBERRY_LOG.get()));
+        blockItem(ModBlocks.MULBERRY_LOG);
+        logBlock(((RotatedPillarBlock) ModBlocks.MULBERRY_STRIPPED_LOG.get()));
+        blockItem(ModBlocks.MULBERRY_STRIPPED_LOG);
+        axisBlock(((RotatedPillarBlock) ModBlocks.MULBERRY_WOOD.get()), blockTexture(ModBlocks.MULBERRY_LOG.get()), blockTexture(ModBlocks.MULBERRY_LOG.get()));
+        blockItem(ModBlocks.MULBERRY_WOOD);
+        axisBlock(((RotatedPillarBlock) ModBlocks.MULBERRY_STRIPPED_WOOD.get()), blockTexture(ModBlocks.MULBERRY_STRIPPED_LOG.get()), blockTexture(ModBlocks.MULBERRY_STRIPPED_LOG.get()));
+        blockItem(ModBlocks.MULBERRY_STRIPPED_WOOD);
+        blockWithItem(ModBlocks.MULBERRY_PLANKS);
+        leavesBlock(ModBlocks.MULBERRY_LEAVES);
+        saplingBlock(ModBlocks.MULBERRY_SAPLING);
 
-        stairsBlock((StairBlock) ModBlocks.PEAR_STAIRS.get(), blockTexture(ModBlocks.PEAR_PLANKS.get()));
-        blockItem(ModBlocks.PEAR_STAIRS);
+        stairsBlock((StairBlock) ModBlocks.MULBERRY_STAIRS.get(), blockTexture(ModBlocks.MULBERRY_PLANKS.get()));
+        blockItem(ModBlocks.MULBERRY_STAIRS);
 
-        slabBlock((SlabBlock) ModBlocks.PEAR_SLAB.get(),
-                blockTexture(ModBlocks.PEAR_PLANKS.get()), blockTexture(ModBlocks.PEAR_PLANKS.get()));
-        blockItem(ModBlocks.PEAR_SLAB);
+        slabBlock((SlabBlock) ModBlocks.MULBERRY_SLAB.get(),
+                blockTexture(ModBlocks.MULBERRY_PLANKS.get()), blockTexture(ModBlocks.MULBERRY_PLANKS.get()));
+        blockItem(ModBlocks.MULBERRY_SLAB);
 
-        pressurePlateBlock(((PressurePlateBlock) ModBlocks.PEAR_PRESSURE_PLATE.get()), blockTexture(ModBlocks.PEAR_PLANKS.get()));
-        blockItem(ModBlocks.PEAR_PRESSURE_PLATE);
+        pressurePlateBlock(((PressurePlateBlock) ModBlocks.MULBERRY_PRESSURE_PLATE.get()), blockTexture(ModBlocks.MULBERRY_PLANKS.get()));
+        blockItem(ModBlocks.MULBERRY_PRESSURE_PLATE);
 
-        buttonBlock(((ButtonBlock) ModBlocks.PEAR_BUTTON.get()), blockTexture(ModBlocks.PEAR_PLANKS.get()));
+        buttonBlock(((ButtonBlock) ModBlocks.MULBERRY_BUTTON.get()), blockTexture(ModBlocks.MULBERRY_PLANKS.get()));
         //Block Item Done in ModItemModelProvider.java
 
-        fenceBlock((FenceBlock) ModBlocks.PEAR_FENCE.get(), blockTexture(ModBlocks.PEAR_PLANKS.get()));
+        fenceBlock((FenceBlock) ModBlocks.MULBERRY_FENCE.get(), blockTexture(ModBlocks.MULBERRY_PLANKS.get()));
         //Block Item Done in ModItemModelProvider.java
 
-        fenceGateBlock((FenceGateBlock) ModBlocks.PEAR_FENCE_GATE.get(), blockTexture(ModBlocks.PEAR_PLANKS.get()));
-        blockItem(ModBlocks.PEAR_FENCE_GATE);
+        fenceGateBlock((FenceGateBlock) ModBlocks.MULBERRY_FENCE_GATE.get(), blockTexture(ModBlocks.MULBERRY_PLANKS.get()));
+        blockItem(ModBlocks.MULBERRY_FENCE_GATE);
 
-        doorBlockWithRenderType(((DoorBlock) ModBlocks.PEAR_DOOR.get()),
-                modLoc("block/pear_door_bottom"), modLoc("block/pear_door_top"), "cutout");
+        doorBlockWithRenderType(((DoorBlock) ModBlocks.MULBERRY_DOOR.get()),
+                modLoc("block/mulberry_door_bottom"), modLoc("block/mulberry_door_top"), "cutout");
         //Block Item Done in ModItemModelProvider.java
 
-        trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.PEAR_TRAPDOOR.get()),
-                modLoc("block/pear_trapdoor"), true, "cutout");
-        blockItem(ModBlocks.PEAR_TRAPDOOR, "_bottom");
+        trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.MULBERRY_TRAPDOOR.get()),
+                modLoc("block/mulberry_trapdoor"), true, "cutout");
+        blockItem(ModBlocks.MULBERRY_TRAPDOOR, "_bottom");
+
+        //Green Ash Wood
+        logBlock(((RotatedPillarBlock) ModBlocks.GREEN_ASH_LOG.get()));
+        blockItem(ModBlocks.GREEN_ASH_LOG);
+        logBlock(((RotatedPillarBlock) ModBlocks.GREEN_ASH_STRIPPED_LOG.get()));
+        blockItem(ModBlocks.GREEN_ASH_STRIPPED_LOG);
+        axisBlock(((RotatedPillarBlock) ModBlocks.GREEN_ASH_WOOD.get()), blockTexture(ModBlocks.GREEN_ASH_LOG.get()), blockTexture(ModBlocks.GREEN_ASH_LOG.get()));
+        blockItem(ModBlocks.GREEN_ASH_WOOD);
+        axisBlock(((RotatedPillarBlock) ModBlocks.GREEN_ASH_STRIPPED_WOOD.get()), blockTexture(ModBlocks.GREEN_ASH_STRIPPED_LOG.get()), blockTexture(ModBlocks.GREEN_ASH_STRIPPED_LOG.get()));
+        blockItem(ModBlocks.GREEN_ASH_STRIPPED_WOOD);
+        blockWithItem(ModBlocks.GREEN_ASH_PLANKS);
+        leavesBlock(ModBlocks.GREEN_ASH_LEAVES);
+        saplingBlock(ModBlocks.GREEN_ASH_SAPLING);
+
+        stairsBlock((StairBlock) ModBlocks.GREEN_ASH_STAIRS.get(), blockTexture(ModBlocks.GREEN_ASH_PLANKS.get()));
+        blockItem(ModBlocks.GREEN_ASH_STAIRS);
+
+        slabBlock((SlabBlock) ModBlocks.GREEN_ASH_SLAB.get(),
+                blockTexture(ModBlocks.GREEN_ASH_PLANKS.get()), blockTexture(ModBlocks.GREEN_ASH_PLANKS.get()));
+        blockItem(ModBlocks.GREEN_ASH_SLAB);
+
+        pressurePlateBlock(((PressurePlateBlock) ModBlocks.GREEN_ASH_PRESSURE_PLATE.get()), blockTexture(ModBlocks.GREEN_ASH_PLANKS.get()));
+        blockItem(ModBlocks.GREEN_ASH_PRESSURE_PLATE);
+
+        buttonBlock(((ButtonBlock) ModBlocks.GREEN_ASH_BUTTON.get()), blockTexture(ModBlocks.GREEN_ASH_PLANKS.get()));
+        //Block Item Done in ModItemModelProvider.java
+
+        fenceBlock((FenceBlock) ModBlocks.GREEN_ASH_FENCE.get(), blockTexture(ModBlocks.GREEN_ASH_PLANKS.get()));
+        //Block Item Done in ModItemModelProvider.java
+
+        fenceGateBlock((FenceGateBlock) ModBlocks.GREEN_ASH_FENCE_GATE.get(), blockTexture(ModBlocks.GREEN_ASH_PLANKS.get()));
+        blockItem(ModBlocks.GREEN_ASH_FENCE_GATE);
+
+        doorBlockWithRenderType(((DoorBlock) ModBlocks.GREEN_ASH_DOOR.get()),
+                modLoc("block/green_ash_door_bottom"), modLoc("block/green_ash_door_top"), "cutout");
+        //Block Item Done in ModItemModelProvider.java
+
+        trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.GREEN_ASH_TRAPDOOR.get()),
+                modLoc("block/green_ash_trapdoor"), true, "cutout");
+        blockItem(ModBlocks.GREEN_ASH_TRAPDOOR, "_bottom");
 
         //Ore Blocks
         blockWithItem(ModBlocks.FOLIRITE_BLOCK);
