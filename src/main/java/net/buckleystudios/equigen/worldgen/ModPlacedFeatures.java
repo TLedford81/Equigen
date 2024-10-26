@@ -17,19 +17,16 @@ import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import java.util.List;
 
 public class ModPlacedFeatures {
-    public static final ResourceKey<PlacedFeature> PLACEHOLDER_PLACED_KEY = registerKey("placeholder_placed");
     public static final ResourceKey<PlacedFeature> FIG_PLACED_KEY = registerKey("fig_placed");
     public static final ResourceKey<PlacedFeature> MAGNOLIA_PLACED_KEY = registerKey("magnolia_placed");
     public static final ResourceKey<PlacedFeature> CITRUS_PLACED_KEY = registerKey("citrus_placed");
     public static final ResourceKey<PlacedFeature> APRICOT_PLACED_KEY = registerKey("apricot_placed");
     public static final ResourceKey<PlacedFeature> MULBERRY_PLACED_KEY = registerKey("mulberry_placed");
     public static final ResourceKey<PlacedFeature> GREEN_ASH_PLACED_KEY = registerKey("green_ash_placed");
+//    public static final ResourceKey<PlacedFeature> EGRET_SPAWNS_PLACED_KEY = registerKey("egret_spawns_placed");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context){
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
-        register(context, PLACEHOLDER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.PLACEHOLDER_KEY),
-                VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.1f, 2),
-                        ModBlocks.PLACEHOLDER_SAPLING.get()));
         register(context, FIG_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.FIG_KEY),
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.1f, 2),
                         ModBlocks.FIG_SAPLING.get()));

@@ -16,7 +16,6 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.neoforged.fml.common.Mod;
 
 import java.util.Set;
 
@@ -33,22 +32,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     @Override
     protected void generate() {
         //DROP SELF
-        this.dropSelf(ModBlocks.PLACEHOLDER_PLANKS.get());
-        this.dropSelf(ModBlocks.PLACEHOLDER_STAIRS.get());
-        this.dropSelf(ModBlocks.PLACEHOLDER_PRESSURE_PLATE.get());
-        this.dropSelf(ModBlocks.PLACEHOLDER_BUTTON.get());
-        this.dropSelf(ModBlocks.PLACEHOLDER_FENCE.get());
-        this.dropSelf(ModBlocks.PLACEHOLDER_FENCE_GATE.get());
-        this.dropSelf(ModBlocks.PLACEHOLDER_WALL.get());
-        this.dropSelf(ModBlocks.PLACEHOLDER_TRAPDOOR.get());
-        this.dropSelf(ModBlocks.PLACEHOLDER_WOOD.get());
-        this.dropSelf(ModBlocks.PLACEHOLDER_STRIPPED_WOOD.get());
-        this.dropSelf(ModBlocks.PLACEHOLDER_LOG.get());
-        this.dropSelf(ModBlocks.PLACEHOLDER_STRIPPED_LOG.get());
-        this.dropSelf(ModBlocks.PLACEHOLDER_SAPLING.get());
-
-        this.add(ModBlocks.PLACEHOLDER_LEAVES.get(), block ->
-                createLeavesDrops(block, ModBlocks.PLACEHOLDER_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        this.dropSelf(ModBlocks.FOLIRITE_BLOCK.get());
+        this.dropSelf(ModBlocks.RAW_FOLIRITE_BLOCK.get());
+        this.dropSelf(ModBlocks.INFUSION_TABLE.get());
 
         //FIG WOOD
         this.dropSelf(ModBlocks.FIG_PLANKS.get());
@@ -141,12 +127,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.add(ModBlocks.GREEN_ASH_LEAVES.get(), block ->
                 createLeavesDrops(block, ModBlocks.GREEN_ASH_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
-        this.dropSelf(ModBlocks.FOLIRITE_BLOCK.get());
-        this.dropSelf(ModBlocks.RAW_FOLIRITE_BLOCK.get());
-        this.dropSelf(ModBlocks.INFUSION_TABLE.get());
 
         //SLAB DROPS
-        this.add(ModBlocks.PLACEHOLDER_SLAB.get(), block -> createSlabItemTable(ModBlocks.PLACEHOLDER_SLAB.get()));
         this.add(ModBlocks.FIG_SLAB.get(), block -> createSlabItemTable(ModBlocks.FIG_SLAB.get()));
         this.add(ModBlocks.MAGNOLIA_SLAB.get(), block -> createSlabItemTable(ModBlocks.MAGNOLIA_SLAB.get()));
         this.add(ModBlocks.CITRUS_SLAB.get(), block -> createSlabItemTable(ModBlocks.CITRUS_SLAB.get()));
@@ -155,7 +137,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.add(ModBlocks.GREEN_ASH_SLAB.get(), block -> createSlabItemTable(ModBlocks.GREEN_ASH_SLAB.get()));
 
         //DOOR DROPS
-        this.add(ModBlocks.PLACEHOLDER_DOOR.get(), block -> createDoorTable(ModBlocks.PLACEHOLDER_DOOR.get()));
         this.add(ModBlocks.FIG_DOOR.get(), block -> createDoorTable(ModBlocks.FIG_DOOR.get()));
         this.add(ModBlocks.MAGNOLIA_DOOR.get(), block -> createDoorTable(ModBlocks.MAGNOLIA_DOOR.get()));
         this.add(ModBlocks.CITRUS_DOOR.get(), block -> createDoorTable(ModBlocks.CITRUS_DOOR.get()));

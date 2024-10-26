@@ -1,4 +1,5 @@
-// 1.21	2024-10-20T11:01:32.3370026	Item Models: equigen
+// 1.21	2024-10-23T17:44:42.3430378	Item Models: equigen
+9c687aadbfdb6b265dbf69c8c60bfedc48813592 assets/equigen/models/item/apricot.json
 5ae1230c38b3b623133f71019f46cc19c3d7d6d2 assets/equigen/models/item/apricot_button.json
 f7a8ff7ce56a1e5be13f1e8709b7bd18fe44b2c8 assets/equigen/models/item/apricot_door.json
 8e7d2947d9237b31588fe83db5a9799490d88bd4 assets/equigen/models/item/apricot_fence.json
@@ -8,6 +9,7 @@ ce4a5601fe38a520716566ceffb7345d2a940016 assets/equigen/models/item/apricot_sapl
 8a8bfb4929f611f7d350e8913fd032e2b1e5ba8e assets/equigen/models/item/citrus_fence.json
 b3500ebf672d3f8a533ee98cd83a5a23b8367ae7 assets/equigen/models/item/citrus_sapling.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/equigen/models/item/egret_spawn_egg.json
+c7025e2311f6df60b37b53ce48cf0aeb30ecd167 assets/equigen/models/item/fig.json
 ebd7cffb556b6b712c879bbad3043da3bc506fef assets/equigen/models/item/fig_button.json
 b8eb555fe8ab91a8d21e87688ba2604b538e3943 assets/equigen/models/item/fig_door.json
 61970e36775c6b6d45d4458f92d767ce47771d5a assets/equigen/models/item/fig_fence.json
@@ -23,20 +25,17 @@ c1fc67786e4dbc66f92503ff51b6e91e7835d733 assets/equigen/models/item/green_ash_bu
 96674ff1275a6632fea91267f6243f62052d038d assets/equigen/models/item/green_ash_fence.json
 06e6d59fc419d3c7112f84d4f85c9455ce4972bf assets/equigen/models/item/green_ash_sapling.json
 52cd09c941ee9a6710e65521a2722b36bae7c3b0 assets/equigen/models/item/himalayan_rock_salt.json
+97188396d256e692d295c22cf49fc0a70e8cefda assets/equigen/models/item/lemon.json
 1671d53288748b12a1a80dacf2844da5ab66d570 assets/equigen/models/item/magnolia_button.json
 b82ad51c2b3c31447ccc48102d9f583fa1ca0485 assets/equigen/models/item/magnolia_door.json
 7ef0d16288ebe21a583833bc45cdcd9023cedc53 assets/equigen/models/item/magnolia_fence.json
 bc1fc44d6ed8a1ec6ed2ea6eb7b6a1fab7903f7d assets/equigen/models/item/magnolia_sapling.json
+58c3f93dfb8ddc6f62e16c0324fc1f1679bf78b4 assets/equigen/models/item/mulberry.json
 0ae6760b94a8640e216e9ac9d5ee72a4ea1dc50c assets/equigen/models/item/mulberry_button.json
 fb35712c9c0a4bcb578fa3b482064c8ada19c37d assets/equigen/models/item/mulberry_door.json
 2fb07a5abac1dfa015dc17410aa7742298715d2e assets/equigen/models/item/mulberry_fence.json
 8b8f358371d9fd0d318f553e11bab46555493211 assets/equigen/models/item/mulberry_sapling.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/equigen/models/item/pillager_king_spawn_egg.json
-724f49277d3a55113a7ac93dc7b1eab6ffb4b639 assets/equigen/models/item/placeholder_button.json
-f4f2146794ba634fcc067d27117ac6a3b5ab6c29 assets/equigen/models/item/placeholder_door.json
-2dbfea7c9bbd36cbfa62c43da0ced1e34affc19a assets/equigen/models/item/placeholder_fence.json
-2fc953c04d18a6b0035071167ed21c20ee4ea564 assets/equigen/models/item/placeholder_sapling.json
-63d73b76c578aff31199767d756ea56b6cf1aedb assets/equigen/models/item/placeholder_wall.json
 bd1886fc11e6c009e04a9e449be14fb9835c3583 assets/equigen/models/item/raw_folirite.json
 8f5f6eaee192f5d94b5022bbbde311666344366d assets/equigen/models/item/raw_oats.json
 e7548ef50956b5fbd064b24e6646f8feebaeb6fc assets/equigen/models/item/sodium.json

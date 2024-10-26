@@ -13,6 +13,9 @@ public class ModSounds {
 
     //Sounds
     public static final DeferredHolder<SoundEvent, SoundEvent> TEST_SOUND = registerVariableSound("test_sound");
+    public static final DeferredHolder<SoundEvent, SoundEvent> EGRET_AMBIENT = registerVariableSound("egret_ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> EGRET_HURT = registerVariableSound("egret_hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> EGRET_DEATH = registerVariableSound("egret_death");
 
     //Registers
     private static DeferredHolder<SoundEvent, SoundEvent> registerVariableSound(String name){

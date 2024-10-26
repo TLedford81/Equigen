@@ -4,5 +4,23 @@
     "sounds": [
       "equigen:test_sound"
     ]
+  },
+  "egret_ambient": {
+    "subtitle": "sounds.equigen.egret_ambient",
+    "sounds": [
+      "equigen:egret_ambient"
+    ]
+  },
+  "egret_hurt": {
+    "subtitle": "sounds.equigen.egret_hurt",
+    "sounds": [
+      "equigen:egret_hurt"
+    ]
+  },
+  "egret_death": {
+    "subtitle": "sounds.equigen.egret_death",
+    "sounds": [
+      "equigen:egret_death"
+    ]
   }
 }

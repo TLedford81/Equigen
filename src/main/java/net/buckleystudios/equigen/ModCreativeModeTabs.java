@@ -22,7 +22,11 @@ public class ModCreativeModeTabs{
                     .displayItems(((pParameters, pOutput) -> {
 
                         //Food Items
+                        pOutput.accept(ModItems.APRICOT);
+                        pOutput.accept(ModItems.FIG);
+                        pOutput.accept(ModItems.LEMON);
                         pOutput.accept(ModItems.RAW_OATS);
+                        pOutput.accept(ModItems.MULBERRY);
 
                         //Materials
                         pOutput.accept(ModItems.FOLIRITE_INGOT);
@@ -40,6 +44,7 @@ public class ModCreativeModeTabs{
 
                         //Spawn Eggs
                         pOutput.accept(ModItems.PILLAGER_KING_SPAWN_EGG);
+                        pOutput.accept(ModItems.EGRET_SPAWN_EGG);
 
                     })).build());
 
@@ -49,102 +54,108 @@ public class ModCreativeModeTabs{
                     .icon(() -> new ItemStack(ModBlocks.FOLIRITE_BLOCK))
                     .withTabsBefore(ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "main_tab"))
                     .displayItems((((parameters, pOutput) -> {
-                        pOutput.accept(ModBlocks.PLACEHOLDER_LOG);
-                        pOutput.accept(ModBlocks.PLACEHOLDER_LEAVES);
-                        pOutput.accept(ModBlocks.PLACEHOLDER_PLANKS);
-                        pOutput.accept(ModBlocks.PLACEHOLDER_SLAB);
-                        pOutput.accept(ModBlocks.PLACEHOLDER_STAIRS);
-                        pOutput.accept(ModBlocks.PLACEHOLDER_PRESSURE_PLATE);
-                        pOutput.accept(ModBlocks.PLACEHOLDER_BUTTON);
-                        pOutput.accept(ModBlocks.PLACEHOLDER_FENCE);
-                        pOutput.accept(ModBlocks.PLACEHOLDER_FENCE_GATE);
-                        pOutput.accept(ModBlocks.PLACEHOLDER_WALL);
-                        pOutput.accept(ModBlocks.PLACEHOLDER_DOOR);
-                        pOutput.accept(ModBlocks.PLACEHOLDER_TRAPDOOR);
-                        
-                        //Fig Wood
-                        pOutput.accept(ModBlocks.FIG_SAPLING);
+
+                        //Fig
                         pOutput.accept(ModBlocks.FIG_LOG);
-                        pOutput.accept(ModBlocks.FIG_LEAVES);
+                        pOutput.accept(ModBlocks.FIG_WOOD);
+                        pOutput.accept(ModBlocks.FIG_STRIPPED_LOG);
+                        pOutput.accept(ModBlocks.FIG_STRIPPED_WOOD);
                         pOutput.accept(ModBlocks.FIG_PLANKS);
-                        pOutput.accept(ModBlocks.FIG_SLAB);
                         pOutput.accept(ModBlocks.FIG_STAIRS);
-                        pOutput.accept(ModBlocks.FIG_PRESSURE_PLATE);
-                        pOutput.accept(ModBlocks.FIG_BUTTON);
+                        pOutput.accept(ModBlocks.FIG_SLAB);
                         pOutput.accept(ModBlocks.FIG_FENCE);
                         pOutput.accept(ModBlocks.FIG_FENCE_GATE);
                         pOutput.accept(ModBlocks.FIG_DOOR);
                         pOutput.accept(ModBlocks.FIG_TRAPDOOR);
-                        
-                        //Magnolia Wood
-                        pOutput.accept(ModBlocks.MAGNOLIA_SAPLING);
+                        pOutput.accept(ModBlocks.FIG_PRESSURE_PLATE);
+                        pOutput.accept(ModBlocks.FIG_BUTTON);
+                        pOutput.accept(ModBlocks.FIG_SAPLING);
+                        pOutput.accept(ModBlocks.FIG_LEAVES);
+
+                        //Magnolia
                         pOutput.accept(ModBlocks.MAGNOLIA_LOG);
-                        pOutput.accept(ModBlocks.MAGNOLIA_LEAVES);
+                        pOutput.accept(ModBlocks.MAGNOLIA_WOOD);
+                        pOutput.accept(ModBlocks.MAGNOLIA_STRIPPED_LOG);
+                        pOutput.accept(ModBlocks.MAGNOLIA_STRIPPED_WOOD);
                         pOutput.accept(ModBlocks.MAGNOLIA_PLANKS);
-                        pOutput.accept(ModBlocks.MAGNOLIA_SLAB);
                         pOutput.accept(ModBlocks.MAGNOLIA_STAIRS);
-                        pOutput.accept(ModBlocks.MAGNOLIA_PRESSURE_PLATE);
-                        pOutput.accept(ModBlocks.MAGNOLIA_BUTTON);
+                        pOutput.accept(ModBlocks.MAGNOLIA_SLAB);
                         pOutput.accept(ModBlocks.MAGNOLIA_FENCE);
                         pOutput.accept(ModBlocks.MAGNOLIA_FENCE_GATE);
                         pOutput.accept(ModBlocks.MAGNOLIA_DOOR);
                         pOutput.accept(ModBlocks.MAGNOLIA_TRAPDOOR);
+                        pOutput.accept(ModBlocks.MAGNOLIA_PRESSURE_PLATE);
+                        pOutput.accept(ModBlocks.MAGNOLIA_BUTTON);
+                        pOutput.accept(ModBlocks.MAGNOLIA_SAPLING);
+                        pOutput.accept(ModBlocks.MAGNOLIA_LEAVES);
 
-                        //Citrus Wood
-                        pOutput.accept(ModBlocks.CITRUS_SAPLING);
+                        //CITRUS
                         pOutput.accept(ModBlocks.CITRUS_LOG);
-                        pOutput.accept(ModBlocks.CITRUS_LEAVES);
+                        pOutput.accept(ModBlocks.CITRUS_WOOD);
+                        pOutput.accept(ModBlocks.CITRUS_STRIPPED_LOG);
+                        pOutput.accept(ModBlocks.CITRUS_STRIPPED_WOOD);
                         pOutput.accept(ModBlocks.CITRUS_PLANKS);
-                        pOutput.accept(ModBlocks.CITRUS_SLAB);
                         pOutput.accept(ModBlocks.CITRUS_STAIRS);
-                        pOutput.accept(ModBlocks.CITRUS_PRESSURE_PLATE);
-                        pOutput.accept(ModBlocks.CITRUS_BUTTON);
+                        pOutput.accept(ModBlocks.CITRUS_SLAB);
                         pOutput.accept(ModBlocks.CITRUS_FENCE);
                         pOutput.accept(ModBlocks.CITRUS_FENCE_GATE);
                         pOutput.accept(ModBlocks.CITRUS_DOOR);
                         pOutput.accept(ModBlocks.CITRUS_TRAPDOOR);
-                        
-                        //Apricot Wood
-                        pOutput.accept(ModBlocks.APRICOT_SAPLING);
+                        pOutput.accept(ModBlocks.CITRUS_PRESSURE_PLATE);
+                        pOutput.accept(ModBlocks.CITRUS_BUTTON);
+                        pOutput.accept(ModBlocks.CITRUS_SAPLING);
+                        pOutput.accept(ModBlocks.CITRUS_LEAVES);
+
+                        //APRICOT
                         pOutput.accept(ModBlocks.APRICOT_LOG);
-                        pOutput.accept(ModBlocks.APRICOT_LEAVES);
+                        pOutput.accept(ModBlocks.APRICOT_WOOD);
+                        pOutput.accept(ModBlocks.APRICOT_STRIPPED_LOG);
+                        pOutput.accept(ModBlocks.APRICOT_STRIPPED_WOOD);
                         pOutput.accept(ModBlocks.APRICOT_PLANKS);
-                        pOutput.accept(ModBlocks.APRICOT_SLAB);
                         pOutput.accept(ModBlocks.APRICOT_STAIRS);
-                        pOutput.accept(ModBlocks.APRICOT_PRESSURE_PLATE);
-                        pOutput.accept(ModBlocks.APRICOT_BUTTON);
+                        pOutput.accept(ModBlocks.APRICOT_SLAB);
                         pOutput.accept(ModBlocks.APRICOT_FENCE);
                         pOutput.accept(ModBlocks.APRICOT_FENCE_GATE);
                         pOutput.accept(ModBlocks.APRICOT_DOOR);
                         pOutput.accept(ModBlocks.APRICOT_TRAPDOOR);
+                        pOutput.accept(ModBlocks.APRICOT_PRESSURE_PLATE);
+                        pOutput.accept(ModBlocks.APRICOT_BUTTON);
+                        pOutput.accept(ModBlocks.APRICOT_SAPLING);
+                        pOutput.accept(ModBlocks.APRICOT_LEAVES);
 
-                        //Mulberry Wood
-                        pOutput.accept(ModBlocks.MULBERRY_SAPLING);
+                        //MULBERRY
                         pOutput.accept(ModBlocks.MULBERRY_LOG);
-                        pOutput.accept(ModBlocks.MULBERRY_LEAVES);
+                        pOutput.accept(ModBlocks.MULBERRY_WOOD);
+                        pOutput.accept(ModBlocks.MULBERRY_STRIPPED_LOG);
+                        pOutput.accept(ModBlocks.MULBERRY_STRIPPED_WOOD);
                         pOutput.accept(ModBlocks.MULBERRY_PLANKS);
-                        pOutput.accept(ModBlocks.MULBERRY_SLAB);
                         pOutput.accept(ModBlocks.MULBERRY_STAIRS);
-                        pOutput.accept(ModBlocks.MULBERRY_PRESSURE_PLATE);
-                        pOutput.accept(ModBlocks.MULBERRY_BUTTON);
+                        pOutput.accept(ModBlocks.MULBERRY_SLAB);
                         pOutput.accept(ModBlocks.MULBERRY_FENCE);
                         pOutput.accept(ModBlocks.MULBERRY_FENCE_GATE);
                         pOutput.accept(ModBlocks.MULBERRY_DOOR);
                         pOutput.accept(ModBlocks.MULBERRY_TRAPDOOR);
+                        pOutput.accept(ModBlocks.MULBERRY_PRESSURE_PLATE);
+                        pOutput.accept(ModBlocks.MULBERRY_BUTTON);
+                        pOutput.accept(ModBlocks.MULBERRY_SAPLING);
+                        pOutput.accept(ModBlocks.MULBERRY_LEAVES);
 
-                        //Green Ash Wood
-                        pOutput.accept(ModBlocks.GREEN_ASH_SAPLING);
+                        //GREEN ASH
                         pOutput.accept(ModBlocks.GREEN_ASH_LOG);
-                        pOutput.accept(ModBlocks.GREEN_ASH_LEAVES);
+                        pOutput.accept(ModBlocks.GREEN_ASH_WOOD);
+                        pOutput.accept(ModBlocks.GREEN_ASH_STRIPPED_LOG);
+                        pOutput.accept(ModBlocks.GREEN_ASH_STRIPPED_WOOD);
                         pOutput.accept(ModBlocks.GREEN_ASH_PLANKS);
-                        pOutput.accept(ModBlocks.GREEN_ASH_SLAB);
                         pOutput.accept(ModBlocks.GREEN_ASH_STAIRS);
-                        pOutput.accept(ModBlocks.GREEN_ASH_PRESSURE_PLATE);
-                        pOutput.accept(ModBlocks.GREEN_ASH_BUTTON);
+                        pOutput.accept(ModBlocks.GREEN_ASH_SLAB);
                         pOutput.accept(ModBlocks.GREEN_ASH_FENCE);
                         pOutput.accept(ModBlocks.GREEN_ASH_FENCE_GATE);
                         pOutput.accept(ModBlocks.GREEN_ASH_DOOR);
                         pOutput.accept(ModBlocks.GREEN_ASH_TRAPDOOR);
+                        pOutput.accept(ModBlocks.GREEN_ASH_PRESSURE_PLATE);
+                        pOutput.accept(ModBlocks.GREEN_ASH_BUTTON);
+                        pOutput.accept(ModBlocks.GREEN_ASH_SAPLING);
+                        pOutput.accept(ModBlocks.GREEN_ASH_LEAVES);
 
                         pOutput.accept(ModBlocks.FOLIRITE_BLOCK);
                         pOutput.accept(ModBlocks.RAW_FOLIRITE_BLOCK);

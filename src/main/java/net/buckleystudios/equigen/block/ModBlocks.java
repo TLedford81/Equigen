@@ -23,44 +23,7 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(EquigenMod.MODID);
 
-    //Wood Types: Fig, Maple, Citrus, Apricot, Pear
-    //Wood Tyoes: Fig, Apricot, Magnolia, Citrus, Mulberry, Green Ash
-    //Placeholder Wood
-    public static final DeferredBlock<Block> PLACEHOLDER_PLANKS = registerBlock("placeholder_planks",
-            () -> new ModPlanksBlock(BlockBehaviour.Properties.of().strength(1f)));
-    public static final DeferredBlock<Block> PLACEHOLDER_STAIRS = registerBlock("placeholder_stairs",
-            () -> new StairBlock(ModBlocks.PLACEHOLDER_PLANKS.get().defaultBlockState(),
-                    BlockBehaviour.Properties.of().strength(1f)));
-    public static final DeferredBlock<Block> PLACEHOLDER_SLAB = registerBlock("placeholder_slab",
-            () -> new SlabBlock(BlockBehaviour.Properties.of().strength(1f)));
-    public static final DeferredBlock<Block> PLACEHOLDER_PRESSURE_PLATE = registerBlock("placeholder_pressure_plate",
-            () -> new PressurePlateBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f)));
-    public static final DeferredBlock<Block> PLACEHOLDER_BUTTON = registerBlock("placeholder_button",
-            () -> new ButtonBlock(BlockSetType.SPRUCE, 10, BlockBehaviour.Properties.of().strength(1f).noCollission()));
-    public static final DeferredBlock<Block> PLACEHOLDER_FENCE = registerBlock("placeholder_fence",
-            () -> new FenceBlock(BlockBehaviour.Properties.of().strength(1f)));
-    public static final DeferredBlock<Block> PLACEHOLDER_FENCE_GATE = registerBlock("placeholder_fence_gate",
-            () -> new FenceGateBlock(WoodType.OAK, BlockBehaviour.Properties.of().strength(1f)));
-    public static final DeferredBlock<Block> PLACEHOLDER_WALL = registerBlock("placeholder_wall",
-            () -> new WallBlock(BlockBehaviour.Properties.of().strength(1f)));
-    public static final DeferredBlock<Block> PLACEHOLDER_DOOR = registerBlock("placeholder_door",
-            () -> new DoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f).noOcclusion()));
-    public static final DeferredBlock<Block> PLACEHOLDER_TRAPDOOR = registerBlock("placeholder_trapdoor",
-            () -> new TrapDoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f).noOcclusion()));
-    public static final DeferredBlock<Block> PLACEHOLDER_LOG = registerBlock("placeholder_log",
-            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
-    public static final DeferredBlock<Block> PLACEHOLDER_STRIPPED_LOG = registerBlock("placeholder_stripped_log",
-            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
-    public static final DeferredBlock<Block> PLACEHOLDER_WOOD = registerBlock("placeholder_wood",
-            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD)));
-    public static final DeferredBlock<Block> PLACEHOLDER_STRIPPED_WOOD = registerBlock("placeholder_stripped_wood",
-            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD)));
-    public static final DeferredBlock<Block> PLACEHOLDER_LEAVES = registerBlock("placeholder_leaves",
-            () -> new ModLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
-    public static final DeferredBlock<Block> PLACEHOLDER_SAPLING = registerBlock("placeholder_sapling",
-            () -> new SaplingBlock(ModTreeGrowers.PLACEHOLDER, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
-
-
+    //Wood Types: Fig, Apricot, Magnolia, Citrus, Mulberry, Green Ash
     //Fig Wood
     public static final DeferredBlock<Block> FIG_LOG = registerBlock("fig_log",
             () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));

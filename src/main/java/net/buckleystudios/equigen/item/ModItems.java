@@ -46,6 +46,10 @@ public class ModItems {
                     .attributes(HoeItem.createAttributes(ModToolTiers.FOLIRITE_TIER, 0f, -3f))));
 
     public static final DeferredItem<Item> RAW_OATS = ITEMS.registerItem("raw_oats", Item::new, new Item.Properties().food(ModFoodProperties.RAW_OATS));
+    public static final DeferredItem<Item> FIG = ITEMS.registerItem("fig", Item::new, new Item.Properties().food(ModFoodProperties.FIG));
+    public static final DeferredItem<Item> APRICOT = ITEMS.registerItem("apricot", Item::new, new Item.Properties().food(ModFoodProperties.APRICOT));
+    public static final DeferredItem<Item> LEMON = ITEMS.registerItem("lemon", Item::new, new Item.Properties().food(ModFoodProperties.LEMON));
+    public static final DeferredItem<Item> MULBERRY = ITEMS.registerItem("mulberry", Item::new, new Item.Properties().food(ModFoodProperties.MULBERRY));
 
     public static final DeferredItem<Item> PILLAGER_KING_SPAWN_EGG = ITEMS.register("pillager_king_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.PILLAGER_KING, 0xdebd47, 0xccbfbe,

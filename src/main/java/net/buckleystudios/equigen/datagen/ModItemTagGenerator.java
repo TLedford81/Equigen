@@ -22,10 +22,6 @@ public class ModItemTagGenerator extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
         this.tag(ItemTags.LOGS_THAT_BURN)
-                .add(ModBlocks.PLACEHOLDER_LOG.get().asItem())
-                .add(ModBlocks.PLACEHOLDER_WOOD.get().asItem())
-                .add(ModBlocks.PLACEHOLDER_STRIPPED_LOG.get().asItem())
-                .add(ModBlocks.PLACEHOLDER_STRIPPED_WOOD.get().asItem())
                 .add(ModBlocks.FIG_LOG.get().asItem())
                 .add(ModBlocks.FIG_WOOD.get().asItem())
                 .add(ModBlocks.FIG_STRIPPED_LOG.get().asItem())
@@ -52,7 +48,6 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 .add(ModBlocks.GREEN_ASH_STRIPPED_WOOD.get().asItem());
 
         this.tag(ItemTags.PLANKS)
-                .add(ModBlocks.PLACEHOLDER_PLANKS.asItem())
                 .add(ModBlocks.APRICOT_PLANKS.asItem())
                 .add(ModBlocks.MAGNOLIA_PLANKS.asItem())
                 .add(ModBlocks.CITRUS_PLANKS.asItem())

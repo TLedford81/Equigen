@@ -26,6 +26,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.SODIUM.get());
         basicItem(ModItems.SODIUM_GRENADE.get());
         basicItem(ModItems.RAW_OATS.get());
+        basicItem(ModItems.FIG.get());
+        basicItem(ModItems.APRICOT.get());
+        basicItem(ModItems.LEMON.get());
+        basicItem(ModItems.MULBERRY.get());
 
         handheldItem(ModItems.FOLIRITE_PICKAXE);
         handheldItem(ModItems.FOLIRITE_AXE);
@@ -38,18 +42,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent(ModItems.EGRET_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 
         //Block Items (Cont.)
-        saplingItem(ModBlocks.PLACEHOLDER_SAPLING);
         saplingItem(ModBlocks.FIG_SAPLING);
         saplingItem(ModBlocks.MAGNOLIA_SAPLING);
         saplingItem(ModBlocks.CITRUS_SAPLING);
         saplingItem(ModBlocks.APRICOT_SAPLING);
         saplingItem(ModBlocks.MULBERRY_SAPLING);
         saplingItem(ModBlocks.GREEN_ASH_SAPLING);
-
-        buttonItem(ModBlocks.PLACEHOLDER_BUTTON, ModBlocks.PLACEHOLDER_PLANKS);
-        fenceItem(ModBlocks.PLACEHOLDER_FENCE, ModBlocks.PLACEHOLDER_PLANKS);
-        wallItem(ModBlocks.PLACEHOLDER_WALL, ModBlocks.PLACEHOLDER_PLANKS);
-        basicItem(ModBlocks.PLACEHOLDER_DOOR.asItem());
 
         buttonItem(ModBlocks.FIG_BUTTON, ModBlocks.FIG_PLANKS);
         fenceItem(ModBlocks.FIG_FENCE, ModBlocks.FIG_PLANKS);

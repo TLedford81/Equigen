@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "equigen:block/placeholder_planks",
-    "side": "equigen:block/placeholder_planks",
-    "top": "equigen:block/placeholder_planks"
-  }
-}

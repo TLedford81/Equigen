@@ -7,8 +7,6 @@ import net.minecraft.world.level.block.grower.TreeGrower;
 import java.util.Optional;
 
 public class ModTreeGrowers {
-    public static final TreeGrower PLACEHOLDER = new TreeGrower(EquigenMod.MODID + ":placeholder",
-            Optional.empty(), Optional.of(ModConfiguredFeatures.PLACEHOLDER_KEY), Optional.empty());
     public static final TreeGrower FIG = new TreeGrower(EquigenMod.MODID + ":fig",
             Optional.empty(), Optional.of(ModConfiguredFeatures.FIG_KEY), Optional.empty());
     public static final TreeGrower MAGNOLIA = new TreeGrower(EquigenMod.MODID + ":magnolia",

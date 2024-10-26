@@ -1,15 +1,5 @@
 {
-  "block.equigen.placeholder_planks": "[PLACEHOLDER] Wooden Planks",
-  "block.equigen.placeholder_slab": "[PLACEHOLDER] Wooden Slab",
-  "block.equigen.placeholder_stairs": "[PLACEHOLDER] Wooden Stairs",
-  "block.equigen.placeholder_button": "[PLACEHOLDER] Wooden Button",
-  "block.equigen.placeholder_pressure_plate": "[PLACEHOLDER] Wooden Pressure Plate",
-  "block.equigen.placeholder_fence": "[PLACEHOLDER] Wooden Fence",
-  "block.equigen.placeholder_fence_gate": "[PLACEHOLDER] Wooden Fence Gate",
-  "block.equigen.placeholder_wall": "[PLACEHOLDER] Wooden Wall",
-  "block.equigen.placeholder_door": "[PLACEHOLDER] Wooden Door",
-  "block.equigen.placeholder_trapdoor": "[PLACEHOLDER] Wooden Trapdoor",
-
+  "block.equigen.fig_log": "Fig Log",
   "block.equigen.fig_planks": "Fig Planks",
   "block.equigen.fig_slab": "Fig Slab",
   "block.equigen.fig_stairs": "Fig Stairs",

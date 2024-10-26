@@ -21,57 +21,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
 
         //Decoration Blocks
-//        simpleBlockWithItem(ModBlocks.PLACEHOLDER_LOG.get(), models().cubeBottomTop("placeholder_log",
-//                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_log_side"),
-//                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_log_bottomtop"),
-//                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_log_bottomtop")));
-//        simpleBlockWithItem(ModBlocks.PLACEHOLDER_STRIPPED_LOG.get(), models().cubeBottomTop("placeholder_stripped_log",
-//                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_stripped_log_side"),
-//                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_stripped_log_bottomtop"),
-//                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/placeholder_stripped_log_bottomtop")));
-//
-        logBlock(((RotatedPillarBlock) ModBlocks.PLACEHOLDER_LOG.get()));
-        blockItem(ModBlocks.PLACEHOLDER_LOG);
-        logBlock(((RotatedPillarBlock) ModBlocks.PLACEHOLDER_STRIPPED_LOG.get()));
-        blockItem(ModBlocks.PLACEHOLDER_STRIPPED_LOG);
-        axisBlock(((RotatedPillarBlock) ModBlocks.PLACEHOLDER_WOOD.get()), blockTexture(ModBlocks.PLACEHOLDER_LOG.get()), blockTexture(ModBlocks.PLACEHOLDER_LOG.get()));
-        blockItem(ModBlocks.PLACEHOLDER_WOOD);
-        axisBlock(((RotatedPillarBlock) ModBlocks.PLACEHOLDER_STRIPPED_WOOD.get()), blockTexture(ModBlocks.PLACEHOLDER_STRIPPED_LOG.get()), blockTexture(ModBlocks.PLACEHOLDER_STRIPPED_LOG.get()));
-        blockItem(ModBlocks.PLACEHOLDER_STRIPPED_WOOD);
-        blockWithItem(ModBlocks.PLACEHOLDER_PLANKS);
-        leavesBlock(ModBlocks.PLACEHOLDER_LEAVES);
-        saplingBlock(ModBlocks.PLACEHOLDER_SAPLING);
-
-
-        stairsBlock((StairBlock) ModBlocks.PLACEHOLDER_STAIRS.get(), blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()));
-        blockItem(ModBlocks.PLACEHOLDER_STAIRS);
-
-        slabBlock((SlabBlock) ModBlocks.PLACEHOLDER_SLAB.get(),
-                blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()), blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()));
-        blockItem(ModBlocks.PLACEHOLDER_SLAB);
-
-        pressurePlateBlock(((PressurePlateBlock) ModBlocks.PLACEHOLDER_PRESSURE_PLATE.get()), blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()));
-        blockItem(ModBlocks.PLACEHOLDER_PRESSURE_PLATE);
-
-        buttonBlock(((ButtonBlock) ModBlocks.PLACEHOLDER_BUTTON.get()), blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()));
-        //Block Item Done in ModItemModelProvider.java
-
-        fenceBlock((FenceBlock) ModBlocks.PLACEHOLDER_FENCE.get(), blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()));
-        //Block Item Done in ModItemModelProvider.java
-
-        fenceGateBlock((FenceGateBlock) ModBlocks.PLACEHOLDER_FENCE_GATE.get(), blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()));
-        blockItem(ModBlocks.PLACEHOLDER_FENCE_GATE);
-
-        wallBlock((WallBlock) ModBlocks.PLACEHOLDER_WALL.get(), blockTexture(ModBlocks.PLACEHOLDER_PLANKS.get()));
-        //Block Item Done in ModItemModelProvider.java
-
-        doorBlockWithRenderType(((DoorBlock) ModBlocks.PLACEHOLDER_DOOR.get()),
-                modLoc("block/placeholder_door_bottom"), modLoc("block/placeholder_door_top"), "cutout");
-        //Block Item Done in ModItemModelProvider.java
-
-        trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.PLACEHOLDER_TRAPDOOR.get()),
-                modLoc("block/placeholder_trapdoor"), true, "cutout");
-        blockItem(ModBlocks.PLACEHOLDER_TRAPDOOR, "_bottom");
 
         //Fig Wood
         logBlock(((RotatedPillarBlock) ModBlocks.FIG_LOG.get()));

@@ -2,6 +2,7 @@ package net.buckleystudios.equigen.datagen;
 
 import net.buckleystudios.equigen.block.ModBlocks;
 import net.buckleystudios.equigen.item.ModItems;
+import net.buckleystudios.equigen.util.ModTags;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -20,6 +21,9 @@ public class ModRecipeProvider extends RecipeProvider implements RecipeBuilder {
 
     @Override
     protected void buildRecipes(RecipeOutput pRecipeOutput) {
+
+//        planksFromLog(pRecipeOutput, ModBlocks.FIG_PLANKS.get(), , 4);
+
         //3x3 Folorite Compression
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.FOLIRITE_BLOCK.get())
                 .pattern("fff")
