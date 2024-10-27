@@ -1,10 +1,7 @@
 package net.buckleystudios.equigen.block;
 
 import net.buckleystudios.equigen.EquigenMod;
-import net.buckleystudios.equigen.block.custom.InfusionTableBlock;
-import net.buckleystudios.equigen.block.custom.ModLeavesBlock;
-import net.buckleystudios.equigen.block.custom.ModLogBlock;
-import net.buckleystudios.equigen.block.custom.ModPlanksBlock;
+import net.buckleystudios.equigen.block.custom.*;
 import net.buckleystudios.equigen.item.ModItems;
 import net.buckleystudios.equigen.worldgen.tree.ModTreeGrowers;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -218,6 +215,8 @@ public class ModBlocks {
     public static final DeferredBlock<Block> GREEN_ASH_TRAPDOOR = registerBlock("green_ash_trapdoor",
             () -> new TrapDoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(1f).noOcclusion()));
 
+    public static final DeferredBlock<Block> OAT_CROP = BLOCKS.register("oat_crop",
+            () -> new OatCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT)));
 
     public static final DeferredBlock<Block> FOLIRITE_ORE = registerBlock("folirite_ore",
             () -> new DropExperienceBlock(UniformInt.of(2, 5),

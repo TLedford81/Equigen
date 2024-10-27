@@ -1,4 +1,4 @@
-// 1.21	2024-10-23T17:44:42.3430378	Item Models: equigen
+// 1.21	2024-10-27T16:25:53.7349793	Item Models: equigen
 9c687aadbfdb6b265dbf69c8c60bfedc48813592 assets/equigen/models/item/apricot.json
 5ae1230c38b3b623133f71019f46cc19c3d7d6d2 assets/equigen/models/item/apricot_button.json
 f7a8ff7ce56a1e5be13f1e8709b7bd18fe44b2c8 assets/equigen/models/item/apricot_door.json
@@ -35,6 +35,7 @@ bc1fc44d6ed8a1ec6ed2ea6eb7b6a1fab7903f7d assets/equigen/models/item/magnolia_sap
 fb35712c9c0a4bcb578fa3b482064c8ada19c37d assets/equigen/models/item/mulberry_door.json
 2fb07a5abac1dfa015dc17410aa7742298715d2e assets/equigen/models/item/mulberry_fence.json
 8b8f358371d9fd0d318f553e11bab46555493211 assets/equigen/models/item/mulberry_sapling.json
+0c14a466e83e846a0f09a720ba83d25bfda032c1 assets/equigen/models/item/oat_seeds.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/equigen/models/item/pillager_king_spawn_egg.json
 bd1886fc11e6c009e04a9e449be14fb9835c3583 assets/equigen/models/item/raw_folirite.json
 8f5f6eaee192f5d94b5022bbbde311666344366d assets/equigen/models/item/raw_oats.json

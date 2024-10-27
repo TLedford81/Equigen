@@ -2,15 +2,20 @@ package net.buckleystudios.equigen.datagen;
 
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.block.ModBlocks;
+import net.buckleystudios.equigen.block.custom.ModCropBlock;
+import net.buckleystudios.equigen.block.custom.OatCropBlock;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
-import net.neoforged.fml.common.Mod;
+import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
+
+import java.util.function.Function;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper existingFileHelper){
@@ -262,6 +267,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 modLoc("block/green_ash_trapdoor"), true, "cutout");
         blockItem(ModBlocks.GREEN_ASH_TRAPDOOR, "_bottom");
 
+        //Crop Blocks
+        makeCrop(((OatCropBlock) ModBlocks.OAT_CROP.get()), "oat_crop_stage", "oat_crop_stage");
+
         //Ore Blocks
         blockWithItem(ModBlocks.FOLIRITE_BLOCK);
         blockWithItem(ModBlocks.RAW_FOLIRITE_BLOCK);
@@ -283,6 +291,21 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 new ModelFile.UncheckedModelFile(modLoc("block/infusion_table")));
 
         //Note: Later, Simplify the usage of SimpleBlockItem command
+    }
+
+    public void makeCrop(CropBlock block, String modelName, String textureName) {
+        Function<BlockState, ConfiguredModel[]> function = state -> cropStates(state, block, modelName, textureName);
+
+        getVariantBuilder(block).forAllStates(function);
+    }
+
+    private ConfiguredModel[] cropStates(BlockState state, CropBlock block, String modelName, String textureName) {
+        ConfiguredModel[] models = new ConfiguredModel[1];
+        models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(((ModCropBlock) block).getAgeProperty()),
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/" + textureName +
+                        state.getValue(((ModCropBlock) block).getAgeProperty()))).renderType("cutout"));
+
+        return models;
     }
 
     private void leavesBlock(DeferredBlock<Block> deferredBlock) {

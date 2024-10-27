@@ -1,4 +1,4 @@
-// 1.21	2024-10-23T17:44:42.3470397	Block States: equigen
+// 1.21	2024-10-27T16:25:53.7389813	Block States: equigen
 2b2e1cd61c6f6242256416e08be0d93d7d61f7da assets/equigen/blockstates/apricot_button.json
 479a9063b913f595e64b226e31230c0e00be50d7 assets/equigen/blockstates/apricot_door.json
 5fe737d6c0155980cd35d634f45cf7fef5c601a8 assets/equigen/blockstates/apricot_fence.json
@@ -95,6 +95,7 @@ e10548d442b5fd1cbd3f39c944c66bb040b0bf7f assets/equigen/blockstates/mulberry_str
 6458687b4cc66cb1c67edeb0f28be5d631c0e725 assets/equigen/blockstates/mulberry_stripped_wood.json
 6b698e97a942e754b4a62b0a53f93878de9bbf36 assets/equigen/blockstates/mulberry_trapdoor.json
 5a7359c2ef3a4e718a951c97e3bd5bfe8169e94f assets/equigen/blockstates/mulberry_wood.json
+5c1d8526cdbc60bc64155b59fc47a4589ebc11d9 assets/equigen/blockstates/oat_crop.json
 44c8576a3041d085b79e0a5649d5b7f5082ac8e7 assets/equigen/blockstates/raw_folirite_block.json
 948cdae88819fbed32e98fd71fe4ca2cadf12706 assets/equigen/models/block/apricot_button.json
 63efdb77c2407cbc95fb5321854bbe0496aa7f58 assets/equigen/models/block/apricot_button_pressed.json
@@ -323,6 +324,12 @@ aec6e8304777a688cbc7a73f5c5c6398c72fb028 assets/equigen/models/block/mulberry_st
 eef64b72a161285abc832e77daf05d916ce80d36 assets/equigen/models/block/mulberry_trapdoor_top.json
 24a9b6204c077ff4b3d334b7e8fdd8e5bca849ce assets/equigen/models/block/mulberry_wood.json
 0f259d278125e7639ebb53fc46d30e2f3f74513d assets/equigen/models/block/mulberry_wood_horizontal.json
+0b6421b52258efda9e701c24f980076b13245766 assets/equigen/models/block/oat_crop_stage0.json
+b963c75747411b4c9cef36b7218cfad249587df9 assets/equigen/models/block/oat_crop_stage1.json
+d3d62df72284bbf28ce474265bdd8b377eafa14c assets/equigen/models/block/oat_crop_stage2.json
+a6a862470945bb513d3a8c813c483b9d4dcb18c0 assets/equigen/models/block/oat_crop_stage3.json
+469a1da8c2516c2e4539699ad6f2f72a0077f7a9 assets/equigen/models/block/oat_crop_stage4.json
+53517ae5d7fe01563c3780f19f9c6c5e66d0f48c assets/equigen/models/block/oat_crop_stage5.json
 0c429cebdc2d19a709a0e68044d7bfeb5c28b8c8 assets/equigen/models/block/raw_folirite_block.json
 d3d6ae25c79a4d24ed3545ca0ff4902e96c6ed7d assets/equigen/models/item/apricot_fence_gate.json
 ea81cb2baf5ab0d140da3cca4eddae84fb4c1f3b assets/equigen/models/item/apricot_leaves.json

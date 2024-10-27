@@ -1,6 +1,8 @@
 package net.buckleystudios.equigen.item;
 
 import net.buckleystudios.equigen.EquigenMod;
+import net.buckleystudios.equigen.block.ModBlocks;
+import net.buckleystudios.equigen.block.custom.OatCropBlock;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.item.custom.SodiumGrenadeItem;
 import net.minecraft.world.item.*;
@@ -45,6 +47,8 @@ public class ModItems {
             new Item.Properties().durability(256)
                     .attributes(HoeItem.createAttributes(ModToolTiers.FOLIRITE_TIER, 0f, -3f))));
 
+    public static final DeferredItem<Item> OAT_SEEDS = ITEMS.register("oat_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.OAT_CROP.get(), new Item.Properties()));
     public static final DeferredItem<Item> RAW_OATS = ITEMS.registerItem("raw_oats", Item::new, new Item.Properties().food(ModFoodProperties.RAW_OATS));
     public static final DeferredItem<Item> FIG = ITEMS.registerItem("fig", Item::new, new Item.Properties().food(ModFoodProperties.FIG));
     public static final DeferredItem<Item> APRICOT = ITEMS.registerItem("apricot", Item::new, new Item.Properties().food(ModFoodProperties.APRICOT));

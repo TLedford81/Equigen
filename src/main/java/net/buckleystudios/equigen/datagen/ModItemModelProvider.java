@@ -25,6 +25,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.HIMALAYAN_ROCK_SALT.get());
         basicItem(ModItems.SODIUM.get());
         basicItem(ModItems.SODIUM_GRENADE.get());
+
+        basicItem(ModItems.OAT_SEEDS.get());
         basicItem(ModItems.RAW_OATS.get());
         basicItem(ModItems.FIG.get());
         basicItem(ModItems.APRICOT.get());
