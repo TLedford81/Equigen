@@ -1,4 +1,4 @@
-// 1.21	2024-10-27T16:25:53.7389813	Block States: equigen
+// 1.21	2024-10-27T19:53:51.3736739	Block States: equigen
 2b2e1cd61c6f6242256416e08be0d93d7d61f7da assets/equigen/blockstates/apricot_button.json
 479a9063b913f595e64b226e31230c0e00be50d7 assets/equigen/blockstates/apricot_door.json
 5fe737d6c0155980cd35d634f45cf7fef5c601a8 assets/equigen/blockstates/apricot_fence.json
@@ -65,6 +65,7 @@ e0a2ffc795ed1135e5efea79ab08003125222548 assets/equigen/blockstates/green_ash_sa
 1db32c30f02dfad8890f5602f0a0b2cdff1f4b91 assets/equigen/blockstates/green_ash_wood.json
 073f962885842057b447f2fd33aeec7eb08e89dc assets/equigen/blockstates/himalayan_rock_salt_ore.json
 bd88dba40e4cfd7394df046089bcefb3e6bab0c9 assets/equigen/blockstates/infusion_table.json
+dd0e9b3a71efa7741b29360ccb2bcb53377e9b75 assets/equigen/blockstates/locoweed.json
 a321972b278c153acba3041d6b3b0b2b070f142d assets/equigen/blockstates/magnolia_button.json
 4b1c7bb1f893e4b9e8a76a0cd4de0afd5717b50d assets/equigen/blockstates/magnolia_door.json
 4a73b07a1e21810c10d29ee86504b1ad3b16e5ff assets/equigen/blockstates/magnolia_fence.json
@@ -96,6 +97,7 @@ e10548d442b5fd1cbd3f39c944c66bb040b0bf7f assets/equigen/blockstates/mulberry_str
 6b698e97a942e754b4a62b0a53f93878de9bbf36 assets/equigen/blockstates/mulberry_trapdoor.json
 5a7359c2ef3a4e718a951c97e3bd5bfe8169e94f assets/equigen/blockstates/mulberry_wood.json
 5c1d8526cdbc60bc64155b59fc47a4589ebc11d9 assets/equigen/blockstates/oat_crop.json
+f63fb6c3b9520a2a3ce6353a250c7ee90f6f2ff5 assets/equigen/blockstates/potted_locoweed.json
 44c8576a3041d085b79e0a5649d5b7f5082ac8e7 assets/equigen/blockstates/raw_folirite_block.json
 948cdae88819fbed32e98fd71fe4ca2cadf12706 assets/equigen/models/block/apricot_button.json
 63efdb77c2407cbc95fb5321854bbe0496aa7f58 assets/equigen/models/block/apricot_button_pressed.json
@@ -250,6 +252,7 @@ fae848e2361c1f50a814c22dc3326e510dfc91b5 assets/equigen/models/block/green_ash_t
 1b4c6f856b03eb5a09d062ead07eb0e9e9932962 assets/equigen/models/block/green_ash_wood.json
 b6af551f09ba83d97cdaf306a60803bd9de892b6 assets/equigen/models/block/green_ash_wood_horizontal.json
 950c05e4192ac873075cbaa8ab3a1df1bfa7e0f1 assets/equigen/models/block/himalayan_rock_salt_ore.json
+1a0570ef8d67fff090d2059dc5b64ca720937166 assets/equigen/models/block/locoweed.json
 d2fa164efde82fca7328b878041b9211a13bce7e assets/equigen/models/block/magnolia_button.json
 9a7b1405d3203cf8bd41cc38303a1dfa2a72d113 assets/equigen/models/block/magnolia_button_pressed.json
 b01b9bb13f896499f745b27ce99657c862ea0ceb assets/equigen/models/block/magnolia_door_bottom_left.json
@@ -330,6 +333,7 @@ d3d62df72284bbf28ce474265bdd8b377eafa14c assets/equigen/models/block/oat_crop_st
 a6a862470945bb513d3a8c813c483b9d4dcb18c0 assets/equigen/models/block/oat_crop_stage3.json
 469a1da8c2516c2e4539699ad6f2f72a0077f7a9 assets/equigen/models/block/oat_crop_stage4.json
 53517ae5d7fe01563c3780f19f9c6c5e66d0f48c assets/equigen/models/block/oat_crop_stage5.json
+c22ad01ffa46ec55fff75b4261b5df67aed6d621 assets/equigen/models/block/potted_locoweed.json
 0c429cebdc2d19a709a0e68044d7bfeb5c28b8c8 assets/equigen/models/block/raw_folirite_block.json
 d3d6ae25c79a4d24ed3545ca0ff4902e96c6ed7d assets/equigen/models/item/apricot_fence_gate.json
 ea81cb2baf5ab0d140da3cca4eddae84fb4c1f3b assets/equigen/models/item/apricot_leaves.json

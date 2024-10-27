@@ -128,6 +128,12 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.GREEN_ASH_WOOD.get());
         this.dropSelf(ModBlocks.GREEN_ASH_STRIPPED_WOOD.get());
         this.dropSelf(ModBlocks.GREEN_ASH_SAPLING.get());
+        this.dropSelf(ModBlocks.LOCOWEED.get());
+
+        //FLOWER POT DROPS
+        this.add(ModBlocks.POTTED_LOCOWEED.get(), createPotFlowerItemTable(ModBlocks.LOCOWEED));
+
+        //LEAF DROPS
         this.add(ModBlocks.GREEN_ASH_LEAVES.get(), block ->
                 createLeavesDrops(block, ModBlocks.GREEN_ASH_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 

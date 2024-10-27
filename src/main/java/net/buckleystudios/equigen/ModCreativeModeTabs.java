@@ -28,6 +28,9 @@ public class ModCreativeModeTabs{
                         pOutput.accept(ModItems.RAW_OATS);
                         pOutput.accept(ModItems.MULBERRY);
 
+                        //Seeds
+                        pOutput.accept(ModItems.OAT_SEEDS);
+
                         //Materials
                         pOutput.accept(ModItems.FOLIRITE_INGOT);
                         pOutput.accept(ModItems.RAW_FOLIRITE);
@@ -156,6 +159,9 @@ public class ModCreativeModeTabs{
                         pOutput.accept(ModBlocks.GREEN_ASH_BUTTON);
                         pOutput.accept(ModBlocks.GREEN_ASH_SAPLING);
                         pOutput.accept(ModBlocks.GREEN_ASH_LEAVES);
+
+                        //Flowers
+                        pOutput.accept(ModBlocks.LOCOWEED);
 
                         pOutput.accept(ModBlocks.FOLIRITE_BLOCK);
                         pOutput.accept(ModBlocks.RAW_FOLIRITE_BLOCK);

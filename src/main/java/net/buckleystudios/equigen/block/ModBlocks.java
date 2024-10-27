@@ -5,6 +5,8 @@ import net.buckleystudios.equigen.block.custom.*;
 import net.buckleystudios.equigen.item.ModItems;
 import net.buckleystudios.equigen.worldgen.tree.ModTreeGrowers;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
@@ -217,6 +219,11 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> OAT_CROP = BLOCKS.register("oat_crop",
             () -> new OatCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT)));
+
+    public static final DeferredBlock<Block> LOCOWEED = registerBlock("locoweed",
+            () -> new FlowerBlock(MobEffects.BLINDNESS, 8, BlockBehaviour.Properties.ofFullCopy(Blocks.ALLIUM)));
+    public static final DeferredBlock<Block> POTTED_LOCOWEED = BLOCKS.register("potted_locoweed",
+            () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), LOCOWEED, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_ALLIUM)));
 
     public static final DeferredBlock<Block> FOLIRITE_ORE = registerBlock("folirite_ore",
             () -> new DropExperienceBlock(UniformInt.of(2, 5),

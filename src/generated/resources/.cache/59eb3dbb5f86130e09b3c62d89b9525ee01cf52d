@@ -1,4 +1,4 @@
-// 1.21	2024-10-27T16:25:53.7509807	Loot Tables
+// 1.21	2024-10-27T19:53:51.3836768	Loot Tables
 71acaac04ccc255e32842c81ded124ce90606f46 data/equigen/loot_table/blocks/apricot_button.json
 0710a9df43166b8dc8df849b5964cf43e9bdfccd data/equigen/loot_table/blocks/apricot_door.json
 bf10ae583d08c9f2d14f91f64e347e08526ae4cb data/equigen/loot_table/blocks/apricot_fence.json
@@ -65,6 +65,7 @@ b27310be8b0d4f3528db61558ca26690370f0caa data/equigen/loot_table/blocks/green_as
 621eb8bfd90d78a6195ebd11fe3a9371fed23583 data/equigen/loot_table/blocks/green_ash_wood.json
 0f9f4ca7ae4f5278fd022633b1a2fa4651b48898 data/equigen/loot_table/blocks/himalayan_rock_salt_ore.json
 792c68fc75335f9d3395e32119fbbfd710935971 data/equigen/loot_table/blocks/infusion_table.json
+a30ee769ab9a7d864348a15abb4d495ebe4cb123 data/equigen/loot_table/blocks/locoweed.json
 ae831a80fb83dd835858794cf7df59f7ab501b79 data/equigen/loot_table/blocks/magnolia_button.json
 960ac43dae2c52ea3401b9f08911563f278971b9 data/equigen/loot_table/blocks/magnolia_door.json
 d7b41baf102b9dfc76021b97a35ed0e83f1f04dc data/equigen/loot_table/blocks/magnolia_fence.json
@@ -96,4 +97,5 @@ e22b7155ee2fe2ca27ba46975866c16d206e0aab data/equigen/loot_table/blocks/mulberry
 ffaad1038cde86b82b466d12fb713eede25f365c data/equigen/loot_table/blocks/mulberry_trapdoor.json
 59fb3d7fecce1ebfa9ed9ddf7c1c97f721ba1e32 data/equigen/loot_table/blocks/mulberry_wood.json
 9bd436b0555490c54380f598db84c05da4028623 data/equigen/loot_table/blocks/oat_crop.json
+2eda10770480f273e55b82122c8f763aed9784f2 data/equigen/loot_table/blocks/potted_locoweed.json
 e139d35419cf1157fdeeb6b8cd344c21cf84c68f data/equigen/loot_table/blocks/raw_folirite_block.json

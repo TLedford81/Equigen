@@ -11,6 +11,8 @@ import net.buckleystudios.equigen.screen.Infusion_Table.InfusionTableScreen;
 import net.buckleystudios.equigen.screen.ModMenuTypes;
 import net.buckleystudios.equigen.sound.ModSounds;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -42,23 +44,19 @@ public class EquigenMod {
 
         //
         modEventBus.addListener(this::commonSetup);
-        modEventBus.addListener(this::addCreative);
         NeoForge.EVENT_BUS.register(this);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-
+        event.enqueueWork(()->{
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.LOCOWEED.getId(), ModBlocks.POTTED_LOCOWEED);
+        });
     }
 
-    // Add the example block item to the building blocks tab
-    private void addCreative(BuildCreativeModeTabContentsEvent event) {
-
-    }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent

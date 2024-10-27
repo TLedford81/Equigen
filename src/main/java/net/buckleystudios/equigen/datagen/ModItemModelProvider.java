@@ -51,6 +51,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         saplingItem(ModBlocks.MULBERRY_SAPLING);
         saplingItem(ModBlocks.GREEN_ASH_SAPLING);
 
+        flowerItem(ModBlocks.LOCOWEED);
+
         buttonItem(ModBlocks.FIG_BUTTON, ModBlocks.FIG_PLANKS);
         fenceItem(ModBlocks.FIG_FENCE, ModBlocks.FIG_PLANKS);
         basicItem(ModBlocks.FIG_DOOR.asItem());
@@ -69,6 +71,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         buttonItem(ModBlocks.GREEN_ASH_BUTTON, ModBlocks.GREEN_ASH_PLANKS);
         fenceItem(ModBlocks.GREEN_ASH_FENCE, ModBlocks.GREEN_ASH_PLANKS);
         basicItem(ModBlocks.GREEN_ASH_DOOR.asItem());
+    }
+
+    public void flowerItem(DeferredBlock<Block> block) {
+        this.withExistingParent(block.getId().getPath(), mcLoc("item/generated"))
+                .texture("layer0", ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID,
+                        "block/" + block.getId().getPath()));
     }
 
     private ItemModelBuilder saplingItem(DeferredBlock<Block> item) {

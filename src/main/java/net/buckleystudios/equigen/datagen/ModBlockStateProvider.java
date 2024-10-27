@@ -267,6 +267,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 modLoc("block/green_ash_trapdoor"), true, "cutout");
         blockItem(ModBlocks.GREEN_ASH_TRAPDOOR, "_bottom");
 
+        //Flowers
+        simpleBlock(ModBlocks.LOCOWEED.get(),
+                models().cross(blockTexture(ModBlocks.LOCOWEED.get()).getPath(),
+                        blockTexture(ModBlocks.LOCOWEED.get())).renderType("cutout"));
+
+        simpleBlock(ModBlocks.POTTED_LOCOWEED.get(),
+                models().singleTexture("potted_locoweed", ResourceLocation.parse("flower_pot_cross"),
+                        "plant", blockTexture(ModBlocks.LOCOWEED.get())).renderType("cutout"));
         //Crop Blocks
         makeCrop(((OatCropBlock) ModBlocks.OAT_CROP.get()), "oat_crop_stage", "oat_crop_stage");
 
