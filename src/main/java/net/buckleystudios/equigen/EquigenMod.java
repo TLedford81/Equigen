@@ -10,7 +10,9 @@ import net.buckleystudios.equigen.item.ModItems;
 import net.buckleystudios.equigen.screen.Infusion_Table.InfusionTableScreen;
 import net.buckleystudios.equigen.screen.ModMenuTypes;
 import net.buckleystudios.equigen.sound.ModSounds;
+import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.neoforged.api.distmarker.Dist;
@@ -20,6 +22,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
@@ -49,7 +52,12 @@ public class EquigenMod {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(()->{
-            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.LOCOWEED.getId(), ModBlocks.POTTED_LOCOWEED);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.BLUE_LOCOWEED.getId(), ModBlocks.POTTED_BLUE_LOCOWEED);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.PURPLE_LOCOWEED.getId(), ModBlocks.POTTED_PURPLE_LOCOWEED);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.PINK_LOCOWEED.getId(), ModBlocks.POTTED_PINK_LOCOWEED);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.NIGHTSHADE.getId(), ModBlocks.POTTED_NIGHTSHADE);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.SWEET_PEA.getId(), ModBlocks.POTTED_SWEET_PEA);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.CALENDULA.getId(), ModBlocks.POTTED_CALENDULA);
         });
     }
 
@@ -72,5 +80,38 @@ public class EquigenMod {
         public static void registerScreens(RegisterMenuScreensEvent event){
             event.register(ModMenuTypes.INFUSION_TABLE_MENU.get(), InfusionTableScreen::new);
         }
+
+        @SubscribeEvent
+        public static void registerColoredBlocks(RegisterColorHandlersEvent.Block event){
+            event.register((state, level, pos, tintIndex) -> level != null &&
+                            pos != null ? BiomeColors.getAverageFoliageColor(level, pos) : FoliageColor.getDefaultColor(),
+                    ModBlocks.FIG_LEAVES.get());
+            event.register((state, level, pos, tintIndex) -> level != null &&
+                            pos != null ? BiomeColors.getAverageFoliageColor(level, pos) : FoliageColor.getDefaultColor(),
+                    ModBlocks.MAGNOLIA_LEAVES.get());
+            event.register((state, level, pos, tintIndex) -> level != null &&
+                            pos != null ? BiomeColors.getAverageFoliageColor(level, pos) : FoliageColor.getDefaultColor(),
+                    ModBlocks.CITRUS_LEAVES.get());
+            event.register((state, level, pos, tintIndex) -> level != null &&
+                            pos != null ? BiomeColors.getAverageFoliageColor(level, pos) : FoliageColor.getDefaultColor(),
+                    ModBlocks.APRICOT_LEAVES.get());
+            event.register((state, level, pos, tintIndex) -> level != null &&
+                            pos != null ? BiomeColors.getAverageFoliageColor(level, pos) : FoliageColor.getDefaultColor(),
+                    ModBlocks.MULBERRY_LEAVES.get());
+            event.register((state, level, pos, tintIndex) -> level != null &&
+                            pos != null ? BiomeColors.getAverageFoliageColor(level, pos) : FoliageColor.getDefaultColor(),
+                    ModBlocks.GREEN_ASH_LEAVES.get());
+        }
+
+        @SubscribeEvent
+        public static void registerColoredItems(RegisterColorHandlersEvent.Item event){
+            event.register((stack, tintIndex) -> FoliageColor.getDefaultColor(), ModBlocks.FIG_LEAVES);
+            event.register((stack, tintIndex) -> FoliageColor.getDefaultColor(), ModBlocks.MAGNOLIA_LEAVES);
+            event.register((stack, tintIndex) -> FoliageColor.getDefaultColor(), ModBlocks.APRICOT_LEAVES);
+            event.register((stack, tintIndex) -> FoliageColor.getDefaultColor(), ModBlocks.CITRUS_LEAVES);
+            event.register((stack, tintIndex) -> FoliageColor.getDefaultColor(), ModBlocks.MULBERRY_LEAVES);
+            event.register((stack, tintIndex) -> FoliageColor.getDefaultColor(), ModBlocks.GREEN_ASH_LEAVES);
+        }
+
     }
 }

@@ -2,8 +2,7 @@ package net.buckleystudios.equigen.datagen;
 
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.block.ModBlocks;
-import net.buckleystudios.equigen.block.custom.ModCropBlock;
-import net.buckleystudios.equigen.block.custom.OatCropBlock;
+import net.buckleystudios.equigen.block.custom.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -268,15 +267,54 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.GREEN_ASH_TRAPDOOR, "_bottom");
 
         //Flowers
-        simpleBlock(ModBlocks.LOCOWEED.get(),
-                models().cross(blockTexture(ModBlocks.LOCOWEED.get()).getPath(),
-                        blockTexture(ModBlocks.LOCOWEED.get())).renderType("cutout"));
+        simpleBlock(ModBlocks.BLUE_LOCOWEED.get(),
+                models().cross(blockTexture(ModBlocks.BLUE_LOCOWEED.get()).getPath(),
+                        blockTexture(ModBlocks.BLUE_LOCOWEED.get())).renderType("cutout"));
+        simpleBlock(ModBlocks.POTTED_BLUE_LOCOWEED.get(),
+                models().singleTexture("potted_blue_locoweed", ResourceLocation.parse("flower_pot_cross"),
+                        "plant", blockTexture(ModBlocks.BLUE_LOCOWEED.get())).renderType("cutout"));
 
-        simpleBlock(ModBlocks.POTTED_LOCOWEED.get(),
-                models().singleTexture("potted_locoweed", ResourceLocation.parse("flower_pot_cross"),
-                        "plant", blockTexture(ModBlocks.LOCOWEED.get())).renderType("cutout"));
+        simpleBlock(ModBlocks.PURPLE_LOCOWEED.get(),
+                models().cross(blockTexture(ModBlocks.PURPLE_LOCOWEED.get()).getPath(),
+                        blockTexture(ModBlocks.PURPLE_LOCOWEED.get())).renderType("cutout"));
+        simpleBlock(ModBlocks.POTTED_PURPLE_LOCOWEED.get(),
+                models().singleTexture("potted_purple_locoweed", ResourceLocation.parse("flower_pot_cross"),
+                        "plant", blockTexture(ModBlocks.PURPLE_LOCOWEED.get())).renderType("cutout"));
+
+        simpleBlock(ModBlocks.PINK_LOCOWEED.get(),
+                models().cross(blockTexture(ModBlocks.PINK_LOCOWEED.get()).getPath(),
+                        blockTexture(ModBlocks.PINK_LOCOWEED.get())).renderType("cutout"));
+        simpleBlock(ModBlocks.POTTED_PINK_LOCOWEED.get(),
+                models().singleTexture("potted_pink_locoweed", ResourceLocation.parse("flower_pot_cross"),
+                        "plant", blockTexture(ModBlocks.PINK_LOCOWEED.get())).renderType("cutout"));
+
+        simpleBlock(ModBlocks.NIGHTSHADE.get(),
+                models().cross(blockTexture(ModBlocks.NIGHTSHADE.get()).getPath(),
+                        blockTexture(ModBlocks.NIGHTSHADE.get())).renderType("cutout"));
+        simpleBlock(ModBlocks.POTTED_NIGHTSHADE.get(),
+                models().singleTexture("potted_nightshade", ResourceLocation.parse("flower_pot_cross"),
+                        "plant", blockTexture(ModBlocks.NIGHTSHADE.get())).renderType("cutout"));
+
+        simpleBlock(ModBlocks.SWEET_PEA.get(),
+                models().cross(blockTexture(ModBlocks.SWEET_PEA.get()).getPath(),
+                        blockTexture(ModBlocks.SWEET_PEA.get())).renderType("cutout"));
+        simpleBlock(ModBlocks.POTTED_SWEET_PEA.get(),
+                models().singleTexture("potted_sweet_pea", ResourceLocation.parse("flower_pot_cross"),
+                        "plant", blockTexture(ModBlocks.SWEET_PEA.get())).renderType("cutout"));
+
+        simpleBlock(ModBlocks.CALENDULA.get(),
+                models().cross(blockTexture(ModBlocks.CALENDULA.get()).getPath(),
+                        blockTexture(ModBlocks.CALENDULA.get())).renderType("cutout"));
+        simpleBlock(ModBlocks.POTTED_CALENDULA.get(),
+                models().singleTexture("potted_calendula", ResourceLocation.parse("flower_pot_cross"),
+                        "plant", blockTexture(ModBlocks.CALENDULA.get())).renderType("cutout"));
+
         //Crop Blocks
         makeCrop(((OatCropBlock) ModBlocks.OAT_CROP.get()), "oat_crop_stage", "oat_crop_stage");
+        makeCrop(((CornCropBlock) ModBlocks.CORN_CROP.get()), "corn_crop_stage", "corn_crop_stage");
+        makeCrop(((AlfalfaCropBlock) ModBlocks.ALFALFA_CROP.get()), "alfalfa_crop_stage", "alfalfa_crop_stage");
+        makeCrop(((TimothyHayCropBlock) ModBlocks.TIMOTHY_HAY_CROP.get()), "timothy_hay_crop_stage", "timothy_hay_crop_stage");
+        makeCrop(((BarleyCropBlock) ModBlocks.BARLEY_CROP.get()), "barley_crop_stage", "barley_crop_stage");
 
         //Ore Blocks
         blockWithItem(ModBlocks.FOLIRITE_BLOCK);
@@ -301,17 +339,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //Note: Later, Simplify the usage of SimpleBlockItem command
     }
 
-    public void makeCrop(CropBlock block, String modelName, String textureName) {
+    public void makeCrop(ModCropBlock block, String modelName, String textureName) {
         Function<BlockState, ConfiguredModel[]> function = state -> cropStates(state, block, modelName, textureName);
 
         getVariantBuilder(block).forAllStates(function);
     }
 
-    private ConfiguredModel[] cropStates(BlockState state, CropBlock block, String modelName, String textureName) {
+    private ConfiguredModel[] cropStates(BlockState state, ModCropBlock block, String modelName, String textureName) {
         ConfiguredModel[] models = new ConfiguredModel[1];
-        models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(((ModCropBlock) block).getAgeProperty()),
+        models[0] = new ConfiguredModel(models().crop(modelName + state.getValue((block).getAgeProperty()),
                 ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/" + textureName +
-                        state.getValue(((ModCropBlock) block).getAgeProperty()))).renderType("cutout"));
+                        state.getValue((block).getAgeProperty()))).renderType("cutout"));
 
         return models;
     }

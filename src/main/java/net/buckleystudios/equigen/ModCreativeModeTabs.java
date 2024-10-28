@@ -23,13 +23,23 @@ public class ModCreativeModeTabs{
 
                         //Food Items
                         pOutput.accept(ModItems.APRICOT);
+                        pOutput.accept(ModItems.BARLEY);
+                        pOutput.accept(ModItems.CORN);
                         pOutput.accept(ModItems.FIG);
                         pOutput.accept(ModItems.LEMON);
-                        pOutput.accept(ModItems.RAW_OATS);
                         pOutput.accept(ModItems.MULBERRY);
+                        pOutput.accept(ModItems.OATS);
+
+                        //Horse Food Items
+                        pOutput.accept(ModItems.ALFALFA);
+                        pOutput.accept(ModItems.TIMOTHY_HAY);
 
                         //Seeds
+                        pOutput.accept(ModItems.ALFALFA_SEEDS);
+                        pOutput.accept(ModItems.BARLEY_SEEDS);
+                        pOutput.accept(ModItems.CORN_SEEDS);
                         pOutput.accept(ModItems.OAT_SEEDS);
+                        pOutput.accept(ModItems.TIMOTHY_HAY_SEEDS);
 
                         //Materials
                         pOutput.accept(ModItems.FOLIRITE_INGOT);
@@ -161,7 +171,12 @@ public class ModCreativeModeTabs{
                         pOutput.accept(ModBlocks.GREEN_ASH_LEAVES);
 
                         //Flowers
-                        pOutput.accept(ModBlocks.LOCOWEED);
+                        pOutput.accept(ModBlocks.BLUE_LOCOWEED);
+                        pOutput.accept(ModBlocks.PURPLE_LOCOWEED);
+                        pOutput.accept(ModBlocks.PINK_LOCOWEED);
+                        pOutput.accept(ModBlocks.NIGHTSHADE);
+                        pOutput.accept(ModBlocks.SWEET_PEA);
+                        pOutput.accept(ModBlocks.CALENDULA);
 
                         pOutput.accept(ModBlocks.FOLIRITE_BLOCK);
                         pOutput.accept(ModBlocks.RAW_FOLIRITE_BLOCK);

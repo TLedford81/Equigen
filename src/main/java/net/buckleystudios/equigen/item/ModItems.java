@@ -49,11 +49,34 @@ public class ModItems {
 
     public static final DeferredItem<Item> OAT_SEEDS = ITEMS.register("oat_seeds",
             () -> new ItemNameBlockItem(ModBlocks.OAT_CROP.get(), new Item.Properties()));
-    public static final DeferredItem<Item> RAW_OATS = ITEMS.registerItem("raw_oats", Item::new, new Item.Properties().food(ModFoodProperties.RAW_OATS));
+    public static final DeferredItem<Item> OATS = ITEMS.registerItem("oats", Item::new, new Item.Properties().food(ModFoodProperties.OATS));
+
+    public static final DeferredItem<Item> CORN_SEEDS = ITEMS.register("corn_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.CORN_CROP.get(), new Item.Properties()));
+    public static final DeferredItem<Item> CORN = ITEMS.registerItem("corn", Item::new, new Item.Properties().food(ModFoodProperties.CORN));
+
+    public static final DeferredItem<Item> ALFALFA_SEEDS = ITEMS.register("alfalfa_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.ALFALFA_CROP.get(), new Item.Properties()));
+    public static final DeferredItem<Item> ALFALFA = ITEMS.registerItem("alfalfa", Item::new, new Item.Properties());
+
+    public static final DeferredItem<Item> TIMOTHY_HAY_SEEDS = ITEMS.register("timothy_hay_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.TIMOTHY_HAY_CROP.get(), new Item.Properties()));
+    public static final DeferredItem<Item> TIMOTHY_HAY = ITEMS.registerItem("timothy_hay", Item::new, new Item.Properties());
+
+    public static final DeferredItem<Item> BARLEY_SEEDS = ITEMS.register("barley_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.BARLEY_CROP.get(), new Item.Properties()));
+    public static final DeferredItem<Item> BARLEY = ITEMS.registerItem("barley", Item::new, new Item.Properties().food(ModFoodProperties.BARLEY));
+
     public static final DeferredItem<Item> FIG = ITEMS.registerItem("fig", Item::new, new Item.Properties().food(ModFoodProperties.FIG));
     public static final DeferredItem<Item> APRICOT = ITEMS.registerItem("apricot", Item::new, new Item.Properties().food(ModFoodProperties.APRICOT));
     public static final DeferredItem<Item> LEMON = ITEMS.registerItem("lemon", Item::new, new Item.Properties().food(ModFoodProperties.LEMON));
     public static final DeferredItem<Item> MULBERRY = ITEMS.registerItem("mulberry", Item::new, new Item.Properties().food(ModFoodProperties.MULBERRY));
+
+    public static final DeferredItem<Item> LOCOWEED_SALVE = ITEMS.registerItem("locoweed_salve", Item::new, new Item.Properties());
+    public static final DeferredItem<Item> NIGHTSHADE_SALVE = ITEMS.registerItem("nightshade_salve", Item::new, new Item.Properties());
+    public static final DeferredItem<Item> SWEET_PEA_SALVE = ITEMS.registerItem("sweet_pea_salve", Item::new, new Item.Properties());
+    public static final DeferredItem<Item> CALENDULA_SALVE = ITEMS.registerItem("calendula_salve", Item::new, new Item.Properties());
+
 
     public static final DeferredItem<Item> PILLAGER_KING_SPAWN_EGG = ITEMS.register("pillager_king_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.PILLAGER_KING, 0xdebd47, 0xccbfbe,

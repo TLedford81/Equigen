@@ -1,7 +1,7 @@
 package net.buckleystudios.equigen.datagen.loot;
 
 import net.buckleystudios.equigen.block.ModBlocks;
-import net.buckleystudios.equigen.block.custom.OatCropBlock;
+import net.buckleystudios.equigen.block.custom.*;
 import net.buckleystudios.equigen.item.ModItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Holder;
@@ -53,8 +53,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.FIG_WOOD.get());
         this.dropSelf(ModBlocks.FIG_STRIPPED_WOOD.get());
         this.dropSelf(ModBlocks.FIG_SAPLING.get());
-        this.add(ModBlocks.FIG_LEAVES.get(), block ->
-                createLeavesDrops(block, ModBlocks.FIG_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
         //MAGNOLIA WOOD
         this.dropSelf(ModBlocks.MAGNOLIA_PLANKS.get());
         this.dropSelf(ModBlocks.MAGNOLIA_STAIRS.get());
@@ -68,8 +67,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.MAGNOLIA_WOOD.get());
         this.dropSelf(ModBlocks.MAGNOLIA_STRIPPED_WOOD.get());
         this.dropSelf(ModBlocks.MAGNOLIA_SAPLING.get());
-        this.add(ModBlocks.MAGNOLIA_LEAVES.get(), block ->
-                createLeavesDrops(block, ModBlocks.MAGNOLIA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
         //CITRUS WOOD
         this.dropSelf(ModBlocks.CITRUS_PLANKS.get());
         this.dropSelf(ModBlocks.CITRUS_STAIRS.get());
@@ -83,8 +81,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.CITRUS_WOOD.get());
         this.dropSelf(ModBlocks.CITRUS_STRIPPED_WOOD.get());
         this.dropSelf(ModBlocks.CITRUS_SAPLING.get());
-        this.add(ModBlocks.CITRUS_LEAVES.get(), block ->
-                createLeavesDrops(block, ModBlocks.CITRUS_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
         //APRICOT WOOD
         this.dropSelf(ModBlocks.APRICOT_PLANKS.get());
         this.dropSelf(ModBlocks.APRICOT_STAIRS.get());
@@ -98,8 +95,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.APRICOT_WOOD.get());
         this.dropSelf(ModBlocks.APRICOT_STRIPPED_WOOD.get());
         this.dropSelf(ModBlocks.APRICOT_SAPLING.get());
-        this.add(ModBlocks.APRICOT_LEAVES.get(), block ->
-                createLeavesDrops(block, ModBlocks.APRICOT_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
         //MULBERRY WOOD
         this.dropSelf(ModBlocks.MULBERRY_PLANKS.get());
         this.dropSelf(ModBlocks.MULBERRY_STAIRS.get());
@@ -113,8 +109,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.MULBERRY_WOOD.get());
         this.dropSelf(ModBlocks.MULBERRY_STRIPPED_WOOD.get());
         this.dropSelf(ModBlocks.MULBERRY_SAPLING.get());
-        this.add(ModBlocks.MULBERRY_LEAVES.get(), block ->
-                createLeavesDrops(block, ModBlocks.MULBERRY_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
         //GREEN ASH WOOD
         this.dropSelf(ModBlocks.GREEN_ASH_PLANKS.get());
         this.dropSelf(ModBlocks.GREEN_ASH_STAIRS.get());
@@ -128,21 +123,65 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.GREEN_ASH_WOOD.get());
         this.dropSelf(ModBlocks.GREEN_ASH_STRIPPED_WOOD.get());
         this.dropSelf(ModBlocks.GREEN_ASH_SAPLING.get());
-        this.dropSelf(ModBlocks.LOCOWEED.get());
+        this.dropSelf(ModBlocks.BLUE_LOCOWEED.get());
+        this.dropSelf(ModBlocks.PURPLE_LOCOWEED.get());
+        this.dropSelf(ModBlocks.PINK_LOCOWEED.get());
+        this.dropSelf(ModBlocks.NIGHTSHADE.get());
+        this.dropSelf(ModBlocks.SWEET_PEA.get());
+        this.dropSelf(ModBlocks.CALENDULA.get());
 
         //FLOWER POT DROPS
-        this.add(ModBlocks.POTTED_LOCOWEED.get(), createPotFlowerItemTable(ModBlocks.LOCOWEED));
+        this.add(ModBlocks.POTTED_BLUE_LOCOWEED.get(), createPotFlowerItemTable(ModBlocks.BLUE_LOCOWEED));
+        this.add(ModBlocks.POTTED_PURPLE_LOCOWEED.get(), createPotFlowerItemTable(ModBlocks.PURPLE_LOCOWEED));
+        this.add(ModBlocks.POTTED_PINK_LOCOWEED.get(), createPotFlowerItemTable(ModBlocks.PINK_LOCOWEED));
+        this.add(ModBlocks.POTTED_NIGHTSHADE.get(), createPotFlowerItemTable(ModBlocks.NIGHTSHADE));
+        this.add(ModBlocks.POTTED_SWEET_PEA.get(), createPotFlowerItemTable(ModBlocks.SWEET_PEA));
+        this.add(ModBlocks.POTTED_CALENDULA.get(), createPotFlowerItemTable(ModBlocks.CALENDULA));
 
         //LEAF DROPS
+        this.add(ModBlocks.FIG_LEAVES.get(), block ->
+                createLeavesDrops(block, ModBlocks.FIG_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        this.add(ModBlocks.MAGNOLIA_LEAVES.get(), block ->
+                createLeavesDrops(block, ModBlocks.MAGNOLIA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        this.add(ModBlocks.CITRUS_LEAVES.get(), block ->
+                createLeavesDrops(block, ModBlocks.CITRUS_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        this.add(ModBlocks.APRICOT_LEAVES.get(), block ->
+                createLeavesDrops(block, ModBlocks.APRICOT_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        this.add(ModBlocks.MULBERRY_LEAVES.get(), block ->
+                createLeavesDrops(block, ModBlocks.MULBERRY_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         this.add(ModBlocks.GREEN_ASH_LEAVES.get(), block ->
                 createLeavesDrops(block, ModBlocks.GREEN_ASH_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
         //CROP DROPS
-        LootItemCondition.Builder lootItemConditionBuilder = LootItemBlockStatePropertyCondition
+        LootItemCondition.Builder oatCropLootItemConditionBuilder = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(ModBlocks.OAT_CROP.get())
                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(OatCropBlock.AGE, OatCropBlock.MAX_AGE));
         this.add(ModBlocks.OAT_CROP.get(), this.createCropDrops(ModBlocks.OAT_CROP.get(),
-                        ModItems.RAW_OATS.get(), ModItems.OAT_SEEDS.get(), lootItemConditionBuilder));
+                ModItems.OATS.get(), ModItems.OAT_SEEDS.get(), oatCropLootItemConditionBuilder));
+
+        LootItemCondition.Builder cornCropLootItemConditionBuilder = LootItemBlockStatePropertyCondition
+                .hasBlockStateProperties(ModBlocks.CORN_CROP.get())
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornCropBlock.AGE, CornCropBlock.MAX_AGE));
+        this.add(ModBlocks.CORN_CROP.get(), this.createCropDrops(ModBlocks.CORN_CROP.get(),
+                ModItems.CORN.get(), ModItems.CORN_SEEDS.get(), cornCropLootItemConditionBuilder));
+
+        LootItemCondition.Builder alfalfaCropLootItemConditionBuilder = LootItemBlockStatePropertyCondition
+                .hasBlockStateProperties(ModBlocks.ALFALFA_CROP.get())
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(AlfalfaCropBlock.AGE, AlfalfaCropBlock.MAX_AGE));
+        this.add(ModBlocks.ALFALFA_CROP.get(), this.createCropDrops(ModBlocks.ALFALFA_CROP.get(),
+                ModItems.ALFALFA.get(), ModItems.ALFALFA_SEEDS.get(), alfalfaCropLootItemConditionBuilder));
+
+        LootItemCondition.Builder timothyHayCropLootItemConditionBuilder = LootItemBlockStatePropertyCondition
+                .hasBlockStateProperties(ModBlocks.TIMOTHY_HAY_CROP.get())
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(TimothyHayCropBlock.AGE, TimothyHayCropBlock.MAX_AGE));
+        this.add(ModBlocks.TIMOTHY_HAY_CROP.get(), this.createCropDrops(ModBlocks.TIMOTHY_HAY_CROP.get(),
+                ModItems.TIMOTHY_HAY.get(), ModItems.TIMOTHY_HAY_SEEDS.get(), timothyHayCropLootItemConditionBuilder));
+
+        LootItemCondition.Builder barleyCropLootItemConditionBuilder = LootItemBlockStatePropertyCondition
+                .hasBlockStateProperties(ModBlocks.BARLEY_CROP.get())
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BarleyCropBlock.AGE, BarleyCropBlock.MAX_AGE));
+        this.add(ModBlocks.BARLEY_CROP.get(), this.createCropDrops(ModBlocks.BARLEY_CROP.get(),
+                ModItems.BARLEY.get(), ModItems.BARLEY_SEEDS.get(), barleyCropLootItemConditionBuilder));
 
 
         //SLAB DROPS

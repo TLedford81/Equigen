@@ -1,13 +1,22 @@
-// 1.21	2024-10-27T19:53:51.3686751	Item Models: equigen
+// 1.21	2024-10-27T23:16:41.0512539	Item Models: equigen
+d834f1d768dceede3f7db7ea037606d176657df3 assets/equigen/models/item/alfalfa.json
+c0e11fb7b662a9c0feb69318a7e7c3ced455f687 assets/equigen/models/item/alfalfa_seeds.json
 9c687aadbfdb6b265dbf69c8c60bfedc48813592 assets/equigen/models/item/apricot.json
 5ae1230c38b3b623133f71019f46cc19c3d7d6d2 assets/equigen/models/item/apricot_button.json
 f7a8ff7ce56a1e5be13f1e8709b7bd18fe44b2c8 assets/equigen/models/item/apricot_door.json
 8e7d2947d9237b31588fe83db5a9799490d88bd4 assets/equigen/models/item/apricot_fence.json
 ce4a5601fe38a520716566ceffb7345d2a940016 assets/equigen/models/item/apricot_sapling.json
+9ee90da3862af9df5cda0a3ce772a8967bbe08f0 assets/equigen/models/item/barley.json
+6e0841497417a76efceb6a0572b7cb470d0c6b19 assets/equigen/models/item/barley_seeds.json
+0a12e99f7a0e1b7d6688abf252fe357ce6a517dc assets/equigen/models/item/blue_locoweed.json
+ce9193e903a1a7d785448d0e5c733cd32c924153 assets/equigen/models/item/calendula.json
+7827f7c7425f7d4425c65df0e8ef86b0088285da assets/equigen/models/item/calendula_salve.json
 04c5a379995ce85c0b1df92761d002182b3f6ba7 assets/equigen/models/item/citrus_button.json
 22dd555a18d3a76872eb44630b50fade1f057c42 assets/equigen/models/item/citrus_door.json
 8a8bfb4929f611f7d350e8913fd032e2b1e5ba8e assets/equigen/models/item/citrus_fence.json
 b3500ebf672d3f8a533ee98cd83a5a23b8367ae7 assets/equigen/models/item/citrus_sapling.json
+a7f8ea938f364d00f049a45a67d047491bee01b9 assets/equigen/models/item/corn.json
+71aa5c4b65fe0026bb183e76540cc4bcf5e379e9 assets/equigen/models/item/corn_seeds.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/equigen/models/item/egret_spawn_egg.json
 c7025e2311f6df60b37b53ce48cf0aeb30ecd167 assets/equigen/models/item/fig.json
 ebd7cffb556b6b712c879bbad3043da3bc506fef assets/equigen/models/item/fig_button.json
@@ -26,7 +35,7 @@ c1fc67786e4dbc66f92503ff51b6e91e7835d733 assets/equigen/models/item/green_ash_bu
 06e6d59fc419d3c7112f84d4f85c9455ce4972bf assets/equigen/models/item/green_ash_sapling.json
 52cd09c941ee9a6710e65521a2722b36bae7c3b0 assets/equigen/models/item/himalayan_rock_salt.json
 97188396d256e692d295c22cf49fc0a70e8cefda assets/equigen/models/item/lemon.json
-af050659a5a6ae0e39602b6b0b935b017b77950d assets/equigen/models/item/locoweed.json
+f420af0cd3a6c0db313b8076c846881d521f61c5 assets/equigen/models/item/locoweed_salve.json
 1671d53288748b12a1a80dacf2844da5ab66d570 assets/equigen/models/item/magnolia_button.json
 b82ad51c2b3c31447ccc48102d9f583fa1ca0485 assets/equigen/models/item/magnolia_door.json
 7ef0d16288ebe21a583833bc45cdcd9023cedc53 assets/equigen/models/item/magnolia_fence.json
@@ -36,9 +45,17 @@ bc1fc44d6ed8a1ec6ed2ea6eb7b6a1fab7903f7d assets/equigen/models/item/magnolia_sap
 fb35712c9c0a4bcb578fa3b482064c8ada19c37d assets/equigen/models/item/mulberry_door.json
 2fb07a5abac1dfa015dc17410aa7742298715d2e assets/equigen/models/item/mulberry_fence.json
 8b8f358371d9fd0d318f553e11bab46555493211 assets/equigen/models/item/mulberry_sapling.json
+665e4c10649d090307106437f22fdb4f08a9230e assets/equigen/models/item/nightshade.json
+d66248c350607fbfab671c89611bbb9ad26e7436 assets/equigen/models/item/nightshade_salve.json
+35ea6a04f01cb921bc623ada99ef2151875968ad assets/equigen/models/item/oats.json
 0c14a466e83e846a0f09a720ba83d25bfda032c1 assets/equigen/models/item/oat_seeds.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/equigen/models/item/pillager_king_spawn_egg.json
+e499d7aedcccf629a48d5eecb49c263291dc676e assets/equigen/models/item/pink_locoweed.json
+ec656df3a614709225f41b1c6be2ae8ba173e244 assets/equigen/models/item/purple_locoweed.json
 bd1886fc11e6c009e04a9e449be14fb9835c3583 assets/equigen/models/item/raw_folirite.json
-8f5f6eaee192f5d94b5022bbbde311666344366d assets/equigen/models/item/raw_oats.json
 e7548ef50956b5fbd064b24e6646f8feebaeb6fc assets/equigen/models/item/sodium.json
 b67a0957744472325e32f87cede1e4ed836d519b assets/equigen/models/item/sodium_grenade.json
+445877713e5a88a951520edb21f2410c878d30e7 assets/equigen/models/item/sweet_pea.json
+df067f03611343b9023c1fe3cbcb32e32c5ca9f4 assets/equigen/models/item/sweet_pea_salve.json
+30142331b66b0a743658808b27d767a8c4862ea3 assets/equigen/models/item/timothy_hay.json
+92271023ba6e64d29d60c1de3dc2e4d7ef2ae5e9 assets/equigen/models/item/timothy_hay_seeds.json

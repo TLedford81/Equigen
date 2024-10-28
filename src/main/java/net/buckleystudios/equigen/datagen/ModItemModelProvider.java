@@ -27,11 +27,25 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.SODIUM_GRENADE.get());
 
         basicItem(ModItems.OAT_SEEDS.get());
-        basicItem(ModItems.RAW_OATS.get());
+        basicItem(ModItems.OATS.get());
+        basicItem(ModItems.CORN_SEEDS.get());
+        basicItem(ModItems.CORN.get());
+        basicItem(ModItems.ALFALFA_SEEDS.get());
+        basicItem(ModItems.ALFALFA.get());
+        basicItem(ModItems.TIMOTHY_HAY_SEEDS.get());
+        basicItem(ModItems.TIMOTHY_HAY.get());
+        basicItem(ModItems.BARLEY_SEEDS.get());
+        basicItem(ModItems.BARLEY.get());
+
         basicItem(ModItems.FIG.get());
         basicItem(ModItems.APRICOT.get());
         basicItem(ModItems.LEMON.get());
         basicItem(ModItems.MULBERRY.get());
+
+        basicItem(ModItems.LOCOWEED_SALVE.get());
+        basicItem(ModItems.NIGHTSHADE_SALVE.get());
+        basicItem(ModItems.SWEET_PEA_SALVE.get());
+        basicItem(ModItems.CALENDULA_SALVE.get());
 
         handheldItem(ModItems.FOLIRITE_PICKAXE);
         handheldItem(ModItems.FOLIRITE_AXE);
@@ -51,7 +65,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         saplingItem(ModBlocks.MULBERRY_SAPLING);
         saplingItem(ModBlocks.GREEN_ASH_SAPLING);
 
-        flowerItem(ModBlocks.LOCOWEED);
+        flowerItem(ModBlocks.BLUE_LOCOWEED);
+        flowerItem(ModBlocks.PURPLE_LOCOWEED);
+        flowerItem(ModBlocks.PINK_LOCOWEED);
+        flowerItem(ModBlocks.NIGHTSHADE);
+        flowerItem(ModBlocks.SWEET_PEA);
+        flowerItem(ModBlocks.CALENDULA);
 
         buttonItem(ModBlocks.FIG_BUTTON, ModBlocks.FIG_PLANKS);
         fenceItem(ModBlocks.FIG_FENCE, ModBlocks.FIG_PLANKS);
