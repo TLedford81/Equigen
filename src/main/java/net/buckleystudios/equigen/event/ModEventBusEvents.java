@@ -2,10 +2,12 @@ package net.buckleystudios.equigen.event;
 
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.ModEntities;
+import net.buckleystudios.equigen.entity.client.GeneticHorseModel;
 import net.buckleystudios.equigen.entity.client.PillagerKingModel;
 import net.buckleystudios.equigen.entity.client.ModModelLayers;
 import net.buckleystudios.equigen.entity.client.EgretModel;
 import net.buckleystudios.equigen.entity.custom.EgretEntity;
+import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.custom.PillagerKingEntity;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.animal.Animal;
@@ -22,12 +24,14 @@ public class ModEventBusEvents {
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event){
         event.registerLayerDefinition(ModModelLayers.PILLAGER_KING, PillagerKingModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.EGRET, EgretModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.GENETIC_HORSE, GeneticHorseModel::createBodyLayer);
     }
 
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event){
         event.put(ModEntities.PILLAGER_KING.get(), PillagerKingEntity.createAttributes().build());
         event.put(ModEntities.EGRET.get(), EgretEntity.createAttributes().build());
+        event.put(ModEntities.GENETIC_HORSE.get(), GeneticHorseEntity.createAttributes().build());
     }
 
     @SubscribeEvent

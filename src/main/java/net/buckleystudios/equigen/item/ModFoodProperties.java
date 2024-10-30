@@ -13,4 +13,6 @@ public class ModFoodProperties {
     public static final FoodProperties APRICOT = new FoodProperties.Builder().nutrition(1).saturationModifier(0.1f).build();
     public static final FoodProperties LEMON = new FoodProperties.Builder().nutrition(1).saturationModifier(0.1f).build();
     public static final FoodProperties MULBERRY = new FoodProperties.Builder().nutrition(1).saturationModifier(0.1f).build();
+    public static final FoodProperties NIGHTSHADE_BERRIES = new FoodProperties.Builder().nutrition(1).saturationModifier(0.1f)
+            .effect(() -> new MobEffectInstance(MobEffects.HARM, 500, 10, false, true, true), 1).build();
 }

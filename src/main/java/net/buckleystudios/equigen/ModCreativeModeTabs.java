@@ -29,6 +29,7 @@ public class ModCreativeModeTabs{
                         pOutput.accept(ModItems.LEMON);
                         pOutput.accept(ModItems.MULBERRY);
                         pOutput.accept(ModItems.OATS);
+                        pOutput.accept(ModItems.NIGHTSHADE_BERRIES);
 
                         //Horse Food Items
                         pOutput.accept(ModItems.ALFALFA);
@@ -46,6 +47,16 @@ public class ModCreativeModeTabs{
                         pOutput.accept(ModItems.RAW_FOLIRITE);
                         pOutput.accept(ModItems.HIMALAYAN_ROCK_SALT);
                         pOutput.accept(ModItems.SODIUM);
+                        pOutput.accept(ModItems.LOCOWEED_PETALS);
+                        pOutput.accept(ModItems.SWEET_PEA_PETALS);
+                        pOutput.accept(ModItems.CALENDULA_PETALS);
+                        pOutput.accept(ModItems.LOCOWEED_SALVE);
+                        pOutput.accept(ModItems.NIGHTSHADE_SALVE);
+                        pOutput.accept(ModItems.SWEET_PEA_SALVE);
+                        pOutput.accept(ModItems.CALENDULA_SALVE);
+
+                        pOutput.accept(ModItems.SACK);
+                        pOutput.accept(ModItems.OAT_SACK);
 
                         //Tools
                         pOutput.accept(ModItems.FOLIRITE_SWORD);
@@ -58,6 +69,7 @@ public class ModCreativeModeTabs{
                         //Spawn Eggs
                         pOutput.accept(ModItems.PILLAGER_KING_SPAWN_EGG);
                         pOutput.accept(ModItems.EGRET_SPAWN_EGG);
+                        pOutput.accept(ModItems.GENETIC_HORSE_SPAWN_EGG);
 
                     })).build());
 

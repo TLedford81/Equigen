@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
 public class OatCropBlock extends ModCropBlock {
-    public static final int MAX_AGE = 5;
+    public static final int MAX_AGE = 6;
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, MAX_AGE);
 
 

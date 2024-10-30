@@ -5,6 +5,7 @@ import net.buckleystudios.equigen.block.ModBlocks;
 import net.buckleystudios.equigen.block.entity.ModBlockEntities;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.client.EgretRenderer;
+import net.buckleystudios.equigen.entity.client.GeneticHorseRenderer;
 import net.buckleystudios.equigen.entity.client.PillagerKingRenderer;
 import net.buckleystudios.equigen.item.ModItems;
 import net.buckleystudios.equigen.screen.Infusion_Table.InfusionTableScreen;
@@ -25,7 +26,6 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.slf4j.Logger;
 
@@ -74,6 +74,7 @@ public class EquigenMod {
         public static void onClientSetup(FMLClientSetupEvent event) {
             EntityRenderers.register(ModEntities.PILLAGER_KING.get(), PillagerKingRenderer::new);
             EntityRenderers.register(ModEntities.EGRET.get(), EgretRenderer::new);
+            EntityRenderers.register(ModEntities.GENETIC_HORSE.get(), GeneticHorseRenderer::new);
 
         }
         @SubscribeEvent

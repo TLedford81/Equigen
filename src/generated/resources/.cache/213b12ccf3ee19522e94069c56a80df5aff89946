@@ -1,4 +1,4 @@
-// 1.21	2024-10-27T22:53:49.6750167	Block States: equigen
+// 1.21	2024-10-29T21:05:07.0854475	Block States: equigen
 435032df0a878d6d58fd0ac9fb1f0317786abb0d assets/equigen/blockstates/alfalfa_crop.json
 2b2e1cd61c6f6242256416e08be0d93d7d61f7da assets/equigen/blockstates/apricot_button.json
 479a9063b913f595e64b226e31230c0e00be50d7 assets/equigen/blockstates/apricot_door.json
@@ -101,7 +101,7 @@ e10548d442b5fd1cbd3f39c944c66bb040b0bf7f assets/equigen/blockstates/mulberry_str
 6b698e97a942e754b4a62b0a53f93878de9bbf36 assets/equigen/blockstates/mulberry_trapdoor.json
 5a7359c2ef3a4e718a951c97e3bd5bfe8169e94f assets/equigen/blockstates/mulberry_wood.json
 e10a7806da5a3a0dbc5ea0229bf670e520681045 assets/equigen/blockstates/nightshade.json
-5c1d8526cdbc60bc64155b59fc47a4589ebc11d9 assets/equigen/blockstates/oat_crop.json
+86fea83b5218e2f17f2b0b0a73d807f83ffc24f7 assets/equigen/blockstates/oat_crop.json
 a682d94ae5045e6e335f5c352f753469512f82cd assets/equigen/blockstates/pink_locoweed.json
 9498f58ed10439865a95daea3770ce5e2305fbb9 assets/equigen/blockstates/potted_blue_locoweed.json
 b14a2d1ed477671695d9146b549d763571df210e assets/equigen/blockstates/potted_calendula.json
@@ -367,6 +367,7 @@ d3d62df72284bbf28ce474265bdd8b377eafa14c assets/equigen/models/block/oat_crop_st
 a6a862470945bb513d3a8c813c483b9d4dcb18c0 assets/equigen/models/block/oat_crop_stage3.json
 469a1da8c2516c2e4539699ad6f2f72a0077f7a9 assets/equigen/models/block/oat_crop_stage4.json
 53517ae5d7fe01563c3780f19f9c6c5e66d0f48c assets/equigen/models/block/oat_crop_stage5.json
+4af6a6cc84639449256ec7ee2372d11cec60e9f8 assets/equigen/models/block/oat_crop_stage6.json
 2d92dc8bb01bdbd50e3066ac1fa50f0152fa8b65 assets/equigen/models/block/pink_locoweed.json
 2f58957722c8d5cf354be08ed60d020d760c3486 assets/equigen/models/block/potted_blue_locoweed.json
 2f3fdacf637ed85814eb1a35588beb691b08c53e assets/equigen/models/block/potted_calendula.json

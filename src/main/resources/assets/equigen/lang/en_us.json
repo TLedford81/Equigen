@@ -1,5 +1,10 @@
 {
+  "block.equigen.fig_sapling": "Fig Sapling",
   "block.equigen.fig_log": "Fig Log",
+  "block.equigen.fig_stripped_log": "Stripped Fig Log",
+  "block.equigen.fig_wood": "Fig Wood",
+  "block.equigen.fig_stripped_wood": "Stripped Fig Wood",
+  "block.equigen.fig_leaves": "Fig Leaves",
   "block.equigen.fig_planks": "Fig Planks",
   "block.equigen.fig_slab": "Fig Slab",
   "block.equigen.fig_stairs": "Fig Stairs",
@@ -10,6 +15,12 @@
   "block.equigen.fig_door": "Fig Door",
   "block.equigen.fig_trapdoor": "Fig Trapdoor",
 
+  "block.equigen.magnolia_sapling": "Magnolia Sapling",
+  "block.equigen.magnolia_log": "Magnolia Log",
+  "block.equigen.magnolia_stripped_log": "Stripped Magnolia Log",
+  "block.equigen.magnolia_wood": "Magnolia Wood",
+  "block.equigen.magnolia_stripped_wood": "Stripped Magnolia Wood",
+  "block.equigen.magnolia_leaves": "Magnolia Leaves",
   "block.equigen.magnolia_planks": "Magnolia Planks",
   "block.equigen.magnolia_slab": "Magnolia Slab",
   "block.equigen.magnolia_stairs": "Magnolia Stairs",
@@ -20,6 +31,12 @@
   "block.equigen.magnolia_door": "Magnolia Door",
   "block.equigen.magnolia_trapdoor": "Magnolia Trapdoor",
 
+  "block.equigen.citrus_sapling": "Citrus Sapling",
+  "block.equigen.citrus_log": "Citrus Log",
+  "block.equigen.citrus_stripped_log": "Stripped Citrus Log",
+  "block.equigen.citrus_wood": "Citrus Wood",
+  "block.equigen.citrus_stripped_wood": "Stripped Citrus Wood",
+  "block.equigen.citrus_leaves": "Citrus Leaves",
   "block.equigen.citrus_planks": "Citrus Planks",
   "block.equigen.citrus_slab": "Citrus Slab",
   "block.equigen.citrus_stairs": "Citrus Stairs",
@@ -30,6 +47,12 @@
   "block.equigen.citrus_door": "Citrus Door",
   "block.equigen.citrus_trapdoor": "Citrus Trapdoor",
 
+  "block.equigen.apricot_sapling": "Apricot Sapling",
+  "block.equigen.apricot_log": "Apricot Log",
+  "block.equigen.apricot_stripped_log": "Stripped Apricot Log",
+  "block.equigen.apricot_wood": "Apricot Wood",
+  "block.equigen.apricot_stripped_wood": "Stripped Apricot Wood",
+  "block.equigen.apricot_leaves": "Apricot Leaves",
   "block.equigen.apricot_planks": "Apricot Planks",
   "block.equigen.apricot_slab": "Apricot Slab",
   "block.equigen.apricot_stairs": "Apricot Stairs",
@@ -39,7 +62,13 @@
   "block.equigen.apricot_fence_gate": "Apricot Fence Gate",
   "block.equigen.apricot_door": "Apricot Door",
   "block.equigen.apricot_trapdoor": "Apricot Trapdoor",
-
+  
+  "block.equigen.mulberry_sapling": "Mulberry Sapling",
+  "block.equigen.mulberry_log": "Mulberry Log",
+  "block.equigen.mulberry_stripped_log": "Stripped Mulberry Log",
+  "block.equigen.mulberry_wood": "Mulberry Wood",
+  "block.equigen.mulberry_stripped_wood": "Stripped Mulberry Wood",
+  "block.equigen.mulberry_leaves": "Mulberry Leaves",
   "block.equigen.mulberry_planks": "Mulberry Planks",
   "block.equigen.mulberry_slab": "Mulberry Slab",
   "block.equigen.mulberry_stairs": "Mulberry Stairs",
@@ -50,6 +79,12 @@
   "block.equigen.mulberry_door": "Mulberry Door",
   "block.equigen.mulberry_trapdoor": "Mulberry Trapdoor",
 
+  "block.equigen.green_ash_sapling": "Green_Ash Sapling",
+  "block.equigen.green_ash_log": "Green_Ash Log",
+  "block.equigen.green_ash_stripped_log": "Stripped Green_Ash Log",
+  "block.equigen.green_ash_wood": "Green_Ash Wood",
+  "block.equigen.green_ash_stripped_wood": "Stripped Green_Ash Wood",
+  "block.equigen.green_ash_leaves": "Green_Ash Leaves",
   "block.equigen.green_ash_planks": "Green_Ash Planks",
   "block.equigen.green_ash_slab": "Green_Ash Slab",
   "block.equigen.green_ash_stairs": "Green_Ash Stairs",
@@ -60,6 +95,20 @@
   "block.equigen.green_ash_door": "Green_Ash Door",
   "block.equigen.green_ash_trapdoor": "Green_Ash Trapdoor",
 
+  "block.equigen.blue_locoweed": "Blue Locoweed",
+  "block.equigen.purple_locoweed": "Purple Locoweed",
+  "block.equigen.pink_locoweed": "Pink Locoweed",
+  "block.equigen.nightshade": "Nightshade",
+  "block.equigen.sweet_pea": "Sweet Pea",
+  "block.equigen.calendula": "Calendula",
+
+  "block.equigen.potted_blue_locoweed": "Potted Blue Locoweed",
+  "block.equigen.potted_purple_locoweed": "Potted Purple Locoweed",
+  "block.equigen.potted_pink_locoweed": "Potted Pink Locoweed",
+  "block.equigen.potted_nightshade": "Potted Nightshade",
+  "block.equigen.potted_sweet_pea": "Potted Sweet Pea",
+  "block.equigen.potted_calendula": "Potted Calendula",
+
   "block.equigen.folirite_ore": "Folirite Ore",
   "block.equigen.deepslate_folirite_ore": "Deepslate Folirite Ore",
   "block.equigen.himalayan_rock_salt_ore": "Himalayan Rock Salt Ore",
@@ -69,12 +118,40 @@
 
   "block.equigen.folirite_block": "Block of Folirite",
   "block.equigen.raw_folirite_block": "Block of Raw Folirite",
+
   "item.equigen.folirite_ingot": "Folirite Ingot",
   "item.equigen.raw_folirite": "Raw Folirite",
   "item.equigen.himalayan_rock_salt": "Himalayan Rock Salt",
   "item.equigen.sodium": "Sodium",
 
-  "item.equigen.raw_oats": "Raw Oats",
+  "item.equigen.sack": "Sack",
+  "item.equigen.oat_sack": "Sack of Oats",
+
+  "item.equigen.sweet_pea_petals": "Sweet Pea Petals",
+  "item.equigen.locoweed_petals": "Locoweed Petals",
+  "item.equigen.calendula_petals": "Calendula Petals",
+
+  "item.equigen.locoweed_salve": "Locoweed Salve",
+  "item.equigen.nightshade_salve": "Nightshade Salve",
+  "item.equigen.sweet_pea_salve": "Sweet Pea Salve",
+  "item.equigen.calendula_salve": "Calendula Salve",
+
+  "item.equigen.apricot": "Apricot",
+  "item.equigen.barley": "Barley",
+  "item.equigen.corn": "Corn",
+  "item.equigen.fig": "Fig",
+  "item.equigen.lemon": "Lemon",
+  "item.equigen.mulberry": "Mulberry",
+  "item.equigen.oats": "Oats",
+  "item.equigen.alfalfa": "Alfalfa",
+  "item.equigen.timothy_hay": "Timothy Hay",
+  "item.equigen.nightshade_berries": "Nightshade Berries",
+
+  "item.equigen.alfalfa_seeds": "Alfalfa Seeds",
+  "item.equigen.barley_seeds": "Barley Seeds",
+  "item.equigen.corn_seeds": "Corn Seeds",
+  "item.equigen.oat_seeds": "Oat Seeds",
+  "item.equigen.timothy_hay_seeds": "Timothy Hay Seeds",
 
   "item.equigen.sodium_grenade": "Sodium Grenade",
   "item.equigen.folirite_sword": "Folirite Sword",
@@ -85,7 +162,14 @@
 
   "item.equigen.pillager_king_spawn_egg": "Pillager King Spawn Egg",
   "item.equigen.egret_spawn_egg": "Egret Spawn Egg",
+  "item.equigen.genetic_horse_spawn_egg": "Genetic Horse Spawn Egg",
 
   "creativetab.equigen.main_tab": "Equigen - Main",
-  "creativetab.equigen.blocks_tab": "Equigen - Blocks"
+  "creativetab.equigen.blocks_tab": "Equigen - Blocks",
+  "creativetab.equigen.nature_tab": "Equigen - Natural",
+
+  "sounds.equigen.test_sound": "Test Sound",
+  "sounds.equigen.egret_ambient": "Egret Ambient",
+  "sounds.equigen.egret_hurt": "Egret Hurt",
+  "sounds.equigen.egret_death": "Egret Death"
 }

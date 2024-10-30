@@ -5,6 +5,7 @@ import net.buckleystudios.equigen.block.ModBlocks;
 import net.buckleystudios.equigen.block.custom.OatCropBlock;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.item.custom.SodiumGrenadeItem;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -25,6 +26,13 @@ public class ModItems {
 
     public static final DeferredItem<Item> HIMALAYAN_ROCK_SALT = ITEMS.registerSimpleItem("himalayan_rock_salt", new Item.Properties());
     public static final DeferredItem<Item> SODIUM = ITEMS.registerSimpleItem("sodium", new Item.Properties());
+
+    public static final DeferredItem<Item> SACK = ITEMS.registerSimpleItem("sack", new Item.Properties());
+    public static final DeferredItem<Item> OAT_SACK = ITEMS.registerSimpleItem("oat_sack", new Item.Properties());
+
+    public static final DeferredItem<Item> SWEET_PEA_PETALS = ITEMS.registerSimpleItem("sweet_pea_petals", new Item.Properties());
+    public static final DeferredItem<Item> LOCOWEED_PETALS = ITEMS.registerSimpleItem("locoweed_petals", new Item.Properties());
+    public static final DeferredItem<Item> CALENDULA_PETALS = ITEMS.registerSimpleItem("calendula_petals", new Item.Properties());
 
     public static final DeferredItem<Item> SODIUM_GRENADE = ITEMS.registerItem("sodium_grenade", SodiumGrenadeItem::new, new Item.Properties());
     public static final DeferredItem<Item> FOLIRITE_PICKAXE = ITEMS.register("folirite_pickaxe", () -> new PickaxeItem(ModToolTiers.FOLIRITE_TIER,
@@ -71,6 +79,7 @@ public class ModItems {
     public static final DeferredItem<Item> APRICOT = ITEMS.registerItem("apricot", Item::new, new Item.Properties().food(ModFoodProperties.APRICOT));
     public static final DeferredItem<Item> LEMON = ITEMS.registerItem("lemon", Item::new, new Item.Properties().food(ModFoodProperties.LEMON));
     public static final DeferredItem<Item> MULBERRY = ITEMS.registerItem("mulberry", Item::new, new Item.Properties().food(ModFoodProperties.MULBERRY));
+    public static final DeferredItem<Item> NIGHTSHADE_BERRIES = ITEMS.registerItem("nightshade_berries", Item::new, new Item.Properties().food(ModFoodProperties.NIGHTSHADE_BERRIES));
 
     public static final DeferredItem<Item> LOCOWEED_SALVE = ITEMS.registerItem("locoweed_salve", Item::new, new Item.Properties());
     public static final DeferredItem<Item> NIGHTSHADE_SALVE = ITEMS.registerItem("nightshade_salve", Item::new, new Item.Properties());
@@ -84,4 +93,7 @@ public class ModItems {
     public static final DeferredItem<Item> EGRET_SPAWN_EGG = ITEMS.register("egret_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.EGRET, 0xdebd47, 0xccbfbe,
                     new Item.Properties()));
+    public static final DeferredItem<Item> GENETIC_HORSE_SPAWN_EGG = ITEMS.register("genetic_horse_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.GENETIC_HORSE, 0xdebd47, 0xccbfbe,
+                    new Item.Properties().rarity(Rarity.EPIC)));
 }

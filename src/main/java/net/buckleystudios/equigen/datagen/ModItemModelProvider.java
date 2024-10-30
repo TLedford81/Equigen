@@ -25,6 +25,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.HIMALAYAN_ROCK_SALT.get());
         basicItem(ModItems.SODIUM.get());
         basicItem(ModItems.SODIUM_GRENADE.get());
+        basicItem(ModItems.SWEET_PEA_PETALS.get());
+        basicItem(ModItems.LOCOWEED_PETALS.get());
+        basicItem(ModItems.CALENDULA_PETALS.get());
+
+        basicItem(ModItems.SACK.get());
+        basicItem(ModItems.OAT_SACK.get());
 
         basicItem(ModItems.OAT_SEEDS.get());
         basicItem(ModItems.OATS.get());
@@ -41,6 +47,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.APRICOT.get());
         basicItem(ModItems.LEMON.get());
         basicItem(ModItems.MULBERRY.get());
+        basicItem(ModItems.NIGHTSHADE_BERRIES.get());
 
         basicItem(ModItems.LOCOWEED_SALVE.get());
         basicItem(ModItems.NIGHTSHADE_SALVE.get());
@@ -56,6 +63,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         //Spawn Eggs
         withExistingParent(ModItems.PILLAGER_KING_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.EGRET_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+        withExistingParent(ModItems.GENETIC_HORSE_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 
         //Block Items (Cont.)
         saplingItem(ModBlocks.FIG_SAPLING);

@@ -9,5 +9,7 @@ public class ModModelLayers {
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "pillager_king"), "main");
     public static final ModelLayerLocation EGRET = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "egret"), "main");
+    public static final ModelLayerLocation GENETIC_HORSE = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "genetic_horse"), "main");
 
 }

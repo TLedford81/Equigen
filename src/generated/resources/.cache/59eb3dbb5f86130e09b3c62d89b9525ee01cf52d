@@ -1,4 +1,4 @@
-// 1.21	2024-10-27T22:53:49.689074	Loot Tables
+// 1.21	2024-10-29T21:05:07.0949568	Loot Tables
 025bd2826b6c58e99b25a6f038ea88ba2965cf82 data/equigen/loot_table/blocks/alfalfa_crop.json
 71acaac04ccc255e32842c81ded124ce90606f46 data/equigen/loot_table/blocks/apricot_button.json
 0710a9df43166b8dc8df849b5964cf43e9bdfccd data/equigen/loot_table/blocks/apricot_door.json
@@ -101,7 +101,7 @@ e22b7155ee2fe2ca27ba46975866c16d206e0aab data/equigen/loot_table/blocks/mulberry
 ffaad1038cde86b82b466d12fb713eede25f365c data/equigen/loot_table/blocks/mulberry_trapdoor.json
 59fb3d7fecce1ebfa9ed9ddf7c1c97f721ba1e32 data/equigen/loot_table/blocks/mulberry_wood.json
 285008aa71b2f181623a2532594b4515d49d392f data/equigen/loot_table/blocks/nightshade.json
-c8b238d040fe5229a309e996a9dadca549524d97 data/equigen/loot_table/blocks/oat_crop.json
+aa14d743cbbafa70dc181355685c86922f86901b data/equigen/loot_table/blocks/oat_crop.json
 1745c05dc998f3c0d59722086f7ac045902f1763 data/equigen/loot_table/blocks/pink_locoweed.json
 bdf901fc3c58829a7465c86dbde0ba9a2bae7654 data/equigen/loot_table/blocks/potted_blue_locoweed.json
 1e728a375c79f9a31a48d1032991cd75349484c3 data/equigen/loot_table/blocks/potted_calendula.json
