@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "equigen:fig_logs"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "equigen:fig_planks"
+  }
+}

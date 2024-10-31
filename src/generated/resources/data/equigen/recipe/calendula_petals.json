@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "equigen:calendula"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "equigen:calendula_petals"
+  }
+}

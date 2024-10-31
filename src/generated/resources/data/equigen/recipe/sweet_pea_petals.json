@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "equigen:sweet_pea"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "equigen:sweet_pea_petals"
+  }
+}

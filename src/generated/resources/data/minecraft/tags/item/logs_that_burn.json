@@ -1,0 +1,28 @@
+{
+  "values": [
+    "equigen:fig_log",
+    "equigen:fig_wood",
+    "equigen:fig_stripped_log",
+    "equigen:fig_stripped_wood",
+    "equigen:magnolia_log",
+    "equigen:magnolia_wood",
+    "equigen:magnolia_stripped_log",
+    "equigen:magnolia_stripped_wood",
+    "equigen:apricot_log",
+    "equigen:apricot_wood",
+    "equigen:apricot_stripped_log",
+    "equigen:apricot_stripped_wood",
+    "equigen:citrus_log",
+    "equigen:citrus_wood",
+    "equigen:citrus_stripped_log",
+    "equigen:citrus_stripped_wood",
+    "equigen:mulberry_log",
+    "equigen:mulberry_wood",
+    "equigen:mulberry_stripped_log",
+    "equigen:mulberry_stripped_wood",
+    "equigen:green_ash_log",
+    "equigen:green_ash_wood",
+    "equigen:green_ash_stripped_log",
+    "equigen:green_ash_stripped_wood"
+  ]
+}
