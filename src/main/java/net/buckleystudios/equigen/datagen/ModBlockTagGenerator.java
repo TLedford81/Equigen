@@ -93,6 +93,30 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(ModBlocks.GREEN_ASH_WOOD.get())
                 .add(ModBlocks.GREEN_ASH_STRIPPED_WOOD.get());
 
+        this.tag(BlockTags.DOORS)
+                .add(ModBlocks.FIG_DOOR.get())
+                .add(ModBlocks.MAGNOLIA_DOOR.get())
+                .add(ModBlocks.CITRUS_DOOR.get())
+                .add(ModBlocks.APRICOT_DOOR.get())
+                .add(ModBlocks.MULBERRY_DOOR.get())
+                .add(ModBlocks.GREEN_ASH_DOOR.get());
+
+        this.tag(BlockTags.MOB_INTERACTABLE_DOORS)
+                .add(ModBlocks.FIG_DOOR.get())
+                .add(ModBlocks.MAGNOLIA_DOOR.get())
+                .add(ModBlocks.CITRUS_DOOR.get())
+                .add(ModBlocks.APRICOT_DOOR.get())
+                .add(ModBlocks.MULBERRY_DOOR.get())
+                .add(ModBlocks.GREEN_ASH_DOOR.get());
+
+        this.tag(BlockTags.WOODEN_DOORS)
+                .add(ModBlocks.FIG_DOOR.get())
+                .add(ModBlocks.MAGNOLIA_DOOR.get())
+                .add(ModBlocks.CITRUS_DOOR.get())
+                .add(ModBlocks.APRICOT_DOOR.get())
+                .add(ModBlocks.MULBERRY_DOOR.get())
+                .add(ModBlocks.GREEN_ASH_DOOR.get());
+
 
         this.tag(BlockTags.WOODEN_FENCES)
                 .add(ModBlocks.FIG_FENCE.get())

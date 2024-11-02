@@ -1,4 +1,4 @@
-// 1.21	2024-10-30T20:24:18.4040159	Block Tags
+// 1.21	2024-10-31T22:37:38.7748157	Block Tags
 cca0b2b3e7cc2da3b8ea872b985cd9093417b92b data/equigen/tags/block/apricot_logs.json
 0b62f41fd4e7d7eb56b56c29632096f817599a0d data/equigen/tags/block/citrus_logs.json
 cf1ccf4976f889a830422724cf57fe99c8e9e8ce data/equigen/tags/block/fig_logs.json
@@ -7,10 +7,13 @@ dac7489d900b0db35e72e35b5390627df776d68d data/equigen/tags/block/green_ash_logs.
 1cbf164ceadf3b1cc3bb743fa76b9a573bfbc79d data/equigen/tags/block/magnolia_logs.json
 392e66a54bff539e113ab38e62d0622ab6c846f5 data/equigen/tags/block/mulberry_logs.json
 32b13946c4cd1f944b029659ccce5fcb2adad4ff data/equigen/tags/block/needs_folirite_tool.json
+2d89f1aa02b384006f3117389b4ead61677cdd47 data/minecraft/tags/block/doors.json
 b9cac1736ed888db0c5e7daee6a44d47144275f1 data/minecraft/tags/block/fence_gates.json
 ee3c6ff012f5538b5be1b56af451b8f07b79fcc1 data/minecraft/tags/block/logs_that_burn.json
 ec185c5bf7e7507e9e3930397f34b2fb64fb6f1f data/minecraft/tags/block/mineable/pickaxe.json
+2d89f1aa02b384006f3117389b4ead61677cdd47 data/minecraft/tags/block/mob_interactable_doors.json
 3f80c7bcf5426ce8040c8d6ae46fb87e985ab9b4 data/minecraft/tags/block/needs_diamond_tool.json
 536d60a09545ac2c19d804febbcc2f1f5092d63a data/minecraft/tags/block/needs_iron_tool.json
 f7c90dc6af3dd863c51eca3b21bea0ad58051176 data/minecraft/tags/block/planks.json
+2d89f1aa02b384006f3117389b4ead61677cdd47 data/minecraft/tags/block/wooden_doors.json
 2edf667901ec6138b9b354c6e0efca6cc3e8627f data/minecraft/tags/block/wooden_fences.json
