@@ -96,4 +96,7 @@ public class ModItems {
     public static final DeferredItem<Item> GENETIC_HORSE_SPAWN_EGG = ITEMS.register("genetic_horse_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.GENETIC_HORSE, 0xdebd47, 0xccbfbe,
                     new Item.Properties().rarity(Rarity.EPIC)));
+    public static final DeferredItem<Item> GENETIC_HORSE_SPAWNER = ITEMS.registerItem("genetic_horse_spawner", Item::new,
+            new Item.Properties().rarity(Rarity.EPIC));
+
 }
