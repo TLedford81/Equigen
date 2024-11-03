@@ -259,7 +259,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.GREEN_ASH_FENCE_GATE);
 
         doorBlockWithRenderType(((DoorBlock) ModBlocks.GREEN_ASH_DOOR.get()),
-                modLoc("block/green_ash_door_bottom"), modLoc("block/green_ash_door_top"), "cutout");
+                modLoc("block/green_ash_door_bottom"), modLoc("block/green_ash_door_top"), "translucent");
         //Block Item Done in ModItemModelProvider.java
 
         trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.GREEN_ASH_TRAPDOOR.get()),

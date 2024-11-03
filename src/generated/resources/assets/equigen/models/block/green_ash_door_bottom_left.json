@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/door_bottom_left",
-  "render_type": "minecraft:cutout",
+  "render_type": "minecraft:translucent",
   "textures": {
     "bottom": "equigen:block/green_ash_door_bottom",
     "top": "equigen:block/green_ash_door_top"
