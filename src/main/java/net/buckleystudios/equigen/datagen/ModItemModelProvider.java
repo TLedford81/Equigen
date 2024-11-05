@@ -60,6 +60,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.FOLIRITE_SHOVEL);
         handheldItem(ModItems.FOLIRITE_HOE);
 
+        basicItem(ModItems.GENETIC_HORSE_DEBUG_TOOL.get());
+
         //Spawn Eggs
         basicItem(ModItems.GENETIC_HORSE_SPAWNER.get());
         withExistingParent(ModItems.PILLAGER_KING_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
