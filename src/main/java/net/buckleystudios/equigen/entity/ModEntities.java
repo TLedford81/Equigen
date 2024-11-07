@@ -25,5 +25,5 @@ public class ModEntities {
                     .sized(0.5f, 0.5f).build("egret"));
     public static final Supplier<EntityType<GeneticHorseEntity>> GENETIC_HORSE =
             ENTITY_TYPES.register("genetic_horse", () -> EntityType.Builder.of(GeneticHorseEntity::new, MobCategory.MISC)
-                    .sized(1f, 1f).build("genetic_horse"));
+                    .sized(1f, 1.5f).build("genetic_horse"));
 }
