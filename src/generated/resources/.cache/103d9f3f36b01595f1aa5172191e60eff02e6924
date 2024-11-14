@@ -1,4 +1,5 @@
-// 1.21	2024-10-26T00:23:39.0057263	Registries
+// 1.21	2024-11-13T23:17:52.1806266	Registries
+5a8d63d5f81d3b94490f1f1b7f507e5cab4f8ebc data/equigen/neoforge/biome_modifier/add_folirite_ore.json
 3d3feb6d03b0290c0a58d9d754855bca13081961 data/equigen/neoforge/biome_modifier/add_tree_apricot.json
 ffc41ac973b6b720ed01f55eca81fb54e215ea75 data/equigen/neoforge/biome_modifier/add_tree_citrus.json
 d1a56b1370e11be5701f0dab84cda90acc2c85a4 data/equigen/neoforge/biome_modifier/add_tree_fig.json
@@ -8,12 +9,14 @@ ec4493bbc6e6e1d597c956f73a1df282a9736cf5 data/equigen/neoforge/biome_modifier/ad
 2fbd0676d56bff1df86961504c08ec34df822da8 data/equigen/worldgen/configured_feature/apricot.json
 1cc6192df41ef29cfc181b6997d11422d62daddb data/equigen/worldgen/configured_feature/citrus.json
 f811b548cef17df17ca11c1b91523f61ac5fa615 data/equigen/worldgen/configured_feature/fig.json
+f9ac37afffb77aa5edd0e98f80fde730cb90607d data/equigen/worldgen/configured_feature/folirite_ore.json
 2e0a8d50001bca6e05778b0227ad86fb1c870c15 data/equigen/worldgen/configured_feature/green_ash.json
 13ecf89deb85734b5974bf037860806fdb657aae data/equigen/worldgen/configured_feature/magnolia.json
 fcf429f49b5f35d81c53d9a0e80bccca5c26ed37 data/equigen/worldgen/configured_feature/mulberry.json
 0a3f3729f909602ab6b853ad4dbcfb5a6124846d data/equigen/worldgen/placed_feature/apricot_placed.json
 d1f95551ce2818099b9879288d4c82aa977aeb24 data/equigen/worldgen/placed_feature/citrus_placed.json
 d562583e73156b81fed3d553e49a62c0fc699cfd data/equigen/worldgen/placed_feature/fig_placed.json
+6bf59790183cf89d017c0f76030d5e486f5dd7ab data/equigen/worldgen/placed_feature/folirite_ore_placed.json
 d8b13ce6e8704e9f20ba8581b20d379bf74a3b8c data/equigen/worldgen/placed_feature/green_ash_placed.json
 69bdd64d9ac5274fbd551d9260ef646623d87308 data/equigen/worldgen/placed_feature/magnolia_placed.json
 b0e32aaae5079cad0d885a489abea7f3323f2416 data/equigen/worldgen/placed_feature/mulberry_placed.json

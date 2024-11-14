@@ -6,16 +6,22 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.*;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.*;
+import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
+import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
+
+import java.util.List;
 
 public class ModConfiguredFeatures {
 
@@ -26,7 +32,7 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> MULBERRY_KEY = registerKey("mulberry");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GREEN_ASH_KEY = registerKey("green_ash");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> EGRET_SPAWNS_KEY = registerKey("egret_spawns");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> FOLIRITE_ORE_KEY = registerKey("folirite_ore");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context){
         //Cherry Trunk
@@ -78,6 +84,17 @@ public class ModConfiguredFeatures {
                 new RandomSpreadFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0), ConstantInt.of(3),
                         120),
                 new TwoLayersFeatureSize(1, 0, 2)).build());
+
+
+        //Ore Gen
+        RuleTest stoneReplaceables = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
+        RuleTest deepslateReplaceables = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
+
+        List<OreConfiguration.TargetBlockState> overworldFoliriteOres = List.of(
+                OreConfiguration.target(stoneReplaceables, ModBlocks.FOLIRITE_ORE.get().defaultBlockState()),
+                OreConfiguration.target(deepslateReplaceables, ModBlocks.DEEPSLATE_FOLIRITE_ORE.get().defaultBlockState()));
+
+        register(context, FOLIRITE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldFoliriteOres, 9));
     }
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name){
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, name));

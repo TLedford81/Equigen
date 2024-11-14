@@ -12,7 +12,6 @@ public class ModEvents {
     @SubscribeEvent
     public static void onCommandsRegister(RegisterCommandsEvent event){
         new TestCommand(event.getDispatcher());
-
         ConfigCommand.register(event.getDispatcher());
     }
 }
