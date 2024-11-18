@@ -30,7 +30,10 @@ import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 public class GeneticHorseEntity extends Animal implements PlayerRideableJumping{
     public static final Logger LOGGER = LoggerFactory.getLogger(GeneticHorseEntity.class);
@@ -38,26 +41,9 @@ public class GeneticHorseEntity extends Animal implements PlayerRideableJumping{
     private int idleAnimationTimeout = 0;
     private static int totalGeneCount = 18;
 
-    public String GENETIC_CODE;
-    public int hoofSize;
-    public int legWidth;
-    public int bottomLeg;
-    public int topLeg;
-    public int muscleMass;
-    public int chestSize;
-    public int backLength;
-    public int withers;
-    public int stomachCurve;
-    public int backHeight;
-    public int tailSet;
-    public int tailLength;
-    public int neckCurve;
-    public int neckPos;
-    public int neckLength;
-    public int headType;
-    public int headSize;
-    public int earSize;
+    private Map<String, Integer> GENETICS = new HashMap<String, Integer>();
 
+    //Replace with Enum?
     public int maxHoofSize = 3;
     public int maxLegWidth = 3;
     public int maxBottomLeg = 9;
@@ -79,16 +65,30 @@ public class GeneticHorseEntity extends Animal implements PlayerRideableJumping{
 
     public GeneticHorseEntity(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
+        setGenetic("hoofSize", 0);
+        setGenetic("legWidth", 0);
+        setGenetic("bottomLeg", 0);
+        setGenetic("topLeg", 0);
+        setGenetic("muscleMass", 0);
+        setGenetic("chestSize", 0);
+        setGenetic("backLength", 0);
+        setGenetic("withers", 0);
+        setGenetic("stomachCurve", 0);
+        setGenetic("backHeight", 0);
+        setGenetic("tailSet", 0);
+        setGenetic("tailLength", 0);
+        setGenetic("neckCurve", 0);
+        setGenetic("neckPos", 0);
+        setGenetic("neckLength", 0);
+        setGenetic("headType", 0);
+        setGenetic("headSize", 0);
+        setGenetic("earSize", 0);
     }
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
 
-        randomizeGenetics();
-        this.GENETIC_CODE = generateGeneticCode(hoofSize, legWidth, bottomLeg, topLeg, muscleMass, chestSize, backLength, withers,
-                stomachCurve, backHeight, tailSet, tailLength, neckCurve, neckPos, neckLength, headType, headSize, earSize);
-
-        LOGGER.info(GENETIC_CODE + "Spawned");
+        this.randomizeGenetics();
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }
 
@@ -138,14 +138,31 @@ public class GeneticHorseEntity extends Animal implements PlayerRideableJumping{
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
-        setGeneticCode(tag.getString("genetic_code"));
-        decodeGeneticCode(this.GENETIC_CODE);
-
+//        for (Map.Entry<String, Integer> entry : GENETICS.entrySet()){
+//            this.GENETICS.put(entry.getKey(), tag.getInt(entry.getKey()));
+//            LOGGER.info("Reading Save Data: " + entry.getKey(), tag.getInt(entry.getKey()));
+//        }
+        Set<String> keys = GENETICS.keySet();
+        for(String key : keys){
+            int value = GENETICS.get(key);
+            setGenetic(key, tag.getInt(key));
+            LOGGER.info("Adding Save Data: " + key + value);
+        }
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag tag) {
-        tag.putString("genetic_code", this.GENETIC_CODE);
+//        for (Map.Entry<String, Integer> entry : GENETICS.entrySet()){
+//            tag.putInt(entry.getKey(), entry.getValue());
+//            LOGGER.info("Adding Save Data: " + entry.getKey(), entry.getValue());
+//        }
+
+        Set<String> keys = GENETICS.keySet();
+        for(String key : keys){
+            int value = GENETICS.get(key);
+            tag.putInt(key, value);
+            LOGGER.info("Adding Save Data: " + key + value);
+        }
     }
 
     @Override
@@ -274,97 +291,43 @@ public class GeneticHorseEntity extends Animal implements PlayerRideableJumping{
         return SoundEvents.HORSE_HURT;
     }
 
-    public String getGeneticCode(){
-        LOGGER.info("Fetching Genetic Code: " + this.GENETIC_CODE + " on entity: " + this);
-        return this.GENETIC_CODE;
-    }
-
-    public void setGeneticCode(String code){
-        this.GENETIC_CODE = code;
-    }
-
-    public String generateGeneticCode(int hoofSize, int legWidth, int bottomLeg, int topLeg, int muscleMass,
-                                      int chestSize, int backLength, int withers, int stomachCurve, int backHeight,
-                                      int tailSet, int tailLength, int neckCurve, int neckPos, int neckLength,
-                                      int headType, int headSize, int earSize) {
-
-        return  geneticCodeCapper(hoofSize, 1, maxHoofSize) +
-                geneticCodeCapper(legWidth, 1, maxLegWidth) +
-                geneticCodeCapper(bottomLeg, 1, maxBottomLeg) +
-                geneticCodeCapper(topLeg, 1, maxTopLeg) +
-                geneticCodeCapper(muscleMass, 1, maxMuscleMass) +
-                geneticCodeCapper(chestSize, 1, maxChestSize) +
-                geneticCodeCapper(backLength, 1, maxBackLength) +
-                geneticCodeCapper(withers, 1, maxWithers) +
-                geneticCodeCapper(stomachCurve, 1, maxStomachCurve) +
-                geneticCodeCapper(backHeight, 1, maxBackHeight) +
-                geneticCodeCapper(tailSet, 1, maxTailSet) +
-                geneticCodeCapper(tailLength, 1, maxTailLength) +
-                geneticCodeCapper(neckCurve, 1, maxNeckCurve) +
-                geneticCodeCapper(neckPos, 1, maxNeckPos) +
-                geneticCodeCapper(neckLength, 1, maxNeckLength) +
-                geneticCodeCapper(headType, 1, maxHeadType) +
-                geneticCodeCapper(headSize, 1, maxHeadSize) +
-                geneticCodeCapper(earSize, 1, maxEarSize);
-    }
-
-    public String geneticCodeCapper(int gene, int min, int max) {
-        if (gene < min || gene > max) {
-            LOGGER.error("Failed to Generate Gene for Genetic Horse! Index " + gene + " Out of Range (" + min + "-" + max + ")");
-            return ("?");
-        } else {
-            return (String.valueOf(gene));
-        }
-    }
-
-    public void decodeGeneticCode(String code){
-        if(code.length() > totalGeneCount || code.length() < totalGeneCount){
-            LOGGER.error("Failed to Decode Genetic Code \"" + code + "\", Does not meet required length of " + totalGeneCount);
-        } else {
-            this.hoofSize = code.charAt(0);
-            this.legWidth = code.charAt(1);
-            this.bottomLeg = code.charAt(2);
-            this.topLeg = code.charAt(3);
-            this.muscleMass = code.charAt(4);
-            this.chestSize = code.charAt(5);
-            this.backLength = code.charAt(6);
-            this.withers = code.charAt(7);
-            this.stomachCurve = code.charAt(8);
-            this.backHeight = code.charAt(9);
-            this.tailSet = code.charAt(10);
-            this.tailLength = code.charAt(11);
-            this.neckCurve = code.charAt(12);
-            this.neckPos = code.charAt(13);
-            this.neckLength = code.charAt(14);
-            this.headType = code.charAt(15);
-            this.headSize = code.charAt(16);
-            this.earSize = code.charAt(17);
-        }
-    }
-
-    public Character decodeGeneticCode(String code, int placement){
-        return code.charAt(placement);
-    }
-
     public void randomizeGenetics(){
         Random random = new Random();
-        hoofSize = random.nextInt(maxHoofSize) + 1;
-        legWidth = random.nextInt(maxLegWidth) + 1;
-        bottomLeg = random.nextInt(maxBottomLeg) + 1;
-        topLeg = random.nextInt(maxTopLeg) + 1;
-        muscleMass = random.nextInt(maxMuscleMass) + 1;
-        chestSize = random.nextInt(maxChestSize) + 1;
-        backLength = random.nextInt(maxBackLength) + 1;
-        withers = random.nextInt(maxWithers) + 1;
-        stomachCurve = random.nextInt(maxStomachCurve) + 1;
-        backHeight = random.nextInt(maxBackHeight) + 1;
-        tailSet = random.nextInt(maxTailSet) + 1;
-        tailLength = random.nextInt(maxTailLength) + 1;
-        neckCurve = random.nextInt(maxNeckCurve) + 1;
-        neckPos = random.nextInt(maxNeckPos) + 1;
-        neckLength = random.nextInt(maxNeckLength) + 1;
-        headType = random.nextInt(maxHeadType) + 1;
-        headSize = random.nextInt(maxHeadSize) + 1;
-        earSize = random.nextInt(maxEarSize) + 1;
+        setGenetic("hoofSize", random.nextInt(maxHoofSize) + 1);
+        setGenetic("legWidth", random.nextInt(maxLegWidth) + 1);
+        setGenetic("bottomLeg", random.nextInt(maxBottomLeg) + 1);
+        setGenetic("topLeg", random.nextInt(maxTopLeg) + 1);
+        setGenetic("muscleMass", random.nextInt(maxMuscleMass) + 1);
+        setGenetic("chestSize", random.nextInt(maxChestSize) + 1);
+        setGenetic("backLength", random.nextInt(maxBackLength) + 1);
+        setGenetic("withers", random.nextInt(maxWithers) + 1);
+        setGenetic("stomachCurve", random.nextInt(maxStomachCurve) + 1);
+        setGenetic("backHeight", random.nextInt(maxBackHeight) + 1);
+        setGenetic("tailSet", random.nextInt(maxTailSet) + 1);
+        setGenetic("tailLength", random.nextInt(maxTailLength) + 1);
+        setGenetic("neckCurve", random.nextInt(maxNeckCurve) + 1);
+        setGenetic("neckPos", random.nextInt(maxNeckPos) + 1);
+        setGenetic("neckLength", random.nextInt(maxNeckLength) + 1);
+        setGenetic("headType", random.nextInt(maxHeadType) + 1);
+        setGenetic("headSize", random.nextInt(maxHeadSize) + 1);
+        setGenetic("earSize", random.nextInt(maxEarSize) + 1);
+    }
+
+    public int getGenetic(String key) {
+        int value;
+        try {
+            value = GENETICS.get(key);
+        } catch (NullPointerException e){
+            value = 0;
+            LOGGER.error(e.toString());
+            LOGGER.error("Genetic Code Not Found for Key: " + key);
+        }
+        LOGGER.info("Getting Geneic: " + key + " / " + value);
+        return value;
+    }
+
+    public void setGenetic(String key, int number) {
+        LOGGER.info("Setting Geneic: " + key + " / " + number);
+        this.GENETICS.put(key, number);
     }
 }
