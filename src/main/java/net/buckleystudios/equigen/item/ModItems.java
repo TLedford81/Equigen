@@ -2,12 +2,10 @@ package net.buckleystudios.equigen.item;
 
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.block.ModBlocks;
-import net.buckleystudios.equigen.block.custom.OatCropBlock;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.item.custom.GeneticHorseDebugTool;
 import net.buckleystudios.equigen.item.custom.GeneticHorseSpawnerItem;
 import net.buckleystudios.equigen.item.custom.SodiumGrenadeItem;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -99,6 +97,10 @@ public class ModItems {
     public static final DeferredItem<Item> GENETIC_HORSE_SPAWN_EGG = ITEMS.register("genetic_horse_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.GENETIC_HORSE, 0xdebd47, 0xccbfbe,
                     new Item.Properties().rarity(Rarity.EPIC)));
+    public static final DeferredItem<Item> TEST_ENTITY_SPAWN_EGG = ITEMS.register("test_entity_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.TEST_ENTITY, 0xdebd47, 0xccbfbe,
+                    new Item.Properties()));
+
     public static final DeferredItem<Item> GENETIC_HORSE_SPAWNER = ITEMS.registerItem("genetic_horse_spawner", GeneticHorseSpawnerItem::new,
             new Item.Properties().rarity(Rarity.EPIC));
 

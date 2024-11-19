@@ -4,11 +4,10 @@ import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.custom.EgretEntity;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.custom.PillagerKingEntity;
+import net.buckleystudios.equigen.entity.custom.TestEntityEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -26,4 +25,7 @@ public class ModEntities {
     public static final Supplier<EntityType<GeneticHorseEntity>> GENETIC_HORSE =
             ENTITY_TYPES.register("genetic_horse", () -> EntityType.Builder.of(GeneticHorseEntity::new, MobCategory.MISC)
                     .sized(1f, 1.5f).build("genetic_horse"));
+    public static final Supplier<EntityType<TestEntityEntity>> TEST_ENTITY =
+            ENTITY_TYPES.register("test_entity", () -> EntityType.Builder.of(TestEntityEntity::new, MobCategory.MISC)
+                    .sized(1f, 1.5f).build("test_entity"));
 }

@@ -1,4 +1,4 @@
-// 1.21	2024-11-04T13:22:46.8342501	Item Models: equigen
+// 1.21	2024-11-18T20:06:42.6568056	Item Models: equigen
 d834f1d768dceede3f7db7ea037606d176657df3 assets/equigen/models/item/alfalfa.json
 c0e11fb7b662a9c0feb69318a7e7c3ced455f687 assets/equigen/models/item/alfalfa_seeds.json
 9c687aadbfdb6b265dbf69c8c60bfedc48813592 assets/equigen/models/item/apricot.json
@@ -66,5 +66,6 @@ b67a0957744472325e32f87cede1e4ed836d519b assets/equigen/models/item/sodium_grena
 445877713e5a88a951520edb21f2410c878d30e7 assets/equigen/models/item/sweet_pea.json
 2ba5f1379898771d5700f6053ce0be02caf476f2 assets/equigen/models/item/sweet_pea_petals.json
 df067f03611343b9023c1fe3cbcb32e32c5ca9f4 assets/equigen/models/item/sweet_pea_salve.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/equigen/models/item/test_entity_spawn_egg.json
 30142331b66b0a743658808b27d767a8c4862ea3 assets/equigen/models/item/timothy_hay.json
 92271023ba6e64d29d60c1de3dc2e4d7ef2ae5e9 assets/equigen/models/item/timothy_hay_seeds.json

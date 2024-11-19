@@ -7,6 +7,7 @@ import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.client.EgretRenderer;
 import net.buckleystudios.equigen.entity.client.GeneticHorseRenderer;
 import net.buckleystudios.equigen.entity.client.PillagerKingRenderer;
+import net.buckleystudios.equigen.entity.client.TestEntityRenderer;
 import net.buckleystudios.equigen.item.ModItems;
 import net.buckleystudios.equigen.screen.Infusion_Table.InfusionTableScreen;
 import net.buckleystudios.equigen.screen.ModMenuTypes;
@@ -75,6 +76,7 @@ public class EquigenMod {
             EntityRenderers.register(ModEntities.PILLAGER_KING.get(), PillagerKingRenderer::new);
             EntityRenderers.register(ModEntities.EGRET.get(), EgretRenderer::new);
             EntityRenderers.register(ModEntities.GENETIC_HORSE.get(), GeneticHorseRenderer::new);
+            EntityRenderers.register(ModEntities.TEST_ENTITY.get(), TestEntityRenderer::new);
 
         }
         @SubscribeEvent
