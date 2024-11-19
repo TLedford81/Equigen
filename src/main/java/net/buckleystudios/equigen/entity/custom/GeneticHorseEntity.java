@@ -39,7 +39,6 @@ public class GeneticHorseEntity extends Animal implements PlayerRideableJumping{
     public static final Logger LOGGER = LoggerFactory.getLogger(GeneticHorseEntity.class);
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
-    private static int totalGeneCount = 18;
 
     private Map<String, Integer> GENETICS = new HashMap<String, Integer>();
 
@@ -65,6 +64,7 @@ public class GeneticHorseEntity extends Animal implements PlayerRideableJumping{
 
     public GeneticHorseEntity(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
+
         setGenetic("hoofSize", 0);
         setGenetic("legWidth", 0);
         setGenetic("bottomLeg", 0);
