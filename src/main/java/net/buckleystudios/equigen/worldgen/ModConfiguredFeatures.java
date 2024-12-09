@@ -4,6 +4,7 @@ import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -11,9 +12,7 @@ import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.*;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
@@ -33,6 +32,14 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> GREEN_ASH_KEY = registerKey("green_ash");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> FOLIRITE_ORE_KEY = registerKey("folirite_ore");
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SWEET_PEA_KEY = registerKey("sweet_pea");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> NIGHTSHADE_KEY = registerKey("nightshade");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CALENDULA_KEY = registerKey("calendula");
+    public static final ResourceKey<ConfiguredFeature<?, ?>>  PURPLE_LOCOWEED_KEY= registerKey("purple_locoweed");
+    public static final ResourceKey<ConfiguredFeature<?, ?>>  PINK_LOCOWEED_KEY= registerKey("pink_locoweed");
+    public static final ResourceKey<ConfiguredFeature<?, ?>>  BLUE_LOCOWEED_KEY= registerKey("blue_locoweed");
+
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context){
         //Cherry Trunk
@@ -95,6 +102,26 @@ public class ModConfiguredFeatures {
                 OreConfiguration.target(deepslateReplaceables, ModBlocks.DEEPSLATE_FOLIRITE_ORE.get().defaultBlockState()));
 
         register(context, FOLIRITE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldFoliriteOres, 9));
+
+        //Flower Gen
+        register(context, SWEET_PEA_KEY, Feature.FLOWER, new RandomPatchConfiguration(32, 6, 2,
+                PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.SWEET_PEA.get())))));
+        register(context, NIGHTSHADE_KEY, Feature.FLOWER, new RandomPatchConfiguration(32, 6, 2,
+                PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.NIGHTSHADE.get())))));
+        register(context, CALENDULA_KEY, Feature.FLOWER, new RandomPatchConfiguration(32, 6, 2,
+                PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.CALENDULA.get())))));
+        register(context, BLUE_LOCOWEED_KEY, Feature.FLOWER, new RandomPatchConfiguration(32, 6, 2,
+                PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.BLUE_LOCOWEED.get())))));
+        register(context, PINK_LOCOWEED_KEY, Feature.FLOWER, new RandomPatchConfiguration(32, 6, 2,
+                PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.PINK_LOCOWEED.get())))));
+        register(context, PURPLE_LOCOWEED_KEY, Feature.FLOWER, new RandomPatchConfiguration(32, 6, 2,
+                PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.PURPLE_LOCOWEED.get())))));
     }
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name){
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, name));

@@ -12,6 +12,7 @@ import net.buckleystudios.equigen.item.ModItems;
 import net.buckleystudios.equigen.screen.Infusion_Table.InfusionTableScreen;
 import net.buckleystudios.equigen.screen.ModMenuTypes;
 import net.buckleystudios.equigen.sound.ModSounds;
+import net.buckleystudios.equigen.villager.ModVillagers;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.level.FoliageColor;
@@ -45,6 +46,8 @@ public class EquigenMod {
         ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
         ModMenuTypes.MENUS.register(modEventBus);
         ModEntities.ENTITY_TYPES.register(modEventBus);
+        ModVillagers.VILLAGER_PROFESSIONS.register(modEventBus);
+        ModVillagers.POI_TYPES.register(modEventBus);
 
         //
         modEventBus.addListener(this::commonSetup);

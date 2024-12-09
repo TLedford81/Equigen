@@ -12,9 +12,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraft.world.level.levelgen.placement.PlacementModifier;
+import net.minecraft.world.level.levelgen.placement.*;
 
 import java.util.List;
 
@@ -27,7 +25,14 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> GREEN_ASH_PLACED_KEY = registerKey("green_ash_placed");
 
     public static final ResourceKey<PlacedFeature> FOLIRITE_ORE_PLACED_KEY = registerKey("folirite_ore_placed");
-//    public static final ResourceKey<PlacedFeature> EGRET_SPAWNS_PLACED_KEY = registerKey("egret_spawns_placed");
+
+
+    public static final ResourceKey<PlacedFeature> SWEET_PEA_PLACED_KEY = registerKey("sweet_pea_placed");
+    public static final ResourceKey<PlacedFeature> NIGHTSHADE_PLACED_KEY = registerKey("nightshade_placed");
+    public static final ResourceKey<PlacedFeature> CALENDULA_PLACED_KEY = registerKey("calendula_placed");
+    public static final ResourceKey<PlacedFeature>  PURPLE_LOCOWEED_PLACED_KEY = registerKey("purple_locoweed_placed");
+    public static final ResourceKey<PlacedFeature>  PINK_LOCOWEED_PLACED_KEY = registerKey("pink_locoweed_placed");
+    public static final ResourceKey<PlacedFeature>  BLUE_LOCOWEED_PLACED_KEY = registerKey("blue_locoweed_placed");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context){
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -56,6 +61,26 @@ public class ModPlacedFeatures {
         register(context, FOLIRITE_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.FOLIRITE_ORE_KEY),
                 ModOrePlacements.commonOrePlacement(12,
                         HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(80))));
+
+        //FLOWER GEN
+        register(context, SWEET_PEA_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SWEET_PEA_KEY),
+                List.of(RarityFilter.onAverageOnceEvery(16), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP,
+                        BiomeFilter.biome()));
+        register(context, CALENDULA_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.CALENDULA_KEY),
+                List.of(RarityFilter.onAverageOnceEvery(16), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP,
+                        BiomeFilter.biome()));
+        register(context, NIGHTSHADE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.NIGHTSHADE_KEY),
+                List.of(RarityFilter.onAverageOnceEvery(16), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP,
+                        BiomeFilter.biome()));
+        register(context, BLUE_LOCOWEED_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BLUE_LOCOWEED_KEY),
+                List.of(RarityFilter.onAverageOnceEvery(16), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP,
+                        BiomeFilter.biome()));
+        register(context, PINK_LOCOWEED_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.PINK_LOCOWEED_KEY),
+                List.of(RarityFilter.onAverageOnceEvery(16), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP,
+                        BiomeFilter.biome()));
+        register(context, PURPLE_LOCOWEED_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.PURPLE_LOCOWEED_KEY),
+                List.of(RarityFilter.onAverageOnceEvery(16), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP,
+                        BiomeFilter.biome()));
 
     }
     private static ResourceKey<PlacedFeature> registerKey(String name){

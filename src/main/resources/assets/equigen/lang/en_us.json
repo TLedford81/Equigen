@@ -172,6 +172,8 @@
   "creativetab.equigen.blocks_tab": "Equigen - Blocks",
   "creativetab.equigen.nature_tab": "Equigen - Natural",
 
+  "entity.minecraft.villager.equigen.stablemaster": "Stable Master",
+
   "sounds.equigen.test_sound": "Test Sound",
   "sounds.equigen.egret_ambient": "Egret Ambient",
   "sounds.equigen.egret_hurt": "Egret Hurt",

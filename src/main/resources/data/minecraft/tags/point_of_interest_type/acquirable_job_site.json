@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values":[
+    {
+      "id": "equigen:test_poi",
+      "required": false
+    }
+  ]
+}

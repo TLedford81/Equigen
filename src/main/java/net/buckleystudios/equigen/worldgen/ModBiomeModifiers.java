@@ -23,6 +23,13 @@ public class ModBiomeModifiers {
 
     public static final ResourceKey<BiomeModifier> ADD_FOLIRITE_ORE = registerKey("add_folirite_ore");
 
+    public static final ResourceKey<BiomeModifier> ADD_SWEET_PEA = registerKey("add_sweet_pea");
+    public static final ResourceKey<BiomeModifier> ADD_CALENDULA = registerKey("add_calendula");
+    public static final ResourceKey<BiomeModifier> ADD_NIGHTSHADE = registerKey("add_nightshade");
+    public static final ResourceKey<BiomeModifier> ADD_BLUE_LOCOWEED = registerKey("blue_locoweed");
+    public static final ResourceKey<BiomeModifier> ADD_PURPLE_LOCOWEED = registerKey("purple_locoweed");
+    public static final ResourceKey<BiomeModifier> ADD_PINK_LOCOWEED = registerKey("pink_locoweed");
+
     public static void bootstrap(BootstrapContext<BiomeModifier> context){
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
         var biomes = context.lookup(Registries.BIOME);
@@ -77,6 +84,49 @@ public class ModBiomeModifiers {
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.FOLIRITE_ORE_PLACED_KEY)),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
 
+        //FLOWER GEN
+        context.register(ADD_SWEET_PEA, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(
+                        biomes.getOrThrow(Biomes.PLAINS),
+                        biomes.getOrThrow(Biomes.FOREST)
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SWEET_PEA_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+        context.register(ADD_CALENDULA, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(
+                        biomes.getOrThrow(Biomes.PLAINS),
+                        biomes.getOrThrow(Biomes.FOREST)
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.CALENDULA_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+        context.register(ADD_NIGHTSHADE, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(
+                        biomes.getOrThrow(Biomes.PLAINS),
+                        biomes.getOrThrow(Biomes.FOREST)
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.NIGHTSHADE_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+        context.register(ADD_BLUE_LOCOWEED, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(
+                        biomes.getOrThrow(Biomes.PLAINS),
+                        biomes.getOrThrow(Biomes.FOREST)
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.BLUE_LOCOWEED_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+        context.register(ADD_PINK_LOCOWEED, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(
+                        biomes.getOrThrow(Biomes.PLAINS),
+                        biomes.getOrThrow(Biomes.FOREST)
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.PINK_LOCOWEED_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+        context.register(ADD_PURPLE_LOCOWEED, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(
+                        biomes.getOrThrow(Biomes.PLAINS),
+                        biomes.getOrThrow(Biomes.FOREST)
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.PURPLE_LOCOWEED_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
     }
 
     public static ResourceKey<BiomeModifier> registerKey(String name){
