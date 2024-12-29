@@ -24,6 +24,7 @@ public class ModEventBusEvents {
         event.registerLayerDefinition(ModModelLayers.EGRET, EgretModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.GENETIC_HORSE, GeneticHorseModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.TEST_ENTITY, TestEntityModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.SODIUM_GRENADE, SodiumGrenadeProjectileModel::createBodyLayer);
     }
 
     @SubscribeEvent
