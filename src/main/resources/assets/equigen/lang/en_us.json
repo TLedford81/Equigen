@@ -173,6 +173,8 @@
   "creativetab.equigen.nature_tab": "Equigen - Natural",
 
   "entity.minecraft.villager.equigen.stablemaster": "Stable Master",
+  "entity.equigen.genetic_horse": "Genetic Horse",
+  "entity.equigen.egret": "Egret",
 
   "sounds.equigen.test_sound": "Test Sound",
   "sounds.equigen.egret_ambient": "Egret Ambient",

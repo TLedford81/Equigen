@@ -2,9 +2,6 @@ package net.buckleystudios.equigen.entity.custom;
 
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.item.ModItems;
-import net.minecraft.client.Minecraft;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -16,15 +13,12 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.vehicle.DismountHelper;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
@@ -35,7 +29,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
-public class GeneticHorseEntity extends Animal implements PlayerRideableJumping{
+public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJumping{
     public static final Logger LOGGER = LoggerFactory.getLogger(GeneticHorseEntity.class);
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
@@ -62,7 +56,7 @@ public class GeneticHorseEntity extends Animal implements PlayerRideableJumping{
     public int maxHeadSize = 3;
     public int maxEarSize = 3;
 
-    public GeneticHorseEntity(EntityType<? extends Animal> entityType, Level level) {
+    public GeneticHorseEntity(EntityType<? extends AbstractHorse> entityType, Level level) {
         super(entityType, level);
 
         setGenetic("hoofSize", 0);
@@ -97,18 +91,19 @@ public class GeneticHorseEntity extends Animal implements PlayerRideableJumping{
         return stack.is(ModItems.TIMOTHY_HAY.get());
     }
 
-    @Override
-    protected void registerGoals() {
-        super.registerGoals();
-        this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new PanicGoal(this, 1.25));
-        this.goalSelector.addGoal(3, new BreedGoal(this, 1.0));
-        this.goalSelector.addGoal(4, new TemptGoal(this, 1.2, p_336182_ -> p_336182_.is(ModItems.BARLEY_SEEDS), false));
-        this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.1));
-        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0));
-        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
-        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-    }
+    //Do not need goals?
+//    @Override
+//    protected void registerGoals() {
+//        super.registerGoals();
+//        this.goalSelector.addGoal(0, new FloatGoal(this));
+//        this.goalSelector.addGoal(1, new PanicGoal(this, 1.25));
+//        this.goalSelector.addGoal(3, new BreedGoal(this, 1.0));
+//        this.goalSelector.addGoal(4, new TemptGoal(this, 1.2, p_336182_ -> p_336182_.is(ModItems.BARLEY_SEEDS), false));
+//        this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.1));
+//        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0));
+//        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
+//        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+//    }
 
     public static AttributeSupplier.Builder createAttributes() {
         return Animal.createLivingAttributes()
@@ -116,7 +111,8 @@ public class GeneticHorseEntity extends Animal implements PlayerRideableJumping{
                 .add(Attributes.MOVEMENT_SPEED, 0.2F)
                 .add(Attributes.ATTACK_DAMAGE, 80.0)
                 .add(Attributes.FOLLOW_RANGE, 24D)
-                .add(Attributes.STEP_HEIGHT, 5f);
+                .add(Attributes.STEP_HEIGHT, 5f)
+                .add(Attributes.JUMP_STRENGTH, 0.55f);
     }
 
     private void setupAnimationStates() {
@@ -126,6 +122,40 @@ public class GeneticHorseEntity extends Animal implements PlayerRideableJumping{
         } else {
             --this.idleAnimationTimeout;
         }
+    }
+
+    @Override
+    public boolean canUseSlot(EquipmentSlot slot) {
+        return true;
+    }
+
+    @Override
+    public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
+        boolean flag = !this.isBaby() && this.isTamed() && pPlayer.isSecondaryUseActive();
+        if (!this.isVehicle() && !flag) {
+            ItemStack itemstack = pPlayer.getItemInHand(pHand);
+            if (!itemstack.isEmpty()) {
+                if (this.isFood(itemstack)) {
+                    return this.fedFood(pPlayer, itemstack);
+                }
+
+                if (!this.isTamed()) {
+                    this.makeMad();
+                    return InteractionResult.sidedSuccess(this.level().isClientSide);
+                }
+            }
+
+            return super.mobInteract(pPlayer, pHand);
+        } else {
+            return super.mobInteract(pPlayer, pHand);
+        }
+    }
+
+    @Override
+    protected Vec3 getPassengerAttachmentPoint(Entity entity, EntityDimensions dimensions, float partialTick) {
+        return super.getPassengerAttachmentPoint(entity, dimensions, partialTick)
+                .add(new Vec3(0.0, 0.65 * (double)partialTick, -0.5 * (double)partialTick)
+                        .yRot(-this.getYRot() * (float) (Math.PI / 180.0)));
     }
 
     @Override
@@ -169,112 +199,100 @@ public class GeneticHorseEntity extends Animal implements PlayerRideableJumping{
     public @Nullable AgeableMob getBreedOffspring(ServerLevel level, AgeableMob otherParent) {
         return ModEntities.GENETIC_HORSE.get().create(level);
     }
+//
+//    @Override
+//    public Vec3 getPassengerRidingPosition(Entity entity) {
+//        return this.position().add(this.getPassengerAttachmentPoint(entity, this.getDimensions(this.getPose()),
+//                this.getScale() * this.getAgeScale()));
+//    }
 
-    @Override
-    public InteractionResult mobInteract(Player player, InteractionHand hand) {
-        ItemStack itemStack = player.getItemInHand(hand);
-        Item item = itemStack.getItem();
+//    @Override
+//    public Vec3 getDismountLocationForPassenger(LivingEntity livingEntity) {
+//        Direction direction = this.getMotionDirection();
+//        if (direction.getAxis() == Direction.Axis.Y) {
+//            return super.getDismountLocationForPassenger(livingEntity);
+//        } else {
+//            int[][] aint = DismountHelper.offsetsForDirection(direction);
+//            BlockPos blockpos = this.blockPosition();
+//            BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+//
+//            for (Pose pose : livingEntity.getDismountPoses()) {
+//                AABB aabb = livingEntity.getLocalBoundsForPose(pose);
+//
+//                for (int[] aint1 : aint) {
+//                    blockpos$mutableblockpos.set(blockpos.getX() + aint1[0], blockpos.getY(), blockpos.getZ() + aint1[1]);
+//                    double d0 = this.level().getBlockFloorHeight(blockpos$mutableblockpos);
+//                    if (DismountHelper.isBlockFloorValid(d0)) {
+//                        Vec3 vec3 = Vec3.upFromBottomCenterOf(blockpos$mutableblockpos, d0);
+//                        if (DismountHelper.canDismountTo(this.level(), livingEntity, aabb.move(vec3))) {
+//                            livingEntity.setPose(pose);
+//                            return vec3;
+//                        }
+//                    }
+//                }
+//            }
+//
+//            return super.getDismountLocationForPassenger(livingEntity);
+//        }
+//    }
 
-        if(!player.isCrouching()) {
-            setRiding(player);
-        }
+//    @Override
+//    public @Nullable LivingEntity getControllingPassenger() {
+//        return ((LivingEntity) this.getFirstPassenger());
+//    }
 
-        return super.mobInteract(player, hand);
-    }
-
-    @Override
-    public Vec3 getPassengerRidingPosition(Entity entity) {
-        return this.position().add(this.getPassengerAttachmentPoint(entity, this.getDimensions(this.getPose()),
-                this.getScale() * this.getAgeScale()));
-    }
-
-    @Override
-    public Vec3 getDismountLocationForPassenger(LivingEntity livingEntity) {
-        Direction direction = this.getMotionDirection();
-        if (direction.getAxis() == Direction.Axis.Y) {
-            return super.getDismountLocationForPassenger(livingEntity);
-        } else {
-            int[][] aint = DismountHelper.offsetsForDirection(direction);
-            BlockPos blockpos = this.blockPosition();
-            BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-
-            for (Pose pose : livingEntity.getDismountPoses()) {
-                AABB aabb = livingEntity.getLocalBoundsForPose(pose);
-
-                for (int[] aint1 : aint) {
-                    blockpos$mutableblockpos.set(blockpos.getX() + aint1[0], blockpos.getY(), blockpos.getZ() + aint1[1]);
-                    double d0 = this.level().getBlockFloorHeight(blockpos$mutableblockpos);
-                    if (DismountHelper.isBlockFloorValid(d0)) {
-                        Vec3 vec3 = Vec3.upFromBottomCenterOf(blockpos$mutableblockpos, d0);
-                        if (DismountHelper.canDismountTo(this.level(), livingEntity, aabb.move(vec3))) {
-                            livingEntity.setPose(pose);
-                            return vec3;
-                        }
-                    }
-                }
-            }
-
-            return super.getDismountLocationForPassenger(livingEntity);
-        }
-    }
-
-    @Override
-    public @Nullable LivingEntity getControllingPassenger() {
-        return ((LivingEntity) this.getFirstPassenger());
-    }
-
-    @Override
-    public void travel(Vec3 travelVector) {
-        if(this.isVehicle() && getControllingPassenger() instanceof Player){
-            LivingEntity livingEntity = this.getControllingPassenger();
-            this.setYRot(livingEntity.getYRot());
-            this.yRotO = this.getYRot();
-            this.setXRot(livingEntity.getXRot() * 0.5f);
-            this.setRot(this.getYRot(), this.getXRot());
-            this.yBodyRot = this.getYRot();
-            this.yHeadRot = this.yBodyRot;
-            float f = livingEntity.xxa * 0.5f;
-            float f1 = livingEntity.zza;
-
-            if(this.isControlledByLocalInstance()){
-                float newSpeed = (float) this.getAttributeValue(Attributes.MOVEMENT_SPEED);
-                if(Minecraft.getInstance().options.keySprint.isDown()){
-                    newSpeed *= 5f;
-                }
-                this.setSpeed(newSpeed);
-                super.travel(new Vec3(f, travelVector.y, f1));
-            }
-
-        } else {
-            super.travel(travelVector);
-        }
-    }
-
-    @Override
-    public void onPlayerJump(int jumpPower) {
-
-    }
-
-    @Override
-    public boolean canJump() {
-        return true;
-    }
-
-    @Override
-    public void handleStartJump(int jumpPower) {
-
-    }
-
-    @Override
-    public void handleStopJump() {
-
-    }
-
-    private void setRiding(Player player){
-        player.setYRot(this.getYRot());
-        player.setXRot(this.getXRot());
-        player.startRiding(this);
-    }
+//    @Override
+//    public void travel(Vec3 travelVector) {
+//        if(this.isVehicle() && getControllingPassenger() instanceof Player){
+//            LivingEntity livingEntity = this.getControllingPassenger();
+//            this.setYRot(livingEntity.getYRot());
+//            this.yRotO = this.getYRot();
+//            this.setXRot(livingEntity.getXRot() * 0.5f);
+//            this.setRot(this.getYRot(), this.getXRot());
+//            this.yBodyRot = this.getYRot();
+//            this.yHeadRot = this.yBodyRot;
+//            float f = livingEntity.xxa * 0.5f;
+//            float f1 = livingEntity.zza;
+//
+//            if(this.isControlledByLocalInstance()){
+//                float newSpeed = (float) this.getAttributeValue(Attributes.MOVEMENT_SPEED);
+//                if(Minecraft.getInstance().options.keySprint.isDown()){
+//                    newSpeed *= 5f;
+//                }
+//                this.setSpeed(newSpeed);
+//                super.travel(new Vec3(f, travelVector.y, f1));
+//            }
+//
+//        } else {
+//            super.travel(travelVector);
+//        }
+//    }
+//
+//    @Override
+//    public void onPlayerJump(int jumpPower) {
+//
+//    }
+//
+//    @Override
+//    public boolean canJump() {
+//        return true;
+//    }
+//
+//    @Override
+//    public void handleStartJump(int jumpPower) {
+//
+//    }
+//
+//    @Override
+//    public void handleStopJump() {
+//
+//    }
+//
+//    private void setRiding(Player player){
+//        player.setYRot(this.getYRot());
+//        player.setXRot(this.getXRot());
+//        player.startRiding(this);
+//    }
 
     @Override
     protected @Nullable SoundEvent getAmbientSound() {
