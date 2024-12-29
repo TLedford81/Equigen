@@ -41,7 +41,7 @@ public class GeneticHorseModel extends HierarchicalModel<GeneticHorseEntity> {
 
         PartDefinition cube_r6 = chest.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(62, 60).addBox(-5.0892F, -6.2676F, -5.4648F, 6.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.0091F, -1.5263F, 4.9767F, 1.6144F, 0.0F, 0.0F));
 
-        PartDefinition neck = chest.addOrReplaceChild("neck", CubeListBuilder.create(), PartPose.offset(-1.0391F, -5.8458F, 0.3575F));
+        PartDefinition neck = chest.addOrReplaceChild("neck", CubeListBuilder.create(), PartPose.offset(-3.0391F, -5.8458F, 0.3575F));
 
         PartDefinition cube_r7 = neck.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(74, 91).addBox(-3.08F, -6.0F, -2.92F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8903F, -7.0436F, -2.3097F, 0.9599F, 0.0F, 0.0F));
 
