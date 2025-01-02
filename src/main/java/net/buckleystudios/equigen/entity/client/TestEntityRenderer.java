@@ -27,6 +27,6 @@ public class TestEntityRenderer extends MobRenderer<TestEntityEntity, TestEntity
         Random random = new Random();
         int value = random.nextInt(10);
         LOGGER.info("Random Number: " + value + ", shouldRender = " + (value == 1));
-        return (value == 1);
+        return true;
     }
 }
