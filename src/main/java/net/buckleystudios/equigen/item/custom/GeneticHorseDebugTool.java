@@ -28,24 +28,24 @@ public class GeneticHorseDebugTool extends Item {
         if (!player.level().isClientSide()) {
             if (entity instanceof GeneticHorseEntity geneticHorse) {
                 if (!player.isCrouching()) {
-                    player.sendSystemMessage(Component.literal("Hoof Size: " + geneticHorse.getGenetic("hoofSize")));
-                    player.sendSystemMessage(Component.literal("Leg Width: " +  geneticHorse.getGenetic("legWidth")));
-                    player.sendSystemMessage(Component.literal("Bottom Leg: " +  geneticHorse.getGenetic("bottomLeg")));
-                    player.sendSystemMessage(Component.literal("Top Leg: " +  geneticHorse.getGenetic("topLeg")));
-                    player.sendSystemMessage(Component.literal("Muscle Mass: " +  geneticHorse.getGenetic("muscleMass")));
-                    player.sendSystemMessage(Component.literal("Chest/Hip Size: " +  geneticHorse.getGenetic("chestSize")));
-                    player.sendSystemMessage(Component.literal("Back Length: " +  geneticHorse.getGenetic("backLength")));
-                    player.sendSystemMessage(Component.literal("Withers: " +  geneticHorse.getGenetic("withers")));
-                    player.sendSystemMessage(Component.literal("Stomach Curve: " +  geneticHorse.getGenetic("stomachCurve")));
-                    player.sendSystemMessage(Component.literal("Back Height: " +  geneticHorse.getGenetic("backHeight")));
-                    player.sendSystemMessage(Component.literal("Tail Set: " +  geneticHorse.getGenetic("tailSet")));
-                    player.sendSystemMessage(Component.literal("Tail Length: " +  geneticHorse.getGenetic("tailLength")));
-                    player.sendSystemMessage(Component.literal("Neck Curve: " +  geneticHorse.getGenetic("neckCurve")));
-                    player.sendSystemMessage(Component.literal("Neck Position: " +  geneticHorse.getGenetic("neckPos")));
-                    player.sendSystemMessage(Component.literal("Neck Length: " +  geneticHorse.getGenetic("neckLength")));
-                    player.sendSystemMessage(Component.literal("Head Type: " +  geneticHorse.getGenetic("headType")));
-                    player.sendSystemMessage(Component.literal("Head Size: " + geneticHorse.getGenetic("headSize")));
-                    player.sendSystemMessage(Component.literal("Ear Size: " +  geneticHorse.getGenetic("earSize")));
+                    player.sendSystemMessage(Component.literal("Hoof Size: " + geneticHorse.validateGenetic("hoofSize")));
+                    player.sendSystemMessage(Component.literal("Leg Width: " +  geneticHorse.validateGenetic("legWidth")));
+                    player.sendSystemMessage(Component.literal("Bottom Leg: " +  geneticHorse.validateGenetic("bottomLeg")));
+                    player.sendSystemMessage(Component.literal("Top Leg: " +  geneticHorse.validateGenetic("topLeg")));
+                    player.sendSystemMessage(Component.literal("Muscle Mass: " +  geneticHorse.validateGenetic("muscleMass")));
+                    player.sendSystemMessage(Component.literal("Chest/Hip Size: " +  geneticHorse.validateGenetic("chestSize")));
+                    player.sendSystemMessage(Component.literal("Back Length: " +  geneticHorse.validateGenetic("backLength")));
+                    player.sendSystemMessage(Component.literal("Withers: " +  geneticHorse.validateGenetic("withers")));
+                    player.sendSystemMessage(Component.literal("Stomach Curve: " +  geneticHorse.validateGenetic("stomachCurve")));
+                    player.sendSystemMessage(Component.literal("Back Height: " +  geneticHorse.validateGenetic("backHeight")));
+                    player.sendSystemMessage(Component.literal("Tail Set: " +  geneticHorse.validateGenetic("tailSet")));
+                    player.sendSystemMessage(Component.literal("Tail Length: " +  geneticHorse.validateGenetic("tailLength")));
+                    player.sendSystemMessage(Component.literal("Neck Curve: " +  geneticHorse.validateGenetic("neckCurve")));
+                    player.sendSystemMessage(Component.literal("Neck Position: " +  geneticHorse.validateGenetic("neckPos")));
+                    player.sendSystemMessage(Component.literal("Neck Length: " +  geneticHorse.validateGenetic("neckLength")));
+                    player.sendSystemMessage(Component.literal("Head Type: " +  geneticHorse.validateGenetic("headType")));
+                    player.sendSystemMessage(Component.literal("Head Size: " + geneticHorse.validateGenetic("headSize")));
+                    player.sendSystemMessage(Component.literal("Ear Size: " +  geneticHorse.validateGenetic("earSize")));
                 } else {
 //                    String newGeneticCode = geneticHorse.generateGeneticCode(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,1,1,1,1,1);
 //                    geneticHorse.setGeneticCode(newGeneticCode);

@@ -2,10 +2,12 @@ package net.buckleystudios.equigen.entity.custom;
 
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.item.ModItems;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -13,12 +15,16 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
@@ -58,31 +64,43 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     public GeneticHorseEntity(EntityType<? extends AbstractHorse> entityType, Level level) {
         super(entityType, level);
-        setGenetic("hoofSize", 0);
-        setGenetic("legWidth", 0);
-        setGenetic("bottomLeg", 0);
-        setGenetic("topLeg", 0);
-        setGenetic("muscleMass", 0);
-        setGenetic("chestSize", 0);
-        setGenetic("backLength", 0);
-        setGenetic("withers", 0);
-        setGenetic("stomachCurve", 0);
-        setGenetic("backHeight", 0);
-        setGenetic("tailSet", 0);
-        setGenetic("tailLength", 0);
-        setGenetic("neckCurve", 0);
-        setGenetic("neckPos", 0);
-        setGenetic("neckLength", 0);
-        setGenetic("headType", 0);
-        setGenetic("headSize", 0);
-        setGenetic("earSize", 0);
     }
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
-
+        LOGGER.info("Finalizing Spawn: " + level + " / " + difficulty + " / " + spawnType  + " / " +  spawnGroupData);
+        this.setGenetic("hoofSize", 0);
+        this.setGenetic("legWidth", 0);
+        this.setGenetic("bottomLeg", 0);
+        this.setGenetic("topLeg", 0);
+        this.setGenetic("muscleMass", 0);
+        this.setGenetic("chestSize", 0);
+        this.setGenetic("backLength", 0);
+        this.setGenetic("withers", 0);
+        this.setGenetic("stomachCurve", 0);
+        this.setGenetic("backHeight", 0);
+        this.setGenetic("tailSet", 0);
+        this.setGenetic("tailLength", 0);
+        this.setGenetic("neckCurve", 0);
+        this.setGenetic("neckPos", 0);
+        this.setGenetic("neckLength", 0);
+        this.setGenetic("headType", 0);
+        this.setGenetic("headSize", 0);
+        this.setGenetic("earSize", 0);
         this.randomizeGenetics();
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
+    }
+
+    @Override
+    protected void onOffspringSpawnedFromEgg(Player player, Mob child) {
+        LOGGER.info("Spawned Child from Egg: " + player + " / " + child);
+        super.onOffspringSpawnedFromEgg(player, child);
+    }
+
+    @Override
+    public void finalizeSpawnChildFromBreeding(ServerLevel level, Animal animal, @Nullable AgeableMob baby) {
+        LOGGER.info("Spawned Child from Breeding: " + level + " / " + animal + " / " + baby);
+        super.finalizeSpawnChildFromBreeding(level, animal, baby);
     }
 
     @Override
@@ -90,19 +108,107 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         return stack.is(ModItems.TIMOTHY_HAY.get());
     }
 
-    //Do not need goals?
-//    @Override
-//    protected void registerGoals() {
-//        super.registerGoals();
-//        this.goalSelector.addGoal(0, new FloatGoal(this));
-//        this.goalSelector.addGoal(1, new PanicGoal(this, 1.25));
-//        this.goalSelector.addGoal(3, new BreedGoal(this, 1.0));
-//        this.goalSelector.addGoal(4, new TemptGoal(this, 1.2, p_336182_ -> p_336182_.is(ModItems.BARLEY_SEEDS), false));
-//        this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.1));
-//        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0));
-//        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
-//        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-//    }
+    @Override
+    public boolean handleEating(Player player, ItemStack stack) {
+        boolean flag = false;
+        float f = 0.0F;
+        int i = 0;
+        int j = 0;
+        if (stack.is(Items.WHEAT)) {
+            f = 2.0F;
+            i = 20;
+            j = 3;
+        } else if (stack.is(Items.SUGAR)) {
+            f = 1.0F;
+            i = 30;
+            j = 3;
+        } else if (stack.is(Blocks.HAY_BLOCK.asItem())) {
+            f = 20.0F;
+            i = 180;
+        } else if (stack.is(Items.APPLE)) {
+            f = 3.0F;
+            i = 60;
+            j = 3;
+        } else if (stack.is(Items.GOLDEN_CARROT)) {
+            f = 4.0F;
+            i = 60;
+            j = 5;
+            if (!this.level().isClientSide && this.isTamed() && this.getAge() == 0 && !this.isInLove()) {
+                flag = true;
+                this.setInLove(player);
+            }
+        } else if (stack.is(ModItems.TIMOTHY_HAY.get()) || stack.is(Items.ENCHANTED_GOLDEN_APPLE)) {
+            f = 10.0F;
+            i = 240;
+            j = 10;
+            if (!this.level().isClientSide && this.isTamed() && this.getAge() == 0 && !this.isInLove()) {
+                flag = true;
+                this.setInLove(player);
+            }
+        }
+
+        if (this.getHealth() < this.getMaxHealth() && f > 0.0F) {
+            this.heal(f);
+            flag = true;
+        }
+
+        if (this.isBaby() && i > 0) {
+            this.level().addParticle(ParticleTypes.HAPPY_VILLAGER, this.getRandomX(1.0), this.getRandomY() + 0.5, this.getRandomZ(1.0), 0.0, 0.0, 0.0);
+            if (!this.level().isClientSide) {
+                this.ageUp(i);
+                flag = true;
+            }
+        }
+
+        if (j > 0 && (flag || !this.isTamed()) && this.getTemper() < this.getMaxTemper() && !this.level().isClientSide) {
+            this.modifyTemper(j);
+            flag = true;
+        }
+
+        if (flag) {
+            this.eat();
+            this.gameEvent(GameEvent.EAT);
+        }
+
+        return flag;
+    }
+
+    private void eat() {
+        if (!this.isSilent()) {
+            SoundEvent soundevent = this.getEatingSound();
+            if (soundevent != null) {
+                this.level()
+                        .playSound(
+                                null,
+                                this.getX(),
+                                this.getY(),
+                                this.getZ(),
+                                soundevent,
+                                this.getSoundSource(),
+                                1.0F,
+                                1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F
+                        );
+            }
+        }
+    }
+
+    @Override
+    protected void registerGoals() {
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new PanicGoal(this, 1.2));
+        this.goalSelector.addGoal(2, new RunAroundLikeCrazyGoal(this, 1.2));
+        this.goalSelector.addGoal(3, new BreedGoal(this, 1.0));
+        this.goalSelector.addGoal(4, new TemptGoal(this, 1.25, stack -> stack.is(ItemTags.HORSE_TEMPT_ITEMS), false));
+        this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.0));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 0.7));
+        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+    }
+
+    @Override
+    public boolean canMate(Animal otherAnimal) {
+        return true;
+    }
 
     public static AttributeSupplier.Builder createAttributes() {
         return Animal.createLivingAttributes()
@@ -139,14 +245,26 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                 }
 
                 if (!this.isTamed()) {
-                    this.makeMad();
                     return InteractionResult.sidedSuccess(this.level().isClientSide);
                 }
             }
-
             return super.mobInteract(pPlayer, pHand);
         } else {
             return super.mobInteract(pPlayer, pHand);
+        }
+    }
+
+    @Override
+    public InteractionResult fedFood(Player player, ItemStack stack) {
+        boolean flag = this.handleEating(player, stack);
+        if (flag) {
+            stack.consume(1, player);
+        }
+
+        if (this.level().isClientSide) {
+            return InteractionResult.CONSUME;
+        } else {
+            return flag ? InteractionResult.SUCCESS : InteractionResult.PASS;
         }
     }
 
@@ -171,10 +289,11 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 //            this.GENETICS.put(entry.getKey(), tag.getInt(entry.getKey()));
 //            LOGGER.info("Reading Save Data: " + entry.getKey(), tag.getInt(entry.getKey()));
 //        }
+        super.readAdditionalSaveData(tag);
         Set<String> keys = GENETICS.keySet();
         for(String key : keys){
             int value = GENETICS.get(key);
-            setGenetic(key, tag.getInt(key));
+            this.setGenetic(key, tag.getInt(key));
             LOGGER.info("Adding Save Data: " + key + value);
         }
     }
@@ -186,6 +305,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 //            LOGGER.info("Adding Save Data: " + entry.getKey(), entry.getValue());
 //        }
 
+        super.addAdditionalSaveData(tag);
         Set<String> keys = GENETICS.keySet();
         for(String key : keys){
             int value = GENETICS.get(key);
@@ -224,27 +344,27 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     /* GENETICS */
     public void randomizeGenetics(){
         Random random = new Random();
-        setGenetic("hoofSize", random.nextInt(maxHoofSize) + 1);
-        setGenetic("legWidth", random.nextInt(maxLegWidth) + 1);
-        setGenetic("bottomLeg", random.nextInt(maxBottomLeg) + 1);
-        setGenetic("topLeg", random.nextInt(maxTopLeg) + 1);
-        setGenetic("muscleMass", random.nextInt(maxMuscleMass) + 1);
-        setGenetic("chestSize", random.nextInt(maxChestSize) + 1);
-        setGenetic("backLength", random.nextInt(maxBackLength) + 1);
-        setGenetic("withers", random.nextInt(maxWithers) + 1);
-        setGenetic("stomachCurve", random.nextInt(maxStomachCurve) + 1);
-        setGenetic("backHeight", random.nextInt(maxBackHeight) + 1);
-        setGenetic("tailSet", random.nextInt(maxTailSet) + 1);
-        setGenetic("tailLength", random.nextInt(maxTailLength) + 1);
-        setGenetic("neckCurve", random.nextInt(maxNeckCurve) + 1);
-        setGenetic("neckPos", random.nextInt(maxNeckPos) + 1);
-        setGenetic("neckLength", random.nextInt(maxNeckLength) + 1);
-        setGenetic("headType", random.nextInt(maxHeadType) + 1);
-        setGenetic("headSize", random.nextInt(maxHeadSize) + 1);
-        setGenetic("earSize", random.nextInt(maxEarSize) + 1);
+        this.setGenetic("hoofSize", random.nextInt(maxHoofSize) + 1);
+        this.setGenetic("legWidth", random.nextInt(maxLegWidth) + 1);
+        this.setGenetic("bottomLeg", random.nextInt(maxBottomLeg) + 1);
+        this.setGenetic("topLeg", random.nextInt(maxTopLeg) + 1);
+        this.setGenetic("muscleMass", random.nextInt(maxMuscleMass) + 1);
+        this.setGenetic("chestSize", random.nextInt(maxChestSize) + 1);
+        this.setGenetic("backLength", random.nextInt(maxBackLength) + 1);
+        this.setGenetic("withers", random.nextInt(maxWithers) + 1);
+        this.setGenetic("stomachCurve", random.nextInt(maxStomachCurve) + 1);
+        this.setGenetic("backHeight", random.nextInt(maxBackHeight) + 1);
+        this.setGenetic("tailSet", random.nextInt(maxTailSet) + 1);
+        this.setGenetic("tailLength", random.nextInt(maxTailLength) + 1);
+        this.setGenetic("neckCurve", random.nextInt(maxNeckCurve) + 1);
+        this.setGenetic("neckPos", random.nextInt(maxNeckPos) + 1);
+        this.setGenetic("neckLength", random.nextInt(maxNeckLength) + 1);
+        this.setGenetic("headType", random.nextInt(maxHeadType) + 1);
+        this.setGenetic("headSize", random.nextInt(maxHeadSize) + 1);
+        this.setGenetic("earSize", random.nextInt(maxEarSize) + 1);
     }
 
-    public int getGenetic(String key) {
+    public int validateGenetic(String key) {
         int value;
         try {
             value = GENETICS.get(key);

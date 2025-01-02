@@ -14,10 +14,22 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 
 public class TestEntityModel extends HierarchicalModel<TestEntityEntity> {
     private final ModelPart main;
+    private final ModelPart arabian;
+    private final ModelPart charger;
+    private final ModelPart mongolian;
+    private final ModelPart turkoman;
+    private final ModelPart part_a;
+    private final ModelPart part_b;
 //    private final ModelPart head;
 
     public TestEntityModel(ModelPart root) {
         this.main = root.getChild("main");
+        this.arabian = main.getChild("arabian");
+        this.charger = main.getChild("charger");
+        this.mongolian = main.getChild("mongolian");
+        this.turkoman = main.getChild("turkoman");
+        this.part_a = main.getChild("part_a");
+        this.part_b = main.getChild("part_b");
 //        this.head = main.getChild("body").getChild("torso").getChild("chest").getChild("neck").getChild("head");
     }
 
@@ -32,11 +44,10 @@ public class TestEntityModel extends HierarchicalModel<TestEntityEntity> {
         PartDefinition part_a = main.addOrReplaceChild("part_a", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
         PartDefinition part_b = main.addOrReplaceChild("part_b", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-//        ArabianModel.GeneratePartModel(main);
-//        ChargerModel.GeneratePartModel(main);
-//        MongolianModel.GeneratePartModel(main);
-//        TurkomanModel.GeneratePartModel(main);
-
+        ArabianModel.GeneratePartModel(main);
+        ChargerModel.GeneratePartModel(main);
+        MongolianModel.GeneratePartModel(main);
+        TurkomanModel.GeneratePartModel(main);
         TestPartA.GeneratePartModel(part_a);
         TestPartB.GeneratePartModel(part_b);
 
@@ -61,6 +72,14 @@ public class TestEntityModel extends HierarchicalModel<TestEntityEntity> {
 
         this.animateWalk(TestEntityAnimations.walking, limbSwing, limbSwingAmount, 2f, 2.5f);
         this.animate(entity.idleAnimationState, TestEntityAnimations.idle, ageInTicks, 1);
+
+        arabian.visible = false;
+        charger.visible = false;
+        mongolian.visible = false;
+        turkoman.visible = false;
+
+        part_a.visible = true;
+        part_b.visible = true;
     }
 
 //    private void applyHeadRotation(float headYaw, float headPitch) {

@@ -1,7 +1,12 @@
 package net.buckleystudios.equigen.entity.custom;
 
+import net.buckleystudios.equigen.entity.ModEntities;
+import net.buckleystudios.equigen.item.ModItems;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
@@ -12,12 +17,14 @@ import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Pillager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 
-public class TestEntityEntity extends Monster {
+public class TestEntityEntity extends TamableAnimal {
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
-    public TestEntityEntity(EntityType<? extends Monster> entityType, Level level) {
+    public TestEntityEntity(EntityType<? extends TamableAnimal> entityType, Level level) {
         super(entityType, level);
     }
 
@@ -55,5 +62,15 @@ public class TestEntityEntity extends Monster {
         if(this.level().isClientSide){
             this.setupAnimationStates();
         }
+    }
+
+    @Override
+    public boolean isFood(ItemStack stack) {
+        return stack.is(ModItems.CORN.get());
+    }
+
+    @Override
+    public @Nullable AgeableMob getBreedOffspring(ServerLevel level, AgeableMob otherParent) {
+        return ModEntities.TEST_ENTITY.get().create(level);
     }
 }
