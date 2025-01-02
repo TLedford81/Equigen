@@ -9,7 +9,7 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
 
-public class GeneticHorseModel extends HierarchicalModel<GeneticHorseEntity> {
+public class GeneticHorseModel <T extends GeneticHorseEntity> extends HierarchicalModel<T> {
 
     private final ModelPart body;
     private final ModelPart head;
