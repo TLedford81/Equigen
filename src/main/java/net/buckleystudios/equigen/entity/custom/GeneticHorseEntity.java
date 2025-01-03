@@ -69,24 +69,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
         LOGGER.info("Finalizing Spawn: " + level + " / " + difficulty + " / " + spawnType  + " / " +  spawnGroupData);
-        this.setGenetic("hoofSize", 0);
-        this.setGenetic("legWidth", 0);
-        this.setGenetic("bottomLeg", 0);
-        this.setGenetic("topLeg", 0);
-        this.setGenetic("muscleMass", 0);
-        this.setGenetic("chestSize", 0);
-        this.setGenetic("backLength", 0);
-        this.setGenetic("withers", 0);
-        this.setGenetic("stomachCurve", 0);
-        this.setGenetic("backHeight", 0);
-        this.setGenetic("tailSet", 0);
-        this.setGenetic("tailLength", 0);
-        this.setGenetic("neckCurve", 0);
-        this.setGenetic("neckPos", 0);
-        this.setGenetic("neckLength", 0);
-        this.setGenetic("headType", 0);
-        this.setGenetic("headSize", 0);
-        this.setGenetic("earSize", 0);
         this.randomizeGenetics();
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }
@@ -94,12 +76,30 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     @Override
     protected void onOffspringSpawnedFromEgg(Player player, Mob child) {
         LOGGER.info("Spawned Child from Egg: " + player + " / " + child);
+        if (child instanceof GeneticHorseEntity) {
+            GeneticHorseEntity geneticHorseChild = (GeneticHorseEntity) child;  // Cast to the specific entity class
+
+            // Randomize the genetics for the spawned baby
+            geneticHorseChild.randomizeGenetics();
+
+            // Log that the genetics have been randomized for the new entity
+            LOGGER.info("Genetics randomized for GeneticHorseEntity offspring.");
+        }
         super.onOffspringSpawnedFromEgg(player, child);
     }
 
     @Override
     public void finalizeSpawnChildFromBreeding(ServerLevel level, Animal animal, @Nullable AgeableMob baby) {
         LOGGER.info("Spawned Child from Breeding: " + level + " / " + animal + " / " + baby);
+        if (baby instanceof GeneticHorseEntity) {
+            GeneticHorseEntity geneticHorseBaby = (GeneticHorseEntity) baby;  // Cast to the specific entity class
+
+            // Randomize the genetics for the spawned baby
+            geneticHorseBaby.randomizeGenetics();
+
+            // Log that the genetics have been randomized for the new entity
+            LOGGER.info("Genetics randomized for GeneticHorseEntity offspring.");
+        }
         super.finalizeSpawnChildFromBreeding(level, animal, baby);
     }
 
@@ -367,18 +367,18 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public int validateGenetic(String key) {
         int value;
         try {
-            value = GENETICS.get(key);
+            value = this.GENETICS.get(key);
         } catch (NullPointerException e){
             value = 0;
-            LOGGER.error(e.toString());
+//            LOGGER.error(e.toString());
             LOGGER.error("Genetic Code Not Found for Key: " + key);
         }
-        LOGGER.info("Getting Geneic: " + key + " / " + value);
+//        LOGGER.info("Getting Geneic: " + key + " / " + value);
         return value;
     }
 
     public void setGenetic(String key, int number) {
-        LOGGER.info("Setting Geneic: " + key + " / " + number);
+//        LOGGER.info("Setting Geneic: " + key + " / " + number);
         this.GENETICS.put(key, number);
     }
 }

@@ -8,6 +8,7 @@ import net.buckleystudios.equigen.entity.client.*;
 import net.buckleystudios.equigen.item.ModItems;
 import net.buckleystudios.equigen.screen.Infusion_Table.InfusionTableScreen;
 import net.buckleystudios.equigen.screen.ModMenuTypes;
+import net.buckleystudios.equigen.screen.Test_Entity.TestEntityScreen;
 import net.buckleystudios.equigen.sound.ModSounds;
 import net.buckleystudios.equigen.villager.ModVillagers;
 import net.minecraft.client.renderer.BiomeColors;
@@ -32,7 +33,7 @@ import org.slf4j.Logger;
 @Mod(EquigenMod.MODID)
 public class EquigenMod {
     public static final String MODID = "equigen";
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public EquigenMod(IEventBus modEventBus) {
         //REGISTRIES
@@ -83,6 +84,7 @@ public class EquigenMod {
         @SubscribeEvent
         public static void registerScreens(RegisterMenuScreensEvent event){
             event.register(ModMenuTypes.INFUSION_TABLE_MENU.get(), InfusionTableScreen::new);
+            event.register(ModMenuTypes.TEST_ENTITY_MENU.get(), TestEntityScreen::new);
         }
 
         @SubscribeEvent

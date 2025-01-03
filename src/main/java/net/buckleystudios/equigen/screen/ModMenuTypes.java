@@ -2,6 +2,7 @@ package net.buckleystudios.equigen.screen;
 
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.screen.Infusion_Table.InfusionTableMenu;
+import net.buckleystudios.equigen.screen.Test_Entity.TestEntityMenu;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
@@ -15,6 +16,8 @@ public class ModMenuTypes {
 
     public static final DeferredHolder<MenuType<?>, MenuType<InfusionTableMenu>> INFUSION_TABLE_MENU =
             registerMenuType(InfusionTableMenu::new, "infusion_table_menu");
+    public static final DeferredHolder<MenuType<?>, MenuType<TestEntityMenu>> TEST_ENTITY_MENU =
+            registerMenuType(TestEntityMenu::create, "test_entity_menu");
 
     private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(IContainerFactory<T> factory, String name) {
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));

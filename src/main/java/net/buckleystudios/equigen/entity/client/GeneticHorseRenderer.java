@@ -25,9 +25,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
     @Override
     public void render(GeneticHorseEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
         if(entity.isBaby()){
-//            poseStack.scale(0.5f, 0.6f, 0.5f);
-            int x = entity.validateGenetic("hoofSize");
-            poseStack.scale(x, 0.6f, 0.5f);
+            poseStack.scale(0.5f, 0.6f, 0.5f);
         }
         super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
     }

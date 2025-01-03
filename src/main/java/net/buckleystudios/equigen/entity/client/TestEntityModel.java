@@ -2,6 +2,7 @@ package net.buckleystudios.equigen.entity.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.buckleystudios.equigen.command.TestCommand;
 import net.buckleystudios.equigen.entity.client.parts.*;
 import net.buckleystudios.equigen.entity.custom.TestEntityEntity;
 import net.minecraft.client.model.HierarchicalModel;
@@ -20,6 +21,7 @@ public class TestEntityModel extends HierarchicalModel<TestEntityEntity> {
     private final ModelPart turkoman;
     private final ModelPart part_a;
     private final ModelPart part_b;
+    private final ModelPart smeg;
 //    private final ModelPart head;
 
     public TestEntityModel(ModelPart root) {
@@ -30,6 +32,8 @@ public class TestEntityModel extends HierarchicalModel<TestEntityEntity> {
         this.turkoman = main.getChild("turkoman");
         this.part_a = main.getChild("part_a");
         this.part_b = main.getChild("part_b");
+        this.smeg = part_a.getChild("main").getChild("smeg");
+
 //        this.head = main.getChild("body").getChild("torso").getChild("chest").getChild("neck").getChild("head");
     }
 
@@ -44,10 +48,10 @@ public class TestEntityModel extends HierarchicalModel<TestEntityEntity> {
         PartDefinition part_a = main.addOrReplaceChild("part_a", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
         PartDefinition part_b = main.addOrReplaceChild("part_b", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-        ArabianModel.GeneratePartModel(main);
-        ChargerModel.GeneratePartModel(main);
-        MongolianModel.GeneratePartModel(main);
-        TurkomanModel.GeneratePartModel(main);
+        ArabianModel.GeneratePartModel(arabian);
+        ChargerModel.GeneratePartModel(charger);
+        MongolianModel.GeneratePartModel(mongolian);
+        TurkomanModel.GeneratePartModel(turkoman);
         TestPartA.GeneratePartModel(part_a);
         TestPartB.GeneratePartModel(part_b);
 
@@ -73,13 +77,17 @@ public class TestEntityModel extends HierarchicalModel<TestEntityEntity> {
         this.animateWalk(TestEntityAnimations.walking, limbSwing, limbSwingAmount, 2f, 2.5f);
         this.animate(entity.idleAnimationState, TestEntityAnimations.idle, ageInTicks, 1);
 
-        arabian.visible = false;
-        charger.visible = false;
-        mongolian.visible = false;
+        arabian.visible = entity.hasTier1Chest();
+        charger.visible = entity.hasTier2Chest();
+        mongolian.visible = entity.hasTier3Chest();
         turkoman.visible = false;
 
-        part_a.visible = true;
-        part_b.visible = true;
+        part_a.visible = TestCommand.isTesting();
+        part_b.visible = TestCommand.isTesting();
+        smeg.visible = TestCommand.isTesting();
+        smeg.xScale = (float) TestCommand.getSmegSize().x();
+        smeg.yScale = (float) TestCommand.getSmegSize().y();
+        smeg.zScale = (float) TestCommand.getSmegSize().z();
     }
 
 //    private void applyHeadRotation(float headYaw, float headPitch) {
