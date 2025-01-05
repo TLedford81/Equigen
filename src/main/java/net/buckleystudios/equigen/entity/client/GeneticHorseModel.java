@@ -2,6 +2,7 @@ package net.buckleystudios.equigen.entity.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.buckleystudios.equigen.command.TestCommand;
 import net.buckleystudios.equigen.entity.client.parts.HeadModelParts;
 import net.buckleystudios.equigen.entity.client.parts.LegModelParts;
 import net.buckleystudios.equigen.entity.client.parts.TorsoModelParts;
@@ -9,11 +10,18 @@ import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
+import net.minecraft.world.phys.Vec3;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class GeneticHorseModel <T extends GeneticHorseEntity> extends HierarchicalModel<T> {
-
+    public static Map<String, Vec3> PART_POSITIONS = new HashMap<String, Vec3>();
     private final ModelPart main;
     private final ModelPart rootChestAverage;
     private final ModelPart rootBackAverageLong;
@@ -322,6 +330,54 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
         applyHeadRotation(netHeadYaw, headPitch);
         this.animateWalk(GeneticHorseAnimations.walking, limbSwing, limbSwingAmount, 2f, 2.5f);
         this.animate(entity.idleAnimationState, GeneticHorseAnimations.idle, ageInTicks, 1);
+        MovePart(TestCommand.getNewTargetPart(), TestCommand.getNewPartPosition());
+//        EquigenMod.LOGGER.info("Moving " + TestCommand.getNewTargetPart() + " to " + TestCommand.getNewPartPosition() + " (In Model File)");
+    }
+
+    public void MovePart(String part, Vec3 newPos) {
+        if (!part.isEmpty()) {
+            PART_POSITIONS.put(part, newPos);
+        }
+         PART_POSITIONS.putIfAbsent("chest", Vec3.ZERO);
+         PART_POSITIONS.putIfAbsent("back", Vec3.ZERO);
+         PART_POSITIONS.putIfAbsent("hips", Vec3.ZERO);
+         PART_POSITIONS.putIfAbsent("stomach", Vec3.ZERO);
+         PART_POSITIONS.putIfAbsent("tail", Vec3.ZERO);
+         PART_POSITIONS.putIfAbsent("withers", Vec3.ZERO);
+         PART_POSITIONS.putIfAbsent("ears", Vec3.ZERO);
+         PART_POSITIONS.putIfAbsent("neck", Vec3.ZERO);
+         PART_POSITIONS.putIfAbsent("head", Vec3.ZERO);
+         PART_POSITIONS.putIfAbsent("topfrontleg", Vec3.ZERO);
+         PART_POSITIONS.putIfAbsent("topbackleg", Vec3.ZERO);
+         PART_POSITIONS.putIfAbsent("bottomleg", Vec3.ZERO);
+         PART_POSITIONS.putIfAbsent("hoof", Vec3.ZERO);
+
+        Vec3 chestPostion = PART_POSITIONS.get("chest");
+        rootChestAverage.setPos((float) chestPostion.x, (float) chestPostion.y, (float) chestPostion.z);
+        Vec3 backPosition = PART_POSITIONS.get("back");
+        rootBackAverageLong.setPos((float) backPosition.x, (float) backPosition.y, (float) backPosition.z);
+        Vec3 hipsPosition = PART_POSITIONS.get("hips");
+        rootHipsAverage.setPos((float) hipsPosition.x, (float) hipsPosition.y, (float) hipsPosition.z);
+        Vec3 stomachPosition = PART_POSITIONS.get("stomach");
+        rootStomachAverage.setPos((float) stomachPosition.x, (float) stomachPosition.y, (float) stomachPosition.z);
+        Vec3 tailPosition = PART_POSITIONS.get("tail");
+        rootTailAverageMedium.setPos((float) tailPosition.x, (float) tailPosition.y, (float) tailPosition.z);
+        Vec3 withersPosition = PART_POSITIONS.get("withers");
+        rootWithersMedium.setPos((float) withersPosition.x, (float) withersPosition.y, (float) withersPosition.z);
+        Vec3 earsPosition = PART_POSITIONS.get("ears");
+        rootEarsAverage.setPos((float) earsPosition.x, (float) earsPosition.y, (float) earsPosition.z);
+        Vec3 neckPosition = PART_POSITIONS.get("neck");
+        rootNeckEwedShort.setPos((float) neckPosition.x, (float) neckPosition.y, (float) neckPosition.z);
+        Vec3 headPosition = PART_POSITIONS.get("head");
+        rootHeadStraight.setPos((float) headPosition.x, (float) headPosition.y, (float) headPosition.z);
+        Vec3 tfLegPosition = PART_POSITIONS.get("topfrontleg");
+        rootTopFrontLegLongThick.setPos((float) tfLegPosition.x, (float) tfLegPosition.y, (float) tfLegPosition.z);
+        Vec3 tbLegPosition = PART_POSITIONS.get("topbackleg");
+        rootTopBackLegLongAverage.setPos((float) tbLegPosition.x, (float) tbLegPosition.y, (float) tbLegPosition.z);
+        Vec3 bottomLegPosition = PART_POSITIONS.get("bottomleg");
+        rootBottomLegLongThin.setPos((float) bottomLegPosition.x, (float) bottomLegPosition.y, (float) bottomLegPosition.z);
+        Vec3 hoofPosition = PART_POSITIONS.get("hoof");
+        rootHoofLarge.setPos((float) hoofPosition.x, (float) hoofPosition.y, (float) hoofPosition.z);
     }
 
     @Override
