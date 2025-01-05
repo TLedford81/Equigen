@@ -54,7 +54,7 @@ public class TestCommand {
 
         if(ValidPart(targetPart)) {
             newTargetPart = targetPart;
-            newPartPosition = new Vec3(position.x * 0.83, position.y * 0.83, position.z * 0.83);
+            newPartPosition = new Vec3(position.x, position.y, position.z);
             EquigenMod.LOGGER.info("Moving " + newTargetPart + " to " + position + " (In Command File)");
         }
 
