@@ -11,7 +11,6 @@ public class BottomLegModelParts{
             returnedRoots[0] = upperRoot;
             returnedRoots[1] = lowerRoot;
             return returnedRoots;
-
         } else {
             EquigenMod.LOGGER.error("Invalid Part Generated: Bottom Leg / " + length + " / " + thickness + ", Returning Null Value");
             return null;

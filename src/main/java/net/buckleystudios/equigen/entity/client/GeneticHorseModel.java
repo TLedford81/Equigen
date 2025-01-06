@@ -154,11 +154,13 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
         PartDefinition rootHindLegHoofRight = rootLowerBottomHindLegRight.addOrReplaceChild("rootHindLegHoofRight", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
         //Generate Parts
-        ChestModelParts.Generate(main, "average");
-        BottomLegModelParts.Generate(rootUpperBottomForeLegLeft, rootLowerBottomForeLegLeft, "long", "thin", 0);
-        WithersModelParts.Generate(rootWithers, "average", "average");
-        HeadModelParts.Generate(rootHead, "straight");
-        NeckModelParts.Generate(rootNeck, "average", "ewed", "short", 1);
+        rootChest = ChestModelParts.Generate(rootChest, "average");
+        PartDefinition[] parts = BottomLegModelParts.Generate(rootUpperBottomForeLegLeft, rootLowerBottomForeLegLeft, "long", "thin", 0);
+        rootUpperBottomForeLegLeft = parts[0];
+        rootLowerBottomForeLegLeft = parts[1];
+        rootWithers = WithersModelParts.Generate(rootWithers, "average", "average");
+        rootHead = HeadModelParts.Generate(rootHead, "straight");
+        rootNeck = NeckModelParts.Generate(rootNeck, "average", "ewed", "short", 1);
 
         return LayerDefinition.create(meshdefinition, 128, 128);
     }
@@ -171,7 +173,11 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
         applyHeadRotation(netHeadYaw, headPitch);
         this.animateWalk(GeneticHorseAnimations.walking, limbSwing, limbSwingAmount, 2f, 2.5f);
         this.animate(entity.idleAnimationState, GeneticHorseAnimations.idle, ageInTicks, 1);
+
         MovePart(TestCommand.getNewTargetPart(), TestCommand.getNewPartPosition());
+
+        //Disable Parts by Default
+        rootChest.getChild("chest2").visible = false;
    }
 
     public void MovePart(String part, Vector3f newPos) {

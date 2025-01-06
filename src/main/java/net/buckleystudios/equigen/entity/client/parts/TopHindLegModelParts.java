@@ -8,6 +8,9 @@ public class TopHindLegModelParts {
         if (width.equals("average") && thickness.equals("short") && length.equals("") && variation == 0) {
             //Insert Model Here
             return root;
+        } else if (width.equals("") && thickness.equals("") && length.equals("") && variation == 0) {
+            //Insert Model Here
+            return root;
         } else {
             EquigenMod.LOGGER.error("Invalid Part Generated: Top Hindlegs / " + width + " / " + thickness + " / " + length + " / Variation " + variation + ", Returning Null Value");
             return null;
