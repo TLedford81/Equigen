@@ -3,7 +3,8 @@ package net.buckleystudios.equigen.entity.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.command.TestCommand;
-import net.buckleystudios.equigen.entity.client.parts.*;
+import net.buckleystudios.equigen.entity.client.parts.ChestModelParts;
+import net.buckleystudios.equigen.entity.client.parts.StomachModelParts;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -21,7 +22,7 @@ import java.util.Map;
 public class GeneticHorseModel <T extends GeneticHorseEntity> extends HierarchicalModel<T> {
     public static Map<String, Vector3f> PART_POSITIONS = new HashMap<String, Vector3f>();
     private final ModelPart main;
-    private final ModelPart rootChest;
+    public final ModelPart rootChest;
     private final ModelPart rootForeLegLeft;
     private final ModelPart rootTopForeLegLeft;
     private final ModelPart rootForeLegKneeLeft;
@@ -130,7 +131,7 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
         PartDefinition rootEars = rootHead.addOrReplaceChild("rootEars", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
         /* Back */
-        PartDefinition rootBack = main.addOrReplaceChild("rootBack", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+        PartDefinition rootBack = main.addOrReplaceChild("rootBack", CubeListBuilder.create(), PartPose.offset(-0.9258F, 24.0F, 0.0F));
         PartDefinition rootStomach = rootBack.addOrReplaceChild("rootStomach", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
         PartDefinition rootWithers = rootBack.addOrReplaceChild("rootWithers", CubeListBuilder.create(), PartPose.offset(3.0776F, 20.9609F, -0.4005F));
 
@@ -154,15 +155,49 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
         PartDefinition rootHindLegHoofRight = rootLowerBottomHindLegRight.addOrReplaceChild("rootHindLegHoofRight", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
         //Generate Parts
-        rootChest = ChestModelParts.Generate(rootChest, "average");
-        PartDefinition[] parts = BottomLegModelParts.Generate(rootUpperBottomForeLegLeft, rootLowerBottomForeLegLeft, "long", "thin", 0);
-        rootUpperBottomForeLegLeft = parts[0];
-        rootLowerBottomForeLegLeft = parts[1];
-        rootWithers = WithersModelParts.Generate(rootWithers, "average", "average");
-        rootHead = HeadModelParts.Generate(rootHead, "straight");
-        rootNeck = NeckModelParts.Generate(rootNeck, "average", "ewed", "short", 1);
+//        PartDefinition[] tflParts_AverageShortA = TopForeLegModelParts.Generate(rootTopHindLegLeft, rootTopHindLegRight, "average", "short", 1);
+//        rootTopHindLegLeft = tflParts_AverageShortA[0];
+//        rootTopHindLegRight = tflParts_AverageShortA[1];
+//
+//        PartDefinition[] tfrParts_AverageShortA = TopHindLegModelParts.Generate(rootTopForeLegLeft, rootTopForeLegRight, "average", "short", 1);
+//        rootTopForeLegLeft = tfrParts_AverageShortA[0];
+//        rootTopForeLegRight = tfrParts_AverageShortA[1];
+//
+        rootChest = ChestModelParts.Generate(rootChest, "lean", "small", 1);
+        rootStomach = StomachModelParts.Generate(rootStomach, "lean", "short", "medium");
+//        rootHips = HipsModelParts.Generate(rootHips, "lean", "small", 1);
+//
+//        PartDefinition[] hoofParts_Average = HoofModelParts.Generate(rootForeLegHoofLeft, rootForeLegHoofRight, rootHindLegHoofLeft, rootHindLegHoofRight, "average");
+//        rootForeLegHoofLeft = hoofParts_Average[0];
+//        rootForeLegHoofRight = hoofParts_Average[1];
+//        rootHindLegHoofLeft = hoofParts_Average[2];
+//        rootHindLegHoofRight = hoofParts_Average[3];
+//
+//        PartDefinition[] knees_all = KneeModelParts.Generate(rootForeLegKneeLeft, rootForeLegKneeRight, rootHindLegKneeLeft, rootHindLegKneeRight);
+//        rootForeLegKneeLeft = knees_all[0];
+//        rootForeLegKneeRight = knees_all[1];
+//        rootHindLegKneeLeft = knees_all[2];
+//        rootHindLegKneeRight = knees_all[3];
+//
+//        rootStomach = StomachModelParts.Generate(rootStomach, "lean", "short", "low");
+//        rootWithers = WithersModelParts.Generate(rootWithers, "lean");
+//
+//        PartDefinition[] blParts_ThinShortA = BottomLegModelParts.Generate(
+//                rootUpperBottomForeLegLeft, rootUpperBottomHindLegLeft, rootUpperBottomForeLegRight, rootUpperBottomHindLegRight,
+//                rootLowerBottomForeLegLeft, rootLowerBottomHindLegLeft, rootLowerBottomForeLegRight, rootLowerBottomHindLegRight,
+//                "thin", "short", 1);
+//        rootUpperBottomForeLegLeft = blParts_ThinShortA[0];
+//        rootUpperBottomHindLegLeft = blParts_ThinShortA[1];
+//        rootUpperBottomForeLegRight = blParts_ThinShortA[2];
+//        rootUpperBottomHindLegRight = blParts_ThinShortA[3];
+//        rootLowerBottomForeLegLeft = blParts_ThinShortA[4];
+//        rootLowerBottomHindLegLeft = blParts_ThinShortA[5];
+//        rootLowerBottomForeLegRight = blParts_ThinShortA[6];
+//        rootLowerBottomHindLegRight = blParts_ThinShortA[7];
+//
+//        rootNeck = NeckModelParts.Generate(rootNeck, "average", "ewed", "short", 1);
 
-        return LayerDefinition.create(meshdefinition, 128, 128);
+        return LayerDefinition.create(meshdefinition, 1024, 1024);
     }
 
 
@@ -176,9 +211,10 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
 
         MovePart(TestCommand.getNewTargetPart(), TestCommand.getNewPartPosition());
 
-        //Disable Parts by Default
-        rootChest.getChild("chest2").visible = false;
-   }
+        rootChest.getChild("chest_lean_small_1").visible = entity.isGeneticActive("CHEST_SIZE", 1);
+        rootStomach.getChild("stomach_lean_short_medium").visible = entity.isGeneticActive(
+                "STOMACH_CURVE", 2);
+    }
 
     public void MovePart(String part, Vector3f newPos) {
         if (!part.isEmpty()) {
@@ -228,6 +264,7 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
     @Override
     public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
         main.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+
     }
 
     @Override

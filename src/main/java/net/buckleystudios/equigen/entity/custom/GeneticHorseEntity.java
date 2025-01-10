@@ -1,9 +1,14 @@
 package net.buckleystudios.equigen.entity.custom;
 
+import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.ModEntities;
+import net.buckleystudios.equigen.entity.custom.genetics.GeneticValues;
 import net.buckleystudios.equigen.item.ModItems;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -35,32 +40,13 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
-public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJumping{
+public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJumping {
     public static final Logger LOGGER = LoggerFactory.getLogger(GeneticHorseEntity.class);
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
-
+    public static final EntityDataAccessor<String> GENETICS_STRING = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final int geneticCount = GeneticValues.values().length;
     private Map<String, Integer> GENETICS = new HashMap<String, Integer>();
-
-    //Replace with Enum?
-    public int maxHoofSize = 3;
-    public int maxLegWidth = 3;
-    public int maxBottomLeg = 9;
-    public int maxTopLeg = 9;
-    public int maxMuscleMass = 3;
-    public int maxChestSize = 3;
-    public int maxBackLength = 9;
-    public int maxWithers = 3;
-    public int maxStomachCurve = 9;
-    public int maxBackHeight = 3;
-    public int maxTailSet = 3;
-    public int maxTailLength = 6;
-    public int maxNeckCurve = 4;
-    public int maxNeckPos = 3;
-    public int maxNeckLength = 9;
-    public int maxHeadType = 4;
-    public int maxHeadSize = 3;
-    public int maxEarSize = 3;
 
     public GeneticHorseEntity(EntityType<? extends AbstractHorse> entityType, Level level) {
         super(entityType, level);
@@ -68,7 +54,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
-        LOGGER.info("Finalizing Spawn: " + level + " / " + difficulty + " / " + spawnType  + " / " +  spawnGroupData);
+        LOGGER.info("Finalizing Spawn: " + level + " / " + difficulty + " / " + spawnType + " / " + spawnGroupData);
         this.randomizeGenetics();
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }
@@ -271,7 +257,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     @Override
     protected Vec3 getPassengerAttachmentPoint(Entity entity, EntityDimensions dimensions, float partialTick) {
         return super.getPassengerAttachmentPoint(entity, dimensions, partialTick)
-                .add(new Vec3(0.0, 0.65 * (double)partialTick, -0.5 * (double)partialTick)
+                .add(new Vec3(0.0, 0.65 * (double) partialTick, -0.5 * (double) partialTick)
                         .yRot(-this.getYRot() * (float) (Math.PI / 180.0)));
     }
 
@@ -285,26 +271,37 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
-//        for (Map.Entry<String, Integer> entry : GENETICS.entrySet()){
-//            this.GENETICS.put(entry.getKey(), tag.getInt(entry.getKey()));
-//            LOGGER.info("Reading Save Data: " + entry.getKey(), tag.getInt(entry.getKey()));
-//        }
         super.readAdditionalSaveData(tag);
-        Set<String> keys = GENETICS.keySet();
-        for(String key : keys){
-            int value = GENETICS.get(key);
-            this.setGenetic(key, tag.getInt(key));
-            LOGGER.info("Adding Save Data: " + key + value);
+
+//        for(int i = 0; i < geneticCount; i++){
+//            GeneticValues value = GeneticValues.values()[i];
+//            this.setGenetic(value.name(), 0);
+//            EquigenMod.LOGGER.info("Genetic " + value.name() + " set to " + 0);
+//        }
+
+//        Set<String> keys = GENETICS.keySet();
+//        for (String key : keys) {
+//            int value = GENETICS.get(key);
+//            this.setGenetic(key, tag.getInt(key));
+//            LOGGER.info("Adding Save Data: " + key + value);
+//        }
+
+        for (int i = 0; i < geneticCount; i++) {
+            GeneticValues key = GeneticValues.values()[i];
+            this.setGenetic(key.name(), tag.getInt(key.name()));
+            LOGGER.info("Adding Save Data: " + key.name() + tag.getInt(key.name()));
         }
+        this.entityData.set(GENETICS_STRING, tag.getString("GeneticCode"));
+
+        StringBuilder genString = new StringBuilder(this.entityData.get(GENETICS_STRING));
+        while(genString.length() < geneticCount){
+            genString.append("0");
+        }
+        this.entityData.set(GENETICS_STRING, genString.toString());
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag tag) {
-//        for (Map.Entry<String, Integer> entry : GENETICS.entrySet()){
-//            tag.putInt(entry.getKey(), entry.getValue());
-//            LOGGER.info("Adding Save Data: " + entry.getKey(), entry.getValue());
-//        }
-
         super.addAdditionalSaveData(tag);
         Set<String> keys = GENETICS.keySet();
         for(String key : keys){
@@ -312,6 +309,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             tag.putInt(key, value);
             LOGGER.info("Adding Save Data: " + key + value);
         }
+        tag.putString("GeneticCode", this.entityData.get(GENETICS_STRING));
+        tag.putInt("geneticCodeSize", geneticCount);
     }
 
     @Override
@@ -341,44 +340,99 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         return SoundEvents.HORSE_HURT;
     }
 
-    /* GENETICS */
-    public void randomizeGenetics(){
-        Random random = new Random();
-        this.setGenetic("hoofSize", random.nextInt(maxHoofSize) + 1);
-        this.setGenetic("legWidth", random.nextInt(maxLegWidth) + 1);
-        this.setGenetic("bottomLeg", random.nextInt(maxBottomLeg) + 1);
-        this.setGenetic("topLeg", random.nextInt(maxTopLeg) + 1);
-        this.setGenetic("muscleMass", random.nextInt(maxMuscleMass) + 1);
-        this.setGenetic("chestSize", random.nextInt(maxChestSize) + 1);
-        this.setGenetic("backLength", random.nextInt(maxBackLength) + 1);
-        this.setGenetic("withers", random.nextInt(maxWithers) + 1);
-        this.setGenetic("stomachCurve", random.nextInt(maxStomachCurve) + 1);
-        this.setGenetic("backHeight", random.nextInt(maxBackHeight) + 1);
-        this.setGenetic("tailSet", random.nextInt(maxTailSet) + 1);
-        this.setGenetic("tailLength", random.nextInt(maxTailLength) + 1);
-        this.setGenetic("neckCurve", random.nextInt(maxNeckCurve) + 1);
-        this.setGenetic("neckPos", random.nextInt(maxNeckPos) + 1);
-        this.setGenetic("neckLength", random.nextInt(maxNeckLength) + 1);
-        this.setGenetic("headType", random.nextInt(maxHeadType) + 1);
-        this.setGenetic("headSize", random.nextInt(maxHeadSize) + 1);
-        this.setGenetic("earSize", random.nextInt(maxEarSize) + 1);
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(GENETICS_STRING, "");
     }
 
-    public int validateGenetic(String key) {
+
+    /* GENETICS */
+//    public void InitializeGenetics(){
+//        EquigenMod.LOGGER.info(String.valueOf(geneticCount));;
+//        for(int i = 0; i <= geneticCount; i++){
+//            EquigenMod.LOGGER.info("Initializing genetics for index: " + i);
+//            GENETICS[i] = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+//            this.entityData.set(GENETICS[i], GeneticValues.values()[i].name());
+//        }
+//
+//        String list = "";
+//        for (int i = 0; i < geneticCount; i++) {
+//            list += " " + this.entityData.get(GENETICS[i]);
+//        }
+//        EquigenMod.LOGGER.info("Genetic values initialized: " + list);
+//
+//
+//    }
+
+    public void randomizeGenetics(){
+        Random random = new Random();
+        for(int i = 0; i < geneticCount; i++){
+            GeneticValues value = GeneticValues.values()[i];
+            int randomNum = random.nextInt(value.getMaxSize()) + 1;
+            this.setGenetic(value.name(), randomNum);
+            EquigenMod.LOGGER.info("Genetic " + value.name() + " set to " + randomNum);
+        }
+    }
+
+    public int getGenetic(String key) {
         int value;
         try {
             value = this.GENETICS.get(key);
         } catch (NullPointerException e){
             value = 0;
-//            LOGGER.error(e.toString());
+            LOGGER.error(e.toString());
             LOGGER.error("Genetic Code Not Found for Key: " + key);
         }
-//        LOGGER.info("Getting Geneic: " + key + " / " + value);
+        LOGGER.info("Getting Geneic: " + key + " / " + value);
         return value;
     }
 
+    public int getGenetic(String geneticCode, String key){
+        if(!geneticCode.isEmpty()){
+            Map<String, Integer> genes = new HashMap<String, Integer>();
+            for(int i = 0; i < geneticCount; i++){
+                genes.put(GeneticValues.values()[i].name(), geneticCode.charAt(i) - '0');
+            }
+            if(genes.get(key) == null){
+                return 0;
+            } else { return genes.get(key); }
+        } else {
+            return 0;
+        }
+    }
+
+    public boolean isGeneticActive(String key, int geneticNumber){
+        return this.getGenetic(this.entityData.get(GENETICS_STRING), key) == geneticNumber;
+    }
+
+    public boolean isGeneticActive(String key1, int geneticNumber1, String key2, int geneticNumber2){
+        boolean flag1 = this.getGenetic(this.entityData.get(GENETICS_STRING), key1) == geneticNumber1;
+        boolean flag2 = this.getGenetic(this.entityData.get(GENETICS_STRING), key2) == geneticNumber2;
+        return flag1 && flag2;
+    }
+
+    public boolean isGeneticActive(String key1, int geneticNumber1, String key2, int geneticNumber2,  String key3, int geneticNumber3){
+        boolean flag1 = this.getGenetic(this.entityData.get(GENETICS_STRING), key1) == geneticNumber1;
+        boolean flag2 = this.getGenetic(this.entityData.get(GENETICS_STRING), key2) == geneticNumber2;
+        boolean flag3 = this.getGenetic(this.entityData.get(GENETICS_STRING), key3) == geneticNumber3;
+        boolean flag4 = this.isBaby();
+        return flag1 && flag2 && flag3 && flag4;
+    }
+
+    public String getGeneticCode(){
+        StringBuilder code = new StringBuilder();
+
+        for(int i = 0; i < geneticCount; i++){
+            code.append(getGenetic(GeneticValues.values()[i].name()));
+        }
+
+        return code.toString();
+    }
+
     public void setGenetic(String key, int number) {
-//        LOGGER.info("Setting Geneic: " + key + " / " + number);
+        LOGGER.info("Setting Geneic: " + key + " / " + number);
         this.GENETICS.put(key, number);
+        this.entityData.set(GENETICS_STRING, getGeneticCode());
     }
 }
