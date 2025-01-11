@@ -294,8 +294,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         this.entityData.set(GENETICS_STRING, tag.getString("GeneticCode"));
 
         StringBuilder genString = new StringBuilder(this.entityData.get(GENETICS_STRING));
-        while(genString.length() < geneticCount){
-            genString.append("0");
+        while(genString.length() < geneticCount * 2){
+            genString.append("00");
         }
         this.entityData.set(GENETICS_STRING, genString.toString());
     }
@@ -391,9 +391,12 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public int getGenetic(String geneticCode, String key){
         if(!geneticCode.isEmpty()){
             Map<String, Integer> genes = new HashMap<String, Integer>();
-            for(int i = 0; i < geneticCount; i++){
-                genes.put(GeneticValues.values()[i].name(), geneticCode.charAt(i) - '0');
+            for(int i = 0, x = 0; i < geneticCount; i++, x+=2){
+                String number = geneticCode.substring(x, x+2);
+                genes.put(GeneticValues.values()[i].name(), Integer.parseInt(number));
+                LOGGER.info(GeneticValues.values()[i].name() + " / " + number);
             }
+//            LOGGER.info("Got Genetic: " + genes.get(key));
             if(genes.get(key) == null){
                 return 0;
             } else { return genes.get(key); }
@@ -403,6 +406,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     }
 
     public boolean isGeneticActive(String key, int geneticNumber){
+//        LOGGER.info("Is Genetic Active? " + key + " / " + geneticNumber + " / " + (this.getGenetic(this.entityData.get(GENETICS_STRING), key)) + " / " + (this.getGenetic(this.entityData.get(GENETICS_STRING), key) == geneticNumber));
         return this.getGenetic(this.entityData.get(GENETICS_STRING), key) == geneticNumber;
     }
 
@@ -424,9 +428,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         StringBuilder code = new StringBuilder();
 
         for(int i = 0; i < geneticCount; i++){
-            code.append(getGenetic(GeneticValues.values()[i].name()));
+            code.append(String.format("%02d", getGenetic(GeneticValues.values()[i].name())));
         }
-
+        LOGGER.info("Code " + code.toString());
         return code.toString();
     }
 

@@ -23,25 +23,25 @@ public enum GeneticValues {
 
     public int getMaxSize(){
         return switch (this){
-            case HOOF_SIZE -> 3;
-            case LEG_WIDTH -> 3;
-            case BOTTOM_LEG -> 3;
-            case TOP_LEG -> 3;
-            case MUSCLE_MASS -> 3;
-            case CHEST_SIZE -> 3;
-            case BACK_LENGTH -> 3;
-            case WITHERS -> 3;
-            case STOMACH_CURVE -> 3;
-            case BACK_HEIGHT -> 3;
-            case TAIL_SET -> 3;
-            case TAIL_LENGTH -> 3;
-            case NECK_CURVE -> 3;
-            case NECK_POS -> 3;
-            case NECK_LENGTH -> 3;
-            case HEAD_TYPE -> 3;
-            case HEAD_SIZE -> 3;
-            case EAR_SIZE -> 3;
-            case WHISKER_SIZE -> 5;
+            case HOOF_SIZE -> 2;
+            case LEG_WIDTH -> 2;
+            case BOTTOM_LEG -> 2;
+            case TOP_LEG -> 2;
+            case MUSCLE_MASS -> 2;
+            case CHEST_SIZE -> 2;
+            case BACK_LENGTH -> 2;
+            case WITHERS -> 50;
+            case STOMACH_CURVE -> 2;
+            case BACK_HEIGHT -> 2;
+            case TAIL_SET -> 2;
+            case TAIL_LENGTH -> 2;
+            case NECK_CURVE -> 2;
+            case NECK_POS -> 2;
+            case HEAD_SIZE -> 2;
+            case NECK_LENGTH -> 2;
+            case HEAD_TYPE -> 2;
+            case EAR_SIZE -> 2;
+            case WHISKER_SIZE -> 2;
         };
     }
 }
