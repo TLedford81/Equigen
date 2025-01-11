@@ -1,7 +1,7 @@
 package net.buckleystudios.equigen.entity.custom.genetics;
 
 public enum GeneticValues {
-    //* Conformation *//
+    /* Conformation */
     HOOF_SIZE,
     LEG_WIDTH,
     BOTTOM_LEG,
@@ -28,7 +28,7 @@ public enum GeneticValues {
     EAR_SIZE,
     WHISKER_SIZE,
 
-    //* Textures*//
+    /* Textures*/
     BLACK_MODIFIER,
     BLACK_VARIATION,
     RED_MODIFIER,
@@ -78,7 +78,7 @@ public enum GeneticValues {
     MANE_LENGTH,
 
 
-    //* Personality *//
+    /* Personality */
     MAIN_PERSONALITY,
     MAIN_PERSONALITY_PERCENTAGE, // Need Floats or ability to do double digit int for this //
     FIRST_SUB_PERSONALITY,
@@ -101,7 +101,7 @@ public enum GeneticValues {
     HATED_GRASS,
 
 
-    //* Skills/Abilities *//
+    /* Skills & Abilities */
     SPEED_STARTING_LEVEL,
     SPEED_MAX_LEVEL,
     STRENGTH_STARTING_LEVEL,
@@ -117,13 +117,13 @@ public enum GeneticValues {
     REAR,
     ADRENALINE,
 
-    //* Genetic Code Version *//
+    /* Genetic Code Version */
     SPAWNED_CODE_VERSION,
     CURRENT_CODE_VERSION;
 
     public int getMaxSize(){
         return switch (this){
-            //* Conformation *//
+            /* Conformation */
             case HOOF_SIZE -> 3;
             case LEG_WIDTH -> 3;
             case BOTTOM_LEG -> 9;
@@ -150,7 +150,7 @@ public enum GeneticValues {
             case EAR_SIZE -> 3;
             case WHISKER_SIZE -> 5;
 
-            //* Textures*//
+            /* Textures*/
             case BLACK_MODIFIER -> 3;
             case BLACK_VARIATION -> 1;
             case RED_MODIFIER -> 3;
@@ -199,7 +199,7 @@ public enum GeneticValues {
             case HOOF_COLOR -> 1;
             case MANE_LENGTH -> 1;
 
-            //* Personality *//
+            /* Personality */
             case MAIN_PERSONALITY -> 1; // Need double-digit ints for these numbers //
             case MAIN_PERSONALITY_PERCENTAGE -> 1;
             case FIRST_SUB_PERSONALITY -> 1;
@@ -221,7 +221,7 @@ public enum GeneticValues {
             case FAVORITE_GRASS -> 1;
             case HATED_GRASS -> 1;
 
-            //* Skills/Abilities *//
+            /* Skills & Abilities */
             case SPEED_STARTING_LEVEL -> 1; // Need floats for these numbers //
             case SPEED_MAX_LEVEL -> 1;
             case STRENGTH_STARTING_LEVEL -> 1;
@@ -237,7 +237,7 @@ public enum GeneticValues {
             case REAR -> 1;
             case ADRENALINE -> 1;
 
-            //* Genetic Code Version *//
+            /* Genetic Code Version */
             case SPAWNED_CODE_VERSION -> 1;  // To be implemented later when we are able to put floats in this code //
             case CURRENT_CODE_VERSION -> 1;  // To be implemented later when we are able to put floats in this code //
         };
