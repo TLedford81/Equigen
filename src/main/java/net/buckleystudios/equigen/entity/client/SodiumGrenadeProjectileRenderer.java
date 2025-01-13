@@ -24,17 +24,15 @@ public class SodiumGrenadeProjectileRenderer extends EntityRenderer<SodiumGrenad
 
     @Override
     public void render(SodiumGrenadeProjectileEntity pEntity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
-        poseStack.pushPose();
+        boolean tickIsFrozen = pEntity.level().tickRateManager().isFrozen();
+        float tickRate = pEntity.level().tickRateManager().tickrate();
+        float speed = 5f;
+        float adjustedSpeed = tickIsFrozen ? 0f : (speed * tickRate) / 20f;
 
-        if(!pEntity.isGrounded()) {
-            poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTick, pEntity.yRotO, pEntity.getYRot())));
-            poseStack.mulPose(Axis.XP.rotationDegrees(pEntity.getRenderingRotation() * 5f));
-            poseStack.translate(0, -1.0f, 0);
-        } else {
-            poseStack.mulPose(Axis.YP.rotationDegrees(pEntity.groundedOffset.y));
-            poseStack.mulPose(Axis.XP.rotationDegrees(pEntity.groundedOffset.x));
-            poseStack.translate(0, -1.0f, 0);
-        }
+        poseStack.pushPose();
+        poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTick, pEntity.yRotO, pEntity.getYRot())));
+        poseStack.mulPose(Axis.XP.rotationDegrees(pEntity.getRenderingRotation() * adjustedSpeed));
+        poseStack.translate(0, -1.0f, 0);
 
         VertexConsumer vertexconsumer = ItemRenderer.getFoilBufferDirect(
                 bufferSource, this.model.renderType(this.getTextureLocation(pEntity)),false, false);

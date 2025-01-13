@@ -369,9 +369,11 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         Random random = new Random();
         for(int i = 0; i < geneticCount; i++){
             GeneticValues value = GeneticValues.values()[i];
-            int randomNum = random.nextInt(value.getMaxSize()) + 1;
-            this.setGenetic(value.name(), randomNum);
-            EquigenMod.LOGGER.info("Genetic " + value.name() + " set to " + randomNum);
+            if(value.getMaxSize() != 0) {
+                int randomNum = random.nextInt(value.getMaxSize()) + 1;
+                this.setGenetic(value.name(), randomNum);
+                EquigenMod.LOGGER.info("Genetic " + value.name() + " set to " + randomNum);
+            }
         }
     }
 

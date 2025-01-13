@@ -152,94 +152,94 @@ public enum GeneticValues {
 
             /* Textures*/
             case BLACK_MODIFIER -> 3;
-            case BLACK_VARIATION -> 1;
+            case BLACK_VARIATION -> 0;
             case RED_MODIFIER -> 3;
-            case RED_VARIATION -> 1;
-            case CREAM -> 1; // If number is 1 that means the coat isn't in the game yet/won't be implemented right away //
-            case CREAM_VARIATION -> 1;
-            case DUN -> 1;
-            case DUN_VARIATION -> 1;
-            case GREYING -> 1;
-            case GREYING_VARIATION -> 1;
-            case SILVER -> 1;
-            case SILVER_VARIATION -> 1;
-            case CHAMPAGNE -> 1;
-            case CHAMPAGNE_VARIATION -> 1;
-            case SOOTY -> 1;
-            case SOOTY_VARIATION -> 1;
-            case FLAXEN -> 1;
-            case FLAXEN_VARIATION -> 1;
-            case PEARL -> 1;
-            case PEARL_VARIATION -> 1;
-            case MUSHROOM -> 1;
-            case MUSHROOM_VARIATION -> 1;
-            case ROAN -> 1;
-            case ROAN_VARIATION -> 1;
-            case PANGARE -> 1;
-            case PANGARE_VARIATION -> 1;
-            case FRAME_OVERO -> 1;
-            case FRAME_OVERO_VARIATION -> 1;
-            case RABICANO -> 1;
-            case RABICANO_VARIATION -> 1;
-            case LEOPARD_COMPLEX -> 1;
-            case LEOPARD_COMPLEX_VARIATION -> 1;
-            case SPLASHED_WHITE -> 1;
-            case SPLASHED_WHITE_VARIATION -> 1;
-            case TOBIANO -> 1;
-            case TOBIANO_VARIATION -> 1;
-            case SABINO -> 1;
-            case SABINO_VARIATION -> 1;
-            case WHITE_SPOTTING -> 1;
-            case WHITE_SPOTTING_VARIATION -> 1;
-            case FACE_MARKING -> 1;
-            case LEG_MARKING -> 1;
-            case LEG_MARKING_COLOR -> 1;
-            case LEFT_EYE_COLOR -> 1;
-            case RIGHT_EYE_COLOR -> 1;
-            case HOOF_COLOR -> 1;
-            case MANE_LENGTH -> 1;
+            case RED_VARIATION -> 0;
+            case CREAM -> 0; // If number is 0 that means the coat isn't in the game yet/won't be implemented right away //
+            case CREAM_VARIATION -> 0;
+            case DUN -> 0;
+            case DUN_VARIATION -> 0;
+            case GREYING -> 0;
+            case GREYING_VARIATION -> 0;
+            case SILVER -> 0;
+            case SILVER_VARIATION -> 0;
+            case CHAMPAGNE -> 0;
+            case CHAMPAGNE_VARIATION -> 0;
+            case SOOTY -> 0;
+            case SOOTY_VARIATION -> 0;
+            case FLAXEN -> 0;
+            case FLAXEN_VARIATION -> 0;
+            case PEARL -> 0;
+            case PEARL_VARIATION -> 0;
+            case MUSHROOM -> 0;
+            case MUSHROOM_VARIATION -> 0;
+            case ROAN -> 0;
+            case ROAN_VARIATION -> 0;
+            case PANGARE -> 0;
+            case PANGARE_VARIATION -> 0;
+            case FRAME_OVERO -> 0;
+            case FRAME_OVERO_VARIATION -> 0;
+            case RABICANO -> 0;
+            case RABICANO_VARIATION -> 0;
+            case LEOPARD_COMPLEX -> 0;
+            case LEOPARD_COMPLEX_VARIATION -> 0;
+            case SPLASHED_WHITE -> 0;
+            case SPLASHED_WHITE_VARIATION -> 0;
+            case TOBIANO -> 0;
+            case TOBIANO_VARIATION -> 0;
+            case SABINO -> 0;
+            case SABINO_VARIATION -> 0;
+            case WHITE_SPOTTING -> 0;
+            case WHITE_SPOTTING_VARIATION -> 0;
+            case FACE_MARKING -> 0;
+            case LEG_MARKING -> 0;
+            case LEG_MARKING_COLOR -> 0;
+            case LEFT_EYE_COLOR -> 0;
+            case RIGHT_EYE_COLOR -> 0;
+            case HOOF_COLOR -> 0;
+            case MANE_LENGTH -> 0;
 
             /* Personality */
-            case MAIN_PERSONALITY -> 1; // Need double-digit ints for these numbers //
-            case MAIN_PERSONALITY_PERCENTAGE -> 1;
-            case FIRST_SUB_PERSONALITY -> 1;
-            case FIRST_SUB_PERSONALITY_PERCENTAGE -> 1;
-            case SECOND_SUB_PERSONALITY -> 1;
-            case SECOND_SUB_PERSONALITY_PERCENTAGE -> 1;
-            case THIRD_SUB_PERSONALITY -> 1;
-            case THIRD_SUB_PERSONALITY_TYPE -> 1;
-            case FIRST_TRAIT -> 1;
-            case FIRST_TRAIT_VARIATION -> 1;
-            case SECOND_TRAIT -> 1;
-            case SECOND_TRAIT_VARIATION -> 1;
-            case THIRD_TRAIT -> 1;
-            case THIRD_TRAIT_VARIATION -> 1;
-            case FAVORITE_TERRAIN -> 1;
-            case HATED_TERRAIN -> 1;
-            case FAVORITE_FOOD -> 1;
-            case HATED_FOOD -> 1;
-            case FAVORITE_GRASS -> 1;
-            case HATED_GRASS -> 1;
+            case MAIN_PERSONALITY -> 0; // Need double-digit ints for these numbers //
+            case MAIN_PERSONALITY_PERCENTAGE -> 0;
+            case FIRST_SUB_PERSONALITY -> 0;
+            case FIRST_SUB_PERSONALITY_PERCENTAGE -> 0;
+            case SECOND_SUB_PERSONALITY -> 0;
+            case SECOND_SUB_PERSONALITY_PERCENTAGE -> 0;
+            case THIRD_SUB_PERSONALITY -> 0;
+            case THIRD_SUB_PERSONALITY_TYPE -> 0;
+            case FIRST_TRAIT -> 0;
+            case FIRST_TRAIT_VARIATION -> 0;
+            case SECOND_TRAIT -> 0;
+            case SECOND_TRAIT_VARIATION -> 0;
+            case THIRD_TRAIT -> 0;
+            case THIRD_TRAIT_VARIATION -> 0;
+            case FAVORITE_TERRAIN -> 0;
+            case HATED_TERRAIN -> 0;
+            case FAVORITE_FOOD -> 0;
+            case HATED_FOOD -> 0;
+            case FAVORITE_GRASS -> 0;
+            case HATED_GRASS -> 0;
 
             /* Skills & Abilities */
-            case SPEED_STARTING_LEVEL -> 1; // Need floats for these numbers //
-            case SPEED_MAX_LEVEL -> 1;
-            case STRENGTH_STARTING_LEVEL -> 1;
-            case STRENGTH_MAX_LEVEL -> 1;
-            case JUMP_STARTING_LEVEL -> 1;
-            case JUMP_MAX_LEVEL -> 1;
-            case ENDURANCE_STARTING_LEVEL -> 1;
-            case ENDURANCE_MAX_LEVEL -> 1;
-            case AGILITY_STARTING_LEVEL -> 1;
-            case AGILITY_MAX_LEVEL -> 1;
-            case CHARGE -> 1;
-            case KICK -> 1;
-            case REAR -> 1;
-            case ADRENALINE -> 1;
+            case SPEED_STARTING_LEVEL -> 0; // Need floats for these numbers //
+            case SPEED_MAX_LEVEL -> 0;
+            case STRENGTH_STARTING_LEVEL -> 0;
+            case STRENGTH_MAX_LEVEL -> 0;
+            case JUMP_STARTING_LEVEL -> 0;
+            case JUMP_MAX_LEVEL -> 0;
+            case ENDURANCE_STARTING_LEVEL -> 0;
+            case ENDURANCE_MAX_LEVEL -> 0;
+            case AGILITY_STARTING_LEVEL -> 0;
+            case AGILITY_MAX_LEVEL -> 0;
+            case CHARGE -> 0;
+            case KICK -> 0;
+            case REAR -> 0;
+            case ADRENALINE -> 0;
 
             /* Genetic Code Version */
-            case SPAWNED_CODE_VERSION -> 1;  // To be implemented later when we are able to put floats in this code //
-            case CURRENT_CODE_VERSION -> 1;  // To be implemented later when we are able to put floats in this code //
+            case SPAWNED_CODE_VERSION -> 0;  // To be implemented later when we are able to put floats in this code //
+            case CURRENT_CODE_VERSION -> 0;  // To be implemented later when we are able to put floats in this code //
         };
     }
 }
