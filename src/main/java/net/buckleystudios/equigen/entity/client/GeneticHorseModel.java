@@ -3,7 +3,9 @@ package net.buckleystudios.equigen.entity.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.command.TestCommand;
+import net.buckleystudios.equigen.entity.client.parts.BackModelParts;
 import net.buckleystudios.equigen.entity.client.parts.ChestModelParts;
+import net.buckleystudios.equigen.entity.client.parts.HipsModelParts;
 import net.buckleystudios.equigen.entity.client.parts.StomachModelParts;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.HierarchicalModel;
@@ -17,44 +19,48 @@ import net.minecraft.util.Mth;
 import org.joml.Vector3f;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class GeneticHorseModel <T extends GeneticHorseEntity> extends HierarchicalModel<T> {
+    public static List<String> ALL_PARTS = List.of("Chest", "Back", "Hips", "Stomach");
     public static Map<String, Vector3f> PART_POSITIONS = new HashMap<String, Vector3f>();
-    private final ModelPart main;
+
+    public final ModelPart main;
     public final ModelPart rootChest;
-    private final ModelPart rootForeLegLeft;
-    private final ModelPart rootTopForeLegLeft;
-    private final ModelPart rootForeLegKneeLeft;
-    private final ModelPart rootUpperBottomForeLegLeft;
-    private final ModelPart rootLowerBottomForeLegLeft;
-    private final ModelPart rootForeLegHoofLeft;
-    private final ModelPart rootForeLegRight;
-    private final ModelPart rootTopForeLegRight;
-    private final ModelPart rootForeLegKneeRight;
-    private final ModelPart rootUpperBottomForeLegRight;
-    private final ModelPart rootLowerBottomForeLegRight;
-    private final ModelPart rootForeLegHoofRight;
-    private final ModelPart rootNeck;
-    private final ModelPart rootHead;
-    private final ModelPart rootEars;
-    private final ModelPart rootBack;
-    private final ModelPart rootStomach;
-    private final ModelPart rootWithers;
-    private final ModelPart rootHips;
-    private final ModelPart rootHindLegLeft;
-    private final ModelPart rootTopHindLegLeft;
-    private final ModelPart rootHindLegKneeLeft;
-    private final ModelPart rootUpperBottomHindLegLeft;
-    private final ModelPart rootLowerBottomHindLegLeft;
-    private final ModelPart rootHindLegHoofLeft;
-    private final ModelPart rootHindLegRight;
-    private final ModelPart rootTopHindLegRight;
-    private final ModelPart rootHindLegKneeRight;
-    private final ModelPart rootUpperBottomHindLegRight;
-    private final ModelPart rootLowerBottomHindLegRight;
-    private final ModelPart rootHindLegHoofRight;
-    private final ModelPart rootTail;
+    public final ModelPart rootForeLegLeft;
+    public final ModelPart rootTopForeLegLeft;
+    public final ModelPart rootForeLegKneeLeft;
+    public final ModelPart rootUpperBottomForeLegLeft;
+    public final ModelPart rootLowerBottomForeLegLeft;
+    public final ModelPart rootForeLegHoofLeft;
+    public final ModelPart rootForeLegRight;
+    public final ModelPart rootTopForeLegRight;
+    public final ModelPart rootForeLegKneeRight;
+    public final ModelPart rootUpperBottomForeLegRight;
+    public final ModelPart rootLowerBottomForeLegRight;
+    public final ModelPart rootForeLegHoofRight;
+    public final ModelPart rootNeck;
+    public final ModelPart rootHead;
+    public final ModelPart rootLeftEar;
+    public final ModelPart rootRightEar;
+    public final ModelPart rootBack;
+    public final ModelPart rootStomach;
+    public final ModelPart rootWithers;
+    public final ModelPart rootHips;
+    public final ModelPart rootHindLegLeft;
+    public final ModelPart rootTopHindLegLeft;
+    public final ModelPart rootHindLegKneeLeft;
+    public final ModelPart rootUpperBottomHindLegLeft;
+    public final ModelPart rootLowerBottomHindLegLeft;
+    public final ModelPart rootHindLegHoofLeft;
+    public final ModelPart rootHindLegRight;
+    public final ModelPart rootTopHindLegRight;
+    public final ModelPart rootHindLegKneeRight;
+    public final ModelPart rootUpperBottomHindLegRight;
+    public final ModelPart rootLowerBottomHindLegRight;
+    public final ModelPart rootHindLegHoofRight;
+    public final ModelPart rootTail;
 
     public GeneticHorseModel(ModelPart root) {
         this.main = root.getChild("main");
@@ -77,7 +83,8 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
 
         this.rootNeck = rootChest.getChild("rootNeck");
         this.rootHead = rootNeck.getChild("rootHead");
-        this.rootEars = rootHead.getChild("rootEars");
+        this.rootLeftEar = rootHead.getChild("rootLeftEar");
+        this.rootRightEar = rootHead.getChild("rootRightEar");
 
         this.rootBack = main.getChild("rootBack");
         this.rootStomach = rootBack.getChild("rootStomach");
@@ -106,7 +113,7 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
 
-        //Establish Roots
+        //Establish Folder Hierarchy (Roots)
         PartDefinition main = partdefinition.addOrReplaceChild("main", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
         /* Chest */
@@ -128,7 +135,10 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
 
         PartDefinition rootNeck = rootChest.addOrReplaceChild("rootNeck", CubeListBuilder.create(), PartPose.offset(-1.7933F, 23.1598F, 1.7061F));
         PartDefinition rootHead = rootNeck.addOrReplaceChild("rootHead", CubeListBuilder.create(), PartPose.offset(0.6993F, 18.905F, 3.8765F));
-        PartDefinition rootEars = rootHead.addOrReplaceChild("rootEars", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+        PartDefinition rootFringe = rootHead.addOrReplaceChild("rootFringe", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+        PartDefinition rootMuzzle = rootHead.addOrReplaceChild("rootMuzzle", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+        PartDefinition rootLeftEar = rootHead.addOrReplaceChild("rootLeftEar", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+        PartDefinition rootRightEar = rootHead.addOrReplaceChild("rootRightEar", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
         /* Back */
         PartDefinition rootBack = main.addOrReplaceChild("rootBack", CubeListBuilder.create(), PartPose.offset(-0.9258F, 24.0F, 0.0F));
@@ -155,66 +165,70 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
         PartDefinition rootHindLegHoofRight = rootLowerBottomHindLegRight.addOrReplaceChild("rootHindLegHoofRight", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
         //Generate Parts
-//        PartDefinition[] tflParts_AverageShortA = TopForeLegModelParts.Generate(rootTopHindLegLeft, rootTopHindLegRight, "average", "short", 1);
-//        rootTopHindLegLeft = tflParts_AverageShortA[0];
-//        rootTopHindLegRight = tflParts_AverageShortA[1];
-//
-//        PartDefinition[] tfrParts_AverageShortA = TopHindLegModelParts.Generate(rootTopForeLegLeft, rootTopForeLegRight, "average", "short", 1);
-//        rootTopForeLegLeft = tfrParts_AverageShortA[0];
-//        rootTopForeLegRight = tfrParts_AverageShortA[1];
-//
-        rootChest = ChestModelParts.Generate(rootChest, "lean", "small", 1);
-        rootStomach = StomachModelParts.Generate(rootStomach, "lean", "short", "medium");
-//        rootHips = HipsModelParts.Generate(rootHips, "lean", "small", 1);
-//
-//        PartDefinition[] hoofParts_Average = HoofModelParts.Generate(rootForeLegHoofLeft, rootForeLegHoofRight, rootHindLegHoofLeft, rootHindLegHoofRight, "average");
-//        rootForeLegHoofLeft = hoofParts_Average[0];
-//        rootForeLegHoofRight = hoofParts_Average[1];
-//        rootHindLegHoofLeft = hoofParts_Average[2];
-//        rootHindLegHoofRight = hoofParts_Average[3];
-//
-//        PartDefinition[] knees_all = KneeModelParts.Generate(rootForeLegKneeLeft, rootForeLegKneeRight, rootHindLegKneeLeft, rootHindLegKneeRight);
-//        rootForeLegKneeLeft = knees_all[0];
-//        rootForeLegKneeRight = knees_all[1];
-//        rootHindLegKneeLeft = knees_all[2];
-//        rootHindLegKneeRight = knees_all[3];
-//
-//        rootStomach = StomachModelParts.Generate(rootStomach, "lean", "short", "low");
-//        rootWithers = WithersModelParts.Generate(rootWithers, "lean");
-//
-//        PartDefinition[] blParts_ThinShortA = BottomLegModelParts.Generate(
-//                rootUpperBottomForeLegLeft, rootUpperBottomHindLegLeft, rootUpperBottomForeLegRight, rootUpperBottomHindLegRight,
-//                rootLowerBottomForeLegLeft, rootLowerBottomHindLegLeft, rootLowerBottomForeLegRight, rootLowerBottomHindLegRight,
-//                "thin", "short", 1);
-//        rootUpperBottomForeLegLeft = blParts_ThinShortA[0];
-//        rootUpperBottomHindLegLeft = blParts_ThinShortA[1];
-//        rootUpperBottomForeLegRight = blParts_ThinShortA[2];
-//        rootUpperBottomHindLegRight = blParts_ThinShortA[3];
-//        rootLowerBottomForeLegLeft = blParts_ThinShortA[4];
-//        rootLowerBottomHindLegLeft = blParts_ThinShortA[5];
-//        rootLowerBottomForeLegRight = blParts_ThinShortA[6];
-//        rootLowerBottomHindLegRight = blParts_ThinShortA[7];
-//
-//        rootNeck = NeckModelParts.Generate(rootNeck, "average", "ewed", "short", 1);
+//        PartDefinition[] MPA_BL = BottomLegModelParts.GenerateAll();
+
+//        PartDefinition[] MPA_Head = HeadModelParts.GenerateAll();
+
+//        PartDefinition[] MPA_Ears = EarsModelParts.GenerateAll();
+
+//        PartDefinition[] MPA_Hoof = HoofModelParts.GenerateAll();
+
+//        PartDefinition[] MPA_Knee = KneeModelParts.GenerateAll();
+
+//        PartDefinition[] MPA_TFL = TopForeLegModelParts.GenerateAll();
+
+//        PartDefinition[] MPA_THL = TopHindLegModelParts.GenerateAll();
+
+
+        rootBack = BackModelParts.GenerateAll(rootBack);
+        rootChest = ChestModelParts.GenerateAll(rootChest);
+        rootHips = HipsModelParts.GenerateAll(rootHips);
+//       rootNeck = NeckModelParts.GenerateAll(rootNeck);
+        rootStomach = StomachModelParts.GenerateAll(rootStomach);
+//       rootTail = TailModelParts.GenerateAll(rootTail);
+//       rootWithers = WithersModelParts.GenerateAll(rootWithers);
 
         return LayerDefinition.create(meshdefinition, 1024, 1024);
     }
 
-
-
     @Override
     public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        //HANDLE PART VISIBILITY
+        List<ModelPart> rootParts = List.of(
+                main, rootChest, rootForeLegLeft, rootTopForeLegLeft, rootForeLegKneeLeft, rootUpperBottomForeLegLeft,
+                rootLowerBottomForeLegLeft, rootForeLegHoofLeft, rootForeLegRight, rootTopForeLegRight, rootForeLegKneeRight,
+                rootUpperBottomForeLegRight, rootLowerBottomForeLegRight, rootForeLegHoofRight, rootNeck, rootHead,
+                rootLeftEar, rootRightEar, rootBack, rootStomach, rootWithers, rootHips, rootHindLegLeft, rootTopHindLegLeft,
+                rootHindLegKneeLeft, rootUpperBottomHindLegLeft, rootLowerBottomHindLegLeft, rootHindLegHoofLeft,
+                rootHindLegRight, rootTopHindLegRight, rootHindLegKneeRight, rootUpperBottomHindLegRight,
+                rootLowerBottomHindLegRight, rootHindLegHoofRight, rootTail);
+
+        Map<String, String> CURRENT_PARTS = entity.getCurrentParts();
+
+        for(ModelPart part : main.getAllParts().toList()) {
+            if(rootParts.contains(part) ||
+                    part == rootChest.getChild(CURRENT_PARTS.get("chest")) || rootChest.getChild(CURRENT_PARTS.get("chest")).getAllParts().toList().contains(part) ||
+                    part == rootBack.getChild(CURRENT_PARTS.get("back")) || rootBack.getChild(CURRENT_PARTS.get("back")).getAllParts().toList().contains(part) ||
+                    part == rootHips.getChild(CURRENT_PARTS.get("hips")) || rootHips.getChild(CURRENT_PARTS.get("hips")).getAllParts().toList().contains(part) ||
+                    part == rootStomach.getChild(CURRENT_PARTS.get("stomach")) || rootStomach.getChild(CURRENT_PARTS.get("stomach")).getAllParts().toList().contains(part)
+            ){
+                part.visible = true;
+            } else {
+                part.visible = false;
+            }
+        }
+
+        //SETUP ANIMATION
         this.root().getAllParts().forEach(ModelPart::resetPose);
         applyHeadRotation(netHeadYaw, headPitch);
-        this.animateWalk(GeneticHorseAnimations.walking, limbSwing, limbSwingAmount, 2f, 2.5f);
-        this.animate(entity.idleAnimationState, GeneticHorseAnimations.idle, ageInTicks, 1);
 
+        this.animateWalk(GeneticHorseAnimations.GetAnimation("walking", CURRENT_PARTS), limbSwing, limbSwingAmount, 2f, 2.5f);
+        this.animate(entity.idleAnimationState, GeneticHorseAnimations.GetAnimation("idle", CURRENT_PARTS), ageInTicks, 1);
+
+        //TEST COMMAND
         MovePart(TestCommand.getNewTargetPart(), TestCommand.getNewPartPosition());
-
-        rootChest.getChild("chest_lean_small_1").visible = entity.isGeneticActive("CHEST_SIZE", 1);
-        rootStomach.getChild("stomach_lean_short_medium").visible = entity.isGeneticActive(
-                "STOMACH_CURVE", 2);
     }
+
 
     public void MovePart(String part, Vector3f newPos) {
         if (!part.isEmpty()) {
@@ -236,7 +250,8 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
         SetPartPosition(rootForeLegHoofRight,"foreleghoofright");
         SetPartPosition(rootNeck,"neck");
         SetPartPosition(rootHead,"head");
-        SetPartPosition(rootEars,"ears");
+        SetPartPosition(rootLeftEar,"leftear");
+        SetPartPosition(rootRightEar,"rightear");
         SetPartPosition(rootBack,"back");
         SetPartPosition(rootStomach,"stomach");
         SetPartPosition(rootWithers,"withers");
@@ -266,6 +281,7 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
         main.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 
     }
+
 
     @Override
     public ModelPart root() {

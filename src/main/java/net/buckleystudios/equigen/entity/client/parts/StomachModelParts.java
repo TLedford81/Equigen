@@ -6,8 +6,10 @@ import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
+import java.util.List;
+
 public class StomachModelParts {
-    public static PartDefinition Generate(PartDefinition root, String muscleMass, String curve, String length) {
+    public static PartDefinition Generate(PartDefinition root, String muscleMass, String length, String curve) {
         if (muscleMass.equals("lean") && length.equals("short") && curve.equals("low")) {
             PartDefinition stomach_lean_short_low = root.addOrReplaceChild("stomach_lean_short_low", CubeListBuilder.create(), PartPose.offset(-0.8045F, 4.9162F, 2.7709F));
 
@@ -187,9 +189,7 @@ public class StomachModelParts {
             PartDefinition cube_r4 = stomach_average_long_low.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(383, 182).addBox(-5.0892F, -4.2676F, -5.4648F, 6.0F, 7.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.2981F, -3.8504F, -2.4569F, 1.5708F, 0.0F, 0.0F));
 
         } else if (muscleMass.equals("average") && length.equals("long") && curve.equals("medium")) {
-            PartDefinition stomach = root.addOrReplaceChild("stomach", CubeListBuilder.create(), PartPose.offset(0.6933F, 19.0838F, -6.53F));
-
-            PartDefinition stomach_average_long_medium = stomach.addOrReplaceChild("stomach_average_long_medium", CubeListBuilder.create(), PartPose.offset(-0.8045F, 4.9162F, 2.7709F));
+            PartDefinition stomach_average_long_medium = root.addOrReplaceChild("stomach_average_long_medium", CubeListBuilder.create(), PartPose.offset(-0.8045F, 4.9162F, 2.7709F));
 
             PartDefinition cube_r1 = stomach_average_long_medium.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(428, 174).addBox(-4.08F, -4.24F, -5.52F, 4.0F, 10.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.2311F, -4.1868F, 7.3829F, 1.7453F, 0.0F, 0.0F));
 
@@ -313,6 +313,20 @@ public class StomachModelParts {
         } else {
             EquigenMod.LOGGER.error("Invalid Part Generated: Stomach / " + muscleMass + " / " + length +  " /Curve "  + curve + ", Returning Null Value");
             return null;
+        }
+        return root;
+    }
+    public static PartDefinition GenerateAll(PartDefinition root){
+        List<String> muscleMass = List.of("lean", "average", "muscular");
+        List<String> length = List.of("short", "average", "long");
+        List<String> curve = List.of("low", "medium", "high");
+
+        for(String variable1 : muscleMass){
+            for(String variable2 : length){
+                for(String variable3 : curve) {
+                    root = Generate(root, variable1, variable2, variable3);
+                }
+            }
         }
         return root;
     }

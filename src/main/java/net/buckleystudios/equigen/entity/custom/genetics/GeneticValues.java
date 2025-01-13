@@ -17,6 +17,7 @@ public enum GeneticValues {
     WITHERS,
     STOMACH_CURVE,
     STOMACH_HEIGHT,
+    STOMACH_LENGTH,
     TAIL_SET,
     TAIL_LENGTH,
     TAIL_THICKNESS,
@@ -137,8 +138,9 @@ public enum GeneticValues {
             case BACK_GIRTH -> 3;
             case BACK_HEIGHT -> 3;
             case WITHERS -> 3;
-            case STOMACH_CURVE -> 9;
+            case STOMACH_CURVE -> 3;
             case STOMACH_HEIGHT -> 3;
+            case STOMACH_LENGTH -> 3;
             case TAIL_SET -> 3;
             case TAIL_LENGTH -> 3;
             case TAIL_THICKNESS -> 3;

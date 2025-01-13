@@ -6,6 +6,8 @@ import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
+import java.util.List;
+
 public class ChestModelParts {
     public static PartDefinition Generate(PartDefinition root, String muscleMass, String size, int variation) {
         if (muscleMass.equals("lean") && size.equals("small") && variation == 1) {
@@ -23,7 +25,7 @@ public class ChestModelParts {
             PartDefinition cube_r5 = chest_lean_small_1.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(42, 73).addBox(-4.08F, -7.68F, -4.52F, 5.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.5815F, -1.5374F, 2.6083F, 1.9199F, 0.0F, 0.0F));
 
         } else if (muscleMass.equals("lean") && size.equals("small") && variation == 2) {
-            PartDefinition Chest_lean_small_2 = root.addOrReplaceChild("Chest_lean_small_2", CubeListBuilder.create().texOffs(61, 80).addBox(-3.676F, -3.6112F, -3.7141F, 7.0F, 7.0F, 7.0F, new CubeDeformation(0.0F))
+            PartDefinition Chest_lean_small_2 = root.addOrReplaceChild("chest_lean_small_2", CubeListBuilder.create().texOffs(61, 80).addBox(-3.676F, -3.6112F, -3.7141F, 7.0F, 7.0F, 7.0F, new CubeDeformation(0.0F))
                     .texOffs(89, 84).addBox(-4.0503F, -2.5922F, -2.6772F, 8.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
             PartDefinition cube_r1 = Chest_lean_small_2.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(66, 74).addBox(-4.08F, -4.0F, -0.92F, 5.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.4266F, -0.1974F, -5.6066F, -0.829F, 0.0F, 0.0F));
@@ -103,7 +105,7 @@ public class ChestModelParts {
             PartDefinition cube_r5 = chest_average_small_1.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(42, 143).addBox(-5.08F, -7.68F, -4.52F, 6.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.1178F, -1.5374F, 2.6083F, 1.9199F, 0.0F, 0.0F));
 
         } else if (muscleMass.equals("average") && size.equals("small") && variation == 2) {
-            PartDefinition Chest_average_small_2 = root.addOrReplaceChild("Chest_average_small_2", CubeListBuilder.create().texOffs(63, 144).addBox(-4.1397F, -3.6112F, -3.7141F, 8.0F, 7.0F, 7.0F, new CubeDeformation(0.0F))
+            PartDefinition Chest_average_small_2 = root.addOrReplaceChild("chest_average_small_2", CubeListBuilder.create().texOffs(63, 144).addBox(-4.1397F, -3.6112F, -3.7141F, 8.0F, 7.0F, 7.0F, new CubeDeformation(0.0F))
                     .texOffs(93, 148).addBox(-4.6034F, -2.5922F, -2.6772F, 9.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
             PartDefinition cube_r1 = Chest_average_small_2.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(68, 138).addBox(-5.08F, -4.0F, -0.92F, 6.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.9629F, -0.1974F, -5.6066F, -0.829F, 0.0F, 0.0F));
@@ -250,6 +252,19 @@ public class ChestModelParts {
         } else {
             EquigenMod.LOGGER.error("Invalid Part Generated: Chest / " + muscleMass + " / " + size + " / Variation " + variation + ", Returning Null Value");
             return null;
+        }
+        return root;
+    }
+
+    public static PartDefinition GenerateAll(PartDefinition root){
+        List<String> muscleMass = List.of("lean", "average", "muscular");
+        List<String> size = List.of("small", "average", "large");
+
+        for(String variable1 : muscleMass){
+            for(String variable2 : size){
+                root = Generate(root, variable1, variable2, 1);
+                root = Generate(root, variable1, variable2, 2);
+            }
         }
         return root;
     }

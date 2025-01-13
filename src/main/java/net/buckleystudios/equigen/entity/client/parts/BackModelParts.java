@@ -6,8 +6,9 @@ import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
+import java.util.List;
+
 public class BackModelParts {
-    //BackAverageLong
     public static PartDefinition Generate(PartDefinition root, String muscleMass, String length, String girth) {
         if (muscleMass.equals("lean") && length.equals("short") && girth.equals("thin")) {
             PartDefinition back_lean_short_thin = root.addOrReplaceChild("back_lean_short_thin", CubeListBuilder.create().texOffs(296, 227).addBox(-6.3944F, -5.2737F, -3.5028F, 6.0F, 6.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offset(4.2905F, 2.4134F, -2.5515F));
@@ -225,6 +226,21 @@ public class BackModelParts {
         } else {
             EquigenMod.LOGGER.error("Invalid Part: Back / " + muscleMass + " / " + length + " / Girth " + girth + ", Returning Null Value");
             return null;
+        }
+        return root;
+    }
+
+    public static PartDefinition GenerateAll(PartDefinition root){
+        List<String> muscleMass = List.of("lean", "average", "muscular");
+        List<String> length = List.of("short", "average", "long");
+        List<String> girth = List.of("thin", "average", "thick");
+
+        for(String variable1 : muscleMass){
+            for(String variable2 : length){
+                for(String variable3 : girth){
+                    root = Generate(root, variable1, variable2, variable3);
+                }
+            }
         }
         return root;
     }

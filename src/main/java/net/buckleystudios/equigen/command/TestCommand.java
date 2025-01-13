@@ -65,7 +65,7 @@ public class TestCommand {
 
     private boolean ValidPart(String part){
         List<String> validParts = List.of(
-                "chest", "back", "hips", "stomach", "tail", "withers", "ears", "neck", "head",
+                "chest", "back", "hips", "stomach", "tail", "withers", "leftear", "rightear", "neck", "head",
                 "forelegleft", "forelegright", "hindlegleft", "hindlegright",
                 "topforelegleft", "topforelegright", "tophindlegleft", "tophindlegright",
                 "forelegkneeleft", "forelegkneeright", "hindlegkneeleft", "hindlegkneeright",

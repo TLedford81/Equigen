@@ -1,6 +1,5 @@
 package net.buckleystudios.equigen.entity.custom;
 
-import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticValues;
 import net.buckleystudios.equigen.item.ModItems;
@@ -54,14 +53,14 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
-        LOGGER.info("Finalizing Spawn: " + level + " / " + difficulty + " / " + spawnType + " / " + spawnGroupData);
+//        LOGGER.info("Finalizing Spawn: " + level + " / " + difficulty + " / " + spawnType + " / " + spawnGroupData);
         this.randomizeGenetics();
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }
 
     @Override
     protected void onOffspringSpawnedFromEgg(Player player, Mob child) {
-        LOGGER.info("Spawned Child from Egg: " + player + " / " + child);
+//        LOGGER.info("Spawned Child from Egg: " + player + " / " + child);
         if (child instanceof GeneticHorseEntity) {
             GeneticHorseEntity geneticHorseChild = (GeneticHorseEntity) child;  // Cast to the specific entity class
 
@@ -69,14 +68,14 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             geneticHorseChild.randomizeGenetics();
 
             // Log that the genetics have been randomized for the new entity
-            LOGGER.info("Genetics randomized for GeneticHorseEntity offspring.");
+//            LOGGER.info("Genetics randomized for GeneticHorseEntity offspring.");
         }
         super.onOffspringSpawnedFromEgg(player, child);
     }
 
     @Override
     public void finalizeSpawnChildFromBreeding(ServerLevel level, Animal animal, @Nullable AgeableMob baby) {
-        LOGGER.info("Spawned Child from Breeding: " + level + " / " + animal + " / " + baby);
+//        LOGGER.info("Spawned Child from Breeding: " + level + " / " + animal + " / " + baby);
         if (baby instanceof GeneticHorseEntity) {
             GeneticHorseEntity geneticHorseBaby = (GeneticHorseEntity) baby;  // Cast to the specific entity class
 
@@ -84,7 +83,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             geneticHorseBaby.randomizeGenetics();
 
             // Log that the genetics have been randomized for the new entity
-            LOGGER.info("Genetics randomized for GeneticHorseEntity offspring.");
+//            LOGGER.info("Genetics randomized for GeneticHorseEntity offspring.");
         }
         super.finalizeSpawnChildFromBreeding(level, animal, baby);
     }
@@ -289,7 +288,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         for (int i = 0; i < geneticCount; i++) {
             GeneticValues key = GeneticValues.values()[i];
             this.setGenetic(key.name(), tag.getInt(key.name()));
-            LOGGER.info("Adding Save Data: " + key.name() + tag.getInt(key.name()));
+//            LOGGER.info("Adding Save Data: " + key.name() + tag.getInt(key.name()));
         }
         this.entityData.set(GENETICS_STRING, tag.getString("GeneticCode"));
 
@@ -307,7 +306,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         for(String key : keys){
             int value = GENETICS.get(key);
             tag.putInt(key, value);
-            LOGGER.info("Adding Save Data: " + key + value);
+//            LOGGER.info("Adding Save Data: " + key + value);
         }
         tag.putString("GeneticCode", this.entityData.get(GENETICS_STRING));
         tag.putInt("geneticCodeSize", geneticCount);
@@ -372,7 +371,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             if(value.getMaxSize() != 0) {
                 int randomNum = random.nextInt(value.getMaxSize()) + 1;
                 this.setGenetic(value.name(), randomNum);
-                EquigenMod.LOGGER.info("Genetic " + value.name() + " set to " + randomNum);
+//                EquigenMod.LOGGER.info("Genetic " + value.name() + " set to " + randomNum);
             }
         }
     }
@@ -383,10 +382,10 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             value = this.GENETICS.get(key);
         } catch (NullPointerException e){
             value = 0;
-            LOGGER.error(e.toString());
-            LOGGER.error("Genetic Code Not Found for Key: " + key);
+//            LOGGER.error(e.toString());
+//            LOGGER.error("Genetic Code Not Found for Key: " + key);
         }
-        LOGGER.info("Getting Geneic: " + key + " / " + value);
+//        LOGGER.info("Getting Geneic: " + key + " / " + value);
         return value;
     }
 
@@ -396,7 +395,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             for(int i = 0, x = 0; i < geneticCount; i++, x+=2){
                 String number = geneticCode.substring(x, x+2);
                 genes.put(GeneticValues.values()[i].name(), Integer.parseInt(number));
-                LOGGER.info(GeneticValues.values()[i].name() + " / " + number);
+//                LOGGER.info(GeneticValues.values()[i].name() + " / " + number);
             }
 //            LOGGER.info("Got Genetic: " + genes.get(key));
             if(genes.get(key) == null){
@@ -407,23 +406,128 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         }
     }
 
-    public boolean isGeneticActive(String key, int geneticNumber){
-//        LOGGER.info("Is Genetic Active? " + key + " / " + geneticNumber + " / " + (this.getGenetic(this.entityData.get(GENETICS_STRING), key)) + " / " + (this.getGenetic(this.entityData.get(GENETICS_STRING), key) == geneticNumber));
-        return this.getGenetic(this.entityData.get(GENETICS_STRING), key) == geneticNumber;
+    public boolean isGeneticActive(Map<String, Integer> conditions){
+        for(String key : conditions.keySet()){
+            int value = conditions.get(key);
+            if(this.getGenetic(this.entityData.get(GENETICS_STRING), key) != value){
+                return false;
+            }
+        }
+        return true;
     }
 
-    public boolean isGeneticActive(String key1, int geneticNumber1, String key2, int geneticNumber2){
-        boolean flag1 = this.getGenetic(this.entityData.get(GENETICS_STRING), key1) == geneticNumber1;
-        boolean flag2 = this.getGenetic(this.entityData.get(GENETICS_STRING), key2) == geneticNumber2;
-        return flag1 && flag2;
+    public Map<String, String> getCurrentParts(){
+        return Map.of(
+                "chest", TwoPartGeneticGetter("chest"),
+                "back", ThreePartGeneticGetter("back"),
+                "hips", TwoPartGeneticGetter("hips"),
+                "stomach", ThreePartGeneticGetter("stomach")
+        );
     }
 
-    public boolean isGeneticActive(String key1, int geneticNumber1, String key2, int geneticNumber2,  String key3, int geneticNumber3){
-        boolean flag1 = this.getGenetic(this.entityData.get(GENETICS_STRING), key1) == geneticNumber1;
-        boolean flag2 = this.getGenetic(this.entityData.get(GENETICS_STRING), key2) == geneticNumber2;
-        boolean flag3 = this.getGenetic(this.entityData.get(GENETICS_STRING), key3) == geneticNumber3;
-        boolean flag4 = this.isBaby();
-        return flag1 && flag2 && flag3 && flag4;
+    public String OnePartGeneticGetter(String partType) {
+        String geneticCode = this.entityData.get(GENETICS_STRING);
+        String part = "";
+
+        if(partType.equals("")){
+            part = switch(getGenetic(geneticCode, "MUSCLE_MASS")) {
+                case 1 -> "";
+                case 2 -> "average";
+                case 3 -> "";
+                default -> "";
+            };
+        }
+
+        return partType + "_" + part;
+    }
+
+    public String TwoPartGeneticGetter(String partType) {
+        String geneticCode = this.entityData.get(GENETICS_STRING);
+        String part1 = "", part2 = "";
+
+        if(partType.equals("chest")){
+            part1 = switch(getGenetic(geneticCode, "MUSCLE_MASS")) {
+                case 1 -> "lean";
+                case 2 -> "average";
+                case 3 -> "muscular";
+                default -> "";
+            };
+            part2 = switch(getGenetic(geneticCode, "CHEST_SIZE")) {
+                case 1 -> "small_1";
+                case 2 -> "small_2";
+                case 3 -> "average_1";
+                case 4 -> "average_2";
+                case 5 -> "large_1";
+                case 6 -> "large_2";
+                default -> "";
+            };
+
+        } else if (partType.equals("hips")) {
+            part1 = switch(getGenetic(geneticCode, "MUSCLE_MASS")) {
+                case 1 -> "lean";
+                case 2 -> "average";
+                case 3 -> "muscular";
+                default -> "";
+            };
+            part2 = switch(getGenetic(geneticCode, "HIP_SIZE")) {
+                case 1 -> "small_1";
+                case 2 -> "small_2";
+                case 3 -> "average_1";
+                case 4 -> "average_2";
+                case 5 -> "large_1";
+                case 6 -> "large_2";
+                default -> "";
+            };
+        }
+
+        return partType + "_" + part1 + "_" + part2;
+    }
+
+    public String ThreePartGeneticGetter(String partType) {
+        String geneticCode = this.entityData.get(GENETICS_STRING);
+        String part1 = "", part2 = "", part3 = "";
+
+        if(partType.equals("back")){
+            part1 = switch(getGenetic(geneticCode, "MUSCLE_MASS")) {
+                case 1 -> "lean";
+                case 2 -> "average";
+                case 3 -> "muscular";
+                default -> "";
+            };
+            part2 = switch(getGenetic(geneticCode, "BACK_LENGTH")) {
+                case 1 -> "short";
+                case 2 -> "average";
+                case 3 -> "long";
+                default -> "";
+            };
+            part3 = switch(getGenetic(geneticCode, "BACK_GIRTH")) {
+                case 1 -> "thin";
+                case 2 -> "average";
+                case 3 -> "thick";
+                default -> "";
+            };
+        } else if (partType.equals("stomach")){
+            part1 = switch(getGenetic(geneticCode, "MUSCLE_MASS")) {
+                case 1 -> "lean";
+                case 2 -> "average";
+                case 3 -> "muscular";
+                default -> "";
+            };
+            part2 = switch(getGenetic(geneticCode, "STOMACH_LENGTH")) {
+                case 1 -> "short";
+                case 2 -> "average";
+                case 3 -> "long";
+                default -> "";
+            };
+            part3 = switch(getGenetic(geneticCode, "STOMACH_CURVE")) {
+                case 1 -> "low";
+                case 2 -> "medium";
+                case 3 -> "high";
+                default -> "";
+            };
+        }
+
+        return partType + "_" + part1 + "_" + part2 + "_" + part3;
     }
 
     public String getGeneticCode(){
@@ -432,12 +536,12 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         for(int i = 0; i < geneticCount; i++){
             code.append(String.format("%02d", getGenetic(GeneticValues.values()[i].name())));
         }
-        LOGGER.info("Code " + code.toString());
+//        LOGGER.info("Code " + code.toString());
         return code.toString();
     }
 
     public void setGenetic(String key, int number) {
-        LOGGER.info("Setting Geneic: " + key + " / " + number);
+//        LOGGER.info("Setting Geneic: " + key + " / " + number);
         this.GENETICS.put(key, number);
         this.entityData.set(GENETICS_STRING, getGeneticCode());
     }

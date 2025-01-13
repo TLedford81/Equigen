@@ -6,6 +6,8 @@ import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
+import java.util.List;
+
 public class HipsModelParts {
     public static PartDefinition Generate(PartDefinition root, String muscleMass, String size, int variation) {
         if (muscleMass.equals("lean") && size.equals("small") && variation == 1) {
@@ -155,6 +157,19 @@ public class HipsModelParts {
         } else {
             EquigenMod.LOGGER.error("Invalid Part Generated: Hips / " + muscleMass + " / " + size + ", Returning Null Value");
             return null;
+        }
+        return root;
+    }
+
+    public static PartDefinition GenerateAll(PartDefinition root){
+        List<String> muscleMass = List.of("lean", "average", "muscular");
+        List<String> size = List.of("small", "average", "large");
+
+        for(String variable1 : muscleMass){
+            for(String variable2 : size){
+                root = Generate(root, variable1, variable2, 1);
+                root = Generate(root, variable1, variable2, 2);
+            }
         }
         return root;
     }
