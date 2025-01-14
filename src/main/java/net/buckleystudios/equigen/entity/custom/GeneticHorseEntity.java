@@ -421,7 +421,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                 "chest", TwoPartGeneticGetter("chest"),
                 "back", ThreePartGeneticGetter("back"),
                 "hips", TwoPartGeneticGetter("hips"),
-                "stomach", ThreePartGeneticGetter("stomach")
+                "stomach", ThreePartGeneticGetter("stomach"),
+                "tail_connector", TwoPartGeneticGetter("tail_connector")
         );
     }
 
@@ -476,6 +477,19 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                 case 4 -> "average_2";
                 case 5 -> "large_1";
                 case 6 -> "large_2";
+                default -> "";
+            };
+        } else if (partType.equals("tail_connector")) {
+            part2 = switch(getGenetic(geneticCode, "TAIL_LENGTH")) {
+                case 1 -> "short";
+                case 2 -> "average";
+                case 3 -> "long";
+                default -> "";
+            };
+            part1 = switch(getGenetic(geneticCode, "TAIL_THICKNESS")) {
+                case 1 -> "thin";
+                case 2 -> "average";
+                case 3 -> "thick";
                 default -> "";
             };
         }

@@ -65,13 +65,14 @@ public class TestCommand {
 
     private boolean ValidPart(String part){
         List<String> validParts = List.of(
-                "chest", "back", "hips", "stomach", "tail", "withers", "leftear", "rightear", "neck", "head",
+                "chest", "back", "hips", "stomach", "withers", "leftear", "rightear", "neck", "head",
                 "forelegleft", "forelegright", "hindlegleft", "hindlegright",
                 "topforelegleft", "topforelegright", "tophindlegleft", "tophindlegright",
                 "forelegkneeleft", "forelegkneeright", "hindlegkneeleft", "hindlegkneeright",
                 "upperbottomforelegleft", "upperbottomforelegright", "upperbottomhindlegleft", "upperbottomhindlegright",
                 "lowerbottomforelegleft", "lowerbottomforelegright", "lowerbottomhindlegleft", "lowerbottomhindlegright",
-                "foreleghoofleft", "foreleghoofright", "hindleghoofleft", "hindleghoofright");
+                "foreleghoofleft", "foreleghoofright", "hindleghoofleft", "hindleghoofright",
+                "tail", "tailconnector", "tailconnectorrotator", "tailtop", "tailmiddle", "tailbottom");
 
         EquigenMod.LOGGER.info("Testing Part " + part);
         for(String i : validParts){

@@ -12,9 +12,7 @@ public class TailModelParts {
     public static PartDefinition[] Generate(PartDefinition rootTail, PartDefinition rootTailConnector, PartDefinition rootTailConnectorRotator, PartDefinition rootTailTop, PartDefinition rootTailMiddle, PartDefinition rootTailBottom, String thickness, String length) {
         if (thickness.equals("thin") && length.equals("short")) {
 
-            PartDefinition tail_connector = rootTail.addOrReplaceChild("tail_connector", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-
-            PartDefinition tail_connector_thin_short = rootTailConnectorRotator.addOrReplaceChild("tail_connector_thin_short", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -2.5922F));
+            PartDefinition tail_connector_thin_short = rootTailConnector.addOrReplaceChild("tail_connector_thin_short", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -2.5922F));
 
             PartDefinition cube_r1 = tail_connector_thin_short.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(577, 16).addBox(-0.5531F, 0.0071F, -0.555F, 1.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -0.5363F, 0.7151F, -0.2182F, 0.0F, 0.0F));
 
@@ -31,9 +29,7 @@ public class TailModelParts {
             PartDefinition cube_r4 = tail_bottom_thin_short.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(578, 22).addBox(-1.0F, -0.8391F, -0.9493F, 2.0F, 2.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.2682F, 0.5363F, 0.0894F, -1.6144F, 0.0F, 0.0F));
 
         } else if (thickness.equals("thin") && length.equals("average")) {
-            PartDefinition tail_connector = rootTail.addOrReplaceChild("tail_connector", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-
-            PartDefinition tail_connector_thin_average = rootTailConnectorRotator.addOrReplaceChild("tail_connector_thin_average", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -2.5922F));
+            PartDefinition tail_connector_thin_average = rootTailConnector.addOrReplaceChild("tail_connector_thin_average", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -2.5922F));
 
             PartDefinition cube_r1 = tail_connector_thin_average.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(605, 16).addBox(-0.5531F, 0.0071F, -0.555F, 1.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -0.5363F, 0.7151F, -0.2182F, 0.0F, 0.0F));
 
@@ -51,9 +47,7 @@ public class TailModelParts {
 
 
         } else if (thickness.equals("thin") && length.equals("long")) {
-            PartDefinition tail_connector = rootTail.addOrReplaceChild("tail_connector", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-
-            PartDefinition tail_connector_thin_long = rootTailConnectorRotator.addOrReplaceChild("tail_connector_thin_long", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -2.5922F));
+            PartDefinition tail_connector_thin_long = rootTailConnector.addOrReplaceChild("tail_connector_thin_long", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -2.5922F));
 
             PartDefinition cube_r1 = tail_connector_thin_long.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(634, 16).addBox(-0.5531F, 0.0071F, -0.555F, 1.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -0.5363F, 0.7151F, -0.2182F, 0.0F, 0.0F));
 
@@ -71,9 +65,7 @@ public class TailModelParts {
 
 
         } else if (thickness.equals("average") && length.equals("short")) {
-            PartDefinition tail_connector = rootTail.addOrReplaceChild("tail_connector", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-
-            PartDefinition tail_connector_thick_short = rootTailConnectorRotator.addOrReplaceChild("tail_connector_thick_short", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -2.5922F));
+            PartDefinition tail_connector_thick_short = rootTailConnector.addOrReplaceChild("tail_connector_average_short", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -2.5922F));
 
             PartDefinition cube_r1 = tail_connector_thick_short.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(579, 43).addBox(-0.5531F, 0.0071F, -0.555F, 2.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.4469F, -0.5363F, 0.7151F, -0.2182F, 0.0F, 0.0F));
 
@@ -91,9 +83,7 @@ public class TailModelParts {
 
 
         } else if (thickness.equals("average") && length.equals("average")) {
-            PartDefinition tail_connector = rootTail.addOrReplaceChild("tail_connector", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-
-            PartDefinition tail_connector_average_average = rootTailConnectorRotator.addOrReplaceChild("tail_connector_average_average", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -2.5922F));
+            PartDefinition tail_connector_average_average = rootTailConnector.addOrReplaceChild("tail_connector_average_average", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -2.5922F));
 
             PartDefinition cube_r1 = tail_connector_average_average.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(610, 43).addBox(-0.5531F, 0.0071F, -0.555F, 2.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.3575F, -0.5363F, 0.7151F, -0.2182F, 0.0F, 0.0F));
 
@@ -111,9 +101,7 @@ public class TailModelParts {
 
 
         } else if (thickness.equals("average") && length.equals("long")) {
-            PartDefinition tail_connector = rootTail.addOrReplaceChild("tail_connector", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-
-            PartDefinition tail_connector_thick_long = rootTailConnectorRotator.addOrReplaceChild("tail_connector_thick_long", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -2.5922F));
+            PartDefinition tail_connector_thick_long = rootTailConnector.addOrReplaceChild("tail_connector_average_long", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -2.5922F));
 
             PartDefinition cube_r1 = tail_connector_thick_long.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(654, 72).addBox(-0.5531F, 0.0071F, -0.555F, 2.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.4469F, -0.5363F, 0.7151F, -0.2182F, 0.0F, 0.0F));
 
@@ -131,9 +119,7 @@ public class TailModelParts {
 
 
         } else if (thickness.equals("thick") && length.equals("short")) {
-            PartDefinition tail_connector = rootTail.addOrReplaceChild("tail_connector", CubeListBuilder.create(), PartPose.offset(0.0F, 0.1788F, -0.0147F));
-
-            PartDefinition tail_connector_thick_short = rootTailConnectorRotator.addOrReplaceChild("tail_connector_thick_short", CubeListBuilder.create(), PartPose.offset(0.0F, 0.1788F, -0.0147F));
+            PartDefinition tail_connector_thick_short = rootTailConnector.addOrReplaceChild("tail_connector_thick_short", CubeListBuilder.create(), PartPose.offset(0.0F, 0.1788F, -0.0147F));
 
             PartDefinition cube_r1 = tail_connector_thick_short.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(581, 75).addBox(-0.5531F, 0.0071F, -0.555F, 2.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.4469F, -0.5363F, 0.7151F, -0.2182F, 0.0F, 0.0F));
 
@@ -151,9 +137,7 @@ public class TailModelParts {
 
 
         } else if (thickness.equals("thick") && length.equals("average")) {
-            PartDefinition tail_connector = rootTail.addOrReplaceChild("tail_connector", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-
-            PartDefinition tail_connector_thick_average = rootTailConnectorRotator.addOrReplaceChild("tail_connector_thick_average", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -2.5922F));
+            PartDefinition tail_connector_thick_average = rootTailConnector.addOrReplaceChild("tail_connector_thick_average", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -2.5922F));
 
             PartDefinition cube_r1 = tail_connector_thick_average.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(616, 74).addBox(-0.5531F, 0.0071F, -0.555F, 2.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.3575F, -0.5363F, 0.7151F, -0.2182F, 0.0F, 0.0F));
 
@@ -171,9 +155,7 @@ public class TailModelParts {
 
 
         } else if (thickness.equals("thick") && length.equals("long")) {
-            PartDefinition tail_connector = rootTail.addOrReplaceChild("tail_connector", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-
-            PartDefinition tail_connector_thick_long = rootTailConnectorRotator.addOrReplaceChild("tail_connector_thick_long", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -2.5922F));
+            PartDefinition tail_connector_thick_long = rootTailConnector.addOrReplaceChild("tail_connector_thick_long", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -2.5922F));
 
             PartDefinition cube_r1 = tail_connector_thick_long.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(654, 72).addBox(-0.5531F, 0.0071F, -0.555F, 2.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.4469F, -0.5363F, 0.7151F, -0.2182F, 0.0F, 0.0F));
 
@@ -199,6 +181,7 @@ public class TailModelParts {
     public static PartDefinition[] GenerateAll(PartDefinition rootTail, PartDefinition rootTailConnector, PartDefinition rootTailConnectorRotator, PartDefinition rootTailTop, PartDefinition rootTailMiddle, PartDefinition rootTailBottom){
         List<String> TAIL_THICKNESS = List.of("thin", "average", "thick");
         List<String> TAIL_LENGTH = List.of("short", "average", "long");
+
         PartDefinition[] parts = new PartDefinition[5];
         for(String variable1 : TAIL_THICKNESS) {
             for(String variable2 : TAIL_LENGTH) {

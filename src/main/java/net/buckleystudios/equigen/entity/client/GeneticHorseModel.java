@@ -3,10 +3,7 @@ package net.buckleystudios.equigen.entity.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.command.TestCommand;
-import net.buckleystudios.equigen.entity.client.parts.BackModelParts;
-import net.buckleystudios.equigen.entity.client.parts.ChestModelParts;
-import net.buckleystudios.equigen.entity.client.parts.HipsModelParts;
-import net.buckleystudios.equigen.entity.client.parts.StomachModelParts;
+import net.buckleystudios.equigen.entity.client.parts.*;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -61,6 +58,11 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
     public final ModelPart rootLowerBottomHindLegRight;
     public final ModelPart rootHindLegHoofRight;
     public final ModelPart rootTail;
+    public final ModelPart rootTailConnector;
+    public final ModelPart rootTailConnectorRotator;
+    public final ModelPart rootTailTop;
+    public final ModelPart rootTailMiddle;
+    public final ModelPart rootTailBottom;
 
     public GeneticHorseModel(ModelPart root) {
         this.main = root.getChild("main");
@@ -107,6 +109,11 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
         this.rootHindLegHoofRight = rootLowerBottomHindLegRight.getChild("rootHindLegHoofRight");
 
         this.rootTail = rootHips.getChild("rootTail");
+        this.rootTailConnector = rootTail.getChild("rootTailConnector");
+        this.rootTailConnectorRotator = rootTailConnector.getChild("rootTailConnectorRotator");
+        this.rootTailTop = rootTailConnector.getChild("rootTailTop");
+        this.rootTailMiddle = rootTailTop.getChild("rootTailMiddle");
+        this.rootTailBottom = rootTailMiddle.getChild("rootTailBottom");
     }
 
     public static LayerDefinition createBodyLayer() {
@@ -133,22 +140,27 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
         PartDefinition rootLowerBottomForeLegRight = rootUpperBottomForeLegRight.addOrReplaceChild("rootLowerBottomForeLegRight", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
         PartDefinition rootForeLegHoofRight = rootLowerBottomForeLegRight.addOrReplaceChild("rootForeLegHoofRight", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-        PartDefinition rootNeck = rootChest.addOrReplaceChild("rootNeck", CubeListBuilder.create(), PartPose.offset(-1.7933F, 23.1598F, 1.7061F));
-        PartDefinition rootHead = rootNeck.addOrReplaceChild("rootHead", CubeListBuilder.create(), PartPose.offset(0.6993F, 18.905F, 3.8765F));
+        PartDefinition rootNeck = rootChest.addOrReplaceChild("rootNeck", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+        PartDefinition rootHead = rootNeck.addOrReplaceChild("rootHead", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
         PartDefinition rootFringe = rootHead.addOrReplaceChild("rootFringe", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
         PartDefinition rootMuzzle = rootHead.addOrReplaceChild("rootMuzzle", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
         PartDefinition rootLeftEar = rootHead.addOrReplaceChild("rootLeftEar", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
         PartDefinition rootRightEar = rootHead.addOrReplaceChild("rootRightEar", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
         /* Back */
-        PartDefinition rootBack = main.addOrReplaceChild("rootBack", CubeListBuilder.create(), PartPose.offset(-0.9258F, 24.0F, 0.0F));
+        PartDefinition rootBack = main.addOrReplaceChild("rootBack", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
         PartDefinition rootStomach = rootBack.addOrReplaceChild("rootStomach", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-        PartDefinition rootWithers = rootBack.addOrReplaceChild("rootWithers", CubeListBuilder.create(), PartPose.offset(3.0776F, 20.9609F, -0.4005F));
+        PartDefinition rootWithers = rootBack.addOrReplaceChild("rootWithers", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
         /* Hips */
-        PartDefinition rootHips = main.addOrReplaceChild("rootHips", CubeListBuilder.create(), PartPose.offset(3.0334F, 17.6536F, -1.2759F));
+        PartDefinition rootHips = main.addOrReplaceChild("rootHips", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
         PartDefinition rootTail = rootHips.addOrReplaceChild("rootTail", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+        PartDefinition rootTailConnector = rootTail.addOrReplaceChild("rootTailConnector", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+        PartDefinition rootTailConnectorRotator = rootTailConnector.addOrReplaceChild("rootTailConnectorRotator", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+        PartDefinition rootTailTop = rootTailConnector.addOrReplaceChild("rootTailTop", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+        PartDefinition rootTailMiddle = rootTailTop.addOrReplaceChild("rootTailMiddle", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+        PartDefinition rootTailBottom = rootTailMiddle.addOrReplaceChild("rootTailBottom", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
         PartDefinition rootHindLegLeft = rootHips.addOrReplaceChild("rootHindLegLeft", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
         PartDefinition rootTopHindLegLeft = rootHindLegLeft.addOrReplaceChild("rootTopHindLegLeft", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
@@ -171,6 +183,14 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
 
 //        PartDefinition[] MPA_Ears = EarsModelParts.GenerateAll();
 
+        PartDefinition[] MPA_Tail = TailModelParts.GenerateAll(rootTail, rootTailConnector, rootTailConnectorRotator, rootTailTop, rootTailMiddle, rootTailBottom);
+        rootTail = MPA_Tail[0];
+        rootTailConnector = MPA_Tail[1];
+        rootTailConnectorRotator = MPA_Tail[2];
+        rootTailTop = MPA_Tail[3];
+        rootTailMiddle = MPA_Tail[4];
+        rootTailBottom = MPA_Tail[5];
+
 //        PartDefinition[] MPA_Hoof = HoofModelParts.GenerateAll();
 
 //        PartDefinition[] MPA_Knee = KneeModelParts.GenerateAll();
@@ -185,7 +205,6 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
         rootHips = HipsModelParts.GenerateAll(rootHips);
 //       rootNeck = NeckModelParts.GenerateAll(rootNeck);
         rootStomach = StomachModelParts.GenerateAll(rootStomach);
-//       rootTail = TailModelParts.GenerateAll(rootTail);
 //       rootWithers = WithersModelParts.GenerateAll(rootWithers);
 
         return LayerDefinition.create(meshdefinition, 1024, 1024);
@@ -201,7 +220,8 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
                 rootLeftEar, rootRightEar, rootBack, rootStomach, rootWithers, rootHips, rootHindLegLeft, rootTopHindLegLeft,
                 rootHindLegKneeLeft, rootUpperBottomHindLegLeft, rootLowerBottomHindLegLeft, rootHindLegHoofLeft,
                 rootHindLegRight, rootTopHindLegRight, rootHindLegKneeRight, rootUpperBottomHindLegRight,
-                rootLowerBottomHindLegRight, rootHindLegHoofRight, rootTail);
+                rootLowerBottomHindLegRight, rootHindLegHoofRight, rootTail, rootTailConnector, rootTailConnectorRotator,
+                rootTailTop, rootTailMiddle, rootTailBottom);
 
         Map<String, String> CURRENT_PARTS = entity.getCurrentParts();
 
@@ -210,7 +230,8 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
                     part == rootChest.getChild(CURRENT_PARTS.get("chest")) || rootChest.getChild(CURRENT_PARTS.get("chest")).getAllParts().toList().contains(part) ||
                     part == rootBack.getChild(CURRENT_PARTS.get("back")) || rootBack.getChild(CURRENT_PARTS.get("back")).getAllParts().toList().contains(part) ||
                     part == rootHips.getChild(CURRENT_PARTS.get("hips")) || rootHips.getChild(CURRENT_PARTS.get("hips")).getAllParts().toList().contains(part) ||
-                    part == rootStomach.getChild(CURRENT_PARTS.get("stomach")) || rootStomach.getChild(CURRENT_PARTS.get("stomach")).getAllParts().toList().contains(part)
+                    part == rootStomach.getChild(CURRENT_PARTS.get("stomach")) || rootStomach.getChild(CURRENT_PARTS.get("stomach")).getAllParts().toList().contains(part) ||
+                    part == rootTailConnector.getChild(CURRENT_PARTS.get("tail_connector")) || rootTailConnector.getChild(CURRENT_PARTS.get("tail_connector")).getAllParts().toList().contains(part)
             ){
                 part.visible = true;
             } else {
@@ -269,6 +290,11 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
         SetPartPosition(rootLowerBottomHindLegRight,"lowerbottomhindlegright");
         SetPartPosition(rootHindLegHoofRight,"hindleghoofright");
         SetPartPosition(rootTail,"tail");
+        SetPartPosition(rootTailConnector,"tailconnector");
+        SetPartPosition(rootTailConnectorRotator,"tailconnectorrotator");
+        SetPartPosition(rootTailTop,"tailtop");
+        SetPartPosition(rootTailMiddle,"tailmiddle");
+        SetPartPosition(rootTailBottom,"tailbottom");
     }
 
     public void SetPartPosition(ModelPart root, String part){
