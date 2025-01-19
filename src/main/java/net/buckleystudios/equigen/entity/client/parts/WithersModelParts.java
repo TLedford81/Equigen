@@ -6,6 +6,8 @@ import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
+import java.util.List;
+
 public class WithersModelParts{
     public static PartDefinition Generate(PartDefinition root, String muscleMass) {
         if (muscleMass.equals("lean")) {
@@ -30,8 +32,16 @@ public class WithersModelParts{
             PartDefinition cube_r2 = withers_muscular.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(184, 418).addBox(-6.08F, -6.88F, -5.52F, 7.0F, 17.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.678F, -2.9604F, -1.0801F, 1.2654F, 0.0F, 0.0F));
 
         } else {
-            EquigenMod.LOGGER.error("Invalid Part Generated: Withers / " + muscleMass + ", Returning Null Value");
-            return null;
+            EquigenMod.LOGGER.error("Invalid Part Generated: Withers / " + muscleMass + ", Cancelling Generation...");
+        }
+        return root;
+    }
+
+    public static PartDefinition GenerateAll(PartDefinition root) {
+        List<String> muscleMass = List.of("lean", "average", "muscular");
+
+        for(String variable1 : muscleMass){
+            root = Generate(root, variable1);
         }
         return root;
     }

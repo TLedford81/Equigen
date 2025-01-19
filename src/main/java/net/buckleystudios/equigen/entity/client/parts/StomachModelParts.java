@@ -311,11 +311,11 @@ public class StomachModelParts {
             PartDefinition cube_r4 = stomach_muscular_long_high.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(245, 228).mirror().addBox(-6.0892F, -3.2676F, -5.4648F, 7.0F, 14.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(2.6557F, -3.8504F, -2.4569F, 1.5708F, 0.0F, 0.0F));
 
         } else {
-            EquigenMod.LOGGER.error("Invalid Part Generated: Stomach / " + muscleMass + " / " + length +  " /Curve "  + curve + ", Returning Null Value");
-            return null;
+            EquigenMod.LOGGER.error("Invalid Part Generated: Stomach / " + muscleMass + " / " + length +  " /Curve "  + curve + ", Cancelling Generation...");
         }
         return root;
     }
+
     public static PartDefinition GenerateAll(PartDefinition root){
         List<String> muscleMass = List.of("lean", "average", "muscular");
         List<String> length = List.of("short", "average", "long");

@@ -250,8 +250,7 @@ public class ChestModelParts {
 
             PartDefinition cube_r5 = chest_muscular_large_2.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(179, 262).addBox(-5.08F, -7.68F, -4.52F, 6.0F, 4.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.8735F, -0.1073F, 1.7037F, 1.9199F, 0.0F, 0.0F));
         } else {
-            EquigenMod.LOGGER.error("Invalid Part Generated: Chest / " + muscleMass + " / " + size + " / Variation " + variation + ", Returning Null Value");
-            return null;
+            EquigenMod.LOGGER.error("Invalid Part Generated: Chest / " + muscleMass + " / " + size + " / Variation " + variation + ", Cancelling Generation...");
         }
         return root;
     }

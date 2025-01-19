@@ -6,6 +6,8 @@ import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
+import java.util.List;
+
 public class TopForeLegModelParts {
     public static PartDefinition[] Generate(PartDefinition leftLegRoot, PartDefinition rightLegRoot, String thickness, String length, int variation) {
         if (thickness.equals("average") && length.equals("short") && variation == 1) {
@@ -339,9 +341,27 @@ public class TopForeLegModelParts {
             PartDefinition cube_r4 = top_front_left_thick_long3.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(256, 39).addBox(-0.8558F, -2.0F, -2.02F, 2.0F, 3.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 6.5645F, 0.4068F, 1.789F, 0.0F, 0.0F));
 
         } else {
-            EquigenMod.LOGGER.error("Invalid Part Generated: Top Forelegs / " + thickness + " / " + length + " / Variation " + variation + ", Returning Null Value");
-            return null;
+            EquigenMod.LOGGER.error("Invalid Part Generated: Top Forelegs / " + thickness + " / " + length + " / Variation " + variation + ", Cancelling Generation...");
         }
         return new PartDefinition[]{leftLegRoot, rightLegRoot};
+    }
+
+    public static PartDefinition[] GenerateAll(PartDefinition rootTopForeLegLeft, PartDefinition rootTopForeLegRight) {
+        List<String> thickness = List.of("thin", "average", "thick");
+        List<String> length = List.of("short", "average", "long");
+        PartDefinition[] roots;
+
+        for(String variable1 : thickness){
+            for(String variable2 : length){
+                roots = Generate(rootTopForeLegLeft, rootTopForeLegRight, variable1, variable2, 1);
+                rootTopForeLegLeft = roots[0];
+                rootTopForeLegRight = roots[1];
+
+                roots = Generate(rootTopForeLegLeft, rootTopForeLegRight, variable1, variable2, 2);
+                rootTopForeLegLeft = roots[0];
+                rootTopForeLegRight = roots[1];
+            }
+        }
+        return new PartDefinition[]{rootTopForeLegLeft, rootTopForeLegRight};
     }
 }

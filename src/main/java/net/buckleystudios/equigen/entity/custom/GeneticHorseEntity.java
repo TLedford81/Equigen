@@ -34,10 +34,7 @@ import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJumping {
     public static final Logger LOGGER = LoggerFactory.getLogger(GeneticHorseEntity.class);
@@ -417,131 +414,116 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     }
 
     public Map<String, String> getCurrentParts(){
-        return Map.of(
-                "chest", TwoPartGeneticGetter("chest"),
-                "back", ThreePartGeneticGetter("back"),
-                "hips", TwoPartGeneticGetter("hips"),
-                "stomach", ThreePartGeneticGetter("stomach"),
-                "tail_connector", TwoPartGeneticGetter("tail_connector")
-        );
+        Map<String, String> partMap = new HashMap<>();
+        partMap.put("Chest", GeneticNameGenerator("Chest"));
+        partMap.put("Top_Fore_Leg_Left", GeneticNameGenerator("Top_Fore_Leg_Left"));
+        partMap.put("Fore_Leg_Knee_Left", GeneticNameGenerator("Fore_Leg_Knee_Left"));
+        partMap.put("Bottom_Fore_Leg_Left", GeneticNameGenerator("Bottom_Fore_Leg_Left"));
+        partMap.put("Fore_Leg_Hoof_Left", GeneticNameGenerator("Fore_Leg_Hoof_Left"));
+        partMap.put("Top_Fore_Leg_Right", GeneticNameGenerator("Top_Fore_Leg_Right"));
+        partMap.put("Fore_Leg_Knee_Right", GeneticNameGenerator("Fore_Leg_Knee_Right"));
+        partMap.put("Bottom_Fore_Leg_Right", GeneticNameGenerator("Bottom_Fore_Leg_Right"));
+        partMap.put("Fore_Leg_Hoof_Right", GeneticNameGenerator("Fore_Leg_Hoof_Right"));
+        partMap.put("Neck", GeneticNameGenerator("Neck"));
+        partMap.put("Head", GeneticNameGenerator("Head"));
+        partMap.put("Ears", GeneticNameGenerator("Ears"));
+        partMap.put("Back", GeneticNameGenerator("Back"));
+        partMap.put("Stomach", GeneticNameGenerator("Stomach"));
+        partMap.put("Withers", GeneticNameGenerator("Withers"));
+        partMap.put("Hips", GeneticNameGenerator("Hips"));
+        partMap.put("Top_Hind_Leg_Left", GeneticNameGenerator("Top_Hind_Leg_Left"));
+        partMap.put("Hind_Leg_Knee_Left", GeneticNameGenerator("Hind_Leg_Knee_Left"));
+        partMap.put("Bottom_Hind_Leg_Left", GeneticNameGenerator("Bottom_Hind_Leg_Left"));
+        partMap.put("Hind_Leg_Hoof_Left", GeneticNameGenerator("Hind_Leg_Hoof_Left"));
+        partMap.put("Top_Hind_Leg_Right", GeneticNameGenerator("Top_Hind_Leg_Right"));
+        partMap.put("Hind_Leg_Knee_Right", GeneticNameGenerator("Hind_Leg_Knee_Right"));
+        partMap.put("Bottom_Hind_Leg_Right", GeneticNameGenerator("Bottom_Hind_Leg_Right"));
+        partMap.put("Hind_Leg_Hoof_Right", GeneticNameGenerator("Hind_Leg_Hoof_Right"));
+        partMap.put("Tail", GeneticNameGenerator("Tail"));
+
+        return partMap;
     }
 
-    public String OnePartGeneticGetter(String partType) {
+    public String GeneticNameGenerator(String part){
+        StringBuilder fullName = new StringBuilder();
         String geneticCode = this.entityData.get(GENETICS_STRING);
-        String part = "";
 
-        if(partType.equals("")){
-            part = switch(getGenetic(geneticCode, "MUSCLE_MASS")) {
-                case 1 -> "";
-                case 2 -> "average";
-                case 3 -> "";
-                default -> "";
-            };
+        fullName.append(part);
+
+        for(String gene : getRequiredGenetics(part)){
+            fullName.append("_");
+            fullName.append(getGeneticValueToString(gene, getGenetic(geneticCode, gene)));
         }
-
-        return partType + "_" + part;
+        return fullName.toString();
     }
 
-    public String TwoPartGeneticGetter(String partType) {
-        String geneticCode = this.entityData.get(GENETICS_STRING);
-        String part1 = "", part2 = "";
-
-        if(partType.equals("chest")){
-            part1 = switch(getGenetic(geneticCode, "MUSCLE_MASS")) {
-                case 1 -> "lean";
-                case 2 -> "average";
-                case 3 -> "muscular";
-                default -> "";
-            };
-            part2 = switch(getGenetic(geneticCode, "CHEST_SIZE")) {
-                case 1 -> "small_1";
-                case 2 -> "small_2";
-                case 3 -> "average_1";
-                case 4 -> "average_2";
-                case 5 -> "large_1";
-                case 6 -> "large_2";
-                default -> "";
-            };
-
-        } else if (partType.equals("hips")) {
-            part1 = switch(getGenetic(geneticCode, "MUSCLE_MASS")) {
-                case 1 -> "lean";
-                case 2 -> "average";
-                case 3 -> "muscular";
-                default -> "";
-            };
-            part2 = switch(getGenetic(geneticCode, "HIP_SIZE")) {
-                case 1 -> "small_1";
-                case 2 -> "small_2";
-                case 3 -> "average_1";
-                case 4 -> "average_2";
-                case 5 -> "large_1";
-                case 6 -> "large_2";
-                default -> "";
-            };
-        } else if (partType.equals("tail_connector")) {
-            part2 = switch(getGenetic(geneticCode, "TAIL_LENGTH")) {
-                case 1 -> "short";
-                case 2 -> "average";
-                case 3 -> "long";
-                default -> "";
-            };
-            part1 = switch(getGenetic(geneticCode, "TAIL_THICKNESS")) {
-                case 1 -> "thin";
-                case 2 -> "average";
-                case 3 -> "thick";
-                default -> "";
-            };
+    public String getGeneticValueToString(String genetic, int value){
+        List<String> values = switch (genetic){
+            case "HOOF_SIZE" -> List.of("average", "large");
+            case "LEG_WIDTH" -> List.of("thin", "average", "thick");
+            case "BOTTOM_LEG" -> List.of("short_1", "short_2", "short_3", "average_1", "average_2", "average_3", "long_1", "long_2", "long_3");
+            case "TOP_LEG" -> List.of("short_1", "short_2", "short_3", "average_1", "average_2", "average_3", "long_1", "long_2", "long_3");
+            case "TOP_HIND_LEG_WIDTH" -> List.of("thin", "average", "thick");
+            case "MUSCLE_MASS" -> List.of("lean", "average", "muscular");
+            case "CHEST_SIZE" -> List.of("small_1", "small_2", "average_1", "average_2", "large_1", "large_2");
+            case "HIP_SIZE" -> List.of("small_1", "small_2", "average_1", "average_2", "large_1", "large_2");
+            case "HIP_PLACEMENT" -> List.of("?", "?", "?");
+            case "BACK_LENGTH" -> List.of("short", "average", "long");
+            case "BACK_GIRTH" -> List.of("thin", "average", "thick");
+            case "BACK_HEIGHT" -> List.of("?", "?", "?");
+            case "WITHERS" -> List.of("?", "?", "?");
+            case "STOMACH_CURVE" -> List.of("low", "medium", "high");
+            case "STOMACH_HEIGHT" -> List.of("?", "?", "?");
+            case "STOMACH_LENGTH" -> List.of("short", "average", "long");
+            case "TAIL_SET" -> List.of("?", "?", "?");
+            case "TAIL_LENGTH" -> List.of("short", "average", "long");
+            case "TAIL_THICKNESS" -> List.of("thin", "average", "thick");
+            case "NECK_CURVE" -> List.of("small", "average", "large");
+            case "NECK_POS" -> List.of("?", "?", "?");
+            case "HEAD_SIZE" -> List.of("?", "?", "?");
+            case "NECK_LENGTH" -> List.of("small_1", "small_2", "average_1", "average_2", "large_1", "large_2");
+            case "HEAD_TYPE" -> List.of("straight", "stocky", "dished", "roman");
+            case "EAR_SIZE" -> List.of("?", "?", "?");
+            case "WHISKER_SIZE" -> List.of("?", "?", "?");
+            default -> List.of("null_low", "null_mid", "null_high");
+        };
+        try {
+            return values.get(value - 1);
+        }catch (IndexOutOfBoundsException e){
+//            EquigenMod.LOGGER.error("Index Out of Bounds for Genetic:" + genetic + " with value of " + value);
+            return "";
         }
-
-        return partType + "_" + part1 + "_" + part2;
     }
 
-    public String ThreePartGeneticGetter(String partType) {
-        String geneticCode = this.entityData.get(GENETICS_STRING);
-        String part1 = "", part2 = "", part3 = "";
-
-        if(partType.equals("back")){
-            part1 = switch(getGenetic(geneticCode, "MUSCLE_MASS")) {
-                case 1 -> "lean";
-                case 2 -> "average";
-                case 3 -> "muscular";
-                default -> "";
-            };
-            part2 = switch(getGenetic(geneticCode, "BACK_LENGTH")) {
-                case 1 -> "short";
-                case 2 -> "average";
-                case 3 -> "long";
-                default -> "";
-            };
-            part3 = switch(getGenetic(geneticCode, "BACK_GIRTH")) {
-                case 1 -> "thin";
-                case 2 -> "average";
-                case 3 -> "thick";
-                default -> "";
-            };
-        } else if (partType.equals("stomach")){
-            part1 = switch(getGenetic(geneticCode, "MUSCLE_MASS")) {
-                case 1 -> "lean";
-                case 2 -> "average";
-                case 3 -> "muscular";
-                default -> "";
-            };
-            part2 = switch(getGenetic(geneticCode, "STOMACH_LENGTH")) {
-                case 1 -> "short";
-                case 2 -> "average";
-                case 3 -> "long";
-                default -> "";
-            };
-            part3 = switch(getGenetic(geneticCode, "STOMACH_CURVE")) {
-                case 1 -> "low";
-                case 2 -> "medium";
-                case 3 -> "high";
-                default -> "";
-            };
-        }
-
-        return partType + "_" + part1 + "_" + part2 + "_" + part3;
+    public List<String> getRequiredGenetics(String part){
+        return switch (part){
+            case "Chest" -> List.of("MUSCLE_MASS", "CHEST_SIZE");
+            case "Top_Fore_Leg_Left" -> List.of("LEG_WIDTH", "TOP_LEG");
+            case "Fore_Leg_Knee_Left" -> List.of(/*NO GENETICS*/);
+            case "Bottom_Fore_Leg_Left" -> List.of("LEG_WIDTH", "BOTTOM_LEG");
+            case "Fore_Leg_Hoof_Left" -> List.of("HOOF_SIZE");
+            case "Top_Fore_Leg_Right" -> List.of("LEG_WIDTH", "TOP_LEG");
+            case "Fore_Leg_Knee_Right" -> List.of(/*NO GENETICS*/);
+            case "Bottom_Fore_Leg_Right" -> List.of("LEG_WIDTH", "BOTTOM_LEG");
+            case "Fore_Leg_Hoof_Right" -> List.of("HOOF_SIZE");
+            case "Neck" -> List.of("MUSCLE_MASS", "NECK_CURVE", "NECK_LENGTH");
+            case "Head" -> List.of("HEAD_TYPE", "MUSCLE_MASS");
+            case "Ears" -> List.of(/*NO GENETICS*/);
+            case "Back" -> List.of("MUSCLE_MASS", "BACK_LENGTH", "BACK_GIRTH");
+            case "Stomach" -> List.of("MUSCLE_MASS", "STOMACH_LENGTH", "STOMACH_CURVE");
+            case "Withers" -> List.of("MUSCLE_MASS");
+            case "Hips" -> List.of("MUSCLE_MASS", "HIP_SIZE");
+            case "Top_Hind_Leg_Left" -> List.of("TOP_HIND_LEG_WIDTH", "TOP_LEG");
+            case "Hind_Leg_Knee_Left" -> List.of(/*NO GENETICS*/);
+            case "Bottom_Hind_Leg_Left" -> List.of("LEG_WIDTH", "BOTTOM_LEG");
+            case "Hind_Leg_Hoof_Left" -> List.of("HOOF_SIZE");
+            case "Top_Hind_Leg_Right" -> List.of("TOP_HIND_LEG_WIDTH", "TOP_LEG");
+            case "Hind_Leg_Knee_Right" -> List.of(/*NO GENETICS*/);
+            case "Bottom_Hind_Leg_Right" -> List.of("LEG_WIDTH", "BOTTOM_LEG");
+            case "Hind_Leg_Hoof_Right" -> List.of("HOOF_SIZE");
+            case "Tail" -> List.of("TAIL_THICKNESS", "TAIL_LENGTH");
+            default -> List.of(/*NO GENETICS*/);
+        };
     }
 
     public String getGeneticCode(){

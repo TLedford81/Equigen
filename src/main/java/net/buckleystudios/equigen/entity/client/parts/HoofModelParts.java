@@ -6,6 +6,8 @@ import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
+import java.util.List;
+
 public class HoofModelParts {
     public static PartDefinition[] Generate(PartDefinition foreLeftRoot, PartDefinition foreRightRoot, PartDefinition hindLeftRoot, PartDefinition hindRightRoot, String size) {
         if (size.equals("average")) {
@@ -43,9 +45,21 @@ public class HoofModelParts {
             PartDefinition hoof_back_right_large = hoof_back_right.addOrReplaceChild("hoof_back_right_large", CubeListBuilder.create().texOffs(26, 75).addBox(-1.0F, -0.0168F, -1.5F, 2.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0168F, 0.0F));
 
         } else {
-            EquigenMod.LOGGER.error("Invalid Part Generated: Hoof / " + size + ", Returning Null Value");
-            return null;
+            EquigenMod.LOGGER.error("Invalid Part Generated: Hoof / " + size + ", Cancelling Generation...");
         }
         return new PartDefinition[]{foreLeftRoot, foreRightRoot, hindLeftRoot, hindRightRoot};
+    }
+
+    public static PartDefinition[] GenerateAll(PartDefinition rootForeLegHoofLeft, PartDefinition rootForeLegHoofRight, PartDefinition rootHindLegHoofLeft, PartDefinition rootHindLegHoofRight) {
+        List<String> size = List.of("average", "large");
+        PartDefinition[] roots;
+        for (String variable1 : size) {
+            roots = Generate(rootForeLegHoofLeft, rootForeLegHoofRight, rootHindLegHoofLeft, rootHindLegHoofRight, variable1);
+            rootForeLegHoofLeft = roots[0];
+            rootForeLegHoofRight = roots[1];
+            rootHindLegHoofLeft = roots[2];
+            rootHindLegHoofRight = roots[3];
+        }
+        return new PartDefinition[]{rootForeLegHoofLeft, rootForeLegHoofRight, rootHindLegHoofLeft, rootHindLegHoofRight};
     }
 }

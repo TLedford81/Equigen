@@ -224,8 +224,7 @@ public class BackModelParts {
             PartDefinition cube_r2 = back_muscular_long_thick.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(411, 362).addBox(-6.08F, -7.24F, -5.52F, 7.0F, 10.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.7187F, -5.1629F, 4.7982F, 1.6581F, 0.0F, 0.0F));
 
         } else {
-            EquigenMod.LOGGER.error("Invalid Part: Back / " + muscleMass + " / " + length + " / Girth " + girth + ", Returning Null Value");
-            return null;
+            EquigenMod.LOGGER.error("Invalid Part: Back / " + muscleMass + " / " + length + " / Girth " + girth + ", Cancelling Generation...");
         }
         return root;
     }

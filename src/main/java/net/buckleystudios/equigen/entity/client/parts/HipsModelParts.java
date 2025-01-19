@@ -155,8 +155,7 @@ public class HipsModelParts {
             PartDefinition cube_r2 = hips_muscular_large_2.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(2, 432).addBox(-6.08F, -4.24F, -7.36F, 7.0F, 5.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.3931F, -2.9783F, 4.072F, 1.2217F, 0.0F, 0.0F));
 
         } else {
-            EquigenMod.LOGGER.error("Invalid Part Generated: Hips / " + muscleMass + " / " + size + ", Returning Null Value");
-            return null;
+            EquigenMod.LOGGER.error("Invalid Part Generated: Hips / " + muscleMass + " / " + size + ", Cancelling Generation...");
         }
         return root;
     }

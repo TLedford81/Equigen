@@ -18,9 +18,20 @@ public class KneeModelParts {
             PartDefinition knee_back_right = hindRightRoot.addOrReplaceChild("knee_back_right", CubeListBuilder.create().texOffs(8, 54).addBox(-0.7004F, -1.0F, -0.7549F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.2996F, 0.0F, -0.2451F));
 
         } else {
-            EquigenMod.LOGGER.error("Invalid Part Generated: Tail" + ", Returning Null Value");
-            return null;
+            EquigenMod.LOGGER.error("Invalid Part Generated: Tail" + ", Cancelling Generation...");
         }
         return new PartDefinition[]{foreLeftRoot, foreRightRoot, hindLeftRoot, hindRightRoot};
+    }
+
+    public static PartDefinition[] GenerateAll(PartDefinition rootForeLegKneeLeft, PartDefinition rootForeLegKneeRight, PartDefinition rootHindLegKneeLeft, PartDefinition rootHindLegKneeRight) {
+        PartDefinition[] roots;
+
+        roots = Generate(rootForeLegKneeLeft, rootForeLegKneeRight, rootHindLegKneeLeft, rootHindLegKneeRight);
+        rootForeLegKneeLeft = roots[0];
+        rootForeLegKneeRight = roots[1];
+        rootHindLegKneeLeft = roots[2];
+        rootHindLegKneeRight = roots[3];
+
+        return new PartDefinition[]{rootForeLegKneeLeft, rootForeLegKneeRight, rootHindLegKneeLeft, rootHindLegKneeRight};
     }
 }
