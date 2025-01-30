@@ -257,7 +257,7 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
                 }
             }
         } catch (NoSuchElementException e){
-            EquigenMod.LOGGER.error("NO!");
+            EquigenMod.LOGGER.error(e.toString());
         }
     }
 

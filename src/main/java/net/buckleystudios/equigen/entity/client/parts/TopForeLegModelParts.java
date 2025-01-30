@@ -509,26 +509,26 @@ public class TopForeLegModelParts {
         return new PartDefinition[]{leftRoot, rightRoot};
     }
 
-    public static PartDefinition[] GenerateAll(PartDefinition leftRoot, PartDefinition rightRoot) {
+    public static PartDefinition[] GenerateAll(PartDefinition rootTopForeLegLeft, PartDefinition rootTopForeLegRight) {
         List<String> thickness = List.of("average", "thick");
         List<String> length = List.of("short", "average", "long");
 
         PartDefinition[] roots;
         for(String variable1 : thickness){
             for(String variable2 : length){
-                roots = Generate(leftRoot, rightRoot, variable1, variable2, 1);
-                leftRoot = roots[0];
-                rightRoot = roots[0];
+                roots = Generate(rootTopForeLegLeft, rootTopForeLegRight, variable1, variable2, 1);
+                rootTopForeLegLeft = roots[0];
+                rootTopForeLegRight = roots[1];
 
-                roots = Generate(leftRoot, rightRoot, variable1, variable2, 2);
-                leftRoot = roots[0];
-                rightRoot = roots[0];
+                roots = Generate(rootTopForeLegLeft, rootTopForeLegRight, variable1, variable2, 2);
+                rootTopForeLegLeft = roots[0];
+                rootTopForeLegRight = roots[1];
 
-                roots = Generate(leftRoot, rightRoot, variable1, variable2, 3);
-                leftRoot = roots[0];
-                rightRoot = roots[0];
+                roots = Generate(rootTopForeLegLeft, rootTopForeLegRight, variable1, variable2, 3);
+                rootTopForeLegLeft = roots[0];
+                rootTopForeLegRight = roots[1];
             }
         }
-        return new PartDefinition[]{leftRoot, rightRoot};
+        return new PartDefinition[]{rootTopForeLegLeft, rootTopForeLegRight};
     }
 }

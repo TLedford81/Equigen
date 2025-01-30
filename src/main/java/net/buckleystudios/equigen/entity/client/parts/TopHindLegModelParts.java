@@ -226,13 +226,13 @@ public class TopHindLegModelParts {
             PartDefinition cube_r4 = top_back_legs_average_average_2_top_back_left_back.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(226, 330).addBox(-1.1444F, -1.0F, -0.92F, 2.0F, 3.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.1444F, 3.6124F, 0.1293F, 1.7453F, 0.0F, 0.0F));
 
         } else if (thickness.equals("average") && length.equals("long") && variation == 1) {
-            PartDefinition top_back_legs_right_average_long_1_top_back_right_individual = rightRoot.addOrReplaceChild("top_back_legs_right_average_long_1_top_back_right_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+            PartDefinition top_back_legs_average_long_1_top_back_right_individual = rightRoot.addOrReplaceChild("top_back_legs_average_long_1_top_back_right_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-            PartDefinition top_back_legs_thick_long_2_top_back_right_front = top_back_legs_right_average_long_1_top_back_right_individual.addOrReplaceChild("top_back_legs_thick_long_2_top_back_right_front", CubeListBuilder.create(), PartPose.offset(-0.1444F, 4.0268F, -0.2032F));
+            PartDefinition top_back_legs_thick_long_2_top_back_right_front = top_back_legs_average_long_1_top_back_right_individual.addOrReplaceChild("top_back_legs_thick_long_2_top_back_right_front", CubeListBuilder.create(), PartPose.offset(-0.1444F, 4.0268F, -0.2032F));
 
             PartDefinition cube_r1 = top_back_legs_thick_long_2_top_back_right_front.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(290, 324).mirror().addBox(-1.1444F, -3.0F, -1.0F, 2.0F, 2.0F, 10.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.1444F, 3.2135F, 3.1103F, 1.8762F, 0.0F, 0.0F));
 
-            PartDefinition top_back_legs_thick_long_2_top_back_right_back = top_back_legs_right_average_long_1_top_back_right_individual.addOrReplaceChild("top_back_legs_thick_long_2_top_back_right_back", CubeListBuilder.create(), PartPose.offset(0.1444F, 3.6851F, 0.9878F));
+            PartDefinition top_back_legs_thick_long_2_top_back_right_back = top_back_legs_average_long_1_top_back_right_individual.addOrReplaceChild("top_back_legs_thick_long_2_top_back_right_back", CubeListBuilder.create(), PartPose.offset(0.1444F, 3.6851F, 0.9878F));
 
             PartDefinition cube_r2 = top_back_legs_thick_long_2_top_back_right_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(290, 311).mirror().addBox(-0.8556F, -1.0F, -1.92F, 2.0F, 3.0F, 10.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-0.1444F, 3.1189F, -0.0937F, 1.7017F, 0.0F, 0.0F));
 
@@ -299,13 +299,13 @@ public class TopHindLegModelParts {
 
             PartDefinition cube_r2 = top_back_legs_thick_short_2_top_back_right_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(174, 358).mirror().addBox(-0.945F, -2.0F, 0.08F, 2.0F, 3.0F, 8.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-0.055F, 3.9798F, 1.0283F, 1.7017F, 0.0F, 0.0F));
 
-            PartDefinition top_back_legs_right_short_2_top_back_left_individual = leftRoot.addOrReplaceChild("top_back_legs_right_short_2_top_back_left_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+            PartDefinition top_back_legs_thick_short_2_top_back_left_individual = leftRoot.addOrReplaceChild("top_back_legs_thick_short_2_top_back_left_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-            PartDefinition top_back_legs_thick_short_2_top_back_left_front = top_back_legs_right_short_2_top_back_left_individual.addOrReplaceChild("top_back_legs_thick_short_2_top_back_left_front", CubeListBuilder.create(), PartPose.offset(0.055F, 2.5297F, -0.199F));
+            PartDefinition top_back_legs_thick_short_2_top_back_left_front = top_back_legs_thick_short_2_top_back_left_individual.addOrReplaceChild("top_back_legs_thick_short_2_top_back_left_front", CubeListBuilder.create(), PartPose.offset(0.055F, 2.5297F, -0.199F));
 
             PartDefinition cube_r3 = top_back_legs_thick_short_2_top_back_left_front.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(155, 369).addBox(-0.945F, -2.0F, -1.0F, 2.0F, 3.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.055F, 2.1184F, 1.4186F, 1.9635F, 0.0F, 0.0F));
 
-            PartDefinition top_back_legs_thick_short_2_top_back_left_back = top_back_legs_right_short_2_top_back_left_individual.addOrReplaceChild("top_back_legs_thick_short_2_top_back_left_back", CubeListBuilder.create(), PartPose.offset(-0.055F, 2.8242F, 1.1996F));
+            PartDefinition top_back_legs_thick_short_2_top_back_left_back = top_back_legs_thick_short_2_top_back_left_individual.addOrReplaceChild("top_back_legs_thick_short_2_top_back_left_back", CubeListBuilder.create(), PartPose.offset(-0.055F, 2.8242F, 1.1996F));
 
             PartDefinition cube_r4 = top_back_legs_thick_short_2_top_back_left_back.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(154, 358).addBox(-1.055F, -2.0F, 0.08F, 2.0F, 3.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.055F, 3.9798F, 1.0283F, 1.7017F, 0.0F, 0.0F));
 
@@ -383,13 +383,13 @@ public class TopHindLegModelParts {
 
             PartDefinition cube_r2 = top_back_legs_thick_long_2_top_back_right_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(331, 354).mirror().addBox(-0.8556F, -1.0F, -2.92F, 2.0F, 3.0F, 11.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-0.1444F, 2.6276F, -0.0444F, 1.7453F, 0.0F, 0.0F));
 
-            PartDefinition top_back_legs_right_long_2_top_back_left_individual = leftRoot.addOrReplaceChild("top_back_legs_right_long_2_top_back_left_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+            PartDefinition top_back_legs_thick_long_2_top_back_left_individual = leftRoot.addOrReplaceChild("top_back_legs_thick_long_2_top_back_left_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-            PartDefinition top_back_legs_thick_long_2_top_back_left_front = top_back_legs_right_long_2_top_back_left_individual.addOrReplaceChild("top_back_legs_thick_long_2_top_back_left_front", CubeListBuilder.create(), PartPose.offset(0.1444F, 4.5021F, -0.1733F));
+            PartDefinition top_back_legs_thick_long_2_top_back_left_front = top_back_legs_thick_long_2_top_back_left_individual.addOrReplaceChild("top_back_legs_thick_long_2_top_back_left_front", CubeListBuilder.create(), PartPose.offset(0.1444F, 4.5021F, -0.1733F));
 
             PartDefinition cube_r3 = top_back_legs_thick_long_2_top_back_left_front.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(307, 368).addBox(-0.8556F, -3.0F, -1.0F, 2.0F, 3.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.1444F, 3.3638F, 2.6334F, 1.8762F, 0.0F, 0.0F));
 
-            PartDefinition top_back_legs_thick_long_2_top_back_left_back = top_back_legs_right_long_2_top_back_left_individual.addOrReplaceChild("top_back_legs_thick_long_2_top_back_left_back", CubeListBuilder.create(), PartPose.offset(-0.1444F, 4.2658F, 1.3854F));
+            PartDefinition top_back_legs_thick_long_2_top_back_left_back = top_back_legs_thick_long_2_top_back_left_individual.addOrReplaceChild("top_back_legs_thick_long_2_top_back_left_back", CubeListBuilder.create(), PartPose.offset(-0.1444F, 4.2658F, 1.3854F));
 
             PartDefinition cube_r4 = top_back_legs_thick_long_2_top_back_left_back.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(305, 354).addBox(-1.1444F, -1.0F, -2.92F, 2.0F, 3.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.1444F, 2.6276F, -0.0444F, 1.7453F, 0.0F, 0.0F));
 
@@ -403,22 +403,22 @@ public class TopHindLegModelParts {
         return new PartDefinition[]{leftRoot, rightRoot};
     }
 
-    public static PartDefinition[] GenerateAll(PartDefinition leftRoot, PartDefinition rightRoot) {
+    public static PartDefinition[] GenerateAll(PartDefinition rootTopHindLegLeft, PartDefinition rootTopHindLegRight) {
         List<String> thickness = List.of("thin", "average", "thick");
         List<String> length = List.of("short", "average", "long");
         PartDefinition[] roots;
 
         for(String variable1 : thickness){
             for(String variable2 : length){
-                roots = Generate(leftRoot, rightRoot, variable1, variable2, 1);
-                leftRoot = roots[0];
-                rightRoot = roots[1];
+                roots = Generate(rootTopHindLegLeft, rootTopHindLegRight, variable1, variable2, 1);
+                rootTopHindLegLeft = roots[0];
+                rootTopHindLegRight = roots[1];
 
-                roots = Generate(leftRoot, rightRoot, variable1, variable2, 2);
-                leftRoot = roots[0];
-                rightRoot = roots[1];
+                roots = Generate(rootTopHindLegLeft, rootTopHindLegRight, variable1, variable2, 2);
+                rootTopHindLegLeft = roots[0];
+                rootTopHindLegRight = roots[1];
             }
         }
-        return new PartDefinition[]{leftRoot, rightRoot};
+        return new PartDefinition[]{rootTopHindLegLeft, rootTopHindLegRight};
     }
 }
