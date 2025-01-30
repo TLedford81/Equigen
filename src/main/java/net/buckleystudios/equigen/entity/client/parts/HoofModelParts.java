@@ -6,60 +6,50 @@ import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HoofModelParts {
-    public static PartDefinition[] Generate(PartDefinition foreLeftRoot, PartDefinition foreRightRoot, PartDefinition hindLeftRoot, PartDefinition hindRightRoot, String size) {
+    private static List<String> allParts = new ArrayList<>();
+    public static List<String> getAllParts(){
+        return allParts;
+    }
+    public static PartDefinition[] Generate(PartDefinition rootForeLegLeft, PartDefinition rootForeLegRight, PartDefinition rootHindLegLeft, PartDefinition rootHindLegRight, String size) {
         if (size.equals("average")) {
-            PartDefinition hoof_front_left = foreLeftRoot.addOrReplaceChild("hoof_front_left", CubeListBuilder.create(), PartPose.offset(0.0F, -0.0168F, 0.0F));
+            PartDefinition hoof_average_front_left = rootForeLegLeft.addOrReplaceChild("hoof_average_front_left", CubeListBuilder.create().texOffs(73, 132).addBox(-1.0F, 0.0168F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.0168F, 0.0F));
 
-            PartDefinition hoof_front_left_average = hoof_front_left.addOrReplaceChild("hoof_front_left_average", CubeListBuilder.create().texOffs(82, 63).addBox(-1.0F, 0.0168F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+            PartDefinition hoof_average_front_right = rootForeLegRight.addOrReplaceChild("hoof_average_front_right", CubeListBuilder.create().texOffs(81, 132).addBox(-1.0F, 0.0168F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.0168F, 0.0F));
 
-            PartDefinition hoof_front_right = foreRightRoot.addOrReplaceChild("hoof_front_right", CubeListBuilder.create(), PartPose.offset(0.0F, -0.0168F, 0.0F));
+            PartDefinition hoof_average_back_left = rootHindLegLeft.addOrReplaceChild("hoof_average_back_left", CubeListBuilder.create().texOffs(73, 136).addBox(-1.0F, 0.0168F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.0168F, 0.0F));
 
-            PartDefinition hoof_front_right_average = hoof_front_right.addOrReplaceChild("hoof_front_right_average", CubeListBuilder.create().texOffs(82, 63).addBox(-1.0F, 0.0168F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
-
-            PartDefinition hoof_back_left = hindLeftRoot.addOrReplaceChild("hoof_back_left", CubeListBuilder.create(), PartPose.offset(0.0F, -0.0168F, 0.0F));
-
-            PartDefinition hoof_back_left_average = hoof_back_left.addOrReplaceChild("hoof_back_left_average", CubeListBuilder.create().texOffs(82, 63).addBox(-1.0F, 0.0168F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
-
-            PartDefinition hoof_back_right = hindRightRoot.addOrReplaceChild("hoof_back_right", CubeListBuilder.create(), PartPose.offset(0.0F, -0.0168F, 0.0F));
-
-            PartDefinition hoof_back_right_average = hoof_back_right.addOrReplaceChild("hoof_back_right_average", CubeListBuilder.create().texOffs(82, 63).addBox(-1.0F, 0.0168F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+            PartDefinition hoof_average_back_right = rootHindLegRight.addOrReplaceChild("hoof_average_back_right", CubeListBuilder.create().texOffs(81, 136).addBox(-1.0F, 0.0168F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.0168F, 0.0F));
 
         } else if (size.equals("large")) {
-            PartDefinition hoof_front_left = foreLeftRoot.addOrReplaceChild("hoof_front_left", CubeListBuilder.create(), PartPose.offset(0.0F, -0.0335F, 0.0F));
+            PartDefinition hoof_large_front_left = rootForeLegLeft.addOrReplaceChild("hoof_large_front_left", CubeListBuilder.create().texOffs(81, 146).addBox(-1.0F, 0.0F, -1.5F, 2.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.0335F, 0.0F));
 
-            PartDefinition hoof_front_left_large = hoof_front_left.addOrReplaceChild("hoof_front_left_large", CubeListBuilder.create().texOffs(26, 75).addBox(-1.0F, -0.0168F, -1.5F, 2.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0168F, 0.0F));
+            PartDefinition hoof_large_front_right = rootForeLegRight.addOrReplaceChild("hoof_large_front_right", CubeListBuilder.create().texOffs(71, 151).addBox(-1.0F, 0.0F, -1.5F, 2.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.0335F, 0.0F));
 
-            PartDefinition hoof_front_right = foreRightRoot.addOrReplaceChild("hoof_front_right", CubeListBuilder.create(), PartPose.offset(0.0F, -0.0335F, 0.0F));
+            PartDefinition hoof_large_back_left = rootHindLegLeft.addOrReplaceChild("hoof_large_back_left", CubeListBuilder.create().texOffs(81, 151).addBox(-1.0F, 0.0F, -1.5F, 2.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.0335F, 0.0F));
 
-            PartDefinition hoof_front_right_large = hoof_front_right.addOrReplaceChild("hoof_front_right_large", CubeListBuilder.create().texOffs(26, 75).addBox(-1.0F, -0.0168F, -1.5F, 2.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0168F, 0.0F));
-
-            PartDefinition hoof_back_left = hindLeftRoot.addOrReplaceChild("hoof_back_left", CubeListBuilder.create(), PartPose.offset(0.0F, -0.0335F, 0.0F));
-
-            PartDefinition hoof_back_left_large = hoof_back_left.addOrReplaceChild("hoof_back_left_large", CubeListBuilder.create().texOffs(26, 75).addBox(-1.0F, -0.0168F, -1.5F, 2.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0168F, 0.0F));
-
-            PartDefinition hoof_back_right = hindRightRoot.addOrReplaceChild("hoof_back_right", CubeListBuilder.create(), PartPose.offset(0.0F, -0.0335F, 0.0F));
-
-            PartDefinition hoof_back_right_large = hoof_back_right.addOrReplaceChild("hoof_back_right_large", CubeListBuilder.create().texOffs(26, 75).addBox(-1.0F, -0.0168F, -1.5F, 2.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0168F, 0.0F));
+            PartDefinition hoof_large_back_right = rootHindLegRight.addOrReplaceChild("hoof_large_back_right", CubeListBuilder.create().texOffs(71, 146).addBox(-1.0F, 0.0F, -1.5F, 2.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.0335F, 0.0F));
 
         } else {
             EquigenMod.LOGGER.error("Invalid Part Generated: Hoof / " + size + ", Cancelling Generation...");
         }
-        return new PartDefinition[]{foreLeftRoot, foreRightRoot, hindLeftRoot, hindRightRoot};
+        allParts.add("hoof_" + size + "_front_left");
+        allParts.add("hoof_" + size + "_front_right");
+        allParts.add("hoof_" + size + "_back_left");
+        allParts.add("hoof_" + size + "_back_right");
+
+        return new PartDefinition[]{rootForeLegLeft, rootForeLegRight, rootHindLegLeft, rootHindLegRight};
     }
 
-    public static PartDefinition[] GenerateAll(PartDefinition rootForeLegHoofLeft, PartDefinition rootForeLegHoofRight, PartDefinition rootHindLegHoofLeft, PartDefinition rootHindLegHoofRight) {
+    public static PartDefinition[] GenerateAll(PartDefinition rootForeLegLeft, PartDefinition rootForeLegRight, PartDefinition rootHindLegLeft, PartDefinition rootHindLegRight) {
         List<String> size = List.of("average", "large");
         PartDefinition[] roots;
         for (String variable1 : size) {
-            roots = Generate(rootForeLegHoofLeft, rootForeLegHoofRight, rootHindLegHoofLeft, rootHindLegHoofRight, variable1);
-            rootForeLegHoofLeft = roots[0];
-            rootForeLegHoofRight = roots[1];
-            rootHindLegHoofLeft = roots[2];
-            rootHindLegHoofRight = roots[3];
+            roots = Generate(rootForeLegLeft, rootForeLegRight, rootHindLegLeft, rootHindLegRight, variable1);
         }
-        return new PartDefinition[]{rootForeLegHoofLeft, rootForeLegHoofRight, rootHindLegHoofLeft, rootHindLegHoofRight};
+        return new PartDefinition[]{rootForeLegLeft, rootForeLegRight, rootHindLegLeft, rootHindLegRight};
     }
 }

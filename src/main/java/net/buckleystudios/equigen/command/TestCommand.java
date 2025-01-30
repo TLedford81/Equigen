@@ -4,6 +4,8 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import net.buckleystudios.equigen.EquigenMod;
+import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
+import net.buckleystudios.equigen.item.custom.GeneticHorseDebugTool;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.coordinates.Vec3Argument;
@@ -17,6 +19,7 @@ import java.util.List;
 
 public class TestCommand {
     public static boolean testing = true;
+    public static GeneticHorseEntity selectedEntity = null;
     public static String newTargetPart = "";
     public static Vector3f newPartPosition = new Vector3f(0, 0, 0);
     public static Vec3 smegSize = new Vec3(1, 1, 1);
@@ -35,7 +38,7 @@ public class TestCommand {
                         .then(Commands.literal("position")
                                 .then(Commands.argument("part", StringArgumentType.word())
                                         .then(Commands.argument("position", Vec3Argument.vec3())
-                                                .executes(this::MovePart))))));
+                                                .executes(this::MoveTargetEntityPart))))));
     }
 
     private int ResizeSmeg(CommandContext<CommandSourceStack> context) {
@@ -45,6 +48,16 @@ public class TestCommand {
         smegSize = transform;
         context.getSource().sendSuccess(() -> Component.literal(player.getName() + " resized all Smegs!"), true);
         return 1;
+    }
+
+    private int MoveTargetEntityPart(CommandContext<CommandSourceStack> context){
+            selectedEntity = GeneticHorseDebugTool.currentEntity;
+            context.getSource().sendSuccess(() -> Component.literal("Repositioning Head."), true);
+        return 1;
+    }
+
+    public static GeneticHorseEntity getSelectedEntity(){
+        return selectedEntity;
     }
 
     private int MovePart(CommandContext<CommandSourceStack> context){

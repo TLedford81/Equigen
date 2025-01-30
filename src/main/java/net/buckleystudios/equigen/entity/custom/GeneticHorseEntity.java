@@ -41,6 +41,32 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
     public static final EntityDataAccessor<String> GENETICS_STRING = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_HEAD = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_CHEST = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_NECK = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_EARS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_BACK = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_STOMACH = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_WITHERS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_HIPS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_TAIL = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_TOP_FORE_LEG_RIGHT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_TOP_FORE_LEG_LEFT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_TOP_HIND_LEG_RIGHT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_TOP_HIND_LEG_LEFT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_FORE_KNEE_LEFT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_FORE_KNEE_RIGHT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_HIND_KNEE_LEFT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_HIND_KNEE_RIGHT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_FORE_BOTTOM_LEGS_LEFT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_FORE_BOTTOM_LEGS_RIGHT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_HIND_BOTTOM_LEGS_LEFT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_HIND_BOTTOM_LEGS_RIGHT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_FORE_HOOF_LEFT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_FORE_HOOF_RIGHT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_HIND_HOOF_LEFT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_HIND_HOOF_RIGHT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+
     public static final int geneticCount = GeneticValues.values().length;
     private Map<String, Integer> GENETICS = new HashMap<String, Integer>();
 
@@ -52,6 +78,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
 //        LOGGER.info("Finalizing Spawn: " + level + " / " + difficulty + " / " + spawnType + " / " + spawnGroupData);
         this.randomizeGenetics();
+        this.SetModelPartEntityData(this.getCurrentParts());
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }
 
@@ -63,6 +90,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
             // Randomize the genetics for the spawned baby
             geneticHorseChild.randomizeGenetics();
+            geneticHorseChild.SetModelPartEntityData(this.getCurrentParts());
 
             // Log that the genetics have been randomized for the new entity
 //            LOGGER.info("Genetics randomized for GeneticHorseEntity offspring.");
@@ -78,6 +106,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
             // Randomize the genetics for the spawned baby
             geneticHorseBaby.randomizeGenetics();
+            geneticHorseBaby.SetModelPartEntityData(this.getCurrentParts());
 
             // Log that the genetics have been randomized for the new entity
 //            LOGGER.info("Genetics randomized for GeneticHorseEntity offspring.");
@@ -269,31 +298,43 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
 
-//        for(int i = 0; i < geneticCount; i++){
-//            GeneticValues value = GeneticValues.values()[i];
-//            this.setGenetic(value.name(), 0);
-//            EquigenMod.LOGGER.info("Genetic " + value.name() + " set to " + 0);
-//        }
-
-//        Set<String> keys = GENETICS.keySet();
-//        for (String key : keys) {
-//            int value = GENETICS.get(key);
-//            this.setGenetic(key, tag.getInt(key));
-//            LOGGER.info("Adding Save Data: " + key + value);
-//        }
-
         for (int i = 0; i < geneticCount; i++) {
             GeneticValues key = GeneticValues.values()[i];
             this.setGenetic(key.name(), tag.getInt(key.name()));
 //            LOGGER.info("Adding Save Data: " + key.name() + tag.getInt(key.name()));
         }
-        this.entityData.set(GENETICS_STRING, tag.getString("GeneticCode"));
 
-        StringBuilder genString = new StringBuilder(this.entityData.get(GENETICS_STRING));
+        StringBuilder genString = new StringBuilder(tag.getString("GeneticCode"));
         while(genString.length() < geneticCount * 2){
             genString.append("00");
         }
         this.entityData.set(GENETICS_STRING, genString.toString());
+        this.entityData.set(CURRENT_HEAD, tag.getString("CurrentHead"));
+        this.entityData.set(CURRENT_CHEST, tag.getString("CurrentChest"));
+        this.entityData.set(CURRENT_NECK, tag.getString("CurrentNeck"));
+        this.entityData.set(CURRENT_EARS, tag.getString("CurrentEars"));
+        this.entityData.set(CURRENT_BACK, tag.getString("CurrentBack"));
+        this.entityData.set(CURRENT_STOMACH, tag.getString("CurrentStomach"));
+        this.entityData.set(CURRENT_WITHERS, tag.getString("CurrentWithers"));
+        this.entityData.set(CURRENT_HIPS, tag.getString("CurrentHips"));
+        this.entityData.set(CURRENT_TAIL, tag.getString("CurrentTail"));
+
+        this.entityData.set(CURRENT_TOP_FORE_LEG_RIGHT, tag.getString("CurrentTopForeLegRight"));
+        this.entityData.set(CURRENT_TOP_FORE_LEG_LEFT, tag.getString("CurrentTopForeLegLeft"));
+        this.entityData.set(CURRENT_TOP_HIND_LEG_RIGHT, tag.getString("CurrentTopHindLegRight"));
+        this.entityData.set(CURRENT_TOP_HIND_LEG_LEFT, tag.getString("CurrentTopHindLegLeft"));
+        this.entityData.set(CURRENT_FORE_KNEE_LEFT, tag.getString("CurrentForeKneeLeft"));
+        this.entityData.set(CURRENT_FORE_KNEE_RIGHT, tag.getString("CurrentForeKneeRight"));
+        this.entityData.set(CURRENT_HIND_KNEE_LEFT, tag.getString("CurrentHindKneeLeft"));
+        this.entityData.set(CURRENT_HIND_KNEE_RIGHT, tag.getString("CurrentHindKneeRight"));
+        this.entityData.set(CURRENT_FORE_BOTTOM_LEGS_LEFT, tag.getString("CurrentForeBottomLegsLeft"));
+        this.entityData.set(CURRENT_FORE_BOTTOM_LEGS_RIGHT, tag.getString("CurrentForeBottomLegsRight"));
+        this.entityData.set(CURRENT_HIND_BOTTOM_LEGS_LEFT, tag.getString("CurrentHindBottomLegsLeft"));
+        this.entityData.set(CURRENT_HIND_BOTTOM_LEGS_RIGHT, tag.getString("CurrentHindBottomLegsRight"));
+        this.entityData.set(CURRENT_FORE_HOOF_LEFT, tag.getString("CurrentForeHoofLeft"));
+        this.entityData.set(CURRENT_FORE_HOOF_RIGHT, tag.getString("CurrentForeHoofRight"));
+        this.entityData.set(CURRENT_HIND_HOOF_LEFT, tag.getString("CurrentHindHoofLeft"));
+        this.entityData.set(CURRENT_HIND_HOOF_RIGHT, tag.getString("CurrentHindHoofRight"));
     }
 
     @Override
@@ -306,6 +347,35 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 //            LOGGER.info("Adding Save Data: " + key + value);
         }
         tag.putString("GeneticCode", this.entityData.get(GENETICS_STRING));
+        tag.putString("CurrentHead", this.entityData.get(CURRENT_HEAD));
+        tag.putString("CurrentChest", this.entityData.get(CURRENT_CHEST));
+        tag.putString("CurrentNeck", this.entityData.get(CURRENT_NECK));
+        tag.putString("CurrentEars", this.entityData.get(CURRENT_EARS));
+        tag.putString("CurrentBack", this.entityData.get(CURRENT_BACK));
+        tag.putString("CurrentStomach", this.entityData.get(CURRENT_STOMACH));
+        tag.putString("CurrentWithers", this.entityData.get(CURRENT_WITHERS));
+        tag.putString("CurrentHips", this.entityData.get(CURRENT_HIPS));
+        tag.putString("CurrentTail", this.entityData.get(CURRENT_TAIL));
+
+        tag.putString("CurrentTopForeLegRight", this.entityData.get(CURRENT_TOP_FORE_LEG_RIGHT));
+        tag.putString("CurrentTopForeLegLeft", this.entityData.get(CURRENT_TOP_FORE_LEG_LEFT));
+        tag.putString("CurrentTopHindLegRight", this.entityData.get(CURRENT_TOP_HIND_LEG_RIGHT));
+        tag.putString("CurrentTopHindLegLeft", this.entityData.get(CURRENT_TOP_HIND_LEG_LEFT));
+        tag.putString("CurrentForeKneeLeft", this.entityData.get(CURRENT_FORE_KNEE_LEFT));
+        tag.putString("CurrentForeKneeRight", this.entityData.get(CURRENT_FORE_KNEE_RIGHT));
+        tag.putString("CurrentHindKneeLeft", this.entityData.get(CURRENT_HIND_KNEE_LEFT));
+        tag.putString("CurrentHindKneeRight", this.entityData.get(CURRENT_HIND_KNEE_RIGHT));
+        tag.putString("CurrentForeBottomLegsLeft", this.entityData.get(CURRENT_FORE_BOTTOM_LEGS_LEFT));
+        tag.putString("CurrentForeBottomLegsRight", this.entityData.get(CURRENT_FORE_BOTTOM_LEGS_RIGHT));
+        tag.putString("CurrentHindBottomLegsLeft", this.entityData.get(CURRENT_HIND_BOTTOM_LEGS_LEFT));
+        tag.putString("CurrentHindBottomLegsRight", this.entityData.get(CURRENT_HIND_BOTTOM_LEGS_RIGHT));
+
+        tag.putString("CurrentForeHoofLeft", this.entityData.get(CURRENT_FORE_HOOF_LEFT));
+        tag.putString("CurrentForeHoofRight", this.entityData.get(CURRENT_FORE_HOOF_RIGHT));
+        tag.putString("CurrentHindHoofLeft", this.entityData.get(CURRENT_HIND_HOOF_LEFT));
+        tag.putString("CurrentHindHoofRight", this.entityData.get(CURRENT_HIND_HOOF_RIGHT));
+
+
         tag.putInt("geneticCodeSize", geneticCount);
     }
 
@@ -340,6 +410,32 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
         builder.define(GENETICS_STRING, "");
+        builder.define(CURRENT_HEAD, "");
+        builder.define(CURRENT_CHEST, "");
+        builder.define(CURRENT_NECK, "");
+        builder.define(CURRENT_EARS, "");
+        builder.define(CURRENT_BACK, "");
+        builder.define(CURRENT_STOMACH, "");
+        builder.define(CURRENT_WITHERS, "");
+        builder.define(CURRENT_HIPS, "");
+        builder.define(CURRENT_TAIL, "");
+
+        builder.define(CURRENT_TOP_FORE_LEG_RIGHT, "");
+        builder.define(CURRENT_TOP_FORE_LEG_LEFT, "");
+        builder.define(CURRENT_TOP_HIND_LEG_RIGHT, "");
+        builder.define(CURRENT_TOP_HIND_LEG_LEFT, "");
+        builder.define(CURRENT_FORE_KNEE_LEFT, "");
+        builder.define(CURRENT_FORE_KNEE_RIGHT, "");
+        builder.define(CURRENT_HIND_KNEE_LEFT, "");
+        builder.define(CURRENT_HIND_KNEE_RIGHT, "");
+        builder.define(CURRENT_FORE_BOTTOM_LEGS_LEFT, "");
+        builder.define(CURRENT_FORE_BOTTOM_LEGS_RIGHT, "");
+        builder.define(CURRENT_HIND_BOTTOM_LEGS_LEFT, "");
+        builder.define(CURRENT_HIND_BOTTOM_LEGS_RIGHT, "");
+        builder.define(CURRENT_FORE_HOOF_LEFT, "");
+        builder.define(CURRENT_FORE_HOOF_RIGHT, "");
+        builder.define(CURRENT_HIND_HOOF_LEFT, "");
+        builder.define(CURRENT_HIND_HOOF_RIGHT, "");
     }
 
 
@@ -415,33 +511,49 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     public Map<String, String> getCurrentParts(){
         Map<String, String> partMap = new HashMap<>();
-        partMap.put("Chest", GeneticNameGenerator("Chest"));
-        partMap.put("Top_Fore_Leg_Left", GeneticNameGenerator("Top_Fore_Leg_Left"));
-        partMap.put("Fore_Leg_Knee_Left", GeneticNameGenerator("Fore_Leg_Knee_Left"));
-        partMap.put("Bottom_Fore_Leg_Left", GeneticNameGenerator("Bottom_Fore_Leg_Left"));
-        partMap.put("Fore_Leg_Hoof_Left", GeneticNameGenerator("Fore_Leg_Hoof_Left"));
-        partMap.put("Top_Fore_Leg_Right", GeneticNameGenerator("Top_Fore_Leg_Right"));
-        partMap.put("Fore_Leg_Knee_Right", GeneticNameGenerator("Fore_Leg_Knee_Right"));
-        partMap.put("Bottom_Fore_Leg_Right", GeneticNameGenerator("Bottom_Fore_Leg_Right"));
-        partMap.put("Fore_Leg_Hoof_Right", GeneticNameGenerator("Fore_Leg_Hoof_Right"));
-        partMap.put("Neck", GeneticNameGenerator("Neck"));
-        partMap.put("Head", GeneticNameGenerator("Head"));
-        partMap.put("Ears", GeneticNameGenerator("Ears"));
-        partMap.put("Back", GeneticNameGenerator("Back"));
-        partMap.put("Stomach", GeneticNameGenerator("Stomach"));
-        partMap.put("Withers", GeneticNameGenerator("Withers"));
-        partMap.put("Hips", GeneticNameGenerator("Hips"));
-        partMap.put("Top_Hind_Leg_Left", GeneticNameGenerator("Top_Hind_Leg_Left"));
-        partMap.put("Hind_Leg_Knee_Left", GeneticNameGenerator("Hind_Leg_Knee_Left"));
-        partMap.put("Bottom_Hind_Leg_Left", GeneticNameGenerator("Bottom_Hind_Leg_Left"));
-        partMap.put("Hind_Leg_Hoof_Left", GeneticNameGenerator("Hind_Leg_Hoof_Left"));
-        partMap.put("Top_Hind_Leg_Right", GeneticNameGenerator("Top_Hind_Leg_Right"));
-        partMap.put("Hind_Leg_Knee_Right", GeneticNameGenerator("Hind_Leg_Knee_Right"));
-        partMap.put("Bottom_Hind_Leg_Right", GeneticNameGenerator("Bottom_Hind_Leg_Right"));
-        partMap.put("Hind_Leg_Hoof_Right", GeneticNameGenerator("Hind_Leg_Hoof_Right"));
-        partMap.put("Tail", GeneticNameGenerator("Tail"));
+        partMap.putIfAbsent("chest", GeneticNameGenerator("chest"));
+        partMap.putIfAbsent("top_fore_leg_left", GeneticNameGenerator("top_front_legs", "top_front_left_individual"));
+        partMap.putIfAbsent("fore_leg_knee_left", GeneticNameGenerator("knee", "front_left"));
+        partMap.putIfAbsent("bottom_fore_leg_left", GeneticNameGenerator("bottom_legs", "bottom_front_left"));
+        partMap.putIfAbsent("fore_leg_hoof_left", GeneticNameGenerator("hoof", "front_left"));
+        partMap.putIfAbsent("top_fore_leg_right", GeneticNameGenerator("top_front_legs", "top_front_right_individual"));
+        partMap.putIfAbsent("fore_leg_knee_right", GeneticNameGenerator("knee", "front_right"));
+        partMap.putIfAbsent("bottom_fore_leg_right", GeneticNameGenerator("bottom_legs", "bottom_front_right"));
+        partMap.putIfAbsent("fore_leg_hoof_right", GeneticNameGenerator("hoof", "front_right"));
+        partMap.putIfAbsent("neck", GeneticNameGenerator("neck"));
+        partMap.putIfAbsent("head", GeneticNameGenerator("head"));
+        partMap.putIfAbsent("ears", GeneticNameGenerator("ears"));
+        partMap.putIfAbsent("back", GeneticNameGenerator("back"));
+        partMap.putIfAbsent("stomach", GeneticNameGenerator("stomach"));
+        partMap.putIfAbsent("withers", GeneticNameGenerator("withers"));
+        partMap.putIfAbsent("hips", GeneticNameGenerator("hips"));
+        partMap.putIfAbsent("top_hind_leg_left", GeneticNameGenerator("top_back_legs", "top_back_left_individual"));
+        partMap.putIfAbsent("hind_leg_knee_left", GeneticNameGenerator("knee", "back_left"));
+        partMap.putIfAbsent("bottom_hind_leg_left", GeneticNameGenerator("bottom_legs", "bottom_back_left"));
+        partMap.putIfAbsent("hind_leg_hoof_left", GeneticNameGenerator("hoof", "back_left"));
+        partMap.putIfAbsent("top_hind_leg_right", GeneticNameGenerator("top_back_legs", "top_back_right_individual"));
+        partMap.putIfAbsent("hind_leg_knee_right", GeneticNameGenerator("knee", "back_right"));
+        partMap.putIfAbsent("bottom_hind_leg_right", GeneticNameGenerator("bottom_legs", "bottom_back_right"));
+        partMap.putIfAbsent("hind_leg_hoof_right", GeneticNameGenerator("hoof", "back_right"));
+        partMap.putIfAbsent("tail", GeneticNameGenerator("tail"));
 
         return partMap;
+    }
+
+    public String GeneticNameGenerator(String part, String suffix){
+        StringBuilder fullName = new StringBuilder();
+        String geneticCode = this.entityData.get(GENETICS_STRING);
+
+        fullName.append(part);
+
+        for(String gene : getRequiredGenetics(part)){
+            fullName.append("_");
+            fullName.append(getGeneticValueToString(gene, getGenetic(geneticCode, gene)));
+        }
+
+        fullName.append("_").append(suffix);
+
+        return fullName.toString();
     }
 
     public String GeneticNameGenerator(String part){
@@ -452,7 +564,13 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
         for(String gene : getRequiredGenetics(part)){
             fullName.append("_");
-            fullName.append(getGeneticValueToString(gene, getGenetic(geneticCode, gene)));
+            String geneString = getGeneticValueToString(gene, getGenetic(geneticCode, gene));
+
+            if(part.equals("top_front_legs") && gene.equals("LEG_WIDTH") && geneString.equals("thin")){
+                geneString = "average";
+            }
+
+            fullName.append(geneString);
         }
         return fullName.toString();
     }
@@ -497,31 +615,18 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     public List<String> getRequiredGenetics(String part){
         return switch (part){
-            case "Chest" -> List.of("MUSCLE_MASS", "CHEST_SIZE");
-            case "Top_Fore_Leg_Left" -> List.of("LEG_WIDTH", "TOP_LEG");
-            case "Fore_Leg_Knee_Left" -> List.of(/*NO GENETICS*/);
-            case "Bottom_Fore_Leg_Left" -> List.of("LEG_WIDTH", "BOTTOM_LEG");
-            case "Fore_Leg_Hoof_Left" -> List.of("HOOF_SIZE");
-            case "Top_Fore_Leg_Right" -> List.of("LEG_WIDTH", "TOP_LEG");
-            case "Fore_Leg_Knee_Right" -> List.of(/*NO GENETICS*/);
-            case "Bottom_Fore_Leg_Right" -> List.of("LEG_WIDTH", "BOTTOM_LEG");
-            case "Fore_Leg_Hoof_Right" -> List.of("HOOF_SIZE");
-            case "Neck" -> List.of("MUSCLE_MASS", "NECK_CURVE", "NECK_LENGTH");
-            case "Head" -> List.of("HEAD_TYPE", "MUSCLE_MASS");
-            case "Ears" -> List.of(/*NO GENETICS*/);
-            case "Back" -> List.of("MUSCLE_MASS", "BACK_LENGTH", "BACK_GIRTH");
-            case "Stomach" -> List.of("MUSCLE_MASS", "STOMACH_LENGTH", "STOMACH_CURVE");
-            case "Withers" -> List.of("MUSCLE_MASS");
-            case "Hips" -> List.of("MUSCLE_MASS", "HIP_SIZE");
-            case "Top_Hind_Leg_Left" -> List.of("TOP_HIND_LEG_WIDTH", "TOP_LEG");
-            case "Hind_Leg_Knee_Left" -> List.of(/*NO GENETICS*/);
-            case "Bottom_Hind_Leg_Left" -> List.of("LEG_WIDTH", "BOTTOM_LEG");
-            case "Hind_Leg_Hoof_Left" -> List.of("HOOF_SIZE");
-            case "Top_Hind_Leg_Right" -> List.of("TOP_HIND_LEG_WIDTH", "TOP_LEG");
-            case "Hind_Leg_Knee_Right" -> List.of(/*NO GENETICS*/);
-            case "Bottom_Hind_Leg_Right" -> List.of("LEG_WIDTH", "BOTTOM_LEG");
-            case "Hind_Leg_Hoof_Right" -> List.of("HOOF_SIZE");
-            case "Tail" -> List.of("TAIL_THICKNESS", "TAIL_LENGTH");
+            case "chest" -> List.of("MUSCLE_MASS", "CHEST_SIZE");
+            case "top_front_legs" -> List.of("LEG_WIDTH", "TOP_LEG");
+            case "top_back_legs" -> List.of("TOP_HIND_LEG_WIDTH", "TOP_LEG");
+            case "bottom_legs" -> List.of("LEG_WIDTH", "BOTTOM_LEG");
+            case "hooves" -> List.of("HOOF_SIZE");
+            case "neck" -> List.of("MUSCLE_MASS", "NECK_CURVE", "NECK_LENGTH");
+            case "head" -> List.of("HEAD_TYPE", "MUSCLE_MASS");
+            case "back" -> List.of("MUSCLE_MASS", "BACK_LENGTH", "BACK_GIRTH");
+            case "stomach" -> List.of("MUSCLE_MASS", "STOMACH_LENGTH", "STOMACH_CURVE");
+            case "withers" -> List.of("MUSCLE_MASS");
+            case "hips" -> List.of("MUSCLE_MASS", "HIP_SIZE");
+            case "tail" -> List.of("TAIL_THICKNESS", "TAIL_LENGTH");
             default -> List.of(/*NO GENETICS*/);
         };
     }
@@ -540,5 +645,65 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 //        LOGGER.info("Setting Geneic: " + key + " / " + number);
         this.GENETICS.put(key, number);
         this.entityData.set(GENETICS_STRING, getGeneticCode());
+    }
+
+    public void SetModelPartEntityData(Map<String, String> parts){
+        this.entityData.set(CURRENT_HEAD, parts.get("head"));
+        this.entityData.set(CURRENT_CHEST, parts.get("chest"));
+        this.entityData.set(CURRENT_NECK, parts.get("neck"));
+        this.entityData.set(CURRENT_EARS, parts.get("ears"));
+        this.entityData.set(CURRENT_BACK, parts.get("back"));
+        this.entityData.set(CURRENT_STOMACH, parts.get("stomach"));
+        this.entityData.set(CURRENT_WITHERS, parts.get("withers"));
+        this.entityData.set(CURRENT_HIPS, parts.get("hips"));
+        this.entityData.set(CURRENT_TAIL, parts.get("tail"));
+        this.entityData.set(CURRENT_TOP_FORE_LEG_RIGHT, parts.get("top_fore_leg_right"));
+        this.entityData.set(CURRENT_TOP_FORE_LEG_LEFT, parts.get("top_fore_leg_left"));
+        this.entityData.set(CURRENT_TOP_HIND_LEG_RIGHT, parts.get("top_hind_leg_right"));
+        this.entityData.set(CURRENT_TOP_HIND_LEG_LEFT, parts.get("top_hind_leg_left"));
+        this.entityData.set(CURRENT_FORE_KNEE_LEFT, parts.get("fore_leg_knee_left"));
+        this.entityData.set(CURRENT_FORE_KNEE_RIGHT, parts.get("fore_leg_knee_right"));
+        this.entityData.set(CURRENT_HIND_KNEE_LEFT, parts.get("hind_leg_knee_left"));
+        this.entityData.set(CURRENT_HIND_KNEE_RIGHT, parts.get("hind_leg_knee_right"));
+        this.entityData.set(CURRENT_FORE_BOTTOM_LEGS_LEFT, parts.get("bottom_fore_leg_left"));
+        this.entityData.set(CURRENT_FORE_BOTTOM_LEGS_RIGHT, parts.get("bottom_fore_leg_right"));
+        this.entityData.set(CURRENT_HIND_BOTTOM_LEGS_LEFT, parts.get("bottom_hind_leg_left"));
+        this.entityData.set(CURRENT_HIND_BOTTOM_LEGS_RIGHT, parts.get("bottom_hind_leg_right"));
+        this.entityData.set(CURRENT_FORE_HOOF_LEFT, parts.get("fore_leg_hoof_left"));
+        this.entityData.set(CURRENT_FORE_HOOF_RIGHT, parts.get("fore_leg_hoof_right"));
+        this.entityData.set(CURRENT_HIND_HOOF_LEFT, parts.get("hind_leg_hoof_left"));
+        this.entityData.set(CURRENT_HIND_HOOF_RIGHT, parts.get("hind_leg_hoof_right"));
+
+    }
+
+    public String getCurrentPart(String part){
+        switch (part){
+            case "head": return this.entityData.get(CURRENT_HEAD).toLowerCase();
+            case "chest": return this.entityData.get(CURRENT_CHEST).toLowerCase();
+            case "neck": return this.entityData.get(CURRENT_NECK).toLowerCase();
+            case "ears": return this.entityData.get(CURRENT_EARS).toLowerCase();
+            case "back": return this.entityData.get(CURRENT_BACK).toLowerCase();
+            case "stomach": return this.entityData.get(CURRENT_STOMACH).toLowerCase();
+            case "withers": return this.entityData.get(CURRENT_WITHERS).toLowerCase();
+            case "hips": return this.entityData.get(CURRENT_HIPS).toLowerCase();
+            case "tail": return this.entityData.get(CURRENT_TAIL).toLowerCase();
+            case "top_fore_leg_right": return this.entityData.get(CURRENT_TOP_FORE_LEG_RIGHT).toLowerCase();
+            case "top_fore_leg_left": return this.entityData.get(CURRENT_TOP_FORE_LEG_LEFT).toLowerCase();
+            case "top_hind_leg_right": return this.entityData.get(CURRENT_TOP_HIND_LEG_RIGHT).toLowerCase();
+            case "top_hind_leg_left": return this.entityData.get(CURRENT_TOP_HIND_LEG_LEFT).toLowerCase();
+            case "fore_leg_knee_left": return this.entityData.get(CURRENT_FORE_KNEE_LEFT).toLowerCase();
+            case "fore_leg_knee_right": return this.entityData.get(CURRENT_FORE_KNEE_RIGHT).toLowerCase();
+            case "hind_leg_knee_left": return this.entityData.get(CURRENT_HIND_KNEE_LEFT).toLowerCase();
+            case "hind_leg_knee_right": return this.entityData.get(CURRENT_HIND_KNEE_RIGHT).toLowerCase();
+            case "bottom_fore_leg_left": return this.entityData.get(CURRENT_FORE_BOTTOM_LEGS_LEFT).toLowerCase();
+            case "bottom_fore_leg_right": return this.entityData.get(CURRENT_FORE_BOTTOM_LEGS_RIGHT).toLowerCase();
+            case "bottom_hind_leg_left": return this.entityData.get(CURRENT_HIND_BOTTOM_LEGS_LEFT).toLowerCase();
+            case "bottom_hind_leg_right": return this.entityData.get(CURRENT_HIND_BOTTOM_LEGS_RIGHT).toLowerCase();
+            case "fore_leg_hoof_left": return this.entityData.get(CURRENT_FORE_HOOF_LEFT).toLowerCase();
+            case "fore_leg_hoof_right": return this.entityData.get(CURRENT_FORE_HOOF_RIGHT).toLowerCase();
+            case "hind_leg_hoof_left": return this.entityData.get(CURRENT_HIND_HOOF_LEFT).toLowerCase();
+            case "hind_leg_hoof_right": return this.entityData.get(CURRENT_HIND_HOOF_RIGHT).toLowerCase();
+            default: return "|INVALID_PART|";
+        }
     }
 }

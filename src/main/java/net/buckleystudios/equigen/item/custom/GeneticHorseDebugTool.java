@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 public class GeneticHorseDebugTool extends Item {
+    public static GeneticHorseEntity currentEntity = null;
     public GeneticHorseDebugTool(Properties properties) {
         super(properties);
     }
@@ -33,6 +34,9 @@ public class GeneticHorseDebugTool extends Item {
                         String value = GeneticValues.values()[i].name();
                         player.sendSystemMessage(Component.literal(value.toLowerCase() + ": " + geneticHorse.getGenetic(value)));
                     }
+                } else {
+                    currentEntity = (GeneticHorseEntity) entity;
+                    player.sendSystemMessage(Component.literal("Selected Genetic Horse, UUID: " + entity.getStringUUID()));
                 }
             }
         }

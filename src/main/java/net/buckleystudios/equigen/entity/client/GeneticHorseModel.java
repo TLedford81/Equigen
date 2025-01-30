@@ -22,7 +22,10 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 public class GeneticHorseModel <T extends GeneticHorseEntity> extends HierarchicalModel<T> {
-    public static List<String> ALL_PARTS = List.of("Chest", "Back", "Hips", "Stomach");
+    //For Testing Purposes
+    static Boolean multipart = true;
+    //---------------------------
+
     public static Map<String, Vector3f> PART_POSITIONS = new HashMap<String, Vector3f>();
 
     public final ModelPart main;
@@ -110,7 +113,6 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
 
         //Establish Folder Hierarchy (Roots)
         PartDefinition main = partdefinition.addOrReplaceChild("main", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-
         PartDefinition rootChest = main.addOrReplaceChild("rootChest", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
         PartDefinition rootForeLegLeft = rootChest.addOrReplaceChild("rootForeLegLeft", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
@@ -137,7 +139,8 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
 
         PartDefinition rootHindLegLeft = rootHips.addOrReplaceChild("rootHindLegLeft", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
         PartDefinition rootTopHindLegLeft = rootHindLegLeft.addOrReplaceChild("rootTopHindLegLeft", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-        PartDefinition rootHindLegKneeLeft = rootTopHindLegLeft.addOrReplaceChild("rootHindLegKneeLeft", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));;
+        PartDefinition rootHindLegKneeLeft = rootTopHindLegLeft.addOrReplaceChild("rootHindLegKneeLeft", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+
         PartDefinition rootBottomHindLegLeft = rootHindLegKneeLeft.addOrReplaceChild("rootBottomHindLegLeft", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
         PartDefinition rootHindLegHoofLeft = rootBottomHindLegLeft.addOrReplaceChild("rootHindLegHoofLeft", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
@@ -149,177 +152,114 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
 
         PartDefinition rootTail = rootHips.addOrReplaceChild("rootTail", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-        /* Chest */
-//        PartDefinition rootChest = main.addOrReplaceChild("rootChest", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//
-//        PartDefinition rootForeLegLeft = rootChest.addOrReplaceChild("rootForeLegLeft", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootTopForeLegLeft = rootForeLegLeft.addOrReplaceChild("rootTopForeLegLeft", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootForeLegKneeLeft = rootTopForeLegLeft.addOrReplaceChild("rootForeLegKneeLeft", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootUpperBottomForeLegLeft = rootForeLegKneeLeft.addOrReplaceChild("rootUpperBottomForeLegLeft", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootLowerBottomForeLegLeft = rootUpperBottomForeLegLeft.addOrReplaceChild("rootLowerBottomForeLegLeft", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootForeLegHoofLeft = rootLowerBottomForeLegLeft.addOrReplaceChild("rootForeLegHoofLeft", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//
-//        PartDefinition rootForeLegRight = rootChest.addOrReplaceChild("rootForeLegRight", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootTopForeLegRight = rootForeLegRight.addOrReplaceChild("rootTopForeLegRight", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootForeLegKneeRight = rootTopForeLegRight.addOrReplaceChild("rootForeLegKneeRight", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootUpperBottomForeLegRight = rootForeLegKneeRight.addOrReplaceChild("rootUpperBottomForeLegRight", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootLowerBottomForeLegRight = rootUpperBottomForeLegRight.addOrReplaceChild("rootLowerBottomForeLegRight", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootForeLegHoofRight = rootLowerBottomForeLegRight.addOrReplaceChild("rootForeLegHoofRight", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//
-//        PartDefinition rootNeck = rootChest.addOrReplaceChild("rootNeck", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootHead = rootNeck.addOrReplaceChild("rootHead", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootFringe = rootHead.addOrReplaceChild("rootFringe", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootMuzzle = rootHead.addOrReplaceChild("rootMuzzle", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootLeftEar = rootHead.addOrReplaceChild("rootLeftEar", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootRightEar = rootHead.addOrReplaceChild("rootRightEar", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//
-//        /* Back */
-//        PartDefinition rootBack = main.addOrReplaceChild("rootBack", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootStomach = rootBack.addOrReplaceChild("rootStomach", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootWithers = rootBack.addOrReplaceChild("rootWithers", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//
-//        /* Hips */
-//        PartDefinition rootHips = main.addOrReplaceChild("rootHips", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//
-//        PartDefinition rootTail = rootHips.addOrReplaceChild("rootTail", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootTailConnector = rootTail.addOrReplaceChild("rootTailConnector", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootTailConnectorRotator = rootTailConnector.addOrReplaceChild("rootTailConnectorRotator", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootTailTop = rootTailConnector.addOrReplaceChild("rootTailTop", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootTailMiddle = rootTailTop.addOrReplaceChild("rootTailMiddle", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootTailBottom = rootTailMiddle.addOrReplaceChild("rootTailBottom", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//
-//        PartDefinition rootHindLegLeft = rootHips.addOrReplaceChild("rootHindLegLeft", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootTopHindLegLeft = rootHindLegLeft.addOrReplaceChild("rootTopHindLegLeft", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootHindLegKneeLeft = rootTopHindLegLeft.addOrReplaceChild("rootHindLegKneeLeft", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootUpperBottomHindLegLeft = rootHindLegKneeLeft.addOrReplaceChild("rootUpperBottomHindLegLeft", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootLowerBottomHindLegLeft = rootUpperBottomHindLegLeft.addOrReplaceChild("rootLowerBottomHindLegLeft", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootHindLegHoofLeft = rootLowerBottomHindLegLeft.addOrReplaceChild("rootHindLegHoofLeft", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//
-//        PartDefinition rootHindLegRight = rootHips.addOrReplaceChild("rootHindLegRight", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootTopHindLegRight = rootHindLegRight.addOrReplaceChild("rootTopHindLegRight", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootHindLegKneeRight = rootTopHindLegRight.addOrReplaceChild("rootHindLegKneeRight", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootUpperBottomHindLegRight = rootHindLegKneeRight.addOrReplaceChild("rootUpperBottomHindLegRight", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootLowerBottomHindLegRight = rootUpperBottomHindLegRight.addOrReplaceChild("rootLowerBottomHindLegRight", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//        PartDefinition rootHindLegHoofRight = rootLowerBottomHindLegRight.addOrReplaceChild("rootHindLegHoofRight", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-        //Generate Parts
+        if(multipart){
+            rootChest = ChestModelParts.GenerateAll(rootChest);
+            rootNeck = NeckModelParts.GenerateAll(rootNeck);
+            rootHead = HeadModelParts.GenerateAll(rootHead);
+            rootEars = EarsModelParts.GenerateAll(rootEars);
+            rootBack = BackModelParts.GenerateAll(rootBack);
+            rootStomach = StomachModelParts.GenerateAll(rootStomach);
+            rootWithers = WithersModelParts.GenerateAll(rootWithers);
+            rootHips = HipsModelParts.GenerateAll(rootHips);
+            rootTail = TailModelParts.GenerateAll(rootTail);
 
-//        rootBack = BackModelParts.GenerateAll(rootBack);
-//        rootChest = ChestModelParts.GenerateAll(rootChest);
-//        rootHips = HipsModelParts.GenerateAll(rootHips);
-//       rootNeck = NeckModelParts.GenerateAll(rootNeck);
-//        rootStomach = StomachModelParts.GenerateAll(rootStomach);
-//       rootWithers = WithersModelParts.GenerateAll(rootWithers);
+            PartDefinition[] ForeLegTopParts = TopForeLegModelParts.GenerateAll(rootTopForeLegLeft, rootTopForeLegRight);
+            PartDefinition[] HindLegTopParts = TopHindLegModelParts.GenerateAll(rootTopHindLegLeft, rootTopHindLegRight);
+            PartDefinition[] KneeParts = KneeModelParts.GenerateAll(rootForeLegKneeLeft, rootForeLegKneeRight, rootHindLegKneeLeft, rootHindLegKneeRight);
+            PartDefinition[] BottomLegParts = BottomLegModelParts.GenerateAll(rootBottomForeLegLeft, rootBottomForeLegRight, rootBottomHindLegLeft, rootBottomHindLegRight);
+            PartDefinition[] HoofParts = HoofModelParts.GenerateAll(rootForeLegHoofLeft, rootForeLegHoofRight, rootHindLegHoofLeft, rootHindLegHoofRight);
 
-        rootChest = ChestModelParts.GenerateAll(rootChest);
-        rootNeck = NeckModelParts.GenerateAll(rootNeck);
-        rootHead = HeadModelParts.GenerateAll(rootHead);
-        rootEars = EarsModelParts.GenerateAll(rootEars);
-        rootBack = BackModelParts.GenerateAll(rootBack);
-        rootStomach = StomachModelParts.GenerateAll(rootStomach);
-        rootWithers = WithersModelParts.GenerateAll(rootWithers);
-        rootHips = HipsModelParts.GenerateAll(rootHips);
-        rootTail = TailModelParts.GenerateAll(rootTail);
+            rootTopForeLegLeft = ForeLegTopParts[0];
+            rootForeLegKneeLeft = KneeParts[0];
+            rootBottomForeLegLeft = BottomLegParts[0];
+            rootForeLegHoofLeft = HoofParts[0];
 
+            rootTopForeLegRight = ForeLegTopParts[1];
+            rootForeLegKneeRight = KneeParts[1];
+            rootBottomForeLegRight = BottomLegParts[1];
+            rootForeLegHoofRight = HoofParts[1];
 
-        PartDefinition[] ForeLegTopParts = TopForeLegModelParts.GenerateAll(rootTopForeLegLeft, rootTopForeLegRight);
-        PartDefinition[] HindLegTopParts = TopHindLegModelParts.GenerateAll(rootTopHindLegLeft, rootTopHindLegRight);
-        PartDefinition[] KneeParts = KneeModelParts.GenerateAll(rootForeLegKneeLeft, rootForeLegKneeRight, rootHindLegKneeLeft, rootHindLegKneeRight);
-        PartDefinition[] BottomLegParts = BottomLegModelParts.GenerateAll(rootBottomForeLegLeft, rootBottomForeLegRight, rootBottomHindLegLeft, rootBottomHindLegRight);
-        PartDefinition[] HoofParts = HoofModelParts.GenerateAll(rootForeLegHoofLeft, rootForeLegHoofRight, rootHindLegHoofLeft, rootHindLegHoofRight);
+            rootTopHindLegLeft = HindLegTopParts[0];
+            rootHindLegKneeLeft = KneeParts[2];
+            rootBottomHindLegLeft = BottomLegParts[2];
+            rootHindLegHoofLeft = HoofParts[2];
 
-        rootTopForeLegLeft = ForeLegTopParts[0];
-        rootForeLegKneeLeft = KneeParts[0];
-        rootBottomForeLegLeft = BottomLegParts[0];
-        rootForeLegHoofLeft = HoofParts[0];
-
-        rootTopForeLegRight = ForeLegTopParts[1];
-        rootForeLegKneeRight = KneeParts[1];
-        rootBottomForeLegRight = BottomLegParts[1];
-        rootForeLegHoofRight = HoofParts[1];
-
-        rootTopHindLegLeft = HindLegTopParts[0];
-        rootHindLegKneeLeft = KneeParts[2];
-        rootBottomHindLegLeft = BottomLegParts[2];
-        rootHindLegHoofLeft = HoofParts[2];
-
-        rootTopHindLegRight = HindLegTopParts[1];
-        rootHindLegKneeRight = KneeParts[3];
-        rootBottomHindLegRight = BottomLegParts[3];
-        rootHindLegHoofRight = HoofParts[3];
+            rootTopHindLegRight = HindLegTopParts[1];
+            rootHindLegKneeRight = KneeParts[3];
+            rootBottomHindLegRight = BottomLegParts[3];
+            rootHindLegHoofRight = HoofParts[3];
+        } else {
+            FullModelTesting.Generate(main);
+        }
 
         return LayerDefinition.create(meshdefinition, 1024, 1024);
     }
 
     @Override
     public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        //HANDLE PART VISIBILITY
-        List<ModelPart> rootParts = List.of(
-        main, rootChest, rootForeLegLeft, rootTopForeLegLeft, rootForeLegKneeLeft, rootBottomForeLegLeft,
-                rootForeLegHoofLeft, rootForeLegRight, rootTopForeLegRight, rootForeLegKneeRight, rootBottomForeLegRight,
-                rootForeLegHoofRight, rootNeck, rootHead, rootEars, rootBack, rootStomach, rootWithers,
-                rootHips, rootHindLegLeft, rootTopHindLegLeft, rootHindLegKneeLeft, rootBottomHindLegLeft,
-                rootHindLegHoofLeft, rootHindLegRight, rootTopHindLegRight, rootHindLegKneeRight, rootBottomHindLegRight,
-                rootHindLegHoofRight, rootTail
-        );
+        //HANDLE VISIBILITY
+        if(multipart) {
+            HandleVisibility(rootChest, ChestModelParts.getAllParts(), entity.getCurrentPart("chest"));
+            HandleVisibility(rootNeck, NeckModelParts.getAllParts(), entity.getCurrentPart("neck"));
+            HandleVisibility(rootHead, HeadModelParts.getAllParts(), entity.getCurrentPart("head"));
+            HandleVisibility(rootEars, EarsModelParts.getAllParts(), entity.getCurrentPart("ears"));
+            HandleVisibility(rootBack, BackModelParts.getAllParts(), entity.getCurrentPart("back"));
+            HandleVisibility(rootStomach, StomachModelParts.getAllParts(), entity.getCurrentPart("stomach"));
+            HandleVisibility(rootWithers, WithersModelParts.getAllParts(), entity.getCurrentPart("withers"));
+            HandleVisibility(rootHips, HipsModelParts.getAllParts(), entity.getCurrentPart("hips"));
+            HandleVisibility(rootTail, TailModelParts.getAllParts(), entity.getCurrentPart("tail"));
 
-
-        Map<String, String> CURRENT_PARTS = entity.getCurrentParts();
-
-        for(ModelPart part : main.getAllParts().toList()) {
-            part.visible = rootParts.contains(part) ||
-                    partVisibilityFlags(rootChest, part, "Chest", CURRENT_PARTS) ||
-                    partVisibilityFlags(rootTopForeLegLeft, part, "Top_Fore_Leg_Left", CURRENT_PARTS) ||
-                    partVisibilityFlags(rootForeLegKneeLeft, part, "Fore_Leg_Knee_Left", CURRENT_PARTS) ||
-                    partVisibilityFlags(rootBottomForeLegLeft, part, "Bottom_Fore_Leg_Left", CURRENT_PARTS) ||
-                    partVisibilityFlags(rootForeLegHoofLeft, part, "Fore_Leg_Hoof_Left", CURRENT_PARTS) ||
-                    partVisibilityFlags(rootTopForeLegRight, part, "Top_Fore_Leg_Right", CURRENT_PARTS) ||
-                    partVisibilityFlags(rootForeLegKneeRight, part, "Fore_Leg_Knee_Right", CURRENT_PARTS) ||
-                    partVisibilityFlags(rootBottomForeLegRight, part, "Bottom_Fore_Leg_Right", CURRENT_PARTS) ||
-                    partVisibilityFlags(rootForeLegHoofRight, part, "Fore_Leg_Hoof_Right", CURRENT_PARTS) ||
-                    partVisibilityFlags(rootNeck, part, "Neck", CURRENT_PARTS) ||
-                    partVisibilityFlags(rootEars, part, "Ears", CURRENT_PARTS) ||
-                    partVisibilityFlags(rootBack, part, "Back", CURRENT_PARTS) ||
-                    partVisibilityFlags(rootStomach, part, "Stomach", CURRENT_PARTS) ||
-                    partVisibilityFlags(rootWithers, part, "Withers", CURRENT_PARTS) ||
-                    partVisibilityFlags(rootHips, part, "Hips", CURRENT_PARTS) ||
-                    partVisibilityFlags(rootTopHindLegLeft, part, "Top_Hind_Leg_Left", CURRENT_PARTS) ||
-                    partVisibilityFlags(rootHindLegKneeLeft, part, "Hind_Leg_Knee_Left", CURRENT_PARTS) ||
-                    partVisibilityFlags(rootBottomHindLegLeft, part, "Bottom_Hind_Leg_Left", CURRENT_PARTS) ||
-                    partVisibilityFlags(rootHindLegHoofLeft, part, "Hind_Leg_Hoof_Left", CURRENT_PARTS) ||
-                    partVisibilityFlags(rootTopHindLegRight, part, "Top_Hind_Leg_Right", CURRENT_PARTS) ||
-                    partVisibilityFlags(rootHindLegKneeRight, part, "Hind_Leg_Knee_Right", CURRENT_PARTS) ||
-                    partVisibilityFlags(rootBottomHindLegRight, part, "Bottom_Hind_Leg_Right", CURRENT_PARTS) ||
-                    partVisibilityFlags(rootHindLegHoofRight, part, "Hind_Leg_Hoof_Right", CURRENT_PARTS) ||
-                    partVisibilityFlags(rootTail, part, "Tail", CURRENT_PARTS);
+            HandleVisibility(rootTopForeLegLeft, TopForeLegModelParts.getAllParts(), entity.getCurrentPart("top_fore_leg_left"));
+            HandleVisibility(rootForeLegKneeLeft, KneeModelParts.getAllParts(), entity.getCurrentPart("fore_leg_knee_left"));
+            HandleVisibility(rootBottomForeLegLeft, BottomLegModelParts.getAllParts(), entity.getCurrentPart("bottom_fore_leg_left"));
+            HandleVisibility(rootForeLegHoofLeft, HoofModelParts.getAllParts(), entity.getCurrentPart("fore_leg_hoof_left"));
+            HandleVisibility(rootTopForeLegRight, TopForeLegModelParts.getAllParts(), entity.getCurrentPart("top_fore_leg_right"));
+            HandleVisibility(rootForeLegKneeRight, KneeModelParts.getAllParts(), entity.getCurrentPart("fore_leg_knee_right"));
+            HandleVisibility(rootBottomForeLegRight, BottomLegModelParts.getAllParts(), entity.getCurrentPart("bottom_fore_leg_right"));
+            HandleVisibility(rootForeLegHoofRight, HoofModelParts.getAllParts(), entity.getCurrentPart("fore_leg_hoof_right"));
+            HandleVisibility(rootTopHindLegLeft, TopHindLegModelParts.getAllParts(), entity.getCurrentPart("top_hind_leg_left"));
+            HandleVisibility(rootHindLegKneeLeft, KneeModelParts.getAllParts(), entity.getCurrentPart("hind_leg_knee_left"));
+            HandleVisibility(rootBottomHindLegLeft, BottomLegModelParts.getAllParts(), entity.getCurrentPart("bottom_hind_leg_left"));
+            HandleVisibility(rootHindLegHoofLeft, HoofModelParts.getAllParts(), entity.getCurrentPart("hind_leg_hoof_left"));
+            HandleVisibility(rootTopHindLegRight, TopHindLegModelParts.getAllParts(), entity.getCurrentPart("top_hind_leg_right"));
+            HandleVisibility(rootHindLegKneeRight, KneeModelParts.getAllParts(), entity.getCurrentPart("hind_leg_knee_right"));
+            HandleVisibility(rootBottomHindLegRight, BottomLegModelParts.getAllParts(), entity.getCurrentPart("bottom_hind_leg_right"));
+            HandleVisibility(rootHindLegHoofRight, HoofModelParts.getAllParts(), entity.getCurrentPart("hind_leg_hoof_right"));
         }
-
         //SETUP ANIMATION
         this.root().getAllParts().forEach(ModelPart::resetPose);
         applyHeadRotation(netHeadYaw, headPitch);
 
-        this.animateWalk(GeneticHorseAnimations.GetAnimation("walking", CURRENT_PARTS), limbSwing, limbSwingAmount, 2f, 2.5f);
-        this.animate(entity.idleAnimationState, GeneticHorseAnimations.GetAnimation("idle", CURRENT_PARTS), ageInTicks, 1);
+        this.animateWalk(GeneticHorseAnimations.GetAnimation("walking", entity), limbSwing, limbSwingAmount, 10f, 2.5f);
+//        this.animateWalk(GeneticHorseAnimations.GetAnimation("galloping", entity), limbSwing, limbSwingAmount, 2f, 2.5f);
+        this.animate(entity.idleAnimationState, GeneticHorseAnimations.GetAnimation("idle", entity), ageInTicks, 1);
 
         //TEST COMMAND
-        MovePart(TestCommand.getNewTargetPart(), TestCommand.getNewPartPosition());
+//        MovePart(TestCommand.getNewTargetPart(), TestCommand.getNewPartPosition());
+
+
+        if(TestCommand.getSelectedEntity() != null){
+            if(entity.getStringUUID().equals(TestCommand.getSelectedEntity().getStringUUID())){
+                rootTopForeLegLeft.setPos(1, -20, 1);
+                rootTopHindLegLeft.setPos(1, -30, 1);
+            }
+        }
     }
 
-    public Boolean partVisibilityFlags(ModelPart root, ModelPart part, String partString, Map<String, String> CURRENT_PARTS) {
+    public void HandleVisibility(ModelPart root, List<String> allParts, String currentPart){
         try {
-            String partLower = CURRENT_PARTS.get(partString).toLowerCase();
-            return part == root.getChild(partLower) ||
-                    root.getChild(partLower).getAllParts().toList().contains(part);
+            for (String part : allParts) {
+                if (part.equals(currentPart)) {
+                    root.getChild(part).visible = true;
+                } else if (root.hasChild(part)) {
+                    root.getChild(part).visible = false;
+                }
+            }
         } catch (NoSuchElementException e){
-//            EquigenMod.LOGGER.error(e.toString());
-            return false;
-        }
-        catch (NullPointerException e){
-            EquigenMod.LOGGER.error("Part Visibility Flag - No Such Element in CURRENT_PARTS:" + partString + " / " + CURRENT_PARTS.get(partString));
-        return false;
+            EquigenMod.LOGGER.error("NO!");
         }
     }
-
 
     public void MovePart(String part, Vector3f newPos) {
         if (!part.isEmpty()) {
