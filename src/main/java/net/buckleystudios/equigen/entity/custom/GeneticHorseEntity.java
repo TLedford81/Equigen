@@ -566,13 +566,27 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             fullName.append("_");
             String geneString = getGeneticValueToString(gene, getGenetic(geneticCode, gene));
 
-            if(part.equals("top_front_legs") && gene.equals("LEG_WIDTH") && geneString.equals("thin")){
-                geneString = "average";
-            }
+            //Exclude Gene Values from Parts
+            geneString = partGeneExclusion(part, gene, geneString);
 
             fullName.append(geneString);
         }
         return fullName.toString();
+    }
+
+    public String partGeneExclusion(String part, String gene, String geneValue){
+        if(part.equals("top_front_legs") && gene.equals("LEG_WIDTH")){
+            if (geneValue.equals("thin")) {
+                return "average";
+            }
+        } else if (part.equals("top_back_legs") && gene.equals("TOP_LEG")){
+            switch (geneValue) {
+                case "short_3" -> {return "short_2";}
+                case "average_3" -> {return "average_2";}
+                case "long_3" -> {return "long_2";}
+            }
+        }
+        return geneValue;
     }
 
     public String getGeneticValueToString(String genetic, int value){

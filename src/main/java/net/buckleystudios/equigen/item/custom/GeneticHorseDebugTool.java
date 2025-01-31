@@ -35,14 +35,13 @@ public class GeneticHorseDebugTool extends Item {
                         player.sendSystemMessage(Component.literal(value.toLowerCase() + ": " + geneticHorse.getGenetic(value)));
                     }
                 } else {
-                    currentEntity = (GeneticHorseEntity) entity;
+                    currentEntity = geneticHorse;
                     player.sendSystemMessage(Component.literal("Selected Genetic Horse, UUID: " + entity.getStringUUID()));
                 }
             }
         }
         return true;
     }
-
 
     @Override
     public boolean isFoil(ItemStack stack) {
