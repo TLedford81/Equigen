@@ -3,12 +3,15 @@ package net.buckleystudios.equigen.entity.custom;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticValues;
 import net.buckleystudios.equigen.item.ModItems;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.network.Filterable;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.ItemTags;
@@ -25,6 +28,8 @@ import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.WrittenBookItem;
+import net.minecraft.world.item.component.WrittenBookContent;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
@@ -223,7 +228,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     public static AttributeSupplier.Builder createAttributes() {
         return Animal.createLivingAttributes()
-                .add(Attributes.MAX_HEALTH, 200.0)
+                .add(Attributes.MAX_HEALTH, 1.0)
                 .add(Attributes.MOVEMENT_SPEED, 0.2F)
                 .add(Attributes.ATTACK_DAMAGE, 80.0)
                 .add(Attributes.FOLLOW_RANGE, 24D)
@@ -251,6 +256,63 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         if (!this.isVehicle() && !flag) {
             ItemStack itemstack = pPlayer.getItemInHand(pHand);
             if (!itemstack.isEmpty()) {
+
+                if (itemstack.is(Items.WRITTEN_BOOK) && pPlayer.isCrouching()){
+                    WrittenBookItem book = (WrittenBookItem) itemstack.getItem();
+                    List<Filterable<Component>> generatedPages = new ArrayList<>();
+                    generatedPages.add(Filterable.passThrough(Component.literal("\n\n\n\n        §b§lGENETICS")));
+                    StringBuilder page = new StringBuilder();
+                    int pageLineCount = 0;
+                    int totalLineCount = 0;
+                    for(GeneticValues genetic : GeneticValues.values()){
+                        page.append("§3§l" + genetic + ": §0" + this.getGenetic(genetic.name()) + "\n");
+                        pageLineCount += 1;
+                        totalLineCount += 1;
+                        List<Integer> largeLines = List.of(5, 40, 48, 54, 58, 60, 66, 75, 76, 77, 78, 79, 80, 81, 83, 85, 87, 94, 96, 97, 98, 100, 101, 102, 108, 109);
+                        for(int geneNum : largeLines){
+                            if(totalLineCount == geneNum){
+                                pageLineCount += 1;
+                            }
+                        }
+
+                        if(pageLineCount >= 13){
+                            generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
+                            page = new StringBuilder();
+                            pageLineCount = 0;
+                        }
+                    }
+                    generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
+
+
+                    generatedPages.add(Filterable.passThrough(Component.literal("\n\n\n\n   §b§lCURRENT PARTS")));
+                    page = new StringBuilder();
+                    pageLineCount = 0;
+                    totalLineCount = 0;
+                    Map<String, String> currentParts = this.getCurrentParts();
+                    for(String key : currentParts.keySet()){
+                        page.append("§3§l" + key + ": §0" + currentParts.get(key) + "\n\n");
+                        pageLineCount += 4;
+                        totalLineCount += 4;
+                        List<Integer> largeLines = List.of();
+                        for(int geneNum : largeLines){
+                            if(totalLineCount == geneNum){
+                                pageLineCount += 1;
+                            }
+                        }
+
+                        if(pageLineCount >= 12){
+                            generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
+                            page = new StringBuilder();
+                            pageLineCount = 0;
+                        }
+                    }
+                    generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
+
+                    WrittenBookContent content = new WrittenBookContent(Filterable.passThrough("Horse Information"), this.getStringUUID(), 0,
+                            generatedPages, true);
+                    itemstack.set(DataComponents.WRITTEN_BOOK_CONTENT, content);
+
+                }
                 if (this.isFood(itemstack)) {
                     return this.fedFood(pPlayer, itemstack);
                 }
@@ -610,10 +672,10 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             case "TAIL_SET" -> List.of("?", "?", "?");
             case "TAIL_LENGTH" -> List.of("short", "average", "long");
             case "TAIL_THICKNESS" -> List.of("thin", "average", "thick");
-            case "NECK_CURVE" -> List.of("small", "average", "large");
+            case "NECK_CURVE" -> List.of("arched", "ewed", "straight", "swan");
             case "NECK_POS" -> List.of("?", "?", "?");
             case "HEAD_SIZE" -> List.of("?", "?", "?");
-            case "NECK_LENGTH" -> List.of("small_1", "small_2", "average_1", "average_2", "large_1", "large_2");
+            case "NECK_LENGTH" -> List.of("short_1", "short_2", "average_1", "average_2", "long_1", "long_2");
             case "HEAD_TYPE" -> List.of("straight", "stocky", "dished", "roman");
             case "EAR_SIZE" -> List.of("?", "?", "?");
             case "WHISKER_SIZE" -> List.of("?", "?", "?");

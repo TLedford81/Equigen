@@ -5,14 +5,21 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import org.joml.Vector3f;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BackModelParts {
-    private static List<String> allParts = new ArrayList<>();
+    private static Map<String, Vector3f> allParts = new HashMap<>();
+    private static Vector3f partOffset = new Vector3f().zero();
     public static List<String> getAllParts(){
-        return allParts;
+        return new ArrayList<>(allParts.keySet());
+    }
+    public static Vector3f getPartOffset(String part){
+        return allParts.get(part);
     }
 
     public static PartDefinition Generate(PartDefinition partdefinition, String muscleMass, String length, String girth) {
@@ -31,6 +38,7 @@ public class BackModelParts {
 
             PartDefinition cube_r2 = back_lean_short_thin_back_top_upper.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(77, 423).addBox(-4.08F, -6.24F, -5.52F, 4.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.6621F, 1.5137F, 1.6581F, 0.0F, 0.0F));
 
+            partOffset = new Vector3f(0.0f, 0.0f, 0.0f);
         } else if (muscleMass.equals("lean") && length.equals("short") && girth.equals("average")) {
             PartDefinition back_lean_short_average = partdefinition.addOrReplaceChild("back_lean_short_average", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
@@ -424,7 +432,8 @@ public class BackModelParts {
         } else {
             EquigenMod.LOGGER.error("Invalid Part: Back / " + muscleMass + " / " + length + " / Girth " + girth + ", Cancelling Generation...");
         }
-        allParts.add("back_" + muscleMass + "_" + length + "_" + girth);
+        String generatedPart = "back_" + muscleMass + "_" + length + "_" + girth;
+        allParts.put(generatedPart, partOffset);
         return partdefinition;
     }
 
