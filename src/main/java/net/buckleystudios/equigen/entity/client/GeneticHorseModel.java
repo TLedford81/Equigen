@@ -206,10 +206,10 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
             HandleVisibility(false, rootHead, HeadModelParts.getAllParts(), entity.getCurrentPart("head"));
             HandleVisibility(false, rootEars, EarsModelParts.getAllParts(), entity.getCurrentPart("ears"));
             HandleVisibility(rootBack, BackModelParts.getAllParts(), entity.getCurrentPart("back"));
-            HandleVisibility(false, rootStomach, StomachModelParts.getAllParts(), entity.getCurrentPart("stomach"));
-            HandleVisibility(false, rootWithers, WithersModelParts.getAllParts(), entity.getCurrentPart("withers"));
+            HandleVisibility(rootStomach, StomachModelParts.getAllParts(), entity.getCurrentPart("stomach"));
+            HandleVisibility(rootWithers, WithersModelParts.getAllParts(), entity.getCurrentPart("withers"));
             HandleVisibility(rootHips, HipsModelParts.getAllParts(), entity.getCurrentPart("hips"));
-            HandleVisibility(false, rootTail, TailModelParts.getAllParts(), entity.getCurrentPart("tail"));
+            HandleVisibility(rootTail, TailModelParts.getAllParts(), entity.getCurrentPart("tail"));
             HandleVisibility(false, rootTopForeLegLeft, TopForeLegModelParts.getAllParts(), entity.getCurrentPart("top_fore_leg_left"));
             HandleVisibility(false, rootForeLegKneeLeft, KneeModelParts.getAllParts(), entity.getCurrentPart("fore_leg_knee_left"));
             HandleVisibility(false, rootBottomForeLegLeft, BottomLegModelParts.getAllParts(), entity.getCurrentPart("bottom_fore_leg_left"));
