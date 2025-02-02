@@ -201,14 +201,14 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
     public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         //HANDLE VISIBILITY
         if(multipart) {
-            HandleVisibility(rootChest, ChestModelParts.getAllParts(), entity.getCurrentPart("chest"));
-            HandleVisibility(false, rootNeck, NeckModelParts.getAllParts(), entity.getCurrentPart("neck"));
+            HandleVisibility(false, rootChest, ChestModelParts.getAllParts(), entity.getCurrentPart("chest"));
+            HandleVisibility(rootNeck, NeckModelParts.getAllParts(), entity.getCurrentPart("neck"));
             HandleVisibility(false, rootHead, HeadModelParts.getAllParts(), entity.getCurrentPart("head"));
             HandleVisibility(false, rootEars, EarsModelParts.getAllParts(), entity.getCurrentPart("ears"));
-            HandleVisibility(rootBack, BackModelParts.getAllParts(), entity.getCurrentPart("back"));
+            HandleVisibility(false, rootBack, BackModelParts.getAllParts(), entity.getCurrentPart("back"));
             HandleVisibility(false, rootStomach, StomachModelParts.getAllParts(), entity.getCurrentPart("stomach"));
             HandleVisibility(false, rootWithers, WithersModelParts.getAllParts(), entity.getCurrentPart("withers"));
-            HandleVisibility(rootHips, HipsModelParts.getAllParts(), entity.getCurrentPart("hips"));
+            HandleVisibility(false, rootHips, HipsModelParts.getAllParts(), entity.getCurrentPart("hips"));
             HandleVisibility(false, rootTail, TailModelParts.getAllParts(), entity.getCurrentPart("tail"));
             HandleVisibility(false, rootTopForeLegLeft, TopForeLegModelParts.getAllParts(), entity.getCurrentPart("top_fore_leg_left"));
             HandleVisibility(false, rootForeLegKneeLeft, KneeModelParts.getAllParts(), entity.getCurrentPart("fore_leg_knee_left"));
@@ -271,6 +271,7 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
     public void HandleVisibility(ModelPart root, List<String> allParts, String currentPart){
         try {
             for (String part : allParts) {
+                EquigenMod.LOGGER.info(part + " : " + currentPart);
                 if (part.equals(currentPart)) {
                     root.getChild(part).visible = true;
                 } else if (root.hasChild(part)) {
