@@ -271,7 +271,6 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
     public void HandleVisibility(ModelPart root, List<String> allParts, String currentPart){
         try {
             for (String part : allParts) {
-                EquigenMod.LOGGER.info(part + " : " + currentPart);
                 if (part.equals(currentPart)) {
                     root.getChild(part).visible = true;
                 } else if (root.hasChild(part)) {
@@ -295,7 +294,7 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
     }
 
     public void MovePart(ModelPart root, String part) {
-        Vector3f position = PART_POSITIONS.getOrDefault(part, new Vector3f().zero());
+        Vector3f position = PART_POSITIONS.getOrDefault(part, new Vector3f(0.0f, 0.0f, 0.0f));
         root.setPos(position.x, position.y, position.z);
     }
 

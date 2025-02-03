@@ -1,6 +1,7 @@
 package net.buckleystudios.equigen.entity.custom;
 
 import net.buckleystudios.equigen.entity.ModEntities;
+import net.buckleystudios.equigen.entity.ModEntityAttributes;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticValues;
 import net.buckleystudios.equigen.item.ModItems;
 import net.minecraft.core.component.DataComponents;
@@ -28,7 +29,6 @@ import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.WrittenBookItem;
 import net.minecraft.world.item.component.WrittenBookContent;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -229,6 +229,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public static AttributeSupplier.Builder createAttributes() {
         return Animal.createLivingAttributes()
                 .add(Attributes.MAX_HEALTH, 1.0)
+                .add(ModEntityAttributes.HUNGER, 0.12)
                 .add(Attributes.MOVEMENT_SPEED, 0.2F)
                 .add(Attributes.ATTACK_DAMAGE, 80.0)
                 .add(Attributes.FOLLOW_RANGE, 24D)
@@ -253,66 +254,12 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     @Override
     public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
         boolean flag = !this.isBaby() && this.isTamed() && pPlayer.isSecondaryUseActive();
+        ItemStack itemstack = pPlayer.getItemInHand(pHand);
         if (!this.isVehicle() && !flag) {
-            ItemStack itemstack = pPlayer.getItemInHand(pHand);
+            if (itemstack.is(Items.WRITTEN_BOOK) || itemstack.is(Items.WRITABLE_BOOK)){
+                GenerateDebugBook(pPlayer, pHand);
+            }
             if (!itemstack.isEmpty()) {
-
-                if (itemstack.is(Items.WRITTEN_BOOK) && pPlayer.isCrouching()){
-                    WrittenBookItem book = (WrittenBookItem) itemstack.getItem();
-                    List<Filterable<Component>> generatedPages = new ArrayList<>();
-                    generatedPages.add(Filterable.passThrough(Component.literal("\n\n\n\n        §b§lGENETICS")));
-                    StringBuilder page = new StringBuilder();
-                    int pageLineCount = 0;
-                    int totalLineCount = 0;
-                    for(GeneticValues genetic : GeneticValues.values()){
-                        page.append("§3§l" + genetic + ": §0" + this.getGenetic(genetic.name()) + "\n");
-                        pageLineCount += 1;
-                        totalLineCount += 1;
-                        List<Integer> largeLines = List.of(5, 40, 48, 54, 58, 60, 66, 75, 76, 77, 78, 79, 80, 81, 83, 85, 87, 94, 96, 97, 98, 100, 101, 102, 108, 109);
-                        for(int geneNum : largeLines){
-                            if(totalLineCount == geneNum){
-                                pageLineCount += 1;
-                            }
-                        }
-
-                        if(pageLineCount >= 13){
-                            generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
-                            page = new StringBuilder();
-                            pageLineCount = 0;
-                        }
-                    }
-                    generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
-
-
-                    generatedPages.add(Filterable.passThrough(Component.literal("\n\n\n\n   §b§lCURRENT PARTS")));
-                    page = new StringBuilder();
-                    pageLineCount = 0;
-                    totalLineCount = 0;
-                    Map<String, String> currentParts = this.getCurrentParts();
-                    for(String key : currentParts.keySet()){
-                        page.append("§3§l" + key + ": §0" + currentParts.get(key) + "\n\n");
-                        pageLineCount += 4;
-                        totalLineCount += 4;
-                        List<Integer> largeLines = List.of();
-                        for(int geneNum : largeLines){
-                            if(totalLineCount == geneNum){
-                                pageLineCount += 1;
-                            }
-                        }
-
-                        if(pageLineCount >= 12){
-                            generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
-                            page = new StringBuilder();
-                            pageLineCount = 0;
-                        }
-                    }
-                    generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
-
-                    WrittenBookContent content = new WrittenBookContent(Filterable.passThrough("Horse Information"), this.getStringUUID(), 0,
-                            generatedPages, true);
-                    itemstack.set(DataComponents.WRITTEN_BOOK_CONTENT, content);
-
-                }
                 if (this.isFood(itemstack)) {
                     return this.fedFood(pPlayer, itemstack);
                 }
@@ -323,8 +270,96 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             }
             return super.mobInteract(pPlayer, pHand);
         } else {
-            return super.mobInteract(pPlayer, pHand);
+            if (itemstack.is(Items.WRITTEN_BOOK) || itemstack.is(Items.WRITABLE_BOOK)){
+                GenerateDebugBook(pPlayer, pHand);
+                return InteractionResult.CONSUME;
+            } else {
+                return super.mobInteract(pPlayer, pHand);
+            }
         }
+    }
+
+    public void GenerateDebugBook(Player player, InteractionHand hand) {
+        player.setItemInHand(hand, Items.WRITTEN_BOOK.getDefaultInstance());
+        ItemStack itemStack = player.getItemInHand(hand);
+            List<Filterable<Component>> generatedPages = new ArrayList<>();
+
+            //Basic Horse Information
+            String owner;
+            String ownerUUID;
+            try {
+                owner = this.getOwner().getDisplayName().getString();
+                ownerUUID = this.getOwner().getStringUUID();
+
+            } catch (NullPointerException e){
+                owner = "None";
+                ownerUUID = "N/A";
+            }
+            String growthStage = this.isBaby() ? "Baby" : "Adult";
+
+            generatedPages.add(Filterable.passThrough(Component.literal("" + this.getAttribute(ModEntityAttributes.HUNGER).getBaseValue())));
+            generatedPages.add(Filterable.passThrough(Component.literal(
+                            this.getName().getString() +
+                            "\n\n§2UUID:§r\n" + this.getStringUUID() +
+                            "\n§2Owner:§r\n" + owner +
+                            "\n§2Owner UUID:§r\n" + ownerUUID +
+                            "\n§2Age:§r\n" + this.getAge() + " (" + growthStage + ")" +
+                            "\n§2Texture:§r\n" + "N/A"
+            )));
+
+            //Genetics
+            generatedPages.add(Filterable.passThrough(Component.literal("\n\n\n\n        §b§lGENETICS")));
+            StringBuilder page = new StringBuilder();
+            int pageLineCount = 0;
+            int totalLineCount = 0;
+            for (GeneticValues genetic : GeneticValues.values()) {
+                page.append("§3§l" + genetic + ": §0" + this.getGenetic(genetic.name()) + "\n");
+                pageLineCount += 1;
+                totalLineCount += 1;
+
+                List<Integer> largeLines = List.of(5, 40, 48, 54, 58, 60, 66, 75, 76, 77, 78, 79, 80, 81, 83, 85, 87, 94, 96, 97, 98, 100, 101, 102, 108, 109);
+                for (int geneNum : largeLines) {
+                    if (totalLineCount == geneNum) {
+                        pageLineCount += 1;
+                    }
+                }
+
+                if (pageLineCount >= 13) {
+                    generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
+                    page = new StringBuilder();
+                    pageLineCount = 0;
+                }
+            }
+            generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
+
+            //Current Parts
+            generatedPages.add(Filterable.passThrough(Component.literal("\n\n\n\n   §b§lCURRENT PARTS")));
+            page = new StringBuilder();
+            pageLineCount = 0;
+            totalLineCount = 0;
+            Map<String, String> currentParts = this.getCurrentParts();
+            for (String key : currentParts.keySet()) {
+                page.append("§3§l" + key + ": §0" + currentParts.get(key) + "\n\n");
+                pageLineCount += 4;
+                totalLineCount += 4;
+                List<Integer> largeLines = List.of();
+                for (int geneNum : largeLines) {
+                    if (totalLineCount == geneNum) {
+                        pageLineCount += 1;
+                    }
+                }
+
+                if (pageLineCount >= 12) {
+                    generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
+                    page = new StringBuilder();
+                    pageLineCount = 0;
+                }
+            }
+            generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
+
+            WrittenBookContent content = new WrittenBookContent(Filterable.passThrough(this.getName().getString() + "'s Information"), "Equigen", 0,
+                    generatedPages, true);
+            itemStack.set(DataComponents.WRITTEN_BOOK_CONTENT, content);
     }
 
     @Override
@@ -353,6 +388,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         super.tick();
         if (this.level().isClientSide) {
             this.setupAnimationStates();
+        } else {
+            this.getAttribute(ModEntityAttributes.HUNGER).setBaseValue(0.10);
+
         }
     }
 
@@ -405,6 +443,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         Set<String> keys = GENETICS.keySet();
         for(String key : keys){
             int value = GENETICS.get(key);
+            tag.putInt(key, value);
             tag.putInt(key, value);
 //            LOGGER.info("Adding Save Data: " + key + value);
         }

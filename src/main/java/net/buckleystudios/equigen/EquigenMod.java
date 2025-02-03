@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.buckleystudios.equigen.block.ModBlocks;
 import net.buckleystudios.equigen.block.entity.ModBlockEntities;
 import net.buckleystudios.equigen.entity.ModEntities;
+import net.buckleystudios.equigen.entity.ModEntityAttributes;
 import net.buckleystudios.equigen.entity.client.*;
 import net.buckleystudios.equigen.item.ModItems;
 import net.buckleystudios.equigen.screen.Infusion_Table.InfusionTableScreen;
@@ -46,6 +47,7 @@ public class EquigenMod {
         ModEntities.ENTITY_TYPES.register(modEventBus);
         ModVillagers.VILLAGER_PROFESSIONS.register(modEventBus);
         ModVillagers.POI_TYPES.register(modEventBus);
+        ModEntityAttributes.ATTRIBUTES.register(modEventBus);
 
         //
         modEventBus.addListener(this::commonSetup);
