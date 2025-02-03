@@ -179,7 +179,7 @@ public class HipsModelParts {
 
             PartDefinition hips_lean_large_2_right_hip_glue_outer = hips_lean_large_2_right_hip_glute_base.addOrReplaceChild("hips_lean_large_2_right_hip_glue_outer", CubeListBuilder.create().texOffs(275, 894).addBox(-2.0F, -3.5F, -3.0F, 4.0F, 7.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.3184F, 0.2318F, -0.0705F));
 
-            PartDefinition hips_lean_large_2_hips_top = hips_lean_large_2.addOrReplaceChild("hips_lean_large_2_hips_top", CubeListBuilder.create(), PartPose.offset(0.0F, -0.4469F, 1.6983F));
+            PartDefinition hips_lean_large_2_hips_top = hips_lean_large_2.addOrReplaceChild("hips_lean_large_2_hips_top", CubeListBuilder.create(), PartPose.offset(0.0F, -1.162F, 1.2514F));
 
             PartDefinition hips_lean_large_2_hips_top_upper = hips_lean_large_2_hips_top.addOrReplaceChild("hips_lean_large_2_hips_top_upper", CubeListBuilder.create(), PartPose.offset(0.6874F, -0.1402F, -0.1653F));
 
@@ -353,7 +353,7 @@ public class HipsModelParts {
 
             PartDefinition hips_average_large_2_right_hip_glue_outer = hips_average_large_2_right_hip_glute_base.addOrReplaceChild("hips_average_large_2_right_hip_glue_outer", CubeListBuilder.create().texOffs(297, 942).addBox(-2.5F, -3.5F, -3.0F, 5.0F, 7.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.3127F, -0.3395F, -0.0405F));
 
-            PartDefinition hips_average_large_2_hips_top = hips_average_large_2.addOrReplaceChild("hips_average_large_2_hips_top", CubeListBuilder.create(), PartPose.offset(0.0F, -0.9832F, 0.9832F));
+            PartDefinition hips_average_large_2_hips_top = hips_average_large_2.addOrReplaceChild("hips_average_large_2_hips_top", CubeListBuilder.create(), PartPose.offset(0.0F, -1.4302F, 0.6257F));
 
             PartDefinition hips_average_large_2_hips_top_upper = hips_average_large_2_hips_top.addOrReplaceChild("hips_average_large_2_hips_top_upper", CubeListBuilder.create(), PartPose.offset(0.2404F, -0.1402F, -0.1653F));
 
@@ -527,7 +527,7 @@ public class HipsModelParts {
 
             PartDefinition hips_muscular_large_2_right_hip_glue_outer = hips_muscular_large_2_right_hip_glute_base.addOrReplaceChild("hips_muscular_large_2_right_hip_glue_outer", CubeListBuilder.create().texOffs(299, 991).addBox(-2.5F, -3.5F, -3.0F, 5.0F, 7.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.8352F, -0.3045F, -0.0705F));
 
-            PartDefinition hips_muscular_large_2_hips_top = hips_muscular_large_2.addOrReplaceChild("hips_muscular_large_2_hips_top", CubeListBuilder.create(), PartPose.offset(-0.6257F, -0.9832F, 1.6983F));
+            PartDefinition hips_muscular_large_2_hips_top = hips_muscular_large_2.addOrReplaceChild("hips_muscular_large_2_hips_top", CubeListBuilder.create(), PartPose.offset(-0.6257F, -1.4302F, 1.3408F));
 
             PartDefinition hips_muscular_large_2_hips_top_upper = hips_muscular_large_2_hips_top.addOrReplaceChild("hips_muscular_large_2_hips_top_upper", CubeListBuilder.create(), PartPose.offset(0.9025F, -0.1402F, -0.1653F));
 

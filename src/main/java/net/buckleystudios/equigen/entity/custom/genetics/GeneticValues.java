@@ -23,11 +23,10 @@ public enum GeneticValues {
     TAIL_THICKNESS,
     NECK_CURVE,
     NECK_POS,
-    HEAD_SIZE,
     NECK_LENGTH,
+    HEAD_SIZE,
     HEAD_TYPE,
     EAR_SIZE,
-    WHISKER_SIZE,
 
     /* Textures*/
     BLACK_MODIFIER,
@@ -87,7 +86,7 @@ public enum GeneticValues {
     SECOND_SUB_PERSONALITY,
     SECOND_SUB_PERSONALITY_PERCENTAGE,
     THIRD_SUB_PERSONALITY,
-    THIRD_SUB_PERSONALITY_TYPE,
+    THIRD_SUB_PERSONALITY_PERCENTAGE,
     FIRST_TRAIT,
     FIRST_TRAIT_VARIATION,
     SECOND_TRAIT,
@@ -150,7 +149,6 @@ public enum GeneticValues {
             case HEAD_TYPE -> 4;
             case HEAD_SIZE -> 3;
             case EAR_SIZE -> 3;
-            case WHISKER_SIZE -> 5;
 
             /* Textures*/
             case BLACK_MODIFIER -> 3;
@@ -209,7 +207,7 @@ public enum GeneticValues {
             case SECOND_SUB_PERSONALITY -> 0;
             case SECOND_SUB_PERSONALITY_PERCENTAGE -> 0;
             case THIRD_SUB_PERSONALITY -> 0;
-            case THIRD_SUB_PERSONALITY_TYPE -> 0;
+            case THIRD_SUB_PERSONALITY_PERCENTAGE -> 0;
             case FIRST_TRAIT -> 0;
             case FIRST_TRAIT_VARIATION -> 0;
             case SECOND_TRAIT -> 0;

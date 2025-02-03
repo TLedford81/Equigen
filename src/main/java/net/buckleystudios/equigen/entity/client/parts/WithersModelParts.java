@@ -16,7 +16,7 @@ public class WithersModelParts{
     }
     public static PartDefinition Generate(PartDefinition partdefinition, String muscleMass) {
         if (muscleMass.equals("lean")) {
-            PartDefinition withers_lean = partdefinition.addOrReplaceChild("withers_lean", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
+            PartDefinition withers_lean = partdefinition.addOrReplaceChild("withers_lean", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 1.162F));
 
             PartDefinition withers_lean_upper = withers_lean.addOrReplaceChild("withers_lean_upper", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
@@ -27,7 +27,7 @@ public class WithersModelParts{
             PartDefinition cube_r2 = withers_lean__lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(731, 25).addBox(-4.08F, -6.88F, -5.52F, 5.0F, 17.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.516F, -2.9604F, -1.0801F, 1.2654F, 0.0F, 0.0F));
 
         } else if (muscleMass.equals("average")) {
-            PartDefinition withers_average = partdefinition.addOrReplaceChild("withers_average", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
+            PartDefinition withers_average = partdefinition.addOrReplaceChild("withers_average", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 1.0726F));
 
             PartDefinition withers_average_upper = withers_average.addOrReplaceChild("withers_average_upper", CubeListBuilder.create(), PartPose.offset(-0.0492F, -0.7822F, -0.3656F));
 
@@ -38,7 +38,7 @@ public class WithersModelParts{
             PartDefinition cube_r2 = withers_average_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(780, 25).addBox(-5.08F, -6.88F, -5.52F, 6.0F, 17.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.8905F, -0.7872F, 1.2654F, 0.0F, 0.0F));
 
         } else if (muscleMass.equals("muscular")) {
-            PartDefinition withers_muscular = partdefinition.addOrReplaceChild("withers_muscular", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
+            PartDefinition withers_muscular = partdefinition.addOrReplaceChild("withers_muscular", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 1.162F));
 
             PartDefinition withers_muscular_upper = withers_muscular.addOrReplaceChild("withers_muscular_upper", CubeListBuilder.create(), PartPose.offset(-0.0129F, -0.7822F, -0.3656F));
 
