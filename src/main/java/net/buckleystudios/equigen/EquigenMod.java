@@ -81,6 +81,7 @@ public class EquigenMod {
             EntityRenderers.register(ModEntities.GENETIC_HORSE.get(), GeneticHorseRenderer::new);
             EntityRenderers.register(ModEntities.TEST_ENTITY.get(), TestEntityRenderer::new);
             EntityRenderers.register(ModEntities.SODIUM_GRENADE.get(), SodiumGrenadeProjectileRenderer::new);
+            EntityRenderers.register(ModEntities.LASSO.get(), LassoProjectileRenderer::new);
 
         }
         @SubscribeEvent

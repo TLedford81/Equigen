@@ -5,6 +5,7 @@ import net.buckleystudios.equigen.block.ModBlocks;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.item.custom.GeneticHorseDebugTool;
 import net.buckleystudios.equigen.item.custom.GeneticHorseSpawnerItem;
+import net.buckleystudios.equigen.item.custom.LassoItem;
 import net.buckleystudios.equigen.item.custom.SodiumGrenadeItem;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
@@ -34,6 +35,7 @@ public class ModItems {
     public static final DeferredItem<Item> LOCOWEED_PETALS = ITEMS.registerSimpleItem("locoweed_petals", new Item.Properties());
     public static final DeferredItem<Item> CALENDULA_PETALS = ITEMS.registerSimpleItem("calendula_petals", new Item.Properties());
 
+    public static final DeferredItem<Item> LASSO = ITEMS.registerItem("lasso", LassoItem::new, new Item.Properties());
     public static final DeferredItem<Item> SODIUM_GRENADE = ITEMS.registerItem("sodium_grenade", SodiumGrenadeItem::new, new Item.Properties());
     public static final DeferredItem<Item> FOLIRITE_PICKAXE = ITEMS.register("folirite_pickaxe", () -> new PickaxeItem(ModToolTiers.FOLIRITE_TIER,
             new Item.Properties().durability(256)

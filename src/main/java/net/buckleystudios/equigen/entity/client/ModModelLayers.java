@@ -15,5 +15,7 @@ public class ModModelLayers {
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "test_entity"), "main");
     public static final ModelLayerLocation SODIUM_GRENADE = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "sodium_grenade"), "main");
+    public static final ModelLayerLocation LASSO = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "sodium_grenade"), "main");
 
 }

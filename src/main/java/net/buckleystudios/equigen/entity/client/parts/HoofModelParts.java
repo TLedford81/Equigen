@@ -40,7 +40,6 @@ public class HoofModelParts {
         allParts.add("hoof_" + size + "_front_right");
         allParts.add("hoof_" + size + "_back_left");
         allParts.add("hoof_" + size + "_back_right");
-
         return new PartDefinition[]{rootForeLegLeft, rootForeLegRight, rootHindLegLeft, rootHindLegRight};
     }
 

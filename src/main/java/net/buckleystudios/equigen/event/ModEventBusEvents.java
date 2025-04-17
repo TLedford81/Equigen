@@ -27,6 +27,7 @@ public class ModEventBusEvents {
         event.registerLayerDefinition(ModModelLayers.GENETIC_HORSE, GeneticHorseModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.TEST_ENTITY, TestEntityModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.SODIUM_GRENADE, SodiumGrenadeProjectileModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.LASSO, SodiumGrenadeProjectileModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -38,7 +39,7 @@ public class ModEventBusEvents {
     }
 
     public static void addAttributes(EntityAttributeModificationEvent event){
-        event.add(ModEntities.GENETIC_HORSE.get(), ModEntityAttributes.HUNGER);
+        event.add(ModEntities.GENETIC_HORSE.get(), ModEntityAttributes.MAX_HUNGER);
     }
 
     @SubscribeEvent

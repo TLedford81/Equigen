@@ -19,7 +19,7 @@ public class TestCommand {
     public static Map<String, Vector3f> PART_POSITIONS = new HashMap<>();
 
     List<String> validParts = List.of(
-            "chest", "neck", "head", "ears", "back", "stomach", "withers", "hips", "tail",
+            "chest", "neck", "head", "leftear", "rightear", "back", "stomach", "withers", "hips", "tail",
             "topforelegleft", "forelegkneeleft", "bottomforelegleft", "foreleghoofleft",
             "topforelegright", "forelegkneeright", "bottomforelegright", "foreleghoofright",
             "tophindlegleft", "hindlegkneeleft", "bottomhindlegleft", "hindleghoofleft",

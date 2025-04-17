@@ -1,5 +1,6 @@
 package net.buckleystudios.equigen.entity.custom;
 
+import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.ModEntityAttributes;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticValues;
@@ -20,6 +21,8 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -45,11 +48,14 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public static final Logger LOGGER = LoggerFactory.getLogger(GeneticHorseEntity.class);
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
+    public static final EntityDataAccessor<Float> HUNGER = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
+
     public static final EntityDataAccessor<String> GENETICS_STRING = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
     public static final EntityDataAccessor<String> CURRENT_HEAD = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
     public static final EntityDataAccessor<String> CURRENT_CHEST = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
     public static final EntityDataAccessor<String> CURRENT_NECK = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_EARS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_LEFT_EAR = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> CURRENT_RIGHT_EAR = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
     public static final EntityDataAccessor<String> CURRENT_BACK = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
     public static final EntityDataAccessor<String> CURRENT_STOMACH = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
     public static final EntityDataAccessor<String> CURRENT_WITHERS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
@@ -77,6 +83,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     public GeneticHorseEntity(EntityType<? extends AbstractHorse> entityType, Level level) {
         super(entityType, level);
+        setHunger((float) this.getAttribute(ModEntityAttributes.MAX_HUNGER).getValue());
     }
 
     @Override
@@ -208,6 +215,14 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         }
     }
 
+    public Float getHunger(){
+        return entityData.get(HUNGER);
+    }
+
+    public void setHunger(Float value){
+        this.entityData.set(HUNGER, value);
+    }
+
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
@@ -229,7 +244,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public static AttributeSupplier.Builder createAttributes() {
         return Animal.createLivingAttributes()
                 .add(Attributes.MAX_HEALTH, 1.0)
-                .add(ModEntityAttributes.HUNGER, 0.12)
+                .add(ModEntityAttributes.MAX_HUNGER, 10.0f)
                 .add(Attributes.MOVEMENT_SPEED, 0.2F)
                 .add(Attributes.ATTACK_DAMAGE, 80.0)
                 .add(Attributes.FOLLOW_RANGE, 24D)
@@ -297,7 +312,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             }
             String growthStage = this.isBaby() ? "Baby" : "Adult";
 
-            generatedPages.add(Filterable.passThrough(Component.literal("" + this.getAttribute(ModEntityAttributes.HUNGER).getBaseValue())));
             generatedPages.add(Filterable.passThrough(Component.literal(
                             this.getName().getString() +
                             "\n\n§2UUID:§r\n" + this.getStringUUID() +
@@ -305,6 +319,10 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                             "\n§2Owner UUID:§r\n" + ownerUUID +
                             "\n§2Age:§r\n" + this.getAge() + " (" + growthStage + ")" +
                             "\n§2Texture:§r\n" + "N/A"
+            )));
+
+            generatedPages.add(Filterable.passThrough(Component.literal(
+                    "§2Hunger:§r\n" + this.getHunger()
             )));
 
             //Genetics
@@ -367,6 +385,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         boolean flag = this.handleEating(player, stack);
         if (flag) {
             stack.consume(1, player);
+            this.setHunger(getHunger() + 1.0f);
         }
 
         if (this.level().isClientSide) {
@@ -389,10 +408,14 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         if (this.level().isClientSide) {
             this.setupAnimationStates();
         } else {
-            this.getAttribute(ModEntityAttributes.HUNGER).setBaseValue(0.10);
-
+            if(this.getHunger() <= 0.0f){
+                this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10, 10));
+            } else {
+                this.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
+            }
         }
     }
+
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
@@ -408,11 +431,15 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         while(genString.length() < geneticCount * 2){
             genString.append("00");
         }
+
+        this.setHunger(tag.getFloat("Hunger"));
+
         this.entityData.set(GENETICS_STRING, genString.toString());
         this.entityData.set(CURRENT_HEAD, tag.getString("CurrentHead"));
         this.entityData.set(CURRENT_CHEST, tag.getString("CurrentChest"));
         this.entityData.set(CURRENT_NECK, tag.getString("CurrentNeck"));
-        this.entityData.set(CURRENT_EARS, tag.getString("CurrentEars"));
+        this.entityData.set(CURRENT_LEFT_EAR, tag.getString("CurrentLeftEar"));
+        this.entityData.set(CURRENT_RIGHT_EAR, tag.getString("CurrentRightEar"));
         this.entityData.set(CURRENT_BACK, tag.getString("CurrentBack"));
         this.entityData.set(CURRENT_STOMACH, tag.getString("CurrentStomach"));
         this.entityData.set(CURRENT_WITHERS, tag.getString("CurrentWithers"));
@@ -447,11 +474,14 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             tag.putInt(key, value);
 //            LOGGER.info("Adding Save Data: " + key + value);
         }
+        tag.putFloat("Hunger", this.getHunger());
+
         tag.putString("GeneticCode", this.entityData.get(GENETICS_STRING));
         tag.putString("CurrentHead", this.entityData.get(CURRENT_HEAD));
         tag.putString("CurrentChest", this.entityData.get(CURRENT_CHEST));
         tag.putString("CurrentNeck", this.entityData.get(CURRENT_NECK));
-        tag.putString("CurrentEars", this.entityData.get(CURRENT_EARS));
+        tag.putString("CurrentLeftEar", this.entityData.get(CURRENT_LEFT_EAR));
+        tag.putString("CurrentRightEar", this.entityData.get(CURRENT_RIGHT_EAR));
         tag.putString("CurrentBack", this.entityData.get(CURRENT_BACK));
         tag.putString("CurrentStomach", this.entityData.get(CURRENT_STOMACH));
         tag.putString("CurrentWithers", this.entityData.get(CURRENT_WITHERS));
@@ -510,11 +540,14 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
+        builder.define(HUNGER, 1.0F);
+
         builder.define(GENETICS_STRING, "");
         builder.define(CURRENT_HEAD, "");
         builder.define(CURRENT_CHEST, "");
         builder.define(CURRENT_NECK, "");
-        builder.define(CURRENT_EARS, "");
+        builder.define(CURRENT_LEFT_EAR, "");
+        builder.define(CURRENT_RIGHT_EAR, "");
         builder.define(CURRENT_BACK, "");
         builder.define(CURRENT_STOMACH, "");
         builder.define(CURRENT_WITHERS, "");
@@ -538,7 +571,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         builder.define(CURRENT_HIND_HOOF_LEFT, "");
         builder.define(CURRENT_HIND_HOOF_RIGHT, "");
     }
-
 
     /* GENETICS */
 //    public void InitializeGenetics(){
@@ -623,7 +655,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         partMap.putIfAbsent("fore_leg_hoof_right", GeneticNameGenerator("hoof", "front_right"));
         partMap.putIfAbsent("neck", GeneticNameGenerator("neck"));
         partMap.putIfAbsent("head", GeneticNameGenerator("head"));
-        partMap.putIfAbsent("ears", GeneticNameGenerator("ears"));
+        partMap.putIfAbsent("left_ear", GeneticNameGenerator("left_ear"));
+        partMap.putIfAbsent("right_ear", GeneticNameGenerator("right_ear"));
         partMap.putIfAbsent("back", GeneticNameGenerator("back"));
         partMap.putIfAbsent("stomach", GeneticNameGenerator("stomach"));
         partMap.putIfAbsent("withers", GeneticNameGenerator("withers"));
@@ -672,6 +705,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
             fullName.append(geneString);
         }
+
+        EquigenMod.LOGGER.info(part);
+
         return fullName.toString();
     }
 
@@ -766,7 +802,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         this.entityData.set(CURRENT_HEAD, parts.get("head"));
         this.entityData.set(CURRENT_CHEST, parts.get("chest"));
         this.entityData.set(CURRENT_NECK, parts.get("neck"));
-        this.entityData.set(CURRENT_EARS, parts.get("ears"));
+        this.entityData.set(CURRENT_LEFT_EAR, parts.get("left_ear"));
+        this.entityData.set(CURRENT_RIGHT_EAR, parts.get("right_ear"));
         this.entityData.set(CURRENT_BACK, parts.get("back"));
         this.entityData.set(CURRENT_STOMACH, parts.get("stomach"));
         this.entityData.set(CURRENT_WITHERS, parts.get("withers"));
@@ -796,7 +833,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             case "head": return this.entityData.get(CURRENT_HEAD).toLowerCase();
             case "chest": return this.entityData.get(CURRENT_CHEST).toLowerCase();
             case "neck": return this.entityData.get(CURRENT_NECK).toLowerCase();
-            case "ears": return this.entityData.get(CURRENT_EARS).toLowerCase();
+            case "left_ear": return this.entityData.get(CURRENT_LEFT_EAR).toLowerCase();
+            case "right_ear": return this.entityData.get(CURRENT_RIGHT_EAR).toLowerCase();
             case "back": return this.entityData.get(CURRENT_BACK).toLowerCase();
             case "stomach": return this.entityData.get(CURRENT_STOMACH).toLowerCase();
             case "withers": return this.entityData.get(CURRENT_WITHERS).toLowerCase();

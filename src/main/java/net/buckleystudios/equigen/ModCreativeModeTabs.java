@@ -65,6 +65,7 @@ public class ModCreativeModeTabs{
                         pOutput.accept(ModItems.FOLIRITE_SHOVEL);
                         pOutput.accept(ModItems.FOLIRITE_HOE);
                         pOutput.accept(ModItems.SODIUM_GRENADE);
+                        pOutput.accept(ModItems.LASSO);
 
                         //Spawn Eggs
                         pOutput.accept(ModItems.GENETIC_HORSE_SPAWNER);

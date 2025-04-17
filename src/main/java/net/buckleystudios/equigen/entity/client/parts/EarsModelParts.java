@@ -14,11 +14,9 @@ public class EarsModelParts {
     public static List<String> getAllParts(){
         return allParts;
     }
-    public static PartDefinition Generate(PartDefinition partdefinition) {
+    public static PartDefinition[] Generate(PartDefinition leftRoot, PartDefinition rightRoot) {
         if (true) {
-            PartDefinition ears = partdefinition.addOrReplaceChild("ears", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
-
-            PartDefinition right_ear = ears.addOrReplaceChild("right_ear", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+            PartDefinition right_ear = rightRoot.addOrReplaceChild("right_ear", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
             PartDefinition right_ear_outer = right_ear.addOrReplaceChild("right_ear_outer", CubeListBuilder.create(), PartPose.offset(-0.0182F, -0.8697F, -0.5363F));
 
@@ -28,7 +26,7 @@ public class EarsModelParts {
 
             PartDefinition cube_r2 = right_ear_inner.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(12, 148).addBox(-1.0F, -3.0F, 0.0F, 1.0F, 3.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5F, 1.549F, 0.317F, 0.5236F, 0.0F, 0.0F));
 
-            PartDefinition left_ear = ears.addOrReplaceChild("left_ear", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+            PartDefinition left_ear = leftRoot.addOrReplaceChild("left_ear", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
             PartDefinition left_ear_outer = left_ear.addOrReplaceChild("left_ear_outer", CubeListBuilder.create(), PartPose.offset(-0.0182F, -0.8697F, -0.5363F));
 
@@ -41,14 +39,19 @@ public class EarsModelParts {
         } else {
             EquigenMod.LOGGER.error("Invalid Part Generated: Ears, Cancelling Generation...");
         }
-        allParts.add("ears");
-        return partdefinition;
+        allParts.add("right_ear");
+        allParts.add("left_ear");
+        return new PartDefinition[]{leftRoot, rightRoot};
     }
 
-    public static PartDefinition GenerateAll(PartDefinition root) {
+    public static PartDefinition[] GenerateAll(PartDefinition leftRoot, PartDefinition rightRoot) {
 
-        root = Generate(root);
+        PartDefinition[] roots;
 
-        return root;
+        roots = Generate(leftRoot, rightRoot);
+        leftRoot = roots[0];
+        rightRoot = roots[1];
+
+        return new PartDefinition[]{leftRoot, rightRoot};
     }
 }

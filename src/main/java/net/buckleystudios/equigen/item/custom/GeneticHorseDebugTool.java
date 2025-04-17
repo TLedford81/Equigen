@@ -1,7 +1,6 @@
 package net.buckleystudios.equigen.item.custom;
 
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
-import net.buckleystudios.equigen.entity.custom.genetics.GeneticValues;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -30,10 +29,9 @@ public class GeneticHorseDebugTool extends Item {
         if (!player.level().isClientSide()) {
             if (entity instanceof GeneticHorseEntity geneticHorse) {
                 if (!player.isCrouching()) {
-                    for(int i = 0; i < GeneticValues.values().length; i++){
-                        String value = GeneticValues.values()[i].name();
-                        player.sendSystemMessage(Component.literal(value.toLowerCase() + ": " + geneticHorse.getGenetic(value)));
-                    }
+                    geneticHorse.setHunger(geneticHorse.getHunger() - 0.5f);
+                    player.sendSystemMessage(Component.literal("**SMACK** GET PREG... i mean... GET HUNGRY!"));
+                    player.sendSystemMessage(Component.literal("Current Hunger: " + geneticHorse.getHunger()));
                 } else {
                     currentEntity = geneticHorse;
                     player.sendSystemMessage(Component.literal("Selected Genetic Horse, UUID: " + entity.getStringUUID()));

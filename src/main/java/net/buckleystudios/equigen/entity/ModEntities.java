@@ -29,4 +29,8 @@ public class ModEntities {
     public static final Supplier<EntityType<SodiumGrenadeProjectileEntity>> SODIUM_GRENADE =
             ENTITY_TYPES.register("sodium_grenade", () -> EntityType.Builder.<SodiumGrenadeProjectileEntity>of(SodiumGrenadeProjectileEntity::new, MobCategory.MISC)
                     .sized(0.5f, 1.15f).build("sodium_grenade"));
+
+    public static final Supplier<EntityType<LassoProjectileEntity>> LASSO =
+            ENTITY_TYPES.register("lasso", () -> EntityType.Builder.<LassoProjectileEntity>of(LassoProjectileEntity::new, MobCategory.MISC)
+                    .sized(0.5f, 1.15f).build("lasso"));
 }
