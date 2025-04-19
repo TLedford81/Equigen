@@ -5,8 +5,8 @@ import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.ModEntityAttributes;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticValues;
 import net.buckleystudios.equigen.item.ModItems;
+import net.buckleystudios.equigen.sound.ModSounds;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -80,6 +80,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     public static final int geneticCount = GeneticValues.values().length;
     private Map<String, Integer> GENETICS = new HashMap<String, Integer>();
+    private int hungerTickTimer;
 
     public GeneticHorseEntity(EntityType<? extends AbstractHorse> entityType, Level level) {
         super(entityType, level);
@@ -128,64 +129,54 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     @Override
     public boolean isFood(ItemStack stack) {
-        return stack.is(ModItems.TIMOTHY_HAY.get());
+        return stack.is(ItemTags.HORSE_FOOD);
     }
 
     @Override
     public boolean handleEating(Player player, ItemStack stack) {
         boolean flag = false;
-        float f = 0.0F;
-        int i = 0;
-        int j = 0;
+        float hunger = 0.0F;
+        int happiness = 0;
+        int thirst = 0;
+
         if (stack.is(Items.WHEAT)) {
-            f = 2.0F;
-            i = 20;
-            j = 3;
+            hunger = 2.0F;
+            happiness = 20;
+            thirst = 3;
         } else if (stack.is(Items.SUGAR)) {
-            f = 1.0F;
-            i = 30;
-            j = 3;
+            hunger = 1.0F;
+            happiness = 30;
+            thirst = 3;
         } else if (stack.is(Blocks.HAY_BLOCK.asItem())) {
-            f = 20.0F;
-            i = 180;
+            hunger = 20.0F;
+            happiness = 180;
         } else if (stack.is(Items.APPLE)) {
-            f = 3.0F;
-            i = 60;
-            j = 3;
+            hunger = 3.0F;
+            happiness = 60;
+            thirst = 3;
         } else if (stack.is(Items.GOLDEN_CARROT)) {
-            f = 4.0F;
-            i = 60;
-            j = 5;
+            hunger = 1.0F;
+            happiness = 60;
+            thirst = 5;
+        } else if (stack.is(ModItems.TIMOTHY_HAY.get())) {
+            hunger = 2.0F;
+            happiness = 240;
+            thirst = 10;
             if (!this.level().isClientSide && this.isTamed() && this.getAge() == 0 && !this.isInLove()) {
                 flag = true;
                 this.setInLove(player);
             }
-        } else if (stack.is(ModItems.TIMOTHY_HAY.get()) || stack.is(Items.ENCHANTED_GOLDEN_APPLE)) {
-            f = 10.0F;
-            i = 240;
-            j = 10;
-            if (!this.level().isClientSide && this.isTamed() && this.getAge() == 0 && !this.isInLove()) {
-                flag = true;
-                this.setInLove(player);
-            }
         }
 
-        if (this.getHealth() < this.getMaxHealth() && f > 0.0F) {
-            this.heal(f);
+        double maxHunger = this.getAttribute(ModEntityAttributes.MAX_HUNGER).getValue();
+
+        if(this.getHunger() < maxHunger){
             flag = true;
-        }
-
-        if (this.isBaby() && i > 0) {
-            this.level().addParticle(ParticleTypes.HAPPY_VILLAGER, this.getRandomX(1.0), this.getRandomY() + 0.5, this.getRandomZ(1.0), 0.0, 0.0, 0.0);
-            if (!this.level().isClientSide) {
-                this.ageUp(i);
-                flag = true;
+            double newHungerValue = this.getHunger() + hunger;
+            if(newHungerValue > maxHunger){
+                newHungerValue = maxHunger;
             }
-        }
-
-        if (j > 0 && (flag || !this.isTamed()) && this.getTemper() < this.getMaxTemper() && !this.level().isClientSide) {
-            this.modifyTemper(j);
-            flag = true;
+            this.setHunger((float) newHungerValue);
         }
 
         if (flag) {
@@ -213,6 +204,11 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                         );
             }
         }
+    }
+
+    @Override
+    protected @Nullable SoundEvent getEatingSound() {
+        return ModSounds.TEST_SOUND.get();
     }
 
     public Float getHunger(){
@@ -385,7 +381,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         boolean flag = this.handleEating(player, stack);
         if (flag) {
             stack.consume(1, player);
-            this.setHunger(getHunger() + 1.0f);
         }
 
         if (this.level().isClientSide) {
@@ -405,9 +400,21 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     @Override
     public void tick() {
         super.tick();
+        TickTimers();
+
+        //Hunger Over Time
+        float currentHunger = this.getHunger();
+        if(hungerTickTimer >= 4800){
+            if(currentHunger > 0) {
+                currentHunger -= 1.0f;
+                this.setHunger(currentHunger);
+            }
+            this.hungerTickTimer = 0;
+        }
         if (this.level().isClientSide) {
             this.setupAnimationStates();
         } else {
+            //Horse's Hunger Depleted
             if(this.getHunger() <= 0.0f){
                 this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10, 10));
             } else {
@@ -416,24 +423,32 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         }
     }
 
+    private void TickTimers(){
+        hungerTickTimer++;
+    }
+
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
 
+        //Tick Timers
+        this.hungerTickTimer = tag.getInt("HungerTickTimer");
+
+        //Stats
+        this.setHunger(tag.getFloat("Hunger"));
+
+        //Genetic Code
         for (int i = 0; i < geneticCount; i++) {
             GeneticValues key = GeneticValues.values()[i];
             this.setGenetic(key.name(), tag.getInt(key.name()));
-//            LOGGER.info("Adding Save Data: " + key.name() + tag.getInt(key.name()));
         }
-
         StringBuilder genString = new StringBuilder(tag.getString("GeneticCode"));
         while(genString.length() < geneticCount * 2){
             genString.append("00");
         }
 
-        this.setHunger(tag.getFloat("Hunger"));
-
+        //Individual Genetics
         this.entityData.set(GENETICS_STRING, genString.toString());
         this.entityData.set(CURRENT_HEAD, tag.getString("CurrentHead"));
         this.entityData.set(CURRENT_CHEST, tag.getString("CurrentChest"));
@@ -468,14 +483,20 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         Set<String> keys = GENETICS.keySet();
+
+        //Tick Timers
+        tag.putInt("HungerTickTimer", this.hungerTickTimer);
         for(String key : keys){
             int value = GENETICS.get(key);
             tag.putInt(key, value);
             tag.putInt(key, value);
-//            LOGGER.info("Adding Save Data: " + key + value);
         }
+
+        //Stats
         tag.putFloat("Hunger", this.getHunger());
 
+
+        //Genetics
         tag.putString("GeneticCode", this.entityData.get(GENETICS_STRING));
         tag.putString("CurrentHead", this.entityData.get(CURRENT_HEAD));
         tag.putString("CurrentChest", this.entityData.get(CURRENT_CHEST));
@@ -505,7 +526,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         tag.putString("CurrentForeHoofRight", this.entityData.get(CURRENT_FORE_HOOF_RIGHT));
         tag.putString("CurrentHindHoofLeft", this.entityData.get(CURRENT_HIND_HOOF_LEFT));
         tag.putString("CurrentHindHoofRight", this.entityData.get(CURRENT_HIND_HOOF_RIGHT));
-
 
         tag.putInt("geneticCodeSize", geneticCount);
     }

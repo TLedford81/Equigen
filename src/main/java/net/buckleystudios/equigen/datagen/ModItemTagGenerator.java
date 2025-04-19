@@ -2,11 +2,11 @@ package net.buckleystudios.equigen.datagen;
 
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.block.ModBlocks;
+import net.buckleystudios.equigen.item.ModItems;
 import net.buckleystudios.equigen.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -22,6 +22,13 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
+
+        this.tag(ItemTags.HORSE_FOOD)
+                .add(ModItems.TIMOTHY_HAY.get());
+
+        this.tag(ItemTags.HORSE_TEMPT_ITEMS)
+                .add(ModItems.TIMOTHY_HAY.get());
+
         this.tag(ItemTags.LOGS_THAT_BURN)
                 .add(ModBlocks.FIG_LOG.get().asItem())
                 .add(ModBlocks.FIG_WOOD.get().asItem())
