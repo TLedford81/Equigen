@@ -26,6 +26,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.SODIUM.get());
         basicItem(ModItems.SODIUM_GRENADE.get());
         basicItem(ModItems.LASSO.get());
+        basicItem(ModItems.BRUSH.get());
         basicItem(ModItems.SWEET_PEA_PETALS.get());
         basicItem(ModItems.LOCOWEED_PETALS.get());
         basicItem(ModItems.CALENDULA_PETALS.get());

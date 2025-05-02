@@ -3,6 +3,7 @@ package net.buckleystudios.equigen;
 import com.mojang.logging.LogUtils;
 import net.buckleystudios.equigen.block.ModBlocks;
 import net.buckleystudios.equigen.block.entity.ModBlockEntities;
+import net.buckleystudios.equigen.effect.ModEffects;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.ModEntityAttributes;
 import net.buckleystudios.equigen.entity.client.*;
@@ -48,6 +49,7 @@ public class EquigenMod {
         ModVillagers.VILLAGER_PROFESSIONS.register(modEventBus);
         ModVillagers.POI_TYPES.register(modEventBus);
         ModEntityAttributes.ATTRIBUTES.register(modEventBus);
+        ModEffects.MOB_EFFECTS.register(modEventBus);
 
         //
         modEventBus.addListener(this::commonSetup);

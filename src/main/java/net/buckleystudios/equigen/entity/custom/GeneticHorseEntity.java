@@ -1,6 +1,7 @@
 package net.buckleystudios.equigen.entity.custom;
 
 import net.buckleystudios.equigen.EquigenMod;
+import net.buckleystudios.equigen.effect.ModEffects;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.ModEntityAttributes;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticValues;
@@ -49,6 +50,10 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
     public static final EntityDataAccessor<Float> HUNGER = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> THIRST = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> CLEANLINESS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> HAPPINESS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> STRESS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
 
     public static final EntityDataAccessor<String> GENETICS_STRING = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
     public static final EntityDataAccessor<String> CURRENT_HEAD = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
@@ -81,15 +86,21 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public static final int geneticCount = GeneticValues.values().length;
     private Map<String, Integer> GENETICS = new HashMap<String, Integer>();
     private int hungerTickTimer;
+    private int thirstTickTimer;
+    private int cleanlinessTickTimer;
 
+    // SPAWNING //
     public GeneticHorseEntity(EntityType<? extends AbstractHorse> entityType, Level level) {
         super(entityType, level);
         setHunger((float) this.getAttribute(ModEntityAttributes.MAX_HUNGER).getValue());
+        setThirst((float) this.getAttribute(ModEntityAttributes.MAX_THIRST).getValue());
+        setCleanliness((float) this.getAttribute(ModEntityAttributes.MAX_CLEANLINESS).getValue());
+        setHappiness((float) this.getAttribute(ModEntityAttributes.MAX_HAPPINESS).getValue());
+        setStress(0.0f);
     }
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
-//        LOGGER.info("Finalizing Spawn: " + level + " / " + difficulty + " / " + spawnType + " / " + spawnGroupData);
         this.randomizeGenetics();
         this.SetModelPartEntityData(this.getCurrentParts());
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
@@ -97,297 +108,38 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     @Override
     protected void onOffspringSpawnedFromEgg(Player player, Mob child) {
-//        LOGGER.info("Spawned Child from Egg: " + player + " / " + child);
         if (child instanceof GeneticHorseEntity) {
             GeneticHorseEntity geneticHorseChild = (GeneticHorseEntity) child;  // Cast to the specific entity class
 
             // Randomize the genetics for the spawned baby
             geneticHorseChild.randomizeGenetics();
             geneticHorseChild.SetModelPartEntityData(this.getCurrentParts());
-
-            // Log that the genetics have been randomized for the new entity
-//            LOGGER.info("Genetics randomized for GeneticHorseEntity offspring.");
         }
         super.onOffspringSpawnedFromEgg(player, child);
     }
 
     @Override
     public void finalizeSpawnChildFromBreeding(ServerLevel level, Animal animal, @Nullable AgeableMob baby) {
-//        LOGGER.info("Spawned Child from Breeding: " + level + " / " + animal + " / " + baby);
         if (baby instanceof GeneticHorseEntity) {
             GeneticHorseEntity geneticHorseBaby = (GeneticHorseEntity) baby;  // Cast to the specific entity class
 
             // Randomize the genetics for the spawned baby
             geneticHorseBaby.randomizeGenetics();
             geneticHorseBaby.SetModelPartEntityData(this.getCurrentParts());
-
-            // Log that the genetics have been randomized for the new entity
-//            LOGGER.info("Genetics randomized for GeneticHorseEntity offspring.");
         }
         super.finalizeSpawnChildFromBreeding(level, animal, baby);
     }
 
-    @Override
-    public boolean isFood(ItemStack stack) {
-        return stack.is(ItemTags.HORSE_FOOD);
-    }
 
-    @Override
-    public boolean handleEating(Player player, ItemStack stack) {
-        boolean flag = false;
-        float hunger = 0.0F;
-        int happiness = 0;
-        int thirst = 0;
-
-        if (stack.is(Items.WHEAT)) {
-            hunger = 2.0F;
-            happiness = 20;
-            thirst = 3;
-        } else if (stack.is(Items.SUGAR)) {
-            hunger = 1.0F;
-            happiness = 30;
-            thirst = 3;
-        } else if (stack.is(Blocks.HAY_BLOCK.asItem())) {
-            hunger = 20.0F;
-            happiness = 180;
-        } else if (stack.is(Items.APPLE)) {
-            hunger = 3.0F;
-            happiness = 60;
-            thirst = 3;
-        } else if (stack.is(Items.GOLDEN_CARROT)) {
-            hunger = 1.0F;
-            happiness = 60;
-            thirst = 5;
-        } else if (stack.is(ModItems.TIMOTHY_HAY.get())) {
-            hunger = 2.0F;
-            happiness = 240;
-            thirst = 10;
-            if (!this.level().isClientSide && this.isTamed() && this.getAge() == 0 && !this.isInLove()) {
-                flag = true;
-                this.setInLove(player);
-            }
-        }
-
-        double maxHunger = this.getAttribute(ModEntityAttributes.MAX_HUNGER).getValue();
-
-        if(this.getHunger() < maxHunger){
-            flag = true;
-            double newHungerValue = this.getHunger() + hunger;
-            if(newHungerValue > maxHunger){
-                newHungerValue = maxHunger;
-            }
-            this.setHunger((float) newHungerValue);
-        }
-
-        if (flag) {
-            this.eat();
-            this.gameEvent(GameEvent.EAT);
-        }
-
-        return flag;
-    }
-
-    private void eat() {
-        if (!this.isSilent()) {
-            SoundEvent soundevent = this.getEatingSound();
-            if (soundevent != null) {
-                this.level()
-                        .playSound(
-                                null,
-                                this.getX(),
-                                this.getY(),
-                                this.getZ(),
-                                soundevent,
-                                this.getSoundSource(),
-                                1.0F,
-                                1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F
-                        );
-            }
-        }
-    }
-
-    @Override
-    protected @Nullable SoundEvent getEatingSound() {
-        return ModSounds.TEST_SOUND.get();
-    }
-
-    public Float getHunger(){
-        return entityData.get(HUNGER);
-    }
-
-    public void setHunger(Float value){
-        this.entityData.set(HUNGER, value);
-    }
-
-    @Override
-    protected void registerGoals() {
-        this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new PanicGoal(this, 1.2));
-        this.goalSelector.addGoal(2, new RunAroundLikeCrazyGoal(this, 1.2));
-        this.goalSelector.addGoal(3, new BreedGoal(this, 1.0));
-        this.goalSelector.addGoal(4, new TemptGoal(this, 1.25, stack -> stack.is(ItemTags.HORSE_TEMPT_ITEMS), false));
-        this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.0));
-        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 0.7));
-        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
-        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-    }
-
+    // BASIC SETTINGS //
     @Override
     public boolean canMate(Animal otherAnimal) {
         return true;
     }
 
-    public static AttributeSupplier.Builder createAttributes() {
-        return Animal.createLivingAttributes()
-                .add(Attributes.MAX_HEALTH, 1.0)
-                .add(ModEntityAttributes.MAX_HUNGER, 10.0f)
-                .add(Attributes.MOVEMENT_SPEED, 0.2F)
-                .add(Attributes.ATTACK_DAMAGE, 80.0)
-                .add(Attributes.FOLLOW_RANGE, 24D)
-                .add(Attributes.STEP_HEIGHT, 5f)
-                .add(Attributes.JUMP_STRENGTH, 0.55f);
-    }
-
-    private void setupAnimationStates() {
-        if (this.idleAnimationTimeout <= 0) {
-            this.idleAnimationTimeout = 50; //Length (in ticks) of Idle Animation
-            this.idleAnimationState.start(this.tickCount);
-        } else {
-            --this.idleAnimationTimeout;
-        }
-    }
-
     @Override
-    public boolean canUseSlot(EquipmentSlot slot) {
-        return true;
-    }
-
-    @Override
-    public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
-        boolean flag = !this.isBaby() && this.isTamed() && pPlayer.isSecondaryUseActive();
-        ItemStack itemstack = pPlayer.getItemInHand(pHand);
-        if (!this.isVehicle() && !flag) {
-            if (itemstack.is(Items.WRITTEN_BOOK) || itemstack.is(Items.WRITABLE_BOOK)){
-                GenerateDebugBook(pPlayer, pHand);
-            }
-            if (!itemstack.isEmpty()) {
-                if (this.isFood(itemstack)) {
-                    return this.fedFood(pPlayer, itemstack);
-                }
-
-                if (!this.isTamed()) {
-                    return InteractionResult.sidedSuccess(this.level().isClientSide);
-                }
-            }
-            return super.mobInteract(pPlayer, pHand);
-        } else {
-            if (itemstack.is(Items.WRITTEN_BOOK) || itemstack.is(Items.WRITABLE_BOOK)){
-                GenerateDebugBook(pPlayer, pHand);
-                return InteractionResult.CONSUME;
-            } else {
-                return super.mobInteract(pPlayer, pHand);
-            }
-        }
-    }
-
-    public void GenerateDebugBook(Player player, InteractionHand hand) {
-        player.setItemInHand(hand, Items.WRITTEN_BOOK.getDefaultInstance());
-        ItemStack itemStack = player.getItemInHand(hand);
-            List<Filterable<Component>> generatedPages = new ArrayList<>();
-
-            //Basic Horse Information
-            String owner;
-            String ownerUUID;
-            try {
-                owner = this.getOwner().getDisplayName().getString();
-                ownerUUID = this.getOwner().getStringUUID();
-
-            } catch (NullPointerException e){
-                owner = "None";
-                ownerUUID = "N/A";
-            }
-            String growthStage = this.isBaby() ? "Baby" : "Adult";
-
-            generatedPages.add(Filterable.passThrough(Component.literal(
-                            this.getName().getString() +
-                            "\n\n§2UUID:§r\n" + this.getStringUUID() +
-                            "\n§2Owner:§r\n" + owner +
-                            "\n§2Owner UUID:§r\n" + ownerUUID +
-                            "\n§2Age:§r\n" + this.getAge() + " (" + growthStage + ")" +
-                            "\n§2Texture:§r\n" + "N/A"
-            )));
-
-            generatedPages.add(Filterable.passThrough(Component.literal(
-                    "§2Hunger:§r\n" + this.getHunger()
-            )));
-
-            //Genetics
-            generatedPages.add(Filterable.passThrough(Component.literal("\n\n\n\n        §b§lGENETICS")));
-            StringBuilder page = new StringBuilder();
-            int pageLineCount = 0;
-            int totalLineCount = 0;
-            for (GeneticValues genetic : GeneticValues.values()) {
-                page.append("§3§l" + genetic + ": §0" + this.getGenetic(genetic.name()) + "\n");
-                pageLineCount += 1;
-                totalLineCount += 1;
-
-                List<Integer> largeLines = List.of(5, 40, 48, 54, 58, 60, 66, 75, 76, 77, 78, 79, 80, 81, 83, 85, 87, 94, 96, 97, 98, 100, 101, 102, 108, 109);
-                for (int geneNum : largeLines) {
-                    if (totalLineCount == geneNum) {
-                        pageLineCount += 1;
-                    }
-                }
-
-                if (pageLineCount >= 13) {
-                    generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
-                    page = new StringBuilder();
-                    pageLineCount = 0;
-                }
-            }
-            generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
-
-            //Current Parts
-            generatedPages.add(Filterable.passThrough(Component.literal("\n\n\n\n   §b§lCURRENT PARTS")));
-            page = new StringBuilder();
-            pageLineCount = 0;
-            totalLineCount = 0;
-            Map<String, String> currentParts = this.getCurrentParts();
-            for (String key : currentParts.keySet()) {
-                page.append("§3§l" + key + ": §0" + currentParts.get(key) + "\n\n");
-                pageLineCount += 4;
-                totalLineCount += 4;
-                List<Integer> largeLines = List.of();
-                for (int geneNum : largeLines) {
-                    if (totalLineCount == geneNum) {
-                        pageLineCount += 1;
-                    }
-                }
-
-                if (pageLineCount >= 12) {
-                    generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
-                    page = new StringBuilder();
-                    pageLineCount = 0;
-                }
-            }
-            generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
-
-            WrittenBookContent content = new WrittenBookContent(Filterable.passThrough(this.getName().getString() + "'s Information"), "Equigen", 0,
-                    generatedPages, true);
-            itemStack.set(DataComponents.WRITTEN_BOOK_CONTENT, content);
-    }
-
-    @Override
-    public InteractionResult fedFood(Player player, ItemStack stack) {
-        boolean flag = this.handleEating(player, stack);
-        if (flag) {
-            stack.consume(1, player);
-        }
-
-        if (this.level().isClientSide) {
-            return InteractionResult.CONSUME;
-        } else {
-            return flag ? InteractionResult.SUCCESS : InteractionResult.PASS;
-        }
+    public @Nullable AgeableMob getBreedOffspring(ServerLevel level, AgeableMob otherParent) {
+        return ModEntities.GENETIC_HORSE.get().create(level);
     }
 
     @Override
@@ -398,45 +150,54 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     }
 
     @Override
-    public void tick() {
-        super.tick();
-        TickTimers();
-
-        //Hunger Over Time
-        float currentHunger = this.getHunger();
-        if(hungerTickTimer >= 4800){
-            if(currentHunger > 0) {
-                currentHunger -= 1.0f;
-                this.setHunger(currentHunger);
-            }
-            this.hungerTickTimer = 0;
-        }
-        if (this.level().isClientSide) {
-            this.setupAnimationStates();
-        } else {
-            //Horse's Hunger Depleted
-            if(this.getHunger() <= 0.0f){
-                this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10, 10));
-            } else {
-                this.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
-            }
-        }
+    public Vec3 getPassengerRidingPosition(Entity entity) {
+        return this.position().add(this.getPassengerAttachmentPoint(entity, this.getDimensions(this.getPose()),
+                this.getScale() * this.getAgeScale()));
     }
 
-    private void TickTimers(){
-        hungerTickTimer++;
+    @Override
+    public boolean canUseSlot(EquipmentSlot slot) {
+        return true;
     }
 
 
+    // SOUNDS //
+    @Override
+    protected @Nullable SoundEvent getAmbientSound() {
+        return SoundEvents.HORSE_AMBIENT;
+    }
+
+    @Override
+    protected @Nullable SoundEvent getDeathSound() {
+        return SoundEvents.HORSE_DEATH;
+    }
+
+    @Override
+    protected @Nullable SoundEvent getHurtSound(DamageSource damageSource) {
+        return SoundEvents.HORSE_HURT;
+    }
+
+    protected @Nullable SoundEvent getBrushingSound(){
+        return SoundEvents.BRUSH_GENERIC;
+    }
+
+
+    // DATA //
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
 
         //Tick Timers
         this.hungerTickTimer = tag.getInt("HungerTickTimer");
+        this.thirstTickTimer = tag.getInt("ThirstTickTimer");
+        this.cleanlinessTickTimer = tag.getInt("CleanlinessTickTimer");
 
         //Stats
         this.setHunger(tag.getFloat("Hunger"));
+        this.setThirst(tag.getFloat("Thirst"));
+        this.setCleanliness(tag.getFloat("Cleanliness"));
+        this.setHappiness(tag.getFloat("Happiness"));
+        this.setStress(tag.getFloat("Stress"));
 
         //Genetic Code
         for (int i = 0; i < geneticCount; i++) {
@@ -486,6 +247,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
         //Tick Timers
         tag.putInt("HungerTickTimer", this.hungerTickTimer);
+        tag.putInt("ThirstTickTimer", this.thirstTickTimer);
+        tag.putInt("CleanlinessTickTimer", this.cleanlinessTickTimer);
         for(String key : keys){
             int value = GENETICS.get(key);
             tag.putInt(key, value);
@@ -494,6 +257,10 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
         //Stats
         tag.putFloat("Hunger", this.getHunger());
+        tag.putFloat("Thirst", this.getThirst());
+        tag.putFloat("Cleanliness", this.getCleanliness());
+        tag.putFloat("Happiness", this.getHappiness());
+        tag.putFloat("Stress", this.getStress());
 
 
         //Genetics
@@ -531,36 +298,13 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     }
 
     @Override
-    public @Nullable AgeableMob getBreedOffspring(ServerLevel level, AgeableMob otherParent) {
-        return ModEntities.GENETIC_HORSE.get().create(level);
-    }
-
-    @Override
-    public Vec3 getPassengerRidingPosition(Entity entity) {
-        return this.position().add(this.getPassengerAttachmentPoint(entity, this.getDimensions(this.getPose()),
-                this.getScale() * this.getAgeScale()));
-    }
-
-    /* SOUNDS */
-    @Override
-    protected @Nullable SoundEvent getAmbientSound() {
-        return SoundEvents.HORSE_AMBIENT;
-    }
-
-    @Override
-    protected @Nullable SoundEvent getDeathSound() {
-        return SoundEvents.HORSE_DEATH;
-    }
-
-    @Override
-    protected @Nullable SoundEvent getHurtSound(DamageSource damageSource) {
-        return SoundEvents.HORSE_HURT;
-    }
-
-    @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
         builder.define(HUNGER, 1.0F);
+        builder.define(THIRST, 1.0F);
+        builder.define(CLEANLINESS, 1.0F);
+        builder.define(HAPPINESS, 1.0F);
+        builder.define(STRESS, 1.0F);
 
         builder.define(GENETICS_STRING, "");
         builder.define(CURRENT_HEAD, "");
@@ -592,24 +336,409 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         builder.define(CURRENT_HIND_HOOF_RIGHT, "");
     }
 
-    /* GENETICS */
-//    public void InitializeGenetics(){
-//        EquigenMod.LOGGER.info(String.valueOf(geneticCount));;
-//        for(int i = 0; i <= geneticCount; i++){
-//            EquigenMod.LOGGER.info("Initializing genetics for index: " + i);
-//            GENETICS[i] = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-//            this.entityData.set(GENETICS[i], GeneticValues.values()[i].name());
-//        }
-//
-//        String list = "";
-//        for (int i = 0; i < geneticCount; i++) {
-//            list += " " + this.entityData.get(GENETICS[i]);
-//        }
-//        EquigenMod.LOGGER.info("Genetic values initialized: " + list);
-//
-//
-//    }
 
+    // GOALS & ATTRIBUTES //
+    @Override
+    protected void registerGoals() {
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new PanicGoal(this, 1.2));
+        this.goalSelector.addGoal(2, new RunAroundLikeCrazyGoal(this, 1.2));
+        this.goalSelector.addGoal(3, new BreedGoal(this, 1.0));
+        this.goalSelector.addGoal(4, new TemptGoal(this, 1.25, stack -> stack.is(ItemTags.HORSE_TEMPT_ITEMS), false));
+        this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.0));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 0.7));
+        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Animal.createLivingAttributes()
+                .add(Attributes.MAX_HEALTH, 1.0)
+                .add(ModEntityAttributes.MAX_HUNGER, 10.0f)
+                .add(ModEntityAttributes.MAX_THIRST, 10.0f)
+                .add(ModEntityAttributes.MAX_CLEANLINESS, 10.0f)
+                .add(ModEntityAttributes.MAX_HAPPINESS, 10.0f)
+                .add(ModEntityAttributes.MAX_STRESS, 10.0f)
+                .add(Attributes.MOVEMENT_SPEED, 0.2F)
+                .add(Attributes.ATTACK_DAMAGE, 80.0)
+                .add(Attributes.FOLLOW_RANGE, 24D)
+                .add(Attributes.STEP_HEIGHT, 5f)
+                .add(Attributes.JUMP_STRENGTH, 0.55f);
+    }
+
+    public Float getHunger(){
+        return entityData.get(HUNGER);
+    }
+
+    public void setHunger(Float value){
+        this.entityData.set(HUNGER, value);
+    }
+
+    public void alterHunger(Float value){
+        setHunger(
+                (float) Math.clamp(this.getHunger() + value,
+                        0, this.getAttribute(ModEntityAttributes.MAX_HUNGER).getValue()));
+    }
+
+    public Float getThirst(){
+        return entityData.get(THIRST);
+    }
+
+    public void setThirst(Float value){
+        this.entityData.set(THIRST, value);
+    }
+
+    public void alterThirst(Float value){
+        setThirst(
+                (float) Math.clamp(this.getThirst() + value,
+                        0, this.getAttribute(ModEntityAttributes.MAX_THIRST).getValue()));
+    }
+
+    public Float getCleanliness(){
+        return entityData.get(CLEANLINESS);
+    }
+
+    public void setCleanliness(Float value){
+        this.entityData.set(CLEANLINESS, value);
+    }
+
+    public void alterCleanliness(Float value){
+        setCleanliness(
+                (float) Math.clamp(this.getCleanliness() + value,
+                        0, this.getAttribute(ModEntityAttributes.MAX_CLEANLINESS).getValue()));
+    }
+
+    public Float getHappiness(){
+        return entityData.get(HAPPINESS);
+    }
+
+    public void setHappiness(Float value){
+        this.entityData.set(HAPPINESS, value);
+    }
+
+    public void alterHappiness(Float value){
+        setHappiness(
+                (float) Math.clamp(this.getHappiness() + value,
+                        0, this.getAttribute(ModEntityAttributes.MAX_HAPPINESS).getValue()));
+    }
+
+    public Float getStress(){
+        return entityData.get(STRESS);
+    }
+
+    public void setStress(Float value){
+        this.entityData.set(STRESS, value);
+    }
+
+    public void alterStress(Float value){
+        setStress(
+                (float) Math.clamp(this.getStress() + value,
+                        0, this.getAttribute(ModEntityAttributes.MAX_STRESS).getValue()));
+    }
+
+    // ANIMATION //
+    private void setupAnimationStates() {
+        if (this.idleAnimationTimeout <= 0) {
+            this.idleAnimationTimeout = 50; //Length (in ticks) of Idle Animation
+            this.idleAnimationState.start(this.tickCount);
+        } else {
+            --this.idleAnimationTimeout;
+        }
+    }
+
+
+    // FOOD //
+    @Override
+    public boolean isFood(ItemStack stack) {
+        return stack.is(ItemTags.HORSE_FOOD);
+    }
+
+    @Override
+    public boolean handleEating(Player player, ItemStack stack) {
+        boolean flag = false;
+        float hunger = 0.0F;
+        float happiness = 0;
+        float thirst = 0;
+
+        if (stack.is(Items.WHEAT)) {
+            hunger = 2.0F;
+            happiness = 20;
+            thirst = 3;
+        } else if (stack.is(Items.SUGAR)) {
+            hunger = 1.0F;
+            happiness = 30;
+            thirst = 3;
+        } else if (stack.is(Blocks.HAY_BLOCK.asItem())) {
+            hunger = 20.0F;
+            happiness = 180;
+        } else if (stack.is(Items.APPLE)) {
+            hunger = 3.0F;
+            happiness = 60;
+            thirst = 3;
+        } else if (stack.is(Items.GOLDEN_CARROT)) {
+            hunger = 1.0F;
+            happiness = 60;
+            thirst = 5;
+        } else if (stack.is(ModItems.TIMOTHY_HAY.get())) {
+            hunger = 2.0F;
+            happiness = 240;
+            thirst = 10;
+            if (!this.level().isClientSide && this.isTamed() && this.getAge() == 0 && !this.isInLove()) {
+                flag = true;
+                this.setInLove(player);
+            }
+        }
+
+        double maxHunger = this.getAttribute(ModEntityAttributes.MAX_HUNGER).getValue();
+        double maxThirst = this.getAttribute(ModEntityAttributes.MAX_THIRST).getValue();
+        double maxHappiness = this.getAttribute(ModEntityAttributes.MAX_HAPPINESS).getValue();
+
+
+        if(this.getHunger() < maxHunger){
+            flag = true;
+            this.alterHunger(hunger);
+            this.alterThirst(thirst);
+            this.alterHappiness(happiness);
+        }
+
+        if (flag) {
+            this.eat();
+            this.gameEvent(GameEvent.EAT);
+        }
+
+        return flag;
+    }
+
+    private void eat() {
+        if (!this.isSilent()) {
+            SoundEvent soundevent = this.getEatingSound();
+            if (soundevent != null) {
+                this.level()
+                        .playSound(
+                                null,
+                                this.getX(),
+                                this.getY(),
+                                this.getZ(),
+                                soundevent,
+                                this.getSoundSource(),
+                                1.0F,
+                                1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F
+                        );
+            }
+        }
+    }
+
+    @Override
+    public InteractionResult fedFood(Player player, ItemStack stack) {
+        boolean flag = this.handleEating(player, stack);
+        if (flag) {
+            stack.consume(1, player);
+        }
+
+        if (this.level().isClientSide) {
+            return InteractionResult.CONSUME;
+        } else {
+            return flag ? InteractionResult.SUCCESS : InteractionResult.PASS;
+        }
+    }
+
+    @Override
+    protected @Nullable SoundEvent getEatingSound() {
+        return ModSounds.TEST_SOUND.get();
+    }
+
+    // TICKING AND INTERACTIONS //
+    @Override
+    public void tick() {
+        super.tick();
+        TickTimers();
+
+        //Stat Drop Over Time
+        if(hungerTickTimer >= 200){
+            if(this.getHunger() > 0) {
+                this.alterHunger(-1.0f);
+            }
+            this.hungerTickTimer = 0;
+        }
+
+        if(thirstTickTimer >= 200){
+            if(this.getThirst() > 0) {
+                this.alterThirst(-1.0f);
+            }
+            this.thirstTickTimer = 0;
+        }
+
+        if(cleanlinessTickTimer >= 200){
+            if(this.getCleanliness() > 0) {
+                this.alterCleanliness(-1.0f);
+            }
+            this.cleanlinessTickTimer = 0;
+        }
+
+        if (this.level().isClientSide) {
+            this.setupAnimationStates();
+        } else {
+            //Horse's Hunger Depleted
+            if(this.getHunger() <= 0.0f){
+                this.addEffect(new MobEffectInstance(ModEffects.STARVING_EFFECT, 10, 10));
+            } else {
+                this.removeEffect(ModEffects.STARVING_EFFECT);
+            }
+            //Horse's Thirst Depleted
+            if(this.getThirst() <= 0.0f){
+                this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10, 10));
+            } else {
+                this.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
+            }
+            //Horse's Cleanliness Depleted
+            if(this.getCleanliness() <= 0.0f){
+                this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10, 10));
+            } else {
+                this.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
+            }
+        }
+    }
+
+    private void TickTimers(){
+        hungerTickTimer++;
+        thirstTickTimer++;
+        cleanlinessTickTimer++;
+    }
+
+    @Override
+    public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
+        boolean flag = !this.isBaby() && this.isTamed() && pPlayer.isSecondaryUseActive();
+        ItemStack itemstack = pPlayer.getItemInHand(pHand);
+        if (!this.isVehicle() && !flag) {
+
+            if(itemstack.is(ModItems.BRUSH)){
+                float maxCleanliness = (float) this.getAttribute(ModEntityAttributes.MAX_HUNGER).getValue();
+                if(getCleanliness() < maxCleanliness) {
+                    this.setCleanliness(Math.clamp(getCleanliness() + 1, 0, maxCleanliness));
+                }
+                this.level().playSound(null, this.getX(),
+                        this.getY(),
+                        this.getZ(),
+                        this.getBrushingSound(),
+                        this.getSoundSource(),
+                        1.0F,
+                        1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
+            }
+            if (itemstack.is(Items.WRITTEN_BOOK) || itemstack.is(Items.WRITABLE_BOOK)){
+                GenerateDebugBook(pPlayer, pHand);
+            }
+            if (!itemstack.isEmpty()) {
+                if (this.isFood(itemstack)) {
+                    return this.fedFood(pPlayer, itemstack);
+                }
+
+                if (!this.isTamed()) {
+                    return InteractionResult.sidedSuccess(this.level().isClientSide);
+                }
+            }
+            return super.mobInteract(pPlayer, pHand);
+        } else {
+            if (itemstack.is(Items.WRITTEN_BOOK) || itemstack.is(Items.WRITABLE_BOOK)){
+                GenerateDebugBook(pPlayer, pHand);
+                return InteractionResult.CONSUME;
+            } else {
+                return super.mobInteract(pPlayer, pHand);
+            }
+        }
+    }
+
+    public void GenerateDebugBook(Player player, InteractionHand hand) {
+        player.setItemInHand(hand, Items.WRITTEN_BOOK.getDefaultInstance());
+        ItemStack itemStack = player.getItemInHand(hand);
+        List<Filterable<Component>> generatedPages = new ArrayList<>();
+
+        //Basic Horse Information
+        String owner;
+        String ownerUUID;
+        try {
+            owner = this.getOwner().getDisplayName().getString();
+            ownerUUID = this.getOwner().getStringUUID();
+
+        } catch (NullPointerException e){
+            owner = "None";
+            ownerUUID = "N/A";
+        }
+        String growthStage = this.isBaby() ? "Baby" : "Adult";
+
+        generatedPages.add(Filterable.passThrough(Component.literal(
+                this.getName().getString() +
+                        "\n\n§2UUID:§r\n" + this.getStringUUID() +
+                        "\n§2Owner:§r\n" + owner +
+                        "\n§2Owner UUID:§r\n" + ownerUUID +
+                        "\n§2Age:§r\n" + this.getAge() + " (" + growthStage + ")" +
+                        "\n§2Texture:§r\n" + "N/A"
+        )));
+
+        generatedPages.add(Filterable.passThrough(Component.literal(
+                "§2Hunger:§r\n" + this.getHunger() +
+                        "\n§2Thirst:§r\n" + this.getThirst() +
+                        "\n§2Cleanliness:§r\n" + this.getCleanliness() +
+                        "\n§2Happiness:§r\n" + this.getHappiness() +
+                        "\n§2Stress:§r\n" + this.getStress()
+        )));
+
+        //Genetics
+        generatedPages.add(Filterable.passThrough(Component.literal("\n\n\n\n        §b§lGENETICS")));
+        StringBuilder page = new StringBuilder();
+        int pageLineCount = 0;
+        int totalLineCount = 0;
+        for (GeneticValues genetic : GeneticValues.values()) {
+            page.append("§3§l" + genetic + ": §0" + this.getGenetic(genetic.name()) + "\n");
+            pageLineCount += 1;
+            totalLineCount += 1;
+
+            List<Integer> largeLines = List.of(5, 40, 48, 54, 58, 60, 66, 75, 76, 77, 78, 79, 80, 81, 83, 85, 87, 94, 96, 97, 98, 100, 101, 102, 108, 109);
+            for (int geneNum : largeLines) {
+                if (totalLineCount == geneNum) {
+                    pageLineCount += 1;
+                }
+            }
+
+            if (pageLineCount >= 13) {
+                generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
+                page = new StringBuilder();
+                pageLineCount = 0;
+            }
+        }
+        generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
+
+        //Current Parts
+        generatedPages.add(Filterable.passThrough(Component.literal("\n\n\n\n   §b§lCURRENT PARTS")));
+        page = new StringBuilder();
+        pageLineCount = 0;
+        totalLineCount = 0;
+        Map<String, String> currentParts = this.getCurrentParts();
+        for (String key : currentParts.keySet()) {
+            page.append("§3§l" + key + ": §0" + currentParts.get(key) + "\n\n");
+            pageLineCount += 4;
+            totalLineCount += 4;
+            List<Integer> largeLines = List.of();
+            for (int geneNum : largeLines) {
+                if (totalLineCount == geneNum) {
+                    pageLineCount += 1;
+                }
+            }
+
+            if (pageLineCount >= 12) {
+                generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
+                page = new StringBuilder();
+                pageLineCount = 0;
+            }
+        }
+        generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
+
+        WrittenBookContent content = new WrittenBookContent(Filterable.passThrough(this.getName().getString() + "'s Information"), "Equigen", 0,
+                generatedPages, true);
+        itemStack.set(DataComponents.WRITTEN_BOOK_CONTENT, content);
+    }
+
+
+    // GENETICS //
     public void randomizeGenetics(){
         Random random = new Random();
         for(int i = 0; i < geneticCount; i++){
@@ -662,6 +791,24 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         return true;
     }
 
+    public String getGeneticCode(){
+        StringBuilder code = new StringBuilder();
+
+        for(int i = 0; i < geneticCount; i++){
+            code.append(String.format("%02d", getGenetic(GeneticValues.values()[i].name())));
+        }
+//        LOGGER.info("Code " + code.toString());
+        return code.toString();
+    }
+
+    public void setGenetic(String key, int number) {
+//        LOGGER.info("Setting Geneic: " + key + " / " + number);
+        this.GENETICS.put(key, number);
+        this.entityData.set(GENETICS_STRING, getGeneticCode());
+    }
+
+
+    // MULTIPART MODEL //
     public Map<String, String> getCurrentParts(){
         Map<String, String> partMap = new HashMap<>();
         partMap.putIfAbsent("chest", GeneticNameGenerator("chest"));
@@ -800,22 +947,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             case "tail" -> List.of("TAIL_THICKNESS", "TAIL_LENGTH");
             default -> List.of(/*NO GENETICS*/);
         };
-    }
-
-    public String getGeneticCode(){
-        StringBuilder code = new StringBuilder();
-
-        for(int i = 0; i < geneticCount; i++){
-            code.append(String.format("%02d", getGenetic(GeneticValues.values()[i].name())));
-        }
-//        LOGGER.info("Code " + code.toString());
-        return code.toString();
-    }
-
-    public void setGenetic(String key, int number) {
-//        LOGGER.info("Setting Geneic: " + key + " / " + number);
-        this.GENETICS.put(key, number);
-        this.entityData.set(GENETICS_STRING, getGeneticCode());
     }
 
     public void SetModelPartEntityData(Map<String, String> parts){
