@@ -51,7 +51,6 @@ public class EquigenMod {
         ModEntityAttributes.ATTRIBUTES.register(modEventBus);
         ModEffects.MOB_EFFECTS.register(modEventBus);
 
-        //
         modEventBus.addListener(this::commonSetup);
         NeoForge.EVENT_BUS.register(this);
     }

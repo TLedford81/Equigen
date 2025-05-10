@@ -153,6 +153,8 @@
   "item.equigen.oat_seeds": "Oat Seeds",
   "item.equigen.timothy_hay_seeds": "Timothy Hay Seeds",
 
+  "item.equigen.horse_brush": "Horse Brush",
+  "item.equigen.hoof_pick": "Hoof Pick",
   "item.equigen.lasso": "Lasso",
   "item.equigen.sodium_grenade": "Sodium Grenade",
   "item.equigen.folirite_sword": "Folirite Sword",
@@ -167,6 +169,10 @@
   "item.equigen.genetic_horse_spawner": "Genetic Horse Spawner",
 
   "effect.equigen.starving": "Starving",
+  "effect.equigen.dehydrated": "Dehydrated",
+  "effect.equigen.stressed": "Stressed",
+  "effect.equigen.depressed": "Depressed",
+  "effect.equigen.filthy": "Filthy",
 
   "painting.equigen.remembrance.title": "Remembrance",
   "painting.equigen.remembrance.author": "Unknown",

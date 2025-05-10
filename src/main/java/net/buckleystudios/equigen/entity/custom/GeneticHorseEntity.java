@@ -23,7 +23,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -51,7 +50,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     private int idleAnimationTimeout = 0;
     public static final EntityDataAccessor<Float> HUNGER = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> THIRST = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
-    public static final EntityDataAccessor<Float> CLEANLINESS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> HOOF_CLEANLINESS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> HAIR_CLEANLINESS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> HAPPINESS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> STRESS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
 
@@ -87,15 +87,14 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     private Map<String, Integer> GENETICS = new HashMap<String, Integer>();
     private int hungerTickTimer;
     private int thirstTickTimer;
-    private int cleanlinessTickTimer;
+    private int stressRecoveryTickTimer;
 
     // SPAWNING //
     public GeneticHorseEntity(EntityType<? extends AbstractHorse> entityType, Level level) {
         super(entityType, level);
-        setHunger((float) this.getAttribute(ModEntityAttributes.MAX_HUNGER).getValue());
-        setThirst((float) this.getAttribute(ModEntityAttributes.MAX_THIRST).getValue());
-        setCleanliness((float) this.getAttribute(ModEntityAttributes.MAX_CLEANLINESS).getValue());
-        setHappiness((float) this.getAttribute(ModEntityAttributes.MAX_HAPPINESS).getValue());
+        setHunger(this.getMaxHunger());
+        setThirst(this.getMaxThirst());
+        setHappiness(this.getMaxHappiness());
         setStress(0.0f);
     }
 
@@ -180,6 +179,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     protected @Nullable SoundEvent getBrushingSound(){
         return SoundEvents.BRUSH_GENERIC;
     }
+    protected @Nullable SoundEvent getHoofPickingSound(){
+        return SoundEvents.AXE_SCRAPE;
+    }
 
 
     // DATA //
@@ -190,14 +192,15 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         //Tick Timers
         this.hungerTickTimer = tag.getInt("HungerTickTimer");
         this.thirstTickTimer = tag.getInt("ThirstTickTimer");
-        this.cleanlinessTickTimer = tag.getInt("CleanlinessTickTimer");
+        this.stressRecoveryTickTimer = tag.getInt("StressRecoveryTickTimer");
 
         //Stats
         this.setHunger(tag.getFloat("Hunger"));
         this.setThirst(tag.getFloat("Thirst"));
-        this.setCleanliness(tag.getFloat("Cleanliness"));
         this.setHappiness(tag.getFloat("Happiness"));
         this.setStress(tag.getFloat("Stress"));
+        this.setCleanliness("hair", tag.getFloat("HairCleanliness"));
+        this.setCleanliness("hoof", tag.getFloat("HoofCleanliness"));
 
         //Genetic Code
         for (int i = 0; i < geneticCount; i++) {
@@ -248,7 +251,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         //Tick Timers
         tag.putInt("HungerTickTimer", this.hungerTickTimer);
         tag.putInt("ThirstTickTimer", this.thirstTickTimer);
-        tag.putInt("CleanlinessTickTimer", this.cleanlinessTickTimer);
+        tag.putInt("StressRecoveryTickTimer", this.stressRecoveryTickTimer);
         for(String key : keys){
             int value = GENETICS.get(key);
             tag.putInt(key, value);
@@ -258,10 +261,11 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         //Stats
         tag.putFloat("Hunger", this.getHunger());
         tag.putFloat("Thirst", this.getThirst());
-        tag.putFloat("Cleanliness", this.getCleanliness());
         tag.putFloat("Happiness", this.getHappiness());
         tag.putFloat("Stress", this.getStress());
 
+        tag.putFloat("HoofCleanliness", this.getCleanliness("hoof"));
+        tag.putFloat("HairCleanliness", this.getCleanliness("hair"));
 
         //Genetics
         tag.putString("GeneticCode", this.entityData.get(GENETICS_STRING));
@@ -300,11 +304,13 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        builder.define(HUNGER, 1.0F);
-        builder.define(THIRST, 1.0F);
-        builder.define(CLEANLINESS, 1.0F);
-        builder.define(HAPPINESS, 1.0F);
-        builder.define(STRESS, 1.0F);
+        builder.define(HUNGER, 10.0F);
+        builder.define(THIRST, 10.0F);
+        builder.define(HAPPINESS, 10.0F);
+        builder.define(STRESS, 10.0F);
+
+        builder.define(HOOF_CLEANLINESS, 10.0f);
+        builder.define(HAIR_CLEANLINESS, 10.0f);
 
         builder.define(GENETICS_STRING, "");
         builder.define(CURRENT_HEAD, "");
@@ -356,7 +362,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                 .add(Attributes.MAX_HEALTH, 1.0)
                 .add(ModEntityAttributes.MAX_HUNGER, 10.0f)
                 .add(ModEntityAttributes.MAX_THIRST, 10.0f)
-                .add(ModEntityAttributes.MAX_CLEANLINESS, 10.0f)
                 .add(ModEntityAttributes.MAX_HAPPINESS, 10.0f)
                 .add(ModEntityAttributes.MAX_STRESS, 10.0f)
                 .add(Attributes.MOVEMENT_SPEED, 0.2F)
@@ -375,9 +380,12 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     }
 
     public void alterHunger(Float value){
-        setHunger(
-                (float) Math.clamp(this.getHunger() + value,
-                        0, this.getAttribute(ModEntityAttributes.MAX_HUNGER).getValue()));
+        setHunger(Math.clamp(this.getHunger() + value,
+                        0, this.getMaxHunger()));
+    }
+
+    public float getMaxHunger(){
+        return (float) this.getAttribute(ModEntityAttributes.MAX_HUNGER).getValue();
     }
 
     public Float getThirst(){
@@ -389,23 +397,12 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     }
 
     public void alterThirst(Float value){
-        setThirst(
-                (float) Math.clamp(this.getThirst() + value,
-                        0, this.getAttribute(ModEntityAttributes.MAX_THIRST).getValue()));
+        setThirst(Math.clamp(this.getThirst() + value,
+                        0, this.getMaxThirst()));
     }
 
-    public Float getCleanliness(){
-        return entityData.get(CLEANLINESS);
-    }
-
-    public void setCleanliness(Float value){
-        this.entityData.set(CLEANLINESS, value);
-    }
-
-    public void alterCleanliness(Float value){
-        setCleanliness(
-                (float) Math.clamp(this.getCleanliness() + value,
-                        0, this.getAttribute(ModEntityAttributes.MAX_CLEANLINESS).getValue()));
+    public float getMaxThirst(){
+        return (float) this.getAttribute(ModEntityAttributes.MAX_THIRST).getValue();
     }
 
     public Float getHappiness(){
@@ -419,7 +416,11 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public void alterHappiness(Float value){
         setHappiness(
                 (float) Math.clamp(this.getHappiness() + value,
-                        0, this.getAttribute(ModEntityAttributes.MAX_HAPPINESS).getValue()));
+                        0, this.getMaxHappiness()));
+    }
+
+    public float getMaxHappiness(){
+        return (float) this.getAttribute(ModEntityAttributes.MAX_HAPPINESS).getValue();
     }
 
     public Float getStress(){
@@ -431,9 +432,51 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     }
 
     public void alterStress(Float value){
-        setStress(
-                (float) Math.clamp(this.getStress() + value,
-                        0, this.getAttribute(ModEntityAttributes.MAX_STRESS).getValue()));
+        setStress(Math.clamp(this.getStress() + value,
+                        0, this.getMaxStress()));
+    }
+
+    public float getMaxStress(){
+        return (float) this.getAttribute(ModEntityAttributes.MAX_STRESS).getValue();
+    }
+
+    public void setCleanliness(String part, Float value){
+        this.entityData.set(switch (part){
+            case "hoof" -> HOOF_CLEANLINESS;
+            case "hair" -> HAIR_CLEANLINESS;
+            default -> throw new IllegalStateException("Unexpected value: " + part);
+        }, value);
+    }
+
+    public void alterCleanliness(String part, Float value){
+        setCleanliness(part, Math.clamp(this.getCleanliness(part) + value, 0, 10));
+    }
+
+    public float getCleanliness(){
+        List<String> parts = new ArrayList<>();
+        parts.add("hair");
+        parts.add("hoof");
+        float t = 0;
+        for(String part : parts){
+            t += getCleanliness(part);
+        }
+        t = t / parts.size();
+
+        return t;
+    }
+
+    public float getCleanliness(String part){
+        return this.entityData.get(switch (part){
+            case "hoof" -> HOOF_CLEANLINESS;
+            case "hair" -> HAIR_CLEANLINESS;
+            default -> throw new IllegalStateException("Unexpected value: " + part);
+        });
+    }
+
+    public boolean isNeedsFulilled(){
+        return (this.getCleanliness() > 5f &&
+                this.getHunger() > 5f &&
+                this.getThirst() > 5f);
     }
 
     // ANIMATION //
@@ -489,12 +532,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             }
         }
 
-        double maxHunger = this.getAttribute(ModEntityAttributes.MAX_HUNGER).getValue();
-        double maxThirst = this.getAttribute(ModEntityAttributes.MAX_THIRST).getValue();
-        double maxHappiness = this.getAttribute(ModEntityAttributes.MAX_HAPPINESS).getValue();
-
-
-        if(this.getHunger() < maxHunger){
+        if(this.getHunger() < this.getMaxHunger()){
             flag = true;
             this.alterHunger(hunger);
             this.alterThirst(thirst);
@@ -557,6 +595,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         if(hungerTickTimer >= 200){
             if(this.getHunger() > 0) {
                 this.alterHunger(-1.0f);
+                this.alterCleanliness("hair", -1.0f);
+                this.alterCleanliness("hoof", -1.0f);
             }
             this.hungerTickTimer = 0;
         }
@@ -568,11 +608,11 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             this.thirstTickTimer = 0;
         }
 
-        if(cleanlinessTickTimer >= 200){
-            if(this.getCleanliness() > 0) {
-                this.alterCleanliness(-1.0f);
+        if(stressRecoveryTickTimer >= 200){
+            if(this.getStress() > 0 && isNeedsFulilled()) {
+                this.alterStress(-1.0f);
             }
-            this.cleanlinessTickTimer = 0;
+            this.stressRecoveryTickTimer = 0;
         }
 
         if (this.level().isClientSide) {
@@ -580,21 +620,33 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         } else {
             //Horse's Hunger Depleted
             if(this.getHunger() <= 0.0f){
-                this.addEffect(new MobEffectInstance(ModEffects.STARVING_EFFECT, 10, 10));
+                this.addEffect(new MobEffectInstance(ModEffects.STARVING_EFFECT, 10, 1));
             } else {
                 this.removeEffect(ModEffects.STARVING_EFFECT);
             }
             //Horse's Thirst Depleted
             if(this.getThirst() <= 0.0f){
-                this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10, 10));
+                this.addEffect(new MobEffectInstance(ModEffects.DEHYDRATED_EFFECT, 10, 1));
             } else {
-                this.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
+                this.removeEffect(ModEffects.DEHYDRATED_EFFECT);
             }
             //Horse's Cleanliness Depleted
             if(this.getCleanliness() <= 0.0f){
-                this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10, 10));
+                this.addEffect(new MobEffectInstance(ModEffects.FILTHY_EFFECT, 10, 1));
             } else {
-                this.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
+                this.removeEffect(ModEffects.FILTHY_EFFECT);
+            }
+            //Horse's Happiness Depleted
+            if(this.getHappiness() <= 0.0f){
+                this.addEffect(new MobEffectInstance(ModEffects.DEPRESSED_EFFECT, 10, 1));
+            } else {
+                this.removeEffect(ModEffects.DEPRESSED_EFFECT);
+            }
+            //Horse's Stress Maxed
+            if(this.getStress() >= this.getMaxStress()){
+                this.addEffect(new MobEffectInstance(ModEffects.STRESSED_EFFECT, 10, 1));
+            } else {
+                this.removeEffect(ModEffects.STRESSED_EFFECT);
             }
         }
     }
@@ -602,7 +654,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     private void TickTimers(){
         hungerTickTimer++;
         thirstTickTimer++;
-        cleanlinessTickTimer++;
+        stressRecoveryTickTimer++;
     }
 
     @Override
@@ -611,15 +663,22 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         if (!this.isVehicle() && !flag) {
 
-            if(itemstack.is(ModItems.BRUSH)){
-                float maxCleanliness = (float) this.getAttribute(ModEntityAttributes.MAX_HUNGER).getValue();
-                if(getCleanliness() < maxCleanliness) {
-                    this.setCleanliness(Math.clamp(getCleanliness() + 1, 0, maxCleanliness));
-                }
+            if(itemstack.is(ModItems.HORSE_BRUSH)){
+                this.alterCleanliness("hair", 1.0f);
                 this.level().playSound(null, this.getX(),
                         this.getY(),
                         this.getZ(),
                         this.getBrushingSound(),
+                        this.getSoundSource(),
+                        1.0F,
+                        1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
+            }
+            if(itemstack.is(ModItems.HOOF_PICK)){
+                this.alterCleanliness("hoof", 1.0f);
+                this.level().playSound(null, this.getX(),
+                        this.getY(),
+                        this.getZ(),
+                        this.getHoofPickingSound(),
                         this.getSoundSource(),
                         1.0F,
                         1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
@@ -677,7 +736,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         generatedPages.add(Filterable.passThrough(Component.literal(
                 "§2Hunger:§r\n" + this.getHunger() +
                         "\n§2Thirst:§r\n" + this.getThirst() +
-                        "\n§2Cleanliness:§r\n" + this.getCleanliness() +
+                        "\n§2Total Cleanliness:§r\n" + this.getCleanliness() +
+                        "\n§2Hair Cleanliness:§r\n" + this.getCleanliness("hair") +
+                        "\n§2Hoof Cleanliness:§r\n" + this.getCleanliness("hoof") +
                         "\n§2Happiness:§r\n" + this.getHappiness() +
                         "\n§2Stress:§r\n" + this.getStress()
         )));

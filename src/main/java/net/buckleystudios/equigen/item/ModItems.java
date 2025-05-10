@@ -3,10 +3,7 @@ package net.buckleystudios.equigen.item;
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.block.ModBlocks;
 import net.buckleystudios.equigen.entity.ModEntities;
-import net.buckleystudios.equigen.item.custom.GeneticHorseDebugTool;
-import net.buckleystudios.equigen.item.custom.GeneticHorseSpawnerItem;
-import net.buckleystudios.equigen.item.custom.LassoItem;
-import net.buckleystudios.equigen.item.custom.SodiumGrenadeItem;
+import net.buckleystudios.equigen.item.custom.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -35,7 +32,12 @@ public class ModItems {
     public static final DeferredItem<Item> LOCOWEED_PETALS = ITEMS.registerSimpleItem("locoweed_petals", new Item.Properties());
     public static final DeferredItem<Item> CALENDULA_PETALS = ITEMS.registerSimpleItem("calendula_petals", new Item.Properties());
 
-    public static final DeferredItem<Item> BRUSH = ITEMS.registerItem("brush", BrushItem::new, new Item.Properties());
+//    public static final DeferredItem<Item> HORSE_BRUSH = ITEMS.registerItem("horse_brush", HorseBrushItem::new, new Item.Properties());
+//    public static final DeferredItem<Item> HOOF_PICK = ITEMS.registerItem("hoof_pick", HoofPickItem::new, new Item.Properties());
+    public static final DeferredItem<Item> HORSE_BRUSH = ITEMS.registerSimpleItem("horse_brush", new Item.Properties());
+    public static final DeferredItem<Item> HOOF_PICK = ITEMS.registerSimpleItem("hoof_pick", new Item.Properties());
+
+
     public static final DeferredItem<Item> LASSO = ITEMS.registerItem("lasso", LassoItem::new, new Item.Properties());
     public static final DeferredItem<Item> SODIUM_GRENADE = ITEMS.registerItem("sodium_grenade", SodiumGrenadeItem::new, new Item.Properties());
     public static final DeferredItem<Item> FOLIRITE_PICKAXE = ITEMS.register("folirite_pickaxe", () -> new PickaxeItem(ModToolTiers.FOLIRITE_TIER,

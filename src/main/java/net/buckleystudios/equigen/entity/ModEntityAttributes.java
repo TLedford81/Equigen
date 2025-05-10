@@ -13,7 +13,6 @@ public class ModEntityAttributes {
 
     public static final DeferredHolder<Attribute, Attribute> MAX_HUNGER = register("max_hunger", 20, 0, 20);
     public static final DeferredHolder<Attribute, Attribute> MAX_THIRST = register("max_thirst", 20, 0, 20);
-    public static final DeferredHolder<Attribute, Attribute> MAX_CLEANLINESS = register("max_cleanliness", 20, 0, 20);
     public static final DeferredHolder<Attribute, Attribute> MAX_HAPPINESS = register("max_happiness", 20, 0, 20);
     public static final DeferredHolder<Attribute, Attribute> MAX_STRESS = register("max_stress", 20, 0, 20);
 
