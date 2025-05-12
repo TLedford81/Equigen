@@ -23,6 +23,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -36,7 +37,9 @@ import net.minecraft.world.item.component.WrittenBookContent;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
@@ -89,6 +92,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     private int thirstTickTimer;
     private int stressRecoveryTickTimer;
 
+    public Vec3 testpos1;
+    public Vec3 testpos2;
+
     // SPAWNING //
     public GeneticHorseEntity(EntityType<? extends AbstractHorse> entityType, Level level) {
         super(entityType, level);
@@ -128,7 +134,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         }
         super.finalizeSpawnChildFromBreeding(level, animal, baby);
     }
-
 
     // BASIC SETTINGS //
     @Override
@@ -590,6 +595,29 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public void tick() {
         super.tick();
         TickTimers();
+
+        boolean hasEmeraldBlock = false;
+        if(this.testpos1 != null){
+            AABB cornerAABB = new AABB(this.testpos1, this.testpos2);
+            List<GeneticHorseEntity> list2 = level().getEntitiesOfClass(GeneticHorseEntity.class, cornerAABB);
+            for (GeneticHorseEntity horse : list2) {
+                horse.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 20, 1, true, true));
+            }
+            List<BlockState> listBlock = level().getBlockStates(cornerAABB).toList();
+            for(BlockState block : listBlock){
+                if(block.is(Blocks.EMERALD_BLOCK)){
+                    hasEmeraldBlock = true;
+                }
+            }
+            if(hasEmeraldBlock){
+                for (GeneticHorseEntity horse : list2) {
+                    horse.addEffect(new MobEffectInstance(MobEffects.GLOWING, 20, 1, true, true));
+                }
+            }
+        }
+
+        Vec3 pos1 = this.blockPosition().offset(10, 10, 10).getCenter();
+        Vec3 pos2 = this.blockPosition().offset(-10, -10, -10).getCenter();
 
         //Stat Drop Over Time
         if(hungerTickTimer >= 200){
@@ -1070,5 +1098,10 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             case "hind_leg_hoof_right": return this.entityData.get(CURRENT_HIND_HOOF_RIGHT).toLowerCase();
             default: return "|INVALID_PART|";
         }
+    }
+
+    public void TestAABB(Vec3 pos1, Vec3 pos2){
+        this.testpos1 = pos1;
+        this.testpos2 = pos2;
     }
 }
