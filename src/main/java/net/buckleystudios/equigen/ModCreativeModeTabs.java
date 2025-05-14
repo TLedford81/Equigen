@@ -200,5 +200,6 @@ public class ModCreativeModeTabs{
                         pOutput.accept(ModBlocks.DEEPSLATE_FOLIRITE_ORE);
                         pOutput.accept(ModBlocks.HIMALAYAN_ROCK_SALT_ORE);
                         pOutput.accept(ModBlocks.DEEPSLATE_HIMALAYAN_ROCK_SALT_ORE);
+                        pOutput.accept(ModBlocks.STALL_MANAGER);
                     }))).build());
 }

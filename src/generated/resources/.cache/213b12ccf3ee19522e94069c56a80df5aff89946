@@ -1,4 +1,4 @@
-// 1.21.1	2024-12-28T19:10:15.7179505	Block States: equigen
+// 1.21.1	2025-05-13T18:18:23.3950339	Block States: equigen
 ab57e67d2d95a9c8c01d0ea6da0461f0f71d8426 assets/equigen/blockstates/alfalfa_crop.json
 2b2e1cd61c6f6242256416e08be0d93d7d61f7da assets/equigen/blockstates/apricot_button.json
 479a9063b913f595e64b226e31230c0e00be50d7 assets/equigen/blockstates/apricot_door.json
@@ -111,6 +111,7 @@ e03ece8c1809293eb31ffe4da5a29bc126f2478a assets/equigen/blockstates/potted_pink_
 1fbe1097db83cc8d02c41f6e807e24a8d39a1d06 assets/equigen/blockstates/potted_sweet_pea.json
 aaa7e272b9b29b6dbc78a3df0896aa4ef20050b9 assets/equigen/blockstates/purple_locoweed.json
 44c8576a3041d085b79e0a5649d5b7f5082ac8e7 assets/equigen/blockstates/raw_folirite_block.json
+161e65ac69bdedc59b4f4e526bc1546f44184eeb assets/equigen/blockstates/stall_manager.json
 21e19ded23e238d750299fc4f4e198ab0b953d47 assets/equigen/blockstates/sweet_pea.json
 2823c71605c6c28cf85a0aa2211ba55cd41edea9 assets/equigen/blockstates/timothy_hay_crop.json
 b2e3b20232620db69a119e4c6b647f62bfd0eb9a assets/equigen/models/block/alfalfa_crop_stage0.json
@@ -379,6 +380,7 @@ b60687c3787fbd6f4b1563c45f7445f34a612edb assets/equigen/models/block/potted_pink
 8e8cbfcfab076f6fff27566bc7aa174680f31a03 assets/equigen/models/block/potted_sweet_pea.json
 8d548969268fae87302a8bffb6244b1b2d0c85b5 assets/equigen/models/block/purple_locoweed.json
 0c429cebdc2d19a709a0e68044d7bfeb5c28b8c8 assets/equigen/models/block/raw_folirite_block.json
+6fc3af997ef28e199bf6c5030e19845491618e7a assets/equigen/models/block/stall_manager.json
 892156b163c76e438f808bf0437337e3329e011f assets/equigen/models/block/sweet_pea.json
 ad4d2916165ee0a974ab49447d1445defe0fa052 assets/equigen/models/block/timothy_hay_crop_stage0.json
 ad9123e2e01621f2fac75a0fc88cca1694f63d68 assets/equigen/models/block/timothy_hay_crop_stage1.json
@@ -460,3 +462,4 @@ cff94fd8b49ab23abf254fcd6ea09fbfc0176988 assets/equigen/models/item/mulberry_sta
 0fde3b0dcf1450fe390317ded34d850002b929ee assets/equigen/models/item/mulberry_trapdoor.json
 a823600c369860b36678bffec50465de606f130a assets/equigen/models/item/mulberry_wood.json
 3ab78530d17317880ce139b16d6942da2a1d8aa5 assets/equigen/models/item/raw_folirite_block.json
+2514990a81e84c1e9043c17d7d49ae47235346da assets/equigen/models/item/stall_manager.json

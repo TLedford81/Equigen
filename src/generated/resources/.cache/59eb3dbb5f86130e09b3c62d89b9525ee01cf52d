@@ -1,4 +1,4 @@
-// 1.21.1	2024-12-28T19:10:15.731454	Loot Tables
+// 1.21.1	2025-05-13T18:18:23.4030843	Loot Tables
 4e70cbf79e0b982cc1f607fcaf429ba37f0bd931 data/equigen/loot_table/blocks/alfalfa_crop.json
 71acaac04ccc255e32842c81ded124ce90606f46 data/equigen/loot_table/blocks/apricot_button.json
 0710a9df43166b8dc8df849b5964cf43e9bdfccd data/equigen/loot_table/blocks/apricot_door.json
@@ -111,5 +111,6 @@ e5e135fff555392f6ad75ec28b3f89743abfb90b data/equigen/loot_table/blocks/potted_p
 7089497ca8d3bf16d6c87453fe3c0510541d00a3 data/equigen/loot_table/blocks/potted_sweet_pea.json
 0d892a3b1904f8e7d799feff913b2766a0862de0 data/equigen/loot_table/blocks/purple_locoweed.json
 e139d35419cf1157fdeeb6b8cd344c21cf84c68f data/equigen/loot_table/blocks/raw_folirite_block.json
+ada675ff342aa22633882b571a1f54e71436c8c9 data/equigen/loot_table/blocks/stall_manager.json
 037063fc5617b8f0c8a0189507ec807bbc52ffd6 data/equigen/loot_table/blocks/sweet_pea.json
 1b665d2d52d916dbdc752eeccda39ab5c280a7d3 data/equigen/loot_table/blocks/timothy_hay_crop.json

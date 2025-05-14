@@ -331,6 +331,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/deepslate_himalayan_rock_salt_ore_bottomtop")));
 
         //Block Entities
+        blockWithItem(ModBlocks.STALL_MANAGER);
+
         horizontalBlock(ModBlocks.INFUSION_TABLE.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/infusion_table")));
         simpleBlockItem(ModBlocks.INFUSION_TABLE.get(),

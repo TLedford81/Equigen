@@ -1,7 +1,7 @@
 package net.buckleystudios.equigen.screen.Infusion_Table;
 
 import net.buckleystudios.equigen.block.ModBlocks;
-import net.buckleystudios.equigen.block.entity.InfusionTableBlockEntity;
+import net.buckleystudios.equigen.block.entity.custom.InfusionTableBlockEntity;
 import net.buckleystudios.equigen.screen.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;

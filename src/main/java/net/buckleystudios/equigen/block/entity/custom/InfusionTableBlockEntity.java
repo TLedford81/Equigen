@@ -1,8 +1,9 @@
-package net.buckleystudios.equigen.block.entity;
+package net.buckleystudios.equigen.block.entity.custom;
 
 //import net.buckleystudios.equigen.item.ModItems;
 //import net.buckleystudios.equigen.recipe.InfusionTableRecipe;
 //import net.buckleystudios.equigen.recipe.ModRecipes;
+import net.buckleystudios.equigen.block.entity.ModBlockEntities;
 import net.buckleystudios.equigen.screen.Infusion_Table.InfusionTableMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;

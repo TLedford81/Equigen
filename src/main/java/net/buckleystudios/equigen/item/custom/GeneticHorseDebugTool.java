@@ -1,6 +1,8 @@
 package net.buckleystudios.equigen.item.custom;
 
+import net.buckleystudios.equigen.block.custom.StallManagerBlock;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -11,6 +13,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
 public class GeneticHorseDebugTool extends Item {
@@ -42,9 +45,6 @@ public class GeneticHorseDebugTool extends Item {
 //                    currentEntity = geneticHorse;
 //                    player.sendSystemMessage(Component.literal("Selected Genetic Horse, UUID: " + entity.getStringUUID()));
 //                }
-
-                geneticHorse.TestAABB(savedPos1, savedPos2);
-                player.sendSystemMessage(Component.literal("Activating Area"));
             }
         }
         return true;
@@ -52,12 +52,19 @@ public class GeneticHorseDebugTool extends Item {
 
     @Override
     public InteractionResult useOn(UseOnContext context) {
-        if(!context.getPlayer().isCrouching()){
-            savedPos1 = context.getClickedPos().getCenter();
-            context.getPlayer().sendSystemMessage(Component.literal("Position 1 Set to " + savedPos1));
-        } else {
-            savedPos2 = context.getClickedPos().getCenter();
-            context.getPlayer().sendSystemMessage(Component.literal("Position 2 Set to " + savedPos2));
+        BlockPos clickedPos = context.getClickedPos();
+        BlockState targetedBlockState = context.getLevel().getBlockState(clickedPos);
+
+        if(!context.getLevel().isClientSide) {
+            if (!(targetedBlockState.getBlock() instanceof StallManagerBlock stallManagerBlock)) {
+                if (!context.getPlayer().isCrouching()) {
+                    savedPos1 = context.getClickedPos().getCenter();
+                    context.getPlayer().sendSystemMessage(Component.literal("Position 1 Set to " + savedPos1));
+                } else {
+                    savedPos2 = context.getClickedPos().getCenter();
+                    context.getPlayer().sendSystemMessage(Component.literal("Position 2 Set to " + savedPos2));
+                }
+            }
         }
         return super.useOn(context);
     }
@@ -65,5 +72,13 @@ public class GeneticHorseDebugTool extends Item {
     @Override
     public boolean isFoil(ItemStack stack) {
         return true;
+    }
+
+    public Vec3 getSavedPos1(){
+        return savedPos1;
+    }
+
+    public Vec3 getSavedPos2(){
+        return savedPos2;
     }
 }

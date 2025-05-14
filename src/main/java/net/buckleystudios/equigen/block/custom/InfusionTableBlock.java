@@ -1,7 +1,7 @@
 package net.buckleystudios.equigen.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import net.buckleystudios.equigen.block.entity.InfusionTableBlockEntity;
+import net.buckleystudios.equigen.block.entity.custom.InfusionTableBlockEntity;
 import net.buckleystudios.equigen.block.entity.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;

@@ -39,6 +39,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.FOLIRITE_BLOCK.get());
         this.dropSelf(ModBlocks.RAW_FOLIRITE_BLOCK.get());
         this.dropSelf(ModBlocks.INFUSION_TABLE.get());
+        this.dropSelf(ModBlocks.STALL_MANAGER.get());
 
         //FIG WOOD
         this.dropSelf(ModBlocks.FIG_PLANKS.get());
