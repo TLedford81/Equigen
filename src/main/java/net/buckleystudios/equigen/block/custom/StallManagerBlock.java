@@ -1,6 +1,7 @@
 package net.buckleystudios.equigen.block.custom;
 
 import com.mojang.serialization.MapCodec;
+import net.buckleystudios.equigen.block.entity.ModBlockEntities;
 import net.buckleystudios.equigen.block.entity.custom.StallManagerBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -16,6 +17,8 @@ import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -49,6 +52,17 @@ public class StallManagerBlock extends BaseEntityBlock {
     protected RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }
+
+    @Override
+    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
+        if(level.isClientSide()){
+            return null;
+        }
+
+        return createTickerHelper(blockEntityType, ModBlockEntities.STALL_MANAGER_BE.get(),
+                (level1, pos, state1, blockEntity) -> blockEntity.tick(level1, pos, state1));
+    }
+
 
     @Override
     protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {

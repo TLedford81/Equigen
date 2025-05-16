@@ -1,6 +1,6 @@
 package net.buckleystudios.equigen.item.custom;
 
-import net.buckleystudios.equigen.block.custom.StallManagerBlock;
+import net.buckleystudios.equigen.block.entity.custom.StallManagerBlockEntity;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -13,7 +13,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.phys.Vec3;
 
 public class GeneticHorseDebugTool extends Item {
@@ -53,10 +53,17 @@ public class GeneticHorseDebugTool extends Item {
     @Override
     public InteractionResult useOn(UseOnContext context) {
         BlockPos clickedPos = context.getClickedPos();
-        BlockState targetedBlockState = context.getLevel().getBlockState(clickedPos);
+        BlockEntity targetedBlockEntity = context.getLevel().getBlockEntity(clickedPos);
 
         if(!context.getLevel().isClientSide) {
-            if (!(targetedBlockState.getBlock() instanceof StallManagerBlock stallManagerBlock)) {
+            if (targetedBlockEntity instanceof StallManagerBlockEntity stallManagerBE) {
+                if(getSavedPos1() != null && getSavedPos2() != null){
+                    stallManagerBE.setStallAreaCorners(getSavedPos1(), getSavedPos2());
+                    context.getPlayer().sendSystemMessage(Component.literal("Successfully applied positions!"));
+                } else {
+                    context.getPlayer().sendSystemMessage(Component.literal("Positions are not set!"));
+                }
+            } else {
                 if (!context.getPlayer().isCrouching()) {
                     savedPos1 = context.getClickedPos().getCenter();
                     context.getPlayer().sendSystemMessage(Component.literal("Position 1 Set to " + savedPos1));
