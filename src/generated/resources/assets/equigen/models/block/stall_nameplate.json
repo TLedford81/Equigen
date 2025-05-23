@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "equigen:block/stall_manager"
+    "all": "equigen:block/stall_nameplate"
   }
 }

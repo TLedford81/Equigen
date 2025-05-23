@@ -2,7 +2,7 @@ package net.buckleystudios.equigen.block.custom;
 
 import com.mojang.serialization.MapCodec;
 import net.buckleystudios.equigen.block.entity.ModBlockEntities;
-import net.buckleystudios.equigen.block.entity.custom.StallManagerBlockEntity;
+import net.buckleystudios.equigen.block.entity.custom.StallNameplateBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -25,11 +25,11 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class StallManagerBlock extends BaseEntityBlock {
+public class StallNameplateBlock extends BaseEntityBlock {
     public static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 13, 14);
-    public static final MapCodec<StallManagerBlock> CODEC = simpleCodec(StallManagerBlock::new);
+    public static final MapCodec<StallNameplateBlock> CODEC = simpleCodec(StallNameplateBlock::new);
 
-    public StallManagerBlock(Properties properties) {
+    public StallNameplateBlock(Properties properties) {
         super(properties);
     }
 
@@ -45,7 +45,7 @@ public class StallManagerBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new StallManagerBlockEntity(pos, state);
+        return new StallNameplateBlockEntity(pos, state);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class StallManagerBlock extends BaseEntityBlock {
             return null;
         }
 
-        return createTickerHelper(blockEntityType, ModBlockEntities.STALL_MANAGER_BE.get(),
+        return createTickerHelper(blockEntityType, ModBlockEntities.STALL_NAMEPLATE_BE.get(),
                 (level1, pos, state1, blockEntity) -> blockEntity.tick(level1, pos, state1));
     }
 
@@ -67,7 +67,7 @@ public class StallManagerBlock extends BaseEntityBlock {
     @Override
     protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
         if (state.getBlock() != newState.getBlock()) {
-            if (level.getBlockEntity(pos) instanceof StallManagerBlockEntity stallManagerBlockEntity) {
+            if (level.getBlockEntity(pos) instanceof StallNameplateBlockEntity stallNameplateBlockEntity) {
                 level.updateNeighbourForOutputSignal(pos, this);
             }
         }
@@ -76,9 +76,9 @@ public class StallManagerBlock extends BaseEntityBlock {
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (level.getBlockEntity(pos) instanceof StallManagerBlockEntity stallManagerBlockEntity) {
+        if (level.getBlockEntity(pos) instanceof StallNameplateBlockEntity stallNameplateBlockEntity) {
             if (!level.isClientSide) {
-                ((ServerPlayer) player).openMenu(new SimpleMenuProvider(stallManagerBlockEntity, Component.literal("Stall Manager")), pos);
+                ((ServerPlayer) player).openMenu(new SimpleMenuProvider(stallNameplateBlockEntity, Component.literal("Stall Nameplate")), pos);
                 return ItemInteractionResult.SUCCESS;
             }
         }

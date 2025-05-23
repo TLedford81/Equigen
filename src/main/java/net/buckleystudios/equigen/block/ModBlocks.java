@@ -272,8 +272,8 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> INFUSION_TABLE = registerBlock("infusion_table",
             () -> new InfusionTableBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> STALL_MANAGER = registerBlock("stall_manager",
-            () -> new StallManagerBlock(BlockBehaviour.Properties.of()));
+    public static final DeferredBlock<Block> STALL_NAMEPLATE = registerBlock("stall_nameplate",
+            () -> new StallNameplateBlock(BlockBehaviour.Properties.of()));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block){
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

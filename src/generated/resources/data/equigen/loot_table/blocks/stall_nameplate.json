@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "equigen:stall_manager"
+          "name": "equigen:stall_nameplate"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "equigen:blocks/stall_manager"
+  "random_sequence": "equigen:blocks/stall_nameplate"
 }

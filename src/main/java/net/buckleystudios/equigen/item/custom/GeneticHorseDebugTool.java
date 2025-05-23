@@ -1,6 +1,6 @@
 package net.buckleystudios.equigen.item.custom;
 
-import net.buckleystudios.equigen.block.entity.custom.StallManagerBlockEntity;
+import net.buckleystudios.equigen.block.entity.custom.StallNameplateBlockEntity;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -14,6 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
 public class GeneticHorseDebugTool extends Item {
@@ -37,17 +38,36 @@ public class GeneticHorseDebugTool extends Item {
     public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
         if (!player.level().isClientSide()) {
             if (entity instanceof GeneticHorseEntity geneticHorse) {
-//                if (!player.isCrouching()) {
-//                    geneticHorse.setHunger(geneticHorse.getHunger() - 0.5f);
-//                    player.sendSystemMessage(Component.literal("**SMACK** GET PREG... i mean... GET HUNGRY!"));
-//                    player.sendSystemMessage(Component.literal("Current Hunger: " + geneticHorse.getHunger()));
-//                } else {
-//                    currentEntity = geneticHorse;
-//                    player.sendSystemMessage(Component.literal("Selected Genetic Horse, UUID: " + entity.getStringUUID()));
-//                }
+                currentEntity = geneticHorse;
+                player.sendSystemMessage(Component.literal("Selected Horse: " + geneticHorse.getUUID()));
             }
         }
         return true;
+    }
+
+    @Override
+    public boolean canAttackBlock(BlockState state, Level level, BlockPos pos, Player player) {
+        if(!level.isClientSide()){
+            if(level.getBlockEntity(pos) instanceof StallNameplateBlockEntity stallNameplateBlockEntity){
+                if(!player.isCrouching()){
+                    if(currentEntity != null){
+                        player.sendSystemMessage(Component.literal("Assigned Horse " + currentEntity.getUUID() + " to Stall Manager"));
+                        stallNameplateBlockEntity.AssignHorse(currentEntity.getUUID());
+                    } else {
+                        player.sendSystemMessage(Component.literal("No Horse Selected to Assign!"));
+                    }
+                } else {
+                    if(currentEntity != null){
+                        player.sendSystemMessage(Component.literal("Removed Horse " + currentEntity.getUUID() + " from Stall Manager"));
+                        stallNameplateBlockEntity.UnassignHorse(currentEntity.getUUID());
+                    } else {
+                        player.sendSystemMessage(Component.literal("No Horse Selected to Unassign!"));
+                    }
+                }
+                return false;
+            }
+        }
+        return super.canAttackBlock(state, level, pos, player);
     }
 
     @Override
@@ -56,7 +76,7 @@ public class GeneticHorseDebugTool extends Item {
         BlockEntity targetedBlockEntity = context.getLevel().getBlockEntity(clickedPos);
 
         if(!context.getLevel().isClientSide) {
-            if (targetedBlockEntity instanceof StallManagerBlockEntity stallManagerBE) {
+            if (targetedBlockEntity instanceof StallNameplateBlockEntity stallManagerBE) {
                 if(getSavedPos1() != null && getSavedPos2() != null){
                     stallManagerBE.setStallAreaCorners(getSavedPos1(), getSavedPos2());
                     context.getPlayer().sendSystemMessage(Component.literal("Successfully applied positions!"));

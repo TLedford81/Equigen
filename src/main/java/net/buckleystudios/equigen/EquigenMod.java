@@ -10,7 +10,7 @@ import net.buckleystudios.equigen.entity.client.*;
 import net.buckleystudios.equigen.item.ModItems;
 import net.buckleystudios.equigen.screen.Infusion_Table.InfusionTableScreen;
 import net.buckleystudios.equigen.screen.ModMenuTypes;
-import net.buckleystudios.equigen.screen.Stall_Manager.StallManagerScreen;
+import net.buckleystudios.equigen.screen.Stall_Nameplate.StallNameplateScreen;
 import net.buckleystudios.equigen.screen.Test_Entity.TestEntityScreen;
 import net.buckleystudios.equigen.sound.ModSounds;
 import net.buckleystudios.equigen.villager.ModVillagers;
@@ -90,7 +90,7 @@ public class EquigenMod {
         public static void registerScreens(RegisterMenuScreensEvent event){
             event.register(ModMenuTypes.INFUSION_TABLE_MENU.get(), InfusionTableScreen::new);
             event.register(ModMenuTypes.TEST_ENTITY_MENU.get(), TestEntityScreen::new);
-            event.register(ModMenuTypes.STALL_MANAGER_MENU.get(), StallManagerScreen::new);
+            event.register(ModMenuTypes.STALL_NAMEPLATE_MENU.get(), StallNameplateScreen::new);
         }
 
         @SubscribeEvent

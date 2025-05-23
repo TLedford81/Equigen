@@ -1,4 +1,4 @@
-package net.buckleystudios.equigen.screen.Stall_Manager;
+package net.buckleystudios.equigen.screen.Stall_Nameplate;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.buckleystudios.equigen.EquigenMod;
@@ -9,11 +9,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class StallManagerScreen extends AbstractContainerScreen<StallManagerMenu> {
+public class StallNameplateScreen extends AbstractContainerScreen<StallNameplateMenu> {
     private static final ResourceLocation GUI_TEXTURE =
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/gui/stall_manager_gui.png");
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/gui/stall_nameplate_gui.png");
 
-    public StallManagerScreen(StallManagerMenu menu, Inventory playerInventory, Component title) {
+    public StallNameplateScreen(StallNameplateMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
     }
 

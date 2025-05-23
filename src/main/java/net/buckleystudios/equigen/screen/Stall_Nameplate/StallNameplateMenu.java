@@ -1,7 +1,7 @@
-package net.buckleystudios.equigen.screen.Stall_Manager;
+package net.buckleystudios.equigen.screen.Stall_Nameplate;
 
 import net.buckleystudios.equigen.block.ModBlocks;
-import net.buckleystudios.equigen.block.entity.custom.StallManagerBlockEntity;
+import net.buckleystudios.equigen.block.entity.custom.StallNameplateBlockEntity;
 import net.buckleystudios.equigen.screen.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -12,18 +12,18 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
-public class StallManagerMenu extends AbstractContainerMenu {
+public class StallNameplateMenu extends AbstractContainerMenu {
 
-    public final StallManagerBlockEntity stallManagerBlockEntity;
+    public final StallNameplateBlockEntity stallNameplateBlockEntity;
     private final Level level;
 
-    public StallManagerMenu(int containerId, Inventory inv, FriendlyByteBuf extraData) {
+    public StallNameplateMenu(int containerId, Inventory inv, FriendlyByteBuf extraData) {
         this(containerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()));
     }
 
-    public StallManagerMenu(int containerId, Inventory inv, BlockEntity blockEntity) {
-        super(ModMenuTypes.STALL_MANAGER_MENU.get(), containerId);
-        this.stallManagerBlockEntity = ((StallManagerBlockEntity) blockEntity);
+    public StallNameplateMenu(int containerId, Inventory inv, BlockEntity blockEntity) {
+        super(ModMenuTypes.STALL_NAMEPLATE_MENU.get(), containerId);
+        this.stallNameplateBlockEntity = ((StallNameplateBlockEntity) blockEntity);
         this.level = inv.player.level();
 
     }
@@ -35,7 +35,7 @@ public class StallManagerMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player player) {
-        return stillValid(ContainerLevelAccess.create(level, stallManagerBlockEntity.getBlockPos()),
-                player, ModBlocks.STALL_MANAGER.get());
+        return stillValid(ContainerLevelAccess.create(level, stallNameplateBlockEntity.getBlockPos()),
+                player, ModBlocks.STALL_NAMEPLATE.get());
     }
 }
