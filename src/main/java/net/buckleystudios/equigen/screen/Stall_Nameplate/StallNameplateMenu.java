@@ -25,7 +25,6 @@ public class StallNameplateMenu extends AbstractContainerMenu {
         super(ModMenuTypes.STALL_NAMEPLATE_MENU.get(), containerId);
         this.stallNameplateBlockEntity = ((StallNameplateBlockEntity) blockEntity);
         this.level = inv.player.level();
-
     }
 
     @Override

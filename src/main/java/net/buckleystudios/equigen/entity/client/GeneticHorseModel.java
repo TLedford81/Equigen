@@ -6,7 +6,7 @@ import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.command.TestCommand;
 import net.buckleystudios.equigen.entity.client.parts.*;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
-import net.buckleystudios.equigen.item.custom.GeneticHorseDebugTool;
+import net.buckleystudios.equigen.item.custom.StallWand;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -245,8 +245,8 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
 
         PART_POSITIONS.put(TestCommand.getNewTargetPart(), TestCommand.getNewPartPosition());
 
-        if(GeneticHorseDebugTool.currentEntity != null){
-            if(entity.getStringUUID().equals(GeneticHorseDebugTool.currentEntity.getStringUUID())){
+        if(StallWand.currentEntity != null){
+            if(entity.getStringUUID().equals(StallWand.currentEntity.getStringUUID())){
                 MovePart(rootChest,"chest");
                 MovePart(rootNeck,"neck");
                 MovePart(rootHead,"head");

@@ -91,7 +91,7 @@ public class ModItems {
     public static final DeferredItem<Item> SWEET_PEA_SALVE = ITEMS.registerItem("sweet_pea_salve", Item::new, new Item.Properties());
     public static final DeferredItem<Item> CALENDULA_SALVE = ITEMS.registerItem("calendula_salve", Item::new, new Item.Properties());
 
-    public static final DeferredItem<Item> GENETIC_HORSE_DEBUG_TOOL = ITEMS.registerItem("genetic_horse_debug_tool", GeneticHorseDebugTool::new, new Item.Properties());
+    public static final DeferredItem<Item> STALL_WAND = ITEMS.registerItem("stall_wand", StallWand::new, new Item.Properties());
 
     public static final DeferredItem<Item> PILLAGER_KING_SPAWN_EGG = ITEMS.register("pillager_king_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.PILLAGER_KING, 0xdebd47, 0xccbfbe,

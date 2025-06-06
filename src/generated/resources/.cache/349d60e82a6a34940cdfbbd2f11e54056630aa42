@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-09T23:12:06.3583729	Item Models: equigen
+// 1.21.1	2025-05-27T20:13:10.6812507	Item Models: equigen
 d834f1d768dceede3f7db7ea037606d176657df3 assets/equigen/models/item/alfalfa.json
 c0e11fb7b662a9c0feb69318a7e7c3ced455f687 assets/equigen/models/item/alfalfa_seeds.json
 9c687aadbfdb6b265dbf69c8c60bfedc48813592 assets/equigen/models/item/apricot.json
@@ -30,7 +30,6 @@ da076093d590ed88668a244a9103f6f7314bacf2 assets/equigen/models/item/folirite_ing
 b9e324fed26d98e3da23cbcb9e28221dfa463ba2 assets/equigen/models/item/folirite_pickaxe.json
 50db1229355160c00acd7e9c941486d0aff3abe8 assets/equigen/models/item/folirite_shovel.json
 eaefbd4d81039b4a136ea0c2d06141044f480061 assets/equigen/models/item/folirite_sword.json
-f6b8905423f8e3c66d32e07e87ed4d1aab0e3a8b assets/equigen/models/item/genetic_horse_debug_tool.json
 85362114d0100eac4cfd78fc8d12afa935f8c3d7 assets/equigen/models/item/genetic_horse_spawner.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/equigen/models/item/genetic_horse_spawn_egg.json
 c1fc67786e4dbc66f92503ff51b6e91e7835d733 assets/equigen/models/item/green_ash_button.json
@@ -66,6 +65,7 @@ bd1886fc11e6c009e04a9e449be14fb9835c3583 assets/equigen/models/item/raw_folirite
 677f341f1dbe10382f8d57709453e91ca29042b0 assets/equigen/models/item/sack.json
 e7548ef50956b5fbd064b24e6646f8feebaeb6fc assets/equigen/models/item/sodium.json
 b67a0957744472325e32f87cede1e4ed836d519b assets/equigen/models/item/sodium_grenade.json
+1217a8f3167e33a88fb01c7c15c12d32c8f682c1 assets/equigen/models/item/stall_wand.json
 445877713e5a88a951520edb21f2410c878d30e7 assets/equigen/models/item/sweet_pea.json
 2ba5f1379898771d5700f6053ce0be02caf476f2 assets/equigen/models/item/sweet_pea_petals.json
 df067f03611343b9023c1fe3cbcb32e32c5ca9f4 assets/equigen/models/item/sweet_pea_salve.json

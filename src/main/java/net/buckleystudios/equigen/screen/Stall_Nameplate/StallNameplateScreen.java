@@ -2,7 +2,9 @@ package net.buckleystudios.equigen.screen.Stall_Nameplate;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.buckleystudios.equigen.EquigenMod;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -23,6 +25,10 @@ public class StallNameplateScreen extends AbstractContainerScreen<StallNameplate
 
         this.inventoryLabelY = 10000;
         this.titleLabelY = 10000;
+
+//        this.addRenderableWidget(new EditBox(this.font, 50, 10, Component.literal("Message")));
+        this.addRenderableWidget(new Button.Builder(Component.literal("Test"), StallNameplateScreen::ButtonClicked).build());
+
     }
 
     @Override
@@ -41,5 +47,15 @@ public class StallNameplateScreen extends AbstractContainerScreen<StallNameplate
         renderBackground(guiGraphics, mouseX, mouseY, delta);
         super.render(guiGraphics, mouseX, mouseY, delta);
         renderTooltip(guiGraphics, mouseX, mouseY);
+    }
+
+
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        return super.mouseClicked(mouseX, mouseY, button);
+    }
+
+    public static void ButtonClicked(Button button){
+        Minecraft.getInstance().player.sendSystemMessage(Component.literal("Test"));
     }
 }

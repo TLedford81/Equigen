@@ -68,6 +68,7 @@ public class ModCreativeModeTabs{
                         pOutput.accept(ModItems.LASSO);
                         pOutput.accept(ModItems.HORSE_BRUSH);
                         pOutput.accept(ModItems.HOOF_PICK);
+                        pOutput.accept(ModItems.STALL_WAND);
 
                         //Spawn Eggs
                         pOutput.accept(ModItems.GENETIC_HORSE_SPAWNER);

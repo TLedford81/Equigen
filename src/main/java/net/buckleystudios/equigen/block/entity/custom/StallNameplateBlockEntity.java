@@ -35,6 +35,10 @@ public class StallNameplateBlockEntity extends BlockEntity implements MenuProvid
     private Vec3 pos1;
     private Vec3 pos2;
 
+    public static int maxSizeZ = 10;
+    public static int maxSizeX = 10;
+    public static int maxSizeY = 10;
+
     public List<UUID> ASSIGNED_HORSES = new ArrayList<>();
     public List<Block> REQUIRED_BLOCKS = List.of(
             ModBlocks.FOLIRITE_BLOCK.get(),
@@ -62,7 +66,6 @@ public class StallNameplateBlockEntity extends BlockEntity implements MenuProvid
         for(int i = 0; i <= horseCount; i++){
             tag.putUUID("horse_" + i, this.ASSIGNED_HORSES.get(i));
         }
-
 
         super.saveAdditional(tag, registries);
     }
@@ -111,44 +114,47 @@ public class StallNameplateBlockEntity extends BlockEntity implements MenuProvid
     public void tick(Level level, BlockPos blockPos, BlockState state) {
         if (this.pos1 != null && this.pos2 != null) {
             AABB aabb = new AABB(this.pos1, this.pos2);
+
             if (StallIsValid(level, aabb)) {
-                boolean hasEmeraldBlock = false;
                 List<GeneticHorseEntity> gheInArea = level.getEntitiesOfClass(GeneticHorseEntity.class, aabb);
                 for (GeneticHorseEntity ghe : gheInArea) {
                     if(isHorseAssigned(ghe.getUUID())){
-                        ghe.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 20, 1, true, true));
+//                        ghe.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 20, 1, true, true));
                     }
                 }
-                List<BlockState> listBlock = level.getBlockStates(aabb).toList();
-                for (BlockState block : listBlock) {
-                    if (block.is(Blocks.EMERALD_BLOCK)) {
-                        hasEmeraldBlock = true;
-                    }
-                }
-                if (hasEmeraldBlock) {
+                if (StallHasUpgradeBlock(Blocks.EMERALD_BLOCK, aabb)) {
                     for (GeneticHorseEntity horse : gheInArea) {
                         if(isHorseAssigned(horse.getUUID())){
                             horse.addEffect(new MobEffectInstance(MobEffects.GLOWING, 20, 1, true, true));
                         }
                     }
                 }
+                if (StallHasUpgradeBlock(Blocks.AMETHYST_BLOCK, aabb)){
+                    for (GeneticHorseEntity horse : gheInArea) {
+                        if(isHorseAssigned(horse.getUUID())){
+                            horse.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 20, 1, true, true));
+                        }
+                    }
+                }
             }
         }
     }
-    public boolean StallIsValid(Level level, AABB aabb){
+
+    public boolean StallHasUpgradeBlock(Block upgradeBlock, AABB aabb){
         List<BlockState> listBlock = level.getBlockStates(aabb).toList();
-        for (Block requiredBlock : REQUIRED_BLOCKS) {
-            boolean flag = false;
-            for(BlockState blockState : listBlock){
-                if(blockState.is(requiredBlock)){
-                    flag = true;
-                }
-            }
-            if(!flag){
-                return false;
+        for (BlockState block : listBlock) {
+            if (block.is(upgradeBlock)) {
+                return true;
             }
         }
-        return true;
+        return false;
+    }
+
+    public boolean StallIsValid(Level level, AABB aabb){
+        return StallContainsRequiredBlocks(level, aabb) &&
+                StallMeetsSizeLimits(aabb) &&
+                StallContainsRoof(aabb);
+
     }
 
     public boolean isHorseAssigned(UUID uuid){
@@ -168,5 +174,39 @@ public class StallNameplateBlockEntity extends BlockEntity implements MenuProvid
 
     public void UnassignHorse(UUID horse){
         this.ASSIGNED_HORSES.remove(horse);
+    }
+
+    public boolean StallContainsRequiredBlocks(Level level, AABB aabb){
+        List<BlockState> listBlock = level.getBlockStates(aabb).toList();
+        for (Block requiredBlock : REQUIRED_BLOCKS) {
+            boolean flag = false;
+            for(BlockState blockState : listBlock){
+                if(blockState.is(requiredBlock)){
+                    flag = true;
+                }
+            }
+            if(!flag) return false;
+        }
+        return true;
+    }
+
+    public boolean StallMeetsSizeLimits(AABB aabb){
+        return(aabb.getXsize() <= maxSizeX &&
+                aabb.getZsize() <= maxSizeZ &&
+                aabb.getYsize() <= maxSizeY);
+    }
+
+    public boolean StallMeetsSizeLimits(Vec3 pos1, Vec3 pos2){
+        double xDifference = Math.abs(pos1.x - pos2.x);
+        double yDifference = Math.abs(pos1.y - pos2.y);
+        double zDifference = Math.abs(pos1.z - pos2.z);
+
+        return (xDifference <= maxSizeX &&
+                yDifference <= maxSizeY &&
+                zDifference <= maxSizeZ);
+    }
+
+    public boolean StallContainsRoof(AABB aabb){
+        return true;
     }
 }

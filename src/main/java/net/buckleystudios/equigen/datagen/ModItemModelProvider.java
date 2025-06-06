@@ -63,7 +63,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.FOLIRITE_SHOVEL);
         handheldItem(ModItems.FOLIRITE_HOE);
 
-        basicItem(ModItems.GENETIC_HORSE_DEBUG_TOOL.get());
+        basicItem(ModItems.STALL_WAND.get());
 
         //Spawn Eggs
         basicItem(ModItems.GENETIC_HORSE_SPAWNER.get());

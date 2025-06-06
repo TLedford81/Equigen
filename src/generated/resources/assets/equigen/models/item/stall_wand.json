@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "equigen:item/genetic_horse_debug_tool"
+    "layer0": "equigen:item/stall_wand"
   }
 }

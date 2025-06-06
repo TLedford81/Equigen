@@ -3,6 +3,7 @@ package net.buckleystudios.equigen.block.custom;
 import com.mojang.serialization.MapCodec;
 import net.buckleystudios.equigen.block.entity.ModBlockEntities;
 import net.buckleystudios.equigen.block.entity.custom.StallNameplateBlockEntity;
+import net.buckleystudios.equigen.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -63,7 +64,6 @@ public class StallNameplateBlock extends BaseEntityBlock {
                 (level1, pos, state1, blockEntity) -> blockEntity.tick(level1, pos, state1));
     }
 
-
     @Override
     protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
         if (state.getBlock() != newState.getBlock()) {
@@ -76,10 +76,14 @@ public class StallNameplateBlock extends BaseEntityBlock {
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (level.getBlockEntity(pos) instanceof StallNameplateBlockEntity stallNameplateBlockEntity) {
-            if (!level.isClientSide) {
-                ((ServerPlayer) player).openMenu(new SimpleMenuProvider(stallNameplateBlockEntity, Component.literal("Stall Nameplate")), pos);
-                return ItemInteractionResult.SUCCESS;
+        if(!level.isClientSide()) {
+            if (level.getBlockEntity(pos) instanceof StallNameplateBlockEntity stallNameplateBlockEntity) {
+                if (!player.getItemInHand(hand).is(ModItems.STALL_WAND)) {
+                    ((ServerPlayer) player).openMenu(new SimpleMenuProvider(stallNameplateBlockEntity, Component.literal("Stall Nameplate")), pos);
+                    return ItemInteractionResult.SUCCESS;
+                } else {
+                    return ItemInteractionResult.FAIL;
+                }
             }
         }
         return ItemInteractionResult.SUCCESS;

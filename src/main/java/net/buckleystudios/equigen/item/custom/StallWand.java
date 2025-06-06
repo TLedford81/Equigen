@@ -17,21 +17,13 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
-public class GeneticHorseDebugTool extends Item {
+public class StallWand extends Item {
     public static GeneticHorseEntity currentEntity = null;
-    public static Vec3 savedPos1;
-    public static Vec3 savedPos2;
+    public Vec3 savedPos1;
+    public Vec3 savedPos2;
 
-    public GeneticHorseDebugTool(Properties properties) {
+    public StallWand(Properties properties) {
         super(properties);
-    }
-
-    @Override
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-        if(!pLevel.isClientSide){
-            pPlayer.sendSystemMessage(Component.literal("Test"));
-        }
-        return super.use(pLevel, pPlayer, pUsedHand);
     }
 
     @Override
@@ -65,6 +57,10 @@ public class GeneticHorseDebugTool extends Item {
                     }
                 }
                 return false;
+            } else {
+                this.savedPos1 = pos.getCenter();
+                player.sendSystemMessage(Component.literal("Position 1 Set to " + this.savedPos1));
+                return false;
             }
         }
         return super.canAttackBlock(state, level, pos, player);
@@ -75,37 +71,53 @@ public class GeneticHorseDebugTool extends Item {
         BlockPos clickedPos = context.getClickedPos();
         BlockEntity targetedBlockEntity = context.getLevel().getBlockEntity(clickedPos);
 
-        if(!context.getLevel().isClientSide) {
+        if(!context.getLevel().isClientSide && !context.getPlayer().isCrouching()) {
             if (targetedBlockEntity instanceof StallNameplateBlockEntity stallManagerBE) {
                 if(getSavedPos1() != null && getSavedPos2() != null){
-                    stallManagerBE.setStallAreaCorners(getSavedPos1(), getSavedPos2());
-                    context.getPlayer().sendSystemMessage(Component.literal("Successfully applied positions!"));
+                    if(stallManagerBE.StallMeetsSizeLimits(getSavedPos1(), getSavedPos2())) {
+                        stallManagerBE.setStallAreaCorners(getSavedPos1(), getSavedPos2());
+                        context.getPlayer().sendSystemMessage(Component.literal("Successfully applied positions!"));
+                        clearSavedPositions();
+                    } else {
+                        context.getPlayer().sendSystemMessage(Component.literal("Stall Area is too big!"));
+                    }
                 } else {
                     context.getPlayer().sendSystemMessage(Component.literal("Positions are not set!"));
                 }
             } else {
-                if (!context.getPlayer().isCrouching()) {
-                    savedPos1 = context.getClickedPos().getCenter();
-                    context.getPlayer().sendSystemMessage(Component.literal("Position 1 Set to " + savedPos1));
-                } else {
-                    savedPos2 = context.getClickedPos().getCenter();
-                    context.getPlayer().sendSystemMessage(Component.literal("Position 2 Set to " + savedPos2));
-                }
+                this.savedPos2 = context.getClickedPos().getCenter();
+                context.getPlayer().sendSystemMessage(Component.literal("Position 2 Set to " + this.savedPos2));
             }
         }
         return super.useOn(context);
     }
 
     @Override
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
+        if(!level.isClientSide()) {
+            if (player.isCrouching()) {
+                clearSavedPositions();
+                player.sendSystemMessage(Component.literal("Positions Cleared"));
+            }
+        }
+        return super.use(level, player, usedHand);
+    }
+
+    @Override
     public boolean isFoil(ItemStack stack) {
-        return true;
+        return getSavedPos1() != null && getSavedPos2() != null;
     }
 
     public Vec3 getSavedPos1(){
-        return savedPos1;
+        return this.savedPos1;
     }
 
     public Vec3 getSavedPos2(){
-        return savedPos2;
+        return this.savedPos2;
+    }
+
+    public void clearSavedPositions(){
+        this.savedPos1 = null;
+        this.savedPos2 = null;
     }
 }
