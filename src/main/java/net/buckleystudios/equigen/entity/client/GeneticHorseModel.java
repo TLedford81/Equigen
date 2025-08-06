@@ -206,35 +206,6 @@ public class GeneticHorseModel <T extends GeneticHorseEntity> extends Hierarchic
 
     @Override
     public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        //HANDLE VISIBILITY
-        if(multipart) {
-            HandleVisibility(false, rootChest, ChestModelParts.getAllParts(), entity.getCurrentPart("chest"));
-            HandleVisibility(false, rootNeck, NeckModelParts.getAllParts(), entity.getCurrentPart("neck"));
-            HandleVisibility(false, rootHead, HeadModelParts.getAllParts(), entity.getCurrentPart("head"));
-            HandleVisibility(false, rootLeftEar, EarsModelParts.getAllParts(), entity.getCurrentPart("left_ear"));
-            HandleVisibility(false, rootRightEar, EarsModelParts.getAllParts(), entity.getCurrentPart("right_ear"));
-            HandleVisibility(false, rootBack, BackModelParts.getAllParts(), entity.getCurrentPart("back"));
-            HandleVisibility(false, rootStomach, StomachModelParts.getAllParts(), entity.getCurrentPart("stomach"));
-            HandleVisibility(false, rootWithers, WithersModelParts.getAllParts(), entity.getCurrentPart("withers"));
-            HandleVisibility(false, rootHips, HipsModelParts.getAllParts(), entity.getCurrentPart("hips"));
-            HandleVisibility(false, rootTail, TailModelParts.getAllParts(), entity.getCurrentPart("tail"));
-            HandleVisibility(false, rootTopForeLegLeft, TopForeLegModelParts.getAllParts(), entity.getCurrentPart("top_fore_leg_left"));
-            HandleVisibility(false, rootForeLegKneeLeft, KneeModelParts.getAllParts(), entity.getCurrentPart("fore_leg_knee_left"));
-            HandleVisibility(false, rootBottomForeLegLeft, BottomLegModelParts.getAllParts(), entity.getCurrentPart("bottom_fore_leg_left")); //Missing Bottom Half
-            DebugVisibility(false, rootForeLegHoofLeft, HoofModelParts.getAllParts(), entity.getCurrentPart("fore_leg_hoof_left")); //Missing
-            HandleVisibility(false, rootTopForeLegRight, TopForeLegModelParts.getAllParts(), entity.getCurrentPart("top_fore_leg_right"));
-            HandleVisibility(false, rootForeLegKneeRight, KneeModelParts.getAllParts(), entity.getCurrentPart("fore_leg_knee_right"));
-            HandleVisibility(false, rootBottomForeLegRight, BottomLegModelParts.getAllParts(), entity.getCurrentPart("bottom_fore_leg_right")); //Missing Bottom Half
-            DebugVisibility(false, rootForeLegHoofRight, HoofModelParts.getAllParts(), entity.getCurrentPart("fore_leg_hoof_right")); //Missing
-            DebugVisibility(false, rootTopHindLegLeft, TopHindLegModelParts.getAllParts(), entity.getCurrentPart("top_hind_leg_left")); //Missing
-            HandleVisibility(false, rootHindLegKneeLeft, KneeModelParts.getAllParts(), entity.getCurrentPart("hind_leg_knee_left"));
-            HandleVisibility(false, rootBottomHindLegLeft, BottomLegModelParts.getAllParts(), entity.getCurrentPart("bottom_hind_leg_left")); //Missing Bottom Half
-//            DebugVisibility(rootHindLegHoofLeft, HoofModelParts.getAllParts(), entity.getCurrentPart("hind_leg_hoof_left")); //Missing
-            DebugVisibility(false, rootTopHindLegRight, TopHindLegModelParts.getAllParts(), entity.getCurrentPart("top_hind_leg_right")); //Missing
-            HandleVisibility(false, rootHindLegKneeRight, KneeModelParts.getAllParts(), entity.getCurrentPart("hind_leg_knee_right"));
-            HandleVisibility(false, rootBottomHindLegRight, BottomLegModelParts.getAllParts(), entity.getCurrentPart("bottom_hind_leg_right")); //Missing Bottom Half
-//            HandleVisibility(rootHindLegHoofRight, HoofModelParts.getAllParts(), entity.getCurrentPart("hind_leg_hoof_right")); //Missing
-        }
         //SETUP ANIMATION
         this.root().getAllParts().forEach(ModelPart::resetPose);
         applyHeadRotation(netHeadYaw, headPitch);

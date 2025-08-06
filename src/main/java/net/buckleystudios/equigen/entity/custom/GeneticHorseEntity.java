@@ -13,6 +13,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.network.Filterable;
 import net.minecraft.sounds.SoundEvent;
@@ -24,6 +25,8 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeMap;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -55,36 +58,14 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public static final EntityDataAccessor<Float> HAPPINESS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> STRESS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
 
-    public static final EntityDataAccessor<String> GENETICS_STRING = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_HEAD = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_CHEST = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_NECK = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_LEFT_EAR = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_RIGHT_EAR = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_BACK = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_STOMACH = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_WITHERS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_HIPS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_TAIL = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_TOP_FORE_LEG_RIGHT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_TOP_FORE_LEG_LEFT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_TOP_HIND_LEG_RIGHT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_TOP_HIND_LEG_LEFT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_FORE_KNEE_LEFT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_FORE_KNEE_RIGHT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_HIND_KNEE_LEFT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_HIND_KNEE_RIGHT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_FORE_BOTTOM_LEGS_LEFT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_FORE_BOTTOM_LEGS_RIGHT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_HIND_BOTTOM_LEGS_LEFT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_HIND_BOTTOM_LEGS_RIGHT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_FORE_HOOF_LEFT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_FORE_HOOF_RIGHT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_HIND_HOOF_LEFT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> CURRENT_HIND_HOOF_RIGHT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<Float> SKILL_SPEED = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> SKILL_STRENGTH = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> SKILL_JUMP = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> SKILL_ENDURANCE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> SKILL_AGILITY = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
 
     public static final int geneticCount = GeneticValues.values().length;
-    private Map<String, Integer> GENETICS = new HashMap<String, Integer>();
+    private Map<String, Float> GENETICS = new HashMap<String, Float>();
     private int hungerTickTimer;
     private int thirstTickTimer;
     private int stressRecoveryTickTimer;
@@ -100,8 +81,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
-        this.randomizeGenetics();
-        this.SetModelPartEntityData(this.getCurrentParts());
+        this.GenerateNewGeneticsAndSkills();
+        level.getServer().getPlayerList().broadcastSystemMessage(Component.literal("Spawned Horse with Max Speed Skill of: " + this.getAttributes().getValue(ModEntityAttributes.MAX_SKILL_SPEED)), false);
+        level.getServer().getPlayerList().broadcastSystemMessage(Component.literal("And Current Speed Skill of: " + this.getCurrentSkillLevel("Speed")), false);
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }
 
@@ -111,8 +93,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             GeneticHorseEntity geneticHorseChild = (GeneticHorseEntity) child;  // Cast to the specific entity class
 
             // Randomize the genetics for the spawned baby
-            geneticHorseChild.randomizeGenetics();
-            geneticHorseChild.SetModelPartEntityData(this.getCurrentParts());
+            geneticHorseChild.GenerateNewGeneticsAndSkills();
         }
         super.onOffspringSpawnedFromEgg(player, child);
     }
@@ -121,12 +102,15 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public void finalizeSpawnChildFromBreeding(ServerLevel level, Animal animal, @Nullable AgeableMob baby) {
         if (baby instanceof GeneticHorseEntity) {
             GeneticHorseEntity geneticHorseBaby = (GeneticHorseEntity) baby;  // Cast to the specific entity class
-
-            // Randomize the genetics for the spawned baby
-            geneticHorseBaby.randomizeGenetics();
-            geneticHorseBaby.SetModelPartEntityData(this.getCurrentParts());
+            geneticHorseBaby.GenerateNewGeneticsAndSkills();
         }
         super.finalizeSpawnChildFromBreeding(level, animal, baby);
+    }
+
+    public void GenerateNewGeneticsAndSkills(){
+        this.randomizeGenetics();
+        this.setMaxSkills();
+        this.setSkillToStartingLevel("Speed");
     }
 
     // BASIC SETTINGS //
@@ -181,6 +165,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     protected @Nullable SoundEvent getHoofPickingSound(){
         return SoundEvents.AXE_SCRAPE;
     }
+    protected @Nullable SoundEvent getSkillLevelUpSound(){
+        return SoundEvents.PLAYER_LEVELUP;
+    }
 
 
     // DATA //
@@ -201,61 +188,40 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         this.setCleanliness("hair", tag.getFloat("HairCleanliness"));
         this.setCleanliness("hoof", tag.getFloat("HoofCleanliness"));
 
+        //Skills
+        this.setSkill("Speed", tag.getInt("SkillSpeed"));
+        this.setSkill("Strength", tag.getInt("SkillStrength"));
+        this.setSkill("Jump", tag.getInt("SkillJump"));
+        this.setSkill("Endurance", tag.getInt("SkillEndurance"));
+        this.setSkill("Agility", tag.getInt("SkillAgility"));
+
         //Genetic Code
         for (int i = 0; i < geneticCount; i++) {
             GeneticValues key = GeneticValues.values()[i];
-            this.setGenetic(key.name(), tag.getInt(key.name()));
+
+            this.setGenetic(key.name(), tag.getFloat(key.name())); //!Replace Me!
+            // DETERMINE IF TAG CONTAINS FLOAT OR INT THEN SORT ACCORINGLY TO INT_GENETICS OR FLOAT_GENETICS
         }
         StringBuilder genString = new StringBuilder(tag.getString("GeneticCode"));
         while(genString.length() < geneticCount * 2){
             genString.append("00");
         }
-
-        //Individual Genetics
-        this.entityData.set(GENETICS_STRING, genString.toString());
-        this.entityData.set(CURRENT_HEAD, tag.getString("CurrentHead"));
-        this.entityData.set(CURRENT_CHEST, tag.getString("CurrentChest"));
-        this.entityData.set(CURRENT_NECK, tag.getString("CurrentNeck"));
-        this.entityData.set(CURRENT_LEFT_EAR, tag.getString("CurrentLeftEar"));
-        this.entityData.set(CURRENT_RIGHT_EAR, tag.getString("CurrentRightEar"));
-        this.entityData.set(CURRENT_BACK, tag.getString("CurrentBack"));
-        this.entityData.set(CURRENT_STOMACH, tag.getString("CurrentStomach"));
-        this.entityData.set(CURRENT_WITHERS, tag.getString("CurrentWithers"));
-        this.entityData.set(CURRENT_HIPS, tag.getString("CurrentHips"));
-        this.entityData.set(CURRENT_TAIL, tag.getString("CurrentTail"));
-
-        this.entityData.set(CURRENT_TOP_FORE_LEG_RIGHT, tag.getString("CurrentTopForeLegRight"));
-        this.entityData.set(CURRENT_TOP_FORE_LEG_LEFT, tag.getString("CurrentTopForeLegLeft"));
-        this.entityData.set(CURRENT_TOP_HIND_LEG_RIGHT, tag.getString("CurrentTopHindLegRight"));
-        this.entityData.set(CURRENT_TOP_HIND_LEG_LEFT, tag.getString("CurrentTopHindLegLeft"));
-        this.entityData.set(CURRENT_FORE_KNEE_LEFT, tag.getString("CurrentForeKneeLeft"));
-        this.entityData.set(CURRENT_FORE_KNEE_RIGHT, tag.getString("CurrentForeKneeRight"));
-        this.entityData.set(CURRENT_HIND_KNEE_LEFT, tag.getString("CurrentHindKneeLeft"));
-        this.entityData.set(CURRENT_HIND_KNEE_RIGHT, tag.getString("CurrentHindKneeRight"));
-        this.entityData.set(CURRENT_FORE_BOTTOM_LEGS_LEFT, tag.getString("CurrentForeBottomLegsLeft"));
-        this.entityData.set(CURRENT_FORE_BOTTOM_LEGS_RIGHT, tag.getString("CurrentForeBottomLegsRight"));
-        this.entityData.set(CURRENT_HIND_BOTTOM_LEGS_LEFT, tag.getString("CurrentHindBottomLegsLeft"));
-        this.entityData.set(CURRENT_HIND_BOTTOM_LEGS_RIGHT, tag.getString("CurrentHindBottomLegsRight"));
-        this.entityData.set(CURRENT_FORE_HOOF_LEFT, tag.getString("CurrentForeHoofLeft"));
-        this.entityData.set(CURRENT_FORE_HOOF_RIGHT, tag.getString("CurrentForeHoofRight"));
-        this.entityData.set(CURRENT_HIND_HOOF_LEFT, tag.getString("CurrentHindHoofLeft"));
-        this.entityData.set(CURRENT_HIND_HOOF_RIGHT, tag.getString("CurrentHindHoofRight"));
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
+
         Set<String> keys = GENETICS.keySet();
+        for(String key : keys){
+            float value = GENETICS.get(key);
+            tag.putFloat(key, value);
+        }
 
         //Tick Timers
         tag.putInt("HungerTickTimer", this.hungerTickTimer);
         tag.putInt("ThirstTickTimer", this.thirstTickTimer);
         tag.putInt("StressRecoveryTickTimer", this.stressRecoveryTickTimer);
-        for(String key : keys){
-            int value = GENETICS.get(key);
-            tag.putInt(key, value);
-            tag.putInt(key, value);
-        }
 
         //Stats
         tag.putFloat("Hunger", this.getHunger());
@@ -266,38 +232,12 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         tag.putFloat("HoofCleanliness", this.getCleanliness("hoof"));
         tag.putFloat("HairCleanliness", this.getCleanliness("hair"));
 
-        //Genetics
-        tag.putString("GeneticCode", this.entityData.get(GENETICS_STRING));
-        tag.putString("CurrentHead", this.entityData.get(CURRENT_HEAD));
-        tag.putString("CurrentChest", this.entityData.get(CURRENT_CHEST));
-        tag.putString("CurrentNeck", this.entityData.get(CURRENT_NECK));
-        tag.putString("CurrentLeftEar", this.entityData.get(CURRENT_LEFT_EAR));
-        tag.putString("CurrentRightEar", this.entityData.get(CURRENT_RIGHT_EAR));
-        tag.putString("CurrentBack", this.entityData.get(CURRENT_BACK));
-        tag.putString("CurrentStomach", this.entityData.get(CURRENT_STOMACH));
-        tag.putString("CurrentWithers", this.entityData.get(CURRENT_WITHERS));
-        tag.putString("CurrentHips", this.entityData.get(CURRENT_HIPS));
-        tag.putString("CurrentTail", this.entityData.get(CURRENT_TAIL));
-
-        tag.putString("CurrentTopForeLegRight", this.entityData.get(CURRENT_TOP_FORE_LEG_RIGHT));
-        tag.putString("CurrentTopForeLegLeft", this.entityData.get(CURRENT_TOP_FORE_LEG_LEFT));
-        tag.putString("CurrentTopHindLegRight", this.entityData.get(CURRENT_TOP_HIND_LEG_RIGHT));
-        tag.putString("CurrentTopHindLegLeft", this.entityData.get(CURRENT_TOP_HIND_LEG_LEFT));
-        tag.putString("CurrentForeKneeLeft", this.entityData.get(CURRENT_FORE_KNEE_LEFT));
-        tag.putString("CurrentForeKneeRight", this.entityData.get(CURRENT_FORE_KNEE_RIGHT));
-        tag.putString("CurrentHindKneeLeft", this.entityData.get(CURRENT_HIND_KNEE_LEFT));
-        tag.putString("CurrentHindKneeRight", this.entityData.get(CURRENT_HIND_KNEE_RIGHT));
-        tag.putString("CurrentForeBottomLegsLeft", this.entityData.get(CURRENT_FORE_BOTTOM_LEGS_LEFT));
-        tag.putString("CurrentForeBottomLegsRight", this.entityData.get(CURRENT_FORE_BOTTOM_LEGS_RIGHT));
-        tag.putString("CurrentHindBottomLegsLeft", this.entityData.get(CURRENT_HIND_BOTTOM_LEGS_LEFT));
-        tag.putString("CurrentHindBottomLegsRight", this.entityData.get(CURRENT_HIND_BOTTOM_LEGS_RIGHT));
-
-        tag.putString("CurrentForeHoofLeft", this.entityData.get(CURRENT_FORE_HOOF_LEFT));
-        tag.putString("CurrentForeHoofRight", this.entityData.get(CURRENT_FORE_HOOF_RIGHT));
-        tag.putString("CurrentHindHoofLeft", this.entityData.get(CURRENT_HIND_HOOF_LEFT));
-        tag.putString("CurrentHindHoofRight", this.entityData.get(CURRENT_HIND_HOOF_RIGHT));
-
-        tag.putInt("geneticCodeSize", geneticCount);
+        //Skills
+        tag.putFloat("SkillSpeed", this.entityData.get(SKILL_SPEED));
+        tag.putFloat("SkillStrength", this.entityData.get(SKILL_STRENGTH));
+        tag.putFloat("SkillJump", this.entityData.get(SKILL_JUMP));
+        tag.putFloat("SkillEndurance", this.entityData.get(SKILL_ENDURANCE));
+        tag.putFloat("SkillAgility", this.entityData.get(SKILL_AGILITY));
     }
 
     @Override
@@ -308,37 +248,14 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         builder.define(HAPPINESS, 10.0F);
         builder.define(STRESS, 10.0F);
 
+        builder.define(SKILL_SPEED, 0.0f);
+        builder.define(SKILL_STRENGTH, 0.0f);
+        builder.define(SKILL_JUMP, 0.0f);
+        builder.define(SKILL_ENDURANCE, 0.0f);
+        builder.define(SKILL_AGILITY, 0.0f);
+
         builder.define(HOOF_CLEANLINESS, 10.0f);
         builder.define(HAIR_CLEANLINESS, 10.0f);
-
-        builder.define(GENETICS_STRING, "");
-        builder.define(CURRENT_HEAD, "");
-        builder.define(CURRENT_CHEST, "");
-        builder.define(CURRENT_NECK, "");
-        builder.define(CURRENT_LEFT_EAR, "");
-        builder.define(CURRENT_RIGHT_EAR, "");
-        builder.define(CURRENT_BACK, "");
-        builder.define(CURRENT_STOMACH, "");
-        builder.define(CURRENT_WITHERS, "");
-        builder.define(CURRENT_HIPS, "");
-        builder.define(CURRENT_TAIL, "");
-
-        builder.define(CURRENT_TOP_FORE_LEG_RIGHT, "");
-        builder.define(CURRENT_TOP_FORE_LEG_LEFT, "");
-        builder.define(CURRENT_TOP_HIND_LEG_RIGHT, "");
-        builder.define(CURRENT_TOP_HIND_LEG_LEFT, "");
-        builder.define(CURRENT_FORE_KNEE_LEFT, "");
-        builder.define(CURRENT_FORE_KNEE_RIGHT, "");
-        builder.define(CURRENT_HIND_KNEE_LEFT, "");
-        builder.define(CURRENT_HIND_KNEE_RIGHT, "");
-        builder.define(CURRENT_FORE_BOTTOM_LEGS_LEFT, "");
-        builder.define(CURRENT_FORE_BOTTOM_LEGS_RIGHT, "");
-        builder.define(CURRENT_HIND_BOTTOM_LEGS_LEFT, "");
-        builder.define(CURRENT_HIND_BOTTOM_LEGS_RIGHT, "");
-        builder.define(CURRENT_FORE_HOOF_LEFT, "");
-        builder.define(CURRENT_FORE_HOOF_RIGHT, "");
-        builder.define(CURRENT_HIND_HOOF_LEFT, "");
-        builder.define(CURRENT_HIND_HOOF_RIGHT, "");
     }
 
 
@@ -358,11 +275,16 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     public static AttributeSupplier.Builder createAttributes() {
         return Animal.createLivingAttributes()
-                .add(Attributes.MAX_HEALTH, 1.0)
+                .add(Attributes.MAX_HEALTH, 21.0)
                 .add(ModEntityAttributes.MAX_HUNGER, 10.0f)
                 .add(ModEntityAttributes.MAX_THIRST, 10.0f)
                 .add(ModEntityAttributes.MAX_HAPPINESS, 10.0f)
                 .add(ModEntityAttributes.MAX_STRESS, 10.0f)
+                .add(ModEntityAttributes.MAX_SKILL_SPEED, 0.0f)
+                .add(ModEntityAttributes.MAX_SKILL_STRENGTH, 0.0f)
+                .add(ModEntityAttributes.MAX_SKILL_JUMP, 0.0f)
+                .add(ModEntityAttributes.MAX_SKILL_ENDURANCE, 0.0f)
+                .add(ModEntityAttributes.MAX_SKILL_AGILITY, 0.0f)
                 .add(Attributes.MOVEMENT_SPEED, 0.2F)
                 .add(Attributes.ATTACK_DAMAGE, 80.0)
                 .add(Attributes.FOLLOW_RANGE, 24D)
@@ -478,6 +400,86 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                 this.getThirst() > 5f);
     }
 
+    // SKILLS //
+    public void setMaxSkills(){
+        AttributeMap attributes = this.getAttributes();
+
+        ResourceLocation maxSpeedSkillID = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "speed_skill_max");
+        AttributeModifier maxSpeedModifier = new AttributeModifier(maxSpeedSkillID,
+                this.getGenetic("SPEED_MAX_LEVEL"), AttributeModifier.Operation.ADD_VALUE);
+
+        attributes.getInstance(ModEntityAttributes.MAX_SKILL_SPEED).addOrReplacePermanentModifier(maxSpeedModifier);
+    }
+
+    public float getMaxSkillLevel(String sSkill){
+        return switch (sSkill){
+            case "Speed" -> (float) this.getAttribute(ModEntityAttributes.MAX_SKILL_SPEED).getValue();
+            default -> throw new IllegalStateException("Unexpected value: " + sSkill);
+        };
+    }
+
+    public void setSkill(String sSkill, float value){
+        switch (sSkill){
+            case "Speed": entityData.set(SKILL_SPEED, value);
+            case "Strength": entityData.set(SKILL_STRENGTH, value);
+            case "Jump": entityData.set(SKILL_JUMP, value);
+            case "Endurance": entityData.set(SKILL_ENDURANCE, value);
+            case "Agility": entityData.set(SKILL_AGILITY, value);
+        }
+        this.HandleSkills();
+    }
+
+    public void addSkillLevel(String sSkill, float value) {
+        float newValue = this.getCurrentSkillLevel(sSkill) + value;
+        newValue = Math.clamp(newValue, 0, this.getMaxSkillLevel(sSkill));
+        this.setSkill(sSkill, newValue);
+    }
+
+    public void LevelUpSkill(String sSkill, float amount){
+        this.addSkillLevel(sSkill, amount);
+        this.level().playSound(null, this.getX(),
+                this.getY(),
+                this.getZ(),
+                this.getSkillLevelUpSound(),
+                this.getSoundSource(),
+                1.0F,
+                1.0F);
+    }
+
+    public float getCurrentSkillLevel(String skill){
+        return switch(skill){
+        case "Speed" -> this.entityData.get(SKILL_SPEED);
+        case "Strength" -> this.entityData.get(SKILL_STRENGTH);
+        case "Jump" -> this.entityData.get(SKILL_JUMP);
+        case "Endurance" -> this.entityData.get(SKILL_ENDURANCE);
+        case "Agility" -> this.entityData.get(SKILL_AGILITY);
+        default -> throw new IllegalStateException("Unexpected value: " + skill);
+        };
+    }
+
+    public void HandleSkills(){
+        //Speed
+        float currentSpeed = this.entityData.get(SKILL_SPEED);
+
+        ResourceLocation speedSkillID = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "speed_skill");
+        AttributeModifier speedModifier = new AttributeModifier(speedSkillID,
+                currentSpeed, AttributeModifier.Operation.ADD_VALUE);
+        //Strength
+        //Jump
+        //Endurance
+        //Agility
+
+        AttributeMap attributes = this.getAttributes();
+        attributes.getInstance(Attributes.MOVEMENT_SPEED).addOrReplacePermanentModifier(speedModifier);
+    }
+
+    public void setSkillToStartingLevel(String skill){
+        switch(skill){
+            case "Speed" -> this.entityData.set(SKILL_SPEED,
+                    (float) this.getAttribute(ModEntityAttributes.MAX_SKILL_SPEED).getValue() - 3.0f);
+        }
+    }
+
     // ANIMATION //
     private void setupAnimationStates() {
         if (this.idleAnimationTimeout <= 0) {
@@ -487,7 +489,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             --this.idleAnimationTimeout;
         }
     }
-
 
     // FOOD //
     @Override
@@ -539,6 +540,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         }
 
         if (flag) {
+            this.LevelUpSkill("Speed", 1.23f);
+            player.sendSystemMessage(Component.literal("Speed was changed to: " + this.getCurrentSkillLevel("Speed")));
             this.eat();
             this.gameEvent(GameEvent.EAT);
         }
@@ -767,31 +770,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         }
         generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
 
-        //Current Parts
-        generatedPages.add(Filterable.passThrough(Component.literal("\n\n\n\n   §b§lCURRENT PARTS")));
-        page = new StringBuilder();
-        pageLineCount = 0;
-        totalLineCount = 0;
-        Map<String, String> currentParts = this.getCurrentParts();
-        for (String key : currentParts.keySet()) {
-            page.append("§3§l" + key + ": §0" + currentParts.get(key) + "\n\n");
-            pageLineCount += 4;
-            totalLineCount += 4;
-            List<Integer> largeLines = List.of();
-            for (int geneNum : largeLines) {
-                if (totalLineCount == geneNum) {
-                    pageLineCount += 1;
-                }
-            }
 
-            if (pageLineCount >= 12) {
-                generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
-                page = new StringBuilder();
-                pageLineCount = 0;
-            }
-        }
-        generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
-
+        //Finalization
         WrittenBookContent content = new WrittenBookContent(Filterable.passThrough(this.getName().getString() + "'s Information"), "Equigen", 0,
                 generatedPages, true);
         itemStack.set(DataComponents.WRITTEN_BOOK_CONTENT, content);
@@ -800,28 +780,30 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     // GENETICS //
     public void randomizeGenetics(){
+        List<String> MAX_SKILL_GENETICS = List.of("SPEED_MAX_LEVEL", "STRENGTH_MAX_LEVEL", "JUMP_MAX_LEVEL", "ENDURANCE_MAX_LEVEL", "AGILITY_MAX_LEVEL");
         Random random = new Random();
-        for(int i = 0; i < geneticCount; i++){
+        for(int i = 0; i < geneticCount; i++) {
             GeneticValues value = GeneticValues.values()[i];
-            if(value.getMaxSize() != 0) {
-                int randomNum = random.nextInt(value.getMaxSize()) + 1;
-                this.setGenetic(value.name(), randomNum);
+            if (value.getMaxSize() != 0) {
+                if (MAX_SKILL_GENETICS.contains(value.name())) {
+                    float randomNum = random.nextFloat(value.getMaxSize() - 2) + 3;
+                    this.setGenetic(value.name(), randomNum);
+                } else {
+                    int randomNum = random.nextInt(Math.round(value.getMaxSize())) + 1;
+                    this.setGenetic(value.name(), randomNum);
 //                EquigenMod.LOGGER.info("Genetic " + value.name() + " set to " + randomNum);
+                }
             }
         }
     }
 
-    public int getGenetic(String key) {
-        int value;
-        try {
-            value = this.GENETICS.get(key);
-        } catch (NullPointerException e){
-            value = 0;
-//            LOGGER.error(e.toString());
-//            LOGGER.error("Genetic Code Not Found for Key: " + key);
+    public float getGenetic(String key) {
+        if (this.GENETICS.containsKey(key)) {
+            return this.GENETICS.get(key);
         }
-//        LOGGER.info("Getting Geneic: " + key + " / " + value);
-        return value;
+        else {
+            return 0;
+        }
     }
 
     public int getGenetic(String geneticCode, String key){
@@ -841,233 +823,10 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         }
     }
 
-    public boolean isGeneticActive(Map<String, Integer> conditions){
-        for(String key : conditions.keySet()){
-            int value = conditions.get(key);
-            if(this.getGenetic(this.entityData.get(GENETICS_STRING), key) != value){
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public String getGeneticCode(){
-        StringBuilder code = new StringBuilder();
-
-        for(int i = 0; i < geneticCount; i++){
-            code.append(String.format("%02d", getGenetic(GeneticValues.values()[i].name())));
-        }
-//        LOGGER.info("Code " + code.toString());
-        return code.toString();
-    }
-
-    public void setGenetic(String key, int number) {
+    public void setGenetic(String key, float number) {
 //        LOGGER.info("Setting Geneic: " + key + " / " + number);
         this.GENETICS.put(key, number);
-        this.entityData.set(GENETICS_STRING, getGeneticCode());
     }
-
 
     // MULTIPART MODEL //
-    public Map<String, String> getCurrentParts(){
-        Map<String, String> partMap = new HashMap<>();
-        partMap.putIfAbsent("chest", GeneticNameGenerator("chest"));
-        partMap.putIfAbsent("top_fore_leg_left", GeneticNameGenerator("top_front_legs", "top_front_left_individual"));
-        partMap.putIfAbsent("fore_leg_knee_left", GeneticNameGenerator("knee", "front_left"));
-        partMap.putIfAbsent("bottom_fore_leg_left", GeneticNameGenerator("bottom_legs", "bottom_front_left"));
-        partMap.putIfAbsent("fore_leg_hoof_left", GeneticNameGenerator("hoof", "front_left"));
-        partMap.putIfAbsent("top_fore_leg_right", GeneticNameGenerator("top_front_legs", "top_front_right_individual"));
-        partMap.putIfAbsent("fore_leg_knee_right", GeneticNameGenerator("knee", "front_right"));
-        partMap.putIfAbsent("bottom_fore_leg_right", GeneticNameGenerator("bottom_legs", "bottom_front_right"));
-        partMap.putIfAbsent("fore_leg_hoof_right", GeneticNameGenerator("hoof", "front_right"));
-        partMap.putIfAbsent("neck", GeneticNameGenerator("neck"));
-        partMap.putIfAbsent("head", GeneticNameGenerator("head"));
-        partMap.putIfAbsent("left_ear", GeneticNameGenerator("left_ear"));
-        partMap.putIfAbsent("right_ear", GeneticNameGenerator("right_ear"));
-        partMap.putIfAbsent("back", GeneticNameGenerator("back"));
-        partMap.putIfAbsent("stomach", GeneticNameGenerator("stomach"));
-        partMap.putIfAbsent("withers", GeneticNameGenerator("withers"));
-        partMap.putIfAbsent("hips", GeneticNameGenerator("hips"));
-        partMap.putIfAbsent("top_hind_leg_left", GeneticNameGenerator("top_back_legs", "top_back_left_individual"));
-        partMap.putIfAbsent("hind_leg_knee_left", GeneticNameGenerator("knee", "back_left"));
-        partMap.putIfAbsent("bottom_hind_leg_left", GeneticNameGenerator("bottom_legs", "bottom_back_left"));
-        partMap.putIfAbsent("hind_leg_hoof_left", GeneticNameGenerator("hoof", "back_left"));
-        partMap.putIfAbsent("top_hind_leg_right", GeneticNameGenerator("top_back_legs", "top_back_right_individual"));
-        partMap.putIfAbsent("hind_leg_knee_right", GeneticNameGenerator("knee", "back_right"));
-        partMap.putIfAbsent("bottom_hind_leg_right", GeneticNameGenerator("bottom_legs", "bottom_back_right"));
-        partMap.putIfAbsent("hind_leg_hoof_right", GeneticNameGenerator("hoof", "back_right"));
-        partMap.putIfAbsent("tail", GeneticNameGenerator("tail"));
-
-        return partMap;
-    }
-
-    public String GeneticNameGenerator(String part, String suffix){
-        StringBuilder fullName = new StringBuilder();
-        String geneticCode = this.entityData.get(GENETICS_STRING);
-
-        fullName.append(part);
-
-        for(String gene : getRequiredGenetics(part)){
-            fullName.append("_");
-            fullName.append(getGeneticValueToString(gene, getGenetic(geneticCode, gene)));
-        }
-
-        fullName.append("_").append(suffix);
-
-        return fullName.toString();
-    }
-
-    public String GeneticNameGenerator(String part){
-        StringBuilder fullName = new StringBuilder();
-        String geneticCode = this.entityData.get(GENETICS_STRING);
-
-        fullName.append(part);
-
-        for(String gene : getRequiredGenetics(part)){
-            fullName.append("_");
-            String geneString = getGeneticValueToString(gene, getGenetic(geneticCode, gene));
-
-            //Exclude Gene Values from Parts
-            geneString = partGeneExclusion(part, gene, geneString);
-
-            fullName.append(geneString);
-        }
-
-        EquigenMod.LOGGER.info(part);
-
-        return fullName.toString();
-    }
-
-    public String partGeneExclusion(String part, String gene, String geneValue){
-        if(part.equals("top_front_legs") && gene.equals("LEG_WIDTH")){
-            if (geneValue.equals("thin")) {
-                return "average";
-            }
-        } else if (part.equals("top_back_legs") && gene.equals("TOP_LEG")){
-            switch (geneValue) {
-                case "short_3" -> {return "short_2";}
-                case "average_3" -> {return "average_2";}
-                case "long_3" -> {return "long_2";}
-            }
-        }
-        return geneValue;
-    }
-
-    public String getGeneticValueToString(String genetic, int value){
-        List<String> values = switch (genetic){
-            case "HOOF_SIZE" -> List.of("average", "large");
-            case "LEG_WIDTH" -> List.of("thin", "average", "thick");
-            case "BOTTOM_LEG" -> List.of("short_1", "short_2", "short_3", "average_1", "average_2", "average_3", "long_1", "long_2", "long_3");
-            case "TOP_LEG" -> List.of("short_1", "short_2", "short_3", "average_1", "average_2", "average_3", "long_1", "long_2", "long_3");
-            case "TOP_HIND_LEG_WIDTH" -> List.of("thin", "average", "thick");
-            case "MUSCLE_MASS" -> List.of("lean", "average", "muscular");
-            case "CHEST_SIZE" -> List.of("small_1", "small_2", "average_1", "average_2", "large_1", "large_2");
-            case "HIP_SIZE" -> List.of("small_1", "small_2", "average_1", "average_2", "large_1", "large_2");
-            case "HIP_PLACEMENT" -> List.of("?", "?", "?");
-            case "BACK_LENGTH" -> List.of("short", "average", "long");
-            case "BACK_GIRTH" -> List.of("thin", "average", "thick");
-            case "BACK_HEIGHT" -> List.of("?", "?", "?");
-            case "WITHERS" -> List.of("?", "?", "?");
-            case "STOMACH_CURVE" -> List.of("low", "medium", "high");
-            case "STOMACH_HEIGHT" -> List.of("?", "?", "?");
-            case "STOMACH_LENGTH" -> List.of("short", "average", "long");
-            case "TAIL_SET" -> List.of("?", "?", "?");
-            case "TAIL_LENGTH" -> List.of("short", "average", "long");
-            case "TAIL_THICKNESS" -> List.of("thin", "average", "thick");
-            case "NECK_CURVE" -> List.of("arched", "ewed", "straight", "swan");
-            case "NECK_POS" -> List.of("?", "?", "?");
-            case "HEAD_SIZE" -> List.of("?", "?", "?");
-            case "NECK_LENGTH" -> List.of("short_1", "short_2", "average_1", "average_2", "long_1", "long_2");
-            case "HEAD_TYPE" -> List.of("straight", "stocky", "dished", "roman");
-            case "EAR_SIZE" -> List.of("?", "?", "?");
-            case "WHISKER_SIZE" -> List.of("?", "?", "?");
-            default -> List.of("null_low", "null_mid", "null_high");
-        };
-        try {
-            return values.get(value - 1);
-        }catch (IndexOutOfBoundsException e){
-//            EquigenMod.LOGGER.error("Index Out of Bounds for Genetic:" + genetic + " with value of " + value);
-            return "";
-        }
-    }
-
-    public List<String> getRequiredGenetics(String part){
-        return switch (part){
-            case "chest" -> List.of("MUSCLE_MASS", "CHEST_SIZE");
-            case "top_front_legs" -> List.of("LEG_WIDTH", "TOP_LEG");
-            case "top_back_legs" -> List.of("TOP_HIND_LEG_WIDTH", "TOP_LEG");
-            case "bottom_legs" -> List.of("LEG_WIDTH", "BOTTOM_LEG");
-            case "hooves" -> List.of("HOOF_SIZE");
-            case "neck" -> List.of("MUSCLE_MASS", "NECK_CURVE", "NECK_LENGTH");
-            case "head" -> List.of("HEAD_TYPE", "MUSCLE_MASS");
-            case "back" -> List.of("MUSCLE_MASS", "BACK_LENGTH", "BACK_GIRTH");
-            case "stomach" -> List.of("MUSCLE_MASS", "STOMACH_LENGTH", "STOMACH_CURVE");
-            case "withers" -> List.of("MUSCLE_MASS");
-            case "hips" -> List.of("MUSCLE_MASS", "HIP_SIZE");
-            case "tail" -> List.of("TAIL_THICKNESS", "TAIL_LENGTH");
-            default -> List.of(/*NO GENETICS*/);
-        };
-    }
-
-    public void SetModelPartEntityData(Map<String, String> parts){
-        this.entityData.set(CURRENT_HEAD, parts.get("head"));
-        this.entityData.set(CURRENT_CHEST, parts.get("chest"));
-        this.entityData.set(CURRENT_NECK, parts.get("neck"));
-        this.entityData.set(CURRENT_LEFT_EAR, parts.get("left_ear"));
-        this.entityData.set(CURRENT_RIGHT_EAR, parts.get("right_ear"));
-        this.entityData.set(CURRENT_BACK, parts.get("back"));
-        this.entityData.set(CURRENT_STOMACH, parts.get("stomach"));
-        this.entityData.set(CURRENT_WITHERS, parts.get("withers"));
-        this.entityData.set(CURRENT_HIPS, parts.get("hips"));
-        this.entityData.set(CURRENT_TAIL, parts.get("tail"));
-        this.entityData.set(CURRENT_TOP_FORE_LEG_RIGHT, parts.get("top_fore_leg_right"));
-        this.entityData.set(CURRENT_TOP_FORE_LEG_LEFT, parts.get("top_fore_leg_left"));
-        this.entityData.set(CURRENT_TOP_HIND_LEG_RIGHT, parts.get("top_hind_leg_right"));
-        this.entityData.set(CURRENT_TOP_HIND_LEG_LEFT, parts.get("top_hind_leg_left"));
-        this.entityData.set(CURRENT_FORE_KNEE_LEFT, parts.get("fore_leg_knee_left"));
-        this.entityData.set(CURRENT_FORE_KNEE_RIGHT, parts.get("fore_leg_knee_right"));
-        this.entityData.set(CURRENT_HIND_KNEE_LEFT, parts.get("hind_leg_knee_left"));
-        this.entityData.set(CURRENT_HIND_KNEE_RIGHT, parts.get("hind_leg_knee_right"));
-        this.entityData.set(CURRENT_FORE_BOTTOM_LEGS_LEFT, parts.get("bottom_fore_leg_left"));
-        this.entityData.set(CURRENT_FORE_BOTTOM_LEGS_RIGHT, parts.get("bottom_fore_leg_right"));
-        this.entityData.set(CURRENT_HIND_BOTTOM_LEGS_LEFT, parts.get("bottom_hind_leg_left"));
-        this.entityData.set(CURRENT_HIND_BOTTOM_LEGS_RIGHT, parts.get("bottom_hind_leg_right"));
-        this.entityData.set(CURRENT_FORE_HOOF_LEFT, parts.get("fore_leg_hoof_left"));
-        this.entityData.set(CURRENT_FORE_HOOF_RIGHT, parts.get("fore_leg_hoof_right"));
-        this.entityData.set(CURRENT_HIND_HOOF_LEFT, parts.get("hind_leg_hoof_left"));
-        this.entityData.set(CURRENT_HIND_HOOF_RIGHT, parts.get("hind_leg_hoof_right"));
-
-    }
-
-    public String getCurrentPart(String part){
-        switch (part){
-            case "head": return this.entityData.get(CURRENT_HEAD).toLowerCase();
-            case "chest": return this.entityData.get(CURRENT_CHEST).toLowerCase();
-            case "neck": return this.entityData.get(CURRENT_NECK).toLowerCase();
-            case "left_ear": return this.entityData.get(CURRENT_LEFT_EAR).toLowerCase();
-            case "right_ear": return this.entityData.get(CURRENT_RIGHT_EAR).toLowerCase();
-            case "back": return this.entityData.get(CURRENT_BACK).toLowerCase();
-            case "stomach": return this.entityData.get(CURRENT_STOMACH).toLowerCase();
-            case "withers": return this.entityData.get(CURRENT_WITHERS).toLowerCase();
-            case "hips": return this.entityData.get(CURRENT_HIPS).toLowerCase();
-            case "tail": return this.entityData.get(CURRENT_TAIL).toLowerCase();
-            case "top_fore_leg_right": return this.entityData.get(CURRENT_TOP_FORE_LEG_RIGHT).toLowerCase();
-            case "top_fore_leg_left": return this.entityData.get(CURRENT_TOP_FORE_LEG_LEFT).toLowerCase();
-            case "top_hind_leg_right": return this.entityData.get(CURRENT_TOP_HIND_LEG_RIGHT).toLowerCase();
-            case "top_hind_leg_left": return this.entityData.get(CURRENT_TOP_HIND_LEG_LEFT).toLowerCase();
-            case "fore_leg_knee_left": return this.entityData.get(CURRENT_FORE_KNEE_LEFT).toLowerCase();
-            case "fore_leg_knee_right": return this.entityData.get(CURRENT_FORE_KNEE_RIGHT).toLowerCase();
-            case "hind_leg_knee_left": return this.entityData.get(CURRENT_HIND_KNEE_LEFT).toLowerCase();
-            case "hind_leg_knee_right": return this.entityData.get(CURRENT_HIND_KNEE_RIGHT).toLowerCase();
-            case "bottom_fore_leg_left": return this.entityData.get(CURRENT_FORE_BOTTOM_LEGS_LEFT).toLowerCase();
-            case "bottom_fore_leg_right": return this.entityData.get(CURRENT_FORE_BOTTOM_LEGS_RIGHT).toLowerCase();
-            case "bottom_hind_leg_left": return this.entityData.get(CURRENT_HIND_BOTTOM_LEGS_LEFT).toLowerCase();
-            case "bottom_hind_leg_right": return this.entityData.get(CURRENT_HIND_BOTTOM_LEGS_RIGHT).toLowerCase();
-            case "fore_leg_hoof_left": return this.entityData.get(CURRENT_FORE_HOOF_LEFT).toLowerCase();
-            case "fore_leg_hoof_right": return this.entityData.get(CURRENT_FORE_HOOF_RIGHT).toLowerCase();
-            case "hind_leg_hoof_left": return this.entityData.get(CURRENT_HIND_HOOF_LEFT).toLowerCase();
-            case "hind_leg_hoof_right": return this.entityData.get(CURRENT_HIND_HOOF_RIGHT).toLowerCase();
-            default: return "|INVALID_PART|";
-        }
-    }
 }

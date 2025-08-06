@@ -121,7 +121,7 @@ public enum GeneticValues {
     SPAWNED_CODE_VERSION,
     CURRENT_CODE_VERSION;
 
-    public int getMaxSize(){
+    public float getMaxSize(){
         return switch (this){
             /* Conformation */
             case HOOF_SIZE -> 3;
@@ -223,7 +223,7 @@ public enum GeneticValues {
 
             /* Skills & Abilities */
             case SPEED_STARTING_LEVEL -> 0; // Need floats for these numbers //
-            case SPEED_MAX_LEVEL -> 0;
+            case SPEED_MAX_LEVEL -> 10;
             case STRENGTH_STARTING_LEVEL -> 0;
             case STRENGTH_MAX_LEVEL -> 0;
             case JUMP_STARTING_LEVEL -> 0;

@@ -2,7 +2,6 @@ package net.buckleystudios.equigen.event;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.buckleystudios.equigen.EquigenMod;
-import net.buckleystudios.equigen.command.GeneticHorseBuilder;
 import net.buckleystudios.equigen.command.TestCommand;
 import net.buckleystudios.equigen.item.ModItems;
 import net.buckleystudios.equigen.villager.ModVillagers;
@@ -26,7 +25,6 @@ public class ModEvents {
     @SubscribeEvent
     public static void onCommandsRegister(RegisterCommandsEvent event){
         new TestCommand(event.getDispatcher());
-        new GeneticHorseBuilder(event.getDispatcher());
         ConfigCommand.register(event.getDispatcher());
     }
 

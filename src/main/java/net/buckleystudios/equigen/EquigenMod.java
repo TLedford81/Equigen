@@ -22,8 +22,10 @@ import net.minecraft.world.level.block.FlowerPotBlock;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
@@ -38,7 +40,7 @@ public class EquigenMod {
     public static final String MODID = "equigen";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public EquigenMod(IEventBus modEventBus) {
+    public EquigenMod(IEventBus modEventBus, ModContainer container) {
         //REGISTRIES
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
@@ -51,6 +53,7 @@ public class EquigenMod {
         ModVillagers.POI_TYPES.register(modEventBus);
         ModEntityAttributes.ATTRIBUTES.register(modEventBus);
         ModEffects.MOB_EFFECTS.register(modEventBus);
+        container.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
         modEventBus.addListener(this::commonSetup);
         NeoForge.EVENT_BUS.register(this);
