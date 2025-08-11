@@ -69,6 +69,18 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     private int hungerTickTimer;
     private int thirstTickTimer;
     private int stressRecoveryTickTimer;
+    private int speedSkillXPGainTickTimer;
+
+    public int CURRENT_GAIT = 0;
+    public final int WALK = 0;
+    public final int TROT = 1;
+    public final int CANTER = 2;
+    public final int GALLOP = 3;
+
+    public int speedSkillProficiency = 0;
+
+    public int SpeedXPToLevelUp = 20;
+    public int SpeedSkillXPStage = 0;
 
     // SPAWNING //
     public GeneticHorseEntity(EntityType<? extends AbstractHorse> entityType, Level level) {
@@ -111,6 +123,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         this.randomizeGenetics();
         this.setMaxSkills();
         this.setSkillToStartingLevel("Speed");
+        this.HandleProficiencies();
     }
 
     // BASIC SETTINGS //
@@ -285,7 +298,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                 .add(ModEntityAttributes.MAX_SKILL_JUMP, 0.0f)
                 .add(ModEntityAttributes.MAX_SKILL_ENDURANCE, 0.0f)
                 .add(ModEntityAttributes.MAX_SKILL_AGILITY, 0.0f)
-                .add(Attributes.MOVEMENT_SPEED, 0.2F)
+                .add(Attributes.MOVEMENT_SPEED, 0.0F)
                 .add(Attributes.ATTACK_DAMAGE, 80.0)
                 .add(Attributes.FOLLOW_RANGE, 24D)
                 .add(Attributes.STEP_HEIGHT, 5f)
@@ -400,6 +413,22 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                 this.getThirst() > 5f);
     }
 
+    // GAITING //
+
+    public void setGait(int gait){
+        this.CURRENT_GAIT = Math.clamp(gait, 0, 3);
+    }
+
+    public void raiseGait(int value){
+        this.setGait(this.CURRENT_GAIT + value);
+        EquigenMod.LOGGER.info("GAIT UP: " + this.CURRENT_GAIT);
+    }
+
+    public void lowerGait(int value){
+        this.setGait(this.CURRENT_GAIT - value);
+        EquigenMod.LOGGER.info("GAIT DOWN: " + this.CURRENT_GAIT);
+    }
+
     // SKILLS //
     public void setMaxSkills(){
         AttributeMap attributes = this.getAttributes();
@@ -429,10 +458,29 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         this.HandleSkills();
     }
 
+    public void setSkillXPStage(String sSkill, float skillValue){
+        float ssl = this.getMaxSkillLevel(sSkill) - 3.0f;
+        float xpGainedSinceBirth = skillValue - ssl;
+
+        if(xpGainedSinceBirth <= 1){
+            SpeedSkillXPStage = 1;
+        } else if (xpGainedSinceBirth <= 2){
+            SpeedSkillXPStage = 2;
+        } else if (xpGainedSinceBirth <= 3){
+            SpeedSkillXPStage = 3;
+        } else {
+            EquigenMod.LOGGER.error("Invalid " + sSkill + " XP Gain of " + xpGainedSinceBirth + "! Could not set Skill XP Stage!");
+            speedSkillProficiency = 0; // Invalid
+        }
+        EquigenMod.LOGGER.info(sSkill + "stage " + SpeedSkillXPStage + " with xp of " + skillValue);
+    }
+
     public void addSkillLevel(String sSkill, float value) {
         float newValue = this.getCurrentSkillLevel(sSkill) + value;
         newValue = Math.clamp(newValue, 0, this.getMaxSkillLevel(sSkill));
+        newValue = (float) Math.round(newValue * 100) / 100; // Round to 2 decimals
         this.setSkill(sSkill, newValue);
+        this.setSkillXPStage(sSkill, newValue);
     }
 
     public void LevelUpSkill(String sSkill, float amount){
@@ -444,6 +492,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                 this.getSoundSource(),
                 1.0F,
                 1.0F);
+        EquigenMod.LOGGER.info("Speed was changed to: " + this.getCurrentSkillLevel("Speed"));
     }
 
     public float getCurrentSkillLevel(String skill){
@@ -459,7 +508,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     public void HandleSkills(){
         //Speed
-        float currentSpeed = this.entityData.get(SKILL_SPEED);
+        double currentSpeed = this.entityData.get(SKILL_SPEED) * 0.1;
 
         ResourceLocation speedSkillID = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "speed_skill");
         AttributeModifier speedModifier = new AttributeModifier(speedSkillID,
@@ -473,11 +522,30 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         attributes.getInstance(Attributes.MOVEMENT_SPEED).addOrReplacePermanentModifier(speedModifier);
     }
 
+    public void HandleProficiencies(){
+        //0 - 2.3 = LOW
+        //2.4 - 4.6 = AVERAGE
+        //4.7 - 7 = HIGH
+
+        float ssl = this.getMaxSkillLevel("Speed") - 3.0f;
+        if(ssl >= 0 && ssl <= 2.3){
+            speedSkillProficiency = 1;
+        } else if (ssl >= 2.4 && ssl <= 4.6){
+            speedSkillProficiency = 2;
+        } else if (ssl >= 4.7 && ssl <= 7.0){
+            speedSkillProficiency = 3;
+        } else {
+            EquigenMod.LOGGER.error("Invalid Starting Speed of " + ssl + "! Could not set skill pro fish agency.");
+            speedSkillProficiency = 0; // Invalid
+        }
+    }
+
     public void setSkillToStartingLevel(String skill){
         switch(skill){
             case "Speed" -> this.entityData.set(SKILL_SPEED,
                     (float) this.getAttribute(ModEntityAttributes.MAX_SKILL_SPEED).getValue() - 3.0f);
         }
+        this.HandleSkills();
     }
 
     // ANIMATION //
@@ -541,7 +609,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
         if (flag) {
             this.LevelUpSkill("Speed", 1.23f);
-            player.sendSystemMessage(Component.literal("Speed was changed to: " + this.getCurrentSkillLevel("Speed")));
             this.eat();
             this.gameEvent(GameEvent.EAT);
         }
@@ -649,6 +716,24 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                 this.addEffect(new MobEffectInstance(ModEffects.STRESSED_EFFECT, 10, 1));
             } else {
                 this.removeEffect(ModEffects.STRESSED_EFFECT);
+            }
+        }
+
+        if(this.hasControllingPassenger()) {
+            float XPGainAmount = switch (CURRENT_GAIT){
+                case CANTER -> 0.01f;
+                case GALLOP -> 0.02f;
+                default -> 0.0f;
+            };
+
+            if (this.getDeltaMovement().x != 0 || this.getDeltaMovement().z != 0) {
+                if(XPGainAmount != 0.0f) {
+                    speedSkillXPGainTickTimer++;
+                    if (speedSkillXPGainTickTimer >= SpeedXPToLevelUp) {
+                        this.LevelUpSkill("Speed", XPGainAmount);
+                        this.speedSkillXPGainTickTimer = 0;
+                    }
+                }
             }
         }
     }
@@ -787,6 +872,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             if (value.getMaxSize() != 0) {
                 if (MAX_SKILL_GENETICS.contains(value.name())) {
                     float randomNum = random.nextFloat(value.getMaxSize() - 2) + 3;
+                    randomNum = (float) Math.round(randomNum * 100) / 100;
                     this.setGenetic(value.name(), randomNum);
                 } else {
                     int randomNum = random.nextInt(Math.round(value.getMaxSize())) + 1;

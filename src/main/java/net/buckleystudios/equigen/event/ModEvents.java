@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.command.TestCommand;
 import net.buckleystudios.equigen.item.ModItems;
+import net.buckleystudios.equigen.util.ModKeyMappings;
 import net.buckleystudios.equigen.villager.ModVillagers;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
@@ -13,6 +14,7 @@ import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.neoforged.neoforge.event.village.WandererTradesEvent;
@@ -63,4 +65,10 @@ public class ModEvents {
                 new ItemStack(ModItems.HIMALAYAN_ROCK_SALT.get(), 3), 8, 4, 0.05f
         ));
     }
+
+    @SubscribeEvent // on the game event bus only on the physical client
+    public static void onClientTick(ClientTickEvent.Post event) {
+        ModKeyMappings.keyPressed();
+    }
+
 }

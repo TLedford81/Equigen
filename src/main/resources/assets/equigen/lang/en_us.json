@@ -190,5 +190,9 @@
   "sounds.equigen.test_sound": "Test Sound",
   "sounds.equigen.egret_ambient": "Egret Ambient",
   "sounds.equigen.egret_hurt": "Egret Hurt",
-  "sounds.equigen.egret_death": "Egret Death"
+  "sounds.equigen.egret_death": "Egret Death",
+
+  "key.categories.equigen.horsemounted": "Equigen: Mounted",
+  "key.gait.gaittyup": "Gait Up",
+  "key.gait.gaittydown": "Gait Down"
 }
