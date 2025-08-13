@@ -66,7 +66,7 @@ public class ModEvents {
         ));
     }
 
-    @SubscribeEvent // on the game event bus only on the physical client
+    @SubscribeEvent
     public static void onClientTick(ClientTickEvent.Post event) {
         ModKeyMappings.keyPressed();
     }
