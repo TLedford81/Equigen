@@ -102,15 +102,10 @@ public enum GeneticValues {
 
 
     /* Skills & Abilities */
-    SPEED_STARTING_LEVEL,
     SPEED_MAX_LEVEL,
-    STRENGTH_STARTING_LEVEL,
     STRENGTH_MAX_LEVEL,
-    JUMP_STARTING_LEVEL,
     JUMP_MAX_LEVEL,
-    ENDURANCE_STARTING_LEVEL,
     ENDURANCE_MAX_LEVEL,
-    AGILITY_STARTING_LEVEL,
     AGILITY_MAX_LEVEL,
     CHARGE,
     KICK,
@@ -222,15 +217,10 @@ public enum GeneticValues {
             case HATED_GRASS -> 0;
 
             /* Skills & Abilities */
-            case SPEED_STARTING_LEVEL -> 0; // Need floats for these numbers //
             case SPEED_MAX_LEVEL -> 10;
-            case STRENGTH_STARTING_LEVEL -> 0;
             case STRENGTH_MAX_LEVEL -> 0;
-            case JUMP_STARTING_LEVEL -> 0;
-            case JUMP_MAX_LEVEL -> 0;
-            case ENDURANCE_STARTING_LEVEL -> 0;
+            case JUMP_MAX_LEVEL -> 10;
             case ENDURANCE_MAX_LEVEL -> 0;
-            case AGILITY_STARTING_LEVEL -> 0;
             case AGILITY_MAX_LEVEL -> 0;
             case CHARGE -> 0;
             case KICK -> 0;
