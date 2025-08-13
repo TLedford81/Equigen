@@ -58,6 +58,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public static final EntityDataAccessor<Float> HAPPINESS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> STRESS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
 
+    public static final EntityDataAccessor<Integer> SPEED_PROFICIENCY = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Integer> CURRENT_GAIT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.INT);
+
     public static final EntityDataAccessor<Float> SKILL_SPEED = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> SKILL_STRENGTH = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> SKILL_JUMP = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
@@ -70,18 +73,16 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     private int thirstTickTimer;
     private int stressRecoveryTickTimer;
     private int speedSkillXPGainTickTimer;
-    private int jumpSkillXpGainTickTimer;
 
-    public int CURRENT_GAIT = 0;
-    public final int WALK = 0;
-    public final int TROT = 1;
-    public final int CANTER = 2;
-    public final int GALLOP = 3;
+    public static final int WALK = 0;
+    public static final int TROT = 1;
+    public static final int CANTER = 2;
+    public static final int GALLOP = 3;
 
-    public int speedSkillProficiency = 0;
+    private double lastTickPosX = Double.NaN;
+    private double lastTickPosZ = Double.NaN;
 
     public int SpeedXPToLevelUp = 20;
-    public int JumpXPToLevelUp = 20;
     public int SpeedSkillXPStage = 0;
 
     // SPAWNING //
@@ -93,15 +94,11 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         setStress(0.0f);
     }
 
-
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
         this.GenerateNewGeneticsAndSkills();
         level.getServer().getPlayerList().broadcastSystemMessage(Component.literal("Spawned Horse with Max Speed Skill of: " + this.getAttributes().getValue(ModEntityAttributes.MAX_SKILL_SPEED)), false);
         level.getServer().getPlayerList().broadcastSystemMessage(Component.literal("And Current Speed Skill of: " + this.getCurrentSkillLevel("Speed")), false);
-
-        level.getServer().getPlayerList().broadcastSystemMessage(Component.literal("Spawned Horse with Max Jump Skill of: " + this.getAttributes().getValue(ModEntityAttributes.MAX_SKILL_JUMP)), false);
-        level.getServer().getPlayerList().broadcastSystemMessage(Component.literal("And Current Jump Skill of: " + this.getCurrentSkillLevel("Jump")), false);
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }
 
@@ -129,7 +126,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         this.randomizeGenetics();
         this.setMaxSkills();
         this.setSkillToStartingLevel("Speed");
-        this.setSkillToStartingLevel("Jump");
         this.HandleProficiencies();
     }
 
@@ -200,6 +196,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         this.thirstTickTimer = tag.getInt("ThirstTickTimer");
         this.stressRecoveryTickTimer = tag.getInt("StressRecoveryTickTimer");
 
+        //Movement
+        this.setGait(tag.getInt("CurrentGait"));
+
         //Stats
         this.setHunger(tag.getFloat("Hunger"));
         this.setThirst(tag.getFloat("Thirst"));
@@ -214,6 +213,10 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         this.setSkill("Jump", tag.getInt("SkillJump"));
         this.setSkill("Endurance", tag.getInt("SkillEndurance"));
         this.setSkill("Agility", tag.getInt("SkillAgility"));
+
+        this.entityData.set(SPEED_PROFICIENCY, tag.getInt("SpeedProficiency"));
+
+        this.HandleProficiencies();
 
         //Genetic Code
         for (int i = 0; i < geneticCount; i++) {
@@ -243,6 +246,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         tag.putInt("ThirstTickTimer", this.thirstTickTimer);
         tag.putInt("StressRecoveryTickTimer", this.stressRecoveryTickTimer);
 
+        //Movement
+        tag.putInt("CurrentGait", this.getCurrentGait());
+
         //Stats
         tag.putFloat("Hunger", this.getHunger());
         tag.putFloat("Thirst", this.getThirst());
@@ -258,6 +264,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         tag.putFloat("SkillJump", this.entityData.get(SKILL_JUMP));
         tag.putFloat("SkillEndurance", this.entityData.get(SKILL_ENDURANCE));
         tag.putFloat("SkillAgility", this.entityData.get(SKILL_AGILITY));
+
+        tag.putInt("SpeedProficiency", this.entityData.get(SPEED_PROFICIENCY));
     }
 
     @Override
@@ -268,11 +276,15 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         builder.define(HAPPINESS, 10.0F);
         builder.define(STRESS, 10.0F);
 
+        builder.define(CURRENT_GAIT, 0);
+
         builder.define(SKILL_SPEED, 0.0f);
         builder.define(SKILL_STRENGTH, 0.0f);
         builder.define(SKILL_JUMP, 0.0f);
         builder.define(SKILL_ENDURANCE, 0.0f);
         builder.define(SKILL_AGILITY, 0.0f);
+
+        builder.define(SPEED_PROFICIENCY, 0);
 
         builder.define(HOOF_CLEANLINESS, 10.0f);
         builder.define(HAIR_CLEANLINESS, 10.0f);
@@ -423,70 +435,80 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     // GAITING //
 
     public void setGait(int gait){
-        this.CURRENT_GAIT = Math.clamp(gait, 0, 3);
+        this.entityData.set(CURRENT_GAIT, Math.clamp(gait, 0, 3));
+
+        float speedModifier = this.getGaitSpeedModifier();
+
+        ResourceLocation gait_speed_ID = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "gait_modifier");
+        AttributeModifier gait_speed_modifier = new AttributeModifier(gait_speed_ID,
+                speedModifier, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+
+        AttributeMap attributes = this.getAttributes();
+        attributes.getInstance(Attributes.MOVEMENT_SPEED).addOrUpdateTransientModifier(gait_speed_modifier);
+
     }
 
-    public void raiseGait(int value){
-        this.setGait(this.CURRENT_GAIT + value);
-        EquigenMod.LOGGER.info("GAIT UP: " + this.CURRENT_GAIT);
+    private float getGaitSpeedModifier() {
+        return switch (this.getCurrentGait()){
+            case WALK -> 1.0f;
+            case TROT -> 1.5f;
+            case CANTER -> 2.0f;
+            case GALLOP -> 2.5f;
+            default -> 1.0f;
+        };
     }
 
-    public void lowerGait(int value){
-        this.setGait(this.CURRENT_GAIT - value);
-        EquigenMod.LOGGER.info("GAIT DOWN: " + this.CURRENT_GAIT);
+    public int getCurrentGait(){
+        return this.entityData.get(CURRENT_GAIT);
+    }
+
+    public void alterGait(int value){
+        this.setGait(this.getCurrentGait() + value);
+        EquigenMod.LOGGER.info("GAIT CHANGED: " + this.getCurrentGait());
     }
 
     // SKILLS //
     public void setMaxSkills(){
         AttributeMap attributes = this.getAttributes();
-            // Speed
+
         ResourceLocation maxSpeedSkillID = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "speed_skill_max");
         AttributeModifier maxSpeedModifier = new AttributeModifier(maxSpeedSkillID,
                 this.getGenetic("SPEED_MAX_LEVEL"), AttributeModifier.Operation.ADD_VALUE);
 
         attributes.getInstance(ModEntityAttributes.MAX_SKILL_SPEED).addOrReplacePermanentModifier(maxSpeedModifier);
-        //Jump
-        ResourceLocation maxJumpSkillID = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "jump_skill_max");
-        AttributeModifier maxJumpModifier = new AttributeModifier(maxJumpSkillID,
-                this.getGenetic("JUMP_MAX_LEVEL"), AttributeModifier.Operation.ADD_VALUE);
-
-        attributes.getInstance(ModEntityAttributes.MAX_SKILL_JUMP).addOrReplacePermanentModifier(maxJumpModifier);
     }
 
     public float getMaxSkillLevel(String sSkill){
         return switch (sSkill){
             case "Speed" -> (float) this.getAttribute(ModEntityAttributes.MAX_SKILL_SPEED).getValue();
-            case "Jump" -> (float) this.getAttribute(ModEntityAttributes.MAX_SKILL_JUMP).getValue();
             default -> throw new IllegalStateException("Unexpected value: " + sSkill);
         };
     }
 
     public void setSkill(String sSkill, float value){
         switch (sSkill){
-            case "Speed": entityData.set(SKILL_SPEED, value);
-            case "Strength": entityData.set(SKILL_STRENGTH, value);
-            case "Jump": entityData.set(SKILL_JUMP, value);
-            case "Endurance": entityData.set(SKILL_ENDURANCE, value);
-            case "Agility": entityData.set(SKILL_AGILITY, value);
+            case "Speed" -> entityData.set(SKILL_SPEED, value);
+            case "Strength" -> entityData.set(SKILL_STRENGTH, value);
+            case "Jump" -> entityData.set(SKILL_JUMP, value);
+            case "Endurance" -> entityData.set(SKILL_ENDURANCE, value);
+            case "Agility" -> entityData.set(SKILL_AGILITY, value);
         }
         this.HandleSkills();
     }
 
     public void setSkillXPStage(String sSkill, float skillValue){
-        float ssl = this.getMaxSkillLevel(sSkill) - 3.0f;
-        float xpGainedSinceBirth = skillValue - ssl;
+
+        float xpGainedSinceBirth = skillValue - this.getStartingSkillLevel(sSkill);
 
         if(xpGainedSinceBirth <= 1){
             SpeedSkillXPStage = 1;
         } else if (xpGainedSinceBirth <= 2){
             SpeedSkillXPStage = 2;
-            SpeedXPToLevelUp = 100;
         } else if (xpGainedSinceBirth <= 3){
             SpeedSkillXPStage = 3;
-            SpeedXPToLevelUp = 200;
         } else {
             EquigenMod.LOGGER.error("Invalid " + sSkill + " XP Gain of " + xpGainedSinceBirth + "! Could not set Skill XP Stage!");
-            speedSkillProficiency = 0; // Invalid
+            SpeedSkillXPStage = 0; // Invalid
         }
         EquigenMod.LOGGER.info(sSkill + "stage " + SpeedSkillXPStage + " with xp of " + skillValue);
     }
@@ -508,7 +530,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                 this.getSoundSource(),
                 1.0F,
                 1.0F);
-        EquigenMod.LOGGER.info("Skill " + sSkill +  " was changed to: " + this.getCurrentSkillLevel(sSkill));
+        EquigenMod.LOGGER.info("Speed was changed to: " + this.getCurrentSkillLevel("Speed"));
     }
 
     public float getCurrentSkillLevel(String skill){
@@ -531,16 +553,11 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                 currentSpeed, AttributeModifier.Operation.ADD_VALUE);
         //Strength
         //Jump
-        double currentJump = this.entityData.get(SKILL_JUMP) * 0.1;
-        ResourceLocation jumpSkillID = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "jump_skill");
-        AttributeModifier jumpModifier = new AttributeModifier(jumpSkillID,
-                currentJump, AttributeModifier.Operation.ADD_VALUE);
         //Endurance
         //Agility
 
         AttributeMap attributes = this.getAttributes();
         attributes.getInstance(Attributes.MOVEMENT_SPEED).addOrReplacePermanentModifier(speedModifier);
-        attributes.getInstance(Attributes.JUMP_STRENGTH).addOrReplacePermanentModifier(jumpModifier);
     }
 
     public void HandleProficiencies(){
@@ -548,29 +565,40 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         //2.4 - 4.6 = AVERAGE
         //4.7 - 7 = HIGH
 
-        float ssl = this.getMaxSkillLevel("Speed") - 3.0f;
-        if(ssl >= 0 && ssl <= 2.3){
-            speedSkillProficiency = 1;
-        } else if (ssl >= 2.4 && ssl <= 4.6){
-            speedSkillProficiency = 2;
-        } else if (ssl >= 4.7 && ssl <= 7.0){
-            speedSkillProficiency = 3;
+        float speed_ssl = this.getStartingSkillLevel("Speed");
+        if(speed_ssl <= 2.3){
+            this.entityData.set(SPEED_PROFICIENCY, 1);
+        } else if (speed_ssl <= 4.6){
+            this.entityData.set(SPEED_PROFICIENCY, 2);
+        } else if (speed_ssl <= 7.0){
+            this.entityData.set(SPEED_PROFICIENCY, 3);
         } else {
-            EquigenMod.LOGGER.error("Invalid Starting Speed of " + ssl + "! Could not set skill pro fish agency.");
-            speedSkillProficiency = 0; // Invalid
+            EquigenMod.LOGGER.error("Invalid Starting Speed of " + speed_ssl + "! Could not set skill pro fish agency.");
+            this.entityData.set(SPEED_PROFICIENCY, 0); // Invalid
         }
+    }
+
+    public float GetSkillProficiencyBonus(int skillProficiency) {
+        float bonus = 0;
+        switch(skillProficiency){
+            case 1 -> bonus = 1.0f;
+            case 2 -> bonus = 1.2f;
+            case 3 -> bonus = 1.5f;
+        }
+        return bonus;
     }
 
     public void setSkillToStartingLevel(String skill){
         switch(skill){
             case "Speed" -> this.entityData.set(SKILL_SPEED,
-                    (float) this.getAttribute(ModEntityAttributes.MAX_SKILL_SPEED).getValue() - 3.0f);
-            case "Jump" -> this.entityData.set(SKILL_JUMP,
-                    (float) this.getAttribute(ModEntityAttributes.MAX_SKILL_JUMP).getValue() - 3.0f);
+                    this.getStartingSkillLevel(skill));
         }
         this.HandleSkills();
     }
 
+    public float getStartingSkillLevel(String skill){
+        return this.getMaxSkillLevel(skill) - 3.0f;
+    }
 
     // ANIMATION //
     private void setupAnimationStates() {
@@ -632,10 +660,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         }
 
         if (flag) {
-            this.LevelUpSkill("Speed", 1.23f);
             this.eat();
             this.gameEvent(GameEvent.EAT);
-            this.goalSelector.addGoal(1, new EatBlockGoal(this));
         }
 
         return flag;
@@ -683,35 +709,36 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     @Override
     public void tick() {
         super.tick();
-        TickTimers();
-
-        //Stat Drop Over Time
-        if(hungerTickTimer >= 200){
-            if(this.getHunger() > 0) {
-                this.alterHunger(-1.0f);
-                this.alterCleanliness("hair", -1.0f);
-                this.alterCleanliness("hoof", -1.0f);
-            }
-            this.hungerTickTimer = 0;
-        }
-
-        if(thirstTickTimer >= 200){
-            if(this.getThirst() > 0) {
-                this.alterThirst(-1.0f);
-            }
-            this.thirstTickTimer = 0;
-        }
-
-        if(stressRecoveryTickTimer >= 200){
-            if(this.getStress() > 0 && isNeedsFulilled()) {
-                this.alterStress(-1.0f);
-            }
-            this.stressRecoveryTickTimer = 0;
-        }
-
         if (this.level().isClientSide) {
             this.setupAnimationStates();
         } else {
+            HandleConstantTickTimers();
+            this.HandleProficiencies();
+
+            //Stat Drop Over Time
+            if(hungerTickTimer >= 200){
+                if(this.getHunger() > 0) {
+                    this.alterHunger(-1.0f);
+                    this.alterCleanliness("hair", -1.0f);
+                    this.alterCleanliness("hoof", -1.0f);
+                }
+                this.hungerTickTimer = 0;
+            }
+
+            if(thirstTickTimer >= 200){
+                if(this.getThirst() > 0) {
+                    this.alterThirst(-1.0f);
+                }
+                this.thirstTickTimer = 0;
+            }
+
+            if(stressRecoveryTickTimer >= 200){
+                if(this.getStress() > 0 && isNeedsFulilled()) {
+                    this.alterStress(-1.0f);
+                }
+                this.stressRecoveryTickTimer = 0;
+            }
+
             //Horse's Hunger Depleted
             if(this.getHunger() <= 0.0f){
                 this.addEffect(new MobEffectInstance(ModEffects.STARVING_EFFECT, 10, 1));
@@ -742,37 +769,49 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             } else {
                 this.removeEffect(ModEffects.STRESSED_EFFECT);
             }
-        }
 
-        if(this.hasControllingPassenger()) {
-            float XPGainAmount = switch (CURRENT_GAIT){
-                case CANTER -> 0.01f;
-                case GALLOP -> 0.02f;
-                default -> 0.0f;
-            };
-
-            if (this.getDeltaMovement().x != 0 || this.getDeltaMovement().z != 0) {
-                if(XPGainAmount != 0.0f) {
-                    speedSkillXPGainTickTimer++;
-                    if (speedSkillXPGainTickTimer >= SpeedXPToLevelUp) {
-                        this.LevelUpSkill("Speed", XPGainAmount);
-                        this.speedSkillXPGainTickTimer = 0;
+            //Speed Skill Levelling
+            if(this.hasControllingPassenger()) {
+                if (isMoving()) {
+                    float XPGainAmount = switch (this.getCurrentGait()){
+                        case CANTER -> 0.01f;
+                        case GALLOP -> 0.02f;
+                        default -> 0.0f;
+                    };
+                    if(XPGainAmount != 0.0f) {
+                        speedSkillXPGainTickTimer++;
+                        if (speedSkillXPGainTickTimer >= SpeedXPToLevelUp) {
+                            this.LevelUpSkill("Speed", XPGainAmount *
+                                    this.GetSkillProficiencyBonus(this.entityData.get(SPEED_PROFICIENCY)));
+                            this.speedSkillXPGainTickTimer = 0;
+                        }
                     }
                 }
-            }
-            if (this.isJumping()) {
-                if(XPGainAmount != 0.0f) {
-                    jumpSkillXpGainTickTimer++;
-                    if(jumpSkillXpGainTickTimer >= JumpXPToLevelUp) {
-                        this.LevelUpSkill("Jump", XPGainAmount);
-                        this.jumpSkillXpGainTickTimer = 0;
-                    }
-                }
+            } else {
+                this.setGait(0);
             }
         }
     }
 
-    private void TickTimers(){
+    private boolean isMoving() {
+        if (Double.isNaN(lastTickPosX) || Double.isNaN(lastTickPosZ)) {
+            // First tick, initialize last positions
+            lastTickPosX = getX();
+            lastTickPosZ = getZ();
+            return false; // no movement on first tick
+        }
+
+        double deltaX = Math.abs(this.getX() - lastTickPosX);
+        double deltaZ = Math.abs(this.getZ() - lastTickPosZ);
+
+        // Update last positions for next tick
+        lastTickPosX = this.getX();
+        lastTickPosZ = this.getZ();
+
+        return deltaX > 0.001 || deltaZ > 0.001;
+    }
+
+    private void HandleConstantTickTimers(){
         hungerTickTimer++;
         thirstTickTimer++;
         stressRecoveryTickTimer++;
@@ -911,7 +950,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                 } else {
                     int randomNum = random.nextInt(Math.round(value.getMaxSize())) + 1;
                     this.setGenetic(value.name(), randomNum);
-//                EquigenMod.LOGGER.info("Genetic " + value.name() + " set to " + randomNum);
                 }
             }
         }
@@ -921,9 +959,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         if (this.GENETICS.containsKey(key)) {
             return this.GENETICS.get(key);
         }
-        else {
-            return 0;
-        }
+        else return 0;
     }
 
     public int getGenetic(String geneticCode, String key){
@@ -932,9 +968,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             for(int i = 0, x = 0; i < geneticCount; i++, x+=2){
                 String number = geneticCode.substring(x, x+2);
                 genes.put(GeneticValues.values()[i].name(), Integer.parseInt(number));
-//                LOGGER.info(GeneticValues.values()[i].name() + " / " + number);
             }
-//            LOGGER.info("Got Genetic: " + genes.get(key));
             if(genes.get(key) == null){
                 return 0;
             } else { return genes.get(key); }
@@ -944,9 +978,10 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     }
 
     public void setGenetic(String key, float number) {
-//        LOGGER.info("Setting Geneic: " + key + " / " + number);
         this.GENETICS.put(key, number);
     }
+
+    //TODO: Multiparting
 
     // MULTIPART MODEL //
 }
