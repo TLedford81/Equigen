@@ -82,6 +82,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     private double lastTickPosX = Double.NaN;
     private double lastTickPosZ = Double.NaN;
+    private double lastTickPosY = Double.NaN;
 
     public int SpeedXPToLevelUp = 20;
     public int JumpXPToLevelUp = 20;
@@ -816,7 +817,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                         }
                     }
                 }
-                if (this.isJumping()) {
+                if (this.isInAir()) {
                     EquigenMod.LOGGER.info("This horse is jumping!!!!!");
                     if(XPGainAmount != 0.0f) {
                         jumpSkillXpGainTickTimer++;
@@ -833,7 +834,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     }
 
     private boolean isMoving() {
-        if (Double.isNaN(lastTickPosX) || Double.isNaN(lastTickPosZ)) {
+        if (Double.isNaN(lastTickPosX) || Double.isNaN(lastTickPosZ)) { //Add LastTickPosY
             // First tick, initialize last positions
             lastTickPosX = getX();
             lastTickPosZ = getZ();
@@ -848,6 +849,20 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         lastTickPosZ = this.getZ();
 
         return deltaX > 0.001 || deltaZ > 0.001;
+    }
+    private boolean isInAir() {
+        if (Double.isNaN(lastTickPosY)){ //Add LastTickPosY
+            // First tick, initialize last positions
+            lastTickPosY = getY();
+            return false; // no movement on first tick
+        }
+
+        double deltaY = Math.abs(this.getY() - lastTickPosY);
+
+        // Update last positions for next tick
+        lastTickPosY = this.getY();
+
+        return deltaY > 0.001;
     }
 
     private void HandleConstantTickTimers(){
