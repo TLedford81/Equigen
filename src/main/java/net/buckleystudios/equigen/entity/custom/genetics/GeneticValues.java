@@ -220,8 +220,8 @@ public enum GeneticValues {
             case SPEED_MAX_LEVEL -> 10;
             case STRENGTH_MAX_LEVEL -> 10;
             case JUMP_MAX_LEVEL -> 10;
-            case ENDURANCE_MAX_LEVEL -> 0;
-            case AGILITY_MAX_LEVEL -> 0;
+            case ENDURANCE_MAX_LEVEL -> 10;
+            case AGILITY_MAX_LEVEL -> 10;
             case CHARGE -> 0;
             case KICK -> 0;
             case REAR -> 0;
