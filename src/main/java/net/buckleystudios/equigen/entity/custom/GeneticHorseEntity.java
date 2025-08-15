@@ -148,6 +148,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         this.setSkillToStartingLevel("Jump");
         this.setSkillToStartingLevel("Strength");
         this.HandleProficiencies();
+
+        //I HATE TAMING
+        this.setTemper(100);
     }
 
     // BASIC SETTINGS //
@@ -826,81 +829,16 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         super.tick();
         if (this.level().isClientSide) {
             this.setupAnimationStates();
-        } else {
-            HandleConstantTickTimers();
-            this.HandleProficiencies();
 
-            //Stat Drop Over Time
-            if(hungerTickTimer >= 200){
-                if(this.getHunger() > 0) {
-                    this.alterHunger(-1.0f);
-                    this.alterCleanliness("hair", -1.0f);
-                    this.alterCleanliness("hoof", -1.0f);
-                }
-                this.hungerTickTimer = 0;
-            }
-
-            if(thirstTickTimer >= 200){
-                if(this.getThirst() > 0) {
-                    this.alterThirst(-1.0f);
-                }
-                this.thirstTickTimer = 0;
-            }
-
-            if(stressRecoveryTickTimer >= 200){
-                if(this.getStress() > 0 && isNeedsFulilled()) {
-                    this.alterStress(-1.0f);
-                }
-                this.stressRecoveryTickTimer = 0;
-            }
-
-        if (this.level().isClientSide) {
-            this.setupAnimationStates();
-        } else {
-            //Horse's Hunger Depleted
-            if(this.getHunger() <= 0.0f){
-                this.addEffect(new MobEffectInstance(ModEffects.STARVING_EFFECT, 10, 1));
-            } else {
-                this.removeEffect(ModEffects.STARVING_EFFECT);
-            }
-            //Horse's Thirst Depleted
-            if(this.getThirst() <= 0.0f){
-                this.addEffect(new MobEffectInstance(ModEffects.DEHYDRATED_EFFECT, 10, 1));
-            } else {
-                this.removeEffect(ModEffects.DEHYDRATED_EFFECT);
-            }
-            //Horse's Cleanliness Depleted
-            if(this.getCleanliness() <= 0.0f){
-                this.addEffect(new MobEffectInstance(ModEffects.FILTHY_EFFECT, 10, 1));
-            } else {
-                this.removeEffect(ModEffects.FILTHY_EFFECT);
-            }
-            //Horse's Happiness Depleted
-            if(this.getHappiness() <= 0.0f){
-                this.addEffect(new MobEffectInstance(ModEffects.DEPRESSED_EFFECT, 10, 1));
-            } else {
-                this.removeEffect(ModEffects.DEPRESSED_EFFECT);
-            }
-            //Horse's Stress Maxed
-            if(this.getStress() >= this.getMaxStress()){
-                this.addEffect(new MobEffectInstance(ModEffects.STRESSED_EFFECT, 10, 1));
-            } else {
-                this.removeEffect(ModEffects.STRESSED_EFFECT);
-            }
-        }
-
-            //Skill Levelling
-            if(this.hasControllingPassenger()) {
-
-                float XPGainAmount = switch (this.getCurrentGait()){
+            //Speed Skill Levelling
+            if (this.hasControllingPassenger()) {
+                float XPGainAmount = switch (this.getCurrentGait()) {
                     case CANTER -> 0.01f;
                     case GALLOP -> 0.02f;
                     default -> 0.0f;
                 };
-
-                //Speed Skill Levelling
-                if (isMoving()) {
-                    if(XPGainAmount != 0.0f) {
+                if (this.getDeltaMovement().x > 0 || this.getDeltaMovement().z > 0) {
+                    if (XPGainAmount != 0.0f) {
                         speedSkillXPGainTickTimer++;
                         if (speedSkillXPGainTickTimer >= SpeedXPToLevelUp) {
                             this.LevelUpSkill("Speed", XPGainAmount *
@@ -909,13 +847,13 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                         }
                     }
                 }
-                //Jump Skill Leveling
-                if (this.isInAir()) {
-                    if(XPGainAmount != 0.0f) {
+
+                if (this.isJumping()) {
+                    EquigenMod.LOGGER.info("This horse is jumping!!!!!");
+                    if (XPGainAmount != 0.0f) {
                         jumpSkillXPGainTickTimer++;
-                        if(jumpSkillXPGainTickTimer >= JumpXPToLevelUp) {
+                        if (jumpSkillXPGainTickTimer >= JumpXPToLevelUp) {
                             this.LevelUpSkill("Jump", XPGainAmount);
-                                    this.GetSkillProficiencyBonus(this.entityData.get(JUMP_PROFICIENCY));
                             this.jumpSkillXPGainTickTimer = 0;
                         }
                     }
@@ -923,39 +861,65 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             } else {
                 this.setGait(0);
             }
+        } else {
+            HandleConstantTickTimers();
+            this.HandleProficiencies();
+
+            //Stat Drop Over Time
+            if (hungerTickTimer >= 200) {
+                if (this.getHunger() > 0) {
+                    this.alterHunger(-1.0f);
+                    this.alterCleanliness("hair", -1.0f);
+                    this.alterCleanliness("hoof", -1.0f);
+                }
+                this.hungerTickTimer = 0;
+            }
+
+            if (thirstTickTimer >= 200) {
+                if (this.getThirst() > 0) {
+                    this.alterThirst(-1.0f);
+                }
+                this.thirstTickTimer = 0;
+            }
+
+            if (stressRecoveryTickTimer >= 200) {
+                if (this.getStress() > 0 && isNeedsFulilled()) {
+                    this.alterStress(-1.0f);
+                }
+                this.stressRecoveryTickTimer = 0;
+            }
+
+            //Horse's Hunger Depleted
+            if (this.getHunger() <= 0.0f) {
+                this.addEffect(new MobEffectInstance(ModEffects.STARVING_EFFECT, 10, 1));
+            } else {
+                this.removeEffect(ModEffects.STARVING_EFFECT);
+            }
+            //Horse's Thirst Depleted
+            if (this.getThirst() <= 0.0f) {
+                this.addEffect(new MobEffectInstance(ModEffects.DEHYDRATED_EFFECT, 10, 1));
+            } else {
+                this.removeEffect(ModEffects.DEHYDRATED_EFFECT);
+            }
+            //Horse's Cleanliness Depleted
+            if (this.getCleanliness() <= 0.0f) {
+                this.addEffect(new MobEffectInstance(ModEffects.FILTHY_EFFECT, 10, 1));
+            } else {
+                this.removeEffect(ModEffects.FILTHY_EFFECT);
+            }
+            //Horse's Happiness Depleted
+            if (this.getHappiness() <= 0.0f) {
+                this.addEffect(new MobEffectInstance(ModEffects.DEPRESSED_EFFECT, 10, 1));
+            } else {
+                this.removeEffect(ModEffects.DEPRESSED_EFFECT);
+            }
+            //Horse's Stress Maxed
+            if (this.getStress() >= this.getMaxStress()) {
+                this.addEffect(new MobEffectInstance(ModEffects.STRESSED_EFFECT, 10, 1));
+            } else {
+                this.removeEffect(ModEffects.STRESSED_EFFECT);
+            }
         }
-    }
-
-    private boolean isMoving() {
-        if (Double.isNaN(lastTickPosX) || Double.isNaN(lastTickPosZ)) { //Add LastTickPosY
-            // First tick, initialize last positions
-            lastTickPosX = getX();
-            lastTickPosZ = getZ();
-            return false; // no movement on first tick
-        }
-
-        double deltaX = Math.abs(this.getX() - lastTickPosX);
-        double deltaZ = Math.abs(this.getZ() - lastTickPosZ);
-
-        // Update last positions for next tick
-        lastTickPosX = this.getX();
-        lastTickPosZ = this.getZ();
-
-        return deltaX > 0.001 || deltaZ > 0.001;
-    }
-    private boolean isInAir() {
-        if (Double.isNaN(lastTickPosY)){ //Add LastTickPosY
-            // First tick, initialize last positions
-            lastTickPosY = getY();
-            return false; // no movement on first tick
-        }
-
-        double deltaY = Math.abs(this.getY() - lastTickPosY);
-
-        // Update last positions for next tick
-        lastTickPosY = this.getY();
-
-        return deltaY > 0.001;
     }
 
     private void HandleConstantTickTimers(){
