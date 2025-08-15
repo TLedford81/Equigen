@@ -8,8 +8,6 @@ import net.buckleystudios.equigen.entity.custom.EgretEntity;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.custom.PillagerKingEntity;
 import net.buckleystudios.equigen.entity.custom.TestEntityEntity;
-import net.buckleystudios.equigen.network.GaitChangePayload;
-import net.buckleystudios.equigen.network.ServerPayloadHandler;
 import net.buckleystudios.equigen.util.ModKeyMappings;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.animal.Animal;
@@ -21,8 +19,6 @@ import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
-import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
-import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 @EventBusSubscriber(modid = EquigenMod.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class ModEventBusEvents {
@@ -60,16 +56,5 @@ public class ModEventBusEvents {
     public static void registerBindings(RegisterKeyMappingsEvent event) {
         event.register(ModKeyMappings.GAIT_UP.get());
         event.register(ModKeyMappings.GAIT_DOWN.get());
-    }
-
-    @SubscribeEvent
-    public static void registerPayloads(RegisterPayloadHandlersEvent event) {
-        PayloadRegistrar registrar = event.registrar("1");
-
-        registrar.playToServer(
-                GaitChangePayload.TYPE,
-                GaitChangePayload.STREAM_CODEC,
-                ServerPayloadHandler::handleGaitChange
-        );
     }
 }
