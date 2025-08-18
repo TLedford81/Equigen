@@ -21,7 +21,7 @@ public class ModEntities {
                     .sized(0.5f, 0.5f).build("egret"));
     public static final Supplier<EntityType<GeneticHorseEntity>> GENETIC_HORSE =
             ENTITY_TYPES.register("genetic_horse", () -> EntityType.Builder.of(GeneticHorseEntity::new, MobCategory.CREATURE)
-                    .sized(1f, 1.5f).build("genetic_horse"));
+                    .sized(1f, 1.5f).noSummon().build("genetic_horse"));
     public static final Supplier<EntityType<TestEntityEntity>> TEST_ENTITY =
             ENTITY_TYPES.register("test_entity", () -> EntityType.Builder.of(TestEntityEntity::new, MobCategory.CREATURE)
                     .sized(1f, 1.5f).build("test_entity"));

@@ -2,7 +2,6 @@ package net.buckleystudios.equigen.event;
 
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.ModEntities;
-import net.buckleystudios.equigen.entity.ModEntityAttributes;
 import net.buckleystudios.equigen.entity.client.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.backs.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.bottomlegs.*;
@@ -37,7 +36,6 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
-import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 
 @EventBusSubscriber(modid = EquigenMod.MODID, bus = EventBusSubscriber.Bus.MOD)
@@ -346,11 +344,6 @@ public class ModEventBusEvents {
         event.put(ModEntities.EGRET.get(), EgretEntity.createAttributes().build());
         event.put(ModEntities.GENETIC_HORSE.get(), GeneticHorseEntity.createAttributes().build());
         event.put(ModEntities.TEST_ENTITY.get(), TestEntityEntity.createAttributes().build());
-    }
-
-    @SubscribeEvent
-    public static void addAttributes(EntityAttributeModificationEvent event) {
-        event.add(ModEntities.GENETIC_HORSE.get(), ModEntityAttributes.MAX_HUNGER);
     }
 
     @SubscribeEvent

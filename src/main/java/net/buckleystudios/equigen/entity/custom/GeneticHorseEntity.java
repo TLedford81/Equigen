@@ -133,6 +133,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public int EnduranceSkillXPStage = 0;
     public int AgilitySkillXPStage = 0;
 
+    private boolean hasCustomSpawn;
     private boolean isTurnClutched;
     private boolean isJumpReady = true;
 
@@ -174,20 +175,24 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     // SPAWNING //
     public GeneticHorseEntity(EntityType<? extends AbstractHorse> entityType, Level level) {
         super(entityType, level);
-        setHunger(this.getMaxHunger());
-        setThirst(this.getMaxThirst());
-        setHappiness(this.getMaxHappiness());
-        setStress(0.0f);
-
-        //I HATE TAMING
-        this.setTemper(100);
     }
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
+        this.tameWithName(level.getNearestPlayer(this, 100.0d));
+        if(!this.hasCustomSpawn){
+            this.RandomizeGenetics();
+        }
         this.HandleNewSpawnSkillsAndProficiencies();
-        this.HandleNewSpawnGenetics();
-        this.tameWithName(level.getNearestPlayer(this, 10.0d));
+        this.setHunger(this.getMaxHunger());
+        this.setThirst(this.getMaxThirst());
+        this.setHappiness(this.getMaxHappiness());
+        this.setCleanliness("hoof", this.getMaxCleanliness("hoof"));
+        this.setCleanliness("hair", this.getMaxCleanliness("hair"));
+        this.setStress(0.0f);
+
+        //I HATE TAMING
+        this.setTemper(100);
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }
 
@@ -196,7 +201,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         if (child instanceof GeneticHorseEntity) {
             GeneticHorseEntity geneticHorseChild = (GeneticHorseEntity) child;
 
-            geneticHorseChild.HandleNewSpawnGenetics(this);
+            geneticHorseChild.HandleNewSpawnWithParentalGenetics(this);
             geneticHorseChild.HandleNewSpawnSkillsAndProficiencies();
         }
         super.onOffspringSpawnedFromEgg(player, child);
@@ -244,7 +249,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         level.broadcastEntityEvent(this, (byte)18); // hearts particles
         GeneticHorseEntity ghe = (GeneticHorseEntity) ageablemob;
         ghe.HandleNewSpawnSkillsAndProficiencies();
-        ghe.HandleNewSpawnGenetics(this, (GeneticHorseEntity) mate);
+        ghe.HandleNewSpawnWithParentalGenetics(this, (GeneticHorseEntity) mate);
     }
 
     // BASIC SETTINGS //
@@ -418,6 +423,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         builder.define(STRESS, 10.0F);
         builder.define(STAMINA, 10.0F);
 
+        builder.define(HOOF_CLEANLINESS, 10.0f);
+        builder.define(HAIR_CLEANLINESS, 10.0f);
+
         builder.define(CURRENT_GAIT, 0);
 
         builder.define(SKILL_SPEED, 0.0f);
@@ -453,9 +461,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
 
         builder.define(PREGNANT, false);
-
-        builder.define(HOOF_CLEANLINESS, 10.0f);
-        builder.define(HAIR_CLEANLINESS, 10.0f);
     }
 
 
@@ -594,6 +599,10 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         });
     }
 
+    public float getMaxCleanliness(String part){
+        return 10.0f;
+    }
+
     public boolean isNeedsFulilled(){
         return (this.getCleanliness() > 5f &&
                 this.getHunger() > 5f &&
@@ -725,6 +734,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             case "Endurance" -> entityData.set(SKILL_ENDURANCE, value);
             case "Agility" -> entityData.set(SKILL_AGILITY, value);
         }
+        EquigenMod.LOGGER.info("Setting Skill '{}' to a value of '{}'", sSkill, value);
         this.HandleSkills();
     }
 
@@ -938,19 +948,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     }
 
     public void setSkillToStartingLevel(String skill){
-        switch(skill){
-            case "Speed" -> this.entityData.set(SKILL_SPEED,
-                    this.getStartingSkillLevel(skill));
-            case "Jump" -> this.entityData.set(SKILL_JUMP,
-                    this.getStartingSkillLevel(skill));
-            case "Strength" -> this.entityData.set(SKILL_STRENGTH,
-                    this.getStartingSkillLevel(skill));
-            case "Endurance" -> this.entityData.set(SKILL_ENDURANCE,
-                    this.getStartingSkillLevel(skill));
-            case "Agility" -> this.entityData.set(SKILL_AGILITY,
-                    this.getStartingSkillLevel(skill));
-
-        }
+        this.setSkill(skill, getStartingSkillLevel(skill));
         this.HandleSkills();
     }
 
@@ -1491,7 +1489,15 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
 
     // GENETICS //
-    public void HandleNewSpawnGenetics(){
+    public void HandleNewSpawnWithCustomGenetics(Map<String, Integer> customGenes){
+        this.hasCustomSpawn = true;
+        this.RandomizeGenetics();
+        for (String gene : customGenes.keySet()){
+            this.setGenetic(gene, customGenes.get(gene));
+        }
+    }
+
+    public void RandomizeGenetics(){
         Random random = new Random();
         for(int i = 0; i < geneticCount; i++) {
             GeneticValues value = GeneticValues.values()[i];
@@ -1509,11 +1515,12 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         }
     }
 
-    public void HandleNewSpawnGenetics(GeneticHorseEntity parent){
-        this.HandleNewSpawnGenetics(parent, parent);
+    public void HandleNewSpawnWithParentalGenetics(GeneticHorseEntity parent){
+        this.HandleNewSpawnWithParentalGenetics(parent, parent);
     }
+
     String reroll = "";
-    public void HandleNewSpawnGenetics(GeneticHorseEntity mother, GeneticHorseEntity father) {
+    public void HandleNewSpawnWithParentalGenetics(GeneticHorseEntity mother, GeneticHorseEntity father) {
         Random random = new Random();
         int rolls = 0;
         for (int i = 0; i < geneticCount; i++) {
@@ -1886,9 +1893,10 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     public void setGenetic(String key, float number) {
 //        LOGGER.info("Setting Geneic: " + key + " / " + number);
-        this.GENETICS.put(key, number);
+        float clampedNumber = Math.clamp(number, 0, GeneticValues.valueOf(key).getMaxSize());
+        this.GENETICS.put(key, clampedNumber);
         if (key.equals("GENDER") || key.equals("BLACK_MODIFIER")) {
-            EquigenMod.LOGGER.info("Setting " + key + " to " + number);
+            EquigenMod.LOGGER.info("Setting " + key + " to " + clampedNumber);
         }
         this.setRenderGenetics();
     }

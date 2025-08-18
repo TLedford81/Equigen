@@ -11,10 +11,10 @@ public class ModEntityAttributes {
 
     public static final DeferredRegister<Attribute> ATTRIBUTES = DeferredRegister.create(Registries.ATTRIBUTE, EquigenMod.MODID);
 
-    public static final DeferredHolder<Attribute, Attribute> MAX_HUNGER = register("max_hunger", 20, 0, 20);
-    public static final DeferredHolder<Attribute, Attribute> MAX_THIRST = register("max_thirst", 20, 0, 20);
-    public static final DeferredHolder<Attribute, Attribute> MAX_HAPPINESS = register("max_happiness", 20, 0, 20);
-    public static final DeferredHolder<Attribute, Attribute> MAX_STRESS = register("max_stress", 20, 0, 20);
+    public static final DeferredHolder<Attribute, Attribute> MAX_HUNGER = register("max_hunger", 10, 0, 10);
+    public static final DeferredHolder<Attribute, Attribute> MAX_THIRST = register("max_thirst", 10, 0, 10);
+    public static final DeferredHolder<Attribute, Attribute> MAX_HAPPINESS = register("max_happiness", 10, 0, 10);
+    public static final DeferredHolder<Attribute, Attribute> MAX_STRESS = register("max_stress", 10, 0, 10);
 
     public static final DeferredHolder<Attribute, Attribute> MAX_SKILL_SPEED = register("max_skill_speed", 10, 1, 20);
     public static final DeferredHolder<Attribute, Attribute> MAX_SKILL_STRENGTH = register("max_skill_strength", 10, 1, 20);
