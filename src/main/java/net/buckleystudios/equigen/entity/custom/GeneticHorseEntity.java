@@ -18,11 +18,14 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.network.Filterable;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
@@ -79,10 +82,16 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     private int hungerTickTimer;
     private int thirstTickTimer;
     private int stressRecoveryTickTimer;
-    private int speedSkillXPGainTickTimer;
-    private int jumpSkillXPGainTickTimer;
-    private int strengthSkillXPGainTickTimer;
+    private int speedSkillXP;
+    private int jumpSkillXP;
+    private int strengthSkillXP;
+    private int enduranceSkillXP;
+
+    private int agilitySkillXPGainTickTimer;
+
     private int staminaRecoveryTickTimer;
+    private int gaitStopTickTimer;
+    private int jumpCooldownTickTimer;
 
     public static final int WALK = 0;
     public static final int TROT = 1;
@@ -101,6 +110,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public int StrengthSkillXPStage = 0;
     public int EnduranceSkillXPStage = 0;
     public int AgilitySkillXPStage = 0;
+
+    private boolean isTurnClutched;
+    private boolean isJumpReady = true;
 
 
     // SPAWNING //
@@ -237,6 +249,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
         //Movement
         this.setGait(tag.getInt("CurrentGait"));
+        EquigenMod.LOGGER.info("Gait Changed By: Loading");
 
         //Stats
         this.setHunger(tag.getFloat("Hunger"));
@@ -507,6 +520,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public void setGait(int gait){
         this.entityData.set(CURRENT_GAIT, Math.clamp(gait, 0, 3));
 
+        EquigenMod.LOGGER.info("CHANGED GAIT: " + gait);
+
         float speedModifier = this.getGaitSpeedModifier();
 
         ResourceLocation gait_speed_ID = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "gait_modifier");
@@ -534,7 +549,13 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     public void alterGait(int value){
         this.setGait(this.getCurrentGait() + value);
-        EquigenMod.LOGGER.info("GAIT CHANGED: " + this.getCurrentGait());
+        EquigenMod.LOGGER.info("ALTERED GAIT: " + this.getCurrentGait());
+    }
+
+    public void MovingGaitChange(int value){
+        if(this.isMoving() && this.level().isClientSide()) {
+            this.alterGait(value);
+        }
     }
 
     // SKILLS //
@@ -559,8 +580,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         AttributeModifier maxJumpModifier = new AttributeModifier(maxJumpSkillID,
                 this.getGenetic("JUMP_MAX_LEVEL"), AttributeModifier.Operation.ADD_VALUE);
         attributes.getInstance(ModEntityAttributes.MAX_SKILL_JUMP).addOrReplacePermanentModifier(maxJumpModifier);
-
-        attributes.getInstance(ModEntityAttributes.MAX_SKILL_STRENGTH).addOrReplacePermanentModifier(maxStrengthModifier);
 
         //Endurance
         ResourceLocation maxEnduranceSkillID = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "endurance_skill_max");
@@ -723,6 +742,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                 currentAgility, AttributeModifier.Operation.ADD_VALUE);
 
         AttributeMap attributes = this.getAttributes();
+
         attributes.getInstance(Attributes.MOVEMENT_SPEED).addOrReplacePermanentModifier(speedModifier);
         attributes.getInstance(Attributes.ATTACK_DAMAGE).addOrReplacePermanentModifier(strengthModifier);
         attributes.getInstance(Attributes.ARMOR).addOrReplacePermanentModifier(strengthModifier);
@@ -889,7 +909,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         }
 
         if (flag) {
-            this.LevelUpSkill("Speed", 1.23f);
             this.eat();
             this.gameEvent(GameEvent.EAT);
             this.goalSelector.addGoal(1, new EatBlockGoal(this));
@@ -936,6 +955,91 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         return ModSounds.TEST_SOUND.get();
     }
 
+    private float headNudge;
+    @Override
+    public void travel(Vec3 travelVector) {
+        if (this.isVehicle() && this.getControllingPassenger() instanceof LivingEntity living) {
+            if(travelVector.x > 0.0){
+                this.setRot(this.getYRot() - this.getTurnSpeed(), this.getXRot());
+                headNudge = -this.getTurnSpeed();
+                this.agilitySkillXPGainTickTimer++;
+            } else if(travelVector.x < 0.0) {
+                this.setRot(this.getYRot() + this.getTurnSpeed(), this.getXRot());
+                headNudge = this.getTurnSpeed();
+                this.agilitySkillXPGainTickTimer++;
+            } else {
+                headNudge = 0;
+            }
+
+            if(agilitySkillXPGainTickTimer >= AgilityXPToLevelUp){
+                agilitySkillXPGainTickTimer = 0;
+                this.LevelUpSkill("Agility", 0.01f);
+            }
+
+            float forward = living.zza; // W/S
+            float strafe = 0.0F;         // disable A/D
+            float vertical = 0.0F;
+
+            super.travel(new Vec3(strafe, vertical, forward));
+        } else {
+            super.travel(travelVector);
+        }
+    }
+
+    @Override
+    protected void positionRider(Entity passenger, Entity.MoveFunction callback) {
+        super.positionRider(passenger, callback);
+        if (!passenger.getType().is(EntityTypeTags.CAN_TURN_IN_BOATS)) {
+            passenger.setYRot(passenger.getYRot() + headNudge);
+            passenger.setYHeadRot(passenger.getYHeadRot() + headNudge);
+            this.clampRotation(passenger);
+        }
+    }
+
+    protected void clampRotation(Entity entityToUpdate) {
+        entityToUpdate.setYBodyRot(this.getYRot());
+        float f = Mth.wrapDegrees(entityToUpdate.getYRot() - this.getYRot());
+        float f1 = Mth.clamp(f, -105.0F, 105.0F);
+        entityToUpdate.yRotO += f1 - f;
+        entityToUpdate.setYRot(entityToUpdate.getYRot() + f1 - f);
+        entityToUpdate.setYHeadRot(entityToUpdate.getYRot());
+    }
+
+    @Override
+    protected void tickRidden(Player player, Vec3 travelVector) {
+        this.yRotO = this.yBodyRot = this.yHeadRot = this.getYRot();
+        if (this.isControlledByLocalInstance()) {
+            if (travelVector.z <= 0.0) {
+                this.gallopSoundCounter = 0;
+            }
+            if (this.onGround()) {
+                this.setIsJumping(false);
+                if (this.playerJumpPendingScale > 0.0F && !this.isJumping()) {
+                    this.executeRidersJump(this.playerJumpPendingScale, travelVector);
+                }
+
+                this.playerJumpPendingScale = 0.0F;
+            }
+        }
+    }
+
+    public float getTurnSpeed() {
+        return this.getCurrentSkillLevel("Agility") * (this.isTurnClutched ? 0.5f : 1.0f);
+    }
+
+    @Override
+    public boolean canJump() {
+        EquigenMod.LOGGER.info((this.getCurrentStamina() > 0) + " / " + this.isJumpReady);
+        return this.getCurrentStamina() > 0 && this.isJumpReady;
+    }
+
+    @Override
+    public boolean canEatGrass() {
+        return this.getHunger() <= 9.0f;
+    }
+
+    //TODO: Change XP Gain Tick Timer Areas to a method for easier calling
+
     // TICKING AND INTERACTIONS //
     @Override
     public void tick() {
@@ -946,44 +1050,78 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             float jumpStaminaDrain = 0f;
             float endurance = this.getCurrentSkillLevel("Endurance");
             float enduranceModifier = endurance * 0.1f;
+            float jump = this.getCurrentSkillLevel("Jump");
+            int jumpCooldownModifier = Math.round(jump * 5);
 
+            if(this.isEating()){
+                this.alterHunger(0.001f);
+                EquigenMod.LOGGER.info("EATING: " + this.getHunger());
+            }
             //Speed Skill Levelling
             if (this.hasControllingPassenger()) {
-                float XPGainAmount = switch (this.getCurrentGait()) {
+                float SpeedXPGainAmount = switch (this.getCurrentGait()) {
                     case CANTER -> 0.01f;
                     case GALLOP -> 0.02f;
                     default -> 0.0f;
                 };
-                if (this.getDeltaMovement().x > 0 || this.getDeltaMovement().z > 0) {
+
+                if (this.isMoving()) {
+                    this.gaitStopTickTimer = 0;
                     if(this.getCurrentGait() == CANTER){
                         gaitStaminaDrain = 0.1f;
                     } else if (this.getCurrentGait() == GALLOP) {
                         gaitStaminaDrain = 0.15f;
+
+                        enduranceSkillXP++;
+                        if (enduranceSkillXP >= EnduranceXPToLevelUp) {
+                            this.LevelUpSkill("Endurance", 0.1f *
+                                    this.GetSkillProficiencyBonus(this.entityData.get(ENDURANCE_PROFICIENCY)));
+                            this.enduranceSkillXP = 0;
+                        }
                     }
 
                     gaitStaminaDrain = gaitStaminaDrain - (gaitStaminaDrain * enduranceModifier);
 
-                    if (XPGainAmount != 0.0f) {
-                        speedSkillXPGainTickTimer++;
-                        if (speedSkillXPGainTickTimer >= SpeedXPToLevelUp) {
-                            this.LevelUpSkill("Speed", XPGainAmount *
+                    if (SpeedXPGainAmount != 0.0f) {
+                        speedSkillXP++;
+                        if (speedSkillXP >= SpeedXPToLevelUp) {
+                            this.LevelUpSkill("Speed", SpeedXPGainAmount *
                                     this.GetSkillProficiencyBonus(this.entityData.get(SPEED_PROFICIENCY)));
-                            this.speedSkillXPGainTickTimer = 0;
+                            this.speedSkillXP = 0;
+                        }
+                    }
+                } else {
+                    if(this.getCurrentGait() >= TROT){
+                        gaitStopTickTimer++;
+                        if (gaitStopTickTimer >= 40){
+                            this.setGait(WALK);
+                            EquigenMod.LOGGER.info("Gait Changed By Gait Stopping Timer");
+                            gaitStopTickTimer = 0;
                         }
                     }
                 }
 
                 if (this.isJumping()) {
-//                    EquigenMod.LOGGER.info("This horse is jumping!!!!!");
                     jumpStaminaDrain = 0.2f;
                     jumpStaminaDrain = jumpStaminaDrain - (jumpStaminaDrain * enduranceModifier);
-                    if (XPGainAmount != 0.0f) {
-                        jumpSkillXPGainTickTimer++;
-                        if (jumpSkillXPGainTickTimer >= JumpXPToLevelUp) {
-                            this.LevelUpSkill("Jump", XPGainAmount);
-                            this.jumpSkillXPGainTickTimer = 0;
+                    if (SpeedXPGainAmount != 0.0f) {
+                        jumpSkillXP++;
+                        if (jumpSkillXP >= JumpXPToLevelUp) {
+                            this.LevelUpSkill("Jump", 0.1f);
+                            this.jumpSkillXP = 0;
                         }
                     }
+                } else {
+                    this.jumpCooldownTickTimer--;
+                    if(this.jumpCooldownTickTimer <= 0){
+                        this.isJumpReady = true;
+                    }
+                }
+
+                if(this.isFalling() || this.isJumping)
+                {
+                    this.isJumpReady = false;
+                    this.jumpCooldownTickTimer = 100 - jumpCooldownModifier;
                 }
 
                 float totalStaminaDrain = gaitStaminaDrain + jumpStaminaDrain;
@@ -991,7 +1129,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                 if(totalStaminaDrain > 0) {
                     staminaRecoveryTickTimer = 0;
                     if (this.getCurrentStamina() <= 0) {
-                        this.setGait(0);
+                        this.setGait(WALK);
+                        EquigenMod.LOGGER.info("GAIT CHANGED BY: Stamina Loss");
                     } else {
                         this.alterStamina(-totalStaminaDrain);
                     }
@@ -1001,10 +1140,13 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                         this.alterStamina(0.1f);
                     }
                 }
-                EquigenMod.LOGGER.info("Stamina: " + this.getCurrentStamina() + " / Gait " + this.getCurrentGait());
+//                EquigenMod.LOGGER.info("Stamina: " + this.getCurrentStamina() + " / Gait " + this.getCurrentGait());
 
             } else {
-                this.setGait(0);
+                if(this.getCurrentGait() >= TROT) {
+                    this.setGait(WALK);
+                    EquigenMod.LOGGER.info("Gait Changed By: Dismount");
+                }
             }
         } else {
             HandleConstantTickTimers();
@@ -1067,10 +1209,49 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         }
     }
 
+    public boolean isMoving(){
+        return this.getDeltaMovement().x != 0 || this.getDeltaMovement().z != 0;
+    }
+
+    public boolean isFalling(){
+        return fallDistance > 3.0f;
+    }
+
     private void HandleConstantTickTimers(){
         hungerTickTimer++;
         thirstTickTimer++;
         stressRecoveryTickTimer++;
+    }
+
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
+        boolean gainExp =
+                source.is(DamageTypes.MOB_ATTACK) ||
+                source.is(DamageTypes.PLAYER_ATTACK) ||
+                source.is(DamageTypes.EXPLOSION) ||
+                source.is(DamageTypes.FALL) ||
+                source.is(DamageTypes.FALLING_ANVIL) ||
+                source.is(DamageTypes.FALLING_BLOCK) ||
+                source.is(DamageTypes.FALLING_STALACTITE) ||
+                source.is(DamageTypes.FIREBALL) ||
+                source.is(DamageTypes.FIREWORKS) ||
+                source.is(DamageTypes.FLY_INTO_WALL) ||
+                source.is(DamageTypes.GENERIC) ||
+                source.is(DamageTypes.MOB_ATTACK_NO_AGGRO) ||
+                source.is(DamageTypes.SONIC_BOOM) ||
+                source.is(DamageTypes.STING) ||
+                source.is(DamageTypes.THORNS) ||
+                source.is(DamageTypes.TRIDENT) ||
+                source.is(DamageTypes.UNATTRIBUTED_FIREBALL) ||
+                source.is(DamageTypes.WITHER_SKULL)
+                ;
+        if(gainExp) {
+            this.strengthSkillXP += amount;
+            if (strengthSkillXP >= StrengthXPToLevelUp) {
+                this.LevelUpSkill("Strength", 0.01f);
+            }
+        }
+        return super.hurt(source, amount);
     }
 
     @Override

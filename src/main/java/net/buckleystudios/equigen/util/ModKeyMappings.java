@@ -28,7 +28,7 @@ public class ModKeyMappings {
             Player player = Minecraft.getInstance().player;
             if(player != null){
                 if(player.getVehicle() instanceof GeneticHorseEntity geneticHorseEntity){
-                    geneticHorseEntity.alterGait(1);
+                    geneticHorseEntity.MovingGaitChange(1);
                 }
             }
         }
@@ -36,7 +36,7 @@ public class ModKeyMappings {
             Player player = Minecraft.getInstance().player;
             if(player != null){
                 if(player.getVehicle() instanceof GeneticHorseEntity geneticHorseEntity){
-                    geneticHorseEntity.alterGait(-1);
+                    geneticHorseEntity.MovingGaitChange(-1);
                 }
             }
         }
