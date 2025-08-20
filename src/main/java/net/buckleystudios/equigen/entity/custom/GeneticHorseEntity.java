@@ -138,9 +138,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     @Override
     protected void onOffspringSpawnedFromEgg(Player player, Mob child) {
         if (child instanceof GeneticHorseEntity) {
-            GeneticHorseEntity geneticHorseChild = (GeneticHorseEntity) child;  // Cast to the specific entity class
+            GeneticHorseEntity geneticHorseChild = (GeneticHorseEntity) child;
 
-            // Randomize the genetics for the spawned baby
             geneticHorseChild.HandleNewSpawnGenetics(this);
             geneticHorseChild.HandleNewSpawnSkillsAndProficiencies();
         }
@@ -150,9 +149,14 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     @Override
     public void finalizeSpawnChildFromBreeding(ServerLevel level, Animal animal, @Nullable AgeableMob baby) {
         if (baby instanceof GeneticHorseEntity) {
-            GeneticHorseEntity geneticHorseBaby = (GeneticHorseEntity) baby;  // Cast to the specific entity class
+            GeneticHorseEntity geneticHorseBaby = (GeneticHorseEntity) baby;
             geneticHorseBaby.HandleNewSpawnSkillsAndProficiencies();
-            geneticHorseBaby.HandleNewSpawnGenetics(this);
+            if(animal instanceof GeneticHorseEntity parent2) {
+                geneticHorseBaby.HandleNewSpawnGenetics(this, parent2);
+                EquigenMod.LOGGER.info("Spawned Baby of " + this.getName() + " and " + animal.getName());
+            } else {
+                EquigenMod.LOGGER.error("Interspecies Mating Detected!");
+            }
         }
         super.finalizeSpawnChildFromBreeding(level, animal, baby);
     }
@@ -1404,13 +1408,18 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                     maxValue = motherGenetic;
                 }
 
+                minValue -= 1;
+                maxValue += 1; //Allows for slight variation
+
                 float newGeneticValue;
                 if (MAX_SKILL_GENETICS.contains(value.name())) {
-                    newGeneticValue = random.nextFloat(minValue, maxValue) + 1;
+                    newGeneticValue = random.nextFloat(minValue, maxValue + 1f);
                     newGeneticValue = (float) Math.round(newGeneticValue * 100) / 100;
                 } else {
-                    newGeneticValue = random.nextInt(Math.round(minValue), Math.round(maxValue)) + 1;
+                    newGeneticValue = random.nextInt(Math.round(minValue), Math.round(maxValue) + 1);
                 }
+
+                newGeneticValue = Math.clamp(newGeneticValue, 0, value.getMaxSize());
                 this.setGenetic(value.name(), newGeneticValue);
             }
         }
