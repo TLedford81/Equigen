@@ -122,27 +122,16 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         setThirst(this.getMaxThirst());
         setHappiness(this.getMaxHappiness());
         setStress(0.0f);
+
+        //I HATE TAMING
+        this.setTemper(100);
     }
 
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
-        this.GenerateNewGeneticsAndSkills();
-        level.getServer().getPlayerList().broadcastSystemMessage(Component.literal("Spawned Horse with Max Speed Skill of: " + this.getAttributes().getValue(ModEntityAttributes.MAX_SKILL_SPEED)), false);
-        level.getServer().getPlayerList().broadcastSystemMessage(Component.literal("And Current Speed Skill of: " + this.getCurrentSkillLevel("Speed")), false);
-
-        level.getServer().getPlayerList().broadcastSystemMessage(Component.literal("Spawned Horse with Max Jump Skill of: " + this.getAttributes().getValue(ModEntityAttributes.MAX_SKILL_JUMP)), false);
-        level.getServer().getPlayerList().broadcastSystemMessage(Component.literal("And Current Jump Skill of: " + this.getCurrentSkillLevel("Jump")), false);
-
-        level.getServer().getPlayerList().broadcastSystemMessage(Component.literal("Spawned Horse with Max Strength Skill of: " + this.getAttributes().getValue(ModEntityAttributes.MAX_SKILL_STRENGTH)), false);
-        level.getServer().getPlayerList().broadcastSystemMessage(Component.literal("And Current Strength Skill of: " + this.getCurrentSkillLevel("Strength")), false);
-
-        level.getServer().getPlayerList().broadcastSystemMessage(Component.literal("Spawned Horse with Max Endurance Skill of: " + this.getAttributes().getValue(ModEntityAttributes.MAX_SKILL_ENDURANCE)), false);
-        level.getServer().getPlayerList().broadcastSystemMessage(Component.literal("And Current Endurance Skill of: " + this.getCurrentSkillLevel("Endurance")), false);
-
-        level.getServer().getPlayerList().broadcastSystemMessage(Component.literal("Spawned Horse with Max Agility Skill of: " + this.getAttributes().getValue(ModEntityAttributes.MAX_SKILL_AGILITY)), false);
-        level.getServer().getPlayerList().broadcastSystemMessage(Component.literal("And Current Agility Skill of: " + this.getCurrentSkillLevel("Agility")), false);
-
+        this.HandleNewSpawnSkillsAndProficiencies();
+        this.HandleNewSpawnGenetics();
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }
 
@@ -152,7 +141,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             GeneticHorseEntity geneticHorseChild = (GeneticHorseEntity) child;  // Cast to the specific entity class
 
             // Randomize the genetics for the spawned baby
-            geneticHorseChild.GenerateNewGeneticsAndSkills();
+            geneticHorseChild.HandleNewSpawnGenetics(this);
+            geneticHorseChild.HandleNewSpawnSkillsAndProficiencies();
         }
         super.onOffspringSpawnedFromEgg(player, child);
     }
@@ -161,23 +151,10 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public void finalizeSpawnChildFromBreeding(ServerLevel level, Animal animal, @Nullable AgeableMob baby) {
         if (baby instanceof GeneticHorseEntity) {
             GeneticHorseEntity geneticHorseBaby = (GeneticHorseEntity) baby;  // Cast to the specific entity class
-            geneticHorseBaby.GenerateNewGeneticsAndSkills();
+            geneticHorseBaby.HandleNewSpawnSkillsAndProficiencies();
+            geneticHorseBaby.HandleNewSpawnGenetics(this);
         }
         super.finalizeSpawnChildFromBreeding(level, animal, baby);
-    }
-
-    public void GenerateNewGeneticsAndSkills(){
-        this.randomizeGenetics();
-        this.setMaxSkills();
-        this.setSkillToStartingLevel("Speed");
-        this.setSkillToStartingLevel("Jump");
-        this.setSkillToStartingLevel("Strength");
-        this.setSkillToStartingLevel("Endurance");
-        this.setSkillToStartingLevel("Agility");
-        this.HandleProficiencies();
-
-        //I HATE TAMING
-        this.setTemper(100);
     }
 
     // BASIC SETTINGS //
@@ -559,6 +536,16 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     }
 
     // SKILLS //
+    public void HandleNewSpawnSkillsAndProficiencies(){
+        this.setMaxSkills();
+        this.setSkillToStartingLevel("Speed");
+        this.setSkillToStartingLevel("Jump");
+        this.setSkillToStartingLevel("Strength");
+        this.setSkillToStartingLevel("Endurance");
+        this.setSkillToStartingLevel("Agility");
+        this.HandleProficiencies();
+    }
+
     public void setMaxSkills(){
         AttributeMap attributes = this.getAttributes();
 
@@ -1374,7 +1361,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
 
     // GENETICS //
-    public void randomizeGenetics(){
+    public void HandleNewSpawnGenetics(){
         List<String> MAX_SKILL_GENETICS = List.of("SPEED_MAX_LEVEL", "STRENGTH_MAX_LEVEL", "JUMP_MAX_LEVEL", "ENDURANCE_MAX_LEVEL", "AGILITY_MAX_LEVEL");
         Random random = new Random();
         for(int i = 0; i < geneticCount; i++) {
@@ -1389,6 +1376,41 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                     this.setGenetic(value.name(), randomNum);
 //                EquigenMod.LOGGER.info("Genetic " + value.name() + " set to " + randomNum);
                 }
+            }
+        }
+    }
+
+    public void HandleNewSpawnGenetics(GeneticHorseEntity parent){
+        this.HandleNewSpawnGenetics(parent, parent);
+    }
+
+    public void HandleNewSpawnGenetics(GeneticHorseEntity mother, GeneticHorseEntity father){
+        List<String> MAX_SKILL_GENETICS = List.of("SPEED_MAX_LEVEL", "STRENGTH_MAX_LEVEL", "JUMP_MAX_LEVEL", "ENDURANCE_MAX_LEVEL", "AGILITY_MAX_LEVEL");
+        Random random = new Random();
+        for(int i = 0; i < geneticCount; i++) {
+            GeneticValues value = GeneticValues.values()[i];
+            if (value.getMaxSize() != 0) {
+                float minValue, maxValue;
+                float motherGenetic = mother.getGenetic(value.name());
+                float fatherGenetic = father.getGenetic(value.name());
+
+                if(fatherGenetic > motherGenetic){
+                    minValue = motherGenetic;
+                    maxValue = fatherGenetic;
+                }
+                else{
+                    minValue = fatherGenetic;
+                    maxValue = motherGenetic;
+                }
+
+                float newGeneticValue;
+                if (MAX_SKILL_GENETICS.contains(value.name())) {
+                    newGeneticValue = random.nextFloat(minValue, maxValue) + 1;
+                    newGeneticValue = (float) Math.round(newGeneticValue * 100) / 100;
+                } else {
+                    newGeneticValue = random.nextInt(Math.round(minValue), Math.round(maxValue)) + 1;
+                }
+                this.setGenetic(value.name(), newGeneticValue);
             }
         }
     }
