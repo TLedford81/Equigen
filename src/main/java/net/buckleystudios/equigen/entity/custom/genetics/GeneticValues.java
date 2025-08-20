@@ -1,6 +1,9 @@
 package net.buckleystudios.equigen.entity.custom.genetics;
 
 public enum GeneticValues {
+    /* Gender */
+    GENDER,
+
     /* Conformation */
     HOOF_SIZE,
     LEG_WIDTH,
@@ -56,21 +59,38 @@ public enum GeneticValues {
     PANGARE,
     PANGARE_VARIATION,
     FRAME_OVERO,
-    FRAME_OVERO_VARIATION, // Change all the specific white markings with a lot of variations (overo, sabino, etc) have mix and match markings to add //
+    FRAME_OVERO_VARIATION_1,
+    FRAME_OVERO_VARIATION_2,
+    FRAME_OVERO_VARIATION_3,// Change all the specific white markings with a lot of variations (overo, sabino, etc) have mix and match markings to add //
     RABICANO,
-    RABICANO_VARIATION,
+    RABICANO_VARIATION_1,
+    RABICANO_VARIATION_2,
+    RABICANO_VARIATION_3,
     LEOPARD_COMPLEX,
-    LEOPARD_COMPLEX_VARIATION,
+    LEOPARD_COMPLEX_VARIATION_1,
+    LEOPARD_COMPLEX_VARIATION_2,
+    LEOPARD_COMPLEX_VARIATION_3,
     SPLASHED_WHITE,
-    SPLASHED_WHITE_VARIATION,
+    SPLASHED_WHITE_VARIATION_1,
+    SPLASHED_WHITE_VARIATION_2,
+    SPLASHED_WHITE_VARIATION_3,
     TOBIANO,
-    TOBIANO_VARIATION,
+    TOBIANO_VARIATION_1,
+    TOBIANO_VARIATION_2,
+    TOBIANO_VARIATION_3,
     SABINO,
-    SABINO_VARIATION,
+    SABINO_VARIATION_1,
+    SABINO_VARIATION_2,
+    SABINO_VARIATION_3,
     WHITE_SPOTTING,
-    WHITE_SPOTTING_VARIATION,
+    WHITE_SPOTTING_VARIATION_1,
+    WHITE_SPOTTING_VARIATION_2,
+    WHITE_SPOTTING_VARIATION_3,
     FACE_MARKING,
-    LEG_MARKING,  // Change it so that there is a leg marking genetic for each leg? //
+    FRONT_LEFT_LEG_MARKING,
+    FRONT_RIGHT_LEG_MARKING,
+    BACK_LEFT_LEG_MARKING,
+    BACK_RIGHT_LEG_MARKING,
     LEG_MARKING_COLOR,
     LEFT_EYE_COLOR,
     RIGHT_EYE_COLOR,
@@ -118,6 +138,11 @@ public enum GeneticValues {
 
     public float getMaxSize(){
         return switch (this){
+            /* Gender */
+            // 0 = Stallion, 1 = Mare, 2 = Gelding
+
+            case GENDER -> 2;
+
             /* Conformation */
             case HOOF_SIZE -> 3;
             case LEG_WIDTH -> 3;
@@ -173,21 +198,38 @@ public enum GeneticValues {
             case PANGARE -> 0;
             case PANGARE_VARIATION -> 0;
             case FRAME_OVERO -> 0;
-            case FRAME_OVERO_VARIATION -> 0;
+            case FRAME_OVERO_VARIATION_1 -> 0;
+            case FRAME_OVERO_VARIATION_2 -> 0;
+            case FRAME_OVERO_VARIATION_3 -> 0;
             case RABICANO -> 0;
-            case RABICANO_VARIATION -> 0;
+            case RABICANO_VARIATION_1 -> 0;
+            case RABICANO_VARIATION_2 -> 0;
+            case RABICANO_VARIATION_3 -> 0;
             case LEOPARD_COMPLEX -> 0;
-            case LEOPARD_COMPLEX_VARIATION -> 0;
+            case LEOPARD_COMPLEX_VARIATION_1 -> 0;
+            case LEOPARD_COMPLEX_VARIATION_2 -> 0;
+            case LEOPARD_COMPLEX_VARIATION_3 -> 0;
             case SPLASHED_WHITE -> 0;
-            case SPLASHED_WHITE_VARIATION -> 0;
+            case SPLASHED_WHITE_VARIATION_1 -> 0;
+            case SPLASHED_WHITE_VARIATION_2 -> 0;
+            case SPLASHED_WHITE_VARIATION_3 -> 0;
             case TOBIANO -> 0;
-            case TOBIANO_VARIATION -> 0;
+            case TOBIANO_VARIATION_1 -> 0;
+            case TOBIANO_VARIATION_2 -> 0;
+            case TOBIANO_VARIATION_3 -> 0;
             case SABINO -> 0;
-            case SABINO_VARIATION -> 0;
+            case SABINO_VARIATION_1 -> 0;
+            case SABINO_VARIATION_2 -> 0;
+            case SABINO_VARIATION_3 -> 0;
             case WHITE_SPOTTING -> 0;
-            case WHITE_SPOTTING_VARIATION -> 0;
+            case WHITE_SPOTTING_VARIATION_1 -> 0;
+            case WHITE_SPOTTING_VARIATION_2 -> 0;
+            case WHITE_SPOTTING_VARIATION_3 -> 0;
             case FACE_MARKING -> 0;
-            case LEG_MARKING -> 0;
+            case FRONT_LEFT_LEG_MARKING -> 0;
+            case FRONT_RIGHT_LEG_MARKING -> 0;
+            case BACK_LEFT_LEG_MARKING -> 0;
+            case BACK_RIGHT_LEG_MARKING -> 0;
             case LEG_MARKING_COLOR -> 0;
             case LEFT_EYE_COLOR -> 0;
             case RIGHT_EYE_COLOR -> 0;

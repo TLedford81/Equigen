@@ -780,7 +780,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         } else if (jump_ssl <= 7.0) {
             this.entityData.set(JUMP_PROFICIENCY, 3);
         } else {
-            EquigenMod.LOGGER.error("Invalid Starting Speed of " + jump_ssl + "! Could not set skill pro fish agency.");
+            EquigenMod.LOGGER.error("Invalid Starting Jump of " + jump_ssl + "! Could not set skill pro fish agency.");
             this.entityData.set(JUMP_PROFICIENCY, 0); // Invalid
         }
         // Strength //
@@ -791,7 +791,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         } else if (strength_ssl <= 7.0) {
             this.entityData.set(STRENGTH_PROFICIENCY, 3);
         } else {
-            EquigenMod.LOGGER.error("Invalid Starting Speed of " + strength_ssl + "! Could not set skill pro fish agency.");
+            EquigenMod.LOGGER.error("Invalid Starting Strength of " + strength_ssl + "! Could not set skill pro fish agency.");
             this.entityData.set(STRENGTH_PROFICIENCY, 0); // Invalid
         }
         // Endurance //
@@ -802,18 +802,19 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         } else if (endurance_ssl <= 7.0) {
             this.entityData.set(ENDURANCE_PROFICIENCY, 3);
         } else {
-            EquigenMod.LOGGER.error("Invalid Starting Speed of " + endurance_ssl + "! Could not set skill pro fish agency.");
+            EquigenMod.LOGGER.error("Invalid Starting Endurance of " + endurance_ssl + "! Could not set skill pro fish agency.");
             this.entityData.set(ENDURANCE_PROFICIENCY, 0); // Invalid
-            // Agility //
-            if (agility_ssl <= 2.3) {
-                this.entityData.set(AGILITY_PROFICIENCY, 1);
-            } else if (agility_ssl <= 4.6) {
-                this.entityData.set(AGILITY_PROFICIENCY, 2);
-            } else if (agility_ssl <= 7.0) {
-                this.entityData.set(AGILITY_PROFICIENCY, 3);
-            } else {
-                EquigenMod.LOGGER.error("Invalid Starting Speed of " + agility_ssl + "! Could not set skill pro fish agency.");
-                this.entityData.set(AGILITY_PROFICIENCY, 0); // Invalid
+
+        // Agility //
+        if (agility_ssl <= 2.3) {
+            this.entityData.set(AGILITY_PROFICIENCY, 1);
+        } else if (agility_ssl <= 4.6) {
+            this.entityData.set(AGILITY_PROFICIENCY, 2);
+        } else if (agility_ssl <= 7.0) {
+            this.entityData.set(AGILITY_PROFICIENCY, 3);
+        } else {
+            EquigenMod.LOGGER.error("Invalid Starting Agility of " + agility_ssl + "! Could not set skill pro fish agency.");
+            this.entityData.set(AGILITY_PROFICIENCY, 0); // Invalid
             }
         }
     }
