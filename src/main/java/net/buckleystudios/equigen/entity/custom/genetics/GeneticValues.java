@@ -139,9 +139,8 @@ public enum GeneticValues {
     public float getMaxSize(){
         return switch (this){
             /* Gender */
-            // 0 = Stallion, 1 = Mare, 2 = Gelding
-
-            case GENDER -> 2;
+            // 0 = Stallion, 1 = Mare
+            case GENDER -> 1;
 
             /* Conformation */
             case HOOF_SIZE -> 3;
