@@ -127,11 +127,11 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         this.setTemper(100);
     }
 
-
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
         this.HandleNewSpawnSkillsAndProficiencies();
         this.HandleNewSpawnGenetics();
+        this.tameWithName(level.getNearestPlayer(this, 10.0d));
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }
 
@@ -159,6 +159,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             }
         }
         super.finalizeSpawnChildFromBreeding(level, animal, baby);
+        this.setAge(0); // Reset Breeding Cooldown
+        animal.setAge(0); // Reset Breeding Cooldown
     }
 
     // BASIC SETTINGS //
