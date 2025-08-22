@@ -77,6 +77,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public static final EntityDataAccessor<Float> SKILL_ENDURANCE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> SKILL_AGILITY = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
 
+    private static final EntityDataAccessor<Boolean> PREGNANT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.BOOLEAN);
     public static final int geneticCount = GeneticValues.values().length;
     private Map<String, Float> GENETICS = new HashMap<String, Float>();
     private int hungerTickTimer;
@@ -113,6 +114,10 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     private boolean isTurnClutched;
     private boolean isJumpReady = true;
+
+    public int pregnancyTickTimer;
+    public int PregnancyLength = 200; //In Ticks
+    public Animal RecentMate;
 
     List<String> CONFORMATION_GENETICS = List.of("HOOF_SIZE", "LEG_WIDTH", "BOTTOM_LEG", "TOP_LEG", "TOP_HIND_LEG_WIDTH", "MUSCLE_MASS", "CHEST_SIZE",
             "HIP_SIZE", "HIP_PLACEMENT", "BACK_LENGTH", "BACK_GIRTH", "BACK_HEIGHT", "WITHERS", "STOMACH_CURVE", "STOMACH_HEIGHT", "STOMACH_LENGTH", "TAIL_SET",
@@ -171,21 +176,49 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         super.onOffspringSpawnedFromEgg(player, child);
     }
 
+    // BREEDING & PREGNANCY //
     @Override
-    public void finalizeSpawnChildFromBreeding(ServerLevel level, Animal animal, @Nullable AgeableMob baby) {
-        if (baby instanceof GeneticHorseEntity) {
-            GeneticHorseEntity geneticHorseBaby = (GeneticHorseEntity) baby;
-            geneticHorseBaby.HandleNewSpawnSkillsAndProficiencies();
-            if(animal instanceof GeneticHorseEntity parent2) {
-                geneticHorseBaby.HandleNewSpawnGenetics(this, parent2);
-                EquigenMod.LOGGER.info("Spawned Baby of " + this.getName() + " and " + animal.getName());
-            } else {
-                EquigenMod.LOGGER.error("Interspecies Mating Detected!");
-            }
+    public void spawnChildFromBreeding(ServerLevel level, Animal mate) {
+        GeneticHorseEntity geneticHorseMate = (GeneticHorseEntity) mate;
+        if (this.getGenetic("GENDER") == 1) {
+            geneticHorseMate.setPregnant(true, mate);
+            geneticHorseMate.pregnancyTickTimer = PregnancyLength;
+        } else if (this.getGenetic("GENDER") == 2){
+            this.setPregnant(true, mate);
+            this.pregnancyTickTimer = PregnancyLength;
         }
-        super.finalizeSpawnChildFromBreeding(level, animal, baby);
-        this.setAge(0); // Reset Breeding Cooldown
-        animal.setAge(0); // Reset Breeding Cooldown
+        EquigenMod.LOGGER.info("IM PREGNANT!");
+        this.setAge(6000);
+        mate.setAge(6000);
+        this.resetLove();
+        mate.resetLove();
+    }
+
+    public boolean isPregnant() {
+        return this.entityData.get(PREGNANT);
+    }
+
+    public void setPregnant(boolean pregnant, Animal mate) {
+        this.entityData.set(PREGNANT, pregnant);
+        this.RecentMate = mate;
+    }
+
+    private void GiveBirth(ServerLevel level, Animal mate) {
+        this.setPregnant(false, mate);
+        EquigenMod.LOGGER.info("I GAVE BIRTH");
+        AgeableMob ageablemob = this.getBreedOffspring(level, mate);
+        final net.neoforged.neoforge.event.entity.living.BabyEntitySpawnEvent event = new net.neoforged.neoforge.event.entity.living.BabyEntitySpawnEvent(this, mate, ageablemob);
+        ageablemob = event.getChild();
+        if (ageablemob != null) {
+            ageablemob.setBaby(true);
+            ageablemob.moveTo(this.getX(), this.getY(), this.getZ(), 0.0F, 0.0F);
+            level.addFreshEntityWithPassengers(ageablemob);
+        }
+
+        level.broadcastEntityEvent(this, (byte)18); // hearts particles
+        GeneticHorseEntity ghe = (GeneticHorseEntity) ageablemob;
+        ghe.HandleNewSpawnSkillsAndProficiencies();
+        ghe.HandleNewSpawnGenetics(this, (GeneticHorseEntity) mate);
     }
 
     // BASIC SETTINGS //
@@ -196,7 +229,12 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     //TODO: Change this method to only allow mating when one of the parents is a Male and one is Female
     @Override
     public boolean canMate(Animal otherAnimal) {
-        return true;
+        if (!(otherAnimal instanceof GeneticHorseEntity geneticHorseEntity)) return false;
+
+        if (!this.isInLove() || !geneticHorseEntity.isInLove()) return false;
+
+        return (this.getGenetic("GENDER") == 1 && geneticHorseEntity.getGenetic("GENDER") == 2)
+                || (this.getGenetic("GENDER") == 2 && geneticHorseEntity.getGenetic("GENDER") == 1);
     }
 
     @Override
@@ -368,6 +406,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         builder.define(ENDURANCE_PROFICIENCY, 0);
         builder.define(AGILITY_PROFICIENCY, 0);
 
+        builder.define(PREGNANT, false);
 
         builder.define(HOOF_CLEANLINESS, 10.0f);
         builder.define(HAIR_CLEANLINESS, 10.0f);
@@ -1230,6 +1269,10 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             } else {
                 this.removeEffect(ModEffects.STRESSED_EFFECT);
             }
+
+            if(pregnancyTickTimer <= 0 && this.isPregnant()){
+                GiveBirth(this.getServer().getLevel(this.level().dimension()), RecentMate);
+            }
         }
     }
 
@@ -1245,6 +1288,10 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         hungerTickTimer++;
         thirstTickTimer++;
         stressRecoveryTickTimer++;
+
+        if(this.isPregnant()){
+            pregnancyTickTimer--;
+        }
     }
 
     @Override
@@ -1472,7 +1519,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
                 } else if (LOVE_AND_HATE_GENETICS.contains(value.name())) {
                     newGeneticValue = standardInheritance((percentileGenerator(20, 20, 60)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat (1, value.getMaxSize()) + 1)));
-                    
+
                 } else if (SKILL_GENETICS.contains(value.name())) {
                     newGeneticValue = random.nextFloat(minValue, maxValue + 1f);
                     newGeneticValue = (float) Math.round(newGeneticValue * 100) / 100;
