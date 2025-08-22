@@ -162,6 +162,11 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     }
 
     // BASIC SETTINGS //
+
+    //TODO: Make it so the MOTHER always gives birth, kinda weird when daddy pops out a baby.
+    // Possibly something to do with the code that allows only one parent to give birth?
+
+    //TODO: Change this method to only allow mating when one of the parents is a Male and one is Female
     @Override
     public boolean canMate(Animal otherAnimal) {
         return true;
@@ -454,6 +459,28 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     public void alterCleanliness(String part, Float value){
         setCleanliness(part, Math.clamp(this.getCleanliness(part) + value, 0, 10));
+    }
+
+    public int percentileGenerator(List<Integer> arrs) {
+        List<Integer> MaxArrs = new ArrayList<>();
+        Integer cumulativeArrs = 0;
+        for(Integer r : arrs){
+            cumulativeArrs += r;
+            MaxArrs.add(cumulativeArrs);
+        }
+        if(cumulativeArrs != 100){
+            EquigenMod.LOGGER.error("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        }
+        Random RNG = new Random();
+        int GeneratedNumber = RNG.nextInt();
+        for(int i = 0; i < MaxArrs.size(); i++){
+            if(GeneratedNumber < MaxArrs.get(i)){
+                EquigenMod.LOGGER.info("R " + i + " Selected!");
+                return i;
+            }
+        }
+        EquigenMod.LOGGER.error("Somehow, The Random number between 1-100 isn't actually between 1-100");
+        return 0;
     }
 
     public float getCleanliness(){
