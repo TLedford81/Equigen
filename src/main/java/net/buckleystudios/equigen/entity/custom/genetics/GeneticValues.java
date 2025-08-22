@@ -140,7 +140,7 @@ public enum GeneticValues {
         return switch (this){
             /* Gender */
             // 0 = Stallion, 1 = Mare
-            case GENDER -> 1;
+            case GENDER -> 2;
 
             /* Conformation */
             case HOOF_SIZE -> 3;
