@@ -139,8 +139,8 @@ public enum GeneticValues {
     public float getMaxSize(){
         return switch (this){
             /* Gender */
-            // 0 = Stallion, 1 = Mare
-            case GENDER -> 1;
+            // 1 = Stallion, 2 = Mare
+            case GENDER -> 2;
 
             /* Conformation */
             case HOOF_SIZE -> 3;
@@ -171,7 +171,7 @@ public enum GeneticValues {
 
             /* Textures*/
             case BLACK_MODIFIER -> 3;
-            case BLACK_VARIATION -> 0;
+            case BLACK_VARIATION -> 10;
             case RED_MODIFIER -> 3;
             case RED_VARIATION -> 0;
             case CREAM -> 0; // If number is 0 that means the coat isn't in the game yet/won't be implemented right away //

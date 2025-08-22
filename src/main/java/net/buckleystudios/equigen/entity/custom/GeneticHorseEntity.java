@@ -114,6 +114,31 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     private boolean isTurnClutched;
     private boolean isJumpReady = true;
 
+    List<String> CONFORMATION_GENETICS = List.of("HOOF_SIZE", "LEG_WIDTH", "BOTTOM_LEG", "TOP_LEG", "TOP_HIND_LEG_WIDTH", "MUSCLE_MASS", "CHEST_SIZE",
+            "HIP_SIZE", "HIP_PLACEMENT", "BACK_LENGTH", "BACK_GIRTH", "BACK_HEIGHT", "WITHERS", "STOMACH_CURVE", "STOMACH_HEIGHT", "STOMACH_LENGTH", "TAIL_SET",
+            "TAIL_LENGTH", "TAIL_THICKNESS", "NECK_CURVE", "NECK_POS", "NECK_LENGTH", "HEAD_SIZE", "HEAD_TYPE", "EAR_SIZE");
+    List<String> COAT_GENETICS = List.of("BLACK_MODIFIER", "RED_MODIFIER", "CREAM", "DUN", "GREYING", "SILVER", "CHAMPAGNE", "SOOTY", "FLAXEN",
+            "PEARL", "MUSHROOM", "ROAN", "PANGARE");
+    List<String> COAT_VARIATION_GENETICS = List.of("BLACK_VARIATION", "RED_VARIATION", "CREAM_VARIATION", "DUN_VARIATION", "GREYING_VARIATION",
+            "SILVER_VARIATION", "CHAMPAGNE_VARIATION", "SOOTY_VARIATION", "FLAXEN_VARIATION", "PEARL_VARIATION", "MUSHROOM_VARIATION", "ROAN_VARIATION",
+            "PANGARE_VARIATION");
+    List<String> PATTERN_GENETICS = List.of("FRAME_OVERO", "RABICANO", "LEOPARD_COMPLEX", "SPLASHED_WHITE", "TOBIANO", "SABINO", "WHITE_SPOTTING");
+    List<String> PATTERN_VARIATION_GENETICS = List.of("FRAME_OVERO_VARIATION_1", "FRAME_OVERO_VARIATION_2", "FRAME_OVERO_VARIATION_3",
+            "RABICANO_VARIATION_1", "RABICANO_VARIATION_2", "RABICANO_VARIATION_3", "LEOPARD_COMPLEX_VARIATION_1", "LEOPARD_COMPLEX_VARIATION_2",
+            "LEOPARD_COMPLEX_VARIATION_3", "SPLASHED_WHITE_VARIATION_1", "SPLASHED_WHITE_VARIATION_2", "SPLASHED_WHITE_VARIATION_3",
+            "TOBIANO_VARIATION_1", "TOBIANO_VARIATION_2", "TOBIANO_VARIATION_3", "SABINO_VARIATION_1", "SABINO_VARIATION_2", "SABINO_VARIATION_3",
+            "WHITE_SPOTTING_VARIATION_1", "WHITE_SPOTTING_VARIATION_2", "WHITE_SPOTTING_VARIATION_3");
+    List<String> MARKING_GENETICS = List.of("FACE_MARKING", "FRONT_LEFT_LEG_MARKING", "FRONT_RIGHT_LEG_MARKING", "BACK_LEFT_LEG_MARKING",
+            "BACK_RIGHT_LEG_MARKING");
+    List<String> PERSONALITY_GENETICS = List.of("MAIN_PERSONALITY", "FIRST_SUB_PERSONALITY", "SECOND_SUB_PERSONALITY", "THIRD_SUB_PERSONALITY");
+    List<String> PERSONALITY_PERCENTAGE_GENETICS = List.of("MAIN_PERSONALITY_PERCENTAGE", "FIRST_SUB_PERSONALITY_PERCENTAGE",
+            "SECOND_SUB_PERSONALITY_PERCENTAGE", "THIRD_SUB_PERSONALITY_PERCENTAGE");
+    List<String> TRAIT_GENETICS = List.of("FIRST_TRAIT", "SECOND_TRAIT", "THIRD_TRAIT");
+    List<String> TRAIT_VARIATION_GENETICS = List.of("FIRST_TRAIT_VARIATION", "SECOND_TRAIT_VARIATION", "THIRD_TRAIT_VARIATION");
+    List<String> LOVE_AND_HATE_GENETICS = List.of("FAVORITE_TERRAIN", "HATED_TERRAIN", "FAVORITE_FOOD", "HATED_FOOD", "FAVORITE_GRASS","HATED_GRASS");
+    List<String> SKILL_GENETICS = List.of("SPEED_MAX_LEVEL", "STRENGTH_MAX_LEVEL", "JUMP_MAX_LEVEL", "ENDURANCE_MAX_LEVEL", "AGILITY_MAX_LEVEL");
+    List<String> ABILITY_GENETICS = List.of("CHARGE", "KICK", "REAR", "ADRENALINE");
+
 
     // SPAWNING //
     public GeneticHorseEntity(EntityType<? extends AbstractHorse> entityType, Level level) {
@@ -461,28 +486,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     public void alterCleanliness(String part, Float value){
         setCleanliness(part, Math.clamp(this.getCleanliness(part) + value, 0, 10));
-    }
-
-    public int percentileGenerator(List<Integer> arrs) {
-        List<Integer> MaxArrs = new ArrayList<>();
-        Integer cumulativeArrs = 0;
-        for(Integer r : arrs){
-            cumulativeArrs += r;
-            MaxArrs.add(cumulativeArrs);
-        }
-        if(cumulativeArrs != 100){
-            EquigenMod.LOGGER.error("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        }
-        Random RNG = new Random();
-        int GeneratedNumber = RNG.nextInt();
-        for(int i = 0; i < MaxArrs.size(); i++){
-            if(GeneratedNumber < MaxArrs.get(i)){
-                EquigenMod.LOGGER.info("R " + i + " Selected!");
-                return i;
-            }
-        }
-        EquigenMod.LOGGER.error("Somehow, The Random number between 1-100 isn't actually between 1-100");
-        return 0;
     }
 
     public float getCleanliness(){
@@ -1076,7 +1079,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
             if(this.isEating()){
                 this.alterHunger(0.001f);
-                EquigenMod.LOGGER.info("EATING: " + this.getHunger());
+//                EquigenMod.LOGGER.info("EATING: " + this.getHunger());
             }
             //Speed Skill Levelling
             if (this.hasControllingPassenger()) {
@@ -1396,12 +1399,11 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     // GENETICS //
     public void HandleNewSpawnGenetics(){
-        List<String> MAX_SKILL_GENETICS = List.of("SPEED_MAX_LEVEL", "STRENGTH_MAX_LEVEL", "JUMP_MAX_LEVEL", "ENDURANCE_MAX_LEVEL", "AGILITY_MAX_LEVEL");
         Random random = new Random();
         for(int i = 0; i < geneticCount; i++) {
             GeneticValues value = GeneticValues.values()[i];
             if (value.getMaxSize() != 0) {
-                if (MAX_SKILL_GENETICS.contains(value.name())) {
+                if (SKILL_GENETICS.contains(value.name())) {
                     float randomNum = random.nextFloat(value.getMaxSize() - 2) + 3;
                     randomNum = (float) Math.round(randomNum * 100) / 100;
                     this.setGenetic(value.name(), randomNum);
@@ -1419,7 +1421,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     }
 
     public void HandleNewSpawnGenetics(GeneticHorseEntity mother, GeneticHorseEntity father){
-        List<String> MAX_SKILL_GENETICS = List.of("SPEED_MAX_LEVEL", "STRENGTH_MAX_LEVEL", "JUMP_MAX_LEVEL", "ENDURANCE_MAX_LEVEL", "AGILITY_MAX_LEVEL");
         Random random = new Random();
         for(int i = 0; i < geneticCount; i++) {
             GeneticValues value = GeneticValues.values()[i];
@@ -1427,6 +1428,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                 float minValue, maxValue;
                 float motherGenetic = mother.getGenetic(value.name());
                 float fatherGenetic = father.getGenetic(value.name());
+
+                EquigenMod.LOGGER.info("Mother = " + mother.getName() + " Father = " + father.getName());
 
                 if(fatherGenetic > motherGenetic){
                     minValue = motherGenetic;
@@ -1441,17 +1444,143 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                 maxValue += 1; //Allows for slight variation
 
                 float newGeneticValue;
-                if (MAX_SKILL_GENETICS.contains(value.name())) {
+                if (COAT_VARIATION_GENETICS.contains(value.name())) {
+                    newGeneticValue = standardInheritance((percentileGenerator(45, 45, 10)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, value.getMaxSize()) + 1)));
+                } else if (PATTERN_VARIATION_GENETICS.contains(value.name())) {
+                    char variationNum = value.name().charAt(value.name().length() - 1);
+                    switch (variationNum) {
+                        case '1' -> newGeneticValue = standardInheritance(percentileGenerator(39, 39, 10, 10, 2), motherGenetic, fatherGenetic,
+                                mother.getGenetic(value.name().replace(variationNum, '2')), //Calls the Variation 2 Genetic
+                                father.getGenetic(value.name().replace(variationNum, '2')), 0.0F);
+                        case '2' -> newGeneticValue = standardInheritance(percentileGenerator(35, 35, 5, 5, 9, 9, 4), motherGenetic, fatherGenetic,
+                                mother.getGenetic(value.name().replace(variationNum, '1')),
+                                father.getGenetic(value.name().replace(variationNum, '1')),
+                                mother.getGenetic(value.name().replace(variationNum, '3')),
+                                father.getGenetic(value.name().replace(variationNum, '3')),
+                                0.0F);
+                        case '3' -> newGeneticValue = 0;
+                        default -> newGeneticValue = 0.0F;
+                    }
+
+                } else if (MARKING_GENETICS.contains(value.name())) {
+                    newGeneticValue = standardInheritance((percentileGenerator(40, 40, 10, 10)), motherGenetic, fatherGenetic, 0.0F, 0.0F);
+                } else if (PERSONALITY_GENETICS.contains(value.name())) {
+                    newGeneticValue = standardInheritance((percentileGenerator(20, 20, 60)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat (1, value.getMaxSize()) + 1)));
+
+                } else if (TRAIT_GENETICS.contains(value.name())) {
+                    newGeneticValue = standardInheritance((percentileGenerator(20, 20, 60)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat (1, value.getMaxSize()) + 1)));
+
+                } else if (LOVE_AND_HATE_GENETICS.contains(value.name())) {
+                    newGeneticValue = standardInheritance((percentileGenerator(20, 20, 60)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat (1, value.getMaxSize()) + 1)));
+                    
+                } else if (SKILL_GENETICS.contains(value.name())) {
                     newGeneticValue = random.nextFloat(minValue, maxValue + 1f);
                     newGeneticValue = (float) Math.round(newGeneticValue * 100) / 100;
                 } else {
+                    EquigenMod.LOGGER.info("Genetic = " + value.name() + ". minValue = " + minValue + ". maxValue = " + maxValue);
                     newGeneticValue = random.nextInt(Math.round(minValue), Math.round(maxValue) + 1);
                 }
-
                 newGeneticValue = Math.clamp(newGeneticValue, 0, value.getMaxSize());
                 this.setGenetic(value.name(), newGeneticValue);
             }
         }
+    }
+    public float standardInheritance(int percentileResult, float gen1, float gen2, float gen3, float gen4, float gen5, float gen6, float gen7) {
+        float geneticValue;
+        switch (percentileResult) {
+            case 1 -> geneticValue = gen1;
+            case 2 -> geneticValue = gen2;
+            case 3 -> geneticValue = gen3;
+            case 4 -> geneticValue = gen4;
+            case 5 -> geneticValue = gen5;
+            case 6 -> geneticValue = gen6;
+            case 7 -> geneticValue = gen7;
+            default -> geneticValue = 0.0F;
+        }
+        EquigenMod.LOGGER.info("Percentile Result = " + percentileResult + ", setting genetic to " + geneticValue);
+        return geneticValue;
+    }
+    public float standardInheritance(int percentileResult, float gen1, float gen2, float gen3, float gen4, float gen5, float gen6) {
+        return standardInheritance(percentileResult, gen1, gen2, gen3, gen4, gen5, gen6, 0.0F);
+    }
+    public float standardInheritance(int percentileResult, float gen1, float gen2, float gen3, float gen4, float gen5) {
+        return standardInheritance(percentileResult, gen1, gen2, gen3, gen4, gen5, 0.0F);
+    }
+    public float standardInheritance(int percentileResult, float gen1, float gen2, float gen3, float gen4) {
+        return standardInheritance(percentileResult, gen1, gen2, gen3, gen4, 0.0F);
+    }
+    public float standardInheritance(int percentileResult, float gen1, float gen2, float gen3) {
+        return standardInheritance(percentileResult, gen1, gen2, gen3, 0.0F);
+    }
+
+//    public float PunnettInheritance(float gen1, float gen2) {
+//        int[] mGenotypes = getGenotypes(gen1);
+//        int[] dGenotypes = getGenotypes(gen2);
+//
+//        for(int m1 : mGenotypes) {
+//
+//        }
+//    }
+//
+//    public int[] getGenotypes(float genetic) {
+//        switch ((int)genetic) {
+//            case 0 : return new int[]{0,0};
+//            case 1 : return new int[]{0,1};
+//            case 2 : return new int[]{1,1};
+//            default : throw new IllegalArgumentException("Invalid genotype " + genetic);
+//        }
+//    }
+
+
+    public int percentileGenerator(int r1, int r2, int r3, int r4, int r5, int r6, int r7) {
+        int r2Max = r1 + r2;
+        int r3Max = r2Max + r3;
+        int r4Max = r3Max + r4;
+        int r5Max = r4Max + r5;
+        int r6Max = r5Max + r6;
+        int r7Max = r6Max + r7;
+        int random = (int) Math.round(Math.random() * 100);
+
+        if(r7Max != 100) {
+            EquigenMod.LOGGER.error("ERROR! Percentages put in don't add up to 100. They add up to " + r7Max);
+            return -1;
+        }
+        if (random <= r1) {
+            return 1;
+        }
+        if (random <= r2Max) {
+            return 2;
+        }
+        if (random <= r3Max) {
+            return 3;
+        }
+        if (random <= r4Max) {
+            return 4;
+        }
+        if (random <= r5Max) {
+            return 5;
+        }
+        if (random <= r6Max) {
+            return 6;
+        }
+        if (random <= r7Max) {
+            return 7;
+        } else {
+            return 0;
+        }
+
+    }
+    public int percentileGenerator(int r1, int r2, int r3, int r4, int r5, int r6) {
+        return percentileGenerator(r1, r2, r3, r4, r5, r6, 0);
+    }
+    public int percentileGenerator(int r1, int r2, int r3, int r4, int r5) {
+        return percentileGenerator(r1, r2, r3, r4, r5, 0);
+    }
+    public int percentileGenerator(int r1, int r2, int r3, int r4) {
+        return percentileGenerator(r1, r2, r3, r4, 0);
+    }
+    public int percentileGenerator(int r1, int r2, int r3) {
+        return percentileGenerator(r1, r2, r3, 0);
     }
 
     public float getGenetic(String key) {
@@ -1481,6 +1610,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public void setGenetic(String key, float number) {
 //        LOGGER.info("Setting Geneic: " + key + " / " + number);
         this.GENETICS.put(key, number);
+        EquigenMod.LOGGER.info("Setting Genetic to " + number);
     }
 
     //TODO: Multiparting
