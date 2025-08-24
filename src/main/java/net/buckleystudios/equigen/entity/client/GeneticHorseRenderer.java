@@ -55,6 +55,13 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         List<String> partsToRender = entity.getPartsToRender();
         Map<String, PartTransform> partTransforms = entity.getPartTransforms();
 
+        StringBuilder test = new StringBuilder();
+        for(String part : partsToRender){
+            test.append(part).append(" / ");
+        }
+
+        EquigenMod.LOGGER.info(test.toString());
+
         for (String partId : partsToRender) {
             if (partId == null) continue;
 

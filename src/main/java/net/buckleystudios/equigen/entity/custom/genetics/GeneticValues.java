@@ -143,7 +143,7 @@ public enum GeneticValues {
             case GENDER -> 2;
 
             /* Conformation */
-            case HOOF_SIZE -> 3;
+            case HOOF_SIZE -> 2;
             case LEG_WIDTH -> 3;
             case BOTTOM_LEG -> 9;
             case TOP_LEG -> 9;
