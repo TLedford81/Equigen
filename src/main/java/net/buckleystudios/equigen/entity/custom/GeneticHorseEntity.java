@@ -44,6 +44,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.event.entity.living.BabyEntitySpawnEvent;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -118,6 +119,11 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public int pregnancyTickTimer;
     public int PregnancyLength = 200; //In Ticks
     public Animal RecentMate;
+
+    private int var1PercentileResult = -1;
+    private int var2PercentileResult = -2;
+    private int var3PercentileResult = -3;
+
 
     List<String> CONFORMATION_GENETICS = List.of("HOOF_SIZE", "LEG_WIDTH", "BOTTOM_LEG", "TOP_LEG", "TOP_HIND_LEG_WIDTH", "MUSCLE_MASS", "CHEST_SIZE",
             "HIP_SIZE", "HIP_PLACEMENT", "BACK_LENGTH", "BACK_GIRTH", "BACK_HEIGHT", "WITHERS", "STOMACH_CURVE", "STOMACH_HEIGHT", "STOMACH_LENGTH", "TAIL_SET",
@@ -207,7 +213,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         this.setPregnant(false, mate);
         EquigenMod.LOGGER.info("I GAVE BIRTH");
         AgeableMob ageablemob = this.getBreedOffspring(level, mate);
-        final net.neoforged.neoforge.event.entity.living.BabyEntitySpawnEvent event = new net.neoforged.neoforge.event.entity.living.BabyEntitySpawnEvent(this, mate, ageablemob);
+        final BabyEntitySpawnEvent event = new BabyEntitySpawnEvent(this, mate, ageablemob);
         ageablemob = event.getChild();
         if (ageablemob != null) {
             ageablemob.setBaby(true);
@@ -867,16 +873,16 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             EquigenMod.LOGGER.error("Invalid Starting Endurance of " + endurance_ssl + "! Could not set skill pro fish agency.");
             this.entityData.set(ENDURANCE_PROFICIENCY, 0); // Invalid
 
-        // Agility //
-        if (agility_ssl <= 2.3) {
-            this.entityData.set(AGILITY_PROFICIENCY, 1);
-        } else if (agility_ssl <= 4.6) {
-            this.entityData.set(AGILITY_PROFICIENCY, 2);
-        } else if (agility_ssl <= 7.0) {
-            this.entityData.set(AGILITY_PROFICIENCY, 3);
-        } else {
-            EquigenMod.LOGGER.error("Invalid Starting Agility of " + agility_ssl + "! Could not set skill pro fish agency.");
-            this.entityData.set(AGILITY_PROFICIENCY, 0); // Invalid
+            // Agility //
+            if (agility_ssl <= 2.3) {
+                this.entityData.set(AGILITY_PROFICIENCY, 1);
+            } else if (agility_ssl <= 4.6) {
+                this.entityData.set(AGILITY_PROFICIENCY, 2);
+            } else if (agility_ssl <= 7.0) {
+                this.entityData.set(AGILITY_PROFICIENCY, 3);
+            } else {
+                EquigenMod.LOGGER.error("Invalid Starting Agility of " + agility_ssl + "! Could not set skill pro fish agency.");
+                this.entityData.set(AGILITY_PROFICIENCY, 0); // Invalid
             }
         }
     }
@@ -1050,7 +1056,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     }
 
     @Override
-    protected void positionRider(Entity passenger, Entity.MoveFunction callback) {
+    protected void positionRider(Entity passenger, MoveFunction callback) {
         super.positionRider(passenger, callback);
         if (!passenger.getType().is(EntityTypeTags.CAN_TURN_IN_BOATS)) {
             passenger.setYRot(passenger.getYRot() + headNudge);
@@ -1298,23 +1304,23 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public boolean hurt(DamageSource source, float amount) {
         boolean gainExp =
                 source.is(DamageTypes.MOB_ATTACK) ||
-                source.is(DamageTypes.PLAYER_ATTACK) ||
-                source.is(DamageTypes.EXPLOSION) ||
-                source.is(DamageTypes.FALL) ||
-                source.is(DamageTypes.FALLING_ANVIL) ||
-                source.is(DamageTypes.FALLING_BLOCK) ||
-                source.is(DamageTypes.FALLING_STALACTITE) ||
-                source.is(DamageTypes.FIREBALL) ||
-                source.is(DamageTypes.FIREWORKS) ||
-                source.is(DamageTypes.FLY_INTO_WALL) ||
-                source.is(DamageTypes.GENERIC) ||
-                source.is(DamageTypes.MOB_ATTACK_NO_AGGRO) ||
-                source.is(DamageTypes.SONIC_BOOM) ||
-                source.is(DamageTypes.STING) ||
-                source.is(DamageTypes.THORNS) ||
-                source.is(DamageTypes.TRIDENT) ||
-                source.is(DamageTypes.UNATTRIBUTED_FIREBALL) ||
-                source.is(DamageTypes.WITHER_SKULL)
+                        source.is(DamageTypes.PLAYER_ATTACK) ||
+                        source.is(DamageTypes.EXPLOSION) ||
+                        source.is(DamageTypes.FALL) ||
+                        source.is(DamageTypes.FALLING_ANVIL) ||
+                        source.is(DamageTypes.FALLING_BLOCK) ||
+                        source.is(DamageTypes.FALLING_STALACTITE) ||
+                        source.is(DamageTypes.FIREBALL) ||
+                        source.is(DamageTypes.FIREWORKS) ||
+                        source.is(DamageTypes.FLY_INTO_WALL) ||
+                        source.is(DamageTypes.GENERIC) ||
+                        source.is(DamageTypes.MOB_ATTACK_NO_AGGRO) ||
+                        source.is(DamageTypes.SONIC_BOOM) ||
+                        source.is(DamageTypes.STING) ||
+                        source.is(DamageTypes.THORNS) ||
+                        source.is(DamageTypes.TRIDENT) ||
+                        source.is(DamageTypes.UNATTRIBUTED_FIREBALL) ||
+                        source.is(DamageTypes.WITHER_SKULL)
                 ;
         if(gainExp) {
             this.strengthSkillXP += amount;
@@ -1466,72 +1472,104 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public void HandleNewSpawnGenetics(GeneticHorseEntity parent){
         this.HandleNewSpawnGenetics(parent, parent);
     }
-
-    public void HandleNewSpawnGenetics(GeneticHorseEntity mother, GeneticHorseEntity father){
+    String reroll = "";
+    public void HandleNewSpawnGenetics(GeneticHorseEntity mother, GeneticHorseEntity father) {
         Random random = new Random();
-        for(int i = 0; i < geneticCount; i++) {
+        int rolls = 0;
+        for (int i = 0; i < geneticCount; i++) {
             GeneticValues value = GeneticValues.values()[i];
-            if (value.getMaxSize() != 0) {
-                float minValue, maxValue;
-                float motherGenetic = mother.getGenetic(value.name());
-                float fatherGenetic = father.getGenetic(value.name());
+            EquigenMod.LOGGER.info("Deciding the " + value.name() + " genetic....");
+            if (reroll.isEmpty()) {
+                if (value.getMaxSize() != 0) {
+                    float minValue, maxValue;
+                    float motherGenetic = mother.getGenetic(value.name());
+                    float fatherGenetic = father.getGenetic(value.name());
 
-                EquigenMod.LOGGER.info("Mother = " + mother.getName() + " Father = " + father.getName());
+                    EquigenMod.LOGGER.info("Mother = " + mother.getName() + " Father = " + father.getName());
 
-                if(fatherGenetic > motherGenetic){
-                    minValue = motherGenetic;
-                    maxValue = fatherGenetic;
-                }
-                else{
-                    minValue = fatherGenetic;
-                    maxValue = motherGenetic;
-                }
-
-                minValue -= 1;
-                maxValue += 1; //Allows for slight variation
-
-                float newGeneticValue;
-                if (COAT_VARIATION_GENETICS.contains(value.name())) {
-                    newGeneticValue = standardInheritance((percentileGenerator(45, 45, 10)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, value.getMaxSize()) + 1)));
-                } else if (PATTERN_VARIATION_GENETICS.contains(value.name())) {
-                    char variationNum = value.name().charAt(value.name().length() - 1);
-                    switch (variationNum) {
-                        case '1' -> newGeneticValue = standardInheritance(percentileGenerator(39, 39, 10, 10, 2), motherGenetic, fatherGenetic,
-                                mother.getGenetic(value.name().replace(variationNum, '2')), //Calls the Variation 2 Genetic
-                                father.getGenetic(value.name().replace(variationNum, '2')), 0.0F);
-                        case '2' -> newGeneticValue = standardInheritance(percentileGenerator(35, 35, 5, 5, 9, 9, 4), motherGenetic, fatherGenetic,
-                                mother.getGenetic(value.name().replace(variationNum, '1')),
-                                father.getGenetic(value.name().replace(variationNum, '1')),
-                                mother.getGenetic(value.name().replace(variationNum, '3')),
-                                father.getGenetic(value.name().replace(variationNum, '3')),
-                                0.0F);
-                        case '3' -> newGeneticValue = 0;
-                        default -> newGeneticValue = 0.0F;
+                    if (fatherGenetic > motherGenetic) {
+                        minValue = motherGenetic;
+                        maxValue = fatherGenetic;
+                    } else {
+                        minValue = fatherGenetic;
+                        maxValue = motherGenetic;
                     }
 
-                } else if (MARKING_GENETICS.contains(value.name())) {
-                    newGeneticValue = standardInheritance((percentileGenerator(40, 40, 10, 10)), motherGenetic, fatherGenetic, 0.0F, 0.0F);
-                } else if (PERSONALITY_GENETICS.contains(value.name())) {
-                    newGeneticValue = standardInheritance((percentileGenerator(20, 20, 60)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat (1, value.getMaxSize()) + 1)));
+                    minValue -= 1;
+                    maxValue += 1; //Allows for slight variation
 
-                } else if (TRAIT_GENETICS.contains(value.name())) {
-                    newGeneticValue = standardInheritance((percentileGenerator(20, 20, 60)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat (1, value.getMaxSize()) + 1)));
+                    float newGeneticValue;
+                if (CONFORMATION_GENETICS.contains(value.name())) {
+                    float difference;
+                    if (fatherGenetic > motherGenetic) {
+                        difference = fatherGenetic - motherGenetic;
+                    } else {
+                        difference = motherGenetic - fatherGenetic;
+                    }
+                    if (difference >= 4) {
+                        newGeneticValue = standardInheritance(percentileGenerator(35, 35, 30),((Math.round(random.nextFloat((minValue) + 3.0F) + minValue + 1.0F))), (Math.round(random.nextFloat((maxValue)) + maxValue - 3.0F)), (Math.round(random.nextFloat((maxValue) + 1.0F) + minValue)));
+                    } else {
+                        newGeneticValue = standardInheritance(percentileGenerator(35, 35, 30), motherGenetic, fatherGenetic, (Math.round(random.nextFloat((maxValue) + 1.0F) + minValue)));
+                    }
+                } else if (COAT_GENETICS.contains(value.name())) {
+                        newGeneticValue = punnettInheritance(motherGenetic, fatherGenetic);
+                    } else if (COAT_VARIATION_GENETICS.contains(value.name())) {
+                        newGeneticValue = standardInheritance((percentileGenerator(45, 45, 10)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(value.getMaxSize()) + 1)));
+                    } else if (PATTERN_GENETICS.contains(value.name())) {
+                        newGeneticValue = punnettInheritance(motherGenetic, fatherGenetic);
+                    } else if (PATTERN_VARIATION_GENETICS.contains(value.name())) {
+                        char variationNum = value.name().charAt(value.name().length() - 1);
+                        switch (variationNum) {
+                            case '1' -> newGeneticValue = ladderInheritance("PATTERN", value, percentileGenerator(39, 39, 10, 10, 2), motherGenetic, fatherGenetic,
+                                        mother.getGenetic(value.name().replace(variationNum, '2')), //Calls the Variation 2 Genetic
+                                        father.getGenetic(value.name().replace(variationNum, '2')), 0.0F);
 
-                } else if (LOVE_AND_HATE_GENETICS.contains(value.name())) {
-                    newGeneticValue = standardInheritance((percentileGenerator(20, 20, 60)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat (1, value.getMaxSize()) + 1)));
+                            case '2' -> newGeneticValue = ladderInheritance("PATTERN", value, percentileGenerator(35, 35, 5, 5, 8, 8, 4), motherGenetic, fatherGenetic,
+                                        mother.getGenetic(value.name().replace(variationNum, '1')),
+                                        father.getGenetic(value.name().replace(variationNum, '1')),
+                                        mother.getGenetic(value.name().replace(variationNum, '3')),
+                                        father.getGenetic(value.name().replace(variationNum, '3')),
+                                        0.0F);
 
-                } else if (SKILL_GENETICS.contains(value.name())) {
-                    newGeneticValue = random.nextFloat(minValue, maxValue + 1f);
-                    newGeneticValue = (float) Math.round(newGeneticValue * 100) / 100;
-                } else {
-                    EquigenMod.LOGGER.info("Genetic = " + value.name() + ". minValue = " + minValue + ". maxValue = " + maxValue);
-                    newGeneticValue = random.nextInt(Math.round(minValue), Math.round(maxValue) + 1);
+                            case '3' -> newGeneticValue = ladderInheritance("PATTERN", value, percentileGenerator(40, 40, 8, 8, 4), motherGenetic, fatherGenetic,
+                                        mother.getGenetic(value.name().replace(variationNum, '2')),
+                                        father.getGenetic(value.name().replace(variationNum, '2')),
+                                        Math.round(random.nextFloat((value.getMaxSize()) + 1)));
+
+                            default -> newGeneticValue = 0.0F;
+                        }
+                        EquigenMod.LOGGER.info("Setting " + value.name() + " genetic to " + newGeneticValue);
+
+                    } else if (MARKING_GENETICS.contains(value.name())) {
+                        newGeneticValue = standardInheritance((percentileGenerator(40, 40, 10, 10)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, value.getMaxSize()) + 1)), 0.0F);
+                    } else if (PERSONALITY_GENETICS.contains(value.name())) {
+                        newGeneticValue = ladderInheritance("PERSONALITY", value, percentileGenerator(20, 20, 60), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, (value.getMaxSize()) + 1.0F))));
+
+                    } else if (TRAIT_GENETICS.contains(value.name())) {
+                        newGeneticValue = ladderInheritance("TRAIT", value, (percentileGenerator(20, 20, 60)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, value.getMaxSize()) + 1.0F)));
+
+                    } else if (LOVE_AND_HATE_GENETICS.contains(value.name())) {
+                        newGeneticValue = standardInheritance((percentileGenerator(20, 20, 60)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, value.getMaxSize()) + 1)));
+
+                    } else if (SKILL_GENETICS.contains(value.name())) {
+                        newGeneticValue = random.nextFloat(minValue, maxValue + 1f);
+                        newGeneticValue = (float) Math.round(newGeneticValue * 100) / 100;
+                    } else {
+                        EquigenMod.LOGGER.info("Genetic = " + value.name() + ". minValue = " + minValue + ". maxValue = " + maxValue);
+                        newGeneticValue = random.nextInt(Math.round(minValue), Math.round(maxValue) + 1);
+                    }
+                    newGeneticValue = Math.clamp(newGeneticValue, 0, value.getMaxSize());
+                    this.setGenetic(value.name(), newGeneticValue);
+
                 }
-                newGeneticValue = Math.clamp(newGeneticValue, 0, value.getMaxSize());
-                this.setGenetic(value.name(), newGeneticValue);
+            } else {
+                EquigenMod.LOGGER.info("Rerolling " + reroll);
+                i = i - 2;
+                reroll = "";
             }
         }
     }
+
     public float standardInheritance(int percentileResult, float gen1, float gen2, float gen3, float gen4, float gen5, float gen6, float gen7) {
         float geneticValue;
         switch (percentileResult) {
@@ -1560,23 +1598,147 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         return standardInheritance(percentileResult, gen1, gen2, gen3, 0.0F);
     }
 
-//    public float PunnettInheritance(float gen1, float gen2) {
-//        int[] mGenotypes = getGenotypes(gen1);
-//        int[] dGenotypes = getGenotypes(gen2);
-//
-//        for(int m1 : mGenotypes) {
-//
-//        }
-//    }
-//
-//    public int[] getGenotypes(float genetic) {
-//        switch ((int)genetic) {
-//            case 0 : return new int[]{0,0};
-//            case 1 : return new int[]{0,1};
-//            case 2 : return new int[]{1,1};
-//            default : throw new IllegalArgumentException("Invalid genotype " + genetic);
-//        }
-//    }
+    public float punnettInheritance(float gen1, float gen2) {
+        Random random = new Random();
+        List<Integer> mGenotypes = getAlleles(gen1);
+        List<Integer> dGenotypes = getAlleles(gen2);
+
+        EquigenMod.LOGGER.info("Mother's Genetic = " + gen1 + " Father's Genetic = " + gen2);
+
+        List<Integer> possibleChildren = new ArrayList<>();
+        int counter = 0;
+        for (int m1 : mGenotypes) {
+            for (int d1 : dGenotypes) {
+                possibleChildren.add(getGenotypeFromAlleles(m1, d1));
+                EquigenMod.LOGGER.info("Possible child added = " + possibleChildren.get(counter));
+                counter++;
+            }
+        }
+        int percentileResult = random.nextInt(0, 4);
+        EquigenMod.LOGGER.info("Punnet Square Percentile Result = " + percentileResult + ". Setting genetic to " + possibleChildren.get(percentileResult));
+        return (float) possibleChildren.get(percentileResult);
+    }
+
+
+    int rolls = 0;
+    public float ladderInheritance(String geneticType, GeneticValues value, int percentileResult, float gen1, float gen2, float gen3, float gen4, float gen5, float gen6, float gen7) {
+        //This is an inheritance method where the genetic cannot be repeated, and will therefore be rerolled if it matches other genetics.
+        char variation = 0;
+        int variationNum = -1;
+        String type = "";
+        if (geneticType.equals("PATTERN")) {
+            variation = value.name().charAt(value.name().length() - 1);
+            variationNum = Character.getNumericValue(variation);
+            type = value.name().replace(variation, ' ');
+        } else if (geneticType.equals("PERSONALITY") || geneticType.equals("TRAIT")) {
+            variation = value.name().charAt(0);
+            switch (variation) {
+                case 'M' -> {
+                    variationNum = 0;
+                    type = value.name().replace("MAIN", " ");
+                }
+                case 'F' -> {
+                    variationNum = 1;
+                    type = value.name().replace("FIRST", " ");
+                }
+                case 'S' -> {
+                    variationNum = 2;
+                    type = value.name().replace("SECOND", " ");
+                }
+                case 'T' -> {
+                    variationNum = 3;
+                    type = value.name().replace("THIRD", " ");
+                }
+            }
+
+        }
+        float genetic;
+
+        if (rolls == 2) {
+            genetic = standardInheritance(percentileResult, gen1, gen2, gen3, gen4, gen5, gen6, gen7);
+            rolls = 0;
+        } else {
+            genetic = getGenetic(type.replace(' ', '1'));
+        }
+        // Set it so that after a certain number of rolls it sets the genetic to 0, except for in the case of Variation 3, so that people cant get horses with the same pattern variations and breed them to get better chance of randoms.
+
+
+        if (variationNum >= 2) {
+            EquigenMod.LOGGER.info("Variation = " + variation + ". Variation Num = " + variationNum);
+            float var1 = 0.0F;
+            if (geneticType.equals("PATTERN")) {
+                var1 = getGenetic(type.replace(' ', '1'));
+            } else {
+                var1 = getGenetic(type.replace(" ", "FIRST"));
+            }
+            float var2 = genetic;
+
+            if (var1 == var2) {
+                reroll = value.name();
+                rolls++;
+                EquigenMod.LOGGER.info(value.name() + " is equal to variation 1, rerolling.");
+            }
+            if (variationNum == 3) {
+                if (geneticType.equals("PATTERN")) {
+                    var2 = getGenetic(type.replace(' ', '2'));
+                } else {
+                    var2 = getGenetic(type.replace(" ", "SECOND"));
+                }
+
+                if (var1 == genetic || var2 == genetic) {
+                    reroll = value.name();
+                    rolls++;
+                    EquigenMod.LOGGER.info(value.name() + " is equal to the other variations, rerolling.");
+                }
+            }
+        }
+        return genetic;
+    }
+    public float ladderInheritance(String geneticType, GeneticValues value, int percentileResult, float gen1, float gen2, float gen3, float gen4, float gen5, float gen6) {
+        return ladderInheritance(geneticType, value,percentileResult, gen1, gen2, gen3, gen4, gen5, gen6, 0.0F);
+    }
+    public float ladderInheritance(String geneticType, GeneticValues value, int percentileResult, float gen1, float gen2, float gen3, float gen4, float gen5) {
+        return ladderInheritance(geneticType, value,percentileResult, gen1, gen2, gen3, gen4, gen5, 0.0F);
+    }
+    public float ladderInheritance(String geneticType, GeneticValues value, int percentileResult, float gen1, float gen2, float gen3, float gen4) {
+        return ladderInheritance(geneticType, value,percentileResult, gen1, gen2, gen3, gen4,0.0F);
+    }
+    public float ladderInheritance(String geneticType, GeneticValues value, int percentileResult, float gen1, float gen2, float gen3) {
+        return ladderInheritance(geneticType, value,percentileResult, gen1, gen2, gen3,0.0F);
+    }
+
+    //Splits up the genetic code into Alleles
+    public List<Integer> getAlleles(float genetic) {
+        List<Integer> genotypes = new ArrayList<>();
+        switch ((int)genetic) {
+            case 1 :
+                genotypes.add(0);
+                genotypes.add(0);
+                break;
+            case 2 :
+                genotypes.add(0);
+                genotypes.add(1);
+                break;
+            case 3 :
+                genotypes.add(1);
+                genotypes.add(1);
+                break;
+            default : throw new IllegalArgumentException("Invalid genotype " + genetic);
+        }
+        return genotypes;
+    }
+
+    //Gets the genetic code from alleles. Ex: aa = 0, aA = 1, and AA = 2
+    private int getGenotypeFromAlleles(int a1, int a2) {
+        int sum = a1 + a2;
+        if (sum == 0) {
+            return 1;
+        } else if (sum == 1) {
+            return 2;
+        } else {
+            return 3;
+        }
+    }
 
 
     public int percentileGenerator(int r1, int r2, int r3, int r4, int r5, int r6, int r7) {
@@ -1657,7 +1819,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public void setGenetic(String key, float number) {
 //        LOGGER.info("Setting Geneic: " + key + " / " + number);
         this.GENETICS.put(key, number);
-        EquigenMod.LOGGER.info("Setting Genetic to " + number);
+        if (key.equals("GENDER") || key.equals("BLACK_MODIFIER")) {
+            EquigenMod.LOGGER.info("Setting " + key + " to " + number);
+        }
     }
 
     //TODO: Multiparting

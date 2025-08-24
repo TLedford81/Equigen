@@ -197,9 +197,9 @@ public enum GeneticValues {
             case PANGARE -> 0;
             case PANGARE_VARIATION -> 0;
             case FRAME_OVERO -> 0;
-            case FRAME_OVERO_VARIATION_1 -> 0;
-            case FRAME_OVERO_VARIATION_2 -> 0;
-            case FRAME_OVERO_VARIATION_3 -> 0;
+            case FRAME_OVERO_VARIATION_1 -> 10;
+            case FRAME_OVERO_VARIATION_2 -> 10;
+            case FRAME_OVERO_VARIATION_3 -> 10;
             case RABICANO -> 0;
             case RABICANO_VARIATION_1 -> 0;
             case RABICANO_VARIATION_2 -> 0;
