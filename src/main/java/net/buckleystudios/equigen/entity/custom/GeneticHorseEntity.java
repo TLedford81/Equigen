@@ -4,6 +4,8 @@ import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.effect.ModEffects;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.ModEntityAttributes;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
+import net.buckleystudios.equigen.entity.custom.genetics.GeneticPartNameBuilder;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticValues;
 import net.buckleystudios.equigen.item.ModItems;
 import net.buckleystudios.equigen.sound.ModSounds;
@@ -44,6 +46,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.event.entity.living.BabyEntitySpawnEvent;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -181,7 +184,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         this.setPregnant(false, mate);
         EquigenMod.LOGGER.info("I GAVE BIRTH");
         AgeableMob ageablemob = this.getBreedOffspring(level, mate);
-        final net.neoforged.neoforge.event.entity.living.BabyEntitySpawnEvent event = new net.neoforged.neoforge.event.entity.living.BabyEntitySpawnEvent(this, mate, ageablemob);
+        final BabyEntitySpawnEvent event = new BabyEntitySpawnEvent(this, mate, ageablemob);
         ageablemob = event.getChild();
         if (ageablemob != null) {
             ageablemob.setBaby(true);
@@ -305,7 +308,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             GeneticValues key = GeneticValues.values()[i];
 
             this.setGenetic(key.name(), tag.getFloat(key.name())); //!Replace Me!
-            // DETERMINE IF TAG CONTAINS FLOAT OR INT THEN SORT ACCORINGLY TO INT_GENETICS OR FLOAT_GENETICS
+            // DETERMINE IF TAG CONTAINS FLOAT OR INT THEN SORT ACCORDINGLY TO INT_GENETICS OR FLOAT_GENETICS
         }
         StringBuilder genString = new StringBuilder(tag.getString("GeneticCode"));
         while(genString.length() < geneticCount * 2){
@@ -1024,7 +1027,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     }
 
     @Override
-    protected void positionRider(Entity passenger, Entity.MoveFunction callback) {
+    protected void positionRider(Entity passenger, MoveFunction callback) {
         super.positionRider(passenger, callback);
         if (!passenger.getType().is(EntityTypeTags.CAN_TURN_IN_BOATS)) {
             passenger.setYRot(passenger.getYRot() + headNudge);
@@ -1484,23 +1487,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         else return 0;
     }
 
-    public int getGenetic(String geneticCode, String key){
-        if(!geneticCode.isEmpty()){
-            Map<String, Integer> genes = new HashMap<String, Integer>();
-            for(int i = 0, x = 0; i < geneticCount; i++, x+=2){
-                String number = geneticCode.substring(x, x+2);
-                genes.put(GeneticValues.values()[i].name(), Integer.parseInt(number));
-//                LOGGER.info(GeneticValues.values()[i].name() + " / " + number);
-            }
-//            LOGGER.info("Got Genetic: " + genes.get(key));
-            if(genes.get(key) == null){
-                return 0;
-            } else { return genes.get(key); }
-        } else {
-            return 0;
-        }
-    }
-
     public void setGenetic(String key, float number) {
 //        LOGGER.info("Setting Geneic: " + key + " / " + number);
         this.GENETICS.put(key, number);
@@ -1509,4 +1495,41 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     //TODO: Multiparting
 
     // MULTIPART MODEL //
+    public List<String> getPartsToRender() {
+        GeneticPartNameBuilder partNameBuilder = new GeneticPartNameBuilder(this);
+        List<String> parts = new ArrayList<>();
+        parts.add(partNameBuilder.PartStringGenerator("back"));
+        EquigenMod.LOGGER.info(parts.get(0));
+        parts.add(partNameBuilder.PartStringGenerator("back_leg_top"));
+        parts.add(partNameBuilder.PartStringGenerator("bottom_legs"));
+        parts.add(partNameBuilder.PartStringGenerator("chest"));
+        EquigenMod.LOGGER.info(parts.get(3));
+        parts.add(partNameBuilder.PartStringGenerator("ears"));
+        parts.add(partNameBuilder.PartStringGenerator("front_leg_top"));
+        parts.add(partNameBuilder.PartStringGenerator("head"));
+        parts.add(partNameBuilder.PartStringGenerator("hips"));
+        parts.add(partNameBuilder.PartStringGenerator("hoof"));
+        parts.add(partNameBuilder.PartStringGenerator("knees"));
+        parts.add(partNameBuilder.PartStringGenerator("neck"));
+        EquigenMod.LOGGER.info(parts.get(10));
+        parts.add(partNameBuilder.PartStringGenerator("stomach"));
+        parts.add(partNameBuilder.PartStringGenerator("tail"));
+        parts.add(partNameBuilder.PartStringGenerator("withers"));
+
+        return parts;
+    }
+
+    public Map<String, PartTransform> getPartTransforms() {
+        Map<String, PartTransform> transforms = new HashMap<>();
+
+        if (isPregnant()) {
+            transforms.put("back_1", new PartTransform(
+                    new Vec3(0, 0.5, 0), // position
+                    new Vec3(0, 0, 0),   // rotation
+                    new Vec3(1, 1, 1)    // scale
+            ));
+        }
+
+        return transforms;
+    }
 }

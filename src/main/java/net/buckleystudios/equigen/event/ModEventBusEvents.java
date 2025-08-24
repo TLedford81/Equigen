@@ -4,6 +4,9 @@ import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.ModEntityAttributes;
 import net.buckleystudios.equigen.entity.client.*;
+import net.buckleystudios.equigen.entity.client.parts.backs.Back_1;
+import net.buckleystudios.equigen.entity.client.parts.backs.Back_2;
+import net.buckleystudios.equigen.entity.client.parts.backs.Back_3;
 import net.buckleystudios.equigen.entity.custom.EgretEntity;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.custom.PillagerKingEntity;
@@ -26,10 +29,15 @@ public class ModEventBusEvents {
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(ModModelLayers.PILLAGER_KING, PillagerKingModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.EGRET, EgretModel::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.GENETIC_HORSE, GeneticHorseModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.GENETIC_HORSE, GeneticHorseModelBase::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.TEST_ENTITY, TestEntityModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.SODIUM_GRENADE, SodiumGrenadeProjectileModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.LASSO, SodiumGrenadeProjectileModel::createBodyLayer);
+
+        event.registerLayerDefinition(ModModelLayers.BASE, GeneticHorseModelBase::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_1, Back_1::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_2, Back_2::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_3, Back_3::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -40,6 +48,7 @@ public class ModEventBusEvents {
         event.put(ModEntities.TEST_ENTITY.get(), TestEntityEntity.createAttributes().build());
     }
 
+    @SubscribeEvent
     public static void addAttributes(EntityAttributeModificationEvent event) {
         event.add(ModEntities.GENETIC_HORSE.get(), ModEntityAttributes.MAX_HUNGER);
     }

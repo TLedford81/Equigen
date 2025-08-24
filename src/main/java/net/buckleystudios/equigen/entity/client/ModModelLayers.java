@@ -18,4 +18,17 @@ public class ModModelLayers {
     public static final ModelLayerLocation LASSO = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "sodium_grenade"), "main");
 
+    public static final ModelLayerLocation BASE = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "base"), "main"
+    );
+    public static final ModelLayerLocation BACK_1 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_1"), "main"
+    );
+    public static final ModelLayerLocation BACK_2 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_2"), "main"
+    );
+    public static final ModelLayerLocation BACK_3 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_3"), "main"
+    );
+
 }
