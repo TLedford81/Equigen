@@ -3,21 +3,19 @@ package net.buckleystudios.equigen.entity.client.parts.backs;// Made with Blockb
 // Paste this class into your mod and generate all required imports
 
 
-public class back_average_short_thin<T extends Entity> extends EntityModel<T> {
-	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("modid", "back_average_short_thin"), "main");
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
+import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.*;
+
+public class back_average_short_thin extends HierarchicalModel<GeneticHorseEntity>  {
 	private final ModelPart back_average_short_thin;
-	private final ModelPart back_average_short_thin_back_ribs;
-	private final ModelPart back_average_short_thin_back_top_lower;
-	private final ModelPart back_average_short_thin_back_top_lower_individual;
-	private final ModelPart back_average_short_thin_back_top_upper;
 
 	public back_average_short_thin(ModelPart root) {
 		this.back_average_short_thin = root.getChild("back_average_short_thin");
-		this.back_average_short_thin_back_ribs = this.back_average_short_thin.getChild("back_average_short_thin_back_ribs");
-		this.back_average_short_thin_back_top_lower = this.back_average_short_thin.getChild("back_average_short_thin_back_top_lower");
-		this.back_average_short_thin_back_top_lower_individual = this.back_average_short_thin_back_top_lower.getChild("back_average_short_thin_back_top_lower_individual");
-		this.back_average_short_thin_back_top_upper = this.back_average_short_thin_back_top_lower.getChild("back_average_short_thin_back_top_upper");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -42,12 +40,16 @@ public class back_average_short_thin<T extends Entity> extends EntityModel<T> {
 	}
 
 	@Override
-	public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
+	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		this.root().getAllParts().forEach(ModelPart::resetPose);
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-		back_average_short_thin.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
+		back_average_short_thin.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+	}
+
+	public ModelPart root() {
+		return back_average_short_thin;
 	}
 }

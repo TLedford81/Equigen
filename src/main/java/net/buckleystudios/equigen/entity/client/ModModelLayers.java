@@ -32,6 +32,7 @@ public class ModModelLayers {
     );
 
     /* Backs */
+    // back_lean_short_thin, back_lean_short_average, back_lean_short_thick, back_lean_average_thin, back_lean_average_average, back_lean_average_thick, back_lean_long_thin, back_lean_long_average, back_lean_long_thick
 
     // Lean //
     public static final ModelLayerLocation BACK_LEAN_SHORT_THIN = new ModelLayerLocation(
@@ -122,6 +123,7 @@ public class ModModelLayers {
 
     /* Back Top Legs */
 
+    // back_leg_top_thin_short_1, back_leg_top_thin_short_2, back_leg_top_thin_average_1, back_leg_top_thin_average_2, back_leg_top_thin_long_1, back_leg_top_thin_long_2
     // Thin //
     public static final ModelLayerLocation BACK_LEG_TOP_THIN_SHORT_1 = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_leg_top_thin_short_1"), "main"
@@ -162,7 +164,7 @@ public class ModModelLayers {
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_leg_top_average_long_2"), "main"
     );
 
-    // Muscular //
+    // Thick //
     public static final ModelLayerLocation BACK_LEG_TOP_THICK_SHORT_1 = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_leg_top_thick_short_1"), "main"
     );
@@ -371,6 +373,7 @@ public class ModModelLayers {
 
     /* Chests */
 
+    //chest_lean_small_1, chest_lean_small_2, chest_lean_average_1, chest_lean_average_2, chest_lean_large_1, chest_lean_large_2
     // Lean //
     public static final ModelLayerLocation CHEST_LEAN_SMALL_1 = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "chest_lean_small_1"), "main"
@@ -437,7 +440,7 @@ public class ModModelLayers {
     );
 
     /* Front Top Legs */
-
+// front_leg_top_average_short_1, front_leg_top_average_short_2, front_leg_top_average_short_3, front_leg_top_average_average_1, front_leg_top_average_average_2, front_leg_top_average_average_3, front_leg_top_average_long_1, front_leg_top_average_long_2, front_leg_top_average_long_3
     // Average //
     public static final ModelLayerLocation FRONT_LEG_TOP_AVERAGE_SHORT_1 = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "front_leg_top_average_short_1"), "main"
@@ -497,7 +500,7 @@ public class ModModelLayers {
     );
 
     /* Heads */
-
+//head_dished_lean, head_dished_average, head_dished_muscular, head_roman_lean, head_roman_average, head_roman_muscular, head_stocky_lean, head_stocky_average, head_stocky_muscular
     // Dished //
     public static final ModelLayerLocation HEAD_DISHED_LEAN = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "head_dished_lean"), "main"

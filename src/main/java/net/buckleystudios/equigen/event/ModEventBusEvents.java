@@ -4,9 +4,7 @@ import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.ModEntityAttributes;
 import net.buckleystudios.equigen.entity.client.*;
-import net.buckleystudios.equigen.entity.client.parts.backs.Back_1;
-import net.buckleystudios.equigen.entity.client.parts.backs.Back_2;
-import net.buckleystudios.equigen.entity.client.parts.backs.Back_3;
+import net.buckleystudios.equigen.entity.client.parts.backs.*;
 import net.buckleystudios.equigen.entity.custom.EgretEntity;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.custom.PillagerKingEntity;
@@ -38,6 +36,37 @@ public class ModEventBusEvents {
         event.registerLayerDefinition(ModModelLayers.BACK_1, Back_1::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.BACK_2, Back_2::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.BACK_3, Back_3::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_LEAN_SHORT_THIN, back_lean_short_thin::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_LEAN_SHORT_AVERAGE, back_lean_short_average::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_LEAN_SHORT_THICK, back_lean_short_thick::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_LEAN_AVERAGE_THIN, back_lean_average_thin::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_LEAN_AVERAGE_AVERAGE, back_lean_average_average::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_LEAN_AVERAGE_THICK, back_lean_average_thick::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_LEAN_LONG_THIN, back_lean_long_thin::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_LEAN_LONG_AVERAGE, back_lean_long_average::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_LEAN_LONG_THICK, back_lean_long_thick::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_AVERAGE_SHORT_THIN, back_average_short_thin::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_AVERAGE_SHORT_AVERAGE, back_average_short_average::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_AVERAGE_SHORT_THICK, back_average_short_thick::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_AVERAGE_AVERAGE_THIN, back_average_average_thin::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_AVERAGE_AVERAGE_AVERAGE, back_average_average_average::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_AVERAGE_AVERAGE_THICK, back_average_average_thick::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_AVERAGE_LONG_THIN, back_average_long_thin::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_AVERAGE_LONG_AVERAGE, back_average_long_average::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_AVERAGE_LONG_THICK, back_average_long_thick::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_MUSCULAR_SHORT_THIN, back_muscular_short_thin::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_MUSCULAR_SHORT_AVERAGE, back_muscular_short_average::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_MUSCULAR_SHORT_THICK, back_muscular_short_thick::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_MUSCULAR_AVERAGE_THIN, back_muscular_average_thin::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_MUSCULAR_AVERAGE_AVERAGE, back_muscular_average_average::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_MUSCULAR_AVERAGE_THICK, back_muscular_average_thick::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_MUSCULAR_LONG_THIN, back_muscular_long_thin::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_MUSCULAR_LONG_AVERAGE, back_muscular_long_average::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_MUSCULAR_LONG_THICK, back_muscular_long_thick::createBodyLayer);
+
+
+
+
     }
 
     @SubscribeEvent
