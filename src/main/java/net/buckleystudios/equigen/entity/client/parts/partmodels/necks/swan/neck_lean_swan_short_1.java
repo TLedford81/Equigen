@@ -1,4 +1,4 @@
-package net.buckleystudios.equigen.entity.client.parts.necks.swan;// Made with Blockbench 4.12.1
+package net.buckleystudios.equigen.entity.client.parts.partmodels.necks.swan;// Made with Blockbench 4.12.1
 // Exported for Minecraft version 1.17 or later with Mojang mappings
 // Paste this class into your mod and generate all required imports
 
