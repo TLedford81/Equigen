@@ -94,7 +94,7 @@ public class GeneticPartNameBuilder {
                 case 3 -> "thick";
                 default -> "";
             };
-            case "TOP_LEG", "NECK_LENGTH" -> switch (value) {
+            case "TOP_LEG", "NECK_LENGTH", "BACK_LEG_TOP" -> switch (value) {
                 case 1 -> "short_1";
                 case 2 -> "short_2";
                 case 3 -> "average_1";
