@@ -11,6 +11,7 @@ import net.buckleystudios.equigen.entity.client.parts.necks.arched.*;
 import net.buckleystudios.equigen.entity.client.parts.necks.ewed.*;
 import net.buckleystudios.equigen.entity.client.parts.necks.straight.*;
 import net.buckleystudios.equigen.entity.client.parts.necks.swan.*;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.backs.*;
 import net.buckleystudios.equigen.entity.custom.EgretEntity;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.custom.PillagerKingEntity;

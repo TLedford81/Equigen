@@ -2,6 +2,7 @@ package net.buckleystudios.equigen.entity.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.buckleystudios.equigen.EquigenMod;
+import net.buckleystudios.equigen.entity.client.parts.MultipartModel;
 import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.client.parts.backs.*;
 import net.buckleystudios.equigen.entity.client.parts.backtoplegs.*;
@@ -10,6 +11,7 @@ import net.buckleystudios.equigen.entity.client.parts.necks.arched.*;
 import net.buckleystudios.equigen.entity.client.parts.necks.ewed.*;
 import net.buckleystudios.equigen.entity.client.parts.necks.straight.*;
 import net.buckleystudios.equigen.entity.client.parts.necks.swan.*;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.backs.*;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.EntityModelSet;
@@ -78,10 +80,14 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
 
             // Render part
             EntityModel<GeneticHorseEntity> partModel = getPartModel(partId);
+            if(getPartModel(partId) instanceof MultipartModel<?> multipart){
+                multipart.PositionParts();
+            }
+
             if (partModel != null) {
                 partModel.renderToBuffer(
                         localPose,
-                        buffer.getBuffer(RenderType.entityCutout(getPartTexture(partId, entity))),
+                        buffer.getBuffer(RenderType.entityCutout(getTextureLocation(entity))),
                         packedLight,
                         OverlayTexture.NO_OVERLAY
                 );
@@ -103,14 +109,14 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         // Scale
         pose.scale((float) transform.scale.x, (float) transform.scale.y, (float) transform.scale.z);
     }
-
-    private ResourceLocation getPartTexture(String partId, GeneticHorseEntity entity) {
-        return ResourceLocation.fromNamespaceAndPath(
-                EquigenMod.MODID,
-                "textures/entity/genetic_horse/parts/" + getPartCategory(partId) + "/" +
-                        partId + (entity.isSaddled() ? "_saddled" : "") + ".png"
-        );
-    }
+//
+//    private ResourceLocation getPartTexture(String partId, GeneticHorseEntity entity) {
+//        return ResourceLocation.fromNamespaceAndPath(
+//                EquigenMod.MODID,
+//                "textures/entity/genetic_horse/parts/" + getPartCategory(partId) + "/" +
+//                        partId + (entity.isSaddled() ? "_saddled" : "") + ".png"
+//        );
+//    }
 
 
     private String getPartCategory(String partId) {
@@ -175,6 +181,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
 
         return "other";
     }
+    //TODO: ^ Finish this Method ^
 
     private EntityModel<GeneticHorseEntity> getPartModel(String partId) {
         return partCache.computeIfAbsent(partId, id -> switch (id) {
