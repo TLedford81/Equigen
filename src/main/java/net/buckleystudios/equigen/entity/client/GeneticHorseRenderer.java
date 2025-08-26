@@ -80,7 +80,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
             if (partModel != null) {
                 partModel.renderToBuffer(
                         localPose,
-                        buffer.getBuffer(RenderType.entityCutout(getPartTexture(partId, entity))),
+                        buffer.getBuffer(RenderType.entityCutout(getTextureLocation(entity))),
                         packedLight,
                         OverlayTexture.NO_OVERLAY
                 );
@@ -102,14 +102,14 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         // Scale
         pose.scale((float) transform.scale.x, (float) transform.scale.y, (float) transform.scale.z);
     }
-
-    private ResourceLocation getPartTexture(String partId, GeneticHorseEntity entity) {
-        return ResourceLocation.fromNamespaceAndPath(
-                EquigenMod.MODID,
-                "textures/entity/genetic_horse/parts/" + getPartCategory(partId) + "/" +
-                        partId + (entity.isSaddled() ? "_saddled" : "") + ".png"
-        );
-    }
+//
+//    private ResourceLocation getPartTexture(String partId, GeneticHorseEntity entity) {
+//        return ResourceLocation.fromNamespaceAndPath(
+//                EquigenMod.MODID,
+//                "textures/entity/genetic_horse/parts/" + getPartCategory(partId) + "/" +
+//                        partId + (entity.isSaddled() ? "_saddled" : "") + ".png"
+//        );
+//    }
 
 
     private String getPartCategory(String partId) {
