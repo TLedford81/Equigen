@@ -4,7 +4,7 @@ import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.ModEntityAttributes;
 import net.buckleystudios.equigen.entity.client.*;
-import net.buckleystudios.equigen.entity.client.parts.backs.*;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.backs.*;
 import net.buckleystudios.equigen.entity.custom.EgretEntity;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.custom.PillagerKingEntity;

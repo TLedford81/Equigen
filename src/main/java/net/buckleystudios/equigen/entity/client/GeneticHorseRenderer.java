@@ -2,8 +2,9 @@ package net.buckleystudios.equigen.entity.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.buckleystudios.equigen.EquigenMod;
+import net.buckleystudios.equigen.entity.client.parts.MultipartModel;
 import net.buckleystudios.equigen.entity.client.parts.PartTransform;
-import net.buckleystudios.equigen.entity.client.parts.backs.*;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.backs.*;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.EntityModelSet;
@@ -72,6 +73,10 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
 
             // Render part
             EntityModel<GeneticHorseEntity> partModel = getPartModel(partId);
+            if(getPartModel(partId) instanceof MultipartModel<?> multipart){
+                multipart.PositionParts();
+            }
+
             if (partModel != null) {
                 partModel.renderToBuffer(
                         localPose,
@@ -169,6 +174,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
 
         return "other";
     }
+    //TODO: ^ Finish this Method ^
 
     private EntityModel<GeneticHorseEntity> getPartModel(String partId) {
         return partCache.computeIfAbsent(partId, id -> switch (id) {
