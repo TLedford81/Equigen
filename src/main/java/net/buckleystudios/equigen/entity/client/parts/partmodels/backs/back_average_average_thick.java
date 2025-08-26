@@ -53,4 +53,9 @@ public class back_average_average_thick extends MultipartBackModel<GeneticHorseE
 	public ModelPart root() {
 		return back_average_average_thick;
 	}
+
+	@Override
+	public void PositionParts() {
+		super.PositionParts(back_average_average_thick, back_average_average_thick);
+	}
 }

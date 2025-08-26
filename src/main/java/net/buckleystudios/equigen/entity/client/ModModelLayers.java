@@ -911,8 +911,8 @@ public class ModModelLayers {
     public static final ModelLayerLocation STOMACH_LEAN_SHORT_LOW = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_lean_short_low"), "main"
     );
-    public static final ModelLayerLocation STOMACH_LEAN_SHORT_AVERAGE = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_lean_short_average"), "main"
+    public static final ModelLayerLocation STOMACH_LEAN_SHORT_MEDIUM = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_lean_short_medium"), "main"
     );
     public static final ModelLayerLocation STOMACH_LEAN_SHORT_HIGH = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_lean_short_high"), "main"
@@ -920,8 +920,8 @@ public class ModModelLayers {
     public static final ModelLayerLocation STOMACH_LEAN_AVERAGE_LOW = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_lean_average_low"), "main"
     );
-    public static final ModelLayerLocation STOMACH_LEAN_AVERAGE_AVERAGE = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_lean_average_average"), "main"
+    public static final ModelLayerLocation STOMACH_LEAN_AVERAGE_MEDIUM = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_lean_average_medium"), "main"
     );
     public static final ModelLayerLocation STOMACH_LEAN_AVERAGE_HIGH = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_lean_average_high"), "main"
@@ -929,8 +929,8 @@ public class ModModelLayers {
     public static final ModelLayerLocation STOMACH_LEAN_LONG_LOW = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_lean_long_low"), "main"
     );
-    public static final ModelLayerLocation STOMACH_LEAN_LONG_AVERAGE = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_lean_long_average"), "main"
+    public static final ModelLayerLocation STOMACH_LEAN_LONG_MEDIUM = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_lean_long_medium"), "main"
     );
     public static final ModelLayerLocation STOMACH_LEAN_LONG_HIGH = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_lean_long_high"), "main"
@@ -942,8 +942,8 @@ public class ModModelLayers {
     public static final ModelLayerLocation STOMACH_AVERAGE_SHORT_LOW = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_average_short_low"), "main"
     );
-    public static final ModelLayerLocation STOMACH_AVERAGE_SHORT_AVERAGE = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_average_short_average"), "main"
+    public static final ModelLayerLocation STOMACH_AVERAGE_SHORT_MEDIUM = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_average_short_medium"), "main"
     );
     public static final ModelLayerLocation STOMACH_AVERAGE_SHORT_HIGH = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_average_short_high"), "main"
@@ -951,8 +951,8 @@ public class ModModelLayers {
     public static final ModelLayerLocation STOMACH_AVERAGE_AVERAGE_LOW = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_average_average_low"), "main"
     );
-    public static final ModelLayerLocation STOMACH_AVERAGE_AVERAGE_AVERAGE = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_average_average_average"), "main"
+    public static final ModelLayerLocation STOMACH_AVERAGE_AVERAGE_MEDIUM = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_average_average_medium"), "main"
     );
     public static final ModelLayerLocation STOMACH_AVERAGE_AVERAGE_HIGH = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_average_average_high"), "main"
@@ -960,8 +960,8 @@ public class ModModelLayers {
     public static final ModelLayerLocation STOMACH_AVERAGE_LONG_LOW = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_average_long_low"), "main"
     );
-    public static final ModelLayerLocation STOMACH_AVERAGE_LONG_AVERAGE = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_average_long_average"), "main"
+    public static final ModelLayerLocation STOMACH_AVERAGE_LONG_MEDIUM = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_average_long_medium"), "main"
     );
     public static final ModelLayerLocation STOMACH_AVERAGE_LONG_HIGH = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_average_long_high"), "main"
@@ -972,8 +972,8 @@ public class ModModelLayers {
     public static final ModelLayerLocation STOMACH_MUSCULAR_SHORT_LOW = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_muscular_short_low"), "main"
     );
-    public static final ModelLayerLocation STOMACH_MUSCULAR_SHORT_AVERAGE = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_muscular_short_average"), "main"
+    public static final ModelLayerLocation STOMACH_MUSCULAR_SHORT_MEDIUM = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_muscular_short_medium"), "main"
     );
     public static final ModelLayerLocation STOMACH_MUSCULAR_SHORT_HIGH = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_muscular_short_high"), "main"
@@ -981,8 +981,8 @@ public class ModModelLayers {
     public static final ModelLayerLocation STOMACH_MUSCULAR_AVERAGE_LOW = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_muscular_average_low"), "main"
     );
-    public static final ModelLayerLocation STOMACH_MUSCULAR_AVERAGE_AVERAGE = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_muscular_average_average"), "main"
+    public static final ModelLayerLocation STOMACH_MUSCULAR_AVERAGE_MEDIUM = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_muscular_average_medium"), "main"
     );
     public static final ModelLayerLocation STOMACH_MUSCULAR_AVERAGE_HIGH = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_muscular_average_high"), "main"
@@ -990,8 +990,8 @@ public class ModModelLayers {
     public static final ModelLayerLocation STOMACH_MUSCULAR_LONG_LOW = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_muscular_long_low"), "main"
     );
-    public static final ModelLayerLocation STOMACH_MUSCULAR_LONG_AVERAGE = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_muscular_long_average"), "main"
+    public static final ModelLayerLocation STOMACH_MUSCULAR_LONG_MEDIUM = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_muscular_long_medium"), "main"
     );
     public static final ModelLayerLocation STOMACH_MUSCULAR_LONG_HIGH = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stomach_muscular_long_high"), "main"
