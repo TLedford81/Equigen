@@ -16,7 +16,7 @@ public class back_average_average_thick extends MultipartBackModel<GeneticHorseE
 	private final ModelPart back_average_average_thick;
 
 	public back_average_average_thick(ModelPart root) {
-        super(root);
+        
         this.back_average_average_thick = root.getChild("back_average_average_thick");
 	}
 
@@ -53,5 +53,10 @@ public class back_average_average_thick extends MultipartBackModel<GeneticHorseE
 
 	public ModelPart root() {
 		return back_average_average_thick;
+	}
+
+	@Override
+	public void positionParts() {
+		super.positionParts(back_average_average_thick, back_average_average_thick);
 	}
 }

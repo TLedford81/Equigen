@@ -20,7 +20,7 @@ public class chest_average_average_1 extends MultipartChestModel<GeneticHorseEnt
 
 
 	public chest_average_average_1(ModelPart root) {
-		super(root);
+		
 		this.chest_average_average_1 = root.getChild("chest_average_average_1");
 		this.anchorBack = chest_average_average_1.getChild("anchorBack");
 	}
@@ -114,7 +114,7 @@ public class chest_average_average_1 extends MultipartChestModel<GeneticHorseEnt
 	@Override
 	public Map<String, PartTransform> anchors() {
 		return Map.of(
-				"back", asTransform(this.anchorBack)
+				"back", asTransform(anchorBack)
 		);
 	}
 }

@@ -5,13 +5,13 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.necks.arched;/
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.buckleystudios.equigen.entity.client.parts.MultipartNeckModel;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
-import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
-public class neck_average_arched_short_1 extends HierarchicalModel<GeneticHorseEntity> {
+public class neck_average_arched_short_1 extends MultipartNeckModel<GeneticHorseEntity> {
 	private final ModelPart neck_average_arched_short_1;
 
 	public neck_average_arched_short_1(ModelPart root) {
@@ -101,4 +101,9 @@ public class neck_average_arched_short_1 extends HierarchicalModel<GeneticHorseE
     public ModelPart root() {
         return neck_average_arched_short_1;
     }
+
+	@Override
+	public void positionParts() {
+		super.positionParts(root(), root());
+	}
 }

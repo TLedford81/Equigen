@@ -7,10 +7,18 @@ import net.buckleystudios.equigen.entity.client.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.backs.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.backtoplegs.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.chests.*;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.ears.ears;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.heads.*;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.hips.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.arched.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.ewed.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.straight.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.swan.*;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.stomachs.*;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.tails.*;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.withers.withers_average;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.withers.withers_lean;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.withers.withers_muscular;
 import net.buckleystudios.equigen.entity.custom.EgretEntity;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.custom.PillagerKingEntity;
@@ -183,6 +191,89 @@ public class ModEventBusEvents {
         event.registerLayerDefinition(ModModelLayers.NECK_MUSCULAR_SWAN_AVERAGE_2, neck_muscular_swan_average_2::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.NECK_MUSCULAR_SWAN_LONG_1, neck_muscular_swan_long_1::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.NECK_MUSCULAR_SWAN_LONG_2, neck_muscular_swan_long_2::createBodyLayer);
+
+        // Ears
+        event.registerLayerDefinition(ModModelLayers.EARS, ears::createBodyLayer);
+
+        // Heads
+        event.registerLayerDefinition(ModModelLayers.HEAD_DISHED_LEAN, head_dished_lean::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HEAD_DISHED_AVERAGE, head_dished_average::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HEAD_DISHED_MUSCULAR, head_dished_muscular::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HEAD_ROMAN_LEAN, head_roman_lean::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HEAD_ROMAN_AVERAGE, head_roman_average::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HEAD_ROMAN_MUSCULAR, head_roman_muscular::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HEAD_STOCKY_LEAN, head_stocky_lean::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HEAD_STOCKY_AVERAGE, head_stocky_average::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HEAD_STOCKY_MUSCULAR, head_stocky_muscular::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HEAD_STRAIGHT_LEAN, head_straight_lean::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HEAD_STRAIGHT_AVERAGE, head_straight_average::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HEAD_STRAIGHT_MUSCULAR, head_straight_muscular::createBodyLayer);
+
+        //Hips
+        event.registerLayerDefinition(ModModelLayers.HIPS_LEAN_SMALL_1, hips_lean_small_1::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HIPS_LEAN_SMALL_2, hips_lean_small_2::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HIPS_LEAN_AVERAGE_1, hips_lean_average_1::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HIPS_LEAN_AVERAGE_2, hips_lean_average_2::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HIPS_LEAN_LARGE_1, hips_lean_large_1::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HIPS_LEAN_LARGE_2, hips_lean_large_2::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HIPS_AVERAGE_SMALL_1, hips_average_small_1::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HIPS_AVERAGE_SMALL_2, hips_average_small_2::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HIPS_AVERAGE_AVERAGE_1, hips_average_average_1::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HIPS_AVERAGE_AVERAGE_2, hips_average_average_2::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HIPS_AVERAGE_LARGE_1, hips_average_large_1::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HIPS_AVERAGE_LARGE_2, hips_average_large_2::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HIPS_MUSCULAR_SMALL_1, hips_muscular_small_1::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HIPS_MUSCULAR_SMALL_2, hips_muscular_small_2::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HIPS_MUSCULAR_AVERAGE_1, hips_muscular_average_1::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HIPS_MUSCULAR_AVERAGE_2, hips_muscular_average_2::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HIPS_MUSCULAR_LARGE_1, hips_muscular_large_1::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HIPS_MUSCULAR_LARGE_2, hips_muscular_large_2::createBodyLayer);
+
+        //Stomachs
+
+        event.registerLayerDefinition(ModModelLayers.STOMACH_AVERAGE_AVERAGE_HIGH, stomach_average_average_high::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_AVERAGE_AVERAGE_LOW, stomach_average_average_low::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_AVERAGE_AVERAGE_MEDIUM, stomach_average_average_medium::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_AVERAGE_LONG_HIGH, stomach_average_long_high::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_AVERAGE_LONG_LOW, stomach_average_long_low::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_AVERAGE_LONG_MEDIUM, stomach_average_long_medium::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_AVERAGE_SHORT_HIGH, stomach_average_short_high::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_AVERAGE_SHORT_LOW, stomach_average_short_low::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_AVERAGE_SHORT_MEDIUM, stomach_average_short_medium::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_LEAN_AVERAGE_HIGH, stomach_lean_average_high::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_LEAN_AVERAGE_LOW, stomach_lean_average_low::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_LEAN_AVERAGE_MEDIUM, stomach_lean_average_medium::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_LEAN_LONG_HIGH, stomach_lean_long_high::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_LEAN_LONG_LOW, stomach_lean_long_low::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_LEAN_LONG_MEDIUM, stomach_lean_long_medium::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_LEAN_SHORT_HIGH, stomach_lean_short_high::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_LEAN_SHORT_LOW, stomach_lean_short_low::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_LEAN_SHORT_MEDIUM, stomach_lean_short_medium::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_MUSCULAR_AVERAGE_HIGH, stomach_muscular_average_high::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_MUSCULAR_AVERAGE_LOW, stomach_muscular_average_low::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_MUSCULAR_AVERAGE_MEDIUM, stomach_muscular_average_medium::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_MUSCULAR_LONG_HIGH, stomach_muscular_long_high::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_MUSCULAR_LONG_LOW, stomach_muscular_long_low::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_MUSCULAR_LONG_MEDIUM, stomach_muscular_long_medium::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_MUSCULAR_SHORT_HIGH, stomach_muscular_short_high::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_MUSCULAR_SHORT_LOW, stomach_muscular_short_low::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.STOMACH_MUSCULAR_SHORT_MEDIUM, stomach_muscular_short_medium::createBodyLayer);
+
+        //Tails
+        event.registerLayerDefinition(ModModelLayers.TAIL_AVERAGE_AVERAGE, tail_average_average::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.TAIL_AVERAGE_SHORT, tail_average_short::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.TAIL_AVERAGE_LONG, tail_average_long::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.TAIL_THICK_AVERAGE, tail_thick_average::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.TAIL_THICK_SHORT, tail_thick_short::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.TAIL_THICK_LONG, tail_thick_long::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.TAIL_THIN_AVERAGE, tail_thin_average::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.TAIL_THIN_SHORT, tail_thin_short::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.TAIL_THIN_LONG, tail_thin_long::createBodyLayer);
+
+        //Withers
+        event.registerLayerDefinition(ModModelLayers.WITHERS_AVERAGE, withers_average::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.WITHERS_LEAN, withers_lean::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.WITHERS_MUSCULAR, withers_muscular::createBodyLayer);
 
     }
 

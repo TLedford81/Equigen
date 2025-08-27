@@ -5,13 +5,13 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.necks.straight
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.buckleystudios.equigen.entity.client.parts.MultipartNeckModel;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
-import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
-public class neck_lean_straight_short_2 extends HierarchicalModel<GeneticHorseEntity> {
+public class neck_lean_straight_short_2 extends MultipartNeckModel<GeneticHorseEntity> {
 	private final ModelPart neck_lean_straight_short_2;
 
 	public neck_lean_straight_short_2(ModelPart root) {
@@ -101,4 +101,9 @@ public class neck_lean_straight_short_2 extends HierarchicalModel<GeneticHorseEn
     public ModelPart root() {
         return neck_lean_straight_short_2;
     }
+
+	@Override
+	public void positionParts() {
+		super.positionParts(root(), root());
+	}
 }

@@ -5,16 +5,17 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.backs;// Made 
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.buckleystudios.equigen.entity.client.parts.MultipartBackModel;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
-import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
-public class back_lean_short_average extends HierarchicalModel<GeneticHorseEntity> {
+public class back_lean_short_average extends MultipartBackModel<GeneticHorseEntity> {
 	private final ModelPart back_lean_short_average;
 
 	public back_lean_short_average(ModelPart root) {
+		
 		this.back_lean_short_average = root.getChild("back_lean_short_average");
 	}
 
@@ -51,5 +52,10 @@ public class back_lean_short_average extends HierarchicalModel<GeneticHorseEntit
 
 	public ModelPart root() {
 		return back_lean_short_average;
+	}
+
+	@Override
+	public void positionParts() {
+		super.positionParts(root(), root());
 	}
 }

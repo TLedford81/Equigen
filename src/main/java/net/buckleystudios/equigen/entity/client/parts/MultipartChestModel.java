@@ -11,9 +11,6 @@ import java.util.Map;
 @OnlyIn(Dist.CLIENT)
 public abstract class MultipartChestModel <E extends GeneticHorseEntity> extends MultipartModel<GeneticHorseEntity> {
 
-    public MultipartChestModel(ModelPart root) {
-    }
-
     @Override
     public Map<String, PartTransform> anchors() {
         return Map.of();

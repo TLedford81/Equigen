@@ -22,7 +22,7 @@ public class back_average_average_average extends MultipartBackModel<GeneticHors
 
 
 	public back_average_average_average(ModelPart root) {
-		super(root);
+		
         this.back_average_average_average = root.getChild("back_average_average_average");
 		this.anchorNeck = back_average_average_average.getChild("anchorNeck");
 		this.anchorChest = back_average_average_average.getChild("anchorChest");

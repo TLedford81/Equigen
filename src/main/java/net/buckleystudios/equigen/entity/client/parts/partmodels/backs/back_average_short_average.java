@@ -5,18 +5,19 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.backs;// Made 
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.buckleystudios.equigen.entity.client.parts.MultipartModel;
+import net.buckleystudios.equigen.entity.client.parts.MultipartBackModel;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
-public class back_average_short_average extends MultipartModel<GeneticHorseEntity> {
+public class back_average_short_average extends MultipartBackModel<GeneticHorseEntity> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
 	private final ModelPart back_average_short_average;
 
 	public back_average_short_average(ModelPart root) {
-		this.back_average_short_average = root.getChild("back_average_short_average");
+        
+        this.back_average_short_average = root.getChild("back_average_short_average");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -53,5 +54,10 @@ public class back_average_short_average extends MultipartModel<GeneticHorseEntit
 
 	public ModelPart root() {
 		return back_average_short_average;
+	}
+
+	@Override
+	public void positionParts() {
+		super.positionParts(root(), root());
 	}
 }
