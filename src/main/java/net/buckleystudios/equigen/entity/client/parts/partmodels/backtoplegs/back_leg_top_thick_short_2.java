@@ -5,13 +5,13 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.backtoplegs;//
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.buckleystudios.equigen.entity.client.parts.MultipartBackTopLegModel;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
-import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
-public class back_leg_top_thick_short_2 extends HierarchicalModel<GeneticHorseEntity> {
+public class back_leg_top_thick_short_2 extends MultipartBackTopLegModel<GeneticHorseEntity> {
 	private final ModelPart top_back_legs_thick_short_2;
 
 
@@ -62,4 +62,9 @@ public class back_leg_top_thick_short_2 extends HierarchicalModel<GeneticHorseEn
     public ModelPart root() {
         return top_back_legs_thick_short_2;
     }
+
+	@Override
+	public void PositionParts() {
+		super.PositionParts(root(), root());
+	}
 }

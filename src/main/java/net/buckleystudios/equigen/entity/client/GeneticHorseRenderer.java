@@ -7,10 +7,18 @@ import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.backs.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.backtoplegs.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.chests.*;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.ears.ears;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.heads.*;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.hips.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.arched.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.ewed.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.straight.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.swan.*;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.stomachs.*;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.tails.*;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.withers.withers_average;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.withers.withers_lean;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.withers.withers_muscular;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.EntityModelSet;
@@ -533,6 +541,161 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                     new neck_muscular_swan_long_1(modelSet.bakeLayer(ModModelLayers.NECK_MUSCULAR_SWAN_LONG_1));
             case "neck_muscular_swan_long_2" ->
                     new neck_muscular_swan_long_2(modelSet.bakeLayer(ModModelLayers.NECK_MUSCULAR_SWAN_LONG_2));
+
+            // Ears
+            case "ears" ->
+                    new ears(modelSet.bakeLayer(ModModelLayers.EARS));
+
+            // Heads
+            case "head_dished_lean" ->
+                    new head_dished_lean(modelSet.bakeLayer(ModModelLayers.HEAD_DISHED_LEAN));
+            case "head_dished_average" ->
+                    new head_dished_average(modelSet.bakeLayer(ModModelLayers.HEAD_DISHED_AVERAGE));
+            case "head_dished_muscular" ->
+                    new head_dished_muscular(modelSet.bakeLayer(ModModelLayers.HEAD_DISHED_MUSCULAR));
+            case "head_roman_lean" ->
+                    new head_roman_lean(modelSet.bakeLayer(ModModelLayers.HEAD_ROMAN_LEAN));
+            case "head_roman_average" ->
+                    new head_roman_average(modelSet.bakeLayer(ModModelLayers.HEAD_ROMAN_AVERAGE));
+            case "head_roman_muscular" ->
+                    new head_roman_muscular(modelSet.bakeLayer(ModModelLayers.HEAD_ROMAN_MUSCULAR));
+            case "head_stocky_lean" ->
+                    new head_stocky_lean(modelSet.bakeLayer(ModModelLayers.HEAD_STOCKY_LEAN));
+            case "head_stocky_average" ->
+                    new head_stocky_average(modelSet.bakeLayer(ModModelLayers.HEAD_STOCKY_AVERAGE));
+            case "head_stocky_muscular" ->
+                    new head_stocky_muscular(modelSet.bakeLayer(ModModelLayers.HEAD_STOCKY_MUSCULAR));
+            case "head_straight_lean" ->
+                    new head_straight_lean(modelSet.bakeLayer(ModModelLayers.HEAD_STRAIGHT_LEAN));
+            case "head_straight_average" ->
+                    new head_straight_average(modelSet.bakeLayer(ModModelLayers.HEAD_STRAIGHT_AVERAGE));
+            case "head_straight_muscular" ->
+                    new head_straight_muscular(modelSet.bakeLayer(ModModelLayers.HEAD_STRAIGHT_MUSCULAR));
+
+            // Hips
+            case "hips_lean_small_1" ->
+                    new hips_lean_small_1(modelSet.bakeLayer(ModModelLayers.HIPS_LEAN_SMALL_1));
+            case "hips_lean_small_2" ->
+                    new hips_lean_small_2(modelSet.bakeLayer(ModModelLayers.HIPS_LEAN_SMALL_2));
+            case "hips_lean_average_1" ->
+                    new hips_lean_average_1(modelSet.bakeLayer(ModModelLayers.HIPS_LEAN_AVERAGE_1));
+            case "hips_lean_average_2" ->
+                    new hips_lean_average_2(modelSet.bakeLayer(ModModelLayers.HIPS_LEAN_AVERAGE_2));
+            case "hips_lean_large_1" ->
+                    new hips_lean_large_1(modelSet.bakeLayer(ModModelLayers.HIPS_LEAN_LARGE_1));
+            case "hips_lean_large_2" ->
+                    new hips_lean_large_2(modelSet.bakeLayer(ModModelLayers.HIPS_LEAN_LARGE_2));
+            case "hips_average_small_1" ->
+                    new hips_average_small_1(modelSet.bakeLayer(ModModelLayers.HIPS_AVERAGE_SMALL_1));
+            case "hips_average_small_2" ->
+                    new hips_average_small_2(modelSet.bakeLayer(ModModelLayers.HIPS_AVERAGE_SMALL_2));
+            case "hips_average_average_1" ->
+                    new hips_average_average_1(modelSet.bakeLayer(ModModelLayers.HIPS_AVERAGE_AVERAGE_1));
+            case "hips_average_average_2" ->
+                    new hips_average_average_2(modelSet.bakeLayer(ModModelLayers.HIPS_AVERAGE_AVERAGE_2));
+            case "hips_average_large_1" ->
+                    new hips_average_large_1(modelSet.bakeLayer(ModModelLayers.HIPS_AVERAGE_LARGE_1));
+            case "hips_average_large_2" ->
+                    new hips_average_large_2(modelSet.bakeLayer(ModModelLayers.HIPS_AVERAGE_LARGE_2));
+            case "hips_muscular_small_1" ->
+                    new hips_muscular_small_1(modelSet.bakeLayer(ModModelLayers.HIPS_MUSCULAR_SMALL_1));
+            case "hips_muscular_small_2" ->
+                    new hips_muscular_small_2(modelSet.bakeLayer(ModModelLayers.HIPS_MUSCULAR_SMALL_2));
+            case "hips_muscular_average_1" ->
+                    new hips_muscular_average_1(modelSet.bakeLayer(ModModelLayers.HIPS_MUSCULAR_AVERAGE_1));
+            case "hips_muscular_average_2" ->
+                    new hips_muscular_average_2(modelSet.bakeLayer(ModModelLayers.HIPS_MUSCULAR_AVERAGE_2));
+            case "hips_muscular_large_1" ->
+                    new hips_muscular_large_1(modelSet.bakeLayer(ModModelLayers.HIPS_MUSCULAR_LARGE_1));
+            case "hips_muscular_large_2" ->
+                    new hips_muscular_large_2(modelSet.bakeLayer(ModModelLayers.HIPS_MUSCULAR_LARGE_2));
+
+            
+            //Stomachs
+            case "stomach_average_average_high" -> 
+                    new stomach_average_average_high(modelSet.bakeLayer(ModModelLayers.STOMACH_AVERAGE_AVERAGE_HIGH));
+            case "stomach_average_average_low" -> 
+                    new stomach_average_average_low(modelSet.bakeLayer(ModModelLayers.STOMACH_AVERAGE_AVERAGE_LOW));
+            case "stomach_average_average_medium" ->
+                    new stomach_average_average_medium(modelSet.bakeLayer(ModModelLayers.STOMACH_AVERAGE_AVERAGE_MEDIUM));
+            case "stomach_average_long_high" ->
+                    new stomach_average_long_high(modelSet.bakeLayer(ModModelLayers.STOMACH_AVERAGE_LONG_HIGH));
+            case "stomach_average_long_low" ->
+                    new stomach_average_long_low(modelSet.bakeLayer(ModModelLayers.STOMACH_AVERAGE_LONG_LOW));
+            case "stomach_average_long_medium" ->
+                    new stomach_average_long_medium(modelSet.bakeLayer(ModModelLayers.STOMACH_AVERAGE_LONG_MEDIUM));
+            case "stomach_average_short_high" ->
+                    new stomach_average_short_high(modelSet.bakeLayer(ModModelLayers.STOMACH_AVERAGE_SHORT_HIGH));
+            case "stomach_average_short_low" ->
+                    new stomach_average_short_low(modelSet.bakeLayer(ModModelLayers.STOMACH_AVERAGE_SHORT_LOW));
+            case "stomach_average_short_medium" ->
+                    new stomach_average_short_medium(modelSet.bakeLayer(ModModelLayers.STOMACH_AVERAGE_SHORT_MEDIUM));
+            case "stomach_lean_average_high" ->
+                    new stomach_lean_average_high(modelSet.bakeLayer(ModModelLayers.STOMACH_LEAN_AVERAGE_HIGH));
+            case "stomach_lean_average_low" ->
+                    new stomach_lean_average_low(modelSet.bakeLayer(ModModelLayers.STOMACH_LEAN_AVERAGE_LOW));
+            case "stomach_lean_average_medium" ->
+                    new stomach_lean_average_medium(modelSet.bakeLayer(ModModelLayers.STOMACH_LEAN_AVERAGE_MEDIUM));
+            case "stomach_lean_long_high" ->
+                    new stomach_lean_long_high(modelSet.bakeLayer(ModModelLayers.STOMACH_LEAN_LONG_HIGH));
+            case "stomach_lean_long_low" ->
+                    new stomach_lean_long_low(modelSet.bakeLayer(ModModelLayers.STOMACH_LEAN_LONG_LOW));
+            case "stomach_lean_long_medium" ->
+                    new stomach_lean_long_medium(modelSet.bakeLayer(ModModelLayers.STOMACH_LEAN_LONG_MEDIUM));
+            case "stomach_lean_short_high" ->
+                    new stomach_lean_short_high(modelSet.bakeLayer(ModModelLayers.STOMACH_LEAN_SHORT_HIGH));
+            case "stomach_lean_short_low" ->
+                    new stomach_lean_short_low(modelSet.bakeLayer(ModModelLayers.STOMACH_LEAN_SHORT_LOW));
+            case "stomach_lean_short_medium" ->
+                    new stomach_lean_short_medium(modelSet.bakeLayer(ModModelLayers.STOMACH_LEAN_SHORT_MEDIUM));
+            case "stomach_muscular_average_high" ->
+                    new stomach_muscular_average_high(modelSet.bakeLayer(ModModelLayers.STOMACH_MUSCULAR_AVERAGE_HIGH));
+            case "stomach_muscular_average_low" ->
+                    new stomach_muscular_average_low(modelSet.bakeLayer(ModModelLayers.STOMACH_MUSCULAR_AVERAGE_LOW));
+            case "stomach_muscular_average_medium" ->
+                    new stomach_muscular_average_medium(modelSet.bakeLayer(ModModelLayers.STOMACH_MUSCULAR_AVERAGE_MEDIUM));
+            case "stomach_muscular_long_high" ->
+                    new stomach_muscular_long_high(modelSet.bakeLayer(ModModelLayers.STOMACH_MUSCULAR_LONG_HIGH));
+            case "stomach_muscular_long_low" ->
+                    new stomach_muscular_long_low(modelSet.bakeLayer(ModModelLayers.STOMACH_MUSCULAR_LONG_LOW));
+            case "stomach_muscular_long_medium" ->
+                    new stomach_muscular_long_medium(modelSet.bakeLayer(ModModelLayers.STOMACH_MUSCULAR_LONG_MEDIUM));
+            case "stomach_muscular_short_high" ->
+                    new stomach_muscular_short_high(modelSet.bakeLayer(ModModelLayers.STOMACH_MUSCULAR_SHORT_HIGH));
+            case "stomach_muscular_short_low" ->
+                    new stomach_muscular_short_low(modelSet.bakeLayer(ModModelLayers.STOMACH_MUSCULAR_SHORT_LOW));
+            case "stomach_muscular_short_medium" ->
+                    new stomach_muscular_short_medium(modelSet.bakeLayer(ModModelLayers.STOMACH_MUSCULAR_SHORT_MEDIUM));
+
+            //Tails
+
+            case "tail_average_average" ->
+                    new tail_average_average(modelSet.bakeLayer(ModModelLayers.TAIL_AVERAGE_AVERAGE));
+            case "tail_average_short" ->
+                    new tail_average_short(modelSet.bakeLayer(ModModelLayers.TAIL_AVERAGE_SHORT));
+            case "tail_average_long" ->
+                    new tail_average_long(modelSet.bakeLayer(ModModelLayers.TAIL_AVERAGE_LONG));
+            case "tail_thick_average" ->
+                    new tail_thick_average(modelSet.bakeLayer(ModModelLayers.TAIL_THICK_AVERAGE));
+            case "tail_thick_short" ->
+                    new tail_thick_short(modelSet.bakeLayer(ModModelLayers.TAIL_THICK_SHORT));
+            case "tail_thick_long" ->
+                    new tail_thick_long(modelSet.bakeLayer(ModModelLayers.TAIL_THICK_LONG));
+            case "tail_thin_average" ->
+                    new tail_thin_average(modelSet.bakeLayer(ModModelLayers.TAIL_THIN_AVERAGE));
+            case "tail_thin_short" ->
+                    new tail_thin_short(modelSet.bakeLayer(ModModelLayers.TAIL_THIN_SHORT));
+            case "tail_thin_long" ->
+                    new tail_thin_long(modelSet.bakeLayer(ModModelLayers.TAIL_THIN_LONG));
+
+            //Withers
+            case "withers_average" ->
+                    new withers_average(modelSet.bakeLayer(ModModelLayers.WITHERS_AVERAGE));
+            case "withers_lean" ->
+                    new withers_lean(modelSet.bakeLayer(ModModelLayers.WITHERS_LEAN));
+            case "withers_muscular" ->
+                    new withers_muscular(modelSet.bakeLayer(ModModelLayers.WITHERS_MUSCULAR));
+
 
             default -> null;
         });

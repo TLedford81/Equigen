@@ -5,13 +5,13 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.necks.ewed;// 
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.buckleystudios.equigen.entity.client.parts.MultipartNeckModel;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
-import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
-public class neck_muscular_ewed_average_2 extends HierarchicalModel<GeneticHorseEntity> {
+public class neck_muscular_ewed_average_2 extends MultipartNeckModel<GeneticHorseEntity> {
 	private final ModelPart neck_muscular_ewed_average_2;
 
 	public neck_muscular_ewed_average_2(ModelPart root) {
@@ -99,4 +99,9 @@ public class neck_muscular_ewed_average_2 extends HierarchicalModel<GeneticHorse
     public ModelPart root() {
         return neck_muscular_ewed_average_2;
     }
+
+	@Override
+	public void PositionParts() {
+		super.PositionParts(root(), root());
+	}
 }
