@@ -6,18 +6,26 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.backs;// Made 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartBackModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class back_average_average_average extends MultipartBackModel<GeneticHorseEntity> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
 	private final ModelPart back_average_average_average;
+	private final ModelPart anchorNeck;
+	private final ModelPart anchorChest;
 
 
 	public back_average_average_average(ModelPart root) {
-		this.back_average_average_average = root.getChild("back_average_average_average");
+		super(root);
+        this.back_average_average_average = root.getChild("back_average_average_average");
+		this.anchorNeck = back_average_average_average.getChild("anchorNeck");
+		this.anchorChest = back_average_average_average.getChild("anchorChest");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -25,6 +33,10 @@ public class back_average_average_average extends MultipartBackModel<GeneticHors
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
 		PartDefinition back_average_average_average = partdefinition.addOrReplaceChild("back_average_average_average", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
+
+		PartDefinition anchorNeck = back_average_average_average.addOrReplaceChild("anchorNeck", CubeListBuilder.create(), PartPose.offset(20.0F, 24.0F, 0.0F));
+
+		PartDefinition anchorChest = back_average_average_average.addOrReplaceChild("anchorChest", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 10.0F));
 
 		PartDefinition back_average_average_average_back_ribs = back_average_average_average.addOrReplaceChild("back_average_average_average_back_ribs", CubeListBuilder.create().texOffs(32, 518).addBox(-3.5F, -3.5F, -6.0F, 7.0F, 7.0F, 12.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.0828F, -0.0754F, 0.0184F));
 
@@ -56,7 +68,15 @@ public class back_average_average_average extends MultipartBackModel<GeneticHors
 	}
 
 	@Override
-	public void PositionParts() {
-		super.PositionParts(back_average_average_average, back_average_average_average);
+	public void positionParts() {
+		super.positionParts(back_average_average_average, back_average_average_average);
+	}
+
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"neck",  asTransform(this.anchorNeck),
+				"chest", asTransform(this.anchorChest)
+		);
 	}
 }

@@ -4,7 +4,6 @@ import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.effect.ModEffects;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.ModEntityAttributes;
-import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticPartNameBuilder;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticValues;
 import net.buckleystudios.equigen.item.ModItems;
@@ -1892,10 +1891,12 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public List<String> getPartsToRender() {
         GeneticPartNameBuilder partNameBuilder = new GeneticPartNameBuilder(this);
         List<String> parts = new ArrayList<>();
-        parts.add(partNameBuilder.PartStringGenerator("back"));
+//        parts.add(partNameBuilder.PartStringGenerator("back"));
+        parts.add("back_average_average_average");
         parts.add(partNameBuilder.PartStringGenerator("back_leg_top"));
         parts.add(partNameBuilder.PartStringGenerator("bottom_legs"));
-        parts.add(partNameBuilder.PartStringGenerator("chest"));
+//        parts.add(partNameBuilder.PartStringGenerator("chest"));
+        parts.add("chest_average_average_1");
         parts.add(partNameBuilder.PartStringGenerator("ears"));
         parts.add(partNameBuilder.PartStringGenerator("front_leg_top"));
         parts.add(partNameBuilder.PartStringGenerator("head"));
@@ -1908,19 +1909,5 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         parts.add(partNameBuilder.PartStringGenerator("withers"));
 
         return parts;
-    }
-
-    public Map<String, PartTransform> getPartTransforms() {
-        Map<String, PartTransform> transforms = new HashMap<>();
-
-        if (isPregnant()) {
-            transforms.put("back_1", new PartTransform(
-                    new Vec3(0, 0.5, 0), // position
-                    new Vec3(0, 0, 0),   // rotation
-                    new Vec3(1, 1, 1)    // scale
-            ));
-        }
-
-        return transforms;
     }
 }

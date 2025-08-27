@@ -5,25 +5,34 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.chests;// Made
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.buckleystudios.equigen.entity.client.parts.MultipartChestModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
-import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
-public class chest_average_average_1 extends HierarchicalModel<GeneticHorseEntity> {
+import java.util.Map;
+
+public class chest_average_average_1 extends MultipartChestModel<GeneticHorseEntity> {
 	private final ModelPart chest_average_average_1;
+	private final ModelPart anchorBack;
 
 
 	public chest_average_average_1(ModelPart root) {
+		super(root);
 		this.chest_average_average_1 = root.getChild("chest_average_average_1");
+		this.anchorBack = chest_average_average_1.getChild("anchorBack");
 	}
 
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition chest_average_average_1 = partdefinition.addOrReplaceChild("chest_average_average_1", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
+
+		PartDefinition chest_average_average_1 = partdefinition.addOrReplaceChild("chest_average_average_1", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 10.0F));
+
+		PartDefinition anchorBack = chest_average_average_1.addOrReplaceChild("anchorBack", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
 		PartDefinition chest_average_average_1_chest_front = chest_average_average_1.addOrReplaceChild("chest_average_average_1_chest_front", CubeListBuilder.create(), PartPose.offset(0.0F, 1.8771F, -4.2011F));
 
@@ -96,4 +105,16 @@ public class chest_average_average_1 extends HierarchicalModel<GeneticHorseEntit
     public ModelPart root() {
         return chest_average_average_1;
     }
+
+	@Override
+	public void positionParts() {
+		super.positionParts(chest_average_average_1, chest_average_average_1);
+	}
+
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"back", asTransform(this.anchorBack)
+		);
+	}
 }

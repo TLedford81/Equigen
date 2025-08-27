@@ -6,13 +6,23 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
+import java.util.Map;
+
 @OnlyIn(Dist.CLIENT)
 public abstract class MultipartModel<E extends GeneticHorseEntity> extends HierarchicalModel<GeneticHorseEntity> {
 
-    public void PositionParts(){
+    public Map<String, PartTransform> anchors() {
+        return Map.of();
     }
 
-    public void PositionParts(ModelPart part1, ModelPart part2){
+    public PartTransform origin() {
+        return PartTransform.IDENTITY;
+    }
+
+    public void positionParts(){
+    }
+
+    public void positionParts(ModelPart part1, ModelPart part2){
     }
 
     @Override

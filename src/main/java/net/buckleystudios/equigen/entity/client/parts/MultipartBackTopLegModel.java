@@ -9,8 +9,8 @@ import net.neoforged.api.distmarker.OnlyIn;
 public abstract class MultipartBackTopLegModel <E extends GeneticHorseEntity> extends MultipartModel<GeneticHorseEntity> {
 
     @Override
-    public void PositionParts(ModelPart part1, ModelPart part2) {
-        super.PositionParts(part1, part2);
+    public void positionParts(ModelPart part1, ModelPart part2) {
+        super.positionParts(part1, part2);
         //Positioning Goes Here
     }
 }

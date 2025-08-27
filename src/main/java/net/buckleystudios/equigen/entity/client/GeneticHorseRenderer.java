@@ -1,4 +1,5 @@
 package net.buckleystudios.equigen.entity.client;
+
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.client.parts.MultipartModel;
@@ -14,12 +15,9 @@ import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.phys.Vec3;
 
 import java.util.HashMap;
 import java.util.List;
@@ -56,43 +54,49 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
 
         // Render parts
-        List<String> partsToRender = entity.getPartsToRender();
-        Map<String, PartTransform> partTransforms = entity.getPartTransforms();
+        var partsToRender   = entity.getPartsToRender();
 
-        StringBuilder test = new StringBuilder();
-        for (String part : partsToRender) {
-            test.append(part).append(" / ");
+        String chestId = getPartFromPrefix(partsToRender, "chest_");
+        String backId  = getPartFromPrefix(partsToRender, "back_");
+
+        MultipartModel<GeneticHorseEntity> chestModel = asMultipartModel(chestId);
+        MultipartModel<GeneticHorseEntity> backModel  = asMultipartModel(backId);
+
+        //Set Root Part (No Parents)
+        if (chestModel != null) {
+            renderRootPart(poseStack, buffer, packedLight, entity,
+                    chestId, chestModel,
+                    PartTransform.IDENTITY);
         }
 
-//        EquigenMod.LOGGER.info(test.toString());
-
-        for (String partId : partsToRender) {
-            if (partId == null) continue;
-
-            PoseStack localPose = poseStack; // We'll push/pop for each part
-            localPose.pushPose();
-
-            // Apply part transform (position, rotation, scale)
-            PartTransform transform = partTransforms.getOrDefault(partId, new PartTransform(Vec3.ZERO, Vec3.ZERO, new Vec3(1, 1, 1)));
-            applyTransform(localPose, transform);
-
-            // Render part
-            EntityModel<GeneticHorseEntity> partModel = getPartModel(partId);
-            if (getPartModel(partId) instanceof MultipartModel<?> multipart) {
-                multipart.PositionParts();
-            }
-
-            if (partModel != null) {
-                partModel.renderToBuffer(
-                        localPose,
-                        buffer.getBuffer(RenderType.entityCutout(getTextureLocation(entity))),
-                        packedLight,
-                        OverlayTexture.NO_OVERLAY
-                );
-            }
-
-            localPose.popPose();
+        //Attach Back and Chest Models
+        if (chestModel != null && backModel != null) {
+            renderAttached(
+                    poseStack, buffer, packedLight, entity,
+                    chestId, chestModel, "back",     // parent + anchor key on chest
+                    backId, backModel, "chest",
+                    PartTransform.IDENTITY
+            );
         }
+
+// 2) Optional: render any miscellaneous parts not in the chain (fallback)
+//        for (String partId : partsToRender) {
+//            if (partId == null) continue;
+//            if (partId.equals(chestId) || partId.equals(backId)) continue;
+//            poseStack.pushPose();
+//            applyTransform(poseStack, partTransforms.getOrDefault(partId, PartTransform.IDENTITY));
+//            var model = getPartModel(partId);
+//            if (model instanceof MultipartModel<?> mm) mm.positionParts();
+//            if (model != null) {
+//                model.renderToBuffer(
+//                        poseStack,
+//                        buffer.getBuffer(net.minecraft.client.renderer.RenderType.entityCutout(getTextureLocation(entity))),
+//                        packedLight,
+//                        net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY
+//                );
+//            }
+//            poseStack.popPose();
+//        }
     }
 
     private void applyTransform(PoseStack pose, PartTransform transform) {
@@ -108,6 +112,84 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         pose.scale((float) transform.scale.x, (float) transform.scale.y, (float) transform.scale.z);
     }
 
+    private PartTransform inverseAnchor(MultipartModel<?> child, String key) {
+        PartTransform a = child.anchors().get(key);
+        if (a == null) return PartTransform.IDENTITY;
+        return new PartTransform(
+                new net.minecraft.world.phys.Vec3(-a.position.x, -a.position.y, -a.position.z),
+                net.minecraft.world.phys.Vec3.ZERO,
+                new net.minecraft.world.phys.Vec3(1, 1, 1)
+        );
+    }
+
+
+    // Find first ID in the list with a given prefix (e.g., "back_", "chest_", "neck_")
+    private static String getPartFromPrefix(List<String> parts, String prefix) {
+        for (String p : parts) if (p != null && p.startsWith(prefix)) return p;
+        return null;
+    }
+
+    private MultipartModel<GeneticHorseEntity> asMultipartModel(String id) {
+        if (id == null) return null;
+        EntityModel<GeneticHorseEntity> base = getPartModel(id);
+        if (base instanceof MultipartModel<?> mm) {
+            return (MultipartModel<GeneticHorseEntity>) mm;
+        }
+        return null;
+    }
+
+    // Renders a root multipart at its own transform (from Part Transform).
+
+    private void renderRootPart(
+            PoseStack pose, MultiBufferSource buffer, int packedLight,
+            GeneticHorseEntity entity, String id,
+            MultipartModel<GeneticHorseEntity> model,
+            PartTransform rootXform
+    ) {
+        if (model == null) return;
+        pose.pushPose();
+        applyTransform(pose, rootXform);
+        model.positionParts();
+        model.renderToBuffer(
+                pose,
+                buffer.getBuffer(net.minecraft.client.renderer.RenderType.entityCutout(getTextureLocation(entity))),
+                packedLight,
+                net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY
+        );
+        pose.popPose();
+    }
+
+    private void renderAttached(
+            PoseStack pose, MultiBufferSource buffer, int packedLight,
+            GeneticHorseEntity entity,
+            String parentId, MultipartModel<GeneticHorseEntity> parent, String parentAnchorName,
+            String childId,  MultipartModel<GeneticHorseEntity> child, String childAnchorName,
+            PartTransform dynamicRot
+    ) {
+        if (parent == null || child == null) return;
+
+        PartTransform parentRoot = PartTransform.IDENTITY;
+        PartTransform anchor     = parent.anchors().get(parentAnchorName);
+        if (anchor == null) return;
+
+        PartTransform childDeform = PartTransform.IDENTITY;
+
+        pose.pushPose();
+        applyTransform(pose, parentRoot);   // parent in entity space
+        applyTransform(pose, anchor);       // go to parent’s anchor
+        applyTransform(pose, dynamicRot);   // live rotation if any
+        applyTransform(pose, inverseAnchor(child, childAnchorName)); // align child to parent anchor
+        applyTransform(pose, childDeform);
+        child.positionParts();
+
+        child.renderToBuffer(
+                pose,
+                buffer.getBuffer(net.minecraft.client.renderer.RenderType.entityCutout(getTextureLocation(entity))),
+                packedLight,
+                net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY
+        );
+        pose.popPose();
+    }
 //    private String getPartCategory(String partId) {
 //        List<String> backs = List.of("back_1", "back_2", "back_3", "back_lean_short_thin", "back_lean_short_average", "back_lean_short_thick",
 //                "back_lean_average_thin", "back_lean_average_average", "back_lean_average_thick", "back_lean_long_thin", "back_lean_long_average",
