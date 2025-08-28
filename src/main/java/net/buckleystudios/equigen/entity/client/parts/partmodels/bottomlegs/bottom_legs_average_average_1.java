@@ -5,6 +5,8 @@
 //
 //import com.mojang.blaze3d.vertex.PoseStack;
 //import com.mojang.blaze3d.vertex.VertexConsumer;
+//import net.buckleystudios.equigen.entity.client.parts.MultipartBottomLegModel;
+//import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 //import net.minecraft.client.model.EntityModel;
 //import net.minecraft.client.model.geom.ModelLayerLocation;
 //import net.minecraft.client.model.geom.ModelPart;
@@ -12,29 +14,19 @@
 //import net.minecraft.client.model.geom.builders.*;
 //import net.minecraft.resources.ResourceLocation;
 //
-//public class bottom_legs_average_average_1<T extends Entity> extends EntityModel<T> {
-//	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
-//	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("modid", "bottom_legs_average_average_1"), "main");
+//public class bottom_legs_average_average_1 extends MultipartBottomLegModel<GeneticHorseEntity> {
 //	private final ModelPart bottom_legs_average_average1;
 //	private final ModelPart bottom_legs_average_average1_bottom_front_left;
-//	private final ModelPart bottom_legs_average_average1_bottom_front_left_individual;
 //	private final ModelPart bottom_legs_average_average1_bottom_front_right;
-//	private final ModelPart bottom_legs_average_average1_bottom_front_right_individual;
 //	private final ModelPart bottom_legs_average_average1_bottom_back_left;
-//	private final ModelPart bottom_legs_average_average1_bottom_back_left_individual;
 //	private final ModelPart bottom_legs_average_average1_bottom_back_right;
-//	private final ModelPart bottom_legs_average_average1_bottom_back_right_individual;
 //
 //	public bottom_legs_average_average_1(ModelPart root) {
 //		this.bottom_legs_average_average1 = root.getChild("bottom_legs_average_average1");
 //		this.bottom_legs_average_average1_bottom_front_left = this.bottom_legs_average_average1.getChild("bottom_legs_average_average1_bottom_front_left");
-//		this.bottom_legs_average_average1_bottom_front_left_individual = this.bottom_legs_average_average1_bottom_front_left.getChild("bottom_legs_average_average1_bottom_front_left_individual");
 //		this.bottom_legs_average_average1_bottom_front_right = this.bottom_legs_average_average1.getChild("bottom_legs_average_average1_bottom_front_right");
-//		this.bottom_legs_average_average1_bottom_front_right_individual = this.bottom_legs_average_average1_bottom_front_right.getChild("bottom_legs_average_average1_bottom_front_right_individual");
 //		this.bottom_legs_average_average1_bottom_back_left = this.bottom_legs_average_average1.getChild("bottom_legs_average_average1_bottom_back_left");
-//		this.bottom_legs_average_average1_bottom_back_left_individual = this.bottom_legs_average_average1_bottom_back_left.getChild("bottom_legs_average_average1_bottom_back_left_individual");
 //		this.bottom_legs_average_average1_bottom_back_right = this.bottom_legs_average_average1.getChild("bottom_legs_average_average1_bottom_back_right");
-//		this.bottom_legs_average_average1_bottom_back_right_individual = this.bottom_legs_average_average1_bottom_back_right.getChild("bottom_legs_average_average1_bottom_back_right_individual");
 //	}
 //
 //	public static LayerDefinition createBodyLayer() {

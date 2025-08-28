@@ -6,23 +6,32 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.heads;// Made 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartHeadModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class head_roman_average extends MultipartHeadModel<GeneticHorseEntity> {
 	private final ModelPart head_roman_average;
+	private final ModelPart neckAnchor;
+	private final ModelPart leftEarAnchor;
+	private final ModelPart rightEarAnchor;
 
 	public head_roman_average(ModelPart root) {
 		this.head_roman_average = root.getChild("head_roman_average");
+		this.neckAnchor = this.head_roman_average.getChild("neckAnchor");
+		this.leftEarAnchor = this.head_roman_average.getChild("leftEarAnchor");
+		this.rightEarAnchor = this.head_roman_average.getChild("rightEarAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition head_roman_average = partdefinition.addOrReplaceChild("head_roman_average", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
+		PartDefinition head_roman_average = partdefinition.addOrReplaceChild("head_roman_average", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		PartDefinition head_roman_average_jaw = head_roman_average.addOrReplaceChild("head_roman_average_jaw", CubeListBuilder.create(), PartPose.offset(0.0F, 2.324F, -0.5363F));
 
@@ -56,6 +65,18 @@ public class head_roman_average extends MultipartHeadModel<GeneticHorseEntity> {
 
 		PartDefinition cube_r7 = head_roman_average_fringe.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(963, 94).addBox(-1.0F, -4.0F, -2.0F, 1.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.4735F, 1.3944F, -3.0578F, -1.5615F, 0.6653F, -1.5864F));
 
+		PartDefinition neckAnchor = head_roman_average.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, -1.1756F, -1.4873F, 0.5672F, 0.0F, 0.0F));
+
+		PartDefinition cube_r8 = neckAnchor.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.6756F, 0.7373F, 1.1781F, 0.0F, 0.0F));
+
+		PartDefinition leftEarAnchor = head_roman_average.addOrReplaceChild("leftEarAnchor", CubeListBuilder.create(), PartPose.offsetAndRotation(-1.5F, -2.0442F, -2.1495F, -0.1745F, 0.0F, 0.0F));
+
+		PartDefinition cube_r9 = leftEarAnchor.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(1, 1).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0442F, 0.3995F, 0.829F, 0.0F, 0.0F));
+
+		PartDefinition rightEarAnchor = head_roman_average.addOrReplaceChild("rightEarAnchor", CubeListBuilder.create(), PartPose.offsetAndRotation(1.5F, -2.0442F, -2.1495F, -0.1745F, 0.0F, 0.0F));
+
+		PartDefinition cube_r10 = rightEarAnchor.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(1, 1).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0442F, 0.3995F, 0.829F, 0.0F, 0.0F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -78,4 +99,10 @@ public class head_roman_average extends MultipartHeadModel<GeneticHorseEntity> {
     public void positionParts() {
         super.positionParts(root(), root());
     }
+
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"neckAnchor", asTransform(neckAnchor));
+	}
 }
