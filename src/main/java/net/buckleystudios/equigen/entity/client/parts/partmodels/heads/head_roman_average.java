@@ -16,13 +16,13 @@ import java.util.Map;
 
 public class head_roman_average extends MultipartHeadModel<GeneticHorseEntity> {
 	private final ModelPart head_roman_average;
-	private final ModelPart neckAnchor;
+	private final ModelPart neckHeadAnchor;
 	private final ModelPart leftEarAnchor;
 	private final ModelPart rightEarAnchor;
 
 	public head_roman_average(ModelPart root) {
 		this.head_roman_average = root.getChild("head_roman_average");
-		this.neckAnchor = this.head_roman_average.getChild("neckAnchor");
+		this.neckHeadAnchor = this.head_roman_average.getChild("neckHeadAnchor");
 		this.leftEarAnchor = this.head_roman_average.getChild("leftEarAnchor");
 		this.rightEarAnchor = this.head_roman_average.getChild("rightEarAnchor");
 	}
@@ -65,9 +65,9 @@ public class head_roman_average extends MultipartHeadModel<GeneticHorseEntity> {
 
 		PartDefinition cube_r7 = head_roman_average_fringe.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(963, 94).addBox(-1.0F, -4.0F, -2.0F, 1.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.4735F, 1.3944F, -3.0578F, -1.5615F, 0.6653F, -1.5864F));
 
-		PartDefinition neckAnchor = head_roman_average.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, -1.1756F, -1.4873F, 0.5672F, 0.0F, 0.0F));
+		PartDefinition neckHeadAnchor = head_roman_average.addOrReplaceChild("neckHeadAnchor", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, -1.1756F, -1.4873F, 0.5672F, 0.0F, 0.0F));
 
-		PartDefinition cube_r8 = neckAnchor.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.6756F, 0.7373F, 1.1781F, 0.0F, 0.0F));
+		PartDefinition cube_r8 = neckHeadAnchor.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.6756F, 0.7373F, 1.1781F, 0.0F, 0.0F));
 
 		PartDefinition leftEarAnchor = head_roman_average.addOrReplaceChild("leftEarAnchor", CubeListBuilder.create(), PartPose.offsetAndRotation(-1.5F, -2.0442F, -2.1495F, -0.1745F, 0.0F, 0.0F));
 
@@ -103,6 +103,8 @@ public class head_roman_average extends MultipartHeadModel<GeneticHorseEntity> {
 	@Override
 	public Map<String, PartTransform> anchors() {
 		return Map.of(
-				"neckAnchor", asTransform(neckAnchor));
+				"neckHeadAnchor", asTransform(neckHeadAnchor),
+				"leftEarAnchor", asTransform(leftEarAnchor),
+				"rightEarAnchor", asTransform(rightEarAnchor));
 	}
 }

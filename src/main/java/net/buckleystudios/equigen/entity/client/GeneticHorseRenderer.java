@@ -198,10 +198,10 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
             // BACK -> HIPS
             attachModels(poseStack, buffer, packedLight, entity,
                     backModel, "hipsAnchor",
-                    hipsModel, "backAnchor");
+                    hipsModel, "backHipsAnchor");
             // HIPS -> TAIL
             attachModels(poseStack, buffer, packedLight, entity,
-                    hipsModel, "tailAnchor",
+                    hipsModel, "hipsTailAnchor",
                     tailModel, "hipsAnchor");
 //            // HIPS -> BACK LEFT LEG
 //            attachModels(poseStack, buffer, packedLight, entity,
@@ -304,12 +304,14 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
 
     private PartTransform inverseAnchor(MultipartModel<?> child, String key) {
         PartTransform a = child.anchors().get(key);
+        EquigenMod.LOGGER.info(" Child = " + child);
         if (a == null) return PartTransform.IDENTITY;
         return new PartTransform(
                 new Vec3(-a.position.x, -a.position.y, -a.position.z),
                 Vec3.ZERO,
                 new Vec3(1, 1, 1)
         );
+
     }
 
 
@@ -363,6 +365,8 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         pose.pushPose();
         applyTransform(pose, parentAnchor);
         applyTransform(pose, inverseAnchor(child, childAnchorName));
+        EquigenMod.LOGGER.info(" Parent = " + parent);
+
 
         child.renderToBuffer(
                 pose,
