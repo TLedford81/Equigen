@@ -29,7 +29,7 @@ public class neck_average_swan_average_1 extends MultipartNeckModel<GeneticHorse
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition neck_average_swan_average_1 = partdefinition.addOrReplaceChild("neck_average_swan_average_1", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition neck_average_swan_average_1 = partdefinition.addOrReplaceChild("neck_average_swan_average_1", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
 		PartDefinition neck_average_swan_average_1_individual = neck_average_swan_average_1.addOrReplaceChild("neck_average_swan_average_1_individual", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0873F, 0.0F, 0.0F));
 
