@@ -137,6 +137,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
             attachModels(poseStack, buffer, packedLight, entity,
                     backModel, "chestAnchor",
                     chestModel, "backAnchor");
+
             // CHEST -> NECK
             attachModels(poseStack, buffer, packedLight, entity,
                     chestModel, "neckAnchor",
@@ -242,7 +243,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
 //            attachModels(poseStack, buffer, packedLight, entity,
 //                    bottomBackRightLegModel, "anchor1",
 //                    hoofBackRightLegModel, "anchor2");
-            
+
             // BACK -> WITHERS
             attachModels(poseStack, buffer, packedLight, entity,
                     backModel, "withersAnchor",

@@ -6,16 +6,21 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.withers;// Mad
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartWithersModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class withers_average extends MultipartWithersModel<GeneticHorseEntity> {
 	private final ModelPart withers_average;
+	private final ModelPart backAnchor;
 
 	public withers_average(ModelPart root) {
 		this.withers_average = root.getChild("withers_average");
+		this.backAnchor = this.withers_average.getChild("backAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -31,6 +36,8 @@ public class withers_average extends MultipartWithersModel<GeneticHorseEntity> {
 		PartDefinition withers_average_lower = withers_average.addOrReplaceChild("withers_average_lower", CubeListBuilder.create(), PartPose.offset(-0.0277F, -0.0699F, -0.2929F));
 
 		PartDefinition cube_r2 = withers_average_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(780, 25).addBox(-5.08F, -6.88F, -5.52F, 6.0F, 17.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.8905F, -0.7872F, 1.2654F, 0.0F, 0.0F));
+
+		PartDefinition backAnchor = withers_average.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.75F, -4.3226F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
@@ -54,4 +61,10 @@ public class withers_average extends MultipartWithersModel<GeneticHorseEntity> {
     public void positionParts() {
         super.positionParts(root(), root());
     }
+
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"backAnchor", asTransform(backAnchor));
+	}
 }
