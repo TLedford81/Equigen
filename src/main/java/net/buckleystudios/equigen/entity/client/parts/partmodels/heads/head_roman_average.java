@@ -16,13 +16,13 @@ import java.util.Map;
 
 public class head_roman_average extends MultipartHeadModel<GeneticHorseEntity> {
 	private final ModelPart head_roman_average;
-	private final ModelPart neckAnchor;
+	private final ModelPart neckHeadAnchor;
 	private final ModelPart leftEarAnchor;
 	private final ModelPart rightEarAnchor;
 
 	public head_roman_average(ModelPart root) {
 		this.head_roman_average = root.getChild("head_roman_average");
-		this.neckAnchor = this.head_roman_average.getChild("neckHeadAnchor");
+		this.neckHeadAnchor = this.head_roman_average.getChild("neckHeadAnchor");
 		this.leftEarAnchor = this.head_roman_average.getChild("leftEarAnchor");
 		this.rightEarAnchor = this.head_roman_average.getChild("rightEarAnchor");
 	}
@@ -103,6 +103,8 @@ public class head_roman_average extends MultipartHeadModel<GeneticHorseEntity> {
 	@Override
 	public Map<String, PartTransform> anchors() {
 		return Map.of(
-				"neckAnchor", asTransform(neckAnchor));
+				"neckHeadAnchor", asTransform(neckHeadAnchor),
+				"leftEarAnchor", asTransform(leftEarAnchor),
+				"rightEarAnchor", asTransform(rightEarAnchor));
 	}
 }

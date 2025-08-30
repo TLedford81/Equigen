@@ -272,8 +272,20 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         }
         // ---------------------------------------------------------------
 
+        //TODO: Fix these logs please thanks
+//        EquigenMod.LOGGER.info(" Parent = " + parent);
+//        EquigenMod.LOGGER.info(" Parent Anchor Point = " + parent.anchors().get(parentAnchorName).getPosition());
+//        EquigenMod.LOGGER.info(" Child = " + child);
+//        PartTransform childAnchor = child.anchors().get(childAnchorName);
+//        if (childAnchor != null) {
+//            EquigenMod.LOGGER.info(" Child Anchor Point = " + childAnchor.getPosition());
+//        }
+
+
         pose.pushPose();
+        EquigenMod.LOGGER.info(" TRANSFORMING PARENT ");
         applyTransform(pose, pA);
+        EquigenMod.LOGGER.info(" TRANSFORMING CHILD ");
         applyInverseTransform(pose, cA);
         child.positionParts();
         child.renderToBuffer(

@@ -16,12 +16,12 @@ import java.util.Map;
 
 public class hips_average_average_1 extends MultipartHipModel<GeneticHorseEntity> {
 	private final ModelPart hips_average_average_1;
-	private final ModelPart backAnchor;
+	private final ModelPart backHipsAnchor;
 	private final ModelPart tailAnchor;
 
 	public hips_average_average_1(ModelPart root) {
 		this.hips_average_average_1 = root.getChild("hips_average_average_1");
-		this.backAnchor = this.hips_average_average_1.getChild("backAnchor");
+		this.backHipsAnchor = this.hips_average_average_1.getChild("backHipsAnchor");
 		this.tailAnchor = this.hips_average_average_1.getChild("tailAnchor");
 	}
 
@@ -57,7 +57,7 @@ public class hips_average_average_1 extends MultipartHipModel<GeneticHorseEntity
 
 		PartDefinition cube_r2 = hips_average_average_1_hips_top_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(123, 956).addBox(-6.08F, -4.24F, -5.36F, 7.0F, 5.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.58F, -1.6226F, 2.4422F, 1.2217F, 0.0F, 0.0F));
 
-		PartDefinition backAnchor = hips_average_average_1.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -3.0F, 0.0F));
+		PartDefinition backHipsAnchor = hips_average_average_1.addOrReplaceChild("backHipsAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -3.0F, 0.0F));
 
 		PartDefinition tailAnchor = hips_average_average_1.addOrReplaceChild("tailAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.5F, 3.0F));
 
@@ -87,8 +87,8 @@ public class hips_average_average_1 extends MultipartHipModel<GeneticHorseEntity
 	@Override
 	public Map<String, PartTransform> anchors() {
 		return Map.of(
-				"backAnchor", asTransform(this.backAnchor),
-				"tailAnchor", asTransform(this.tailAnchor)
+				"backHipsAnchor", asTransform(this.backHipsAnchor),
+				"hipsTailAnchor", asTransform(this.tailAnchor)
 		);
 	}
 }
