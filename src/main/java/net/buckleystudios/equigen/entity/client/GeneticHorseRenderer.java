@@ -304,7 +304,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
 
     private PartTransform inverseAnchor(MultipartModel<?> child, String key) {
         PartTransform a = child.anchors().get(key);
-        EquigenMod.LOGGER.info(" Child = " + child);
+        EquigenMod.LOGGER.info(" INVERSING " + child);
         if (a == null) return PartTransform.IDENTITY;
         return new PartTransform(
                 new Vec3(-a.position.x, -a.position.y, -a.position.z),
@@ -362,10 +362,14 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         PartTransform parentAnchor = parent.anchors().get(parentAnchorName);
         if (parentAnchor == null) return;
 
-        pose.pushPose();
-        applyTransform(pose, parentAnchor);
-        applyTransform(pose, inverseAnchor(child, childAnchorName));
         EquigenMod.LOGGER.info(" Parent = " + parent);
+        EquigenMod.LOGGER.info(" Child = " + child);
+
+        pose.pushPose();
+        EquigenMod.LOGGER.info(" TRANSFORMING PARENT ");
+        applyTransform(pose, parentAnchor);
+        EquigenMod.LOGGER.info(" TRANSFORMING CHILD ");
+        applyTransform(pose, inverseAnchor(child, childAnchorName));
 
 
         child.renderToBuffer(
