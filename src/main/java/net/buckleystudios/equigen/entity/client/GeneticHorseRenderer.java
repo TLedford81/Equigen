@@ -1,7 +1,7 @@
 package net.buckleystudios.equigen.entity.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.client.parts.MultipartModel;
 import net.buckleystudios.equigen.entity.client.parts.PartTransform;
@@ -24,12 +24,12 @@ import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
-import org.joml.Matrix3f;
-import org.joml.Matrix4f;
-import org.joml.Vector3f;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.HashMap;
 import java.util.List;
@@ -74,68 +74,48 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
         poseStack.pushPose();
         try {
+            //Fix Upside Down Parts
             enterEntityModelSpace(entity, poseStack, entityYaw, partialTicks);
 
-            // Render parts
-            var partsToRender = entity.getPartsToRender();
+            // INDIVIDUAL PART RENDERING
+            List<String> partsToRender = entity.getPartsToRender();
 
-            String chestId = getPartFromPrefix(partsToRender, "chest_");
-            String backId = getPartFromPrefix(partsToRender, "back_");
-            String headId = getPartFromPrefix(partsToRender, "head_");
-            String neckId = getPartFromPrefix(partsToRender, "neck_");
+            //Generate Models for each selected part
+            MultipartModel<GeneticHorseEntity> chestModel = getMultipartModel(partsToRender, "chest");
+            MultipartModel<GeneticHorseEntity> backModel = getMultipartModel(partsToRender, "back");
+            MultipartModel<GeneticHorseEntity> headModel = getMultipartModel(partsToRender, "head");
+            MultipartModel<GeneticHorseEntity> neckModel = getMultipartModel(partsToRender, "neck");
 
-
-            MultipartModel<GeneticHorseEntity> chestModel = asMultipartModel(chestId);
-            MultipartModel<GeneticHorseEntity> backModel = asMultipartModel(backId);
-            MultipartModel<GeneticHorseEntity> headModel = asMultipartModel(headId);
-            MultipartModel<GeneticHorseEntity> neckModel = asMultipartModel(neckId);
-
-            if (DEBUG_ANCHORS) {
-                // Per-model anchors (pick distinct colors so you can tell models apart)
-                if (chestModel != null) renderModelAnchors(poseStack, buffer, chestModel, GIZMO_SIZE, 1f, 0f, 0f); // red
-                if (backModel  != null) renderModelAnchors(poseStack, buffer, backModel,  GIZMO_SIZE, 0f, 0f, 1f); // blue
-
-                // Parent↔Child alignment gizmo at the actual attachment point
-                if (chestModel != null && backModel != null) {
-                    renderAttachmentGizmo(poseStack, buffer, chestModel, "back", backModel, "chest");
-                }
-            }
-
+            MultipartModel<GeneticHorseEntity> rootModel = chestModel;
 
             //Set Root Part (No Parents)
-            if (chestModel != null) {
-                renderRootPart(poseStack, buffer, packedLight, entity,
-                        chestId, chestModel,
-                        PartTransform.IDENTITY);
+            if (rootModel != null) {
+                renderRootPart(poseStack, buffer, packedLight, entity, rootModel);
             }
 
-//        //Attach Back and Chest Models
-//        if (chestModel != null && backModel != null) {
-//            renderAttached(
-//                    poseStack, buffer, packedLight, entity,
-//                    chestId, chestModel, "back",     // parent + anchor key on chest
-//                    backId, backModel, "chest",
-//                    PartTransform.IDENTITY
-//            );
-//        }
-//// Attach Chest and Neck Models
-            if (chestModel != null && neckModel != null) {
-                renderAttached(
-                        poseStack, buffer, packedLight, entity,
-                        chestId, chestModel, "neckAnchor",     // parent + anchor key on chest
-                        neckId, neckModel, "chestAnchor",
-                        PartTransform.IDENTITY
-                );
-            }
-//// Attach Head and Neck Models
-            if (headModel != null && neckModel != null) {
-                renderAttached(
-                        poseStack, buffer, packedLight, entity,
-                        neckId, neckModel, "headAnchor",     // parent + anchor key on chest
-                        headId, headModel, "neckAnchor",
-                        PartTransform.IDENTITY
-                );
-            }
+            //Attach Children to Root
+            /*
+            EXAMPLE:
+
+            attachModels(poseStack, buffer, packedLight, entity,
+                    PARENT_MODEL, "anchor1",
+                    CHILD_MODEL, "anchor2");
+
+            anchor1 = Anchor on PARENT_MODEL to connect child to.
+            anchor2 = Anchor on CHILD_MODEL to connect parent to.
+            */
+
+            // PARENT -> CHILD
+
+            // CHEST -> NECK
+            attachModels(poseStack, buffer, packedLight, entity,
+                    chestModel, "neckAnchor",
+                    neckModel, "chestAnchor");
+
+            // NECK -> HEAD
+            attachModels(poseStack, buffer, packedLight, entity,
+                    neckModel, "headAnchor",
+                    headModel, "neckAnchor");
 
 // 2) Optional: render any miscellaneous parts not in the chain (fallback)
 //        for (String partId : partsToRender) {
@@ -160,16 +140,28 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         }
     }
 
-
+    public void attachModels(PoseStack poseStack, MultiBufferSource buffer, int packedLight, GeneticHorseEntity entity,
+                             MultipartModel<GeneticHorseEntity> parentModel, String parentAnchor,
+                             MultipartModel<GeneticHorseEntity> childModel, String childAnchor)
+    {
+        if (parentModel != null && childModel != null) {
+            renderAttached(
+                    poseStack, buffer, packedLight, entity,
+                    parentModel, parentAnchor,     // parent + anchor key on chest
+                    childModel, childAnchor,
+                    PartTransform.IDENTITY
+            );
+        }
+    }
 
     private void applyTransform(PoseStack pose, PartTransform transform) {
         // Translation
         pose.translate(transform.position.x, transform.position.y, transform.position.z);
 
         // Rotation in degrees using Vec3
-        pose.mulPose(com.mojang.math.Axis.XP.rotationDegrees((float) transform.rotation.x));
-        pose.mulPose(com.mojang.math.Axis.YP.rotationDegrees((float) transform.rotation.y));
-        pose.mulPose(com.mojang.math.Axis.ZP.rotationDegrees((float) transform.rotation.z));
+        pose.mulPose(Axis.XP.rotationDegrees((float) transform.rotation.x));
+        pose.mulPose(Axis.YP.rotationDegrees((float) transform.rotation.y));
+        pose.mulPose(Axis.ZP.rotationDegrees((float) transform.rotation.z));
 
         // Scale
         pose.scale((float) transform.scale.x, (float) transform.scale.y, (float) transform.scale.z);
@@ -179,101 +171,19 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         PartTransform a = child.anchors().get(key);
         if (a == null) return PartTransform.IDENTITY;
         return new PartTransform(
-                new net.minecraft.world.phys.Vec3(-a.position.x, -a.position.y, -a.position.z),
-                net.minecraft.world.phys.Vec3.ZERO,
-                new net.minecraft.world.phys.Vec3(1, 1, 1)
+                new Vec3(-a.position.x, -a.position.y, -a.position.z),
+                Vec3.ZERO,
+                new Vec3(1, 1, 1)
         );
     }
 
 
     // Find first ID in the list with a given prefix (e.g., "back_", "chest_", "neck_")
     private static String getPartFromPrefix(List<String> parts, String prefix) {
-        for (String p : parts) if (p != null && p.startsWith(prefix)) return p;
+        for (String p : parts) if (p != null && p.startsWith(prefix + "_")) return p;
         return null;
     }
-    private static final boolean DEBUG_ANCHORS = true;   // flip to false to hide
-    private static final float GIZMO_SIZE = 0.125f;      // 2px in block units
 
-    // Draw a small axis-cross centered at the current PoseStack origin.
-    private void drawAxisCross(PoseStack pose, MultiBufferSource buffers,
-                               float size, float r, float g, float b, float a) {
-        var vc = buffers.getBuffer(net.minecraft.client.renderer.RenderType.lines());
-        PoseStack.Pose last = pose.last();
-        org.joml.Matrix4f m = last.pose();
-        org.joml.Matrix3f n = last.normal();
-
-        // X axis line
-        addLine(vc, m, n, -size, 0, 0,  size, 0, 0, r, g, b, a);
-        // Y axis line
-        addLine(vc, m, n, 0, -size, 0,  0,  size, 0, r, g, b, a);
-        // Z axis line
-        addLine(vc, m, n, 0, 0, -size,  0, 0,  size, r, g, b, a);
-    }
-    private static void addLine(VertexConsumer vc, Matrix4f m, Matrix3f n,
-                                float x1, float y1, float z1,
-                                float x2, float y2, float z2,
-                                float r, float g, float b, float a) {
-        // transform an "up" normal by the normal matrix
-        Vector3f normal = new Vector3f(0f, 1f, 0f);
-        n.transform(normal);
-
-        vc.addVertex(m, x1, y1, z1)
-                .setColor(r, g, b, a)
-                .setNormal(normal.x, normal.y, normal.z);
-
-        vc.addVertex(m, x2, y2, z2)
-                .setColor(r, g, b, a)
-                .setNormal(normal.x, normal.y, normal.z);
-    }
-    public static void addLine(PoseStack stack, VertexConsumer vc,
-                               float x1, float y1, float z1,
-                               float x2, float y2, float z2,
-                               float r, float g, float b, float a) {
-        PoseStack.Pose pose = stack.last();
-        Matrix4f m = pose.pose();
-
-        // two vertices, each with color and a simple up normal
-        vc.addVertex(m, x1, y1, z1)
-                .setColor(r, g, b, a)
-                .setNormal(pose, 0.0F, 1.0F, 0.0F);
-
-        vc.addVertex(m, x2, y2, z2)
-                .setColor(r, g, b, a)
-                .setNormal(pose, 0.0F, 1.0F, 0.0F);
-    }
-
-    // Render all anchors exposed by a MultipartModel at the model's local origin.
-    private void renderModelAnchors(PoseStack pose, MultiBufferSource buf, MultipartModel<GeneticHorseEntity> model,
-                                    float size, float r, float g, float b) {
-        // Ensure bones are positioned so anchor transforms reflect current pose
-        model.positionParts();
-
-        for (var e : model.anchors().entrySet()) {
-            PartTransform t = e.getValue();
-            pose.pushPose();
-            applyTransform(pose, t);
-            drawAxisCross(pose, buf, size, r, g, b, 1.0f);
-            pose.popPose();
-        }
-    }
-
-    // Show how a child will be aligned to a parent anchor in the current space.
-    private void renderAttachmentGizmo(PoseStack pose, MultiBufferSource buf,
-                                       MultipartModel<GeneticHorseEntity> parent, String parentAnchor,
-                                       MultipartModel<GeneticHorseEntity> child, String childAnchor) {
-        if (parent == null || child == null) return;
-        PartTransform aParent = parent.anchors().get(parentAnchor);
-        if (aParent == null) return;
-
-        // 1) Where the PARENT anchor is (yellow)
-        pose.pushPose();
-        applyTransform(pose, aParent);
-        drawAxisCross(pose, buf, GIZMO_SIZE, 1f, 1f, 0f, 1f); // yellow
-        // 2) Where the CHILD anchor lands after inverse (cyan)
-        applyTransform(pose, inverseAnchor(child, childAnchor));
-        drawAxisCross(pose, buf, GIZMO_SIZE * 0.8f, 0f, 1f, 1f, 1f); // cyan
-        pose.popPose();
-    }
 
     private MultipartModel<GeneticHorseEntity> asMultipartModel(String id) {
         if (id == null) return null;
@@ -284,23 +194,24 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         return null;
     }
 
-    // Renders a root multipart at its own transform (from Part Transform).
+    private MultipartModel<GeneticHorseEntity> getMultipartModel(List<String> partsToRender, String prefix) {
+        return asMultipartModel(getPartFromPrefix(partsToRender, prefix));
+    }
 
     private void renderRootPart(
             PoseStack pose, MultiBufferSource buffer, int packedLight,
-            GeneticHorseEntity entity, String id,
-            MultipartModel<GeneticHorseEntity> model,
-            PartTransform rootXform
+            GeneticHorseEntity entity,
+            MultipartModel<GeneticHorseEntity> model
     ) {
         if (model == null) return;
         pose.pushPose();
-        applyTransform(pose, rootXform);
+        applyTransform(pose, PartTransform.IDENTITY);
         model.positionParts();
         model.renderToBuffer(
                 pose,
-                buffer.getBuffer(net.minecraft.client.renderer.RenderType.entityCutout(getTextureLocation(entity))),
+                buffer.getBuffer(RenderType.entityCutout(getTextureLocation(entity))),
                 packedLight,
-                net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY
+                OverlayTexture.NO_OVERLAY
         );
         pose.popPose();
     }
@@ -308,12 +219,11 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
     private void renderAttached(
             PoseStack pose, MultiBufferSource buffer, int packedLight,
             GeneticHorseEntity entity,
-            String parentId, MultipartModel<GeneticHorseEntity> parent, String parentAnchorName,
-            String childId,  MultipartModel<GeneticHorseEntity> child, String childAnchorName,
+            MultipartModel<GeneticHorseEntity> parent, String parentAnchorName,
+            MultipartModel<GeneticHorseEntity> child, String childAnchorName,
             PartTransform dynamicRot
     ) {
         if (parent == null || child == null) return;
-
         PartTransform parentRoot = PartTransform.IDENTITY;
         PartTransform anchor     = parent.anchors().get(parentAnchorName);
         if (anchor == null) return;
@@ -321,18 +231,18 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         PartTransform childDeform = PartTransform.IDENTITY;
 
         pose.pushPose();
-        applyTransform(pose, parentRoot);   // parent in entity space
-        applyTransform(pose, anchor);       // go to parent’s anchor
-        applyTransform(pose, dynamicRot);   // live rotation if any
-        applyTransform(pose, inverseAnchor(child, childAnchorName)); // align child to parent anchor
+        applyTransform(pose, parentRoot);
+        applyTransform(pose, anchor);
+        applyTransform(pose, dynamicRot);
+        applyTransform(pose, inverseAnchor(child, childAnchorName));
         applyTransform(pose, childDeform);
         child.positionParts();
 
         child.renderToBuffer(
                 pose,
-                buffer.getBuffer(net.minecraft.client.renderer.RenderType.entityCutout(getTextureLocation(entity))),
+                buffer.getBuffer(RenderType.entityCutout(getTextureLocation(entity))),
                 packedLight,
-                net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY
+                OverlayTexture.NO_OVERLAY
         );
         pose.popPose();
     }
