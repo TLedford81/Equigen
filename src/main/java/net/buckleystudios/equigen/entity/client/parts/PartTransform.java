@@ -14,7 +14,7 @@ public class PartTransform {
         this.position = position;
         this.rotation = rotation;
         this.scale = scale;
-        EquigenMod.LOGGER.info(PartTransform.this + "Part Transform = Position: " + position + ",  Rotation: " + rotation + ", Scale: " + scale);
+        EquigenMod.LOGGER.info("Part Transform = Position: " + position + ",  Rotation: " + rotation + ", Scale: " + scale);
         logCaller();
     }
 

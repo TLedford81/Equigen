@@ -155,6 +155,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         pose.mulPose(Axis.YP.rotationDegrees((float)t.rotation.y));
         pose.mulPose(Axis.ZP.rotationDegrees((float)t.rotation.z));
         pose.scale((float)t.scale.x, (float)t.scale.y, (float)t.scale.z);
+        EquigenMod.LOGGER.info("TRANSFORMED TO " + t.position.x + ", " + t.position.y + ", " + t.position.z);
     }
 
     private void applyInverseTransform(PoseStack pose, PartTransform t) {
@@ -167,6 +168,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         pose.mulPose(Axis.YP.rotationDegrees((float)-t.rotation.y));
         pose.mulPose(Axis.XP.rotationDegrees((float)-t.rotation.x));
         pose.translate(-(float)t.position.x, -(float)t.position.y, -(float)t.position.z);
+        EquigenMod.LOGGER.info("APPLYING INVERSE TRANSFORMATION TO " + t.position.x + ", " + t.position.y + ", " + t.position.z);
     }
 
 
@@ -218,6 +220,14 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         PartTransform cA = child.anchors().get(childAnchor);
         if (pA == null || cA == null) return;
 
+        EquigenMod.LOGGER.info("=============================================================");
+        EquigenMod.LOGGER.info(" Parent = " + parent);
+        EquigenMod.LOGGER.info(" Parent Anchor Point = " + pA.getPosition());
+        EquigenMod.LOGGER.info(" Child = " + child);
+        if (cA != null) {
+            EquigenMod.LOGGER.info(" Child Anchor Point = " + cA.getPosition());
+        }
+
         pose.pushPose();
 
         // Move to the parent’s joint in WORLD space
@@ -252,6 +262,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         if (parent == null || child == null) return;
         PartTransform pA = parent.anchors().get(parentAnchorName);
         PartTransform cA = child.anchors().get(childAnchorName);
+
         if (pA == null || cA == null) return;
 
         // --- debug crosses (these only appear if we call this method) ---
@@ -271,15 +282,6 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
             pose.popPose();
         }
         // ---------------------------------------------------------------
-
-        //TODO: Fix these logs please thanks
-//        EquigenMod.LOGGER.info(" Parent = " + parent);
-//        EquigenMod.LOGGER.info(" Parent Anchor Point = " + parent.anchors().get(parentAnchorName).getPosition());
-//        EquigenMod.LOGGER.info(" Child = " + child);
-//        PartTransform childAnchor = child.anchors().get(childAnchorName);
-//        if (childAnchor != null) {
-//            EquigenMod.LOGGER.info(" Child Anchor Point = " + childAnchor.getPosition());
-//        }
 
 
         pose.pushPose();
