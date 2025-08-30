@@ -1,6 +1,7 @@
 package net.buckleystudios.equigen.entity.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.client.parts.MultipartModel;
@@ -29,7 +30,6 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.phys.Vec3;
 
 import java.util.HashMap;
 import java.util.List;
@@ -112,204 +112,61 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
             MultipartModel<GeneticHorseEntity> withersModel = getMultipartModel(partsToRender, "withers");
             MultipartModel<GeneticHorseEntity> stomachModel = getMultipartModel(partsToRender, "stomach");
 
-            MultipartModel<GeneticHorseEntity> rootModel = backModel;
+            // ROOT = backModel
+            if (backModel != null) {
+                renderRootPart(poseStack, buffer, packedLight, entity, backModel);
 
-            //Set Root Part (No Parents)
-            if (rootModel != null) {
-                renderRootPart(poseStack, buffer, packedLight, entity, rootModel);
+                attachAndChain(poseStack, buffer, packedLight, entity,
+                        backModel, "chestAnchor", chestModel, "backAnchor",
+                        () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                chestModel, "neckAnchor", neckModel, "chestAnchor",
+                                () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                        neckModel, "headAnchor", headModel, "neckAnchor",
+                                        () -> {
+                                            attachAndChain(poseStack, buffer, packedLight, entity,
+                                                    headModel, "leftEarAnchor", leftEarModel, "headAnchor", null);
+                                            attachAndChain(poseStack, buffer, packedLight, entity,
+                                                    headModel, "rightEarAnchor", rightEarModel, "headAnchor", null);
+                                        }
+                                )
+                        )
+                );
+
+                attachAndChain(poseStack, buffer, packedLight, entity,
+                        backModel, "hipsAnchor", hipsModel, "backAnchor",
+                        () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                hipsModel, "tailAnchor", tailModel, "hipsAnchor", null));
+
+                attachAndChain(poseStack, buffer, packedLight, entity,
+                        backModel, "withersAnchor", withersModel, "backAnchor", null);
+
+                attachAndChain(poseStack, buffer, packedLight, entity,
+                        backModel, "stomachAnchor", stomachModel, "backAnchor", null);
             }
-
-            //Attach Children to Root
-            /*
-            EXAMPLE:
-
-            attachModels(poseStack, buffer, packedLight, entity,
-                    PARENT_MODEL, "anchor1",
-                    CHILD_MODEL, "anchor2");
-
-            anchor1 = Anchor on PARENT_MODEL to connect child to.
-            anchor2 = Anchor on CHILD_MODEL to connect parent to.
-            */
-
-            // PARENT -> CHILD
-
-            // BACK -> CHEST
-            attachModels(poseStack, buffer, packedLight, entity,
-                    backModel, "chestAnchor",
-                    chestModel, "backAnchor");
-
-            // CHEST -> NECK
-            attachModels(poseStack, buffer, packedLight, entity,
-                    chestModel, "neckAnchor",
-                    neckModel, "chestAnchor");
-            // NECK -> HEAD
-            attachModels(poseStack, buffer, packedLight, entity,
-                    neckModel, "headAnchor",
-                    headModel, "neckAnchor");
-            // HEAD -> LEFT EAR
-            attachModels(poseStack, buffer, packedLight, entity,
-                    headModel, "leftEarAnchor",
-                    leftEarModel, "headAnchor");
-            // HEAD -> RIGHT EAR
-            attachModels(poseStack, buffer, packedLight, entity,
-                    headModel, "rightEarAnchor",
-                    rightEarModel, "headAnchor");
-//            // CHEST -> FRONT LEFT LEG
-//            attachModels(poseStack, buffer, packedLight, entity,
-//                    chestModel, "anchor1",
-//                    frontLeftLegModel, "anchor2");
-//            // FRONT LEFT LEG -> TOP FRONT LEFT LEG
-//            attachModels(poseStack, buffer, packedLight, entity,
-//                    frontLeftLegModel, "anchor1",
-//                    topFrontLeftLegModel, "anchor2");
-//            // TOP FRONT LEFT LEG -> KNEE FRONT LEFT LEG
-//            attachModels(poseStack, buffer, packedLight, entity,
-//                    topFrontLeftLegModel, "anchor1",
-//                    kneeFrontLeftLegModel, "anchor2");
-//            // KNEE FRONT LEFT LEG -> BOTTOM FRONT LEFT LEG
-//            attachModels(poseStack, buffer, packedLight, entity,
-//                    kneeFrontLeftLegModel, "anchor1",
-//                    bottomFrontLeftLegModel, "anchor2");
-//            // BOTTOM FRONT LEFT LEG -> HOOF FRONT LEFT LEG
-//            attachModels(poseStack, buffer, packedLight, entity,
-//                    bottomFrontLeftLegModel, "anchor1",
-//                    hoofFrontLeftLegModel, "anchor2");
-//            // CHEST -> FRONT RIGHT LEG
-//            attachModels(poseStack, buffer, packedLight, entity,
-//                    chestModel, "anchor1",
-//                    frontRightLegModel, "anchor2");
-//            // FRONT RIGHT LEG -> TOP FRONT RIGHT LEG
-//            attachModels(poseStack, buffer, packedLight, entity,
-//                    frontRightLegModel, "anchor1",
-//                    topFrontRightLegModel, "anchor2");
-//            // TOP FRONT RIGHT LEG -> KNEE FRONT RIGHT LEG
-//            attachModels(poseStack, buffer, packedLight, entity,
-//                    topFrontRightLegModel, "anchor1",
-//                    kneeFrontRightLegModel, "anchor2");
-//            // KNEE FRONT RIGHT LEG -> BOTTOM FRONT RIGHT LEG
-//            attachModels(poseStack, buffer, packedLight, entity,
-//                    kneeFrontRightLegModel, "anchor1",
-//                    bottomFrontRightLegModel, "anchor2");
-//            // BOTTOM FRONT RIGHT LEG -> HOOF FRONT RIGHT LEG
-//            attachModels(poseStack, buffer, packedLight, entity,
-//                    bottomFrontRightLegModel, "anchor1",
-//                    hoofFrontRightLegModel, "anchor2");
-
-            // BACK -> HIPS
-            attachModels(poseStack, buffer, packedLight, entity,
-                    backModel, "hipsAnchor",
-                    hipsModel, "backAnchor");
-            // HIPS -> TAIL
-            attachModels(poseStack, buffer, packedLight, entity,
-                    hipsModel, "tailAnchor",
-                    tailModel, "hipsAnchor");
-//            // HIPS -> BACK LEFT LEG
-//            attachModels(poseStack, buffer, packedLight, entity,
-//                    hipsModel, "anchor1",
-//                    backLeftLegModel, "anchor2");
-//            // BACK LEFT LEG -> TOP BACK LEFT LEG
-//            attachModels(poseStack, buffer, packedLight, entity,
-//                    backLeftLegModel, "anchor1",
-//                    topBackLeftLegModel, "anchor2");
-//            // TOP BACK LEFT LEG -> KNEE BACK LEFT LEG
-//            attachModels(poseStack, buffer, packedLight, entity,
-//                    topBackLeftLegModel, "anchor1",
-//                    kneeBackLeftLegModel, "anchor2");
-//            // KNEE BACK LEFT LEG -> BOTTOM BACK LEFT LEG
-//            attachModels(poseStack, buffer, packedLight, entity,
-//                    kneeBackLeftLegModel, "anchor1",
-//                    bottomBackLeftLegModel, "anchor2");
-//            // BOTTOM BACK LEFT LEG -> HOOF BACK LEFT LEG
-//            attachModels(poseStack, buffer, packedLight, entity,
-//                    bottomBackLeftLegModel, "anchor1",
-//                    hoofBackLeftLegModel, "anchor2");
-//            // HIPS -> BACK RIGHT LEG
-//            attachModels(poseStack, buffer, packedLight, entity,
-//                    hipsModel, "anchor1",
-//                    backRightLegModel, "anchor2");
-//            // BACK RIGHT LEG -> TOP BACK RIGHT LEG
-//            attachModels(poseStack, buffer, packedLight, entity,
-//                    backRightLegModel, "anchor1",
-//                    topBackRightLegModel, "anchor2");
-//            // TOP BACK RIGHT LEG -> KNEE BACK RIGHT LEG
-//            attachModels(poseStack, buffer, packedLight, entity,
-//                    topBackRightLegModel, "anchor1",
-//                    kneeBackRightLegModel, "anchor2");
-//            // KNEE BACK RIGHT LEG -> BOTTOM BACK RIGHT LEG
-//            attachModels(poseStack, buffer, packedLight, entity,
-//                    kneeBackRightLegModel, "anchor1",
-//                    bottomBackRightLegModel, "anchor2");
-//            // BOTTOM BACK RIGHT LEG -> HOOF BACK RIGHT LEG
-//            attachModels(poseStack, buffer, packedLight, entity,
-//                    bottomBackRightLegModel, "anchor1",
-//                    hoofBackRightLegModel, "anchor2");
-
-            // BACK -> WITHERS
-            attachModels(poseStack, buffer, packedLight, entity,
-                    backModel, "withersAnchor",
-                    withersModel, "backAnchor");
-            // BACK -> STOMACH
-            attachModels(poseStack, buffer, packedLight, entity,
-                    backModel, "stomachAnchor",
-                    stomachModel, "backAnchor");
-
-// 2) Optional: render any miscellaneous parts not in the chain (fallback)
-//        for (String partId : partsToRender) {
-//            if (partId == null) continue;
-//            if (partId.equals(chestId) || partId.equals(backId)) continue;
-//            poseStack.pushPose();
-//            applyTransform(poseStack, partTransforms.getOrDefault(partId, PartTransform.IDENTITY));
-//            var model = getPartModel(partId);
-//            if (model instanceof MultipartModel<?> mm) mm.positionParts();
-//            if (model != null) {
-//                model.renderToBuffer(
-//                        poseStack,
-//                        buffer.getBuffer(net.minecraft.client.renderer.RenderType.entityCutout(getTextureLocation(entity))),
-//                        packedLight,
-//                        net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY
-//                );
-//            }
-//            poseStack.popPose();
-//        }
         } finally {
             poseStack.popPose();
         }
     }
 
-    public void attachModels(PoseStack poseStack, MultiBufferSource buffer, int packedLight, GeneticHorseEntity entity,
-                             MultipartModel<GeneticHorseEntity> parentModel, String parentAnchor,
-                             MultipartModel<GeneticHorseEntity> childModel, String childAnchor)
-    {
-        if (parentModel != null && childModel != null) {
-            renderAttached(
-                    poseStack, buffer, packedLight, entity,
-                    parentModel, parentAnchor,     // parent + anchor key on chest
-                    childModel, childAnchor
-            );
-        }
+    private void applyTransform(PoseStack pose, PartTransform t) {
+        if (t == null) return;
+        pose.translate((float)t.position.x, (float)t.position.y, (float)t.position.z);
+        pose.mulPose(Axis.XP.rotationDegrees((float)t.rotation.x));
+        pose.mulPose(Axis.YP.rotationDegrees((float)t.rotation.y));
+        pose.mulPose(Axis.ZP.rotationDegrees((float)t.rotation.z));
+        pose.scale((float)t.scale.x, (float)t.scale.y, (float)t.scale.z);
     }
 
-    private void applyTransform(PoseStack pose, PartTransform transform) {
-        // Translation
-        pose.translate(transform.position.x, transform.position.y, transform.position.z);
-
-        // Rotation in degrees using Vec3
-        pose.mulPose(Axis.XP.rotationDegrees((float) transform.rotation.x));
-        pose.mulPose(Axis.YP.rotationDegrees((float) transform.rotation.y));
-        pose.mulPose(Axis.ZP.rotationDegrees((float) transform.rotation.z));
-
-        // Scale
-        pose.scale((float) transform.scale.x, (float) transform.scale.y, (float) transform.scale.z);
-    }
-
-    private PartTransform inverseAnchor(MultipartModel<?> child, String key) {
-        PartTransform a = child.anchors().get(key);
-        if (a == null) return PartTransform.IDENTITY;
-        return new PartTransform(
-                new Vec3(-a.position.x, -a.position.y, -a.position.z),
-                Vec3.ZERO,
-                new Vec3(1, 1, 1)
-        );
+    private void applyInverseTransform(PoseStack pose, PartTransform t) {
+        if (t == null) return;
+        float sx = (float)(t.scale.x == 0 ? 1.0 : 1.0 / t.scale.x);
+        float sy = (float)(t.scale.y == 0 ? 1.0 : 1.0 / t.scale.y);
+        float sz = (float)(t.scale.z == 0 ? 1.0 : 1.0 / t.scale.z);
+        pose.scale(sx, sy, sz);
+        pose.mulPose(Axis.ZP.rotationDegrees((float)-t.rotation.z));
+        pose.mulPose(Axis.YP.rotationDegrees((float)-t.rotation.y));
+        pose.mulPose(Axis.XP.rotationDegrees((float)-t.rotation.x));
+        pose.translate(-(float)t.position.x, -(float)t.position.y, -(float)t.position.z);
     }
 
 
@@ -349,21 +206,76 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         );
         pose.popPose();
     }
+    // Add this helper:
+    private void attachAndChain(
+            PoseStack pose, MultiBufferSource buffer, int light, GeneticHorseEntity e,
+            MultipartModel<GeneticHorseEntity> parent, String parentAnchor,
+            MultipartModel<GeneticHorseEntity> child,  String childAnchor,
+            Runnable chain // may be null
+    ) {
+        if (parent == null || child == null) return;
+        PartTransform pA = parent.anchors().get(parentAnchor);
+        PartTransform cA = child.anchors().get(childAnchor);
+        if (pA == null || cA == null) return;
 
+        pose.pushPose();
+
+        // Move to the parent’s joint in WORLD space
+        applyTransform(pose, pA);
+
+        // Debug crosses at the joint
+        if (DEBUG_ANCHORS) {
+            drawAxisCross(pose, buffer, AXIS_SIZE, 1, 0, 0, 1, true);       // parent joint (red)
+            pose.pushPose(); applyTransform(pose, cA);
+            drawAxisCross(pose, buffer, AXIS_SIZE*.9f, 0, 1, 1, 1, true);    // forward (cyan)
+            pose.popPose();
+            pose.pushPose(); applyInverseTransform(pose, cA);
+            drawAxisCross(pose, buffer, AXIS_SIZE*.9f, 1, 1, 0, 1, true);    // child origin (yellow)
+            pose.popPose();
+        }
+
+        // Move from the joint to the child’s WORLD origin and render it
+        applyInverseTransform(pose, cA);
+        child.positionParts();
+        child.renderToBuffer(pose, buffer.getBuffer(RenderType.entityCutout(getTextureLocation(e))),
+                light, OverlayTexture.NO_OVERLAY);
+
+        if (chain != null) chain.run();   // attach grandchildren while this pose is active
+        pose.popPose();
+    }
     private void renderAttached(
             PoseStack pose, MultiBufferSource buffer, int packedLight,
             GeneticHorseEntity entity,
             MultipartModel<GeneticHorseEntity> parent, String parentAnchorName,
-            MultipartModel<GeneticHorseEntity> child, String childAnchorName
+            MultipartModel<GeneticHorseEntity> child,  String childAnchorName
     ) {
         if (parent == null || child == null) return;
-        PartTransform parentAnchor = parent.anchors().get(parentAnchorName);
-        if (parentAnchor == null) return;
+        PartTransform pA = parent.anchors().get(parentAnchorName);
+        PartTransform cA = child.anchors().get(childAnchorName);
+        if (pA == null || cA == null) return;
+
+        // --- debug crosses (these only appear if we call this method) ---
+        if (DEBUG_ANCHORS) {
+            pose.pushPose(); applyTransform(pose, pA);
+            logAnchor("parent."+parentAnchorName, pA);
+            logAnchor("child."+childAnchorName, cA);
+            drawAxisCross(pose, buffer, AXIS_SIZE, 1, 0, 0, 1, true); // parent joint (red)
+            pose.popPose();
+
+            pose.pushPose(); applyTransform(pose, pA); applyTransform(pose, cA);
+            drawAxisCross(pose, buffer, AXIS_SIZE * .9f, 0, 1, 1, 1, true); // forward (cyan)
+            pose.popPose();
+
+            pose.pushPose(); applyTransform(pose, pA); applyInverseTransform(pose, cA);
+            drawAxisCross(pose, buffer, AXIS_SIZE * .9f, 1, 1, 0, 1, true); // final child origin (yellow)
+            pose.popPose();
+        }
+        // ---------------------------------------------------------------
 
         pose.pushPose();
-        applyTransform(pose, parentAnchor);
-        applyTransform(pose, inverseAnchor(child, childAnchorName));
-
+        applyTransform(pose, pA);
+        applyInverseTransform(pose, cA);
+        child.positionParts();
         child.renderToBuffer(
                 pose,
                 buffer.getBuffer(RenderType.entityCutout(getTextureLocation(entity))),
@@ -875,4 +787,69 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
             default -> null;
         });
     }
+
+    private static final boolean DEBUG_ANCHORS = true;   // flip off later
+    private static final float   AXIS_SIZE     = 0.15f;  // tweak to taste
+
+    // one segment (two vertices)
+// === Debug axis helpers ===
+
+    private static void addLine(
+            VertexConsumer vc, PoseStack.Pose pose,
+            float x1, float y1, float z1,
+            float x2, float y2, float z2,
+            float r, float g, float b, float a
+    ) {
+        var m = pose.pose();
+        vc.addVertex(m, x1, y1, z1).setColor(r, g, b, a).setNormal(pose, 0, 1, 0);
+        vc.addVertex(m, x2, y2, z2).setColor(r, g, b, a).setNormal(pose, 0, 1, 0);
+    }
+
+    // Full-fat version: size + color + alpha + optional no-depth
+    private void drawAxisCross(PoseStack pose, MultiBufferSource buffers,
+                               float size, float r, float g, float b, float a, boolean noDepth) {
+        // If your MC/NeoForge has a no-depth line type, swap it in here.
+        // e.g., RenderType.linesNoDepthTest() if available.
+        RenderType type = RenderType.lines();
+        VertexConsumer vc = buffers.getBuffer(type);
+        PoseStack.Pose p  = pose.last();
+
+        // X (red-ish via params)
+        addLine(vc, p, -size, 0, 0,  size, 0, 0, r, g, b, a);
+        // Y
+        addLine(vc, p, 0, -size, 0,  0,  size, 0, r, g, b, a);
+        // Z
+        addLine(vc, p, 0, 0, -size,  0, 0,  size, r, g, b, a);
+    }
+
+    // Convenience: size + color + alpha (depth-tested)
+    private void drawAxisCross(PoseStack pose, MultiBufferSource buffers,
+                               float size, float r, float g, float b, float a) {
+        drawAxisCross(pose, buffers, size, r, g, b, a, false);
+    }
+
+    // Convenience: size only (white)
+    private void drawAxisCross(PoseStack pose, MultiBufferSource buffers, float size) {
+        drawAxisCross(pose, buffers, size, 1f, 1f, 1f, 1f, false);
+    }
+
+    private void drawAnchorAt(PoseStack pose, MultiBufferSource buf, PartTransform t, float r, float g, float b) {
+        if (t == null) return;
+        pose.pushPose();
+        applyTransform(pose, t);
+        drawAxisCross(pose, buf, AXIS_SIZE, r, g, b, 1f, true);
+        pose.popPose();
+    }
+    private static void logAnchor(String label, PartTransform t){
+        if (t == null) EquigenMod.LOGGER.warn("Missing anchor: {}", label);
+        else EquigenMod.LOGGER.info("{} pos=({}, {}, {}) rot=({}, {}, {})",
+                label, t.position.x, t.position.y, t.position.z,
+                t.rotation.x, t.rotation.y, t.rotation.z);
+    }
+    // --- DEBUG VIS ---
+// red  = parent's anchor (where the joint is expected in parent space)
+// cyan = parent's anchor *then* child's anchor (should sit exactly at red if cA
+//        was authored “origin -> anchor”; seeing an offset means the authored cA
+//        is not at the seam)
+// yellow = final child origin after we apply the inverse (where the child will be rendered)
 }
