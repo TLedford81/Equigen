@@ -85,8 +85,34 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
             MultipartModel<GeneticHorseEntity> backModel = getMultipartModel(partsToRender, "back");
             MultipartModel<GeneticHorseEntity> headModel = getMultipartModel(partsToRender, "head");
             MultipartModel<GeneticHorseEntity> neckModel = getMultipartModel(partsToRender, "neck");
+            MultipartModel<GeneticHorseEntity> leftEarModel = getMultipartModel(partsToRender, "ears");
+            MultipartModel<GeneticHorseEntity> rightEarModel = getMultipartModel(partsToRender, "ears");
+//            MultipartModel<GeneticHorseEntity> frontLeftLegModel = getMultipartModel(partsToRender, "frontLeftLeg");
+//            MultipartModel<GeneticHorseEntity> topFrontLeftLegModel = getMultipartModel(partsToRender, "topFrontLeftLeg");
+//            MultipartModel<GeneticHorseEntity> kneeFrontLeftLegModel = getMultipartModel(partsToRender, "kneeFrontLeftLeg");
+//            MultipartModel<GeneticHorseEntity> bottomFrontLeftLegModel = getMultipartModel(partsToRender, "bottomFrontLeftLeg");
+//            MultipartModel<GeneticHorseEntity> hoofFrontLeftLegModel = getMultipartModel(partsToRender, "hoofFrontLeftLeg");
+//            MultipartModel<GeneticHorseEntity> frontRightLegModel = getMultipartModel(partsToRender, "frontRightLeg");
+//            MultipartModel<GeneticHorseEntity> topFrontRightLegModel = getMultipartModel(partsToRender, "topFrontRightLeg");
+//            MultipartModel<GeneticHorseEntity> kneeFrontRightLegModel = getMultipartModel(partsToRender, "kneeFrontRightLeg");
+//            MultipartModel<GeneticHorseEntity> bottomFrontRightLegModel = getMultipartModel(partsToRender, "bottomFrontRightLeg");
+//            MultipartModel<GeneticHorseEntity> hoofFrontRightLegModel = getMultipartModel(partsToRender, "hoofFrontRightLeg");
+            MultipartModel<GeneticHorseEntity> hipsModel = getMultipartModel(partsToRender, "hips");
+            MultipartModel<GeneticHorseEntity> tailModel = getMultipartModel(partsToRender, "tail");
+//            MultipartModel<GeneticHorseEntity> backLeftLegModel = getMultipartModel(partsToRender, "backLeftLeg");
+//            MultipartModel<GeneticHorseEntity> topBackLeftLegModel = getMultipartModel(partsToRender, "topBackLeftLeg");
+//            MultipartModel<GeneticHorseEntity> kneeBackLeftLegModel = getMultipartModel(partsToRender, "kneeBackLeftLeg");
+//            MultipartModel<GeneticHorseEntity> bottomBackLeftLegModel = getMultipartModel(partsToRender, "bottomBackLeftLeg");
+//            MultipartModel<GeneticHorseEntity> hoofBackLeftLegModel = getMultipartModel(partsToRender, "hoofBackLeftLeg");
+//            MultipartModel<GeneticHorseEntity> backRightLegModel = getMultipartModel(partsToRender, "backRightLeg");
+//            MultipartModel<GeneticHorseEntity> topBackRightLegModel = getMultipartModel(partsToRender, "topBackRightLeg");
+//            MultipartModel<GeneticHorseEntity> kneeBackRightLegModel = getMultipartModel(partsToRender, "kneeBackRightLeg");
+//            MultipartModel<GeneticHorseEntity> bottomBackRightLegModel = getMultipartModel(partsToRender, "bottomBackRightLeg");
+//            MultipartModel<GeneticHorseEntity> hoofBackRightLegModel = getMultipartModel(partsToRender, "hoofBackRightLeg");
+            MultipartModel<GeneticHorseEntity> withersModel = getMultipartModel(partsToRender, "withers");
+            MultipartModel<GeneticHorseEntity> stomachModel = getMultipartModel(partsToRender, "stomach");
 
-            MultipartModel<GeneticHorseEntity> rootModel = chestModel;
+            MultipartModel<GeneticHorseEntity> rootModel = backModel;
 
             //Set Root Part (No Parents)
             if (rootModel != null) {
@@ -107,15 +133,124 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
 
             // PARENT -> CHILD
 
+            // BACK -> CHEST
+            attachModels(poseStack, buffer, packedLight, entity,
+                    backModel, "chestAnchor",
+                    chestModel, "backAnchor");
             // CHEST -> NECK
             attachModels(poseStack, buffer, packedLight, entity,
                     chestModel, "neckAnchor",
                     neckModel, "chestAnchor");
-
             // NECK -> HEAD
             attachModels(poseStack, buffer, packedLight, entity,
                     neckModel, "headAnchor",
                     headModel, "neckAnchor");
+            // HEAD -> LEFT EAR
+            attachModels(poseStack, buffer, packedLight, entity,
+                    headModel, "leftEarAnchor",
+                    leftEarModel, "headAnchor");
+            // HEAD -> RIGHT EAR
+            attachModels(poseStack, buffer, packedLight, entity,
+                    headModel, "rightEarAnchor",
+                    rightEarModel, "headAnchor");
+//            // CHEST -> FRONT LEFT LEG
+//            attachModels(poseStack, buffer, packedLight, entity,
+//                    chestModel, "anchor1",
+//                    frontLeftLegModel, "anchor2");
+//            // FRONT LEFT LEG -> TOP FRONT LEFT LEG
+//            attachModels(poseStack, buffer, packedLight, entity,
+//                    frontLeftLegModel, "anchor1",
+//                    topFrontLeftLegModel, "anchor2");
+//            // TOP FRONT LEFT LEG -> KNEE FRONT LEFT LEG
+//            attachModels(poseStack, buffer, packedLight, entity,
+//                    topFrontLeftLegModel, "anchor1",
+//                    kneeFrontLeftLegModel, "anchor2");
+//            // KNEE FRONT LEFT LEG -> BOTTOM FRONT LEFT LEG
+//            attachModels(poseStack, buffer, packedLight, entity,
+//                    kneeFrontLeftLegModel, "anchor1",
+//                    bottomFrontLeftLegModel, "anchor2");
+//            // BOTTOM FRONT LEFT LEG -> HOOF FRONT LEFT LEG
+//            attachModels(poseStack, buffer, packedLight, entity,
+//                    bottomFrontLeftLegModel, "anchor1",
+//                    hoofFrontLeftLegModel, "anchor2");
+//            // CHEST -> FRONT RIGHT LEG
+//            attachModels(poseStack, buffer, packedLight, entity,
+//                    chestModel, "anchor1",
+//                    frontRightLegModel, "anchor2");
+//            // FRONT RIGHT LEG -> TOP FRONT RIGHT LEG
+//            attachModels(poseStack, buffer, packedLight, entity,
+//                    frontRightLegModel, "anchor1",
+//                    topFrontRightLegModel, "anchor2");
+//            // TOP FRONT RIGHT LEG -> KNEE FRONT RIGHT LEG
+//            attachModels(poseStack, buffer, packedLight, entity,
+//                    topFrontRightLegModel, "anchor1",
+//                    kneeFrontRightLegModel, "anchor2");
+//            // KNEE FRONT RIGHT LEG -> BOTTOM FRONT RIGHT LEG
+//            attachModels(poseStack, buffer, packedLight, entity,
+//                    kneeFrontRightLegModel, "anchor1",
+//                    bottomFrontRightLegModel, "anchor2");
+//            // BOTTOM FRONT RIGHT LEG -> HOOF FRONT RIGHT LEG
+//            attachModels(poseStack, buffer, packedLight, entity,
+//                    bottomFrontRightLegModel, "anchor1",
+//                    hoofFrontRightLegModel, "anchor2");
+
+            // BACK -> HIPS
+            attachModels(poseStack, buffer, packedLight, entity,
+                    backModel, "hipsAnchor",
+                    hipsModel, "backAnchor");
+            // HIPS -> TAIL
+            attachModels(poseStack, buffer, packedLight, entity,
+                    hipsModel, "tailAnchor",
+                    tailModel, "hipsAnchor");
+//            // HIPS -> BACK LEFT LEG
+//            attachModels(poseStack, buffer, packedLight, entity,
+//                    hipsModel, "anchor1",
+//                    backLeftLegModel, "anchor2");
+//            // BACK LEFT LEG -> TOP BACK LEFT LEG
+//            attachModels(poseStack, buffer, packedLight, entity,
+//                    backLeftLegModel, "anchor1",
+//                    topBackLeftLegModel, "anchor2");
+//            // TOP BACK LEFT LEG -> KNEE BACK LEFT LEG
+//            attachModels(poseStack, buffer, packedLight, entity,
+//                    topBackLeftLegModel, "anchor1",
+//                    kneeBackLeftLegModel, "anchor2");
+//            // KNEE BACK LEFT LEG -> BOTTOM BACK LEFT LEG
+//            attachModels(poseStack, buffer, packedLight, entity,
+//                    kneeBackLeftLegModel, "anchor1",
+//                    bottomBackLeftLegModel, "anchor2");
+//            // BOTTOM BACK LEFT LEG -> HOOF BACK LEFT LEG
+//            attachModels(poseStack, buffer, packedLight, entity,
+//                    bottomBackLeftLegModel, "anchor1",
+//                    hoofBackLeftLegModel, "anchor2");
+//            // HIPS -> BACK RIGHT LEG
+//            attachModels(poseStack, buffer, packedLight, entity,
+//                    hipsModel, "anchor1",
+//                    backRightLegModel, "anchor2");
+//            // BACK RIGHT LEG -> TOP BACK RIGHT LEG
+//            attachModels(poseStack, buffer, packedLight, entity,
+//                    backRightLegModel, "anchor1",
+//                    topBackRightLegModel, "anchor2");
+//            // TOP BACK RIGHT LEG -> KNEE BACK RIGHT LEG
+//            attachModels(poseStack, buffer, packedLight, entity,
+//                    topBackRightLegModel, "anchor1",
+//                    kneeBackRightLegModel, "anchor2");
+//            // KNEE BACK RIGHT LEG -> BOTTOM BACK RIGHT LEG
+//            attachModels(poseStack, buffer, packedLight, entity,
+//                    kneeBackRightLegModel, "anchor1",
+//                    bottomBackRightLegModel, "anchor2");
+//            // BOTTOM BACK RIGHT LEG -> HOOF BACK RIGHT LEG
+//            attachModels(poseStack, buffer, packedLight, entity,
+//                    bottomBackRightLegModel, "anchor1",
+//                    hoofBackRightLegModel, "anchor2");
+            
+            // BACK -> WITHERS
+            attachModels(poseStack, buffer, packedLight, entity,
+                    backModel, "withersAnchor",
+                    withersModel, "backAnchor");
+            // BACK -> STOMACH
+            attachModels(poseStack, buffer, packedLight, entity,
+                    backModel, "stomachAnchor",
+                    stomachModel, "backAnchor");
 
 // 2) Optional: render any miscellaneous parts not in the chain (fallback)
 //        for (String partId : partsToRender) {
@@ -148,8 +283,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
             renderAttached(
                     poseStack, buffer, packedLight, entity,
                     parentModel, parentAnchor,     // parent + anchor key on chest
-                    childModel, childAnchor,
-                    PartTransform.IDENTITY
+                    childModel, childAnchor
             );
         }
     }
@@ -205,7 +339,6 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
     ) {
         if (model == null) return;
         pose.pushPose();
-        applyTransform(pose, PartTransform.IDENTITY);
         model.positionParts();
         model.renderToBuffer(
                 pose,
@@ -220,23 +353,15 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
             PoseStack pose, MultiBufferSource buffer, int packedLight,
             GeneticHorseEntity entity,
             MultipartModel<GeneticHorseEntity> parent, String parentAnchorName,
-            MultipartModel<GeneticHorseEntity> child, String childAnchorName,
-            PartTransform dynamicRot
+            MultipartModel<GeneticHorseEntity> child, String childAnchorName
     ) {
         if (parent == null || child == null) return;
-        PartTransform parentRoot = PartTransform.IDENTITY;
-        PartTransform anchor     = parent.anchors().get(parentAnchorName);
-        if (anchor == null) return;
-
-        PartTransform childDeform = PartTransform.IDENTITY;
+        PartTransform parentAnchor = parent.anchors().get(parentAnchorName);
+        if (parentAnchor == null) return;
 
         pose.pushPose();
-        applyTransform(pose, parentRoot);
-        applyTransform(pose, anchor);
-        applyTransform(pose, dynamicRot);
+        applyTransform(pose, parentAnchor);
         applyTransform(pose, inverseAnchor(child, childAnchorName));
-        applyTransform(pose, childDeform);
-        child.positionParts();
 
         child.renderToBuffer(
                 pose,
