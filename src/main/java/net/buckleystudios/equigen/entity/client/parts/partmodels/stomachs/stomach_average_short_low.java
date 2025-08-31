@@ -62,8 +62,5 @@ public class stomach_average_short_low extends MultipartStomachModel<GeneticHors
         return stomach_average_short_low;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

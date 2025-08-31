@@ -62,8 +62,5 @@ public class back_leg_top_average_long_2 extends MultipartBackTopLegModel<Geneti
         return top_back_legs_average_long_2;
     }
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

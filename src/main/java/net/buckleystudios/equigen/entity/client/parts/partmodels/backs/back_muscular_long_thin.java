@@ -53,8 +53,5 @@ public class back_muscular_long_thin extends MultipartBackModel<GeneticHorseEnti
 		return back_muscular_long_thin;
 	}
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

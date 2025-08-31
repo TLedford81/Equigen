@@ -61,8 +61,5 @@ public class ears extends MultipartEarModel<GeneticHorseEntity> {
     public ModelPart root() {
         return ears;
     }
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

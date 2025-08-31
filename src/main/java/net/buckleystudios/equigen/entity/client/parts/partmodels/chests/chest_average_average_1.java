@@ -87,7 +87,7 @@ public class chest_average_average_1 extends MultipartChestModel<GeneticHorseEnt
 
 		PartDefinition neckAnchor = chest_average_average_1.addOrReplaceChild("neckAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -4.25F, -2.75F));
 
-		PartDefinition backAnchor = chest_average_average_1.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -5.25F, -3.75F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, 6.75F));
+		PartDefinition backAnchor = chest_average_average_1.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -5.25F, -3.75F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0, 1, 6.75f));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
@@ -106,11 +106,6 @@ public class chest_average_average_1 extends MultipartChestModel<GeneticHorseEnt
     public ModelPart root() {
         return chest_average_average_1;
     }
-
-	@Override
-	public void positionParts() {
-		super.positionParts(chest_average_average_1, chest_average_average_1);
-	}
 
 	@Override
 	public Map<String, PartTransform> anchors() {

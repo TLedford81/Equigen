@@ -96,8 +96,5 @@ public class chest_lean_small_2 extends MultipartChestModel<GeneticHorseEntity> 
         return chest_lean_small_2;
     }
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

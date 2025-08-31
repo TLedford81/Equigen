@@ -8,9 +8,5 @@ import net.neoforged.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends MultipartModel<GeneticHorseEntity> {
 
-    @Override
-    public void positionParts(ModelPart part1, ModelPart part2) {
-        super.positionParts(part1, part2);
-        //Positioning Goes Here
-    }
+
 }

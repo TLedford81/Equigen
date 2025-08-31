@@ -62,8 +62,5 @@ public class stomach_average_average_low extends MultipartStomachModel<GeneticHo
         return stomach_average_average_low;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

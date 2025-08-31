@@ -115,10 +115,7 @@ public class neck_average_swan_average_1 extends MultipartNeckModel<GeneticHorse
         return neck_average_swan_average_1;
     }
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 
 	@Override
 	public Map<String, PartTransform> anchors() {

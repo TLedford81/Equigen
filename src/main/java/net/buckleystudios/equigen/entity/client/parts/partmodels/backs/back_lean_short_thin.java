@@ -54,9 +54,6 @@ public class back_lean_short_thin extends MultipartBackModel<GeneticHorseEntity>
 		return back_lean_short_thin;
 	}
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 
 }

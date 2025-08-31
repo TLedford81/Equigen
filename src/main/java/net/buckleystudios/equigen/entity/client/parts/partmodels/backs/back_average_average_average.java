@@ -73,11 +73,6 @@ public class back_average_average_average extends MultipartBackModel<GeneticHors
 	}
 
 	@Override
-	public void positionParts() {
-		super.positionParts(back_average_average_average, back_average_average_average);
-	}
-
-	@Override
 	public Map<String, PartTransform> anchors() {
 		return Map.of(
 				"chestAnchor",  asTransform(this.chestAnchor),

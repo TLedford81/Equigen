@@ -102,8 +102,5 @@ public class neck_muscular_arched_average_1 extends MultipartNeckModel<GeneticHo
         return neck_muscular_arched_average_1;
     }
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

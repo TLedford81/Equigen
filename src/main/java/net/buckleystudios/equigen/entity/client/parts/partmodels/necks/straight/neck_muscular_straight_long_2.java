@@ -104,8 +104,5 @@ public class neck_muscular_straight_long_2 extends MultipartNeckModel<GeneticHor
         return neck_muscular_straight_long_2;
     }
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

@@ -64,8 +64,5 @@ public class tail_average_short extends MultipartTailModel<GeneticHorseEntity> {
         return tail_average_short;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

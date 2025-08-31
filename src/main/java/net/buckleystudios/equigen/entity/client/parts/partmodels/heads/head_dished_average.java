@@ -65,7 +65,7 @@ public class head_dished_average extends MultipartHeadModel<GeneticHorseEntity> 
 
 		PartDefinition cube_r7 = head_dished_average_fringe.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(1008, 71).addBox(-3.08F, -3.0F, 0.08F, 3.0F, 3.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.5425F, -0.0215F, 0.4187F, 2.3998F, 0.0F, 0.0F));
 
-		PartDefinition neckAnchor = head_dished_average.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(0.0F, -2.1756F, -0.4873F));
+		PartDefinition neckAnchor = head_dished_average.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, -1.1756F, -1.4873F, 0.5672F, 0.0F, 0.0F));
 
 		PartDefinition cube_r8 = neckAnchor.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.1F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.25F, 1.1756F, 0.9873F, 1.6581F, 0.0F, 0.0F));
 
@@ -95,10 +95,7 @@ public class head_dished_average extends MultipartHeadModel<GeneticHorseEntity> 
         return head_dished_average;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 
 	@Override
 	public Map<String, PartTransform> anchors() {

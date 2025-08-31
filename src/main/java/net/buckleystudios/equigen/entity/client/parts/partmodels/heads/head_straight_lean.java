@@ -74,8 +74,5 @@ public class head_straight_lean extends MultipartHeadModel<GeneticHorseEntity> {
         return head_straight_lean;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

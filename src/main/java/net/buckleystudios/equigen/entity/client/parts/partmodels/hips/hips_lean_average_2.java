@@ -68,8 +68,5 @@ public class hips_lean_average_2 extends MultipartHipModel<GeneticHorseEntity> {
         return hips_lean_average_2;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

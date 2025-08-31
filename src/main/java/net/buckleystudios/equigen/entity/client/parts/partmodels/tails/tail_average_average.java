@@ -71,10 +71,7 @@ public class tail_average_average extends MultipartTailModel<GeneticHorseEntity>
         return tail_average_average;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 	@Override
 	public Map<String, PartTransform> anchors() {
 		return Map.of(

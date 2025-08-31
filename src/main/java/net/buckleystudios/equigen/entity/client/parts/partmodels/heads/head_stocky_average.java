@@ -74,8 +74,5 @@ public class head_stocky_average extends MultipartHeadModel<GeneticHorseEntity> 
         return head_stocky_average;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

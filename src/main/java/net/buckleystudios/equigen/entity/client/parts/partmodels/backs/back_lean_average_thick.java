@@ -54,8 +54,5 @@ public class back_lean_average_thick extends MultipartBackModel<GeneticHorseEnti
 		return back_lean_average_thick;
 	}
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

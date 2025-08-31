@@ -100,8 +100,5 @@ public class neck_average_ewed_long_1 extends MultipartNeckModel<GeneticHorseEnt
         return neck_average_ewed_long_1;
     }
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

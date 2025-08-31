@@ -62,8 +62,5 @@ public class back_leg_top_thick_long_2 extends MultipartBackTopLegModel<GeneticH
         return top_back_legs_thick_long_2;
     }
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

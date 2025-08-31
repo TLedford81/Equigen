@@ -62,8 +62,5 @@ public class stomach_muscular_long_high extends MultipartStomachModel<GeneticHor
         return stomach_muscular_long_high;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

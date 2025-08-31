@@ -64,8 +64,5 @@ public class tail_thick_long extends MultipartTailModel<GeneticHorseEntity> {
         return tail_thick_long;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

@@ -79,10 +79,7 @@ public class hips_average_average_1 extends MultipartHipModel<GeneticHorseEntity
         return hips_average_average_1;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 
 	@Override
 	public Map<String, PartTransform> anchors() {

@@ -51,8 +51,5 @@ public class withers_lean extends MultipartWithersModel<GeneticHorseEntity> {
         return withers_lean;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

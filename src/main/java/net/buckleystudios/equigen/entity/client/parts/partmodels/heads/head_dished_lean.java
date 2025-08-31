@@ -74,8 +74,5 @@ public class head_dished_lean extends MultipartHeadModel<GeneticHorseEntity> {
         return head_dished_lean;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

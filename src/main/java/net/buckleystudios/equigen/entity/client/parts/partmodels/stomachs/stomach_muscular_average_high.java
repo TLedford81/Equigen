@@ -62,8 +62,5 @@ public class stomach_muscular_average_high extends MultipartStomachModel<Genetic
         return stomach_muscular_average_high;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

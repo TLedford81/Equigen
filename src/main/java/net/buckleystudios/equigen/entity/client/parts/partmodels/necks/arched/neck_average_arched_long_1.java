@@ -103,8 +103,5 @@ public class neck_average_arched_long_1 extends MultipartNeckModel<GeneticHorseE
         return neck_average_arched_long_1;
     }
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

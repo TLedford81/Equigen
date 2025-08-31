@@ -74,8 +74,5 @@ public class head_stocky_muscular extends MultipartHeadModel<GeneticHorseEntity>
         return head_stocky_muscular;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

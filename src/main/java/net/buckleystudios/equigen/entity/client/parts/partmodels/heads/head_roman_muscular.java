@@ -74,8 +74,5 @@ public class head_roman_muscular extends MultipartHeadModel<GeneticHorseEntity> 
         return head_roman_muscular;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

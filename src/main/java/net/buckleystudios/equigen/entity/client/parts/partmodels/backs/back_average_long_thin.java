@@ -53,9 +53,4 @@ public class back_average_long_thin extends MultipartBackModel<GeneticHorseEntit
 	public ModelPart root() {
 		return back_average_long_thin;
 	}
-
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
 }

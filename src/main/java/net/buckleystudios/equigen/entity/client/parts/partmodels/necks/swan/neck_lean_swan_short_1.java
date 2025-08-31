@@ -102,8 +102,5 @@ public class neck_lean_swan_short_1 extends MultipartNeckModel<GeneticHorseEntit
         return neck_lean_swan_short_1;
     }
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

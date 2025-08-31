@@ -100,8 +100,5 @@ public class neck_lean_ewed_long_1 extends MultipartNeckModel<GeneticHorseEntity
         return neck_lean_ewed_long_1;
     }
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

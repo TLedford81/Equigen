@@ -57,10 +57,7 @@ public class withers_average extends MultipartWithersModel<GeneticHorseEntity> {
         return withers_average;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 
 	@Override
 	public Map<String, PartTransform> anchors() {

@@ -102,8 +102,5 @@ public class neck_average_swan_long_2 extends MultipartNeckModel<GeneticHorseEnt
         return neck_average_swan_long_2;
     }
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

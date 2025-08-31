@@ -53,8 +53,5 @@ public class back_muscular_short_average extends MultipartBackModel<GeneticHorse
 		return back_muscular_short_average;
 	}
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

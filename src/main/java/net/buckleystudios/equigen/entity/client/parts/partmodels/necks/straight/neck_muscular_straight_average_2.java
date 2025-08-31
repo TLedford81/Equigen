@@ -102,8 +102,5 @@ public class neck_muscular_straight_average_2 extends MultipartNeckModel<Genetic
         return neck_muscular_straight_average_2;
     }
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

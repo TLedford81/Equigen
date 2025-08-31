@@ -102,8 +102,5 @@ public class neck_muscular_arched_short_1 extends MultipartNeckModel<GeneticHors
         return neck_muscular_arched_short_1;
     }
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

@@ -50,8 +50,5 @@ public class withers_muscular extends MultipartWithersModel<GeneticHorseEntity> 
         return withers_muscular;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

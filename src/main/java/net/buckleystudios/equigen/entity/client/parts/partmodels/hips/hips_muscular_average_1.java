@@ -68,8 +68,5 @@ public class hips_muscular_average_1 extends MultipartHipModel<GeneticHorseEntit
         return hips_muscular_average_1;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

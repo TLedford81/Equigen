@@ -102,8 +102,5 @@ public class neck_average_straight_short_1 extends MultipartNeckModel<GeneticHor
         return neck_average_straight_short_1;
     }
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

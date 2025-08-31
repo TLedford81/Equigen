@@ -68,8 +68,5 @@ public class hips_muscular_large_2 extends MultipartHipModel<GeneticHorseEntity>
         return hips_muscular_large_2;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

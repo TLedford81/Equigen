@@ -102,8 +102,5 @@ public class neck_lean_straight_long_2 extends MultipartNeckModel<GeneticHorseEn
         return neck_lean_straight_long_2;
     }
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

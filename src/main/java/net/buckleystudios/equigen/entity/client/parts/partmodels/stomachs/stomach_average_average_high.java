@@ -69,10 +69,7 @@ public class stomach_average_average_high extends MultipartStomachModel<GeneticH
         return stomach_average_average_high;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 
 	@Override
 	public Map<String, PartTransform> anchors() {

@@ -111,10 +111,7 @@ public class neck_average_straight_average_1 extends MultipartNeckModel<GeneticH
         return neck_average_straight_average_1;
     }
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 
 	@Override
 	public Map<String, PartTransform> anchors() {

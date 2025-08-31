@@ -54,8 +54,5 @@ public class back_lean_short_average extends MultipartBackModel<GeneticHorseEnti
 		return back_lean_short_average;
 	}
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

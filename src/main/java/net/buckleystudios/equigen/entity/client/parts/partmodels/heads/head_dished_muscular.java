@@ -74,8 +74,5 @@ public class head_dished_muscular extends MultipartHeadModel<GeneticHorseEntity>
         return head_dished_muscular;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

@@ -74,8 +74,5 @@ public class head_straight_average extends MultipartHeadModel<GeneticHorseEntity
         return head_straight_average;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

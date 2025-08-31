@@ -62,8 +62,5 @@ public class back_leg_top_average_average_2 extends MultipartBackTopLegModel<Gen
         return top_back_legs_average_average_2;
     }
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

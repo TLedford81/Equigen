@@ -68,8 +68,5 @@ public class hips_lean_large_2 extends MultipartHipModel<GeneticHorseEntity> {
         return hips_lean_large_2;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

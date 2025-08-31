@@ -62,8 +62,5 @@ public class stomach_lean_long_low extends MultipartStomachModel<GeneticHorseEnt
         return stomach_lean_long_low;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

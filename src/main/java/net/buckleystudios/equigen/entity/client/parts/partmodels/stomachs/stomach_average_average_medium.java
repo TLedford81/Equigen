@@ -62,8 +62,5 @@ public class stomach_average_average_medium extends MultipartStomachModel<Geneti
         return stomach_average_average_medium;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

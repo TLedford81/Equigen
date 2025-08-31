@@ -62,8 +62,5 @@ public class stomach_muscular_average_medium extends MultipartStomachModel<Genet
         return stomach_muscular_average_medium;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

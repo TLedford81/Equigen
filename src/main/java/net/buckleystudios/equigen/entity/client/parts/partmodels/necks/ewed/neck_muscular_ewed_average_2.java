@@ -100,8 +100,5 @@ public class neck_muscular_ewed_average_2 extends MultipartNeckModel<GeneticHors
         return neck_muscular_ewed_average_2;
     }
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

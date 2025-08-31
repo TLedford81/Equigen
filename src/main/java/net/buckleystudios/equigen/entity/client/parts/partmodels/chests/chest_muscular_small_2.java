@@ -96,8 +96,5 @@ public class chest_muscular_small_2 extends MultipartChestModel<GeneticHorseEnti
         return chest_muscular_small_2;
     }
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

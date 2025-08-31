@@ -97,8 +97,5 @@ public class chest_average_average_2 extends MultipartChestModel<GeneticHorseEnt
         return chest_average_average_2;
     }
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

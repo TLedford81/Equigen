@@ -54,8 +54,5 @@ public class back_lean_average_average extends MultipartBackModel<GeneticHorseEn
 		return back_lean_average_average;
 	}
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

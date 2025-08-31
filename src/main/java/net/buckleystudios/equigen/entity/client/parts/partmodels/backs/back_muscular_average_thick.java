@@ -54,8 +54,5 @@ public class back_muscular_average_thick extends MultipartBackModel<GeneticHorse
 		return back_muscular_average_thick;
 	}
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }

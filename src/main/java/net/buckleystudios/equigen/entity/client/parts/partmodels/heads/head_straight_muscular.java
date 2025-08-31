@@ -74,8 +74,5 @@ public class head_straight_muscular extends MultipartHeadModel<GeneticHorseEntit
         return head_straight_muscular;
     }
 
-    @Override
-    public void positionParts() {
-        super.positionParts(root(), root());
-    }
+
 }

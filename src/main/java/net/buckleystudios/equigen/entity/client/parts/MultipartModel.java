@@ -20,11 +20,6 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
         return PartTransform.IDENTITY;
     }
 
-    public void positionParts(){
-    }
-
-    public void positionParts(ModelPart part1, ModelPart part2){
-    }
 
     @Override
     public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {

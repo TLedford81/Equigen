@@ -54,8 +54,5 @@ public class back_muscular_average_average extends MultipartBackModel<GeneticHor
 		return back_muscular_average_average;
 	}
 
-	@Override
-	public void positionParts() {
-		super.positionParts(root(), root());
-	}
+
 }
