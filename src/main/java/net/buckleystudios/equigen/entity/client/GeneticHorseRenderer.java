@@ -132,9 +132,9 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                 );
 
                 attachAndChain(poseStack, buffer, packedLight, entity,
-                        backModel, "hipsAnchor", hipsModel, "backAnchor",
+                        backModel, "hipsAnchor", hipsModel, "backHipsAnchor",
                         () -> attachAndChain(poseStack, buffer, packedLight, entity,
-                                hipsModel, "tailAnchor", tailModel, "hipsAnchor", null));
+                                hipsModel, "hipsTailAnchor", tailModel, "hipsAnchor", null));
 
                 attachAndChain(poseStack, buffer, packedLight, entity,
                         backModel, "withersAnchor", withersModel, "backAnchor", null);
@@ -164,6 +164,8 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         pose.mulPose(Axis.YP.rotationDegrees((float)-c.rotation.y));
         pose.mulPose(Axis.XP.rotationDegrees((float)-c.rotation.x));
         pose.translate(-(float)c.position.x, -(float)c.position.y, -(float)c.position.z);
+//        PartTransform sum = p.subtractPosition(p, c);
+//        pose.translate(sum.position.x, sum.position.y, sum.position.z);
     }
 
     private void renderRootPart(

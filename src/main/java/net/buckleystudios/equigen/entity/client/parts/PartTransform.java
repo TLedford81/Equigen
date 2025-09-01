@@ -22,6 +22,29 @@ public class PartTransform {
         return position;
     }
 
+//    public PartTransform subtractPosition(PartTransform parentPosition, PartTransform childPosition) {
+//
+//        float px = (float) parentPosition.position.x;
+//        float py = (float) parentPosition.position.y;
+//        float pz = (float) parentPosition.position.z;
+//
+//        float cx = (float) childPosition.position.x;
+//        float cy = (float) childPosition.position.y;
+//        float cz = (float) childPosition.position.z;
+//
+//        float sx = px - cx;
+//        float sy = py - cy;
+//        float sz = pz - cz;
+//
+//        EquigenMod.LOGGER.info("SUBTRACTING CHILD FROM PARENT");
+//        EquigenMod.LOGGER.info("PARENT = " + parentPosition.getPosition());
+//        EquigenMod.LOGGER.info("CHILD = " + childPosition.getPosition());
+//        EquigenMod.LOGGER.info("X = " + (px - cx) + " Y = " + (py - cy) + " Z = " + (pz - cz));
+//        Vec3 position = new Vec3(sx, sy, sz);
+//        return new PartTransform(position, childPosition.rotation, childPosition.scale);
+//
+//    }
+
     private void logCaller() {
         // [0] is getStackTrace, [1] is this method, [2] is the caller of this method
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();

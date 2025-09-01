@@ -22,7 +22,7 @@ public class head_roman_lean extends MultipartHeadModel<GeneticHorseEntity> {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition head_roman_lean = partdefinition.addOrReplaceChild("head_roman_lean", CubeListBuilder.create(), PartPose.offset(-0.1788F, 24.0F, 0.0F));
+		PartDefinition head_roman_lean = partdefinition.addOrReplaceChild("head_roman_lean", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
 		PartDefinition head_roman_lean_muzzle = head_roman_lean.addOrReplaceChild("head_roman_lean_muzzle", CubeListBuilder.create(), PartPose.offset(0.3575F, 4.648F, -4.2905F));
 
