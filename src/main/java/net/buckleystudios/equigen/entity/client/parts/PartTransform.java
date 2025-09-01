@@ -14,8 +14,8 @@ public class PartTransform {
         this.position = position;
         this.rotation = rotation;
         this.scale = scale;
-        EquigenMod.LOGGER.info("Part Transform = Position: " + position + ",  Rotation: " + rotation + ", Scale: " + scale);
-        logCaller();
+//        EquigenMod.LOGGER.info("Part Transform = Position: " + position + ",  Rotation: " + rotation + ", Scale: " + scale);
+//        logCaller();
     }
 
     public Vec3 getPosition() {

@@ -6,16 +6,21 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.tails;// Made 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartTailModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class tail_average_long extends MultipartTailModel<GeneticHorseEntity> {
 	private final ModelPart tail_average_long;
+	private final ModelPart hipsAnchor;
 
 	public tail_average_long(ModelPart root) {
 		this.tail_average_long = root.getChild("tail_average_long");
+		this.hipsAnchor = this.tail_average_long.getChild("hipsAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -48,6 +53,8 @@ public class tail_average_long extends MultipartTailModel<GeneticHorseEntity> {
 
 		PartDefinition cube_r4 = tail_average_long_tail_bottom.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(999, 673).addBox(-1.0F, -1.8391F, -0.9493F, 3.0F, 3.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.7151F, 0.5363F, -0.5363F, -1.6144F, 0.0F, 0.0F));
 
+		PartDefinition hipsAnchor = tail_average_long.addOrReplaceChild("hipsAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.5F, -0.25F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -66,5 +73,10 @@ public class tail_average_long extends MultipartTailModel<GeneticHorseEntity> {
         return tail_average_long;
     }
 
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"hipsAnchor", asTransform(hipsAnchor));
+	}
 
 }

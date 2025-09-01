@@ -6,16 +6,21 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.tails;// Made 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartTailModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class tail_thin_short extends MultipartTailModel<GeneticHorseEntity> {
 	private final ModelPart tail_thin_short;
+	private final ModelPart hipsAnchor;
 
 	public tail_thin_short(ModelPart root) {
 		this.tail_thin_short = root.getChild("tail_thin_short");
+		this.hipsAnchor = this.tail_thin_short.getChild("hipsAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -46,6 +51,8 @@ public class tail_thin_short extends MultipartTailModel<GeneticHorseEntity> {
 
 		PartDefinition cube_r4 = tail_thin_short_tail_bottom.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(914, 642).addBox(-1.0F, -0.8391F, -0.9493F, 2.0F, 2.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.2682F, 0.5363F, 0.0894F, -1.6144F, 0.0F, 0.0F));
 
+		PartDefinition hipsAnchor = tail_thin_short.addOrReplaceChild("hipsAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-0.5F, -1.0F, -1.0F, 1.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.5F, 0.0F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -64,5 +71,10 @@ public class tail_thin_short extends MultipartTailModel<GeneticHorseEntity> {
         return tail_thin_short;
     }
 
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"hipsAnchor", asTransform(hipsAnchor));
+	}
 
 }

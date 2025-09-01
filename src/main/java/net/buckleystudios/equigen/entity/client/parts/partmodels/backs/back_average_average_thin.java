@@ -6,17 +6,27 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.backs;// Made 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartBackModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class back_average_average_thin extends MultipartBackModel<GeneticHorseEntity> {
 	private final ModelPart back_average_average_thin;
+	private final ModelPart chestAnchor;
+	private final ModelPart hipsAnchor;
+	private final ModelPart stomachAnchor;
+	private final ModelPart withersAnchor;
 
 	public back_average_average_thin(ModelPart root) {
-        
-        this.back_average_average_thin = root.getChild("back_average_average_thin");
+		this.back_average_average_thin = root.getChild("back_average_average_thin");
+		this.chestAnchor = this.back_average_average_thin.getChild("chestAnchor");
+		this.hipsAnchor = this.back_average_average_thin.getChild("hipsAnchor");
+		this.stomachAnchor = this.back_average_average_thin.getChild("stomachAnchor");
+		this.withersAnchor = this.back_average_average_thin.getChild("withersAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -37,6 +47,14 @@ public class back_average_average_thin extends MultipartBackModel<GeneticHorseEn
 
 		PartDefinition cube_r2 = back_average_average_thin_back_top_upper.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(264, 485).addBox(-4.08F, -6.24F, -5.52F, 4.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.6621F, 1.5137F, 1.6581F, 0.0F, 0.0F));
 
+		PartDefinition chestAnchor = back_average_average_thin.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -3.0F, -5.75F));
+
+		PartDefinition hipsAnchor = back_average_average_thin.addOrReplaceChild("hipsAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -3.0F, 6.0F));
+
+		PartDefinition stomachAnchor = back_average_average_thin.addOrReplaceChild("stomachAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.0F, 0.0F));
+
+		PartDefinition withersAnchor = back_average_average_thin.addOrReplaceChild("withersAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -3.0F, -5.75F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -52,5 +70,15 @@ public class back_average_average_thin extends MultipartBackModel<GeneticHorseEn
 
 	public ModelPart root() {
 		return back_average_average_thin;
+	}
+
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"chestAnchor",  asTransform(this.chestAnchor),
+				"hipsAnchor", asTransform(this.hipsAnchor),
+				"stomachAnchor", asTransform(this.stomachAnchor),
+				"withersAnchor", asTransform(this.withersAnchor)
+		);
 	}
 }

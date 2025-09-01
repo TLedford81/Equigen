@@ -6,17 +6,27 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.backs;// Made 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartBackModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class back_lean_short_thin extends MultipartBackModel<GeneticHorseEntity> {
 	private final ModelPart back_lean_short_thin;
+	private final ModelPart chestAnchor;
+	private final ModelPart hipsAnchor;
+	private final ModelPart stomachAnchor;
+	private final ModelPart withersAnchor;
 
 	public back_lean_short_thin(ModelPart root) {
-		
 		this.back_lean_short_thin = root.getChild("back_lean_short_thin");
+		this.chestAnchor = this.back_lean_short_thin.getChild("chestAnchor");
+		this.hipsAnchor = this.back_lean_short_thin.getChild("hipsAnchor");
+		this.stomachAnchor = this.back_lean_short_thin.getChild("stomachAnchor");
+		this.withersAnchor = this.back_lean_short_thin.getChild("withersAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -37,6 +47,14 @@ public class back_lean_short_thin extends MultipartBackModel<GeneticHorseEntity>
 
 		PartDefinition cube_r2 = back_lean_short_thin_back_top_upper.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(77, 423).addBox(-4.08F, -6.24F, -5.52F, 4.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.6621F, 1.5137F, 1.6581F, 0.0F, 0.0F));
 
+		PartDefinition chestAnchor = back_lean_short_thin.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.75F, -5.5F));
+
+		PartDefinition hipsAnchor = back_lean_short_thin.addOrReplaceChild("hipsAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.75F, 5.75F));
+
+		PartDefinition stomachAnchor = back_lean_short_thin.addOrReplaceChild("stomachAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.25F, 0.0F));
+
+		PartDefinition withersAnchor = back_lean_short_thin.addOrReplaceChild("withersAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.75F, -5.5F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -54,6 +72,14 @@ public class back_lean_short_thin extends MultipartBackModel<GeneticHorseEntity>
 		return back_lean_short_thin;
 	}
 
-
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"chestAnchor",  asTransform(this.chestAnchor),
+				"hipsAnchor", asTransform(this.hipsAnchor),
+				"stomachAnchor", asTransform(this.stomachAnchor),
+				"withersAnchor", asTransform(this.withersAnchor)
+		);
+	}
 
 }

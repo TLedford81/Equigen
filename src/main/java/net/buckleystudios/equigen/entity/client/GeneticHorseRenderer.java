@@ -170,10 +170,10 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                 );
 
                 attachAndChain(poseStack, buffer, packedLight, entity,
-                        backModel, "hipsAnchor", hipsModel, "backHipsAnchor",
+                        backModel, "hipsAnchor", hipsModel, "backAnchor",
                         () -> {
                             attachAndChain(poseStack, buffer, packedLight, entity,
-                                    hipsModel, "hipsTailAnchor", tailModel, "hipsAnchor", null);
+                                    hipsModel, "tailAnchor", tailModel, "hipsAnchor", null);
                             attachAndChain(poseStack, buffer, packedLight, entity,
                                     hipsModel, "backLeftLegAnchor", backLeftLegModel, "hipsAnchor",
                                     () -> attachAndChain(poseStack, buffer, packedLight, entity,
@@ -276,7 +276,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                 light, OverlayTexture.NO_OVERLAY);
 
         var d = pA.position.subtract(cA.position);
-        EquigenMod.LOGGER.info("Δ {} <- {} = ({}, {}, {})", anchorInParentModel, anchorInChildModel, d.x, d.y, d.z);
+//        EquigenMod.LOGGER.info("Δ {} <- {} = ({}, {}, {})", anchorInParentModel, anchorInChildModel, d.x, d.y, d.z);
 
         if (chain != null) chain.run();   // attach grandchildren while this pose is active
         pose.popPose();

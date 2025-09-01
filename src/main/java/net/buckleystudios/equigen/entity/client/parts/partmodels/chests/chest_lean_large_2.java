@@ -6,16 +6,23 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.chests;// Made
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartChestModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class chest_lean_large_2 extends MultipartChestModel<GeneticHorseEntity> {
 	private final ModelPart chest_lean_large_2;
+	private final ModelPart neckAnchor;
+	private final ModelPart backAnchor;
 
 	public chest_lean_large_2(ModelPart root) {
 		this.chest_lean_large_2 = root.getChild("chest_lean_large_2");
+		this.neckAnchor = this.chest_lean_large_2.getChild("neckAnchor");
+		this.backAnchor = this.chest_lean_large_2.getChild("backAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -78,6 +85,10 @@ public class chest_lean_large_2 extends MultipartChestModel<GeneticHorseEntity> 
 
 		PartDefinition chest_lean_large_2_chest_right_deltoid_base = chest_lean_large_2_chest_right_deltoid.addOrReplaceChild("chest_lean_large_2_chest_right_deltoid_base", CubeListBuilder.create().texOffs(282, 691).addBox(-2.0F, -4.5F, -4.5F, 4.0F, 9.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.6792F, -0.0478F, -0.0442F));
 
+		PartDefinition neckAnchor = chest_lean_large_2.addOrReplaceChild("neckAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.25F, -4.5F, -3.0F));
+
+		PartDefinition backAnchor = chest_lean_large_2.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.25F, -3.5F, 4.5F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -96,5 +107,12 @@ public class chest_lean_large_2 extends MultipartChestModel<GeneticHorseEntity> 
         return chest_lean_large_2;
     }
 
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"backAnchor", asTransform(backAnchor),
+				"neckAnchor", asTransform(neckAnchor)
+		);
+	}
 
 }

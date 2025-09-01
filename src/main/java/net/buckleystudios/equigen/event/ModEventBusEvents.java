@@ -47,9 +47,6 @@ public class ModEventBusEvents {
         event.registerLayerDefinition(ModModelLayers.LASSO, SodiumGrenadeProjectileModel::createBodyLayer);
 
         event.registerLayerDefinition(ModModelLayers.BASE, GeneticHorseModelBase::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BACK_1, Back_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BACK_2, Back_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BACK_3, Back_3::createBodyLayer);
         // Backs
         event.registerLayerDefinition(ModModelLayers.BACK_LEAN_SHORT_THIN, back_lean_short_thin::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.BACK_LEAN_SHORT_AVERAGE, back_lean_short_average::createBodyLayer);

@@ -6,16 +6,23 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.hips;// Made w
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartHipModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class hips_muscular_small_2 extends MultipartHipModel<GeneticHorseEntity> {
 	private final ModelPart hips_muscular_small_2;
+	private final ModelPart backAnchor;
+	private final ModelPart tailAnchor;
 
 	public hips_muscular_small_2(ModelPart root) {
 		this.hips_muscular_small_2 = root.getChild("hips_muscular_small_2");
+		this.backAnchor = this.hips_muscular_small_2.getChild("backAnchor");
+		this.tailAnchor = this.hips_muscular_small_2.getChild("tailAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -50,6 +57,10 @@ public class hips_muscular_small_2 extends MultipartHipModel<GeneticHorseEntity>
 
 		PartDefinition cube_r2 = hips_muscular_small_2_hips_top_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(70, 981).addBox(-6.08F, -4.24F, -5.36F, 7.0F, 5.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.58F, -1.5145F, 2.5107F, 1.1781F, 0.0F, 0.0F));
 
+		PartDefinition backAnchor = hips_muscular_small_2.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -3.0F, -0.5F));
+
+		PartDefinition tailAnchor = hips_muscular_small_2.addOrReplaceChild("tailAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.5F, 2.75F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -68,5 +79,12 @@ public class hips_muscular_small_2 extends MultipartHipModel<GeneticHorseEntity>
         return hips_muscular_small_2;
     }
 
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"backAnchor", asTransform(this.backAnchor),
+				"tailAnchor", asTransform(this.tailAnchor)
+		);
+	}
 
 }
