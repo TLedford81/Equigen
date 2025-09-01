@@ -84,30 +84,34 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
             MultipartModel<GeneticHorseEntity> backModel = getMultipartModel(partsToRender, "back");
             MultipartModel<GeneticHorseEntity> headModel = getMultipartModel(partsToRender, "head");
             MultipartModel<GeneticHorseEntity> neckModel = getMultipartModel(partsToRender, "neck");
-            MultipartModel<GeneticHorseEntity> leftEarModel = getMultipartModel(partsToRender, "ears");
-            MultipartModel<GeneticHorseEntity> rightEarModel = getMultipartModel(partsToRender, "ears");
-//            MultipartModel<GeneticHorseEntity> frontLeftLegModel = getMultipartModel(partsToRender, "frontLeftLeg");
-//            MultipartModel<GeneticHorseEntity> topFrontLeftLegModel = getMultipartModel(partsToRender, "topFrontLeftLeg");
-//            MultipartModel<GeneticHorseEntity> kneeFrontLeftLegModel = getMultipartModel(partsToRender, "kneeFrontLeftLeg");
-//            MultipartModel<GeneticHorseEntity> bottomFrontLeftLegModel = getMultipartModel(partsToRender, "bottomFrontLeftLeg");
-//            MultipartModel<GeneticHorseEntity> hoofFrontLeftLegModel = getMultipartModel(partsToRender, "hoofFrontLeftLeg");
-//            MultipartModel<GeneticHorseEntity> frontRightLegModel = getMultipartModel(partsToRender, "frontRightLeg");
-//            MultipartModel<GeneticHorseEntity> topFrontRightLegModel = getMultipartModel(partsToRender, "topFrontRightLeg");
-//            MultipartModel<GeneticHorseEntity> kneeFrontRightLegModel = getMultipartModel(partsToRender, "kneeFrontRightLeg");
-//            MultipartModel<GeneticHorseEntity> bottomFrontRightLegModel = getMultipartModel(partsToRender, "bottomFrontRightLeg");
-//            MultipartModel<GeneticHorseEntity> hoofFrontRightLegModel = getMultipartModel(partsToRender, "hoofFrontRightLeg");
+            MultipartModel<GeneticHorseEntity> leftEarModel = getMultipartModel(partsToRender, "ear");
+            MultipartModel<GeneticHorseEntity> rightEarModel = getMultipartModel(partsToRender, "ear");
+
+            MultipartModel<GeneticHorseEntity> frontLeftLegModel = getMultipartModel(partsToRender, "leg");
+            MultipartModel<GeneticHorseEntity> topFrontLeftLegModel = getMultipartModel(partsToRender, "topFrontLeg");
+            MultipartModel<GeneticHorseEntity> kneeFrontLeftLegModel = getMultipartModel(partsToRender, "knee");
+            MultipartModel<GeneticHorseEntity> bottomFrontLeftLegModel = getMultipartModel(partsToRender, "bottomLeg");
+            MultipartModel<GeneticHorseEntity> hoofFrontLeftLegModel = getMultipartModel(partsToRender, "hoof");
+            MultipartModel<GeneticHorseEntity> frontRightLegModel = getMultipartModel(partsToRender, "leg");
+            MultipartModel<GeneticHorseEntity> topFrontRightLegModel = getMultipartModel(partsToRender, "topFrontLeg");
+            MultipartModel<GeneticHorseEntity> kneeFrontRightLegModel = getMultipartModel(partsToRender, "knee");
+            MultipartModel<GeneticHorseEntity> bottomFrontRightLegModel = getMultipartModel(partsToRender, "bottomLeg");
+            MultipartModel<GeneticHorseEntity> hoofFrontRightLegModel = getMultipartModel(partsToRender, "hoof");
+
             MultipartModel<GeneticHorseEntity> hipsModel = getMultipartModel(partsToRender, "hips");
             MultipartModel<GeneticHorseEntity> tailModel = getMultipartModel(partsToRender, "tail");
-//            MultipartModel<GeneticHorseEntity> backLeftLegModel = getMultipartModel(partsToRender, "backLeftLeg");
-//            MultipartModel<GeneticHorseEntity> topBackLeftLegModel = getMultipartModel(partsToRender, "topBackLeftLeg");
-//            MultipartModel<GeneticHorseEntity> kneeBackLeftLegModel = getMultipartModel(partsToRender, "kneeBackLeftLeg");
-//            MultipartModel<GeneticHorseEntity> bottomBackLeftLegModel = getMultipartModel(partsToRender, "bottomBackLeftLeg");
-//            MultipartModel<GeneticHorseEntity> hoofBackLeftLegModel = getMultipartModel(partsToRender, "hoofBackLeftLeg");
-//            MultipartModel<GeneticHorseEntity> backRightLegModel = getMultipartModel(partsToRender, "backRightLeg");
-//            MultipartModel<GeneticHorseEntity> topBackRightLegModel = getMultipartModel(partsToRender, "topBackRightLeg");
-//            MultipartModel<GeneticHorseEntity> kneeBackRightLegModel = getMultipartModel(partsToRender, "kneeBackRightLeg");
-//            MultipartModel<GeneticHorseEntity> bottomBackRightLegModel = getMultipartModel(partsToRender, "bottomBackRightLeg");
-//            MultipartModel<GeneticHorseEntity> hoofBackRightLegModel = getMultipartModel(partsToRender, "hoofBackRightLeg");
+
+            MultipartModel<GeneticHorseEntity> backLeftLegModel = getMultipartModel(partsToRender, "leg");
+            MultipartModel<GeneticHorseEntity> topBackLeftLegModel = getMultipartModel(partsToRender, "topBackLeg");
+            MultipartModel<GeneticHorseEntity> kneeBackLeftLegModel = getMultipartModel(partsToRender, "knee");
+            MultipartModel<GeneticHorseEntity> bottomBackLeftLegModel = getMultipartModel(partsToRender, "bottomLeg");
+            MultipartModel<GeneticHorseEntity> hoofBackLeftLegModel = getMultipartModel(partsToRender, "hoof");
+            MultipartModel<GeneticHorseEntity> backRightLegModel = getMultipartModel(partsToRender, "leg");
+            MultipartModel<GeneticHorseEntity> topBackRightLegModel = getMultipartModel(partsToRender, "topBackLeg");
+            MultipartModel<GeneticHorseEntity> kneeBackRightLegModel = getMultipartModel(partsToRender, "knee");
+            MultipartModel<GeneticHorseEntity> bottomBackRightLegModel = getMultipartModel(partsToRender, "bottomLeg");
+            MultipartModel<GeneticHorseEntity> hoofBackRightLegModel = getMultipartModel(partsToRender, "hoof");
+//            ;
             MultipartModel<GeneticHorseEntity> withersModel = getMultipartModel(partsToRender, "withers");
             MultipartModel<GeneticHorseEntity> stomachModel = getMultipartModel(partsToRender, "stomach");
 
@@ -117,24 +121,92 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
 
                 attachAndChain(poseStack, buffer, packedLight, entity,
                         backModel, "chestAnchor", chestModel, "backAnchor",
-                        () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                        () -> {
+                        attachAndChain(poseStack, buffer, packedLight, entity,
                                 chestModel, "neckAnchor", neckModel, "chestAnchor",
+                                    () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                            neckModel, "headAnchor", headModel, "neckAnchor",
+                                            () -> {
+                                                attachAndChain(poseStack, buffer, packedLight, entity,
+                                                        headModel, "leftEarAnchor", leftEarModel, "headAnchor", null);
+                                                attachAndChain(poseStack, buffer, packedLight, entity,
+                                                        headModel, "rightEarAnchor", rightEarModel, "headAnchor", null);
+                                            }
+                                    )
+                        );
+                        attachAndChain(poseStack, buffer, packedLight, entity,
+                                chestModel, "frontLeftLegAnchor", frontLeftLegModel, "chestAnchor",
                                 () -> attachAndChain(poseStack, buffer, packedLight, entity,
-                                        neckModel, "headAnchor", headModel, "neckAnchor",
-                                        () -> {
-                                            attachAndChain(poseStack, buffer, packedLight, entity,
-                                                    headModel, "leftEarAnchor", leftEarModel, "headAnchor", null);
-                                            attachAndChain(poseStack, buffer, packedLight, entity,
-                                                    headModel, "rightEarAnchor", rightEarModel, "headAnchor", null);
-                                        }
+                                        frontLeftLegModel, "topLegAnchor", topFrontLeftLegModel, "legAnchor",
+                                        () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                                topFrontLeftLegModel, "kneeAnchor", kneeFrontLeftLegModel, "topLegAnchor",
+                                                () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                                        kneeFrontLeftLegModel, "bottomLegAnchor", bottomFrontLeftLegModel, "kneeAnchor",
+                                                        () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                                                bottomFrontLeftLegModel, "hoofAnchor", hoofFrontLeftLegModel, "bottomLegAnchor",
+                                                                null
+                                                        )
+                                                )
+                                        )
                                 )
-                        )
+                        );
+                        attachAndChain(poseStack, buffer, packedLight, entity,
+                                chestModel, "frontRightLegAnchor", frontRightLegModel, "chestAnchor",
+                                () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                        frontRightLegModel, "topLegAnchor", topFrontRightLegModel, "legAnchor",
+                                        () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                                topFrontRightLegModel, "kneeAnchor", kneeFrontRightLegModel, "topLegAnchor",
+                                                () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                                        kneeFrontRightLegModel, "bottomLegAnchor", bottomFrontRightLegModel, "kneeAnchor",
+                                                        () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                                                bottomFrontRightLegModel, "hoofAnchor", hoofFrontRightLegModel, "bottomLegAnchor",
+                                                                null
+                                                        )
+                                                )
+                                        )
+                                )
+                            );
+                        }
                 );
 
                 attachAndChain(poseStack, buffer, packedLight, entity,
                         backModel, "hipsAnchor", hipsModel, "backHipsAnchor",
-                        () -> attachAndChain(poseStack, buffer, packedLight, entity,
-                                hipsModel, "hipsTailAnchor", tailModel, "hipsAnchor", null));
+                        () -> {
+                            attachAndChain(poseStack, buffer, packedLight, entity,
+                                    hipsModel, "hipsTailAnchor", tailModel, "hipsAnchor", null);
+                            attachAndChain(poseStack, buffer, packedLight, entity,
+                                    hipsModel, "backLeftLegAnchor", backLeftLegModel, "hipsAnchor",
+                                    () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                            backLeftLegModel, "topLegAnchor", topBackLeftLegModel, "legAnchor",
+                                            () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                                    topBackLeftLegModel, "kneeAnchor", kneeBackLeftLegModel, "topLegAnchor",
+                                                    () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                                            kneeBackLeftLegModel, "bottomLegAnchor", bottomBackLeftLegModel, "kneeAnchor",
+                                                            () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                                                    bottomBackLeftLegModel, "hoofAnchor", hoofBackLeftLegModel, "bottomLegAnchor",
+                                                                    null
+                                                            )
+                                                    )
+                                            )
+                                    )
+                            );
+                            attachAndChain(poseStack, buffer, packedLight, entity,
+                                    hipsModel, "backRightLegAnchor", backRightLegModel, "hipsAnchor",
+                                    () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                            backRightLegModel, "topLegAnchor", topBackRightLegModel, "legAnchor",
+                                            () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                                    topBackRightLegModel, "kneeAnchor", kneeBackRightLegModel, "topLegAnchor",
+                                                    () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                                            kneeBackRightLegModel, "bottomLegAnchor", bottomBackRightLegModel, "kneeAnchor",
+                                                            () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                                                    bottomBackRightLegModel, "hoofAnchor", hoofBackRightLegModel, "bottomLegAnchor",
+                                                                    null
+                                                            )
+                                                    )
+                                            )
+                                    )
+                            );
+                        });
 
                 attachAndChain(poseStack, buffer, packedLight, entity,
                         backModel, "withersAnchor", withersModel, "backAnchor", null);
