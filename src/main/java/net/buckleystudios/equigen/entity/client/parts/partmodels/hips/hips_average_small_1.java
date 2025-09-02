@@ -18,11 +18,15 @@ public class hips_average_small_1 extends MultipartHipModel<GeneticHorseEntity> 
 	private final ModelPart hips_average_small_1;
 	private final ModelPart backAnchor;
 	private final ModelPart tailAnchor;
+	private final ModelPart backLeftLegAnchor;
+	private final ModelPart backRightLegAnchor;
 
 	public hips_average_small_1(ModelPart root) {
 		this.hips_average_small_1 = root.getChild("hips_average_small_1");
 		this.backAnchor = this.hips_average_small_1.getChild("backAnchor");
 		this.tailAnchor = this.hips_average_small_1.getChild("tailAnchor");
+		this.backLeftLegAnchor = this.hips_average_small_1.getChild("backLeftLegAnchor");
+		this.backRightLegAnchor = this.hips_average_small_1.getChild("backRightLegAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -61,6 +65,10 @@ public class hips_average_small_1 extends MultipartHipModel<GeneticHorseEntity> 
 
 		PartDefinition tailAnchor = hips_average_small_1.addOrReplaceChild("tailAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0894F, -0.25F, 3.6257F));
 
+		PartDefinition backLeftLegAnchor = hips_average_small_1.addOrReplaceChild("backLeftLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(3.3394F, 3.0F, 1.1257F));
+
+		PartDefinition backRightLegAnchor = hips_average_small_1.addOrReplaceChild("backRightLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-3.1606F, 3.0F, 1.1257F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -82,8 +90,10 @@ public class hips_average_small_1 extends MultipartHipModel<GeneticHorseEntity> 
 	@Override
 	public Map<String, PartTransform> anchors() {
 		return Map.of(
-				"backAnchor", asTransform(this.backAnchor),
-				"tailAnchor", asTransform(this.tailAnchor)
+				"backAnchor", asTransform(backAnchor),
+				"tailAnchor", asTransform(tailAnchor),
+				"backLeftLegAnchor", asTransform(backLeftLegAnchor),
+				"backRightLegAnchor", asTransform(backRightLegAnchor)
 		);
 	}
 

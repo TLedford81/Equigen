@@ -18,11 +18,15 @@ public class chest_muscular_large_1 extends MultipartChestModel<GeneticHorseEnti
 	private final ModelPart chest_muscular_large_1;
 	private final ModelPart neckAnchor;
 	private final ModelPart backAnchor;
+	private final ModelPart frontLeftLegAnchor;
+	private final ModelPart frontRightLegAnchor;
 
 	public chest_muscular_large_1(ModelPart root) {
 		this.chest_muscular_large_1 = root.getChild("chest_muscular_large_1");
 		this.neckAnchor = this.chest_muscular_large_1.getChild("neckAnchor");
 		this.backAnchor = this.chest_muscular_large_1.getChild("backAnchor");
+		this.frontLeftLegAnchor = this.chest_muscular_large_1.getChild("frontLeftLegAnchor");
+		this.frontRightLegAnchor = this.chest_muscular_large_1.getChild("frontRightLegAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -89,6 +93,10 @@ public class chest_muscular_large_1 extends MultipartChestModel<GeneticHorseEnti
 
 		PartDefinition backAnchor = chest_muscular_large_1.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -3.5F, 4.7682F));
 
+		PartDefinition frontLeftLegAnchor = chest_muscular_large_1.addOrReplaceChild("frontLeftLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(3.75F, 4.25F, -1.7318F));
+
+		PartDefinition frontRightLegAnchor = chest_muscular_large_1.addOrReplaceChild("frontRightLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-3.5F, 4.25F, -1.7318F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -111,7 +119,9 @@ public class chest_muscular_large_1 extends MultipartChestModel<GeneticHorseEnti
 	public Map<String, PartTransform> anchors() {
 		return Map.of(
 				"backAnchor", asTransform(backAnchor),
-				"neckAnchor", asTransform(neckAnchor)
+				"neckAnchor", asTransform(neckAnchor),
+				"frontLeftLegAnchor", asTransform(frontLeftLegAnchor),
+				"frontRightLegAnchor", asTransform(frontRightLegAnchor)
 		);
 	}
 

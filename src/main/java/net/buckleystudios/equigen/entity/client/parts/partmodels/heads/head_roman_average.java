@@ -47,7 +47,7 @@ public class head_roman_average extends MultipartHeadModel<GeneticHorseEntity> {
 
 		PartDefinition cube_r3 = head_roman_average_nose_bridge.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(963, 86).addBox(-3.08F, -3.24F, -1.84F, 3.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.6319F, -0.8028F, -0.1369F, 2.8798F, 0.0F, 0.0F));
 
-		PartDefinition head_roman_average_forehead = head_roman_average.addOrReplaceChild("head_roman_average_forehead", CubeListBuilder.create(), PartPose.offset(0.0F, -0.0065F, -2.402F));
+		PartDefinition head_roman_average_forehead = head_roman_average.addOrReplaceChild("head_roman_average_forehead", CubeListBuilder.create(), PartPose.offset(0.0F, -0.0066F, -2.402F));
 
 		PartDefinition cube_r4 = head_roman_average_forehead.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(951, 79).addBox(-4.0524F, -4.0F, -3.0076F, 5.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.596F, -2.4136F, 0.6689F, 2.2253F, 0.0F, 0.0F));
 
@@ -65,9 +65,9 @@ public class head_roman_average extends MultipartHeadModel<GeneticHorseEntity> {
 
 		PartDefinition cube_r7 = head_roman_average_fringe.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(963, 94).addBox(-1.0F, -4.0F, -2.0F, 1.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.4735F, 1.3944F, -3.0578F, -1.5615F, 0.6653F, -1.5864F));
 
-		PartDefinition neckAnchor = head_roman_average.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(0.9375F, 0.0625F, -0.5F));
+		PartDefinition neckAnchor = head_roman_average.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(0.0F, -0.8283F, -1.4873F));
 
-		PartDefinition cube_r8 = neckAnchor.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.6756F, 0.7373F, 1.1781F, 0.0F, 0.0F));
+		PartDefinition cube_r8 = neckAnchor.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.5672F, 0.0F, 0.0F));
 
 		PartDefinition leftEarAnchor = head_roman_average.addOrReplaceChild("leftEarAnchor", CubeListBuilder.create(), PartPose.offsetAndRotation(-1.5F, -2.0442F, -2.1495F, -0.1745F, 0.0F, 0.0F));
 

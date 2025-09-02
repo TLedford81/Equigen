@@ -6,16 +6,25 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.heads;// Made 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartHeadModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class head_stocky_lean extends MultipartHeadModel<GeneticHorseEntity> {
 	private final ModelPart head_stocky_lean;
+	private final ModelPart neckAnchor;
+	private final ModelPart leftEarAnchor;
+	private final ModelPart rightEarAnchor;
 
 	public head_stocky_lean(ModelPart root) {
 		this.head_stocky_lean = root.getChild("head_stocky_lean");
+		this.neckAnchor = this.head_stocky_lean.getChild("neckAnchor");
+		this.leftEarAnchor = this.head_stocky_lean.getChild("leftEarAnchor");
+		this.rightEarAnchor = this.head_stocky_lean.getChild("rightEarAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -56,6 +65,18 @@ public class head_stocky_lean extends MultipartHeadModel<GeneticHorseEntity> {
 
 		PartDefinition cube_r7 = head_stocky_lean_fringe.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(918, 35).addBox(-1.0F, -2.0F, -2.0F, 1.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.4857F, 0.5899F, -1.3777F, -1.5612F, 0.7089F, -1.5859F));
 
+		PartDefinition neckAnchor = head_stocky_lean.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(-0.05F, -1.1327F, -0.4239F));
+
+		PartDefinition cube_r8 = neckAnchor.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 1.1781F, 0.0F, 0.0F));
+
+		PartDefinition leftEarAnchor = head_stocky_lean.addOrReplaceChild("leftEarAnchor", CubeListBuilder.create(), PartPose.offset(-1.05F, -2.3477F, -1.5621F));
+
+		PartDefinition cube_r9 = leftEarAnchor.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(1, 1).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0977F, 0.2121F, 0.6545F, 0.0F, 0.0F));
+
+		PartDefinition rightEarAnchor = head_stocky_lean.addOrReplaceChild("rightEarAnchor", CubeListBuilder.create(), PartPose.offset(0.95F, -2.3477F, -1.5621F));
+
+		PartDefinition cube_r10 = rightEarAnchor.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(1, 1).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0977F, 0.2121F, 0.6545F, 0.0F, 0.0F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -74,5 +95,12 @@ public class head_stocky_lean extends MultipartHeadModel<GeneticHorseEntity> {
         return head_stocky_lean;
     }
 
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"neckAnchor", asTransform(neckAnchor),
+				"leftEarAnchor", asTransform(leftEarAnchor),
+				"rightEarAnchor", asTransform(rightEarAnchor));
+	}
 
 }

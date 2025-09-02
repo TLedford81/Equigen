@@ -6,16 +6,23 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.necks.ewed;// 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartNeckModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class neck_muscular_ewed_long_1 extends MultipartNeckModel<GeneticHorseEntity> {
 	private final ModelPart neck_muscular_ewed_long_1;
+	private final ModelPart headAnchor;
+	private final ModelPart chestAnchor;
 
 	public neck_muscular_ewed_long_1(ModelPart root) {
 		this.neck_muscular_ewed_long_1 = root.getChild("neck_muscular_ewed_long_1");
+		this.headAnchor = this.neck_muscular_ewed_long_1.getChild("headAnchor");
+		this.chestAnchor = this.neck_muscular_ewed_long_1.getChild("chestAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -24,11 +31,11 @@ public class neck_muscular_ewed_long_1 extends MultipartNeckModel<GeneticHorseEn
 
 		PartDefinition neck_muscular_ewed_long_1 = partdefinition.addOrReplaceChild("neck_muscular_ewed_long_1", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition neck_muscular_ewed_long_1_individual = neck_muscular_ewed_long_1.addOrReplaceChild("neck_muscular_ewed_long_1_individual", CubeListBuilder.create(), PartPose.offset(-0.0055F, -2.0916F, -0.4392F));
+		PartDefinition neck_muscular_ewed_long_1_individual = neck_muscular_ewed_long_1.addOrReplaceChild("neck_muscular_ewed_long_1_individual", CubeListBuilder.create(), PartPose.offset(-0.0056F, -2.0916F, -0.4392F));
 
 		PartDefinition neck_muscular_ewed_long_1_crest = neck_muscular_ewed_long_1_individual.addOrReplaceChild("neck_muscular_ewed_long_1_crest", CubeListBuilder.create(), PartPose.offset(0.0F, -5.095F, -0.3575F));
 
-		PartDefinition neck_muscular_ewed_long_1_crest_upper = neck_muscular_ewed_long_1_crest.addOrReplaceChild("neck_muscular_ewed_long_1_crest_upper", CubeListBuilder.create(), PartPose.offset(-0.0996F, -2.2747F, -2.3729F));
+		PartDefinition neck_muscular_ewed_long_1_crest_upper = neck_muscular_ewed_long_1_crest.addOrReplaceChild("neck_muscular_ewed_long_1_crest_upper", CubeListBuilder.create(), PartPose.offset(-0.0995F, -2.2747F, -2.3729F));
 
 		PartDefinition cube_r1 = neck_muscular_ewed_long_1_crest_upper.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(589, 777).addBox(-5.0792F, -4.0F, -2.8908F, 5.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5792F, 0.4175F, 0.1828F, 0.9599F, 0.0F, 0.0F));
 
@@ -56,7 +63,7 @@ public class neck_muscular_ewed_long_1 extends MultipartNeckModel<GeneticHorseEn
 
 		PartDefinition neck_muscular_ewed_long_1_top_mane_connector2 = neck_muscular_ewed_long_1_top_mane_connector.addOrReplaceChild("neck_muscular_ewed_long_1_top_mane_connector2", CubeListBuilder.create(), PartPose.offset(0.8045F, -0.3575F, -0.0894F));
 
-		PartDefinition neck_muscular_ewed_long_1_top_mane_connector2_individual = neck_muscular_ewed_long_1_top_mane_connector2.addOrReplaceChild("neck_muscular_ewed_long_1_top_mane_connector2_individual", CubeListBuilder.create(), PartPose.offset(1.6453F, 0.2536F, -0.4057F));
+		PartDefinition neck_muscular_ewed_long_1_top_mane_connector2_individual = neck_muscular_ewed_long_1_top_mane_connector2.addOrReplaceChild("neck_muscular_ewed_long_1_top_mane_connector2_individual", CubeListBuilder.create(), PartPose.offset(1.6452F, 0.2536F, -0.4057F));
 
 		PartDefinition cube_r6 = neck_muscular_ewed_long_1_top_mane_connector2_individual.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(929, 880).addBox(-2.0F, -2.0F, -3.0F, 3.0F, 1.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5F, 1.8023F, -0.0412F, -0.6109F, 0.0F, 0.0F));
 
@@ -76,11 +83,17 @@ public class neck_muscular_ewed_long_1 extends MultipartNeckModel<GeneticHorseEn
 
 		PartDefinition neck_muscular_ewed_long_1_bottom_mane_connector2_individual = neck_muscular_ewed_long_1_bottom_mane_connector2.addOrReplaceChild("neck_muscular_ewed_long_1_bottom_mane_connector2_individual", CubeListBuilder.create(), PartPose.offset(1.6453F, -0.114F, -0.1823F));
 
-		PartDefinition cube_r9 = neck_muscular_ewed_long_1_bottom_mane_connector2_individual.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(940, 880).addBox(-2.0F, -2.0F, -1.0F, 3.0F, 1.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5F, -2.6569F, -3.9295F, -0.9163F, 0.0F, 0.0F));
+		PartDefinition cube_r9 = neck_muscular_ewed_long_1_bottom_mane_connector2_individual.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(940, 880).addBox(-2.0F, -2.0F, -1.0F, 3.0F, 1.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5F, -2.657F, -3.9295F, -0.9163F, 0.0F, 0.0F));
 
 		PartDefinition neck_muscular_ewed_long_1_bottom_mane_flow = neck_muscular_ewed_long_1_bottom_mane_connector2.addOrReplaceChild("neck_muscular_ewed_long_1_bottom_mane_flow", CubeListBuilder.create(), PartPose.offset(2.324F, -0.3575F, 0.0894F));
 
 		PartDefinition cube_r10 = neck_muscular_ewed_long_1_bottom_mane_flow.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(916, 874).addBox(-0.8139F, -0.0002F, -4.3921F, 1.0F, 7.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0726F, -0.8045F, -0.3575F, -0.8937F, -0.1201F, -0.1036F));
+
+		PartDefinition headAnchor = neck_muscular_ewed_long_1.addOrReplaceChild("headAnchor", CubeListBuilder.create(), PartPose.offset(-0.15F, -11.6327F, -6.4239F));
+
+		PartDefinition cube_r11 = headAnchor.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -0.6109F, 0.0F, 0.0F));
+
+		PartDefinition chestAnchor = neck_muscular_ewed_long_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.1F, -2.0F, -2.5F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
@@ -100,5 +113,11 @@ public class neck_muscular_ewed_long_1 extends MultipartNeckModel<GeneticHorseEn
         return neck_muscular_ewed_long_1;
     }
 
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"headAnchor", asTransform(headAnchor),
+				"chestAnchor", asTransform(chestAnchor));
+	}
 
 }

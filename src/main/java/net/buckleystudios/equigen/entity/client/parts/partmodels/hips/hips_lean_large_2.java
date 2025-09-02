@@ -18,11 +18,15 @@ public class hips_lean_large_2 extends MultipartHipModel<GeneticHorseEntity> {
 	private final ModelPart hips_lean_large_2;
 	private final ModelPart backAnchor;
 	private final ModelPart tailAnchor;
+	private final ModelPart backLeftLegAnchor;
+	private final ModelPart backRightLegAnchor;
 
 	public hips_lean_large_2(ModelPart root) {
 		this.hips_lean_large_2 = root.getChild("hips_lean_large_2");
 		this.backAnchor = this.hips_lean_large_2.getChild("backAnchor");
 		this.tailAnchor = this.hips_lean_large_2.getChild("tailAnchor");
+		this.backLeftLegAnchor = this.hips_lean_large_2.getChild("backLeftLegAnchor");
+		this.backRightLegAnchor = this.hips_lean_large_2.getChild("backRightLegAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -61,6 +65,10 @@ public class hips_lean_large_2 extends MultipartHipModel<GeneticHorseEntity> {
 
 		PartDefinition tailAnchor = hips_lean_large_2.addOrReplaceChild("tailAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.7151F, -2.5F, 3.5363F));
 
+		PartDefinition backLeftLegAnchor = hips_lean_large_2.addOrReplaceChild("backLeftLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(3.4651F, 4.75F, 1.5363F));
+
+		PartDefinition backRightLegAnchor = hips_lean_large_2.addOrReplaceChild("backRightLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.0349F, 4.75F, 1.5363F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -82,8 +90,10 @@ public class hips_lean_large_2 extends MultipartHipModel<GeneticHorseEntity> {
 	@Override
 	public Map<String, PartTransform> anchors() {
 		return Map.of(
-				"backAnchor", asTransform(this.backAnchor),
-				"tailAnchor", asTransform(this.tailAnchor)
+				"backAnchor", asTransform(backAnchor),
+				"tailAnchor", asTransform(tailAnchor),
+				"backLeftLegAnchor", asTransform(backLeftLegAnchor),
+				"backRightLegAnchor", asTransform(backRightLegAnchor)
 		);
 	}
 

@@ -6,23 +6,32 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.heads;// Made 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartHeadModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class head_roman_lean extends MultipartHeadModel<GeneticHorseEntity> {
 	private final ModelPart head_roman_lean;
+	private final ModelPart neckAnchor;
+	private final ModelPart leftEarAnchor;
+	private final ModelPart rightEarAnchor;
 
 	public head_roman_lean(ModelPart root) {
 		this.head_roman_lean = root.getChild("head_roman_lean");
+		this.neckAnchor = this.head_roman_lean.getChild("neckAnchor");
+		this.leftEarAnchor = this.head_roman_lean.getChild("leftEarAnchor");
+		this.rightEarAnchor = this.head_roman_lean.getChild("rightEarAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition head_roman_lean = partdefinition.addOrReplaceChild("head_roman_lean", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
+		PartDefinition head_roman_lean = partdefinition.addOrReplaceChild("head_roman_lean", CubeListBuilder.create(), PartPose.offset(-0.1788F, 24.0F, 0.0F));
 
 		PartDefinition head_roman_lean_muzzle = head_roman_lean.addOrReplaceChild("head_roman_lean_muzzle", CubeListBuilder.create(), PartPose.offset(0.3575F, 4.648F, -4.2905F));
 
@@ -56,6 +65,18 @@ public class head_roman_lean extends MultipartHeadModel<GeneticHorseEntity> {
 
 		PartDefinition cube_r7 = head_roman_lean_forehead.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(951, 44).addBox(-4.0524F, -4.0F, -3.0076F, 4.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.1324F, -2.4201F, 0.9485F, 2.2253F, 0.0F, 0.0F));
 
+		PartDefinition neckAnchor = head_roman_lean.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(0.1788F, -0.8283F, -1.4873F));
+
+		PartDefinition cube_r8 = neckAnchor.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.5672F, 0.0F, 0.0F));
+
+		PartDefinition leftEarAnchor = head_roman_lean.addOrReplaceChild("leftEarAnchor", CubeListBuilder.create(), PartPose.offset(-0.8212F, -2.0442F, -2.1495F));
+
+		PartDefinition cube_r9 = leftEarAnchor.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(1, 1).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0442F, 0.3995F, 0.6545F, 0.0F, 0.0F));
+
+		PartDefinition rightEarAnchor = head_roman_lean.addOrReplaceChild("rightEarAnchor", CubeListBuilder.create(), PartPose.offset(1.3288F, -2.0442F, -2.1495F));
+
+		PartDefinition cube_r10 = rightEarAnchor.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(1, 1).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0442F, 0.3995F, 0.6545F, 0.0F, 0.0F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -74,5 +95,12 @@ public class head_roman_lean extends MultipartHeadModel<GeneticHorseEntity> {
         return head_roman_lean;
     }
 
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"neckAnchor", asTransform(neckAnchor),
+				"leftEarAnchor", asTransform(leftEarAnchor),
+				"rightEarAnchor", asTransform(rightEarAnchor));
+	}
 
 }

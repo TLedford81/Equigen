@@ -6,16 +6,23 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.necks.straight
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartNeckModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class neck_muscular_straight_short_2 extends MultipartNeckModel<GeneticHorseEntity> {
 	private final ModelPart neck_muscular_straight_short_2;
+	private final ModelPart headAnchor;
+	private final ModelPart chestAnchor;
 
 	public neck_muscular_straight_short_2(ModelPart root) {
 		this.neck_muscular_straight_short_2 = root.getChild("neck_muscular_straight_short_2");
+		this.headAnchor = this.neck_muscular_straight_short_2.getChild("headAnchor");
+		this.chestAnchor = this.neck_muscular_straight_short_2.getChild("chestAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -34,7 +41,7 @@ public class neck_muscular_straight_short_2 extends MultipartNeckModel<GeneticHo
 
 		PartDefinition neck_muscular_straight_short_2_crest_lower = neck_muscular_straight_short_2_crest.addOrReplaceChild("neck_muscular_straight_short_2_crest_lower", CubeListBuilder.create(), PartPose.offset(0.2404F, 0.2768F, 1.6832F));
 
-		PartDefinition cube_r2 = neck_muscular_straight_short_2_crest_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(428, 894).addBox(-4.08F, -5.0F, -0.92F, 4.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, 1.1291F, 2.232F, 1.1345F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = neck_muscular_straight_short_2_crest_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(428, 894).addBox(-4.08F, -5.0F, -0.92F, 4.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, 1.129F, 2.232F, 1.1345F, 0.0F, 0.0F));
 
 		PartDefinition neck_muscular_straight_short_2_middle_individual = neck_muscular_straight_short_2_individual.addOrReplaceChild("neck_muscular_straight_short_2_middle_individual", CubeListBuilder.create(), PartPose.offset(0.3343F, -1.0526F, -2.2656F));
 
@@ -70,7 +77,7 @@ public class neck_muscular_straight_short_2 extends MultipartNeckModel<GeneticHo
 
 		PartDefinition neck_muscular_straight_short_2_bottom_mane_connector = neck_muscular_straight_short_2_bottom_mane.addOrReplaceChild("neck_muscular_straight_short_2_bottom_mane_connector", CubeListBuilder.create(), PartPose.offset(-0.8939F, 0.0F, 0.4469F));
 
-		PartDefinition neck_muscular_straight_short_2_bottom_mane_connector_individual = neck_muscular_straight_short_2_bottom_mane_connector.addOrReplaceChild("neck_muscular_straight_short_2_bottom_mane_connector_individual", CubeListBuilder.create(), PartPose.offset(0.2613F, 0.5189F, 0.0979F));
+		PartDefinition neck_muscular_straight_short_2_bottom_mane_connector_individual = neck_muscular_straight_short_2_bottom_mane_connector.addOrReplaceChild("neck_muscular_straight_short_2_bottom_mane_connector_individual", CubeListBuilder.create(), PartPose.offset(0.2613F, 0.5188F, 0.0979F));
 
 		PartDefinition cube_r9 = neck_muscular_straight_short_2_bottom_mane_connector_individual.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(785, 936).addBox(-2.0F, -2.0F, 0.99F, 2.0F, 2.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, -3.1044F, -3.3945F, -0.9599F, 0.0F, 0.0F));
 
@@ -83,6 +90,12 @@ public class neck_muscular_straight_short_2 extends MultipartNeckModel<GeneticHo
 		PartDefinition neck_muscular_straight_short_2_bottom_mane_flow = neck_muscular_straight_short_2_bottom_mane_connector2.addOrReplaceChild("neck_muscular_straight_short_2_bottom_mane_flow", CubeListBuilder.create(), PartPose.offsetAndRotation(2.6816F, 0.3575F, -0.1788F, 0.0F, 0.0F, 0.0436F));
 
 		PartDefinition cube_r11 = neck_muscular_straight_short_2_bottom_mane_flow.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(765, 939).addBox(-0.8139F, -0.0002F, -2.3921F, 1.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8939F, -0.2682F, 0.0F, -0.9774F, -0.0927F, -0.1377F));
+
+		PartDefinition headAnchor = neck_muscular_straight_short_2.addOrReplaceChild("headAnchor", CubeListBuilder.create(), PartPose.offset(0.25F, -7.75F, -4.116F));
+
+		PartDefinition cube_r12 = headAnchor.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0F, 0.0F, 1.0472F, 0.0F, 0.0F));
+
+		PartDefinition chestAnchor = neck_muscular_straight_short_2.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.15F, -1.0F, -2.25F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
@@ -102,5 +115,11 @@ public class neck_muscular_straight_short_2 extends MultipartNeckModel<GeneticHo
         return neck_muscular_straight_short_2;
     }
 
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"headAnchor", asTransform(headAnchor),
+				"chestAnchor", asTransform(chestAnchor));
+	}
 
 }

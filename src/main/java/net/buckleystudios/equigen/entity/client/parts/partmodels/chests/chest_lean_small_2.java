@@ -18,11 +18,15 @@ public class chest_lean_small_2 extends MultipartChestModel<GeneticHorseEntity> 
 	private final ModelPart chest_lean_small_2;
 	private final ModelPart neckAnchor;
 	private final ModelPart backAnchor;
+	private final ModelPart frontLeftLegAnchor;
+	private final ModelPart frontRightLegAnchor;
 
 	public chest_lean_small_2(ModelPart root) {
 		this.chest_lean_small_2 = root.getChild("chest_lean_small_2");
 		this.neckAnchor = this.chest_lean_small_2.getChild("neckAnchor");
 		this.backAnchor = this.chest_lean_small_2.getChild("backAnchor");
+		this.frontLeftLegAnchor = this.chest_lean_small_2.getChild("frontLeftLegAnchor");
+		this.frontRightLegAnchor = this.chest_lean_small_2.getChild("frontRightLegAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -37,13 +41,13 @@ public class chest_lean_small_2 extends MultipartChestModel<GeneticHorseEntity> 
 
 		PartDefinition cube_r1 = chest_lean_small_2_chest_front_upper.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(87, 686).addBox(-3.08F, -7.68F, -3.52F, 3.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.58F, -1.52F, 5.68F, 1.5708F, 0.0F, 0.0F));
 
-		PartDefinition chest_lean_small_2_chest_front_lower = chest_lean_small_2_chest_front.addOrReplaceChild("chest_lean_small_2_chest_front_lower", CubeListBuilder.create(), PartPose.offset(-0.1553F, 1.1641F, 0.8197F));
+		PartDefinition chest_lean_small_2_chest_front_lower = chest_lean_small_2_chest_front.addOrReplaceChild("chest_lean_small_2_chest_front_lower", CubeListBuilder.create(), PartPose.offset(-0.1552F, 1.1641F, 0.8197F));
 
 		PartDefinition cube_r2 = chest_lean_small_2_chest_front_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(75, 686).addBox(-3.0792F, -7.6432F, -4.4848F, 3.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.5792F, -4.7349F, 4.282F, 1.9199F, 0.0F, 0.0F));
 
 		PartDefinition chest_lean_small_2_chest_left = chest_lean_small_2.addOrReplaceChild("chest_lean_small_2_chest_left", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition chest_lean_small_2_chest_left_pectoral = chest_lean_small_2_chest_left.addOrReplaceChild("chest_lean_small_2_chest_left_pectoral", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -2.7709F));
+		PartDefinition chest_lean_small_2_chest_left_pectoral = chest_lean_small_2_chest_left.addOrReplaceChild("chest_lean_small_2_chest_left_pectoral", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -2.771F));
 
 		PartDefinition chest_lean_small_2_chest_left_pectoral_top = chest_lean_small_2_chest_left_pectoral.addOrReplaceChild("chest_lean_small_2_chest_left_pectoral_top", CubeListBuilder.create(), PartPose.offset(0.8466F, -1.4279F, 0.1058F));
 
@@ -89,6 +93,10 @@ public class chest_lean_small_2 extends MultipartChestModel<GeneticHorseEntity> 
 
 		PartDefinition backAnchor = chest_lean_small_2.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.5F, 3.3212F));
 
+		PartDefinition frontLeftLegAnchor = chest_lean_small_2.addOrReplaceChild("frontLeftLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(2.75F, 3.25F, -1.6788F));
+
+		PartDefinition frontRightLegAnchor = chest_lean_small_2.addOrReplaceChild("frontRightLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.75F, 3.25F, -1.6788F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -111,7 +119,9 @@ public class chest_lean_small_2 extends MultipartChestModel<GeneticHorseEntity> 
 	public Map<String, PartTransform> anchors() {
 		return Map.of(
 				"backAnchor", asTransform(backAnchor),
-				"neckAnchor", asTransform(neckAnchor)
+				"neckAnchor", asTransform(neckAnchor),
+				"frontLeftLegAnchor", asTransform(frontLeftLegAnchor),
+				"frontRightLegAnchor", asTransform(frontRightLegAnchor)
 		);
 	}
 

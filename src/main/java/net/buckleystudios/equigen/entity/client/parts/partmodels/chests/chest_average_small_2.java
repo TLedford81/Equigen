@@ -18,11 +18,15 @@ public class chest_average_small_2 extends MultipartChestModel<GeneticHorseEntit
 	private final ModelPart chest_average_small_2;
 	private final ModelPart neckAnchor;
 	private final ModelPart backAnchor;
+	private final ModelPart frontLeftLegAnchor;
+	private final ModelPart frontRightLegAnchor;
 
 	public chest_average_small_2(ModelPart root) {
 		this.chest_average_small_2 = root.getChild("chest_average_small_2");
 		this.neckAnchor = this.chest_average_small_2.getChild("neckAnchor");
 		this.backAnchor = this.chest_average_small_2.getChild("backAnchor");
+		this.frontLeftLegAnchor = this.chest_average_small_2.getChild("frontLeftLegAnchor");
+		this.frontRightLegAnchor = this.chest_average_small_2.getChild("frontRightLegAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -89,6 +93,10 @@ public class chest_average_small_2 extends MultipartChestModel<GeneticHorseEntit
 
 		PartDefinition backAnchor = chest_average_small_2.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.25F, -2.5F, 3.25F));
 
+		PartDefinition frontLeftLegAnchor = chest_average_small_2.addOrReplaceChild("frontLeftLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(3.25F, 3.5F, -1.5F));
+
+		PartDefinition frontRightLegAnchor = chest_average_small_2.addOrReplaceChild("frontRightLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-3.25F, 3.5F, -1.5F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -111,7 +119,9 @@ public class chest_average_small_2 extends MultipartChestModel<GeneticHorseEntit
 	public Map<String, PartTransform> anchors() {
 		return Map.of(
 				"backAnchor", asTransform(backAnchor),
-				"neckAnchor", asTransform(neckAnchor)
+				"neckAnchor", asTransform(neckAnchor),
+				"frontLeftLegAnchor", asTransform(frontLeftLegAnchor),
+				"frontRightLegAnchor", asTransform(frontRightLegAnchor)
 		);
 	}
 

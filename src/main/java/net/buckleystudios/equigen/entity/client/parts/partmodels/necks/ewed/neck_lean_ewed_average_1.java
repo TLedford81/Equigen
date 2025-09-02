@@ -6,16 +6,23 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.necks.ewed;// 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartNeckModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class neck_lean_ewed_average_1 extends MultipartNeckModel<GeneticHorseEntity> {
 	private final ModelPart neck_lean_ewed_average_1;
+	private final ModelPart headAnchor;
+	private final ModelPart chestAnchor;
 
 	public neck_lean_ewed_average_1(ModelPart root) {
 		this.neck_lean_ewed_average_1 = root.getChild("neck_lean_ewed_average_1");
+		this.headAnchor = this.neck_lean_ewed_average_1.getChild("headAnchor");
+		this.chestAnchor = this.neck_lean_ewed_average_1.getChild("chestAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -24,7 +31,7 @@ public class neck_lean_ewed_average_1 extends MultipartNeckModel<GeneticHorseEnt
 
 		PartDefinition neck_lean_ewed_average_1 = partdefinition.addOrReplaceChild("neck_lean_ewed_average_1", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition neck_lean_ewed_average_1_individual = neck_lean_ewed_average_1.addOrReplaceChild("neck_lean_ewed_average_1_individual", CubeListBuilder.create(), PartPose.offset(-0.0055F, -0.5721F, 0.0971F));
+		PartDefinition neck_lean_ewed_average_1_individual = neck_lean_ewed_average_1.addOrReplaceChild("neck_lean_ewed_average_1_individual", CubeListBuilder.create(), PartPose.offset(-0.0056F, -0.5721F, 0.0971F));
 
 		PartDefinition neck_lean_ewed_average_1_crest = neck_lean_ewed_average_1_individual.addOrReplaceChild("neck_lean_ewed_average_1_crest", CubeListBuilder.create(), PartPose.offset(0.0F, -4.4693F, -1.2514F));
 
@@ -44,7 +51,7 @@ public class neck_lean_ewed_average_1 extends MultipartNeckModel<GeneticHorseEnt
 
 		PartDefinition cube_r4 = neck_lean_ewed_average_1_lower_individual.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(495, 695).addBox(-4.0784F, -8.0F, -0.9017F, 3.0F, 9.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5784F, 3.665F, -0.155F, 0.2618F, 0.0F, 0.0F));
 
-		PartDefinition neck_lean_ewed_average_1_mane = neck_lean_ewed_average_1.addOrReplaceChild("neck_lean_ewed_average_1_mane", CubeListBuilder.create(), PartPose.offset(0.0F, -7.6872F, 0.0F));
+		PartDefinition neck_lean_ewed_average_1_mane = neck_lean_ewed_average_1.addOrReplaceChild("neck_lean_ewed_average_1_mane", CubeListBuilder.create(), PartPose.offset(0.0F, -7.6871F, 0.0F));
 
 		PartDefinition neck_lean_ewed_average_1_top_mane = neck_lean_ewed_average_1_mane.addOrReplaceChild("neck_lean_ewed_average_1_top_mane", CubeListBuilder.create(), PartPose.offset(0.4414F, -0.8402F, -0.9755F));
 
@@ -60,7 +67,7 @@ public class neck_lean_ewed_average_1 extends MultipartNeckModel<GeneticHorseEnt
 
 		PartDefinition cube_r6 = neck_lean_ewed_average_1_top_mane_connector2_individual.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(820, 850).addBox(-2.0F, -2.0F, -3.0F, 2.0F, 1.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 1.8023F, -0.0412F, -0.6109F, 0.0F, 0.0F));
 
-		PartDefinition neck_lean_ewed_average_1_top_mane_flow = neck_lean_ewed_average_1_top_mane_connector2.addOrReplaceChild("neck_lean_ewed_average_1_top_mane_flow", CubeListBuilder.create(), PartPose.offsetAndRotation(2.1453F, 0.0F, -0.0894F, -0.1309F, 0.0F, 0.0F));
+		PartDefinition neck_lean_ewed_average_1_top_mane_flow = neck_lean_ewed_average_1_top_mane_connector2.addOrReplaceChild("neck_lean_ewed_average_1_top_mane_flow", CubeListBuilder.create(), PartPose.offsetAndRotation(2.1452F, 0.0F, -0.0894F, -0.1309F, 0.0F, 0.0F));
 
 		PartDefinition cube_r7 = neck_lean_ewed_average_1_top_mane_flow.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(807, 844).addBox(-1.0707F, -0.1476F, -2.1526F, 1.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.0257F, 0.1998F, -0.4712F, -0.2206F, -0.3514F));
 
@@ -78,9 +85,15 @@ public class neck_lean_ewed_average_1 extends MultipartNeckModel<GeneticHorseEnt
 
 		PartDefinition cube_r9 = neck_lean_ewed_average_1_bottom_mane_connector2_individual.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(828, 852).addBox(-2.0F, -2.0F, -1.0F, 2.0F, 1.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, -1.8636F, -3.3207F, -0.9163F, 0.0F, 0.0F));
 
-		PartDefinition neck_lean_ewed_average_1_bottom_mane_flow = neck_lean_ewed_average_1_bottom_mane_connector2.addOrReplaceChild("neck_lean_ewed_average_1_bottom_mane_flow", CubeListBuilder.create(), PartPose.offset(1.7877F, 0.3575F, 0.2682F));
+		PartDefinition neck_lean_ewed_average_1_bottom_mane_flow = neck_lean_ewed_average_1_bottom_mane_connector2.addOrReplaceChild("neck_lean_ewed_average_1_bottom_mane_flow", CubeListBuilder.create(), PartPose.offset(1.7877F, 0.3576F, 0.2682F));
 
 		PartDefinition cube_r10 = neck_lean_ewed_average_1_bottom_mane_flow.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(808, 846).addBox(-0.8139F, -0.0002F, -4.3921F, 1.0F, 7.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8939F, -0.2682F, 0.1788F, -0.8901F, -0.0927F, -0.1377F));
+
+		PartDefinition headAnchor = neck_lean_ewed_average_1.addOrReplaceChild("headAnchor", CubeListBuilder.create(), PartPose.offset(-0.15F, -9.8827F, -5.6739F));
+
+		PartDefinition cube_r11 = headAnchor.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -0.6109F, 0.0F, 0.0F));
+
+		PartDefinition chestAnchor = neck_lean_ewed_average_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.0F, -2.5F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
@@ -100,5 +113,11 @@ public class neck_lean_ewed_average_1 extends MultipartNeckModel<GeneticHorseEnt
         return neck_lean_ewed_average_1;
     }
 
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"headAnchor", asTransform(headAnchor),
+				"chestAnchor", asTransform(chestAnchor));
+	}
 
 }

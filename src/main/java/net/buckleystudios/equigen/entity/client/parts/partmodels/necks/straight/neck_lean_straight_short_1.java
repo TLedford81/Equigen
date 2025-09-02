@@ -6,16 +6,23 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.necks.straight
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartNeckModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class neck_lean_straight_short_1 extends MultipartNeckModel<GeneticHorseEntity> {
 	private final ModelPart neck_lean_straight_short_1;
+	private final ModelPart headAnchor;
+	private final ModelPart chestAnchor;
 
 	public neck_lean_straight_short_1(ModelPart root) {
 		this.neck_lean_straight_short_1 = root.getChild("neck_lean_straight_short_1");
+		this.headAnchor = this.neck_lean_straight_short_1.getChild("headAnchor");
+		this.chestAnchor = this.neck_lean_straight_short_1.getChild("chestAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -84,6 +91,10 @@ public class neck_lean_straight_short_1 extends MultipartNeckModel<GeneticHorseE
 
 		PartDefinition cube_r11 = neck_lean_straight_short_1_bottom_mane_flow.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(718, 917).addBox(-0.8139F, -0.0002F, -2.3921F, 1.0F, 7.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8939F, -0.2682F, 0.0F, -0.9774F, -0.0927F, -0.1377F));
 
+		PartDefinition headAnchor = neck_lean_straight_short_1.addOrReplaceChild("headAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.1F, -7.0F, -4.116F, 1.0472F, 0.0F, 0.0F));
+
+		PartDefinition chestAnchor = neck_lean_straight_short_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.1F, -0.75F, -2.25F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -102,5 +113,11 @@ public class neck_lean_straight_short_1 extends MultipartNeckModel<GeneticHorseE
         return neck_lean_straight_short_1;
     }
 
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"headAnchor", asTransform(headAnchor),
+				"chestAnchor", asTransform(chestAnchor));
+	}
 
 }

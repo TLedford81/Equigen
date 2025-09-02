@@ -6,16 +6,25 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.heads;// Made 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartHeadModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class head_straight_muscular extends MultipartHeadModel<GeneticHorseEntity> {
 	private final ModelPart head_straight_muscular;
+	private final ModelPart neckAnchor;
+	private final ModelPart leftEarAnchor;
+	private final ModelPart rightEarAnchor;
 
 	public head_straight_muscular(ModelPart root) {
 		this.head_straight_muscular = root.getChild("head_straight_muscular");
+		this.neckAnchor = this.head_straight_muscular.getChild("neckAnchor");
+		this.leftEarAnchor = this.head_straight_muscular.getChild("leftEarAnchor");
+		this.rightEarAnchor = this.head_straight_muscular.getChild("rightEarAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -56,6 +65,18 @@ public class head_straight_muscular extends MultipartHeadModel<GeneticHorseEntit
 
 		PartDefinition cube_r7 = head_straight_muscular_mouth.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(881, 99).addBox(-1.9832F, -0.6095F, -3.149F, 3.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.163F, -0.3613F, 0.5648F, 0.7854F, 0.0F, 0.0F));
 
+		PartDefinition neckAnchor = head_straight_muscular.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(-0.35F, -2.3827F, -1.1739F));
+
+		PartDefinition cube_r8 = neckAnchor.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 1.1781F, 0.0F, 0.0F));
+
+		PartDefinition leftEarAnchor = head_straight_muscular.addOrReplaceChild("leftEarAnchor", CubeListBuilder.create(), PartPose.offset(-2.35F, -3.3477F, -1.5621F));
+
+		PartDefinition cube_r9 = leftEarAnchor.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(1, 1).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0977F, 0.2121F, 0.6545F, 0.0F, 0.0F));
+
+		PartDefinition rightEarAnchor = head_straight_muscular.addOrReplaceChild("rightEarAnchor", CubeListBuilder.create(), PartPose.offset(1.65F, -3.3477F, -1.5621F));
+
+		PartDefinition cube_r10 = rightEarAnchor.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(1, 1).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0977F, 0.2121F, 0.6545F, 0.0F, 0.0F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -74,5 +95,12 @@ public class head_straight_muscular extends MultipartHeadModel<GeneticHorseEntit
         return head_straight_muscular;
     }
 
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"neckAnchor", asTransform(neckAnchor),
+				"leftEarAnchor", asTransform(leftEarAnchor),
+				"rightEarAnchor", asTransform(rightEarAnchor));
+	}
 
 }

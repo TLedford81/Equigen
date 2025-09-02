@@ -6,16 +6,23 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.necks.swan;// 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartNeckModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class neck_lean_swan_average_1 extends MultipartNeckModel<GeneticHorseEntity> {
 	private final ModelPart neck_lean_swan_average_1;
+	private final ModelPart headAnchor;
+	private final ModelPart chestAnchor;
 
 	public neck_lean_swan_average_1(ModelPart root) {
 		this.neck_lean_swan_average_1 = root.getChild("neck_lean_swan_average_1");
+		this.headAnchor = this.neck_lean_swan_average_1.getChild("headAnchor");
+		this.chestAnchor = this.neck_lean_swan_average_1.getChild("chestAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -84,6 +91,12 @@ public class neck_lean_swan_average_1 extends MultipartNeckModel<GeneticHorseEnt
 
 		PartDefinition cube_r11 = neck_lean_swan_average_1_bottom_mane_flow.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(811, 980).addBox(-0.8139F, -0.0002F, -4.3921F, 1.0F, 7.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5363F, -0.1788F, 0.2682F, -0.8937F, -0.1201F, -0.1036F));
 
+		PartDefinition headAnchor = neck_lean_swan_average_1.addOrReplaceChild("headAnchor", CubeListBuilder.create(), PartPose.offset(-0.2F, -9.3827F, -6.9239F));
+
+		PartDefinition cube_r12 = headAnchor.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 1.1781F, 0.0F, 0.0F));
+
+		PartDefinition chestAnchor = neck_lean_swan_average_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.2F, -2.25F, -2.25F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -102,5 +115,12 @@ public class neck_lean_swan_average_1 extends MultipartNeckModel<GeneticHorseEnt
         return neck_lean_swan_average_1;
     }
 
+
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"headAnchor", asTransform(headAnchor),
+				"chestAnchor", asTransform(chestAnchor));
+	}
 
 }

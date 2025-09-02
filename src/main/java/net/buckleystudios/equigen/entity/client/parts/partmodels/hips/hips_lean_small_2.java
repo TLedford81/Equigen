@@ -18,11 +18,15 @@ public class hips_lean_small_2 extends MultipartHipModel<GeneticHorseEntity> {
 	private final ModelPart hips_lean_small_2;
 	private final ModelPart backAnchor;
 	private final ModelPart tailAnchor;
+	private final ModelPart backLeftLegAnchor;
+	private final ModelPart backRightLegAnchor;
 
 	public hips_lean_small_2(ModelPart root) {
 		this.hips_lean_small_2 = root.getChild("hips_lean_small_2");
 		this.backAnchor = this.hips_lean_small_2.getChild("backAnchor");
 		this.tailAnchor = this.hips_lean_small_2.getChild("tailAnchor");
+		this.backLeftLegAnchor = this.hips_lean_small_2.getChild("backLeftLegAnchor");
+		this.backRightLegAnchor = this.hips_lean_small_2.getChild("backRightLegAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -55,11 +59,15 @@ public class hips_lean_small_2 extends MultipartHipModel<GeneticHorseEntity> {
 
 		PartDefinition hips_lean_small_2_hips_top_lower = hips_lean_small_2_hips_top.addOrReplaceChild("hips_lean_small_2_hips_top_lower", CubeListBuilder.create(), PartPose.offset(0.4192F, 1.1283F, -0.6733F));
 
-		PartDefinition cube_r2 = hips_lean_small_2_hips_top_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(69, 885).addBox(-5.1694F, -4.909F, -6.3143F, 6.0F, 5.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.1694F, -2.1402F, 3.4939F, 1.1781F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = hips_lean_small_2_hips_top_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(69, 885).addBox(-5.1694F, -4.9089F, -6.3143F, 6.0F, 5.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.1694F, -2.1402F, 3.4939F, 1.1781F, 0.0F, 0.0F));
 
 		PartDefinition backAnchor = hips_lean_small_2.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.75F, -0.5F));
 
 		PartDefinition tailAnchor = hips_lean_small_2.addOrReplaceChild("tailAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.5F, 2.75F));
+
+		PartDefinition backLeftLegAnchor = hips_lean_small_2.addOrReplaceChild("backLeftLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(2.75F, 3.25F, 0.5F));
+
+		PartDefinition backRightLegAnchor = hips_lean_small_2.addOrReplaceChild("backRightLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.75F, 3.25F, 0.5F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
@@ -82,8 +90,10 @@ public class hips_lean_small_2 extends MultipartHipModel<GeneticHorseEntity> {
 	@Override
 	public Map<String, PartTransform> anchors() {
 		return Map.of(
-				"backAnchor", asTransform(this.backAnchor),
-				"tailAnchor", asTransform(this.tailAnchor)
+				"backAnchor", asTransform(backAnchor),
+				"tailAnchor", asTransform(tailAnchor),
+				"backLeftLegAnchor", asTransform(backLeftLegAnchor),
+				"backRightLegAnchor", asTransform(backRightLegAnchor)
 		);
 	}
 

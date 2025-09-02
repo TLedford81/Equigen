@@ -6,16 +6,23 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.necks.ewed;// 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartNeckModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class neck_muscular_ewed_average_2 extends MultipartNeckModel<GeneticHorseEntity> {
 	private final ModelPart neck_muscular_ewed_average_2;
+	private final ModelPart headAnchor;
+	private final ModelPart chestAnchor;
 
 	public neck_muscular_ewed_average_2(ModelPart root) {
 		this.neck_muscular_ewed_average_2 = root.getChild("neck_muscular_ewed_average_2");
+		this.headAnchor = this.neck_muscular_ewed_average_2.getChild("headAnchor");
+		this.chestAnchor = this.neck_muscular_ewed_average_2.getChild("chestAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -24,7 +31,7 @@ public class neck_muscular_ewed_average_2 extends MultipartNeckModel<GeneticHors
 
 		PartDefinition neck_muscular_ewed_average_2 = partdefinition.addOrReplaceChild("neck_muscular_ewed_average_2", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition neck_muscular_ewed_average_2_individual = neck_muscular_ewed_average_2.addOrReplaceChild("neck_muscular_ewed_average_2_individual", CubeListBuilder.create(), PartPose.offset(-0.0055F, -0.9296F, -0.4392F));
+		PartDefinition neck_muscular_ewed_average_2_individual = neck_muscular_ewed_average_2.addOrReplaceChild("neck_muscular_ewed_average_2_individual", CubeListBuilder.create(), PartPose.offset(-0.0056F, -0.9296F, -0.4392F));
 
 		PartDefinition neck_muscular_ewed_average_2_crest = neck_muscular_ewed_average_2_individual.addOrReplaceChild("neck_muscular_ewed_average_2_crest", CubeListBuilder.create(), PartPose.offset(0.0F, -4.7374F, -1.162F));
 
@@ -56,11 +63,11 @@ public class neck_muscular_ewed_average_2 extends MultipartNeckModel<GeneticHors
 
 		PartDefinition neck_muscular_ewed_average_2_top_mane_connector2 = neck_muscular_ewed_average_2_top_mane_connector.addOrReplaceChild("neck_muscular_ewed_average_2_top_mane_connector2", CubeListBuilder.create(), PartPose.offset(0.8045F, -0.3575F, -0.0894F));
 
-		PartDefinition neck_muscular_ewed_average_2_top_mane_connector2_individual = neck_muscular_ewed_average_2_top_mane_connector2.addOrReplaceChild("neck_muscular_ewed_average_2_top_mane_connector2_individual", CubeListBuilder.create(), PartPose.offset(1.6453F, 0.2536F, -0.4057F));
+		PartDefinition neck_muscular_ewed_average_2_top_mane_connector2_individual = neck_muscular_ewed_average_2_top_mane_connector2.addOrReplaceChild("neck_muscular_ewed_average_2_top_mane_connector2_individual", CubeListBuilder.create(), PartPose.offset(1.6452F, 0.2536F, -0.4057F));
 
 		PartDefinition cube_r6 = neck_muscular_ewed_average_2_top_mane_connector2_individual.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(871, 880).addBox(-2.0F, -2.0F, -3.0F, 3.0F, 1.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5F, 1.8023F, -0.0412F, -0.6109F, 0.0F, 0.0F));
 
-		PartDefinition neck_muscular_ewed_average_2_top_mane_flow = neck_muscular_ewed_average_2_top_mane_connector2.addOrReplaceChild("neck_muscular_ewed_average_2_top_mane_flow", CubeListBuilder.create(), PartPose.offsetAndRotation(2.7709F, 0.0F, -0.0894F, -0.1309F, 0.0F, 0.0F));
+		PartDefinition neck_muscular_ewed_average_2_top_mane_flow = neck_muscular_ewed_average_2_top_mane_connector2.addOrReplaceChild("neck_muscular_ewed_average_2_top_mane_flow", CubeListBuilder.create(), PartPose.offsetAndRotation(2.771F, 0.0F, -0.0894F, -0.1309F, 0.0F, 0.0F));
 
 		PartDefinition cube_r7 = neck_muscular_ewed_average_2_top_mane_flow.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(859, 874).addBox(-1.0707F, -0.1476F, -2.1526F, 1.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.0257F, 0.1998F, -0.4712F, -0.2206F, -0.3514F));
 
@@ -80,7 +87,13 @@ public class neck_muscular_ewed_average_2 extends MultipartNeckModel<GeneticHors
 
 		PartDefinition neck_muscular_ewed_average_2_bottom_mane_flow = neck_muscular_ewed_average_2_bottom_mane_connector2.addOrReplaceChild("neck_muscular_ewed_average_2_bottom_mane_flow", CubeListBuilder.create(), PartPose.offset(2.5028F, 0.3575F, 0.2682F));
 
-		PartDefinition cube_r10 = neck_muscular_ewed_average_2_bottom_mane_flow.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(859, 875).addBox(-0.8139F, -0.0002F, -4.3921F, 1.0F, 7.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8939F, -0.2682F, 0.1788F, -0.8901F, -0.0927F, -0.1377F));
+		PartDefinition cube_r10 = neck_muscular_ewed_average_2_bottom_mane_flow.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(859, 875).addBox(-0.8139F, -0.0002F, -4.3921F, 1.0F, 7.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8939F, -0.2681F, 0.1788F, -0.8901F, -0.0927F, -0.1377F));
+
+		PartDefinition headAnchor = neck_muscular_ewed_average_2.addOrReplaceChild("headAnchor", CubeListBuilder.create(), PartPose.offset(-0.15F, -10.3827F, -6.4239F));
+
+		PartDefinition cube_r11 = headAnchor.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -0.6109F, 0.0F, 0.0F));
+
+		PartDefinition chestAnchor = neck_muscular_ewed_average_2.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.55F, -2.8F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
@@ -100,5 +113,11 @@ public class neck_muscular_ewed_average_2 extends MultipartNeckModel<GeneticHors
         return neck_muscular_ewed_average_2;
     }
 
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"headAnchor", asTransform(headAnchor),
+				"chestAnchor", asTransform(chestAnchor));
+	}
 
 }

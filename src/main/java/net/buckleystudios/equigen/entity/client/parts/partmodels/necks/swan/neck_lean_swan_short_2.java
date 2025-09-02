@@ -6,16 +6,23 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.necks.swan;// 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartNeckModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class neck_lean_swan_short_2 extends MultipartNeckModel<GeneticHorseEntity> {
 	private final ModelPart neck_lean_swan_short_2;
+	private final ModelPart headAnchor;
+	private final ModelPart chestAnchor;
 
 	public neck_lean_swan_short_2(ModelPart root) {
 		this.neck_lean_swan_short_2 = root.getChild("neck_lean_swan_short_2");
+		this.headAnchor = this.neck_lean_swan_short_2.getChild("headAnchor");
+		this.chestAnchor = this.neck_lean_swan_short_2.getChild("chestAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -46,9 +53,9 @@ public class neck_lean_swan_short_2 extends MultipartNeckModel<GeneticHorseEntit
 
 		PartDefinition cube_r5 = neck_lean_swan_short_2_lower_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(427, 942).addBox(-5.0784F, -9.0F, -0.9017F, 3.0F, 8.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.5784F, 5.1192F, 0.0099F, 0.2182F, 0.0F, 0.0F));
 
-		PartDefinition neck_lean_swan_short_2_mane = neck_lean_swan_short_2.addOrReplaceChild("neck_lean_swan_short_2_mane", CubeListBuilder.create(), PartPose.offset(0.0F, -7.419F, 0.0F));
+		PartDefinition neck_lean_swan_short2_mane = neck_lean_swan_short_2.addOrReplaceChild("neck_lean_swan_short2_mane", CubeListBuilder.create(), PartPose.offset(0.0F, -7.419F, 0.0F));
 
-		PartDefinition neck_lean_swan_short_2_top_mane = neck_lean_swan_short_2_mane.addOrReplaceChild("neck_lean_swan_short_2_top_mane", CubeListBuilder.create(), PartPose.offset(0.0838F, -1.1978F, -2.3163F));
+		PartDefinition neck_lean_swan_short_2_top_mane = neck_lean_swan_short2_mane.addOrReplaceChild("neck_lean_swan_short_2_top_mane", CubeListBuilder.create(), PartPose.offset(0.0838F, -1.1978F, -2.3163F));
 
 		PartDefinition neck_lean_swan_short_2_top_mane_connector = neck_lean_swan_short_2_top_mane.addOrReplaceChild("neck_lean_swan_short_2_top_mane_connector", CubeListBuilder.create(), PartPose.offsetAndRotation(-0.7151F, -0.8939F, 1.162F, 0.2182F, 0.0F, 0.0F));
 
@@ -66,7 +73,7 @@ public class neck_lean_swan_short_2 extends MultipartNeckModel<GeneticHorseEntit
 
 		PartDefinition cube_r8 = neck_lean_swan_short_2_top_mane_flow.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(756, 975).addBox(-1.0707F, -0.1476F, -4.1526F, 1.0F, 7.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.4086F, 0.9511F, -0.4274F, -0.2133F, -0.3647F));
 
-		PartDefinition neck_lean_swan_short_2_bottom_mane = neck_lean_swan_short_2_mane.addOrReplaceChild("neck_lean_swan_short_2_bottom_mane", CubeListBuilder.create(), PartPose.offset(0.0838F, 2.1095F, 2.4211F));
+		PartDefinition neck_lean_swan_short_2_bottom_mane = neck_lean_swan_short2_mane.addOrReplaceChild("neck_lean_swan_short_2_bottom_mane", CubeListBuilder.create(), PartPose.offset(0.0838F, 2.1095F, 2.4211F));
 
 		PartDefinition neck_lean_swan_short_2_bottom_mane_connector = neck_lean_swan_short_2_bottom_mane.addOrReplaceChild("neck_lean_swan_short_2_bottom_mane_connector", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 0.7151F, 0.4469F, 0.0436F, 0.0F, 0.0F));
 
@@ -83,6 +90,12 @@ public class neck_lean_swan_short_2 extends MultipartNeckModel<GeneticHorseEntit
 		PartDefinition neck_lean_swan_short_2_bottom_mane_flow = neck_lean_swan_short_2_bottom_mane_connector2.addOrReplaceChild("neck_lean_swan_short_2_bottom_mane_flow", CubeListBuilder.create(), PartPose.offset(1.9665F, -0.1788F, -0.2682F));
 
 		PartDefinition cube_r11 = neck_lean_swan_short_2_bottom_mane_flow.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(762, 980).addBox(-0.8139F, -0.0002F, -4.3921F, 1.0F, 7.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5363F, 0.1788F, 0.4469F, -0.8937F, -0.1201F, -0.1036F));
+
+		PartDefinition headAnchor = neck_lean_swan_short_2.addOrReplaceChild("headAnchor", CubeListBuilder.create(), PartPose.offset(-0.1F, -8.8827F, -6.1739F));
+
+		PartDefinition cube_r12 = headAnchor.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 1.1781F, 0.0F, 0.0F));
+
+		PartDefinition chestAnchor = neck_lean_swan_short_2.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.25F, -0.5F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
@@ -101,6 +114,13 @@ public class neck_lean_swan_short_2 extends MultipartNeckModel<GeneticHorseEntit
     public ModelPart root() {
         return neck_lean_swan_short_2;
     }
+
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"headAnchor", asTransform(headAnchor),
+				"chestAnchor", asTransform(chestAnchor));
+	}
 
 
 }

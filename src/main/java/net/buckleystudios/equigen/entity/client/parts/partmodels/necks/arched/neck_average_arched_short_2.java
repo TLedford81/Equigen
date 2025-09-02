@@ -6,16 +6,23 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.necks.arched;/
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartNeckModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class neck_average_arched_short_2 extends MultipartNeckModel<GeneticHorseEntity> {
 	private final ModelPart neck_average_arched_short_2;
+	private final ModelPart headAnchor;
+	private final ModelPart chestAnchor;
 
 	public neck_average_arched_short_2(ModelPart root) {
 		this.neck_average_arched_short_2 = root.getChild("neck_average_arched_short_2");
+		this.headAnchor = this.neck_average_arched_short_2.getChild("headAnchor");
+		this.chestAnchor = this.neck_average_arched_short_2.getChild("chestAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -84,6 +91,12 @@ public class neck_average_arched_short_2 extends MultipartNeckModel<GeneticHorse
 
 		PartDefinition cube_r11 = neck_average_arched_short_2_bottom_mane_flow.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(757, 775).addBox(-0.8139F, -0.0002F, -5.3921F, 1.0F, 7.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0726F, 1.4302F, 1.2514F, -0.8937F, -0.1201F, -0.1036F));
 
+		PartDefinition headAnchor = neck_average_arched_short_2.addOrReplaceChild("headAnchor", CubeListBuilder.create(), PartPose.offset(0.25F, -6.6327F, -6.1739F));
+
+		PartDefinition cube_r12 = headAnchor.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -0.1309F, 0.0F, 0.0F));
+
+		PartDefinition chestAnchor = neck_average_arched_short_2.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.1F, -0.75F, -2.5F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -102,5 +115,11 @@ public class neck_average_arched_short_2 extends MultipartNeckModel<GeneticHorse
         return neck_average_arched_short_2;
     }
 
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"headAnchor", asTransform(headAnchor),
+				"chestAnchor", asTransform(chestAnchor));
+	}
 
 }
