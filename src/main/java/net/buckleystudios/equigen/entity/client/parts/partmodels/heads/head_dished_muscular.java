@@ -31,51 +31,51 @@ public class head_dished_muscular extends MultipartHeadModel<GeneticHorseEntity>
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition head_roman_average = partdefinition.addOrReplaceChild("head_roman_average", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
+		PartDefinition head_dished_muscular = partdefinition.addOrReplaceChild("head_dished_muscular", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition head_roman_average_jaw = head_roman_average.addOrReplaceChild("head_roman_average_jaw", CubeListBuilder.create(), PartPose.offset(0.0F, 2.324F, -0.5363F));
+		PartDefinition head_dished_muscular_jaw = head_dished_muscular.addOrReplaceChild("head_dished_muscular_jaw", CubeListBuilder.create(), PartPose.offset(0.0F, 1.9665F, -0.1788F));
 
-		PartDefinition head_roman_average_jaw_individual = head_roman_average_jaw.addOrReplaceChild("head_roman_average_jaw_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0492F, -0.0346F));
+		PartDefinition head_dished_muscular_jaw_individual = head_dished_muscular_jaw.addOrReplaceChild("head_dished_muscular_jaw_individual", CubeListBuilder.create(), PartPose.offset(-0.0995F, -0.1382F, -0.2329F));
 
-		PartDefinition cube_r1 = head_roman_average_jaw_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(951, 71).addBox(-5.9595F, -1.919F, -1.081F, 5.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.5108F, 1.1962F, -0.8707F, 0.6545F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = head_dished_muscular_jaw_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(984, 118).addBox(-3.9554F, -0.7109F, -1.1891F, 6.0F, 3.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.9555F, 0.0154F, -1.1314F, 0.7854F, 0.0F, 0.0F));
 
-		PartDefinition head_roman_average_jaw_branch = head_roman_average_jaw.addOrReplaceChild("head_roman_average_jaw_branch", CubeListBuilder.create(), PartPose.offset(0.0F, 0.5663F, -0.5602F));
+		PartDefinition head_dished_muscular_jaw_branch = head_dished_muscular_jaw.addOrReplaceChild("head_dished_muscular_jaw_branch", CubeListBuilder.create(), PartPose.offset(-0.0754F, 1.5639F, -1.4318F));
 
-		PartDefinition cube_r2 = head_roman_average_jaw_branch.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(951, 86).addBox(-2.08F, -3.24F, -1.84F, 3.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5593F, -0.4162F, 0.0016F, 2.1817F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = head_dished_muscular_jaw_branch.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(1004, 111).addBox(-3.0799F, -3.2418F, -1.8382F, 4.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0799F, -1.1189F, 0.0295F, 2.2689F, 0.0F, 0.0F));
 
-		PartDefinition head_roman_average_nose_bridge = head_roman_average.addOrReplaceChild("head_roman_average_nose_bridge", CubeListBuilder.create(), PartPose.offset(0.0F, 2.6298F, -3.9113F));
+		PartDefinition head_dished_muscular_nose_bridge = head_dished_muscular.addOrReplaceChild("head_dished_muscular_nose_bridge", CubeListBuilder.create(), PartPose.offset(-0.0738F, 1.8254F, -2.0903F));
 
-		PartDefinition cube_r3 = head_roman_average_nose_bridge.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(963, 86).addBox(-3.08F, -3.24F, -1.84F, 3.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.6319F, -0.8028F, -0.1369F, 2.8798F, 0.0F, 0.0F));
+		PartDefinition cube_r3 = head_dished_muscular_nose_bridge.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(988, 110).addBox(-3.08F, -3.24F, -1.84F, 4.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.08F, -0.8028F, -0.1369F, 2.8798F, 0.0F, 0.0F));
 
-		PartDefinition head_roman_average_forehead = head_roman_average.addOrReplaceChild("head_roman_average_forehead", CubeListBuilder.create(), PartPose.offset(0.0F, -0.0066F, -2.402F));
+		PartDefinition head_dished_muscular_forehead = head_dished_muscular.addOrReplaceChild("head_dished_muscular_forehead", CubeListBuilder.create(), PartPose.offset(-0.057F, -0.4084F, -1.4273F));
 
-		PartDefinition cube_r4 = head_roman_average_forehead.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(951, 79).addBox(-4.0524F, -4.0F, -3.0076F, 5.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.596F, -2.4136F, 0.6689F, 2.2253F, 0.0F, 0.0F));
+		PartDefinition cube_r4 = head_dished_muscular_forehead.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(1004, 118).addBox(-3.08F, -4.0F, -1.92F, 6.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.08F, -1.7583F, 1.0415F, 2.3998F, 0.0F, 0.0F));
 
-		PartDefinition head_roman_average_muzzle = head_roman_average.addOrReplaceChild("head_roman_average_muzzle", CubeListBuilder.create(), PartPose.offset(0.0F, 4.648F, -4.5587F));
+		PartDefinition head_dished_muscular_muzzle = head_dished_muscular.addOrReplaceChild("head_dished_muscular_muzzle", CubeListBuilder.create(), PartPose.offset(0.0F, 4.4693F, -3.1821F));
 
-		PartDefinition head_roman_average_muzzle_individual = head_roman_average_muzzle.addOrReplaceChild("head_roman_average_muzzle_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition head_dished_muscular_muzzle_individual = head_dished_muscular_muzzle.addOrReplaceChild("head_dished_muscular_muzzle_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition cube_r5 = head_roman_average_muzzle_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(967, 79).addBox(-2.4469F, -1.7862F, -3.7184F, 3.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.9204F, -0.715F, 0.6964F, 1.0036F, 0.0F, 0.0F));
+		PartDefinition cube_r5 = head_dished_muscular_muzzle_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(989, 125).addBox(-1.4469F, -0.7862F, -2.7184F, 3.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.0629F, -0.7151F, 0.104F, 0.7418F, 0.0F, 0.0F));
 
-		PartDefinition head_roman_average_mouth = head_roman_average_muzzle.addOrReplaceChild("head_roman_average_mouth", CubeListBuilder.create(), PartPose.offset(0.0F, 0.6257F, 1.162F));
+		PartDefinition head_dished_muscular_mouth = head_dished_muscular_muzzle.addOrReplaceChild("head_dished_muscular_mouth", CubeListBuilder.create(), PartPose.offset(0.0894F, 0.8045F, 0.5363F));
 
-		PartDefinition cube_r6 = head_roman_average_mouth.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(966, 72).addBox(-1.9832F, -0.6095F, -3.149F, 3.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.4735F, 0.0894F, 0.5176F, 0.9599F, 0.0F, 0.0F));
+		PartDefinition cube_r6 = head_dished_muscular_mouth.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(1004, 125).addBox(-1.9934F, -0.6134F, -2.1275F, 3.0F, 1.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.3802F, -0.0885F, 0.1915F, 0.7854F, 0.0F, 0.0F));
 
-		PartDefinition head_roman_average_fringe = head_roman_average.addOrReplaceChild("head_roman_average_fringe", CubeListBuilder.create(), PartPose.offset(0.0F, -1.8771F, -2.2346F));
+		PartDefinition head_dished_muscular_fringe = head_dished_muscular.addOrReplaceChild("head_dished_muscular_fringe", CubeListBuilder.create(), PartPose.offset(0.0F, -2.6816F, -1.2514F));
 
-		PartDefinition cube_r7 = head_roman_average_fringe.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(963, 94).addBox(-1.0F, -4.0F, -2.0F, 1.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.4735F, 1.3944F, -3.0578F, -1.5615F, 0.6653F, -1.5864F));
+		PartDefinition cube_r7 = head_dished_muscular_fringe.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(1006, 107).addBox(-3.08F, -3.0F, 0.08F, 3.0F, 3.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.5425F, -0.0215F, 0.4187F, 2.3998F, 0.0F, 0.0F));
 
-		PartDefinition neckAnchor = head_roman_average.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(0.0F, -0.8283F, -1.4873F));
+		PartDefinition neckAnchor = head_dished_muscular.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(0.0F, -1.25F, -0.366F));
 
-		PartDefinition cube_r8 = neckAnchor.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.5672F, 0.0F, 0.0F));
+		PartDefinition cube_r8 = neckAnchor.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.1F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.25F, 0.866F, 1.6581F, 0.0F, 0.0F));
 
-		PartDefinition leftEarAnchor = head_roman_average.addOrReplaceChild("leftEarAnchor", CubeListBuilder.create(), PartPose.offset(-1.5F, -2.0442F, -2.1495F));
+		PartDefinition leftEarAnchor = head_dished_muscular.addOrReplaceChild("leftEarAnchor", CubeListBuilder.create(), PartPose.offset(-2.0F, -2.5442F, -1.3995F));
 
-		PartDefinition cube_r9 = leftEarAnchor.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(1, 1).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0442F, 0.3995F, 0.6545F, 0.0F, 0.0F));
+		PartDefinition cube_r9 = leftEarAnchor.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(1, 1).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0442F, 0.3995F, 0.829F, 0.0F, 0.0F));
 
-		PartDefinition rightEarAnchor = head_roman_average.addOrReplaceChild("rightEarAnchor", CubeListBuilder.create(), PartPose.offset(1.5F, -2.0442F, -2.1495F));
+		PartDefinition rightEarAnchor = head_dished_muscular.addOrReplaceChild("rightEarAnchor", CubeListBuilder.create(), PartPose.offset(2.0F, -2.5442F, -1.3995F));
 
-		PartDefinition cube_r10 = rightEarAnchor.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(1, 1).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0442F, 0.3995F, 0.6545F, 0.0F, 0.0F));
+		PartDefinition cube_r10 = rightEarAnchor.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(1, 1).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0442F, 0.3995F, 0.829F, 0.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
