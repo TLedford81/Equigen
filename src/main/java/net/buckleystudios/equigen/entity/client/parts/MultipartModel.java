@@ -16,11 +16,6 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
         return Map.of();
     }
 
-    public PartTransform origin() {
-        return PartTransform.IDENTITY;
-    }
-
-
     @Override
     public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 
@@ -32,5 +27,9 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
                 new Vec3(Math.toDegrees(part.xRot), Math.toDegrees(part.yRot), Math.toDegrees(part.zRot)),
                 new Vec3(1, 1, 1)
         );
+    }
+
+    public void afterAttached(GeneticHorseEntity e, float partialTicks) {
+
     }
 }
