@@ -119,30 +119,30 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
             if (backModel != null) {
                 renderRootPart(poseStack, buffer, packedLight, entity, backModel);
 
-                attachAndChain(poseStack, buffer, packedLight, entity,
+                attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                         backModel, "chestAnchor", chestModel, "backAnchor",
                         () -> {
-                        attachAndChain(poseStack, buffer, packedLight, entity,
+                        attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                 chestModel, "neckAnchor", neckModel, "chestAnchor",
-                                    () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                    () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                             neckModel, "headAnchor", headModel, "neckAnchor",
                                             () -> {
-                                                attachAndChain(poseStack, buffer, packedLight, entity,
+                                                attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                                         headModel, "leftEarAnchor", leftEarModel, "headAnchor", null);
-                                                attachAndChain(poseStack, buffer, packedLight, entity,
+                                                attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                                         headModel, "rightEarAnchor", rightEarModel, "headAnchor", null);
                                             }
                                     )
                         );
-                        attachAndChain(poseStack, buffer, packedLight, entity,
+                        attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                 chestModel, "frontLeftLegAnchor", frontLeftLegModel, "chestAnchor",
-                                () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                         frontLeftLegModel, "topLegAnchor", topFrontLeftLegModel, "legAnchor",
-                                        () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                        () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                                 topFrontLeftLegModel, "kneeAnchor", kneeFrontLeftLegModel, "topLegAnchor",
-                                                () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                                () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                                         kneeFrontLeftLegModel, "bottomLegAnchor", bottomFrontLeftLegModel, "kneeAnchor",
-                                                        () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                                        () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                                                 bottomFrontLeftLegModel, "hoofAnchor", hoofFrontLeftLegModel, "bottomLegAnchor",
                                                                 null
                                                         )
@@ -150,15 +150,15 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                                         )
                                 )
                         );
-                        attachAndChain(poseStack, buffer, packedLight, entity,
+                        attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                 chestModel, "frontRightLegAnchor", frontRightLegModel, "chestAnchor",
-                                () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                         frontRightLegModel, "topLegAnchor", topFrontRightLegModel, "legAnchor",
-                                        () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                        () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                                 topFrontRightLegModel, "kneeAnchor", kneeFrontRightLegModel, "topLegAnchor",
-                                                () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                                () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                                         kneeFrontRightLegModel, "bottomLegAnchor", bottomFrontRightLegModel, "kneeAnchor",
-                                                        () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                                        () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                                                 bottomFrontRightLegModel, "hoofAnchor", hoofFrontRightLegModel, "bottomLegAnchor",
                                                                 null
                                                         )
@@ -169,20 +169,20 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                         }
                 );
 
-                attachAndChain(poseStack, buffer, packedLight, entity,
+                attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                         backModel, "hipsAnchor", hipsModel, "backAnchor",
                         () -> {
-                            attachAndChain(poseStack, buffer, packedLight, entity,
+                            attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                     hipsModel, "tailAnchor", tailModel, "hipsAnchor", null);
-                            attachAndChain(poseStack, buffer, packedLight, entity,
+                            attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                     hipsModel, "backLeftLegAnchor", backLeftLegModel, "hipsAnchor",
-                                    () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                    () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                             backLeftLegModel, "topLegAnchor", topBackLeftLegModel, "legAnchor",
-                                            () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                            () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                                     topBackLeftLegModel, "kneeAnchor", kneeBackLeftLegModel, "topLegAnchor",
-                                                    () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                                    () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                                             kneeBackLeftLegModel, "bottomLegAnchor", bottomBackLeftLegModel, "kneeAnchor",
-                                                            () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                                            () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                                                     bottomBackLeftLegModel, "hoofAnchor", hoofBackLeftLegModel, "bottomLegAnchor",
                                                                     null
                                                             )
@@ -190,15 +190,15 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                                             )
                                     )
                             );
-                            attachAndChain(poseStack, buffer, packedLight, entity,
+                            attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                     hipsModel, "backRightLegAnchor", backRightLegModel, "hipsAnchor",
-                                    () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                    () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                             backRightLegModel, "topLegAnchor", topBackRightLegModel, "legAnchor",
-                                            () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                            () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                                     topBackRightLegModel, "kneeAnchor", kneeBackRightLegModel, "topLegAnchor",
-                                                    () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                                    () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                                             kneeBackRightLegModel, "bottomLegAnchor", bottomBackRightLegModel, "kneeAnchor",
-                                                            () -> attachAndChain(poseStack, buffer, packedLight, entity,
+                                                            () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                                                     bottomBackRightLegModel, "hoofAnchor", hoofBackRightLegModel, "bottomLegAnchor",
                                                                     null
                                                             )
@@ -208,10 +208,10 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                             );
                         });
 
-                attachAndChain(poseStack, buffer, packedLight, entity,
+                attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                         backModel, "withersAnchor", withersModel, "backAnchor", null);
 
-                attachAndChain(poseStack, buffer, packedLight, entity,
+                attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                         backModel, "stomachAnchor", stomachModel, "backAnchor", null);
             }
         } finally {
@@ -222,9 +222,9 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
     private void applyTransform(PoseStack pose, PartTransform p, PartTransform c) {
         if (p == null) return;
         pose.translate((float)p.position.x, (float)p.position.y, (float)p.position.z);
-        pose.mulPose(Axis.XP.rotationDegrees((float)p.rotation.x));
-        pose.mulPose(Axis.YP.rotationDegrees((float)p.rotation.y));
-        pose.mulPose(Axis.ZP.rotationDegrees((float)p.rotation.z));
+        pose.mulPose(Axis.XP.rotation((float)p.rotation.x)); // RADS
+        pose.mulPose(Axis.YP.rotation((float)p.rotation.y));
+        pose.mulPose(Axis.ZP.rotation((float)p.rotation.z));
         pose.scale((float)p.scale.x, (float)p.scale.y, (float)p.scale.z);
 
         if (c == null) return;
@@ -232,12 +232,10 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         float sy = (float)(c.scale.y == 0 ? 1.0 : 1.0 / c.scale.y);
         float sz = (float)(c.scale.z == 0 ? 1.0 : 1.0 / c.scale.z);
         pose.scale(sx, sy, sz);
-        pose.mulPose(Axis.ZP.rotationDegrees((float)-c.rotation.z));
-        pose.mulPose(Axis.YP.rotationDegrees((float)-c.rotation.y));
-        pose.mulPose(Axis.XP.rotationDegrees((float)-c.rotation.x));
+        pose.mulPose(Axis.ZP.rotation((float)-c.rotation.z)); // RADS
+        pose.mulPose(Axis.YP.rotation((float)-c.rotation.y));
+        pose.mulPose(Axis.XP.rotation((float)-c.rotation.x));
         pose.translate(-(float)c.position.x, -(float)c.position.y, -(float)c.position.z);
-//        PartTransform sum = p.subtractPosition(p, c);
-//        pose.translate(sum.position.x, sum.position.y, sum.position.z);
     }
 
     private void renderRootPart(
@@ -258,7 +256,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
 
     // Add this helper:
     private void attachAndChain(
-            PoseStack pose, MultiBufferSource buffer, int light, GeneticHorseEntity e,
+            PoseStack pose, MultiBufferSource buffer, int light, GeneticHorseEntity e, float partialTicks,
             MultipartModel<GeneticHorseEntity> parent, String anchorInParentModel,
             MultipartModel<GeneticHorseEntity> child,  String anchorInChildModel,
             Runnable chain // may be null
@@ -271,7 +269,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
 
         // Move the child's joint to the parent’s joint
         applyTransform(pose, pA, cA);
-
+        child.afterAttached(e, partialTicks);
         child.renderToBuffer(pose, buffer.getBuffer(RenderType.entityCutout(getTextureLocation(e))),
                 light, OverlayTexture.NO_OVERLAY);
 

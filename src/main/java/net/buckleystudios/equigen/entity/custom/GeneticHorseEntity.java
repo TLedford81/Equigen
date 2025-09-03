@@ -89,6 +89,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public static final EntityDataAccessor<Float> GENE_HEAD_TYPE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_HIP_SIZE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_HOOF_SIZE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> GENE_NECK_POS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_NECK_CURVE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_NECK_LENGTH = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_STOMACH_LENGTH = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
@@ -440,6 +441,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         builder.define(GENE_HEAD_TYPE, 0.0f);
         builder.define(GENE_HIP_SIZE, 0.0f);
         builder.define(GENE_HOOF_SIZE, 0.0f);
+        builder.define(GENE_NECK_POS, 0.0f);
         builder.define(GENE_NECK_CURVE, 0.0f);
         builder.define(GENE_NECK_LENGTH, 0.0f);
         builder.define(GENE_STOMACH_LENGTH, 0.0f);
@@ -481,7 +483,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                 .add(ModEntityAttributes.MAX_SKILL_JUMP, 0.0f)
                 .add(ModEntityAttributes.MAX_SKILL_ENDURANCE, 0.0f)
                 .add(ModEntityAttributes.MAX_SKILL_AGILITY, 0.0f)
-                .add(Attributes.MOVEMENT_SPEED, 0.0F)
+                .add(Attributes.MOVEMENT_SPEED, 0.1F)
                 .add(Attributes.ATTACK_DAMAGE, 80.0)
                 .add(Attributes.FOLLOW_RANGE, 24D)
                 .add(Attributes.STEP_HEIGHT, 1f)
@@ -1846,6 +1848,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         this.entityData.set(GENE_HEAD_TYPE, this.getGenetic("HEAD_TYPE"));
         this.entityData.set(GENE_HIP_SIZE, this.getGenetic("HIP_SIZE"));
         this.entityData.set(GENE_HOOF_SIZE, this.getGenetic("HOOF_SIZE"));
+        this.entityData.set(GENE_NECK_POS, this.getGenetic("NECK_POS"));
         this.entityData.set(GENE_NECK_CURVE, this.getGenetic("NECK_CURVE"));
         this.entityData.set(GENE_NECK_LENGTH, this.getGenetic("NECK_LENGTH"));
         this.entityData.set(GENE_STOMACH_LENGTH, this.getGenetic("STOMACH_LENGTH"));
@@ -1867,6 +1870,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         GENE_MAP.put("GENE_HEAD_TYPE", this.entityData.get(GENE_HEAD_TYPE));
         GENE_MAP.put("GENE_HIP_SIZE", this.entityData.get(GENE_HIP_SIZE));
         GENE_MAP.put("GENE_HOOF_SIZE", this.entityData.get(GENE_HOOF_SIZE));
+        GENE_MAP.put("GENE_NECK_POS", this.entityData.get(GENE_NECK_POS));
         GENE_MAP.put("GENE_NECK_CURVE", this.entityData.get(GENE_NECK_CURVE));
         GENE_MAP.put("GENE_NECK_LENGTH", this.entityData.get(GENE_NECK_LENGTH));
         GENE_MAP.put("GENE_STOMACH_LENGTH", this.entityData.get(GENE_STOMACH_LENGTH));
@@ -1899,8 +1903,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 //        parts.add("chest_average_average_1");
         parts.add(partNameBuilder.PartStringGenerator("ears"));
         parts.add(partNameBuilder.PartStringGenerator("front_leg_top"));
-        parts.add(partNameBuilder.PartStringGenerator("head"));
-//        parts.add("head_roman_average");
+//        parts.add(partNameBuilder.PartStringGenerator("head"));
+        parts.add("head_roman_average");
         parts.add(partNameBuilder.PartStringGenerator("hips"));
 //        parts.add("hips_average_average_1");
         parts.add(partNameBuilder.PartStringGenerator("hoof"));
