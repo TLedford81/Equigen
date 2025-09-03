@@ -6,16 +6,23 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.backtoplegs;//
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartBackTopLegModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class back_leg_top_average_average_1 extends MultipartBackTopLegModel<GeneticHorseEntity> {
 	private final ModelPart top_back_legs_average_average_1;
+	private final ModelPart hipsAnchor;
+	private final ModelPart kneeAnchor;
 
 	public back_leg_top_average_average_1(ModelPart root) {
 		this.top_back_legs_average_average_1 = root.getChild("top_back_legs_average_average_1");
+		this.hipsAnchor = this.top_back_legs_average_average_1.getChild("hipsAnchor");
+		this.kneeAnchor = this.top_back_legs_average_average_1.getChild("kneeAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -24,25 +31,17 @@ public class back_leg_top_average_average_1 extends MultipartBackTopLegModel<Gen
 
 		PartDefinition top_back_legs_average_average_1 = partdefinition.addOrReplaceChild("top_back_legs_average_average_1", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition top_back_legs_average_average_1_top_back_right_individual = top_back_legs_average_average_1.addOrReplaceChild("top_back_legs_average_average_1_top_back_right_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition top_back_legs_average_average1_top_back_right_front = top_back_legs_average_average_1.addOrReplaceChild("top_back_legs_average_average1_top_back_right_front", CubeListBuilder.create(), PartPose.offset(-0.1444F, 3.6744F, 0.5431F));
 
-		PartDefinition top_back_legs_average_average_1_top_back_right_front = top_back_legs_average_average_1_top_back_right_individual.addOrReplaceChild("top_back_legs_average_average_1_top_back_right_front", CubeListBuilder.create(), PartPose.offset(-0.1444F, 3.6744F, 0.5431F));
+		PartDefinition cube_r1 = top_back_legs_average_average1_top_back_right_front.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(210, 314).mirror().addBox(-1.1444F, -3.0F, -2.0F, 2.0F, 2.0F, 9.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.1444F, 1.4205F, 2.8692F, 2.0071F, 0.0F, 0.0F));
 
-		PartDefinition cube_r1 = top_back_legs_average_average_1_top_back_right_front.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(210, 314).mirror().addBox(-1.1444F, -3.0F, -2.0F, 2.0F, 2.0F, 9.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.1444F, 1.4205F, 2.8692F, 2.0071F, 0.0F, 0.0F));
+		PartDefinition top_back_legs_average_average1_top_back_right_back = top_back_legs_average_average_1.addOrReplaceChild("top_back_legs_average_average1_top_back_right_back", CubeListBuilder.create(), PartPose.offset(0.1444F, 2.788F, 1.616F));
 
-		PartDefinition top_back_legs_average_average_1_top_back_right_back = top_back_legs_average_average_1_top_back_right_individual.addOrReplaceChild("top_back_legs_average_average_1_top_back_right_back", CubeListBuilder.create(), PartPose.offset(0.1444F, 2.788F, 1.616F));
+		PartDefinition cube_r2 = top_back_legs_average_average1_top_back_right_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(211, 325).mirror().addBox(-0.8556F, -1.0F, -1.92F, 2.0F, 3.0F, 8.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-0.1444F, 2.1389F, -0.038F, 1.789F, 0.0F, 0.0F));
 
-		PartDefinition cube_r2 = top_back_legs_average_average_1_top_back_right_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(211, 325).mirror().addBox(-0.8556F, -1.0F, -1.92F, 2.0F, 3.0F, 8.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-0.1444F, 2.1389F, -0.038F, 1.789F, 0.0F, 0.0F));
+		PartDefinition hipsAnchor = top_back_legs_average_average_1.addOrReplaceChild("hipsAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.25F, 0.25F));
 
-		PartDefinition top_back_legs_average_average_1_top_back_left_individual = top_back_legs_average_average_1.addOrReplaceChild("top_back_legs_average_average_1_top_back_left_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-
-		PartDefinition top_back_legs_average_average_1_top_back_left_front = top_back_legs_average_average_1_top_back_left_individual.addOrReplaceChild("top_back_legs_average_average_1_top_back_left_front", CubeListBuilder.create(), PartPose.offset(0.1444F, 3.6744F, 0.5431F));
-
-		PartDefinition cube_r3 = top_back_legs_average_average_1_top_back_left_front.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(188, 314).addBox(-0.8556F, -3.0F, -2.0F, 2.0F, 2.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.1444F, 1.4205F, 2.8692F, 2.0071F, 0.0F, 0.0F));
-
-		PartDefinition top_back_legs_average_average_1_top_back_left_back = top_back_legs_average_average_1_top_back_left_individual.addOrReplaceChild("top_back_legs_average_average_1_top_back_left_back", CubeListBuilder.create(), PartPose.offset(-0.1444F, 2.788F, 1.616F));
-
-		PartDefinition cube_r4 = top_back_legs_average_average_1_top_back_left_back.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(189, 325).addBox(-1.1444F, -1.0F, -1.92F, 2.0F, 3.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.1444F, 2.1389F, -0.038F, 1.789F, 0.0F, 0.0F));
+		PartDefinition kneeAnchor = top_back_legs_average_average_1.addOrReplaceChild("kneeAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 7.0F, 2.5F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
@@ -62,5 +61,10 @@ public class back_leg_top_average_average_1 extends MultipartBackTopLegModel<Gen
         return top_back_legs_average_average_1;
     }
 
-
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"hipsAnchor", asTransform(this.hipsAnchor),
+				"kneeAnchor", asTransform(this.kneeAnchor));
+	}
 }
