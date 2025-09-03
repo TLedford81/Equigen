@@ -14,12 +14,12 @@ import net.minecraft.client.model.geom.builders.*;
 
 import java.util.Map;
 
-public class front_leg_top_average_average_1 extends MultipartFrontTopLegModel<GeneticHorseEntity> {
+public class top_front_legs_average_average_1 extends MultipartFrontTopLegModel<GeneticHorseEntity> {
     private final ModelPart top_front_legs_average_average_1;
     private final ModelPart chestAnchor;
     private final ModelPart kneeAnchor;
 
-    public front_leg_top_average_average_1(ModelPart root) {
+    public top_front_legs_average_average_1(ModelPart root) {
         this.top_front_legs_average_average_1 = root.getChild("top_front_legs_average_average_1");
         this.chestAnchor = this.top_front_legs_average_average_1.getChild("chestAnchor");
         this.kneeAnchor = this.top_front_legs_average_average_1.getChild("kneeAnchor");

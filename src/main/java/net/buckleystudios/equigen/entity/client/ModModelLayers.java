@@ -1047,6 +1047,16 @@ public class ModModelLayers {
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "withers_muscular"), "main"
     );
 
+    //Front Top Legs
+    public static final ModelLayerLocation TOP_FRONT_LEGS_AVERAGE_AVERAGE_1 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_front_legs_average_average_1"), "main"
+    );
+
+    //Back Top Legs
+    public static final ModelLayerLocation TOP_BACK_LEGS_AVERAGE_AVERAGE_1 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_back_legs_average_average_1"), "main"
+    );
+
 
 
 }

@@ -6,10 +6,12 @@ import net.buckleystudios.equigen.entity.ModEntityAttributes;
 import net.buckleystudios.equigen.entity.client.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.backs.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.backtoplegs.*;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.bottomlegs.bottom_legs_average_average_1;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.chests.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.ears.ears;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.heads.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.hips.*;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.hooves.hoof_average;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.arched.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.ewed.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.straight.*;
@@ -84,7 +86,7 @@ public class ModEventBusEvents {
         event.registerLayerDefinition(ModModelLayers.BACK_LEG_TOP_THIN_LONG_2, back_leg_top_thin_long_2::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.BACK_LEG_TOP_AVERAGE_SHORT_1, back_leg_top_average_short_1::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.BACK_LEG_TOP_AVERAGE_SHORT_2, back_leg_top_average_short_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BACK_LEG_TOP_AVERAGE_AVERAGE_1, back_leg_top_average_average_1::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BACK_LEG_TOP_AVERAGE_AVERAGE_1, top_back_legs_average_average_1::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.BACK_LEG_TOP_AVERAGE_AVERAGE_2, back_leg_top_average_average_2::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.BACK_LEG_TOP_AVERAGE_LONG_1, back_leg_top_average_long_1::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.BACK_LEG_TOP_AVERAGE_LONG_2, back_leg_top_average_long_2::createBodyLayer);
@@ -271,6 +273,14 @@ public class ModEventBusEvents {
         event.registerLayerDefinition(ModModelLayers.WITHERS_AVERAGE, withers_average::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.WITHERS_LEAN, withers_lean::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.WITHERS_MUSCULAR, withers_muscular::createBodyLayer);
+
+        //Hooves
+        event.registerLayerDefinition(ModModelLayers.HOOF_AVERAGE, hoof_average::createBodyLayer);
+
+        //Bottom Legs
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_AVERAGE_AVERAGE_1, bottom_legs_average_average_1::createBodyLayer);
+
+
 
     }
 

@@ -7,10 +7,14 @@ import net.buckleystudios.equigen.entity.client.parts.MultipartModel;
 import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.backs.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.backtoplegs.*;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.bottomlegs.bottom_legs_average_average_1;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.chests.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.ears.ears;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.fronttoplegs.top_front_legs_average_average_1;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.heads.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.hips.*;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.hooves.hoof_average;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.knees.knees;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.arched.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.ewed.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.straight.*;
@@ -87,29 +91,25 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
             MultipartModel<GeneticHorseEntity> leftEarModel = getMultipartModel(partsToRender, "ear");
             MultipartModel<GeneticHorseEntity> rightEarModel = getMultipartModel(partsToRender, "ear");
 
-            MultipartModel<GeneticHorseEntity> frontLeftLegModel = getMultipartModel(partsToRender, "leg");
-            MultipartModel<GeneticHorseEntity> topFrontLeftLegModel = getMultipartModel(partsToRender, "topFrontLeg");
+            MultipartModel<GeneticHorseEntity> topFrontLeftLegModel = getMultipartModel(partsToRender, "top_front_legs");
             MultipartModel<GeneticHorseEntity> kneeFrontLeftLegModel = getMultipartModel(partsToRender, "knee");
-            MultipartModel<GeneticHorseEntity> bottomFrontLeftLegModel = getMultipartModel(partsToRender, "bottomLeg");
+            MultipartModel<GeneticHorseEntity> bottomFrontLeftLegModel = getMultipartModel(partsToRender, "bottom_legs");
             MultipartModel<GeneticHorseEntity> hoofFrontLeftLegModel = getMultipartModel(partsToRender, "hoof");
-            MultipartModel<GeneticHorseEntity> frontRightLegModel = getMultipartModel(partsToRender, "leg");
-            MultipartModel<GeneticHorseEntity> topFrontRightLegModel = getMultipartModel(partsToRender, "topFrontLeg");
+            MultipartModel<GeneticHorseEntity> topFrontRightLegModel = getMultipartModel(partsToRender, "top_front_legs");
             MultipartModel<GeneticHorseEntity> kneeFrontRightLegModel = getMultipartModel(partsToRender, "knee");
-            MultipartModel<GeneticHorseEntity> bottomFrontRightLegModel = getMultipartModel(partsToRender, "bottomLeg");
+            MultipartModel<GeneticHorseEntity> bottomFrontRightLegModel = getMultipartModel(partsToRender, "bottom_legs");
             MultipartModel<GeneticHorseEntity> hoofFrontRightLegModel = getMultipartModel(partsToRender, "hoof");
 
             MultipartModel<GeneticHorseEntity> hipsModel = getMultipartModel(partsToRender, "hips");
             MultipartModel<GeneticHorseEntity> tailModel = getMultipartModel(partsToRender, "tail");
 
-            MultipartModel<GeneticHorseEntity> backLeftLegModel = getMultipartModel(partsToRender, "leg");
-            MultipartModel<GeneticHorseEntity> topBackLeftLegModel = getMultipartModel(partsToRender, "topBackLeg");
+            MultipartModel<GeneticHorseEntity> topBackLeftLegModel = getMultipartModel(partsToRender, "top_back_legs");
             MultipartModel<GeneticHorseEntity> kneeBackLeftLegModel = getMultipartModel(partsToRender, "knee");
-            MultipartModel<GeneticHorseEntity> bottomBackLeftLegModel = getMultipartModel(partsToRender, "bottomLeg");
+            MultipartModel<GeneticHorseEntity> bottomBackLeftLegModel = getMultipartModel(partsToRender, "bottom_legs");
             MultipartModel<GeneticHorseEntity> hoofBackLeftLegModel = getMultipartModel(partsToRender, "hoof");
-            MultipartModel<GeneticHorseEntity> backRightLegModel = getMultipartModel(partsToRender, "leg");
-            MultipartModel<GeneticHorseEntity> topBackRightLegModel = getMultipartModel(partsToRender, "topBackLeg");
+            MultipartModel<GeneticHorseEntity> topBackRightLegModel = getMultipartModel(partsToRender, "top_back_legs");
             MultipartModel<GeneticHorseEntity> kneeBackRightLegModel = getMultipartModel(partsToRender, "knee");
-            MultipartModel<GeneticHorseEntity> bottomBackRightLegModel = getMultipartModel(partsToRender, "bottomLeg");
+            MultipartModel<GeneticHorseEntity> bottomBackRightLegModel = getMultipartModel(partsToRender, "bottom_legs");
             MultipartModel<GeneticHorseEntity> hoofBackRightLegModel = getMultipartModel(partsToRender, "hoof");
 //            ;
             MultipartModel<GeneticHorseEntity> withersModel = getMultipartModel(partsToRender, "withers");
@@ -135,36 +135,31 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                                     )
                         );
                         attachAndChain(poseStack, buffer, packedLight, entity,
-                                chestModel, "frontLeftLegAnchor", frontLeftLegModel, "chestAnchor",
-                                () -> attachAndChain(poseStack, buffer, packedLight, entity,
-                                        frontLeftLegModel, "topLegAnchor", topFrontLeftLegModel, "legAnchor",
+                                        chestModel, "topLegAnchor", topFrontLeftLegModel, "legAnchor",
                                         () -> attachAndChain(poseStack, buffer, packedLight, entity,
-                                                topFrontLeftLegModel, "kneeAnchor", kneeFrontLeftLegModel, "topLegAnchor",
+                                                topFrontLeftLegModel, "kneeAnchor", kneeFrontLeftLegModel, "knee_individual",
                                                 () -> attachAndChain(poseStack, buffer, packedLight, entity,
-                                                        kneeFrontLeftLegModel, "bottomLegAnchor", bottomFrontLeftLegModel, "kneeAnchor",
+                                                        kneeFrontLeftLegModel, "knee_individual", bottomFrontLeftLegModel, "kneeAnchor",
                                                         () -> attachAndChain(poseStack, buffer, packedLight, entity,
-                                                                bottomFrontLeftLegModel, "hoofAnchor", hoofFrontLeftLegModel, "bottomLegAnchor",
+                                                                bottomFrontLeftLegModel, "hoofAnchor", hoofFrontLeftLegModel, "hoof_average_individual",
                                                                 null
                                                         )
                                                 )
                                         )
-                                )
                         );
-                        attachAndChain(poseStack, buffer, packedLight, entity,
-                                chestModel, "frontRightLegAnchor", frontRightLegModel, "chestAnchor",
-                                () -> attachAndChain(poseStack, buffer, packedLight, entity,
-                                        frontRightLegModel, "topLegAnchor", topFrontRightLegModel, "legAnchor",
+                       attachAndChain(poseStack, buffer, packedLight, entity,
+                                        chestModel, "topLegAnchor", topFrontRightLegModel, "legAnchor",
                                         () -> attachAndChain(poseStack, buffer, packedLight, entity,
-                                                topFrontRightLegModel, "kneeAnchor", kneeFrontRightLegModel, "topLegAnchor",
+                                                topFrontRightLegModel, "kneeAnchor", kneeFrontRightLegModel, "knee_individual",
                                                 () -> attachAndChain(poseStack, buffer, packedLight, entity,
-                                                        kneeFrontRightLegModel, "bottomLegAnchor", bottomFrontRightLegModel, "kneeAnchor",
+                                                        kneeFrontRightLegModel, "knee_individual", bottomFrontRightLegModel, "kneeAnchor",
                                                         () -> attachAndChain(poseStack, buffer, packedLight, entity,
-                                                                bottomFrontRightLegModel, "hoofAnchor", hoofFrontRightLegModel, "bottomLegAnchor",
+                                                                bottomFrontRightLegModel, "hoofAnchor", hoofFrontRightLegModel, "hoof_average_individual",
                                                                 null
                                                         )
                                                 )
                                         )
-                                )
+
                             );
                         }
                 );
@@ -175,36 +170,31 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                             attachAndChain(poseStack, buffer, packedLight, entity,
                                     hipsModel, "tailAnchor", tailModel, "hipsAnchor", null);
                             attachAndChain(poseStack, buffer, packedLight, entity,
-                                    hipsModel, "backLeftLegAnchor", backLeftLegModel, "hipsAnchor",
-                                    () -> attachAndChain(poseStack, buffer, packedLight, entity,
-                                            backLeftLegModel, "topLegAnchor", topBackLeftLegModel, "legAnchor",
+                                            hipsModel, "topLegAnchor", topBackLeftLegModel, "legAnchor",
                                             () -> attachAndChain(poseStack, buffer, packedLight, entity,
-                                                    topBackLeftLegModel, "kneeAnchor", kneeBackLeftLegModel, "topLegAnchor",
+                                                    topBackLeftLegModel, "kneeAnchor", kneeBackLeftLegModel, "knee_individual",
                                                     () -> attachAndChain(poseStack, buffer, packedLight, entity,
-                                                            kneeBackLeftLegModel, "bottomLegAnchor", bottomBackLeftLegModel, "kneeAnchor",
+                                                            kneeBackLeftLegModel, "knee_individual", bottomBackLeftLegModel, "kneeAnchor",
                                                             () -> attachAndChain(poseStack, buffer, packedLight, entity,
-                                                                    bottomBackLeftLegModel, "hoofAnchor", hoofBackLeftLegModel, "bottomLegAnchor",
+                                                                    bottomBackLeftLegModel, "hoofAnchor", hoofBackLeftLegModel, "hoof_average_individual",
                                                                     null
                                                             )
                                                     )
                                             )
-                                    )
                             );
-                            attachAndChain(poseStack, buffer, packedLight, entity,
-                                    hipsModel, "backRightLegAnchor", backRightLegModel, "hipsAnchor",
-                                    () -> attachAndChain(poseStack, buffer, packedLight, entity,
-                                            backRightLegModel, "topLegAnchor", topBackRightLegModel, "legAnchor",
+                           attachAndChain(poseStack, buffer, packedLight, entity,
+                                            hipsModel, "topLegAnchor", topBackRightLegModel, "legAnchor",
                                             () -> attachAndChain(poseStack, buffer, packedLight, entity,
-                                                    topBackRightLegModel, "kneeAnchor", kneeBackRightLegModel, "topLegAnchor",
+                                                    topBackRightLegModel, "kneeAnchor", kneeBackRightLegModel, "knee_individual",
                                                     () -> attachAndChain(poseStack, buffer, packedLight, entity,
-                                                            kneeBackRightLegModel, "bottomLegAnchor", bottomBackRightLegModel, "kneeAnchor",
+                                                            kneeBackRightLegModel, "knee_individual", bottomBackRightLegModel, "kneeAnchor",
                                                             () -> attachAndChain(poseStack, buffer, packedLight, entity,
-                                                                    bottomBackRightLegModel, "hoofAnchor", hoofBackRightLegModel, "bottomLegAnchor",
+                                                                    bottomBackRightLegModel, "hoofAnchor", hoofBackRightLegModel, "hoof_average_individual",
                                                                     null
                                                             )
                                                     )
                                             )
-                                    )
+
                             );
                         });
 
@@ -378,7 +368,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
             case "back_leg_top_average_short_2" ->
                     new back_leg_top_average_short_2(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_AVERAGE_SHORT_2));
             case "back_leg_top_average_average_1" ->
-                    new back_leg_top_average_average_1(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_AVERAGE_AVERAGE_1));
+                    new top_back_legs_average_average_1(modelSet.bakeLayer(ModModelLayers.TOP_BACK_LEGS_AVERAGE_AVERAGE_1));
             case "back_leg_top_average_average_2" ->
                     new back_leg_top_average_average_2(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_AVERAGE_AVERAGE_2));
             case "back_leg_top_average_long_1" ->
@@ -735,6 +725,26 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                     new withers_lean(modelSet.bakeLayer(ModModelLayers.WITHERS_LEAN));
             case "withers_muscular" ->
                     new withers_muscular(modelSet.bakeLayer(ModModelLayers.WITHERS_MUSCULAR));
+
+            //Front Top Legs
+            case "top_front_legs_average_average_1" ->
+                    new top_front_legs_average_average_1(modelSet.bakeLayer(ModModelLayers.TOP_FRONT_LEGS_AVERAGE_AVERAGE_1));
+            //Back Top Legs
+            case "top_back_legs_average_average_1" ->
+                    new top_back_legs_average_average_1(modelSet.bakeLayer(ModModelLayers.TOP_BACK_LEGS_AVERAGE_AVERAGE_1));
+
+            //Bottom Legs
+            case "bottom_legs_average_average_1" ->
+                    new bottom_legs_average_average_1(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_AVERAGE_AVERAGE_1));
+
+            //Knees
+            case "knees" ->
+                    new knees(modelSet.bakeLayer(ModModelLayers.KNEES));
+            //Hooves
+            case "hoof_average" ->
+                    new hoof_average(modelSet.bakeLayer(ModModelLayers.HOOF_AVERAGE));
+
+
 
 
             default -> null;
