@@ -135,7 +135,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                                     )
                         );
                         attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
-                                        chestModel, "topLegAnchor", topFrontLeftLegModel, "legAnchor",
+                                        chestModel, "frontLeftLegAnchor", topFrontLeftLegModel, "chestAnchor",
                                         () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                                 topFrontLeftLegModel, "kneeAnchor", kneeFrontLeftLegModel, "knee_individual",
                                                 () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
@@ -148,7 +148,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                                         )
                         );
                        attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
-                                        chestModel, "topLegAnchor", topFrontRightLegModel, "legAnchor",
+                                        chestModel, "frontRightLegAnchor", topFrontRightLegModel, "chestAnchor",
                                         () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                                 topFrontRightLegModel, "kneeAnchor", kneeFrontRightLegModel, "knee_individual",
                                                 () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
@@ -170,7 +170,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                             attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                     hipsModel, "tailAnchor", tailModel, "hipsAnchor", null);
                             attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
-                                            hipsModel, "topLegAnchor", topBackLeftLegModel, "legAnchor",
+                                            hipsModel, "backLeftLegAnchor", topBackLeftLegModel, "chestAnchor",
                                             () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                                     topBackLeftLegModel, "kneeAnchor", kneeBackLeftLegModel, "knee_individual",
                                                     () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
@@ -183,7 +183,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                                             )
                             );
                            attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
-                                            hipsModel, "topLegAnchor", topBackRightLegModel, "legAnchor",
+                                            hipsModel, "backRightLegAnchor", topBackRightLegModel, "chestAnchor",
                                             () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                                     topBackRightLegModel, "kneeAnchor", kneeBackRightLegModel, "knee_individual",
                                                     () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
@@ -727,9 +727,6 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
             //Front Top Legs
             case "top_front_legs_average_average_1" ->
                     new top_front_legs_average_average_1(modelSet.bakeLayer(ModModelLayers.TOP_FRONT_LEGS_AVERAGE_AVERAGE_1));
-            //Back Top Legs
-            case "top_back_legs_average_average_1" ->
-                    new top_back_legs_average_average_1(modelSet.bakeLayer(ModModelLayers.TOP_BACK_LEGS_AVERAGE_AVERAGE_1));
 
             //Bottom Legs
             case "bottom_legs_average_average_1" ->
