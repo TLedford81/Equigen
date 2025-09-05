@@ -12,10 +12,11 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
     public Map<String, Float> getNeckGenetics(GeneticHorseEntity entity){
         //NECK_POS AND NECK_CURVE
         Map<String, Float> renderGenetics = entity.getRenderGenetics();
-        return Map.of(
-                "NECK_POS", renderGenetics.get("NECK_POS"),
-                "NECK_CURVE", renderGenetics.get("NECK_CURVE")
-        );
+            return Map.of(
+                    "NECK_POS", renderGenetics.get("NECK_POS"),
+                    "NECK_CURVE", renderGenetics.get("NECK_CURVE")
+            );
+
     }
 
 }

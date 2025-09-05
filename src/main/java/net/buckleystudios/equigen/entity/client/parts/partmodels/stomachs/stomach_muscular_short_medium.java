@@ -6,16 +6,21 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.stomachs;// Ma
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartStomachModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class stomach_muscular_short_medium extends MultipartStomachModel<GeneticHorseEntity> {
 	private final ModelPart stomach_muscular_short_medium;
+	private final ModelPart backAnchor;
 
 	public stomach_muscular_short_medium(ModelPart root) {
 		this.stomach_muscular_short_medium = root.getChild("stomach_muscular_short_medium");
+		this.backAnchor = this.stomach_muscular_short_medium.getChild("backAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -44,6 +49,8 @@ public class stomach_muscular_short_medium extends MultipartStomachModel<Genetic
 
 		PartDefinition cube_r4 = stomach_muscular_short_medium_stomach_back_lower.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(439, 476).addBox(-5.08F, -4.24F, -5.52F, 5.0F, 10.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.58F, -3.3346F, -1.3597F, 1.7453F, 0.0F, 0.0F));
 
+		PartDefinition backAnchor = stomach_muscular_short_medium.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.5F, 7.9274F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -62,5 +69,11 @@ public class stomach_muscular_short_medium extends MultipartStomachModel<Genetic
         return stomach_muscular_short_medium;
     }
 
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"backAnchor",  asTransform(this.backAnchor)
+		);
+	}
 
 }

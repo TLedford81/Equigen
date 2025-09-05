@@ -6,17 +6,21 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.withers;// Mad
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartWithersModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class withers_lean extends MultipartWithersModel<GeneticHorseEntity> {
 	private final ModelPart withers_lean;
-
+	private final ModelPart backAnchor;
 
 	public withers_lean(ModelPart root) {
 		this.withers_lean = root.getChild("withers_lean");
+		this.backAnchor = this.withers_lean.getChild("backAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -32,6 +36,8 @@ public class withers_lean extends MultipartWithersModel<GeneticHorseEntity> {
 		PartDefinition withers_lean__lower = withers_lean.addOrReplaceChild("withers_lean__lower", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		PartDefinition cube_r2 = withers_lean__lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(731, 25).addBox(-4.08F, -6.88F, -5.52F, 5.0F, 17.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.516F, -2.9604F, -1.0801F, 1.2654F, 0.0F, 0.0F));
+
+		PartDefinition backAnchor = withers_lean.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.75F, -4.412F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
@@ -51,5 +57,9 @@ public class withers_lean extends MultipartWithersModel<GeneticHorseEntity> {
         return withers_lean;
     }
 
-
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"backAnchor", asTransform(backAnchor));
+	}
 }
