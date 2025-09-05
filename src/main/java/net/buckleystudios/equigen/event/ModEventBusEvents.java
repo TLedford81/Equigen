@@ -6,13 +6,14 @@ import net.buckleystudios.equigen.entity.ModEntityAttributes;
 import net.buckleystudios.equigen.entity.client.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.backs.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.backtoplegs.*;
-import net.buckleystudios.equigen.entity.client.parts.partmodels.bottomlegs.*;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.bottomlegs.bottom_legs_average_average_1;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.chests.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.ears.ears;
-import net.buckleystudios.equigen.entity.client.parts.partmodels.fronttoplegs.*;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.fronttoplegs.top_front_legs_average_average_1;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.heads.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.hips.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.hooves.hoof_average;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.knees.knees;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.arched.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.ewed.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.straight.*;
@@ -278,6 +279,9 @@ public class ModEventBusEvents {
 
         //Hooves
         event.registerLayerDefinition(ModModelLayers.HOOF_AVERAGE, hoof_average::createBodyLayer);
+
+        //Knees
+        event.registerLayerDefinition(ModModelLayers.KNEES, knees::createBodyLayer);
 
         //Bottom Legs
         event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_AVERAGE_AVERAGE_1, bottom_legs_average_average_1::createBodyLayer);

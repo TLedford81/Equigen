@@ -92,11 +92,11 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
             MultipartModel<GeneticHorseEntity> rightEarModel = getMultipartModel(partsToRender, "ear");
 
             MultipartModel<GeneticHorseEntity> topFrontLeftLegModel = getMultipartModel(partsToRender, "top_front_legs");
-            MultipartModel<GeneticHorseEntity> kneeFrontLeftLegModel = getMultipartModel(partsToRender, "knee");
+            MultipartModel<GeneticHorseEntity> kneeFrontLeftLegModel = getMultipartModel(partsToRender, "knees");
             MultipartModel<GeneticHorseEntity> bottomFrontLeftLegModel = getMultipartModel(partsToRender, "bottom_legs");
             MultipartModel<GeneticHorseEntity> hoofFrontLeftLegModel = getMultipartModel(partsToRender, "hoof");
             MultipartModel<GeneticHorseEntity> topFrontRightLegModel = getMultipartModel(partsToRender, "top_front_legs");
-            MultipartModel<GeneticHorseEntity> kneeFrontRightLegModel = getMultipartModel(partsToRender, "knee");
+            MultipartModel<GeneticHorseEntity> kneeFrontRightLegModel = getMultipartModel(partsToRender, "knees");
             MultipartModel<GeneticHorseEntity> bottomFrontRightLegModel = getMultipartModel(partsToRender, "bottom_legs");
             MultipartModel<GeneticHorseEntity> hoofFrontRightLegModel = getMultipartModel(partsToRender, "hoof");
 
@@ -104,11 +104,11 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
             MultipartModel<GeneticHorseEntity> tailModel = getMultipartModel(partsToRender, "tail");
 
             MultipartModel<GeneticHorseEntity> topBackLeftLegModel = getMultipartModel(partsToRender, "top_back_legs");
-            MultipartModel<GeneticHorseEntity> kneeBackLeftLegModel = getMultipartModel(partsToRender, "knee");
+            MultipartModel<GeneticHorseEntity> kneeBackLeftLegModel = getMultipartModel(partsToRender, "knees");
             MultipartModel<GeneticHorseEntity> bottomBackLeftLegModel = getMultipartModel(partsToRender, "bottom_legs");
             MultipartModel<GeneticHorseEntity> hoofBackLeftLegModel = getMultipartModel(partsToRender, "hoof");
             MultipartModel<GeneticHorseEntity> topBackRightLegModel = getMultipartModel(partsToRender, "top_back_legs");
-            MultipartModel<GeneticHorseEntity> kneeBackRightLegModel = getMultipartModel(partsToRender, "knee");
+            MultipartModel<GeneticHorseEntity> kneeBackRightLegModel = getMultipartModel(partsToRender, "knees");
             MultipartModel<GeneticHorseEntity> bottomBackRightLegModel = getMultipartModel(partsToRender, "bottom_legs");
             MultipartModel<GeneticHorseEntity> hoofBackRightLegModel = getMultipartModel(partsToRender, "hoof");
 //            ;
@@ -170,7 +170,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                             attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                     hipsModel, "tailAnchor", tailModel, "hipsAnchor", null);
                             attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
-                                            hipsModel, "backLeftLegAnchor", topBackLeftLegModel, "chestAnchor",
+                                            hipsModel, "backLeftLegAnchor", topBackLeftLegModel, "hipsAnchor",
                                             () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                                     topBackLeftLegModel, "kneeAnchor", kneeBackLeftLegModel, "knee_individual",
                                                     () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
@@ -183,7 +183,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                                             )
                             );
                            attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
-                                            hipsModel, "backRightLegAnchor", topBackRightLegModel, "chestAnchor",
+                                            hipsModel, "backRightLegAnchor", topBackRightLegModel, "hipsAnchor",
                                             () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
                                                     topBackRightLegModel, "kneeAnchor", kneeBackRightLegModel, "knee_individual",
                                                     () -> attachAndChain(poseStack, buffer, packedLight, entity, partialTicks,
@@ -274,9 +274,9 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
     private static String getPartFromPrefix(List<String> parts, String prefix) {
         for (String p : parts){
             EquigenMod.LOGGER.info(p);
-            if (p != null && p.startsWith(prefix + "_")) return p;
+            if (p != null && p.startsWith(prefix)) return p;
         }
-        EquigenMod.LOGGER.info("Could Not Find Part from Prefix: " + prefix);
+        EquigenMod.LOGGER.error("Could Not Find Part from Prefix: " + prefix);
         return null;
     }
 
@@ -369,8 +369,8 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                     new back_leg_top_average_short_1(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_AVERAGE_SHORT_1));
             case "back_leg_top_average_short_2" ->
                     new back_leg_top_average_short_2(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_AVERAGE_SHORT_2));
-            case "back_leg_top_average_average_1" ->
-                    new top_back_legs_average_average_1(modelSet.bakeLayer(ModModelLayers.TOP_BACK_LEGS_AVERAGE_AVERAGE_1));
+            case "top_back_legs_average_average_1" ->
+                    new top_back_legs_average_average_1(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_AVERAGE_AVERAGE_1));
             case "back_leg_top_average_average_2" ->
                     new back_leg_top_average_average_2(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_AVERAGE_AVERAGE_2));
             case "back_leg_top_average_long_1" ->
