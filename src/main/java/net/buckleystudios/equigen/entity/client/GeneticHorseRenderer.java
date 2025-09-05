@@ -272,7 +272,11 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
 
     // Find first ID in the list with a given prefix (e.g., "back_", "chest_", "neck_")
     private static String getPartFromPrefix(List<String> parts, String prefix) {
-        for (String p : parts) if (p != null && p.startsWith(prefix + "_")) return p;
+        for (String p : parts){
+            EquigenMod.LOGGER.info(p);
+            if (p != null && p.startsWith(prefix + "_")) return p;
+        }
+        EquigenMod.LOGGER.info("Could Not Find Part from Prefix: " + prefix);
         return null;
     }
 

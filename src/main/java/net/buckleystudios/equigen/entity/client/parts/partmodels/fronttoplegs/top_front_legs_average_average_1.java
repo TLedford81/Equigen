@@ -72,6 +72,4 @@ public class top_front_legs_average_average_1 extends MultipartFrontTopLegModel<
                 "chestAnchor", asTransform(this.chestAnchor),
                 "kneeAnchor", asTransform(this.kneeAnchor));
     }
-
-
 }
