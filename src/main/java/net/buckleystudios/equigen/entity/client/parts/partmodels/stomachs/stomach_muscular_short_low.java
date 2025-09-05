@@ -6,16 +6,21 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.stomachs;// Ma
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartStomachModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class stomach_muscular_short_low extends MultipartStomachModel<GeneticHorseEntity> {
 	private final ModelPart stomach_muscular_short_low;
+	private final ModelPart backAnchor;
 
 	public stomach_muscular_short_low(ModelPart root) {
 		this.stomach_muscular_short_low = root.getChild("stomach_muscular_short_low");
+		this.backAnchor = this.stomach_muscular_short_low.getChild("backAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -44,6 +49,8 @@ public class stomach_muscular_short_low extends MultipartStomachModel<GeneticHor
 
 		PartDefinition cube_r4 = stomach_muscular_short_low_stomach_back_lower.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(391, 462).addBox(-5.08F, -7.24F, -5.52F, 5.0F, 13.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.58F, -3.595F, 0.1175F, 1.7453F, 0.0F, 0.0F));
 
+		PartDefinition backAnchor = stomach_muscular_short_low.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.75F, 9.1969F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -62,5 +69,11 @@ public class stomach_muscular_short_low extends MultipartStomachModel<GeneticHor
         return stomach_muscular_short_low;
     }
 
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"backAnchor",  asTransform(this.backAnchor)
+		);
+	}
 
 }

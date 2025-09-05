@@ -39,7 +39,7 @@ public class back_muscular_short_thin extends MultipartBackModel<GeneticHorseEnt
 
 		PartDefinition back_muscular_short_thin_back_top_lower = back_muscular_short_thin.addOrReplaceChild("back_muscular_short_thin_back_top_lower", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.6257F));
 
-		PartDefinition back_muscular_short_thin_back_top_lower_individual = back_muscular_short_thin_back_top_lower.addOrReplaceChild("back_muscular_short_thin_back_top_lower_individual", CubeListBuilder.create(), PartPose.offset(-0.0234F, -0.5855F, 0.6001F));
+		PartDefinition back_muscular_short_thin_back_top_lower_individual = back_muscular_short_thin_back_top_lower.addOrReplaceChild("back_muscular_short_thin_back_top_lower_individual", CubeListBuilder.create(), PartPose.offset(-0.0233F, -0.5855F, 0.6F));
 
 		PartDefinition cube_r1 = back_muscular_short_thin_back_top_lower_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(95, 550).addBox(-6.08F, -6.24F, -4.52F, 7.0F, 9.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.58F, -2.164F, 1.5573F, 1.6581F, 0.0F, 0.0F));
 
@@ -51,7 +51,7 @@ public class back_muscular_short_thin extends MultipartBackModel<GeneticHorseEnt
 
 		PartDefinition hipsAnchor = back_muscular_short_thin.addOrReplaceChild("hipsAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.75F, 5.75F));
 
-		PartDefinition stomachAnchor = back_muscular_short_thin.addOrReplaceChild("stomachAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.25F, 0.0F));
+		PartDefinition stomachAnchor = back_muscular_short_thin.addOrReplaceChild("stomachAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.25F, 4.4F));
 
 		PartDefinition withersAnchor = back_muscular_short_thin.addOrReplaceChild("withersAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.75F, -5.5F));
 

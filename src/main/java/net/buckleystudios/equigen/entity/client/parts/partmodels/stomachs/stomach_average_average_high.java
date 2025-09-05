@@ -29,7 +29,7 @@ public class stomach_average_average_high extends MultipartStomachModel<GeneticH
 
 		PartDefinition stomach_average_average_high = partdefinition.addOrReplaceChild("stomach_average_average_high", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 3.2179F));
 
-		PartDefinition stomach_average_average_high_stomach_front_upper = stomach_average_average_high.addOrReplaceChild("stomach_average_average_high_stomach_front_upper", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -4.0223F));
+		PartDefinition stomach_average_average_high_stomach_front_upper = stomach_average_average_high.addOrReplaceChild("stomach_average_average_high_stomach_front_upper", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -4.0224F));
 
 		PartDefinition stomach_average_average_high_stomach_front_upper_individual = stomach_average_average_high_stomach_front_upper.addOrReplaceChild("stomach_average_average_high_stomach_front_upper_individual", CubeListBuilder.create(), PartPose.offset(0.0084F, -0.3856F, -0.79F));
 
@@ -49,7 +49,7 @@ public class stomach_average_average_high extends MultipartStomachModel<GeneticH
 
 		PartDefinition cube_r4 = stomach_average_average_high_stomach_back_lower.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(431, 417).addBox(-4.08F, -0.24F, -5.52F, 4.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.9004F, -3.8217F, 1.7453F, 0.0F, 0.0F));
 
-		PartDefinition backAnchor = stomach_average_average_high.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.0F, 3.5321F));
+		PartDefinition backAnchor = stomach_average_average_high.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.25F, 6.7821F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}

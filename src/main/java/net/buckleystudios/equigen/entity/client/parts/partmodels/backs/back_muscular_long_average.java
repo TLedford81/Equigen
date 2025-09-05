@@ -39,7 +39,7 @@ public class back_muscular_long_average extends MultipartBackModel<GeneticHorseE
 
 		PartDefinition back_muscular_long_average_back_top_lower = back_muscular_long_average.addOrReplaceChild("back_muscular_long_average_back_top_lower", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -0.3575F));
 
-		PartDefinition back_muscular_long_average_back_top_lower_individual = back_muscular_long_average_back_top_lower.addOrReplaceChild("back_muscular_long_average_back_top_lower_individual", CubeListBuilder.create(), PartPose.offset(-0.0234F, -0.7589F, 2.112F));
+		PartDefinition back_muscular_long_average_back_top_lower_individual = back_muscular_long_average_back_top_lower.addOrReplaceChild("back_muscular_long_average_back_top_lower_individual", CubeListBuilder.create(), PartPose.offset(-0.0233F, -0.7589F, 2.112F));
 
 		PartDefinition cube_r1 = back_muscular_long_average_back_top_lower_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(252, 578).addBox(-6.08F, -7.24F, -5.52F, 7.0F, 10.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.58F, -2.7056F, 2.0118F, 1.6581F, 0.0F, 0.0F));
 
@@ -51,7 +51,7 @@ public class back_muscular_long_average extends MultipartBackModel<GeneticHorseE
 
 		PartDefinition hipsAnchor = back_muscular_long_average.addOrReplaceChild("hipsAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -3.5F, 6.75F));
 
-		PartDefinition stomachAnchor = back_muscular_long_average.addOrReplaceChild("stomachAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.5F, 0.0F));
+		PartDefinition stomachAnchor = back_muscular_long_average.addOrReplaceChild("stomachAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.5F, 5.4F));
 
 		PartDefinition withersAnchor = back_muscular_long_average.addOrReplaceChild("withersAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -3.5F, -6.5F));
 

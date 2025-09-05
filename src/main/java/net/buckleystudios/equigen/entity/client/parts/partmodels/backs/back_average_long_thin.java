@@ -39,7 +39,7 @@ public class back_average_long_thin extends MultipartBackModel<GeneticHorseEntit
 
 		PartDefinition back_average_long_thin_back_top_lower = back_average_long_thin.addOrReplaceChild("back_average_long_thin_back_top_lower", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -0.1788F));
 
-		PartDefinition back_average_long_thin_back_top_lower_individual = back_average_long_thin_back_top_lower.addOrReplaceChild("back_average_long_thin_back_top_lower_individual", CubeListBuilder.create(), PartPose.offset(0.0297F, -0.542F, 1.979F));
+		PartDefinition back_average_long_thin_back_top_lower_individual = back_average_long_thin_back_top_lower.addOrReplaceChild("back_average_long_thin_back_top_lower_individual", CubeListBuilder.create(), PartPose.offset(0.0297F, -0.542F, 1.9791F));
 
 		PartDefinition cube_r1 = back_average_long_thin_back_top_lower_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(192, 517).addBox(-5.08F, -7.24F, -4.52F, 6.0F, 10.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.2075F, 2.0554F, 1.6581F, 0.0F, 0.0F));
 
@@ -51,7 +51,7 @@ public class back_average_long_thin extends MultipartBackModel<GeneticHorseEntit
 
 		PartDefinition hipsAnchor = back_average_long_thin.addOrReplaceChild("hipsAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.75F, 6.75F));
 
-		PartDefinition stomachAnchor = back_average_long_thin.addOrReplaceChild("stomachAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.25F, 0.0F));
+		PartDefinition stomachAnchor = back_average_long_thin.addOrReplaceChild("stomachAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.25F, 5.5F));
 
 		PartDefinition withersAnchor = back_average_long_thin.addOrReplaceChild("withersAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.75F, -6.25F));
 

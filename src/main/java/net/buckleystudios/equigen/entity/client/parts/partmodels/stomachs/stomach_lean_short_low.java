@@ -6,16 +6,21 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.stomachs;// Ma
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.parts.MultipartStomachModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
+import java.util.Map;
+
 public class stomach_lean_short_low extends MultipartStomachModel<GeneticHorseEntity> {
 	private final ModelPart stomach_lean_short_low;
+	private final ModelPart backAnchor;
 
 	public stomach_lean_short_low(ModelPart root) {
 		this.stomach_lean_short_low = root.getChild("stomach_lean_short_low");
+		this.backAnchor = this.stomach_lean_short_low.getChild("backAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -44,6 +49,8 @@ public class stomach_lean_short_low extends MultipartStomachModel<GeneticHorseEn
 
 		PartDefinition cube_r4 = stomach_lean_short_low_stomach_back_lower.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(407, 303).addBox(-4.0792F, -7.2976F, -5.4648F, 4.0F, 13.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.0792F, -3.5507F, 0.1838F, 1.7453F, 0.0F, 0.0F));
 
+		PartDefinition backAnchor = stomach_lean_short_low.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.75F, 9.2863F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -62,5 +69,11 @@ public class stomach_lean_short_low extends MultipartStomachModel<GeneticHorseEn
         return stomach_lean_short_low;
     }
 
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"backAnchor",  asTransform(this.backAnchor)
+		);
+	}
 
 }
