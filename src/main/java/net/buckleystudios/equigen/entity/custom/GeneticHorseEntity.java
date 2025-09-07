@@ -84,6 +84,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public static final EntityDataAccessor<Float> GENE_BACK_GIRTH = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_TOP_LEG = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_BOTTOM_LEG = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> GENE_LEG_WIDTH = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_TOP_HIND_LEG_WIDTH = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_CHEST_SIZE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_HEAD_TYPE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
@@ -436,6 +437,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         builder.define(GENE_BACK_GIRTH, 0.0f);
         builder.define(GENE_TOP_LEG, 0.0f);
         builder.define(GENE_BOTTOM_LEG, 0.0f);
+        builder.define(GENE_LEG_WIDTH, 0.0f);
         builder.define(GENE_TOP_HIND_LEG_WIDTH, 0.0f);
         builder.define(GENE_CHEST_SIZE, 0.0f);
         builder.define(GENE_HEAD_TYPE, 0.0f);
@@ -1843,6 +1845,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         this.entityData.set(GENE_BACK_GIRTH, this.getGenetic("BACK_GIRTH"));
         this.entityData.set(GENE_TOP_LEG, this.getGenetic("TOP_LEG"));
         this.entityData.set(GENE_BOTTOM_LEG, this.getGenetic("BOTTOM_LEG"));
+        this.entityData.set(GENE_LEG_WIDTH, this.getGenetic("LEG_WIDTH"));
         this.entityData.set(GENE_TOP_HIND_LEG_WIDTH, this.getGenetic("TOP_HIND_LEG_WIDTH"));
         this.entityData.set(GENE_CHEST_SIZE, this.getGenetic("CHEST_SIZE"));
         this.entityData.set(GENE_HEAD_TYPE, this.getGenetic("HEAD_TYPE"));
@@ -1865,6 +1868,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         GENE_MAP.put("BACK_GIRTH", this.entityData.get(GENE_BACK_GIRTH));
         GENE_MAP.put("TOP_LEG", this.entityData.get(GENE_TOP_LEG));
         GENE_MAP.put("BOTTOM_LEG", this.entityData.get(GENE_BOTTOM_LEG));
+        GENE_MAP.put("LEG_WIDTH", this.entityData.get(GENE_LEG_WIDTH));
         GENE_MAP.put("TOP_HIND_LEG_WIDTH", this.entityData.get(GENE_TOP_HIND_LEG_WIDTH));
         GENE_MAP.put("CHEST_SIZE", this.entityData.get(GENE_CHEST_SIZE));
         GENE_MAP.put("HEAD_TYPE", this.entityData.get(GENE_HEAD_TYPE));
@@ -1902,11 +1906,11 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         parts.add(partNameBuilder.PartStringGenerator("chest"));
 //        parts.add("chest_average_average_1");
         parts.add(partNameBuilder.PartStringGenerator("ears"));
-//        parts.add(partNameBuilder.PartStringGenerator("front_leg_top"));
-        parts.add("top_front_legs_average_average_1");
-        //        parts.add(partNameBuilder.PartStringGenerator("back_leg_top"));
-        parts.add("top_back_legs_average_average_1");
-        parts.add(partNameBuilder.PartStringGenerator("knees"));
+        parts.add(partNameBuilder.PartStringGenerator("top_front_legs"));
+//        parts.add("top_front_legs_average_average_1");
+        parts.add(partNameBuilder.PartStringGenerator("top_back_legs"));
+//        parts.add("top_back_legs_average_average_1");
+        parts.add("knees");
 //        parts.add(partNameBuilder.PartStringGenerator("hoof"));
         parts.add("hoof_average");
         //        parts.add(partNameBuilder.PartStringGenerator("bottom_legs"));

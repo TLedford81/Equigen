@@ -6,11 +6,10 @@ import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.client.parts.MultipartModel;
 import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.backs.*;
-import net.buckleystudios.equigen.entity.client.parts.partmodels.backtoplegs.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.bottomlegs.bottom_legs_average_average_1;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.chests.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.ears.ears;
-import net.buckleystudios.equigen.entity.client.parts.partmodels.fronttoplegs.top_front_legs_average_average_1;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.fronttoplegs.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.heads.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.hips.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.hooves.hoof_average;
@@ -21,6 +20,7 @@ import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.straight.
 import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.swan.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.stomachs.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.tails.*;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.topbacklegs.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.withers.withers_average;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.withers.withers_lean;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.withers.withers_muscular;
@@ -121,13 +121,13 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
 // (optional) snap to pixel grid without zeroing negatives
 // dy = (float)Math.floor(dy * 16f) / 16f;
 
-        EquigenMod.LOGGER.info("footY={}px  -> dy={}px", footY * 16f, dy * 16f);
-
-
-        EquigenMod.LOGGER.info("hoof[min,max]=({}, {}) model[min,max]=({}, {}) dy={}px",
-                hoofTracker.minY * 16f, hoofTracker.maxY * 16f,
-                tracker.minY * 16f,   tracker.maxY * 16f,
-                dy * 16f);
+//        EquigenMod.LOGGER.info("footY={}px  -> dy={}px", footY * 16f, dy * 16f);
+//
+//
+//        EquigenMod.LOGGER.info("hoof[min,max]=({}, {}) model[min,max]=({}, {}) dy={}px",
+//                hoofTracker.minY * 16f, hoofTracker.maxY * 16f,
+//                tracker.minY * 16f,   tracker.maxY * 16f,
+//                dy * 16f);
         //Pass 2
         poseStack.pushPose();
         try {
@@ -397,42 +397,42 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                     new back_muscular_long_thick(modelSet.bakeLayer(ModModelLayers.BACK_MUSCULAR_LONG_THICK));
 
             // Back Top Legs
-            case "back_leg_top_thin_short_1" ->
-                    new back_leg_top_thin_short_1(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_THIN_SHORT_1));
-            case "back_leg_top_thin_short_2" ->
-                    new back_leg_top_thin_short_2(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_THIN_SHORT_2));
-            case "back_leg_top_thin_average_1" ->
-                    new back_leg_top_thin_average_1(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_THIN_AVERAGE_1));
-            case "back_leg_top_thin_average_2" ->
-                    new back_leg_top_thin_average_2(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_THIN_AVERAGE_2));
-            case "back_leg_top_thin_long_1" ->
-                    new back_leg_top_thin_long_1(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_THIN_LONG_1));
-            case "back_leg_top_thin_long_2" ->
-                    new back_leg_top_thin_long_2(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_THIN_LONG_2));
-            case "back_leg_top_average_short_1" ->
-                    new back_leg_top_average_short_1(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_AVERAGE_SHORT_1));
-            case "back_leg_top_average_short_2" ->
-                    new back_leg_top_average_short_2(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_AVERAGE_SHORT_2));
+            case "top_back_legs_thin_short_1" ->
+                    new top_back_legs_thin_short_1(modelSet.bakeLayer(ModModelLayers.TOP_BACK_LEGS_THIN_SHORT_1));
+            case "top_back_legs_thin_short_2" ->
+                    new top_back_legs_thin_short_2(modelSet.bakeLayer(ModModelLayers.TOP_BACK_LEGS_THIN_SHORT_2));
+            case "top_back_legs_thin_average_1" ->
+                    new top_back_legs_thin_average_1(modelSet.bakeLayer(ModModelLayers.TOP_BACK_LEGS_THIN_AVERAGE_1));
+            case "top_back_legs_thin_average_2" ->
+                    new top_back_legs_thin_average_2(modelSet.bakeLayer(ModModelLayers.TOP_BACK_LEGS_THIN_AVERAGE_2));
+            case "top_back_legs_thin_long_1" ->
+                    new top_back_legs_thin_long_1(modelSet.bakeLayer(ModModelLayers.TOP_BACK_LEGS_THIN_LONG_1));
+            case "top_back_legs_thin_long_2" ->
+                    new top_back_legs_thin_long_2(modelSet.bakeLayer(ModModelLayers.TOP_BACK_LEGS_THIN_LONG_2));
+            case "top_back_legs_average_short_1" ->
+                    new top_back_legs_average_short_1(modelSet.bakeLayer(ModModelLayers.TOP_BACK_LEGS_AVERAGE_SHORT_1));
+            case "top_back_legs_average_short_2" ->
+                    new top_back_legs_average_short_2(modelSet.bakeLayer(ModModelLayers.TOP_BACK_LEGS_AVERAGE_SHORT_2));
             case "top_back_legs_average_average_1" ->
-                    new top_back_legs_average_average_1(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_AVERAGE_AVERAGE_1));
-            case "back_leg_top_average_average_2" ->
-                    new back_leg_top_average_average_2(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_AVERAGE_AVERAGE_2));
-            case "back_leg_top_average_long_1" ->
-                    new back_leg_top_average_long_1(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_AVERAGE_LONG_1));
-            case "back_leg_top_average_long_2" ->
-                    new back_leg_top_average_long_2(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_AVERAGE_LONG_2));
-            case "back_leg_top_thick_short_1" ->
-                    new back_leg_top_thick_short_1(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_THICK_SHORT_1));
-            case "back_leg_top_thick_short_2" ->
-                    new back_leg_top_thick_short_2(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_THICK_SHORT_2));
-            case "back_leg_top_thick_average_1" ->
-                    new back_leg_top_thick_average_1(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_THICK_AVERAGE_1));
-            case "back_leg_top_thick_average_2" ->
-                    new back_leg_top_thick_average_2(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_THICK_AVERAGE_2));
-            case "back_leg_top_thick_long_1" ->
-                    new back_leg_top_thick_long_1(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_THICK_LONG_1));
-            case "back_leg_top_thick_long_2" ->
-                    new back_leg_top_thick_long_2(modelSet.bakeLayer(ModModelLayers.BACK_LEG_TOP_THICK_LONG_2));
+                    new top_back_legs_average_average_1(modelSet.bakeLayer(ModModelLayers.TOP_BACK_LEGS_AVERAGE_AVERAGE_1));
+            case "top_back_legs_average_average_2" ->
+                    new top_back_legs_average_average_2(modelSet.bakeLayer(ModModelLayers.TOP_BACK_LEGS_AVERAGE_AVERAGE_2));
+            case "top_back_legs_average_long_1" ->
+                    new top_back_legs_average_long_1(modelSet.bakeLayer(ModModelLayers.TOP_BACK_LEGS_AVERAGE_LONG_1));
+            case "top_back_legs_average_long_2" ->
+                    new top_back_legs_average_long_2(modelSet.bakeLayer(ModModelLayers.TOP_BACK_LEGS_AVERAGE_LONG_2));
+            case "top_back_legs_thick_short_1" ->
+                    new top_back_legs_thick_short_1(modelSet.bakeLayer(ModModelLayers.TOP_BACK_LEGS_THICK_SHORT_1));
+            case "top_back_legs_thick_short_2" ->
+                    new top_back_legs_thick_short_2(modelSet.bakeLayer(ModModelLayers.TOP_BACK_LEGS_THICK_SHORT_2));
+            case "top_back_legs_thick_average_1" ->
+                    new top_back_legs_thick_average_1(modelSet.bakeLayer(ModModelLayers.TOP_BACK_LEGS_THICK_AVERAGE_1));
+            case "top_back_legs_thick_average_2" ->
+                    new top_back_legs_thick_average_2(modelSet.bakeLayer(ModModelLayers.TOP_BACK_LEGS_THICK_AVERAGE_2));
+            case "top_back_legs_thick_long_1" ->
+                    new top_back_legs_thick_long_1(modelSet.bakeLayer(ModModelLayers.TOP_BACK_LEGS_THICK_LONG_1));
+            case "top_back_legs_thick_long_2" ->
+                    new top_back_legs_thick_long_2(modelSet.bakeLayer(ModModelLayers.TOP_BACK_LEGS_THICK_LONG_2));
 
             // Chests
             case "chest_lean_small_1" ->
@@ -773,8 +773,42 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                     new withers_muscular(modelSet.bakeLayer(ModModelLayers.WITHERS_MUSCULAR));
 
             //Front Top Legs
+            case "top_front_legs_average_short_1" ->
+                    new top_front_legs_average_short_1(modelSet.bakeLayer(ModModelLayers.TOP_FRONT_LEGS_AVERAGE_SHORT_1));
+            case "top_front_legs_average_short_2" ->
+                    new top_front_legs_average_short_2(modelSet.bakeLayer(ModModelLayers.TOP_FRONT_LEGS_AVERAGE_SHORT_2));
+            case "top_front_legs_average_short_3" ->
+                    new top_front_legs_average_short_3(modelSet.bakeLayer(ModModelLayers.TOP_FRONT_LEGS_AVERAGE_SHORT_3));
             case "top_front_legs_average_average_1" ->
                     new top_front_legs_average_average_1(modelSet.bakeLayer(ModModelLayers.TOP_FRONT_LEGS_AVERAGE_AVERAGE_1));
+            case "top_front_legs_average_average_2" ->
+                    new top_front_legs_average_average_2(modelSet.bakeLayer(ModModelLayers.TOP_FRONT_LEGS_AVERAGE_AVERAGE_2));
+            case "top_front_legs_average_average_3" ->
+                    new top_front_legs_average_average_3(modelSet.bakeLayer(ModModelLayers.TOP_FRONT_LEGS_AVERAGE_AVERAGE_3));
+            case "top_front_legs_average_long_1" ->
+                    new top_front_legs_average_long_1(modelSet.bakeLayer(ModModelLayers.TOP_FRONT_LEGS_AVERAGE_LONG_1));
+            case "top_front_legs_average_long_2" ->
+                    new top_front_legs_average_long_2(modelSet.bakeLayer(ModModelLayers.TOP_FRONT_LEGS_AVERAGE_LONG_2));
+            case "top_front_legs_average_long_3" ->
+                    new top_front_legs_average_long_3(modelSet.bakeLayer(ModModelLayers.TOP_FRONT_LEGS_AVERAGE_LONG_3));
+            case "top_front_legs_thick_short_1" ->
+                    new top_front_legs_thick_short_1(modelSet.bakeLayer(ModModelLayers.TOP_FRONT_LEGS_THICK_SHORT_1));
+            case "top_front_legs_thick_short_2" ->
+                    new top_front_legs_thick_short_2(modelSet.bakeLayer(ModModelLayers.TOP_FRONT_LEGS_THICK_SHORT_2));
+            case "top_front_legs_thick_short_3" ->
+                    new top_front_legs_thick_short_3(modelSet.bakeLayer(ModModelLayers.TOP_FRONT_LEGS_THICK_SHORT_3));
+            case "top_front_legs_thick_average_1" ->
+                    new top_front_legs_thick_average_1(modelSet.bakeLayer(ModModelLayers.TOP_FRONT_LEGS_THICK_AVERAGE_1));
+            case "top_front_legs_thick_average_2" ->
+                    new top_front_legs_thick_average_2(modelSet.bakeLayer(ModModelLayers.TOP_FRONT_LEGS_THICK_AVERAGE_2));
+            case "top_front_legs_thick_average_3" ->
+                    new top_front_legs_thick_average_3(modelSet.bakeLayer(ModModelLayers.TOP_FRONT_LEGS_THICK_AVERAGE_3));
+            case "top_front_legs_thick_long_1" ->
+                    new top_front_legs_thick_long_1(modelSet.bakeLayer(ModModelLayers.TOP_FRONT_LEGS_THICK_LONG_1));
+            case "top_front_legs_thick_long_2" ->
+                    new top_front_legs_thick_long_2(modelSet.bakeLayer(ModModelLayers.TOP_FRONT_LEGS_THICK_LONG_2));
+            case "top_front_legs_thick_long_3" ->
+                    new top_front_legs_thick_long_3(modelSet.bakeLayer(ModModelLayers.TOP_FRONT_LEGS_THICK_LONG_3));
 
             //Bottom Legs
             case "bottom_legs_average_average_1" ->

@@ -21,15 +21,7 @@ public class ModModelLayers {
     public static final ModelLayerLocation BASE = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "base"), "main"
     );
-    public static final ModelLayerLocation BACK_1 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_1"), "main"
-    );
-    public static final ModelLayerLocation BACK_2 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_2"), "main"
-    );
-    public static final ModelLayerLocation BACK_3 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_3"), "main"
-    );
+
 
     /* Backs */
     // back_lean_short_thin, back_lean_short_average, back_lean_short_thick, back_lean_average_thin, back_lean_average_average, back_lean_average_thick, back_lean_long_thin, back_lean_long_average, back_lean_long_thick
@@ -125,63 +117,63 @@ public class ModModelLayers {
 
     // back_leg_top_thin_short_1, back_leg_top_thin_short_2, back_leg_top_thin_average_1, back_leg_top_thin_average_2, back_leg_top_thin_long_1, back_leg_top_thin_long_2
     // Thin //
-    public static final ModelLayerLocation BACK_LEG_TOP_THIN_SHORT_1 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_leg_top_thin_short_1"), "main"
+    public static final ModelLayerLocation TOP_BACK_LEGS_THIN_SHORT_1 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_back_legs_thin_short_1"), "main"
     );
-    public static final ModelLayerLocation BACK_LEG_TOP_THIN_SHORT_2 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_leg_top_thin_short_2"), "main"
+    public static final ModelLayerLocation TOP_BACK_LEGS_THIN_SHORT_2 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_back_legs_thin_short_2"), "main"
     );
-    public static final ModelLayerLocation BACK_LEG_TOP_THIN_AVERAGE_1 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_leg_top_thin_average_1"), "main"
+    public static final ModelLayerLocation TOP_BACK_LEGS_THIN_AVERAGE_1 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_back_legs_thin_average_1"), "main"
     );
-    public static final ModelLayerLocation BACK_LEG_TOP_THIN_AVERAGE_2 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_leg_top_thin_average_2"), "main"
+    public static final ModelLayerLocation TOP_BACK_LEGS_THIN_AVERAGE_2 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_back_legs_thin_average_2"), "main"
     );
-    public static final ModelLayerLocation BACK_LEG_TOP_THIN_LONG_1 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_leg_top_thin_long_1"), "main"
+    public static final ModelLayerLocation TOP_BACK_LEGS_THIN_LONG_1 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_back_legs_thin_long_1"), "main"
     );
-    public static final ModelLayerLocation BACK_LEG_TOP_THIN_LONG_2 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_leg_top_thin_long_2"), "main"
+    public static final ModelLayerLocation TOP_BACK_LEGS_THIN_LONG_2 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_back_legs_thin_long_2"), "main"
     );
 
     // Average //
-    public static final ModelLayerLocation BACK_LEG_TOP_AVERAGE_SHORT_1 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_leg_top_average_short_1"), "main"
+    public static final ModelLayerLocation TOP_BACK_LEGS_AVERAGE_SHORT_1 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_back_legs_average_short_1"), "main"
     );
-    public static final ModelLayerLocation BACK_LEG_TOP_AVERAGE_SHORT_2 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_leg_top_average_short_2"), "main"
+    public static final ModelLayerLocation TOP_BACK_LEGS_AVERAGE_SHORT_2 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_back_legs_average_short_2"), "main"
     );
-    public static final ModelLayerLocation BACK_LEG_TOP_AVERAGE_AVERAGE_1 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_leg_top_average_average_1"), "main"
+    public static final ModelLayerLocation TOP_BACK_LEGS_AVERAGE_AVERAGE_1 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_back_legs_average_average_1"), "main"
     );
-    public static final ModelLayerLocation BACK_LEG_TOP_AVERAGE_AVERAGE_2 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_leg_top_average_average_2"), "main"
+    public static final ModelLayerLocation TOP_BACK_LEGS_AVERAGE_AVERAGE_2 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_back_legs_average_average_2"), "main"
     );
-    public static final ModelLayerLocation BACK_LEG_TOP_AVERAGE_LONG_1 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_leg_top_average_long_1"), "main"
+    public static final ModelLayerLocation TOP_BACK_LEGS_AVERAGE_LONG_1 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_back_legs_average_long_1"), "main"
     );
-    public static final ModelLayerLocation BACK_LEG_TOP_AVERAGE_LONG_2 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_leg_top_average_long_2"), "main"
+    public static final ModelLayerLocation TOP_BACK_LEGS_AVERAGE_LONG_2 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_back_legs_average_long_2"), "main"
     );
 
     // Thick //
-    public static final ModelLayerLocation BACK_LEG_TOP_THICK_SHORT_1 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_leg_top_thick_short_1"), "main"
+    public static final ModelLayerLocation TOP_BACK_LEGS_THICK_SHORT_1 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_back_legs_thick_short_1"), "main"
     );
-    public static final ModelLayerLocation BACK_LEG_TOP_THICK_SHORT_2 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_leg_top_thick_short_2"), "main"
+    public static final ModelLayerLocation TOP_BACK_LEGS_THICK_SHORT_2 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_back_legs_thick_short_2"), "main"
     );
-    public static final ModelLayerLocation BACK_LEG_TOP_THICK_AVERAGE_1 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_leg_top_thick_average_1"), "main"
+    public static final ModelLayerLocation TOP_BACK_LEGS_THICK_AVERAGE_1 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_back_legs_thick_average_1"), "main"
     );
-    public static final ModelLayerLocation BACK_LEG_TOP_THICK_AVERAGE_2 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_leg_top_thick_average_2"), "main"
+    public static final ModelLayerLocation TOP_BACK_LEGS_THICK_AVERAGE_2 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_back_legs_thick_average_2"), "main"
     );
-    public static final ModelLayerLocation BACK_LEG_TOP_THICK_LONG_1 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_leg_top_thick_long_1"), "main"
+    public static final ModelLayerLocation TOP_BACK_LEGS_THICK_LONG_1 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_back_legs_thick_long_1"), "main"
     );
-    public static final ModelLayerLocation BACK_LEG_TOP_THICK_LONG_2 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "back_leg_top_thick_long_2"), "main"
+    public static final ModelLayerLocation TOP_BACK_LEGS_THICK_LONG_2 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_back_legs_thick_long_2"), "main"
     );
 
     /* Bottom Legs */
@@ -440,63 +432,63 @@ public class ModModelLayers {
     );
 
     /* Front Top Legs */
-// front_leg_top_average_short_1, front_leg_top_average_short_2, front_leg_top_average_short_3, front_leg_top_average_average_1, front_leg_top_average_average_2, front_leg_top_average_average_3, front_leg_top_average_long_1, front_leg_top_average_long_2, front_leg_top_average_long_3
+// TOP_FRONT_LEGS_average_short_1, TOP_FRONT_LEGS_average_short_2, TOP_FRONT_LEGS_average_short_3, TOP_FRONT_LEGS_average_average_1, TOP_FRONT_LEGS_average_average_2, TOP_FRONT_LEGS_average_average_3, TOP_FRONT_LEGS_average_long_1, TOP_FRONT_LEGS_average_long_2, TOP_FRONT_LEGS_average_long_3
     // Average //
-    public static final ModelLayerLocation FRONT_LEG_TOP_AVERAGE_SHORT_1 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "front_leg_top_average_short_1"), "main"
+    public static final ModelLayerLocation TOP_FRONT_LEGS_AVERAGE_SHORT_1 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_front_legs_average_short_1"), "main"
     );
-    public static final ModelLayerLocation FRONT_LEG_TOP_AVERAGE_SHORT_2 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "front_leg_top_average_short_2"), "main"
+    public static final ModelLayerLocation TOP_FRONT_LEGS_AVERAGE_SHORT_2 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_front_legs_average_short_2"), "main"
     );
-    public static final ModelLayerLocation FRONT_LEG_TOP_AVERAGE_SHORT_3 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "front_leg_top_average_short_3"), "main"
+    public static final ModelLayerLocation TOP_FRONT_LEGS_AVERAGE_SHORT_3 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_front_legs_average_short_3"), "main"
     );
-    public static final ModelLayerLocation FRONT_LEG_TOP_AVERAGE_AVERAGE_1 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "front_leg_top_average_average_1"), "main"
+    public static final ModelLayerLocation TOP_FRONT_LEGS_AVERAGE_AVERAGE_1 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_front_legs_average_average_1"), "main"
     );
-    public static final ModelLayerLocation FRONT_LEG_TOP_AVERAGE_AVERAGE_2 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "front_leg_top_average_average_2"), "main"
+    public static final ModelLayerLocation TOP_FRONT_LEGS_AVERAGE_AVERAGE_2 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_front_legs_average_average_2"), "main"
     );
-    public static final ModelLayerLocation FRONT_LEG_TOP_AVERAGE_AVERAGE_3 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "front_leg_top_average_average_3"), "main"
+    public static final ModelLayerLocation TOP_FRONT_LEGS_AVERAGE_AVERAGE_3 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_front_legs_average_average_3"), "main"
     );
-    public static final ModelLayerLocation FRONT_LEG_TOP_AVERAGE_LONG_1 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "front_leg_top_average_long_1"), "main"
+    public static final ModelLayerLocation TOP_FRONT_LEGS_AVERAGE_LONG_1 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_front_legs_average_long_1"), "main"
     );
-    public static final ModelLayerLocation FRONT_LEG_TOP_AVERAGE_LONG_2 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "front_leg_top_average_long_2"), "main"
+    public static final ModelLayerLocation TOP_FRONT_LEGS_AVERAGE_LONG_2 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_front_legs_average_long_2"), "main"
     );
-    public static final ModelLayerLocation FRONT_LEG_TOP_AVERAGE_LONG_3 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "front_leg_top_average_long_3"), "main"
+    public static final ModelLayerLocation TOP_FRONT_LEGS_AVERAGE_LONG_3 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_front_legs_average_long_3"), "main"
     );
 
     // Thick //
-    public static final ModelLayerLocation FRONT_LEG_TOP_THICK_SHORT_1 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "front_leg_top_thick_short_1"), "main"
+    public static final ModelLayerLocation TOP_FRONT_LEGS_THICK_SHORT_1 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_front_legs_thick_short_1"), "main"
     );
-    public static final ModelLayerLocation FRONT_LEG_TOP_THICK_SHORT_2 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "front_leg_top_thick_short_2"), "main"
+    public static final ModelLayerLocation TOP_FRONT_LEGS_THICK_SHORT_2 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_front_legs_thick_short_2"), "main"
     );
-    public static final ModelLayerLocation FRONT_LEG_TOP_THICK_SHORT_3 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "front_leg_top_thick_short_3"), "main"
+    public static final ModelLayerLocation TOP_FRONT_LEGS_THICK_SHORT_3 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_front_legs_thick_short_3"), "main"
     );
-    public static final ModelLayerLocation FRONT_LEG_TOP_THICK_AVERAGE_1 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "front_leg_top_thick_average_1"), "main"
+    public static final ModelLayerLocation TOP_FRONT_LEGS_THICK_AVERAGE_1 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_front_legs_thick_average_1"), "main"
     );
-    public static final ModelLayerLocation FRONT_LEG_TOP_THICK_AVERAGE_2 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "front_leg_top_thick_average_2"), "main"
+    public static final ModelLayerLocation TOP_FRONT_LEGS_THICK_AVERAGE_2 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_front_legs_thick_average_2"), "main"
     );
-    public static final ModelLayerLocation FRONT_LEG_TOP_THICK_AVERAGE_3 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "front_leg_top_thick_average_3"), "main"
+    public static final ModelLayerLocation TOP_FRONT_LEGS_THICK_AVERAGE_3 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_front_legs_thick_average_3"), "main"
     );
-    public static final ModelLayerLocation FRONT_LEG_TOP_THICK_LONG_1 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "front_leg_top_thick_long_1"), "main"
+    public static final ModelLayerLocation TOP_FRONT_LEGS_THICK_LONG_1 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_front_legs_thick_long_1"), "main"
     );
-    public static final ModelLayerLocation FRONT_LEG_TOP_THICK_LONG_2 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "front_leg_top_thick_long_2"), "main"
+    public static final ModelLayerLocation TOP_FRONT_LEGS_THICK_LONG_2 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_front_legs_thick_long_2"), "main"
     );
-    public static final ModelLayerLocation FRONT_LEG_TOP_THICK_LONG_3 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "front_leg_top_thick_long_3"), "main"
+    public static final ModelLayerLocation TOP_FRONT_LEGS_THICK_LONG_3 = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_front_legs_thick_long_3"), "main"
     );
 
     /* Heads */
@@ -1047,10 +1039,6 @@ public class ModModelLayers {
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "withers_muscular"), "main"
     );
 
-    //Front Top Legs
-    public static final ModelLayerLocation TOP_FRONT_LEGS_AVERAGE_AVERAGE_1 = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "top_front_legs_average_average_1"), "main"
-    );
 
 
 }
