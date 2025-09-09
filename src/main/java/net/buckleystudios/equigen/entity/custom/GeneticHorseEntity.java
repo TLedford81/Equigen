@@ -1911,8 +1911,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         parts.add(partNameBuilder.PartStringGenerator("top_back_legs"));
 //        parts.add("top_back_legs_average_average_1");
         parts.add("knees");
-//        parts.add(partNameBuilder.PartStringGenerator("hoof"));
-        parts.add("hoof_average");
+        parts.add(partNameBuilder.PartStringGenerator("hoof"));
+//        parts.add("hoof_average");
         parts.add(partNameBuilder.PartStringGenerator("bottom_legs"));
 //        parts.add("bottom_legs_average_average_1");
         parts.add(partNameBuilder.PartStringGenerator("head"));

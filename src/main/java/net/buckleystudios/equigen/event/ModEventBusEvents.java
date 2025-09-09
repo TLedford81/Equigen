@@ -11,6 +11,7 @@ import net.buckleystudios.equigen.entity.client.parts.partmodels.ears.ears;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.heads.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.hips.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.hooves.hoof_average;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.hooves.hoof_large;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.knees.knees;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.arched.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.ewed.*;
@@ -299,6 +300,8 @@ public class ModEventBusEvents {
 
         //Hooves
         event.registerLayerDefinition(ModModelLayers.HOOF_AVERAGE, hoof_average::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.HOOF_LARGE, hoof_large::createBodyLayer);
+
 
         //Knees
         event.registerLayerDefinition(ModModelLayers.KNEES, knees::createBodyLayer);

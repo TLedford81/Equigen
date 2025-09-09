@@ -16,11 +16,11 @@ import java.util.Map;
 
 public class hoof_average extends MultipartHoofModel<GeneticHorseEntity> {
     private final ModelPart hoof_average;
-    private final ModelPart hoof_average_individual;
+    private final ModelPart bottomLegAnchor;
 
     public hoof_average(ModelPart root) {
         this.hoof_average = root.getChild("hoof_average");
-        this.hoof_average_individual = this.hoof_average.getChild("hoof_average_individual");
+        this.bottomLegAnchor = this.hoof_average.getChild("bottomLegAnchor");
     }
 
     public static LayerDefinition createBodyLayer() {
@@ -30,6 +30,8 @@ public class hoof_average extends MultipartHoofModel<GeneticHorseEntity> {
         PartDefinition hoof_average = partdefinition.addOrReplaceChild("hoof_average", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
         PartDefinition hoof_average_individual = hoof_average.addOrReplaceChild("hoof_average_individual", CubeListBuilder.create().texOffs(73, 132).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, 0.0F));
+
+        PartDefinition bottomLegAnchor = hoof_average.addOrReplaceChild("bottomLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, 0.0F));
 
         return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
@@ -52,7 +54,7 @@ public class hoof_average extends MultipartHoofModel<GeneticHorseEntity> {
     @Override
     public Map<String, PartTransform> anchors() {
         return Map.of(
-                "hoof_average_individual", asTransform(this.hoof_average_individual)
+                "bottomLegAnchor", asTransform(this.bottomLegAnchor)
         );
     }
 }

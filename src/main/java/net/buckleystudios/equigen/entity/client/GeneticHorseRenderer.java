@@ -12,6 +12,7 @@ import net.buckleystudios.equigen.entity.client.parts.partmodels.ears.ears;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.heads.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.hips.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.hooves.hoof_average;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.hooves.hoof_large;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.knees.knees;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.arched.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.ewed.*;
@@ -183,7 +184,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                                     () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
                                             modelMap.get("kneeFrontLeftLegModel"), "bottomLegAnchor", modelMap.get("bottomFrontLeftLegModel"), "kneeAnchor",
                                             () -> attachAndChain(poseStack, hoofBuffer, packedLight, entity, partialTicks,
-                                                    modelMap.get("bottomFrontLeftLegModel"), "hoofAnchor", modelMap.get("hoofFrontLeftLegModel"), "hoof_average_individual",
+                                                    modelMap.get("bottomFrontLeftLegModel"), "hoofAnchor", modelMap.get("hoofFrontLeftLegModel"), "bottomLegAnchor",
                                                     null
                                             )
                                     )
@@ -198,7 +199,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                                     () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
                                             modelMap.get("kneeFrontRightLegModel"), "bottomLegAnchor", modelMap.get("bottomFrontRightLegModel"), "kneeAnchor",
                                             () -> attachAndChain(poseStack, hoofBuffer, packedLight, entity, partialTicks,
-                                                    modelMap.get("bottomFrontRightLegModel"), "hoofAnchor", modelMap.get("hoofFrontRightLegModel"), "hoof_average_individual",
+                                                    modelMap.get("bottomFrontRightLegModel"), "hoofAnchor", modelMap.get("hoofFrontRightLegModel"), "bottomLegAnchor",
                                                     null
                                             )
                                     )
@@ -223,7 +224,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                                     () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
                                             modelMap.get("kneeBackLeftLegModel"), "bottomLegAnchor", modelMap.get("bottomBackLeftLegModel"), "kneeAnchor",
                                             () -> attachAndChain(poseStack, hoofBuffer, packedLight, entity, partialTicks,
-                                                    modelMap.get("bottomBackLeftLegModel"), "hoofAnchor", modelMap.get("hoofBackLeftLegModel"), "hoof_average_individual",
+                                                    modelMap.get("bottomBackLeftLegModel"), "hoofAnchor", modelMap.get("hoofBackLeftLegModel"), "bottomLegAnchor",
                                                     null
                                             )
                                     )
@@ -238,7 +239,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                                     () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
                                             modelMap.get("kneeBackRightLegModel"), "bottomLegAnchor", modelMap.get("bottomBackRightLegModel"), "kneeAnchor",
                                             () -> attachAndChain(poseStack, hoofBuffer, packedLight, entity, partialTicks,
-                                                    modelMap.get("bottomBackRightLegModel"), "hoofAnchor", modelMap.get("hoofBackRightLegModel"), "hoof_average_individual",
+                                                    modelMap.get("bottomBackRightLegModel"), "hoofAnchor", modelMap.get("hoofBackRightLegModel"), "bottomLegAnchor",
                                                     null
                                             )
                                     )
@@ -871,6 +872,8 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
             //Hooves
             case "hoof_average" ->
                     new hoof_average(modelSet.bakeLayer(ModModelLayers.HOOF_AVERAGE));
+            case "hoof_large" ->
+                    new hoof_large(modelSet.bakeLayer(ModModelLayers.HOOF_LARGE));
 
 
 
