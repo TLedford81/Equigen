@@ -57,7 +57,7 @@ public class GeneticPartNameBuilder {
             case "ears", "knees" -> GeneValueNameBuilder(List.of(PART));
             case "top_front_legs" -> GeneValueNameBuilder(List.of(PART, LEG_WIDTH, TOP_LEG));
             case "top_back_legs" -> GeneValueNameBuilder(List.of(PART, TOP_HIND_LEG_WIDTH, TOP_LEG));
-            case "bottom_legs" -> GeneValueNameBuilder(List.of(PART, MUSCLE_MASS, BOTTOM_LEG));
+            case "bottom_legs" -> GeneValueNameBuilder(List.of(PART, LEG_WIDTH, BOTTOM_LEG));
             case "back" -> GeneValueNameBuilder(List.of(PART, MUSCLE_MASS, BACK_LENGTH, BACK_GIRTH));
             case "chest" -> GeneValueNameBuilder(List.of(PART, MUSCLE_MASS, CHEST_SIZE));
             case "head" -> GeneValueNameBuilder(List.of(PART, HEAD_TYPE, MUSCLE_MASS));
@@ -97,10 +97,16 @@ public class GeneticPartNameBuilder {
                 default -> "";
             };
             case "LEG_WIDTH" -> switch (value) {
-                case 1, 2 -> "average";
+                case 1 -> { if (part == "top_front_legs") {
+                    yield "average";} else {yield "thin";}
+                }
+                case 2 -> { if (part == "top_front_legs") {
+                   yield "average";} else {yield "average";}
+                }
                 case 3 -> "thick";
                 default -> "";
-            };
+                };
+
             case "NECK_LENGTH" -> switch (value) {
                 case 1 -> "short_1";
                 case 2 -> "short_2";

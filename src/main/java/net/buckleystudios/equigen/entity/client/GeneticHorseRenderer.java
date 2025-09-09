@@ -6,10 +6,9 @@ import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.client.parts.MultipartModel;
 import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.backs.*;
-import net.buckleystudios.equigen.entity.client.parts.partmodels.bottomlegs.bottom_legs_average_average_1;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.bottomlegs.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.chests.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.ears.ears;
-import net.buckleystudios.equigen.entity.client.parts.partmodels.fronttoplegs.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.heads.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.hips.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.hooves.hoof_average;
@@ -21,6 +20,7 @@ import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.swan.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.stomachs.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.tails.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.topbacklegs.*;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.topfrontlegs.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.withers.withers_average;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.withers.withers_lean;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.withers.withers_muscular;
@@ -179,9 +179,9 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                     attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
                             modelMap.get("chestModel"), "frontLeftLegAnchor", modelMap.get("topFrontLeftLegModel"), "chestAnchor",
                             () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                    modelMap.get("topFrontLeftLegModel"), "kneeAnchor", modelMap.get("kneeFrontLeftLegModel"), "knee_individual",
+                                    modelMap.get("topFrontLeftLegModel"), "kneeAnchor", modelMap.get("kneeFrontLeftLegModel"), "topLegAnchor",
                                     () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                            modelMap.get("kneeFrontLeftLegModel"), "knee_individual", modelMap.get("bottomFrontLeftLegModel"), "kneeAnchor",
+                                            modelMap.get("kneeFrontLeftLegModel"), "bottomLegAnchor", modelMap.get("bottomFrontLeftLegModel"), "kneeAnchor",
                                             () -> attachAndChain(poseStack, hoofBuffer, packedLight, entity, partialTicks,
                                                     modelMap.get("bottomFrontLeftLegModel"), "hoofAnchor", modelMap.get("hoofFrontLeftLegModel"), "hoof_average_individual",
                                                     null
@@ -194,9 +194,9 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                     attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
                             modelMap.get("chestModel"), "frontRightLegAnchor", modelMap.get("topFrontRightLegModel"), "chestAnchor",
                             () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                    modelMap.get("topFrontRightLegModel"), "kneeAnchor", modelMap.get("kneeFrontRightLegModel"), "knee_individual",
+                                    modelMap.get("topFrontRightLegModel"), "kneeAnchor", modelMap.get("kneeFrontRightLegModel"), "topLegAnchor",
                                     () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                            modelMap.get("kneeFrontRightLegModel"), "knee_individual", modelMap.get("bottomFrontRightLegModel"), "kneeAnchor",
+                                            modelMap.get("kneeFrontRightLegModel"), "bottomLegAnchor", modelMap.get("bottomFrontRightLegModel"), "kneeAnchor",
                                             () -> attachAndChain(poseStack, hoofBuffer, packedLight, entity, partialTicks,
                                                     modelMap.get("bottomFrontRightLegModel"), "hoofAnchor", modelMap.get("hoofFrontRightLegModel"), "hoof_average_individual",
                                                     null
@@ -219,9 +219,9 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                     attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
                             modelMap.get("hipsModel"), "backLeftLegAnchor", modelMap.get("topBackLeftLegModel"), "hipsAnchor",
                             () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                    modelMap.get("topBackLeftLegModel"), "kneeAnchor", modelMap.get("kneeBackLeftLegModel"), "knee_individual",
+                                    modelMap.get("topBackLeftLegModel"), "kneeAnchor", modelMap.get("kneeBackLeftLegModel"), "topLegAnchor",
                                     () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                            modelMap.get("kneeBackLeftLegModel"), "knee_individual", modelMap.get("bottomBackLeftLegModel"), "kneeAnchor",
+                                            modelMap.get("kneeBackLeftLegModel"), "bottomLegAnchor", modelMap.get("bottomBackLeftLegModel"), "kneeAnchor",
                                             () -> attachAndChain(poseStack, hoofBuffer, packedLight, entity, partialTicks,
                                                     modelMap.get("bottomBackLeftLegModel"), "hoofAnchor", modelMap.get("hoofBackLeftLegModel"), "hoof_average_individual",
                                                     null
@@ -234,9 +234,9 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                     attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
                             modelMap.get("hipsModel"), "backRightLegAnchor", modelMap.get("topBackRightLegModel"), "hipsAnchor",
                             () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                    modelMap.get("topBackRightLegModel"), "kneeAnchor", modelMap.get("kneeBackRightLegModel"), "knee_individual",
+                                    modelMap.get("topBackRightLegModel"), "kneeAnchor", modelMap.get("kneeBackRightLegModel"), "topLegAnchor",
                                     () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                            modelMap.get("kneeBackRightLegModel"), "knee_individual", modelMap.get("bottomBackRightLegModel"), "kneeAnchor",
+                                            modelMap.get("kneeBackRightLegModel"), "bottomLegAnchor", modelMap.get("bottomBackRightLegModel"), "kneeAnchor",
                                             () -> attachAndChain(poseStack, hoofBuffer, packedLight, entity, partialTicks,
                                                     modelMap.get("bottomBackRightLegModel"), "hoofAnchor", modelMap.get("hoofBackRightLegModel"), "hoof_average_individual",
                                                     null
@@ -811,9 +811,60 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                     new top_front_legs_thick_long_3(modelSet.bakeLayer(ModModelLayers.TOP_FRONT_LEGS_THICK_LONG_3));
 
             //Bottom Legs
+            case "bottom_legs_thin_short_1" ->
+                    new bottom_legs_thin_short_1(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_SHORT_1));
+            case "bottom_legs_thin_short_2" ->
+                    new bottom_legs_thin_short_2(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_SHORT_2));
+            case "bottom_legs_thin_short_3" ->
+                    new bottom_legs_thin_short_3(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_SHORT_3));
+            case "bottom_legs_thin_average_1" ->
+                    new bottom_legs_thin_average_1(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_AVERAGE_1));
+            case "bottom_legs_thin_average_2" ->
+                    new bottom_legs_thin_average_2(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_AVERAGE_2));
+            case "bottom_legs_thin_average_3" ->
+                    new bottom_legs_thin_average_3(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_AVERAGE_3));
+            case "bottom_legs_thin_long_1" ->
+                    new bottom_legs_thin_long_1(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_LONG_1));
+            case "bottom_legs_thin_long_2" ->
+                    new bottom_legs_thin_long_2(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_LONG_2));
+            case "bottom_legs_thin_long_3" ->
+                    new bottom_legs_thin_long_3(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_LONG_3));
+            case "bottom_legs_average_short_1" ->
+                    new bottom_legs_average_short_1(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_AVERAGE_SHORT_1));
+            case "bottom_legs_average_short_2" ->
+                    new bottom_legs_average_short_2(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_AVERAGE_SHORT_2));
+            case "bottom_legs_average_short_3" ->
+                    new bottom_legs_average_short_3(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_AVERAGE_SHORT_3));
             case "bottom_legs_average_average_1" ->
                     new bottom_legs_average_average_1(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_AVERAGE_AVERAGE_1));
-
+            case "bottom_legs_average_average_2" ->
+                    new bottom_legs_average_average_2(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_AVERAGE_AVERAGE_2));
+            case "bottom_legs_average_average_3" ->
+                    new bottom_legs_average_average_3(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_AVERAGE_AVERAGE_3));
+            case "bottom_legs_average_long_1" ->
+                    new bottom_legs_average_long_1(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_AVERAGE_LONG_1));
+            case "bottom_legs_average_long_2" ->
+                    new bottom_legs_average_long_2(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_AVERAGE_LONG_2));
+            case "bottom_legs_average_long_3" ->
+                    new bottom_legs_average_long_3(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_AVERAGE_LONG_3));
+            case "bottom_legs_thick_short_1" ->
+                    new bottom_legs_thick_short_1(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THICK_SHORT_1));
+            case "bottom_legs_thick_short_2" ->
+                    new bottom_legs_thick_short_2(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THICK_SHORT_2));
+            case "bottom_legs_thick_short_3" ->
+                    new bottom_legs_thick_short_3(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THICK_SHORT_3));
+            case "bottom_legs_thick_average_1" ->
+                    new bottom_legs_thick_average_1(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THICK_AVERAGE_1));
+            case "bottom_legs_thick_average_2" ->
+                    new bottom_legs_thick_average_2(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THICK_AVERAGE_2));
+            case "bottom_legs_thick_average_3" ->
+                    new bottom_legs_thick_average_3(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THICK_AVERAGE_3));
+            case "bottom_legs_thick_long_1" ->
+                    new bottom_legs_thick_long_1(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THICK_LONG_1));
+            case "bottom_legs_thick_long_2" ->
+                    new bottom_legs_thick_long_2(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THICK_LONG_2));
+            case "bottom_legs_thick_long_3" ->
+                    new bottom_legs_thick_long_3(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THICK_LONG_3));
             //Knees
             case "knees" ->
                     new knees(modelSet.bakeLayer(ModModelLayers.KNEES));

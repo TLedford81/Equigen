@@ -1,73 +1,70 @@
-//package net.buckleystudios.equigen.entity.client.parts.partmodels.bottomlegs;// Made with Blockbench 4.12.2
-//// Exported for Minecraft version 1.17 or later with Mojang mappings
-//// Paste this class into your mod and generate all required imports
-//
-//
-//public class bottom_legs_thick_short_1<T extends Entity> extends EntityModel<T> {
-//	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
-//	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("modid", "bottom_legs_thick_short_1"), "main");
-//	private final ModelPart bottom_legs_thick_short1;
-//	private final ModelPart bottom_legs_thick_short1_bottom_front_left;
-//	private final ModelPart bottom_legs_thick_short1_bottom_front_left_individual;
-//	private final ModelPart bottom_legs_thick_short1_bottom_front_right;
-//	private final ModelPart bottom_legs_thick_short1_bottom_front_right_individual;
-//	private final ModelPart bottom_legs_thick_short1_bottom_back_left;
-//	private final ModelPart bottom_legs_thick_short1_bottom_back_left_individual;
-//	private final ModelPart bottom_legs_thick_short1_bottom_back_right;
-//	private final ModelPart bottom_legs_thick_short1_bottom_back_right_individual;
-//
-//	public bottom_legs_thick_short_1(ModelPart root) {
-//		this.bottom_legs_thick_short1 = root.getChild("bottom_legs_thick_short1");
-//		this.bottom_legs_thick_short1_bottom_front_left = this.bottom_legs_thick_short1.getChild("bottom_legs_thick_short1_bottom_front_left");
-//		this.bottom_legs_thick_short1_bottom_front_left_individual = this.bottom_legs_thick_short1_bottom_front_left.getChild("bottom_legs_thick_short1_bottom_front_left_individual");
-//		this.bottom_legs_thick_short1_bottom_front_right = this.bottom_legs_thick_short1.getChild("bottom_legs_thick_short1_bottom_front_right");
-//		this.bottom_legs_thick_short1_bottom_front_right_individual = this.bottom_legs_thick_short1_bottom_front_right.getChild("bottom_legs_thick_short1_bottom_front_right_individual");
-//		this.bottom_legs_thick_short1_bottom_back_left = this.bottom_legs_thick_short1.getChild("bottom_legs_thick_short1_bottom_back_left");
-//		this.bottom_legs_thick_short1_bottom_back_left_individual = this.bottom_legs_thick_short1_bottom_back_left.getChild("bottom_legs_thick_short1_bottom_back_left_individual");
-//		this.bottom_legs_thick_short1_bottom_back_right = this.bottom_legs_thick_short1.getChild("bottom_legs_thick_short1_bottom_back_right");
-//		this.bottom_legs_thick_short1_bottom_back_right_individual = this.bottom_legs_thick_short1_bottom_back_right.getChild("bottom_legs_thick_short1_bottom_back_right_individual");
-//	}
-//
-//	public static LayerDefinition createBodyLayer() {
-//		MeshDefinition meshdefinition = new MeshDefinition();
-//		PartDefinition partdefinition = meshdefinition.getRoot();
-//
-//		PartDefinition bottom_legs_thick_short1 = partdefinition.addOrReplaceChild("bottom_legs_thick_short1", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
-//
-//		PartDefinition bottom_legs_thick_short1_bottom_front_left = bottom_legs_thick_short1.addOrReplaceChild("bottom_legs_thick_short1_bottom_front_left", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//
-//		PartDefinition bottom_legs_thick_short1_bottom_front_left_individual = bottom_legs_thick_short1_bottom_front_left.addOrReplaceChild("bottom_legs_thick_short1_bottom_front_left_individual", CubeListBuilder.create(), PartPose.offset(-0.0189F, 0.8468F, -0.1463F));
-//
-//		PartDefinition cube_r1 = bottom_legs_thick_short1_bottom_front_left_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(0, 340).addBox(-1.0189F, -1.1115F, -1.7977F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0189F, -0.7977F, 0.1115F, 1.5708F, 0.0F, 0.0F));
-//
-//		PartDefinition bottom_legs_thick_short1_bottom_front_right = bottom_legs_thick_short1.addOrReplaceChild("bottom_legs_thick_short1_bottom_front_right", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//
-//		PartDefinition bottom_legs_thick_short1_bottom_front_right_individual = bottom_legs_thick_short1_bottom_front_right.addOrReplaceChild("bottom_legs_thick_short1_bottom_front_right_individual", CubeListBuilder.create(), PartPose.offset(-0.0189F, 0.8468F, -0.1463F));
-//
-//		PartDefinition cube_r2 = bottom_legs_thick_short1_bottom_front_right_individual.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(8, 340).addBox(-1.0189F, -1.1115F, -1.7977F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0189F, -0.7977F, 0.1115F, 1.5708F, 0.0F, 0.0F));
-//
-//		PartDefinition bottom_legs_thick_short1_bottom_back_left = bottom_legs_thick_short1.addOrReplaceChild("bottom_legs_thick_short1_bottom_back_left", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//
-//		PartDefinition bottom_legs_thick_short1_bottom_back_left_individual = bottom_legs_thick_short1_bottom_back_left.addOrReplaceChild("bottom_legs_thick_short1_bottom_back_left_individual", CubeListBuilder.create(), PartPose.offset(-0.0189F, 0.8468F, -0.1463F));
-//
-//		PartDefinition cube_r3 = bottom_legs_thick_short1_bottom_back_left_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(0, 348).addBox(-1.0189F, -1.1115F, -1.7977F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0189F, -0.7977F, 0.1115F, 1.5708F, 0.0F, 0.0F));
-//
-//		PartDefinition bottom_legs_thick_short1_bottom_back_right = bottom_legs_thick_short1.addOrReplaceChild("bottom_legs_thick_short1_bottom_back_right", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-//
-//		PartDefinition bottom_legs_thick_short1_bottom_back_right_individual = bottom_legs_thick_short1_bottom_back_right.addOrReplaceChild("bottom_legs_thick_short1_bottom_back_right_individual", CubeListBuilder.create(), PartPose.offset(-0.0189F, 0.8468F, -0.1463F));
-//
-//		PartDefinition cube_r4 = bottom_legs_thick_short1_bottom_back_right_individual.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(8, 348).addBox(-1.0189F, -1.1115F, -1.7977F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0189F, -0.7977F, 0.1115F, 1.5708F, 0.0F, 0.0F));
-//
-//		return LayerDefinition.create(meshdefinition, 1024, 1024);
-//	}
-//
-//	@Override
-//	public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-//
-//	}
-//
-//	@Override
-//	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-//		bottom_legs_thick_short1.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-//	}
-//}
+package net.buckleystudios.equigen.entity.client.parts.partmodels.bottomlegs;// Made with Blockbench 4.12.6
+// Exported for Minecraft version 1.17 or later with Mojang mappings
+// Paste this class into your mod and generate all required imports
+
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.buckleystudios.equigen.entity.client.parts.MultipartBottomLegModel;
+import net.buckleystudios.equigen.entity.client.parts.PartTransform;
+import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.*;
+
+import java.util.Map;
+
+public class bottom_legs_thick_short_1 extends MultipartBottomLegModel<GeneticHorseEntity> {
+	private final ModelPart bottom_legs_thick_short_1;
+	private final ModelPart kneeAnchor;
+	private final ModelPart hoofAnchor;
+
+	public bottom_legs_thick_short_1(ModelPart root) {
+		this.bottom_legs_thick_short_1 = root.getChild("bottom_legs_thick_short_1");
+		this.kneeAnchor = this.bottom_legs_thick_short_1.getChild("kneeAnchor");
+		this.hoofAnchor = this.bottom_legs_thick_short_1.getChild("hoofAnchor");
+	}
+
+	public static LayerDefinition createBodyLayer() {
+		MeshDefinition meshdefinition = new MeshDefinition();
+		PartDefinition partdefinition = meshdefinition.getRoot();
+
+		PartDefinition bottom_legs_thick_short_1 = partdefinition.addOrReplaceChild("bottom_legs_thick_short_1", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
+
+		PartDefinition bottom_legs_thick_short_1_bottom_individual = bottom_legs_thick_short_1.addOrReplaceChild("bottom_legs_thick_short_1_bottom_individual", CubeListBuilder.create(), PartPose.offset(-0.0189F, 0.8468F, -0.1463F));
+
+		PartDefinition cube_r1 = bottom_legs_thick_short_1_bottom_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(0, 340).addBox(-1.0189F, -1.1115F, -1.7977F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0189F, -0.7977F, 0.1115F, 1.5708F, 0.0F, 0.0F));
+
+		PartDefinition bottom_legs_thick_short_1_bottom_lower_individual = bottom_legs_thick_short_1.addOrReplaceChild("bottom_legs_thick_short_1_bottom_lower_individual", CubeListBuilder.create(), PartPose.offset(0.0189F, 2.1247F, -0.59F));
+
+		PartDefinition cube_r2 = bottom_legs_thick_short_1_bottom_lower_individual.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(0, 344).addBox(-0.9811F, -1.4237F, -1.9046F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.0189F, -0.5353F, 0.8434F, 1.0036F, 0.0F, 0.0F));
+
+		PartDefinition kneeAnchor = bottom_legs_thick_short_1.addOrReplaceChild("kneeAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.05F, -0.1F));
+
+		PartDefinition hoofAnchor = bottom_legs_thick_short_1.addOrReplaceChild("hoofAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.4F, -1.2F));
+
+		return LayerDefinition.create(meshdefinition, 1024, 1024);
+	}
+
+	@Override
+	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		this.root().getAllParts().forEach(ModelPart::resetPose);
+	}
+
+	@Override
+	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
+		bottom_legs_thick_short_1.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+	}
+
+	@Override
+	public ModelPart root() {
+		return bottom_legs_thick_short_1;
+	}
+
+	@Override
+	public Map<String, PartTransform> anchors() {
+		return Map.of(
+				"kneeAnchor", asTransform(this.kneeAnchor),
+				"hoofAnchor", asTransform(this.hoofAnchor));
+	}
+}

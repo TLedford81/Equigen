@@ -5,10 +5,9 @@ import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.ModEntityAttributes;
 import net.buckleystudios.equigen.entity.client.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.backs.*;
-import net.buckleystudios.equigen.entity.client.parts.partmodels.bottomlegs.bottom_legs_average_average_1;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.bottomlegs.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.chests.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.ears.ears;
-import net.buckleystudios.equigen.entity.client.parts.partmodels.fronttoplegs.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.heads.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.hips.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.hooves.hoof_average;
@@ -20,6 +19,7 @@ import net.buckleystudios.equigen.entity.client.parts.partmodels.necks.swan.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.stomachs.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.tails.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.topbacklegs.*;
+import net.buckleystudios.equigen.entity.client.parts.partmodels.topfrontlegs.*;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.withers.withers_average;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.withers.withers_lean;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.withers.withers_muscular;
@@ -304,10 +304,34 @@ public class ModEventBusEvents {
         event.registerLayerDefinition(ModModelLayers.KNEES, knees::createBodyLayer);
 
         //Bottom Legs
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_SHORT_1, bottom_legs_thin_short_1::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_SHORT_2, bottom_legs_thin_short_2::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_SHORT_3, bottom_legs_thin_short_3::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_AVERAGE_1, bottom_legs_thin_average_1::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_AVERAGE_2, bottom_legs_thin_average_2::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_AVERAGE_3, bottom_legs_thin_average_3::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_LONG_1, bottom_legs_thin_long_1::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_LONG_2, bottom_legs_thin_long_2::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_LONG_3, bottom_legs_thin_long_3::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_AVERAGE_SHORT_1, bottom_legs_average_short_1::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_AVERAGE_SHORT_2, bottom_legs_average_short_2::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_AVERAGE_SHORT_3, bottom_legs_average_short_3::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_AVERAGE_AVERAGE_1, bottom_legs_average_average_1::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_AVERAGE_AVERAGE_2, bottom_legs_average_average_2::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_AVERAGE_AVERAGE_3, bottom_legs_average_average_3::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_AVERAGE_LONG_1, bottom_legs_average_long_1::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_AVERAGE_LONG_2, bottom_legs_average_long_2::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_AVERAGE_LONG_3, bottom_legs_average_long_3::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THICK_SHORT_1, bottom_legs_thick_short_1::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THICK_SHORT_2, bottom_legs_thick_short_2::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THICK_SHORT_3, bottom_legs_thick_short_3::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THICK_AVERAGE_1, bottom_legs_thick_average_1::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THICK_AVERAGE_2, bottom_legs_thick_average_2::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THICK_AVERAGE_3, bottom_legs_thick_average_3::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THICK_LONG_1, bottom_legs_thick_long_1::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THICK_LONG_2, bottom_legs_thick_long_2::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THICK_LONG_3, bottom_legs_thick_long_3::createBodyLayer);
 
-        //Top Front Legs
-        event.registerLayerDefinition(ModModelLayers.TOP_FRONT_LEGS_AVERAGE_AVERAGE_1, top_front_legs_average_average_1::createBodyLayer);
 
 
 

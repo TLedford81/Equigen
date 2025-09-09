@@ -16,11 +16,13 @@ import java.util.Map;
 
 public class knees extends MultipartKneeModel<GeneticHorseEntity> {
     private final ModelPart knees;
-    private final ModelPart knee_individual;
+    private final ModelPart topLegAnchor;
+    private final ModelPart bottomLegAnchor;
 
     public knees(ModelPart root) {
         this.knees = root.getChild("knees");
-        this.knee_individual = this.knees.getChild("knee_individual");
+        this.topLegAnchor = this.knees.getChild("topLegAnchor");
+        this.bottomLegAnchor = this.knees.getChild("bottomLegAnchor");
     }
 
     public static LayerDefinition createBodyLayer() {
@@ -30,6 +32,10 @@ public class knees extends MultipartKneeModel<GeneticHorseEntity> {
         PartDefinition knees = partdefinition.addOrReplaceChild("knees", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
         PartDefinition knee_individual = knees.addOrReplaceChild("knee_individual", CubeListBuilder.create().texOffs(40, 142).mirror().addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 0.0F, 0.0F));
+
+        PartDefinition topLegAnchor = knees.addOrReplaceChild("topLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.0F, 0.0F));
+
+        PartDefinition bottomLegAnchor = knees.addOrReplaceChild("bottomLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
         return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
@@ -52,7 +58,8 @@ public class knees extends MultipartKneeModel<GeneticHorseEntity> {
     @Override
     public Map<String, PartTransform> anchors() {
         return Map.of(
-                "knee_individual", asTransform(this.knee_individual)
+                "topLegAnchor", asTransform(this.topLegAnchor),
+                "bottomLegAnchor", asTransform(bottomLegAnchor)
         );
     }
 }
