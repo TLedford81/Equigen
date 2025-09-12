@@ -102,4 +102,10 @@ public class head_dished_lean extends MultipartHeadModel<GeneticHorseEntity> {
 				"leftEarAnchor", asTransform(leftEarAnchor),
 				"rightEarAnchor", asTransform(rightEarAnchor));
 	}
+
+	@Override
+	public void afterAttached(GeneticHorseEntity e, float partialTicks) {
+		this.root().yRot = getNetYaw(e, partialTicks);
+		this.root().xRot = getPitch(e,"dished");
+	}
 }

@@ -122,4 +122,12 @@ public class neck_average_arched_average_1 extends MultipartNeckModel<GeneticHor
 				"chestAnchor", asTransform(chestAnchor));
 	}
 
+	@Override
+	public void afterAttached(GeneticHorseEntity e, float partialTicks) {
+		this.root().xRot = getPitch(e, "arched");
+		this.root().yRot = getNetYaw(e, partialTicks);
+
+	}
+
+
 }

@@ -103,4 +103,10 @@ public class head_stocky_lean extends MultipartHeadModel<GeneticHorseEntity> {
 				"rightEarAnchor", asTransform(rightEarAnchor));
 	}
 
+	@Override
+	public void afterAttached(GeneticHorseEntity e, float partialTicks) {
+		this.root().yRot = getNetYaw(e, partialTicks);
+		this.root().xRot = getPitch(e, "stocky");
+	}
+
 }

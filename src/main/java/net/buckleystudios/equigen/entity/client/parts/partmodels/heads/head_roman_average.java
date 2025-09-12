@@ -107,20 +107,7 @@ public class head_roman_average extends MultipartHeadModel<GeneticHorseEntity> {
 
 	@Override
 	public void afterAttached(GeneticHorseEntity e, float partialTicks) {
-		float bodyYaw = net.minecraft.util.Mth.rotLerp(partialTicks, e.yBodyRotO, e.yBodyRot);
-		float headYaw = net.minecraft.util.Mth.rotLerp(partialTicks, e.yHeadRotO, e.getYHeadRot());
-		float netYaw = net.minecraft.util.Mth.clamp(headYaw - bodyYaw, -45f, 45f);
-
-		float pitch;
-		Map<String, Float> neckGenetics = getGenetics(e);
-
-		if(neckGenetics.get("NECK_POS") == 0 && neckGenetics.get("NECK_CURVE") == 0){
-			pitch = 0;
-		} else {
-			pitch = -35f;
-		}
-
-		this.head_roman_average.yRot = netYaw * ((float)Math.PI / 180f);
-		this.head_roman_average.xRot = pitch  * ((float)Math.PI / 180f);
+		this.root().yRot = getNetYaw(e, partialTicks);
+		this.root().xRot = getPitch(e, "roman");
 	}
 }
