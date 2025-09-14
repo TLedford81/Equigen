@@ -18,11 +18,13 @@ public class neck_muscular_arched_short_1 extends MultipartNeckModel<GeneticHors
 	private final ModelPart neck_muscular_arched_short_1;
 	private final ModelPart headAnchor;
 	private final ModelPart chestAnchor;
+	private final ModelPart withersAnchor;
 
 	public neck_muscular_arched_short_1(ModelPart root) {
 		this.neck_muscular_arched_short_1 = root.getChild("neck_muscular_arched_short_1");
 		this.headAnchor = this.neck_muscular_arched_short_1.getChild("headAnchor");
 		this.chestAnchor = this.neck_muscular_arched_short_1.getChild("chestAnchor");
+		this.withersAnchor = this.neck_muscular_arched_short_1.getChild("withersAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -51,7 +53,7 @@ public class neck_muscular_arched_short_1 extends MultipartNeckModel<GeneticHors
 
 		PartDefinition neck_muscular_arched_short_1_lower_individual = neck_muscular_arched_short_1_individual.addOrReplaceChild("neck_muscular_arched_short_1_lower_individual", CubeListBuilder.create(), PartPose.offset(-0.0445F, -2.0903F, -1.5243F));
 
-		PartDefinition cube_r5 = neck_muscular_arched_short_1_lower_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(383, 645).addBox(-6.08F, -11.0F, -0.92F, 6.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.08F, 8.0069F, 1.0274F, 0.2618F, 0.0F, 0.0F));
+		PartDefinition cube_r5 = neck_muscular_arched_short_1_lower_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(383, 645).addBox(-6.08F, -11.0F, -0.92F, 6.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.08F, 8.0069F, 1.0273F, 0.2618F, 0.0F, 0.0F));
 
 		PartDefinition neck_muscular_arched_short_1_mane = neck_muscular_arched_short_1.addOrReplaceChild("neck_muscular_arched_short_1_mane", CubeListBuilder.create(), PartPose.offset(0.0F, -5.2737F, 0.0F));
 
@@ -65,13 +67,13 @@ public class neck_muscular_arched_short_1 extends MultipartNeckModel<GeneticHors
 
 		PartDefinition neck_muscular_arched_short_1_top_mane_connector2 = neck_muscular_arched_short_1_top_mane_connector.addOrReplaceChild("neck_muscular_arched_short_1_top_mane_connector2", CubeListBuilder.create(), PartPose.offset(0.8045F, -0.3575F, -0.4469F));
 
-		PartDefinition neck_muscular_arched_short_1_top_mane_connector2_individual = neck_muscular_arched_short_1_top_mane_connector2.addOrReplaceChild("neck_muscular_arched_short_1_top_mane_connector2_individual", CubeListBuilder.create(), PartPose.offset(1.6453F, 0.5034F, -0.3893F));
+		PartDefinition neck_muscular_arched_short_1_top_mane_connector2_individual = neck_muscular_arched_short_1_top_mane_connector2.addOrReplaceChild("neck_muscular_arched_short_1_top_mane_connector2_individual", CubeListBuilder.create(), PartPose.offset(1.6452F, 0.5034F, -0.3893F));
 
 		PartDefinition cube_r7 = neck_muscular_arched_short_1_top_mane_connector2_individual.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(723, 815).addBox(-2.0F, -2.0F, -3.0F, 3.0F, 1.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5F, 1.5524F, 0.2999F, -0.1309F, 0.0F, 0.0F));
 
-		PartDefinition neck_muscular_arched_short_1_top_mane_flow = neck_muscular_arched_short_1_top_mane_connector2.addOrReplaceChild("neck_muscular_arched_short_1_top_mane_flow", CubeListBuilder.create(), PartPose.offsetAndRotation(2.7709F, 0.0F, 0.2682F, -0.1745F, 0.0F, 0.0F));
+		PartDefinition neck_muscular_arched_short_1_top_mane_flow = neck_muscular_arched_short_1_top_mane_connector2.addOrReplaceChild("neck_muscular_arched_short_1_top_mane_flow", CubeListBuilder.create(), PartPose.offsetAndRotation(2.771F, 0.0F, 0.2682F, -0.1745F, 0.0F, 0.0F));
 
-		PartDefinition cube_r8 = neck_muscular_arched_short_1_top_mane_flow.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(709, 809).addBox(-1.0707F, -0.1476F, -2.1526F, 1.0F, 7.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.0257F, -1.0516F, 0.0323F, 0.0399F, -0.3352F));
+		PartDefinition cube_r8 = neck_muscular_arched_short_1_top_mane_flow.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(709, 809).addBox(-1.0707F, -0.1476F, -2.1526F, 1.0F, 7.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.0256F, -1.0516F, 0.0323F, 0.0399F, -0.3352F));
 
 		PartDefinition neck_muscular_arched_short_1_bottom_mane = neck_muscular_arched_short_1_mane.addOrReplaceChild("neck_muscular_arched_short_1_bottom_mane", CubeListBuilder.create(), PartPose.offset(0.7989F, 2.6458F, 1.9742F));
 
@@ -83,7 +85,7 @@ public class neck_muscular_arched_short_1 extends MultipartNeckModel<GeneticHors
 
 		PartDefinition neck_muscular_arched_short_1_bottom_mane_connector2 = neck_muscular_arched_short_1_bottom_mane_connector.addOrReplaceChild("neck_muscular_arched_short_1_bottom_mane_connector2", CubeListBuilder.create(), PartPose.offset(0.1788F, -2.4134F, -0.8045F));
 
-		PartDefinition neck_muscular_arched_short_1_bottom_mane_connector2_individual = neck_muscular_arched_short_1_bottom_mane_connector2.addOrReplaceChild("neck_muscular_arched_short_1_bottom_mane_connector2_individual", CubeListBuilder.create(), PartPose.offset(1.6453F, -0.0807F, -0.3996F));
+		PartDefinition neck_muscular_arched_short_1_bottom_mane_connector2_individual = neck_muscular_arched_short_1_bottom_mane_connector2.addOrReplaceChild("neck_muscular_arched_short_1_bottom_mane_connector2_individual", CubeListBuilder.create(), PartPose.offset(1.6453F, -0.0806F, -0.3996F));
 
 		PartDefinition cube_r10 = neck_muscular_arched_short_1_bottom_mane_connector2_individual.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(732, 820).addBox(-2.0F, -2.0F, -2.0F, 3.0F, 1.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5F, -0.2769F, -2.1032F, -0.9163F, 0.0F, 0.0F));
 
@@ -96,6 +98,10 @@ public class neck_muscular_arched_short_1 extends MultipartNeckModel<GeneticHors
 		PartDefinition cube_r12 = headAnchor.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -0.1309F, 0.0F, 0.0F));
 
 		PartDefinition chestAnchor = neck_muscular_arched_short_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.1F, -1.0F, -1.75F));
+
+		PartDefinition withersAnchor = neck_muscular_arched_short_1.addOrReplaceChild("withersAnchor", CubeListBuilder.create(), PartPose.offset(0.2F, -0.8346F, 1.5529F));
+
+		PartDefinition cube_r13 = withersAnchor.addOrReplaceChild("cube_r13", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.6545F, 0.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
@@ -119,7 +125,8 @@ public class neck_muscular_arched_short_1 extends MultipartNeckModel<GeneticHors
 	public Map<String, PartTransform> anchors() {
 		return Map.of(
 				"headAnchor", asTransform(headAnchor),
-				"chestAnchor", asTransform(chestAnchor));
+				"chestAnchor", asTransform(chestAnchor),
+				"withersAnchor", asTransform(withersAnchor));
 	}
 
 }

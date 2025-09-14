@@ -18,11 +18,13 @@ public class neck_lean_arched_average_2 extends MultipartNeckModel<GeneticHorseE
 	private final ModelPart neck_lean_arched_average_2;
 	private final ModelPart headAnchor;
 	private final ModelPart chestAnchor;
+	private final ModelPart withersAnchor;
 
 	public neck_lean_arched_average_2(ModelPart root) {
 		this.neck_lean_arched_average_2 = root.getChild("neck_lean_arched_average_2");
 		this.headAnchor = this.neck_lean_arched_average_2.getChild("headAnchor");
 		this.chestAnchor = this.neck_lean_arched_average_2.getChild("chestAnchor");
+		this.withersAnchor = this.neck_lean_arched_average_2.getChild("withersAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -43,7 +45,7 @@ public class neck_lean_arched_average_2 extends MultipartNeckModel<GeneticHorseE
 
 		PartDefinition cube_r2 = neck_lean_arched_average_2_crest_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(528, 584).addBox(-4.08F, -10.0F, -0.92F, 4.0F, 10.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, 3.5921F, 3.479F, 0.7854F, 0.0F, 0.0F));
 
-		PartDefinition neck_lean_arched_average_2_middle_individual = neck_lean_arched_average_2_individual.addOrReplaceChild("neck_lean_arched_average_2_middle_individual", CubeListBuilder.create(), PartPose.offset(-0.2724F, -0.3896F, -1.0042F));
+		PartDefinition neck_lean_arched_average_2_middle_individual = neck_lean_arched_average_2_individual.addOrReplaceChild("neck_lean_arched_average_2_middle_individual", CubeListBuilder.create(), PartPose.offset(-0.2724F, -0.3897F, -1.0042F));
 
 		PartDefinition cube_r3 = neck_lean_arched_average_2_middle_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(540, 584).addBox(-5.0784F, -8.0F, -0.9017F, 4.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.1077F, 5.7274F, 0.0236F, 0.2618F, 0.0F, 0.0F));
 
@@ -65,11 +67,11 @@ public class neck_lean_arched_average_2 extends MultipartNeckModel<GeneticHorseE
 
 		PartDefinition neck_lean_arched_average_2_top_mane_connector2 = neck_lean_arched_average_2_top_mane_connector.addOrReplaceChild("neck_lean_arched_average_2_top_mane_connector2", CubeListBuilder.create(), PartPose.offset(0.8045F, -0.3575F, -0.4469F));
 
-		PartDefinition neck_lean_arched_average_2_top_mane_connector2_individual = neck_lean_arched_average_2_top_mane_connector2.addOrReplaceChild("neck_lean_arched_average_2_top_mane_connector2_individual", CubeListBuilder.create(), PartPose.offset(1.1453F, 0.5034F, -0.3893F));
+		PartDefinition neck_lean_arched_average_2_top_mane_connector2_individual = neck_lean_arched_average_2_top_mane_connector2.addOrReplaceChild("neck_lean_arched_average_2_top_mane_connector2_individual", CubeListBuilder.create(), PartPose.offset(1.1452F, 0.5034F, -0.3893F));
 
 		PartDefinition cube_r7 = neck_lean_arched_average_2_top_mane_connector2_individual.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(871, 777).addBox(-2.0F, -2.0F, -3.0F, 2.0F, 1.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 1.5524F, 0.2999F, -0.1309F, 0.0F, 0.0F));
 
-		PartDefinition neck_lean_arched_average_2_top_mane_flow = neck_lean_arched_average_2_top_mane_connector2.addOrReplaceChild("neck_lean_arched_average_2_top_mane_flow", CubeListBuilder.create(), PartPose.offsetAndRotation(2.1453F, 0.0F, 0.2682F, -0.1745F, 0.0F, 0.0F));
+		PartDefinition neck_lean_arched_average_2_top_mane_flow = neck_lean_arched_average_2_top_mane_connector2.addOrReplaceChild("neck_lean_arched_average_2_top_mane_flow", CubeListBuilder.create(), PartPose.offsetAndRotation(2.1452F, 0.0F, 0.2682F, -0.1745F, 0.0F, 0.0F));
 
 		PartDefinition cube_r8 = neck_lean_arched_average_2_top_mane_flow.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(857, 771).addBox(-1.0707F, -0.1476F, -2.1526F, 1.0F, 7.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.0257F, -1.0516F, 0.0323F, 0.0399F, -0.3352F));
 
@@ -97,6 +99,10 @@ public class neck_lean_arched_average_2 extends MultipartNeckModel<GeneticHorseE
 
 		PartDefinition chestAnchor = neck_lean_arched_average_2.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.1F, -1.0F, -1.75F));
 
+		PartDefinition withersAnchor = neck_lean_arched_average_2.addOrReplaceChild("withersAnchor", CubeListBuilder.create(), PartPose.offset(0.2F, -0.9346F, 2.5529F));
+
+		PartDefinition cube_r13 = withersAnchor.addOrReplaceChild("cube_r13", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.6545F, 0.0F, 0.0F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -119,7 +125,8 @@ public class neck_lean_arched_average_2 extends MultipartNeckModel<GeneticHorseE
 	public Map<String, PartTransform> anchors() {
 		return Map.of(
 				"headAnchor", asTransform(headAnchor),
-				"chestAnchor", asTransform(chestAnchor));
+				"chestAnchor", asTransform(chestAnchor),
+				"withersAnchor", asTransform(withersAnchor));
 	}
 
 }

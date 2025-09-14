@@ -16,11 +16,11 @@ import java.util.Map;
 
 public class withers_lean extends MultipartWithersModel<GeneticHorseEntity> {
 	private final ModelPart withers_lean;
-	private final ModelPart backAnchor;
+	private final ModelPart neckAnchor;
 
 	public withers_lean(ModelPart root) {
 		this.withers_lean = root.getChild("withers_lean");
-		this.backAnchor = this.withers_lean.getChild("backAnchor");
+		this.neckAnchor = this.withers_lean.getChild("neckAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -37,7 +37,9 @@ public class withers_lean extends MultipartWithersModel<GeneticHorseEntity> {
 
 		PartDefinition cube_r2 = withers_lean__lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(731, 25).addBox(-4.08F, -6.88F, -5.52F, 5.0F, 17.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.516F, -2.9604F, -1.0801F, 1.2654F, 0.0F, 0.0F));
 
-		PartDefinition backAnchor = withers_lean.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.75F, -4.412F));
+		PartDefinition neckAnchor = withers_lean.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(-0.1F, -5.05F, -7.412F));
+
+		PartDefinition cube_r3 = neckAnchor.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0F, 0.0F, -0.3054F, 0.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
@@ -60,6 +62,6 @@ public class withers_lean extends MultipartWithersModel<GeneticHorseEntity> {
 	@Override
 	public Map<String, PartTransform> anchors() {
 		return Map.of(
-				"backAnchor", asTransform(backAnchor));
+				"neckAnchor", asTransform(neckAnchor));
 	}
 }

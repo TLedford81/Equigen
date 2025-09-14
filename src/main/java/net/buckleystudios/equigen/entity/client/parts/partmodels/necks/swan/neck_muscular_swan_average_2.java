@@ -18,11 +18,13 @@ public class neck_muscular_swan_average_2 extends MultipartNeckModel<GeneticHors
 	private final ModelPart neck_muscular_swan_average_2;
 	private final ModelPart headAnchor;
 	private final ModelPart chestAnchor;
+	private final ModelPart withersAnchor;
 
 	public neck_muscular_swan_average_2(ModelPart root) {
 		this.neck_muscular_swan_average_2 = root.getChild("neck_muscular_swan_average_2");
 		this.headAnchor = this.neck_muscular_swan_average_2.getChild("headAnchor");
 		this.chestAnchor = this.neck_muscular_swan_average_2.getChild("chestAnchor");
+		this.withersAnchor = this.neck_muscular_swan_average_2.getChild("withersAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -71,7 +73,7 @@ public class neck_muscular_swan_average_2 extends MultipartNeckModel<GeneticHors
 
 		PartDefinition neck_muscular_swan_average_2_top_mane_flow = neck_muscular_swan_average_2_top_mane_connector2.addOrReplaceChild("neck_muscular_swan_average_2_top_mane_flow", CubeListBuilder.create(), PartPose.offsetAndRotation(2.5922F, 0.0F, -0.0894F, -0.0873F, 0.0F, 0.0F));
 
-		PartDefinition cube_r8 = neck_muscular_swan_average_2_top_mane_flow.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(857, 1000).addBox(-1.0707F, -0.1476F, -4.1526F, 1.0F, 7.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.4086F, 0.9511F, -0.4274F, -0.2133F, -0.3647F));
+		PartDefinition cube_r8 = neck_muscular_swan_average_2_top_mane_flow.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(857, 1000).addBox(-1.0707F, -0.1476F, -4.1526F, 1.0F, 7.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.4085F, 0.9511F, -0.4274F, -0.2133F, -0.3647F));
 
 		PartDefinition neck_muscular_swan_average_2_bottom_mane = neck_muscular_swan_average_2_mane.addOrReplaceChild("neck_muscular_swan_average_2_bottom_mane", CubeListBuilder.create(), PartPose.offset(0.0838F, -7.0972F, 1.2591F));
 
@@ -97,6 +99,10 @@ public class neck_muscular_swan_average_2 extends MultipartNeckModel<GeneticHors
 
 		PartDefinition chestAnchor = neck_muscular_swan_average_2.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.1F, -2.25F, -1.5F));
 
+		PartDefinition withersAnchor = neck_muscular_swan_average_2.addOrReplaceChild("withersAnchor", CubeListBuilder.create(), PartPose.offsetAndRotation(-0.1F, -1.8346F, 3.3029F, 0.0436F, 0.0F, 0.0F));
+
+		PartDefinition cube_r13 = withersAnchor.addOrReplaceChild("cube_r13", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.6545F, 0.0F, 0.0F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -119,7 +125,8 @@ public class neck_muscular_swan_average_2 extends MultipartNeckModel<GeneticHors
 	public Map<String, PartTransform> anchors() {
 		return Map.of(
 				"headAnchor", asTransform(headAnchor),
-				"chestAnchor", asTransform(chestAnchor));
+				"chestAnchor", asTransform(chestAnchor),
+				"withersAnchor", asTransform(withersAnchor));
 	}
 
 

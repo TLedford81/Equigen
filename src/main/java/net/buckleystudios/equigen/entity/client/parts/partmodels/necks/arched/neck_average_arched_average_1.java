@@ -18,11 +18,13 @@ public class neck_average_arched_average_1 extends MultipartNeckModel<GeneticHor
 	private final ModelPart neck_average_arched_average_1;
 	private final ModelPart headAnchor;
 	private final ModelPart chestAnchor;
+	private final ModelPart withersAnchor;
 
 	public neck_average_arched_average_1(ModelPart root) {
 		this.neck_average_arched_average_1 = root.getChild("neck_average_arched_average_1");
 		this.headAnchor = this.neck_average_arched_average_1.getChild("headAnchor");
 		this.chestAnchor = this.neck_average_arched_average_1.getChild("chestAnchor");
+		this.withersAnchor = this.neck_average_arched_average_1.getChild("withersAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -47,7 +49,7 @@ public class neck_average_arched_average_1 extends MultipartNeckModel<GeneticHor
 
 		PartDefinition cube_r3 = neck_average_arched_average_1_middle_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(484, 619).addBox(-5.0784F, -8.0F, -0.9017F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.0002F, 6.1456F, 0.2651F, 0.2618F, 0.0F, 0.0F));
 
-		PartDefinition cube_r4 = neck_average_arched_average_1_middle_individual.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(472, 606).addBox(-5.0F, -10.0F, -1.0F, 5.0F, 9.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5782F, 3.5644F, 3.1501F, 0.7854F, 0.0F, 0.0F));
+		PartDefinition cube_r4 = neck_average_arched_average_1_middle_individual.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(472, 606).addBox(-5.0F, -10.0F, -1.0F, 5.0F, 9.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5783F, 3.5644F, 3.1501F, 0.7854F, 0.0F, 0.0F));
 
 		PartDefinition neck_average_arched_average_1_lower_individual = neck_average_arched_average_1_individual.addOrReplaceChild("neck_average_arched_average_1_lower_individual", CubeListBuilder.create(), PartPose.offset(-0.0808F, 1.1864F, -1.2176F));
 
@@ -65,11 +67,11 @@ public class neck_average_arched_average_1 extends MultipartNeckModel<GeneticHor
 
 		PartDefinition neck_average_arched_average_1_top_mane_connector2 = neck_average_arched_average_1_top_mane_connector.addOrReplaceChild("neck_average_arched_average_1_top_mane_connector2", CubeListBuilder.create(), PartPose.offset(0.8045F, -0.3575F, -0.4469F));
 
-		PartDefinition neck_average_arched_average_1_top_mane_connector2_individual = neck_average_arched_average_1_top_mane_connector2.addOrReplaceChild("neck_average_arched_average_1_top_mane_connector2_individual", CubeListBuilder.create(), PartPose.offset(1.1453F, 0.5034F, -0.3893F));
+		PartDefinition neck_average_arched_average_1_top_mane_connector2_individual = neck_average_arched_average_1_top_mane_connector2.addOrReplaceChild("neck_average_arched_average_1_top_mane_connector2_individual", CubeListBuilder.create(), PartPose.offset(1.1452F, 0.5034F, -0.3893F));
 
 		PartDefinition cube_r7 = neck_average_arched_average_1_top_mane_connector2_individual.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(819, 777).addBox(-2.0F, -2.0F, -3.0F, 2.0F, 1.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 1.5524F, 0.2999F, -0.1309F, 0.0F, 0.0F));
 
-		PartDefinition neck_average_arched_average_1_top_mane_flow = neck_average_arched_average_1_top_mane_connector2.addOrReplaceChild("neck_average_arched_average_1_top_mane_flow", CubeListBuilder.create(), PartPose.offsetAndRotation(2.1453F, 0.0F, 0.2682F, -0.1745F, 0.0F, 0.0F));
+		PartDefinition neck_average_arched_average_1_top_mane_flow = neck_average_arched_average_1_top_mane_connector2.addOrReplaceChild("neck_average_arched_average_1_top_mane_flow", CubeListBuilder.create(), PartPose.offsetAndRotation(2.1452F, 0.0F, 0.2681F, -0.1745F, 0.0F, 0.0F));
 
 		PartDefinition cube_r8 = neck_average_arched_average_1_top_mane_flow.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(805, 771).addBox(-1.0707F, -0.1476F, -2.1526F, 1.0F, 7.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.0257F, -1.0516F, 0.0323F, 0.0399F, -0.3352F));
 
@@ -77,7 +79,7 @@ public class neck_average_arched_average_1 extends MultipartNeckModel<GeneticHor
 
 		PartDefinition neck_average_arched_average_1_bottom_mane_connector = neck_average_arched_average_1_bottom_mane.addOrReplaceChild("neck_average_arched_average_1_bottom_mane_connector", CubeListBuilder.create(), PartPose.offset(0.0F, 0.7151F, 0.4469F));
 
-		PartDefinition neck_average_arched_average_1_bottom_mane_connector_individual = neck_average_arched_average_1_bottom_mane_connector.addOrReplaceChild("neck_average_arched_average_1_bottom_mane_connector_individual", CubeListBuilder.create(), PartPose.offset(-0.6326F, -1.3083F, -0.9874F));
+		PartDefinition neck_average_arched_average_1_bottom_mane_connector_individual = neck_average_arched_average_1_bottom_mane_connector.addOrReplaceChild("neck_average_arched_average_1_bottom_mane_connector_individual", CubeListBuilder.create(), PartPose.offset(-0.6326F, -1.3083F, -0.9875F));
 
 		PartDefinition cube_r9 = neck_average_arched_average_1_bottom_mane_connector_individual.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(828, 769).addBox(-2.0F, -2.0F, -2.01F, 2.0F, 2.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, -1.3667F, -2.3092F, -0.9163F, 0.0F, 0.0F));
 
@@ -96,6 +98,10 @@ public class neck_average_arched_average_1 extends MultipartNeckModel<GeneticHor
 		PartDefinition cube_r12 = headAnchor.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -0.1309F, 0.0F, 0.0F));
 
 		PartDefinition chestAnchor = neck_average_arched_average_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.1F, -1.25F, -1.75F));
+
+		PartDefinition withersAnchor = neck_average_arched_average_1.addOrReplaceChild("withersAnchor", CubeListBuilder.create(), PartPose.offset(0.2F, -1.0346F, 2.5529F));
+
+		PartDefinition cube_r13 = withersAnchor.addOrReplaceChild("cube_r13", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.6545F, 0.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
@@ -119,7 +125,8 @@ public class neck_average_arched_average_1 extends MultipartNeckModel<GeneticHor
 	public Map<String, PartTransform> anchors() {
 		return Map.of(
 				"headAnchor", asTransform(headAnchor),
-				"chestAnchor", asTransform(chestAnchor));
+				"chestAnchor", asTransform(chestAnchor),
+				"withersAnchor", asTransform(withersAnchor));
 	}
 
 	@Override

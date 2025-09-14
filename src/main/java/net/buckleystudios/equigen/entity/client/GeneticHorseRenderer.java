@@ -162,18 +162,23 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
                 modelMap.get("backModel"), "chestAnchor", modelMap.get("chestModel"), "backAnchor",
                 () -> {
-                    // chest -> neck -> head -> ears
+        // chest -> neck -> head -> ears
                     attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
                             modelMap.get("chestModel"), "neckAnchor", modelMap.get("neckModel"), "chestAnchor",
-                            () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                    modelMap.get("neckModel"), "headAnchor", modelMap.get("headModel"), "neckAnchor",
-                                    () -> {
-                                        attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                                modelMap.get("headModel"), "leftEarAnchor", modelMap.get("leftEarModel"), "headAnchor", null);
-                                        attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                                modelMap.get("headModel"), "rightEarAnchor", modelMap.get("rightEarModel"), "headAnchor", null);
-                                    }
-                            )
+                            () -> {
+                                attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+                                        modelMap.get("neckModel"), "headAnchor", modelMap.get("headModel"), "neckAnchor",
+                                        () -> {
+                                            attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+                                                    modelMap.get("headModel"), "leftEarAnchor", modelMap.get("leftEarModel"), "headAnchor", null);
+                                            attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+                                                    modelMap.get("headModel"), "rightEarAnchor", modelMap.get("rightEarModel"), "headAnchor", null);
+                                        }
+                                );
+                                attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+                                        modelMap.get("neckModel"), "withersAnchor", modelMap.get("withersModel"), "neckAnchor", null);
+
+                            }
                     );
 
                     // chest -> front left leg chain
@@ -249,8 +254,6 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         );
 
         // withers + stomach
-        attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                modelMap.get("backModel"), "withersAnchor", modelMap.get("withersModel"), "backAnchor", null);
 
         attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
                 modelMap.get("backModel"), "stomachAnchor", modelMap.get("stomachModel"), "backAnchor", null);

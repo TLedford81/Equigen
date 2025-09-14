@@ -18,11 +18,13 @@ public class neck_muscular_swan_short_1 extends MultipartNeckModel<GeneticHorseE
 	private final ModelPart neck_muscular_swan_short_1;
 	private final ModelPart headAnchor;
 	private final ModelPart chestAnchor;
+	private final ModelPart withersAnchor;
 
 	public neck_muscular_swan_short_1(ModelPart root) {
 		this.neck_muscular_swan_short_1 = root.getChild("neck_muscular_swan_short_1");
 		this.headAnchor = this.neck_muscular_swan_short_1.getChild("headAnchor");
 		this.chestAnchor = this.neck_muscular_swan_short_1.getChild("chestAnchor");
+		this.withersAnchor = this.neck_muscular_swan_short_1.getChild("withersAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -43,7 +45,7 @@ public class neck_muscular_swan_short_1 extends MultipartNeckModel<GeneticHorseE
 
 		PartDefinition cube_r2 = neck_muscular_swan_short_1_crest_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(369, 1008).addBox(-5.08F, -12.0F, -0.92F, 5.0F, 6.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.58F, 7.4183F, 5.0967F, 0.6109F, 0.0F, 0.0F));
 
-		PartDefinition neck_muscular_swan_short_1_middle_individual = neck_muscular_swan_short_1_individual.addOrReplaceChild("neck_muscular_swan_short_1_middle_individual", CubeListBuilder.create(), PartPose.offset(-0.039F, -2.1533F, -0.4137F));
+		PartDefinition neck_muscular_swan_short_1_middle_individual = neck_muscular_swan_short_1_individual.addOrReplaceChild("neck_muscular_swan_short_1_middle_individual", CubeListBuilder.create(), PartPose.offset(-0.039F, -2.1532F, -0.4137F));
 
 		PartDefinition cube_r3 = neck_muscular_swan_short_1_middle_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(349, 1006).addBox(-6.08F, -9.0F, -0.92F, 6.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.0745F, 6.9315F, 0.1563F, 0.2618F, 0.0F, 0.0F));
 
@@ -51,9 +53,9 @@ public class neck_muscular_swan_short_1 extends MultipartNeckModel<GeneticHorseE
 
 		PartDefinition neck_muscular_swan_short_1_lower_individual = neck_muscular_swan_short_1_individual.addOrReplaceChild("neck_muscular_swan_short_1_lower_individual", CubeListBuilder.create(), PartPose.offset(0.0083F, -1.2684F, -1.5479F));
 
-		PartDefinition cube_r5 = neck_muscular_swan_short_1_lower_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(371, 995).addBox(-6.0784F, -9.0F, -0.9017F, 4.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(4.0784F, 5.6073F, 0.1181F, 0.2182F, 0.0F, 0.0F));
+		PartDefinition cube_r5 = neck_muscular_swan_short_1_lower_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(371, 995).addBox(-6.0784F, -9.0F, -0.9017F, 4.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(4.0784F, 5.6074F, 0.1181F, 0.2182F, 0.0F, 0.0F));
 
-		PartDefinition neck_muscular_swan_short_1_mane = neck_muscular_swan_short_1.addOrReplaceChild("neck_muscular_swan_short_1_mane", CubeListBuilder.create(), PartPose.offset(0.0F, -7.0615F, 0.0F));
+		PartDefinition neck_muscular_swan_short_1_mane = neck_muscular_swan_short_1.addOrReplaceChild("neck_muscular_swan_short_1_mane", CubeListBuilder.create(), PartPose.offset(0.0F, -7.0614F, 0.0F));
 
 		PartDefinition neck_muscular_swan_short_1_top_mane = neck_muscular_swan_short_1_mane.addOrReplaceChild("neck_muscular_swan_short_1_top_mane", CubeListBuilder.create(), PartPose.offset(0.0838F, -0.8402F, -2.1375F));
 
@@ -71,7 +73,7 @@ public class neck_muscular_swan_short_1 extends MultipartNeckModel<GeneticHorseE
 
 		PartDefinition neck_muscular_swan_short_1_top_mane_flow = neck_muscular_swan_short_1_top_mane_connector2.addOrReplaceChild("neck_muscular_swan_short_1_top_mane_flow", CubeListBuilder.create(), PartPose.offsetAndRotation(2.8603F, 0.0F, -0.0894F, -0.0873F, 0.0F, 0.0F));
 
-		PartDefinition cube_r8 = neck_muscular_swan_short_1_top_mane_flow.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(707, 999).addBox(-1.0707F, -0.1476F, -4.1526F, 1.0F, 7.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.4086F, 0.9511F, -0.4274F, -0.2133F, -0.3647F));
+		PartDefinition cube_r8 = neck_muscular_swan_short_1_top_mane_flow.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(707, 999).addBox(-1.0707F, -0.1476F, -4.1526F, 1.0F, 7.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.4085F, 0.9511F, -0.4274F, -0.2133F, -0.3647F));
 
 		PartDefinition neck_muscular_swan_short_1_bottom_mane = neck_muscular_swan_short_1_mane.addOrReplaceChild("neck_muscular_swan_short_1_bottom_mane", CubeListBuilder.create(), PartPose.offset(0.0838F, 2.2883F, 3.1362F));
 
@@ -87,7 +89,7 @@ public class neck_muscular_swan_short_1 extends MultipartNeckModel<GeneticHorseE
 
 		PartDefinition cube_r10 = neck_muscular_swan_short_1_bottom_mane_connector2_individual.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(723, 1012).addBox(-2.0F, -2.0F, -1.0F, 3.0F, 1.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5F, -1.0702F, -2.7119F, -0.9163F, 0.0F, 0.0F));
 
-		PartDefinition neck_muscular_swan_short_1_bottom_mane_flow = neck_muscular_swan_short_1_bottom_mane_connector2.addOrReplaceChild("neck_muscular_swan_short_1_bottom_mane_flow", CubeListBuilder.create(), PartPose.offset(2.7709F, -0.1788F, 0.0894F));
+		PartDefinition neck_muscular_swan_short_1_bottom_mane_flow = neck_muscular_swan_short_1_bottom_mane_connector2.addOrReplaceChild("neck_muscular_swan_short_1_bottom_mane_flow", CubeListBuilder.create(), PartPose.offset(2.771F, -0.1788F, 0.0894F));
 
 		PartDefinition cube_r11 = neck_muscular_swan_short_1_bottom_mane_flow.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(714, 1005).addBox(-0.8139F, -0.0002F, -4.3921F, 1.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5363F, 0.7151F, 0.8045F, -0.8937F, -0.1201F, -0.1036F));
 
@@ -96,6 +98,10 @@ public class neck_muscular_swan_short_1 extends MultipartNeckModel<GeneticHorseE
 		PartDefinition cube_r12 = headAnchor.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 1.1781F, 0.0F, 0.0F));
 
 		PartDefinition chestAnchor = neck_muscular_swan_short_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.1F, -2.5F, -0.25F));
+
+		PartDefinition withersAnchor = neck_muscular_swan_short_1.addOrReplaceChild("withersAnchor", CubeListBuilder.create(), PartPose.offsetAndRotation(-0.1F, -2.2346F, 3.3529F, 0.0436F, 0.0F, 0.0F));
+
+		PartDefinition cube_r13 = withersAnchor.addOrReplaceChild("cube_r13", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.6545F, 0.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
@@ -119,7 +125,8 @@ public class neck_muscular_swan_short_1 extends MultipartNeckModel<GeneticHorseE
 	public Map<String, PartTransform> anchors() {
 		return Map.of(
 				"headAnchor", asTransform(headAnchor),
-				"chestAnchor", asTransform(chestAnchor));
+				"chestAnchor", asTransform(chestAnchor),
+				"withersAnchor", asTransform(withersAnchor));
 	}
 
 

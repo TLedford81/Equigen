@@ -18,11 +18,13 @@ public class neck_lean_swan_long_2 extends MultipartNeckModel<GeneticHorseEntity
 	private final ModelPart neck_lean_swan_long_2;
 	private final ModelPart headAnchor;
 	private final ModelPart chestAnchor;
+	private final ModelPart withersAnchor;
 
 	public neck_lean_swan_long_2(ModelPart root) {
 		this.neck_lean_swan_long_2 = root.getChild("neck_lean_swan_long_2");
 		this.headAnchor = this.neck_lean_swan_long_2.getChild("headAnchor");
 		this.chestAnchor = this.neck_lean_swan_long_2.getChild("chestAnchor");
+		this.withersAnchor = this.neck_lean_swan_long_2.getChild("withersAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -39,7 +41,7 @@ public class neck_lean_swan_long_2 extends MultipartNeckModel<GeneticHorseEntity
 
 		PartDefinition cube_r1 = neck_lean_swan_long_2_crest_upper.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(665, 940).addBox(-3.0892F, -6.0F, -3.8808F, 3.0F, 6.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.5892F, 0.518F, 0.8852F, 1.0908F, 0.0F, 0.0F));
 
-		PartDefinition neck_lean_swan_long_2_crest_lower = neck_lean_swan_long_2_crest.addOrReplaceChild("neck_lean_swan_long_2_crest_lower", CubeListBuilder.create(), PartPose.offset(0.1147F, 4.5822F, 3.1807F));
+		PartDefinition neck_lean_swan_long_2_crest_lower = neck_lean_swan_long_2_crest.addOrReplaceChild("neck_lean_swan_long_2_crest_lower", CubeListBuilder.create(), PartPose.offset(0.1148F, 4.5822F, 3.1807F));
 
 		PartDefinition cube_r2 = neck_lean_swan_long_2_crest_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(650, 924).addBox(-3.08F, -12.0F, -0.92F, 3.0F, 11.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.58F, 5.3704F, 3.6627F, 0.6109F, 0.0F, 0.0F));
 
@@ -51,7 +53,7 @@ public class neck_lean_swan_long_2 extends MultipartNeckModel<GeneticHorseEntity
 
 		PartDefinition neck_lean_swan_long_2_lower_individual = neck_lean_swan_long_2_individual.addOrReplaceChild("neck_lean_swan_long_2_lower_individual", CubeListBuilder.create(), PartPose.offset(0.2402F, -3.7781F, -4.2812F));
 
-		PartDefinition cube_r5 = neck_lean_swan_long_2_lower_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(640, 937).addBox(-5.0784F, -9.0F, -0.9017F, 3.0F, 9.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.5784F, 4.631F, -0.0983F, 0.2182F, 0.0F, 0.0F));
+		PartDefinition cube_r5 = neck_lean_swan_long_2_lower_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(640, 937).addBox(-5.0784F, -9.0F, -0.9017F, 3.0F, 9.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.5784F, 4.6311F, -0.0983F, 0.2182F, 0.0F, 0.0F));
 
 		PartDefinition neck_lean_swan_long_2_mane = neck_lean_swan_long_2.addOrReplaceChild("neck_lean_swan_long_2_mane", CubeListBuilder.create(), PartPose.offset(0.0F, -8.7598F, -2.4134F));
 
@@ -97,6 +99,10 @@ public class neck_lean_swan_long_2 extends MultipartNeckModel<GeneticHorseEntity
 
 		PartDefinition chestAnchor = neck_lean_swan_long_2.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.2F, -2.0F, -1.25F));
 
+		PartDefinition withersAnchor = neck_lean_swan_long_2.addOrReplaceChild("withersAnchor", CubeListBuilder.create(), PartPose.offsetAndRotation(0.1F, -1.5346F, 3.4029F, 0.0436F, 0.0F, 0.0F));
+
+		PartDefinition cube_r13 = withersAnchor.addOrReplaceChild("cube_r13", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.6545F, 0.0F, 0.0F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -119,7 +125,8 @@ public class neck_lean_swan_long_2 extends MultipartNeckModel<GeneticHorseEntity
 	public Map<String, PartTransform> anchors() {
 		return Map.of(
 				"headAnchor", asTransform(headAnchor),
-				"chestAnchor", asTransform(chestAnchor));
+				"chestAnchor", asTransform(chestAnchor),
+				"withersAnchor", asTransform(withersAnchor));
 	}
 
 

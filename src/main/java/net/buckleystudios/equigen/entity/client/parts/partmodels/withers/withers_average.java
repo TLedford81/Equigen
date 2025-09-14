@@ -16,11 +16,11 @@ import java.util.Map;
 
 public class withers_average extends MultipartWithersModel<GeneticHorseEntity> {
 	private final ModelPart withers_average;
-	private final ModelPart backAnchor;
+	private final ModelPart neckAnchor;
 
 	public withers_average(ModelPart root) {
 		this.withers_average = root.getChild("withers_average");
-		this.backAnchor = this.withers_average.getChild("backAnchor");
+		this.neckAnchor = this.withers_average.getChild("neckAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -37,7 +37,9 @@ public class withers_average extends MultipartWithersModel<GeneticHorseEntity> {
 
 		PartDefinition cube_r2 = withers_average_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(780, 25).addBox(-5.08F, -6.88F, -5.52F, 6.0F, 17.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.8905F, -0.7872F, 1.2654F, 0.0F, 0.0F));
 
-		PartDefinition backAnchor = withers_average.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.75F, -4.3226F));
+		PartDefinition neckAnchor = withers_average.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(0.0F, -5.05F, -7.3226F));
+
+		PartDefinition cube_r3 = neckAnchor.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0F, 0.0F, -0.3054F, 0.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
@@ -62,6 +64,6 @@ public class withers_average extends MultipartWithersModel<GeneticHorseEntity> {
 	@Override
 	public Map<String, PartTransform> anchors() {
 		return Map.of(
-				"backAnchor", asTransform(backAnchor));
+				"neckAnchor", asTransform(neckAnchor));
 	}
 }

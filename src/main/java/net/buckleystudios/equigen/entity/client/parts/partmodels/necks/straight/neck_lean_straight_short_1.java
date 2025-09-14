@@ -18,11 +18,13 @@ public class neck_lean_straight_short_1 extends MultipartNeckModel<GeneticHorseE
 	private final ModelPart neck_lean_straight_short_1;
 	private final ModelPart headAnchor;
 	private final ModelPart chestAnchor;
+	private final ModelPart withersAnchor;
 
 	public neck_lean_straight_short_1(ModelPart root) {
 		this.neck_lean_straight_short_1 = root.getChild("neck_lean_straight_short_1");
 		this.headAnchor = this.neck_lean_straight_short_1.getChild("headAnchor");
 		this.chestAnchor = this.neck_lean_straight_short_1.getChild("chestAnchor");
+		this.withersAnchor = this.neck_lean_straight_short_1.getChild("withersAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -97,6 +99,10 @@ public class neck_lean_straight_short_1 extends MultipartNeckModel<GeneticHorseE
 
 		PartDefinition chestAnchor = neck_lean_straight_short_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.1F, -0.75F, -2.25F));
 
+		PartDefinition withersAnchor = neck_lean_straight_short_1.addOrReplaceChild("withersAnchor", CubeListBuilder.create(), PartPose.offset(0.1F, -0.7346F, 2.0529F));
+
+		PartDefinition cube_r13 = withersAnchor.addOrReplaceChild("cube_r13", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.5672F, 0.0F, 0.0F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -119,7 +125,8 @@ public class neck_lean_straight_short_1 extends MultipartNeckModel<GeneticHorseE
 	public Map<String, PartTransform> anchors() {
 		return Map.of(
 				"headAnchor", asTransform(headAnchor),
-				"chestAnchor", asTransform(chestAnchor));
+				"chestAnchor", asTransform(chestAnchor),
+				"withersAnchor", asTransform(withersAnchor));
 	}
 
 }

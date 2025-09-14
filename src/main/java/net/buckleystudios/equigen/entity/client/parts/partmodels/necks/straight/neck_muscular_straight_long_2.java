@@ -18,11 +18,13 @@ public class neck_muscular_straight_long_2 extends MultipartNeckModel<GeneticHor
 	private final ModelPart neck_muscular_straight_long_2;
 	private final ModelPart headAnchor;
 	private final ModelPart chestAnchor;
+	private final ModelPart withersAnchor;
 
 	public neck_muscular_straight_long_2(ModelPart root) {
 		this.neck_muscular_straight_long_2 = root.getChild("neck_muscular_straight_long_2");
 		this.headAnchor = this.neck_muscular_straight_long_2.getChild("headAnchor");
 		this.chestAnchor = this.neck_muscular_straight_long_2.getChild("chestAnchor");
+		this.withersAnchor = this.neck_muscular_straight_long_2.getChild("withersAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -99,6 +101,10 @@ public class neck_muscular_straight_long_2 extends MultipartNeckModel<GeneticHor
 
 		PartDefinition chestAnchor = neck_muscular_straight_long_2.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.0F, -1.75F));
 
+		PartDefinition withersAnchor = neck_muscular_straight_long_2.addOrReplaceChild("withersAnchor", CubeListBuilder.create(), PartPose.offset(0.0F, -0.8346F, 2.8529F));
+
+		PartDefinition cube_r13 = withersAnchor.addOrReplaceChild("cube_r13", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.5672F, 0.0F, 0.0F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -121,7 +127,8 @@ public class neck_muscular_straight_long_2 extends MultipartNeckModel<GeneticHor
 	public Map<String, PartTransform> anchors() {
 		return Map.of(
 				"headAnchor", asTransform(headAnchor),
-				"chestAnchor", asTransform(chestAnchor));
+				"chestAnchor", asTransform(chestAnchor),
+				"withersAnchor", asTransform(withersAnchor));
 	}
 
 }

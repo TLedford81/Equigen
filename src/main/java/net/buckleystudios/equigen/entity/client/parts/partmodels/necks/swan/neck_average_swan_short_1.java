@@ -18,11 +18,13 @@ public class neck_average_swan_short_1 extends MultipartNeckModel<GeneticHorseEn
 	private final ModelPart neck_average_swan_short_1;
 	private final ModelPart headAnchor;
 	private final ModelPart chestAnchor;
+	private final ModelPart withersAnchor;
 
 	public neck_average_swan_short_1(ModelPart root) {
 		this.neck_average_swan_short_1 = root.getChild("neck_average_swan_short_1");
 		this.headAnchor = this.neck_average_swan_short_1.getChild("headAnchor");
 		this.chestAnchor = this.neck_average_swan_short_1.getChild("chestAnchor");
+		this.withersAnchor = this.neck_average_swan_short_1.getChild("withersAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -43,7 +45,7 @@ public class neck_average_swan_short_1 extends MultipartNeckModel<GeneticHorseEn
 
 		PartDefinition cube_r2 = neck_average_swan_short_1_crest_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(368, 984).addBox(-4.08F, -12.0F, -0.92F, 4.0F, 6.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, 7.4183F, 5.0967F, 0.6109F, 0.0F, 0.0F));
 
-		PartDefinition neck_average_swan_short_1_middle_individual = neck_average_swan_short_1_individual.addOrReplaceChild("neck_average_swan_short_1_middle_individual", CubeListBuilder.create(), PartPose.offset(-0.1731F, -2.1533F, -0.4137F));
+		PartDefinition neck_average_swan_short_1_middle_individual = neck_average_swan_short_1_individual.addOrReplaceChild("neck_average_swan_short_1_middle_individual", CubeListBuilder.create(), PartPose.offset(-0.1731F, -2.1532F, -0.4137F));
 
 		PartDefinition cube_r3 = neck_average_swan_short_1_middle_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(350, 982).addBox(-5.08F, -9.0F, -0.92F, 5.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5829F, 6.9315F, 0.1563F, 0.2618F, 0.0F, 0.0F));
 
@@ -51,7 +53,7 @@ public class neck_average_swan_short_1 extends MultipartNeckModel<GeneticHorseEn
 
 		PartDefinition neck_average_swan_short_1_lower_individual = neck_average_swan_short_1_individual.addOrReplaceChild("neck_average_swan_short_1_lower_individual", CubeListBuilder.create(), PartPose.offset(-0.1174F, -1.2684F, -1.5479F));
 
-		PartDefinition cube_r5 = neck_average_swan_short_1_lower_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(369, 971).addBox(-5.0784F, -9.0F, -0.9017F, 3.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.5784F, 5.6073F, 0.1181F, 0.2182F, 0.0F, 0.0F));
+		PartDefinition cube_r5 = neck_average_swan_short_1_lower_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(369, 971).addBox(-5.0784F, -9.0F, -0.9017F, 3.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.5784F, 5.6074F, 0.1181F, 0.2182F, 0.0F, 0.0F));
 
 		PartDefinition neck_average_swan_short_1_mane = neck_average_swan_short_1.addOrReplaceChild("neck_average_swan_short_1_mane", CubeListBuilder.create(), PartPose.offset(0.0F, -5.9888F, 0.0F));
 
@@ -71,9 +73,9 @@ public class neck_average_swan_short_1 extends MultipartNeckModel<GeneticHorseEn
 
 		PartDefinition neck_average_swan_short_1_top_mane_flow = neck_average_swan_short_1_top_mane_connector2.addOrReplaceChild("neck_average_swan_short_1_top_mane_flow", CubeListBuilder.create(), PartPose.offsetAndRotation(1.8771F, 0.0F, -0.0894F, -0.0873F, 0.0F, 0.0F));
 
-		PartDefinition cube_r8 = neck_average_swan_short_1_top_mane_flow.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(709, 974).addBox(-1.0707F, -0.1476F, -4.1526F, 1.0F, 7.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.4086F, 0.9511F, -0.4274F, -0.2133F, -0.3647F));
+		PartDefinition cube_r8 = neck_average_swan_short_1_top_mane_flow.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(709, 974).addBox(-1.0707F, -0.1476F, -4.1526F, 1.0F, 7.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.4085F, 0.9511F, -0.4274F, -0.2133F, -0.3647F));
 
-		PartDefinition neck_average_swan_short_1_bottom_mane = neck_average_swan_short_1_mane.addOrReplaceChild("neck_average_swan_short_1_bottom_mane", CubeListBuilder.create(), PartPose.offset(0.0838F, 1.2156F, 3.1362F));
+		PartDefinition neck_average_swan_short_1_bottom_mane = neck_average_swan_short_1_mane.addOrReplaceChild("neck_average_swan_short_1_bottom_mane", CubeListBuilder.create(), PartPose.offset(0.0838F, 1.2157F, 3.1362F));
 
 		PartDefinition neck_average_swan_short_1_bottom_mane_connector = neck_average_swan_short_1_bottom_mane.addOrReplaceChild("neck_average_swan_short_1_bottom_mane_connector", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 0.7151F, 0.4469F, 0.0436F, 0.0F, 0.0F));
 
@@ -97,6 +99,10 @@ public class neck_average_swan_short_1 extends MultipartNeckModel<GeneticHorseEn
 
 		PartDefinition chestAnchor = neck_average_swan_short_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.25F, -0.5F));
 
+		PartDefinition withersAnchor = neck_average_swan_short_1.addOrReplaceChild("withersAnchor", CubeListBuilder.create(), PartPose.offsetAndRotation(-0.1F, -2.1346F, 3.3529F, 0.0436F, 0.0F, 0.0F));
+
+		PartDefinition cube_r13 = withersAnchor.addOrReplaceChild("cube_r13", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.6545F, 0.0F, 0.0F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -119,7 +125,8 @@ public class neck_average_swan_short_1 extends MultipartNeckModel<GeneticHorseEn
 	public Map<String, PartTransform> anchors() {
 		return Map.of(
 				"headAnchor", asTransform(headAnchor),
-				"chestAnchor", asTransform(chestAnchor));
+				"chestAnchor", asTransform(chestAnchor),
+				"withersAnchor", asTransform(withersAnchor));
 	}
 
 
