@@ -18,44 +18,44 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
         Map<String, Float> neckGenetics = getGenetics(e);
         float pitch;
         // Neck Curves: 1 = Swan, 2 = Straight, 3 = Ewed, 4 = Arched
-//        switch (neckCurve) {
-//            case "swan" -> {
-//                switch (Math.round(neckGenetics.get("NECK_POS"))) {
-//                    case 1 -> pitch = -25.0F;
-//                    case 2 -> pitch = -34.0F;
-//                    case 3 -> pitch = -33.0F;
-//                    default -> pitch = 0.0F;
-//                }
-//            }
-//            case "straight" -> {
-//                switch (Math.round(neckGenetics.get("NECK_POS"))) {
-//                    case 1 -> pitch = -25.0F;
-//                    case 2 -> pitch = -30.0F;
-//                    case 3 -> pitch = -35.0F;
-//                    default -> pitch = 0.0F;
-//                }
-//            }
-//            case "ewed" -> {
-//                switch (Math.round(neckGenetics.get("NECK_POS"))) {
-//                    case 1 -> pitch = -30.0F;
-//                    case 2 -> pitch = -25.0F;
-//                    case 3 -> pitch = -30.0F;
-//                    default -> pitch = 0.0F;
-//                }
-//            }
-//
-//            case "arched" -> {
-//                switch (Math.round(neckGenetics.get("NECK_POS"))) {
-//                    case 1 -> pitch = -200.0F; // Roughly adjusted, need to test w/ varying lengths.
-//                    case 2 -> pitch = -200.0F; // Roughly adjusted, need to test w/ varying lengths.
-//                    case 3 -> pitch = -200.0F; // Roughly adjusted, need to test w/ varying lengths.
-//                    default -> pitch = 0.0F;
-//                }
-//                // minus the neck rotation here
-//            }
-//            default -> pitch = 0;
-//        }
-        return pitch = 0F;
+        switch (neckCurve) {
+            case "swan" -> {
+                switch (Math.round(neckGenetics.get("NECK_POS"))) {
+                    case 1 -> pitch = -25.0F;
+                    case 2 -> pitch = -34.0F;
+                    case 3 -> pitch = -33.0F;
+                    default -> pitch = 0.0F;
+                }
+            }
+            case "straight" -> {
+                switch (Math.round(neckGenetics.get("NECK_POS"))) {
+                    case 1 -> pitch = -25.0F;
+                    case 2 -> pitch = -30.0F;
+                    case 3 -> pitch = -35.0F;
+                    default -> pitch = 0.0F;
+                }
+            }
+            case "ewed" -> {
+                switch (Math.round(neckGenetics.get("NECK_POS"))) {
+                    case 1 -> pitch = -30.0F;
+                    case 2 -> pitch = -25.0F;
+                    case 3 -> pitch = -30.0F;
+                    default -> pitch = 0.0F;
+                }
+            }
+
+            case "arched" -> {
+                switch (Math.round(neckGenetics.get("NECK_POS"))) {
+                    case 1 -> pitch = -100.0F; // Roughly adjusted, need to test w/ varying lengths.
+                    case 2 -> pitch = -25.0F; // Roughly adjusted, need to test w/ varying lengths.
+                    case 3 -> pitch = 50.0F; // Roughly adjusted, need to test w/ varying lengths.
+                    default -> pitch = 0.0F;
+                }
+                // minus the neck rotation here
+            }
+            default -> pitch = 0;
+        }
+        return pitch / 180;
     }
 
 

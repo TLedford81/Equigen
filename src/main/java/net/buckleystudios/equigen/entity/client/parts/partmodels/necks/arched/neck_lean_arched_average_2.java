@@ -5,6 +5,7 @@ package net.buckleystudios.equigen.entity.client.parts.partmodels.necks.arched;/
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
 import net.buckleystudios.equigen.entity.client.parts.MultipartNeckModel;
 import net.buckleystudios.equigen.entity.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
@@ -129,4 +130,12 @@ public class neck_lean_arched_average_2 extends MultipartNeckModel<GeneticHorseE
 				"withersAnchor", asTransform(withersAnchor));
 	}
 
+	@Override
+	public void beforeAttached(GeneticHorseEntity entity, float partialTicks, PoseStack pose) {
+		super.beforeAttached(entity, partialTicks, pose);
+		float rx = getPitch(entity, "arched");
+		float ry = getNetYaw(entity, partialTicks);
+		pose.mulPose(Axis.XP.rotation(rx));
+		pose.mulPose(Axis.YP.rotation(ry));
+	}
 }
