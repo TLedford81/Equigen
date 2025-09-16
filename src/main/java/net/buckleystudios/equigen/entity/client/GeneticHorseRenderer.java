@@ -119,16 +119,6 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         final float extraLiftPx = 2f;
         dy -= extraLiftPx / 16f;
 
-// (optional) snap to pixel grid without zeroing negatives
-// dy = (float)Math.floor(dy * 16f) / 16f;
-
-//        EquigenMod.LOGGER.info("footY={}px  -> dy={}px", footY * 16f, dy * 16f);
-//
-//
-//        EquigenMod.LOGGER.info("hoof[min,max]=({}, {}) model[min,max]=({}, {}) dy={}px",
-//                hoofTracker.minY * 16f, hoofTracker.maxY * 16f,
-//                tracker.minY * 16f,   tracker.maxY * 16f,
-//                dy * 16f);
         //Pass 2
         poseStack.pushPose();
         try {
@@ -258,7 +248,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
                 modelMap.get("backModel"), "stomachAnchor", modelMap.get("stomachModel"), "backAnchor", null);
     }
-            private void applyTransform(PoseStack pose, PartTransform p, PartTransform c) {
+    private void applyTransform(PoseStack pose, PartTransform p, PartTransform c) {
         if (p == null) return;
         pose.translate((float)p.position.x, (float)p.position.y, (float)p.position.z);
         pose.mulPose(Axis.XP.rotation((float)p.rotation.x)); // RADS
@@ -306,16 +296,13 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         if (pA == null || cA == null) return;
         pose.pushPose();
 
-        // Move the child's joint to the parent’s joint
         applyTransform(pose, pA, cA);
+        child.beforeAttached(e, partialTicks, pose);
+        if (chain != null) chain.run();
         child.afterAttached(e, partialTicks);
         child.renderToBuffer(pose, buffer.getBuffer(RenderType.entityCutout(getTextureLocation(e))),
                 light, OverlayTexture.NO_OVERLAY);
 
-        var d = pA.position.subtract(cA.position);
-//        EquigenMod.LOGGER.info("Δ {} <- {} = ({}, {}, {})", anchorInParentModel, anchorInChildModel, d.x, d.y, d.z);
-
-        if (chain != null) chain.run();   // attach grandchildren while this pose is active
         pose.popPose();
     }
 

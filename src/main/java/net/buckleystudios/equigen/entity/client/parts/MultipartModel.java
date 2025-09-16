@@ -1,5 +1,6 @@
 package net.buckleystudios.equigen.entity.client.parts;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -30,6 +31,10 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
     }
 
     public void afterAttached(GeneticHorseEntity e, float partialTicks) {
+
+    }
+
+    public void beforeAttached(E entity, float partialTicks, PoseStack pose) {
 
     }
 }

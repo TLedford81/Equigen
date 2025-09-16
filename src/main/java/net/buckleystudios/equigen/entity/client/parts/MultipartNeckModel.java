@@ -1,5 +1,6 @@
 package net.buckleystudios.equigen.entity.client.parts;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -64,5 +65,19 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
         float netYaw = net.minecraft.util.Mth.clamp(headYaw - bodyYaw, -45f, 45f);
 
         return netYaw * ((float) Math.PI / 180f);
+    }
+
+    @Override
+    public void beforeAttached(GeneticHorseEntity entity, float partialTicks, PoseStack pose) {
+        this.root().xRot = 0f;
+        this.root().yRot = 0f;
+        this.root().zRot = 0f;
+    }
+
+    @Override
+    public void afterAttached(GeneticHorseEntity entity, float pt) {
+        this.root().xRot = 0f;
+        this.root().yRot = 0f;
+        this.root().zRot = 0f;
     }
 }
