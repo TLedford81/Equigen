@@ -99,9 +99,9 @@ public class neck_lean_swan_average_2 extends MultipartNeckModel<GeneticHorseEnt
 
 		PartDefinition chestAnchor = neck_lean_swan_average_2.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.1F, -2.25F, -1.5F));
 
-		PartDefinition withersAnchor = neck_lean_swan_average_2.addOrReplaceChild("withersAnchor", CubeListBuilder.create(), PartPose.offsetAndRotation(-0.2F, -1.9346F, 3.3029F, 0.0436F, 0.0F, 0.0F));
+		PartDefinition withersAnchor = neck_lean_swan_average_2.addOrReplaceChild("withersAnchor", CubeListBuilder.create(), PartPose.offset(-0.2F, -1.9346F, 3.3028F));
 
-		PartDefinition cube_r13 = withersAnchor.addOrReplaceChild("cube_r13", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.6545F, 0.0F, 0.0F));
+		PartDefinition cube_r13 = withersAnchor.addOrReplaceChild("cube_r13", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.6981F, 0.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}

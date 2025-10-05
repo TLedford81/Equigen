@@ -99,7 +99,7 @@ public class neck_average_swan_long_1 extends MultipartNeckModel<GeneticHorseEnt
 
 		PartDefinition chestAnchor = neck_average_swan_long_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.75F, -1.5F));
 
-		PartDefinition withersAnchor = neck_average_swan_long_1.addOrReplaceChild("withersAnchor", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, -2.3346F, 3.1029F, 0.0436F, 0.0F, 0.0F));
+		PartDefinition withersAnchor = neck_average_swan_long_1.addOrReplaceChild("withersAnchor", CubeListBuilder.create(), PartPose.offset(0.0F, -2.3346F, 3.1029F));
 
 		PartDefinition cube_r13 = withersAnchor.addOrReplaceChild("cube_r13", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.6545F, 0.0F, 0.0F));
 

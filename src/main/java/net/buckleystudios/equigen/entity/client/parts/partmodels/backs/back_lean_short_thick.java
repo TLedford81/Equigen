@@ -20,6 +20,7 @@ public class back_lean_short_thick extends MultipartBackModel<GeneticHorseEntity
 	private final ModelPart hipsAnchor;
 	private final ModelPart stomachAnchor;
 	private final ModelPart withersAnchor;
+	private final ModelPart playerAnchor;
 
 	public back_lean_short_thick(ModelPart root) {
 		this.back_lean_short_thick = root.getChild("back_lean_short_thick");
@@ -27,6 +28,7 @@ public class back_lean_short_thick extends MultipartBackModel<GeneticHorseEntity
 		this.hipsAnchor = this.back_lean_short_thick.getChild("hipsAnchor");
 		this.stomachAnchor = this.back_lean_short_thick.getChild("stomachAnchor");
 		this.withersAnchor = this.back_lean_short_thick.getChild("withersAnchor");
+		this.playerAnchor = this.back_lean_short_thick.getChild("playerAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -55,6 +57,8 @@ public class back_lean_short_thick extends MultipartBackModel<GeneticHorseEntity
 
 		PartDefinition withersAnchor = back_lean_short_thick.addOrReplaceChild("withersAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -4.0F, -5.5F));
 
+		PartDefinition playerAnchor = back_lean_short_thick.addOrReplaceChild("playerAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.75F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -3.65F, 0.0F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -78,7 +82,8 @@ public class back_lean_short_thick extends MultipartBackModel<GeneticHorseEntity
 				"chestAnchor",  asTransform(this.chestAnchor),
 				"hipsAnchor", asTransform(this.hipsAnchor),
 				"stomachAnchor", asTransform(this.stomachAnchor),
-				"withersAnchor", asTransform(this.withersAnchor)
+				"withersAnchor", asTransform(this.withersAnchor),
+				"playerAnchor", asTransform(this.playerAnchor)
 		);
 	}
 
