@@ -26,6 +26,7 @@ import net.buckleystudios.equigen.entity.client.parts.partmodels.withers.withers
 import net.buckleystudios.equigen.entity.client.parts.partmodels.withers.withers_lean;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.withers.withers_muscular;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
+import net.buckleystudios.equigen.network.CTSSeatAnchor;
 import net.buckleystudios.equigen.util.BoundsTracker;
 import net.buckleystudios.equigen.util.MeasuringBufferSource;
 import net.minecraft.client.model.EntityModel;
@@ -36,7 +37,12 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.network.PacketDistributor;
+import org.joml.Matrix4f;
+import org.joml.Vector4f;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +51,8 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
 
     private final EntityModelSet modelSet;
     private final Map<String, EntityModel<GeneticHorseEntity>> partCache = new HashMap<>();
+    private final Map<Integer, Vec3> lastSeatSent = new HashMap<>();
+    private int seatSendCooldown = 0;
 
     public GeneticHorseRenderer(EntityRendererProvider.Context context) {
         super(context, new GeneticHorseModelBase<>(context.bakeLayer(ModModelLayers.GENETIC_HORSE)), 1f);
@@ -118,6 +126,23 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
 
         final float extraLiftPx = 2f;
         dy -= extraLiftPx / 16f;
+
+        MultipartModel<GeneticHorseEntity> back = modelMap.get("backModel");
+        Vec3 seatLocal = computeSeatLocal(entity, back, dy);
+        if (seatLocal != null) {
+            if (--seatSendCooldown <= 0) {
+                Vec3 last = lastSeatSent.get(entity.getId());
+                double eps = 1.0 / 64.0;
+                if (last == null || last.distanceToSqr(seatLocal) > eps*eps) {
+                    PacketDistributor.sendToServer(new CTSSeatAnchor(
+                            entity.getId(),
+                            (float) seatLocal.x, (float) seatLocal.y, (float) seatLocal.z
+                    ));
+                    lastSeatSent.put(entity.getId(), seatLocal);
+                }
+                seatSendCooldown = 5; // 5 client ticks
+            }
+        }
 
         //Pass 2
         poseStack.pushPose();
@@ -283,7 +308,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         pose.popPose();
     }
 
-    // Add this helper:
+
     private void attachAndChain(
             PoseStack pose, MultiBufferSource buffer, int light, GeneticHorseEntity e, float partialTicks,
             MultipartModel<GeneticHorseEntity> parent, String anchorInParentModel,
@@ -304,6 +329,45 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                 light, OverlayTexture.NO_OVERLAY);
 
         pose.popPose();
+    }
+
+    private PoseStack makeNeutralModelSpace(GeneticHorseEntity e) {
+        PoseStack ps = new PoseStack();
+        if (e.isBaby()) ps.scale(0.5f, 0.6f, 0.5f);
+        ps.scale(-1f, -1f, 1f);
+        ps.translate(0f, -1.5f, 0f);
+        return ps;
+    }
+
+    private static void applyAnchorOnly(PoseStack pose, PartTransform p) {
+        if (p == null) return;
+        pose.translate((float)p.position.x, (float)p.position.y, (float)p.position.z);
+        pose.mulPose(Axis.XP.rotation((float)p.rotation.x));
+        pose.mulPose(Axis.YP.rotation((float)p.rotation.y));
+        pose.mulPose(Axis.ZP.rotation((float)p.rotation.z));
+        pose.scale((float)p.scale.x, (float)p.scale.y, (float)p.scale.z);
+    }
+
+    private @Nullable Vec3 computeSeatLocal(GeneticHorseEntity e,
+                                            MultipartModel<GeneticHorseEntity> back,
+                                            float dy) {
+        if (back == null) return null;
+
+        PartTransform pA = back.anchors().get("riderAnchor");
+        if (pA == null) pA = back.anchors().get("hipsAnchor");
+        if (pA == null) return null;
+
+        PoseStack ps = makeNeutralModelSpace(e); // baby scale + flip + translate(0,-1.5,0)
+        ps.pushPose();
+        applyAnchorOnly(ps, pA);
+
+        Matrix4f m = ps.last().pose();
+        Vector4f v = new Vector4f(0, 0, 0, 1).mul(m);
+        ps.popPose();
+
+        float riderDown = 1f / 16f; // small sink into the back (pixels->blocks)
+        // IMPORTANT: include dy so the seat follows the rendered vertical shift
+        return new Vec3(v.x, v.y, v.z);
     }
 
     // Find first ID in the list with a given prefix (e.g., "back_", "chest_", "neck_")

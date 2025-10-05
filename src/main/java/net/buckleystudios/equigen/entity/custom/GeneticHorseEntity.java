@@ -19,7 +19,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.network.Filterable;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
@@ -47,13 +46,10 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.entity.living.BabyEntitySpawnEvent;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
 public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJumping {
-    public static final Logger LOGGER = LoggerFactory.getLogger(GeneticHorseEntity.class);
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
     public static final EntityDataAccessor<Float> HUNGER = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
@@ -99,6 +95,11 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public static final EntityDataAccessor<Float> GENE_TAIL_LENGTH = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
 
     private static final EntityDataAccessor<Boolean> PREGNANT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.BOOLEAN);
+
+    public static final EntityDataAccessor<Float> SEAT_LOCAL_X = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> SEAT_LOCAL_Y = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> SEAT_LOCAL_Z = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
+
     public static final int geneticCount = GeneticValues.values().length;
     private Map<String, Float> GENETICS = new HashMap<String, Float>();
     private int hungerTickTimer;
@@ -274,19 +275,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     }
 
     @Override
-    protected Vec3 getPassengerAttachmentPoint(Entity entity, EntityDimensions dimensions, float partialTick) {
-        return super.getPassengerAttachmentPoint(entity, dimensions, partialTick)
-                .add(new Vec3(0.0, 0.65 * (double) partialTick, -0.5 * (double) partialTick)
-                        .yRot(-this.getYRot() * (float) (Math.PI / 180.0)));
-    }
-
-    @Override
-    public Vec3 getPassengerRidingPosition(Entity entity) {
-        return this.position().add(this.getPassengerAttachmentPoint(entity, this.getDimensions(this.getPose()),
-                this.getScale() * this.getAgeScale()));
-    }
-
-    @Override
     public boolean canUseSlot(EquipmentSlot slot) {
         return true;
     }
@@ -459,6 +447,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         builder.define(GENE_TAIL_THICKNESS, 0.0f);
         builder.define(GENE_TAIL_LENGTH, 0.0f);
 
+        builder.define(SEAT_LOCAL_X, 0f);
+        builder.define(SEAT_LOCAL_Y, 0.9f);
+        builder.define(SEAT_LOCAL_Z, -0.3f);
 
         builder.define(PREGNANT, false);
     }
@@ -1084,7 +1075,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             }
 
             float forward = living.zza; // W/S
-            float strafe = 0.0F;         // disable A/D
+            float strafe = 0.0F; // disable A/D
             float vertical = 0.0F;
 
             super.travel(new Vec3(strafe, vertical, forward));
@@ -1094,14 +1085,49 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     }
 
     @Override
+    protected Vec3 getPassengerAttachmentPoint(Entity passenger, EntityDimensions dims, float partialTick) {
+        return new Vec3(0, getSeatLocal().y, 0);
+    }
+
+    @Override
     protected void positionRider(Entity passenger, MoveFunction callback) {
-        super.positionRider(passenger, callback);
-        if (!passenger.getType().is(EntityTypeTags.CAN_TURN_IN_BOATS)) {
-            passenger.setYRot(passenger.getYRot() + headNudge);
-            passenger.setYHeadRot(passenger.getYHeadRot() + headNudge);
-            this.clampRotation(passenger);
+        Vec3 local = getSeatLocal();
+
+        // rotate local X/Z by horse yaw
+        float yaw = this.getYRot() * Mth.DEG_TO_RAD;
+        double cos = Mth.cos(yaw), sin = Mth.sin(yaw);
+        double rx = local.x * cos - local.z * sin;
+        double rz = local.x * sin + local.z * cos;
+
+        // raise the passenger so their pelvis sits on the anchor (feet are at entity pos!)
+        // Works well for players; tweak the constant if you want them a bit higher/lower.
+        double riderOffsetY = passenger.getBbHeight() * 0.5 - 1.6;
+
+        callback.accept(
+                passenger,
+                this.getX() + rx,
+                this.getY() + (local.y + riderOffsetY),
+                this.getZ() + rz
+        );
+
+        if (passenger instanceof LivingEntity le) {
+            clampRotation(le);
         }
     }
+
+
+    public void setSeatLocal(double x, double y, double z) {
+        EquigenMod.LOGGER.info("Setting Seat Local: {}, {}, {}", x, y, z);
+        this.entityData.set(SEAT_LOCAL_X, (float)x);
+        this.entityData.set(SEAT_LOCAL_Y, (float)y);
+        this.entityData.set(SEAT_LOCAL_Z, (float)z);
+    }
+
+    public Vec3 getSeatLocal() {
+        return new Vec3(this.entityData.get(SEAT_LOCAL_X), this.entityData.get(SEAT_LOCAL_Y), this.entityData.get(SEAT_LOCAL_Z));
+    }
+
+
 
     protected void clampRotation(Entity entityToUpdate) {
         entityToUpdate.setYBodyRot(this.getYRot());
