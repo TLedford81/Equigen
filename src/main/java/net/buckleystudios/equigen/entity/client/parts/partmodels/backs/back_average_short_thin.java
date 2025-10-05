@@ -18,6 +18,7 @@ public class back_average_short_thin extends MultipartBackModel<GeneticHorseEnti
 	private final ModelPart hipsAnchor;
 	private final ModelPart stomachAnchor;
 	private final ModelPart withersAnchor;
+	private final ModelPart playerAnchor;
 
 	public back_average_short_thin(ModelPart root) {
 		this.back_average_short_thin = root.getChild("back_average_short_thin");
@@ -25,6 +26,7 @@ public class back_average_short_thin extends MultipartBackModel<GeneticHorseEnti
 		this.hipsAnchor = this.back_average_short_thin.getChild("hipsAnchor");
 		this.stomachAnchor = this.back_average_short_thin.getChild("stomachAnchor");
 		this.withersAnchor = this.back_average_short_thin.getChild("withersAnchor");
+		this.playerAnchor = this.back_average_short_thin.getChild("playerAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -53,6 +55,8 @@ public class back_average_short_thin extends MultipartBackModel<GeneticHorseEnti
 
 		PartDefinition withersAnchor = back_average_short_thin.addOrReplaceChild("withersAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.75F, -5.5F));
 
+		PartDefinition playerAnchor = back_average_short_thin.addOrReplaceChild("playerAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.75F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.75F, 0.0F));
+
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
 
@@ -76,7 +80,8 @@ public class back_average_short_thin extends MultipartBackModel<GeneticHorseEnti
 				"chestAnchor",  asTransform(this.chestAnchor),
 				"hipsAnchor", asTransform(this.hipsAnchor),
 				"stomachAnchor", asTransform(this.stomachAnchor),
-				"withersAnchor", asTransform(this.withersAnchor)
+				"withersAnchor", asTransform(this.withersAnchor),
+				"playerAnchor", asTransform(this.playerAnchor)
 		);
 	}
 

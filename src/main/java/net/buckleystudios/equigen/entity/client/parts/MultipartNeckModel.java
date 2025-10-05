@@ -55,7 +55,8 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
             }
             default -> pitch = 0;
         }
-        return pitch / 180;
+//        return pitch / 180;
+        return pitch = 0;
     }
 
 

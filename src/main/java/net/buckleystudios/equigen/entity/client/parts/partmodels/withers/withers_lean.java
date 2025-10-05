@@ -31,11 +31,11 @@ public class withers_lean extends MultipartWithersModel<GeneticHorseEntity> {
 
 		PartDefinition withers_lean_upper = withers_lean.addOrReplaceChild("withers_lean_upper", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition cube_r1 = withers_lean_upper.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(711, 25).addBox(-4.0792F, -6.9812F, -5.4648F, 4.0F, 17.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.03F, -3.5896F, -1.0729F, 1.2654F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = withers_lean_upper.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(711, 25).addBox(-4.0792F, -6.9812F, -5.4648F, 4.0F, 10.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.03F, -3.5896F, -1.0729F, 1.2654F, 0.0F, 0.0F));
 
 		PartDefinition withers_lean__lower = withers_lean.addOrReplaceChild("withers_lean__lower", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition cube_r2 = withers_lean__lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(731, 25).addBox(-4.08F, -6.88F, -5.52F, 5.0F, 17.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.516F, -2.9604F, -1.0801F, 1.2654F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = withers_lean__lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(731, 25).addBox(-4.08F, -6.88F, -5.52F, 5.0F, 10.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.516F, -2.9604F, -1.0801F, 1.2654F, 0.0F, 0.0F));
 
 		PartDefinition neckAnchor = withers_lean.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(-0.1F, -5.05F, -7.412F));
 
