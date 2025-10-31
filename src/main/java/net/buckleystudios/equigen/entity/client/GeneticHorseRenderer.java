@@ -354,7 +354,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                                             float dy) {
         if (back == null) return null;
 
-        PartTransform pA = back.anchors().get("riderAnchor");
+        PartTransform pA = back.anchors().get("playerAnchor");
         if (pA == null) pA = back.anchors().get("hipsAnchor");
         if (pA == null) return null;
 

@@ -29,25 +29,25 @@ public class stomach_average_short_medium extends MultipartStomachModel<GeneticH
 
 		PartDefinition stomach_average_short_medium = partdefinition.addOrReplaceChild("stomach_average_short_medium", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 1.0726F));
 
-		PartDefinition stomach_average_short_medium_stomach_front_upper = stomach_average_short_medium.addOrReplaceChild("stomach_average_short_medium_stomach_front_upper", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -4.0223F));
+		PartDefinition stomach_average_short_medium_stomach_front_upper = stomach_average_short_medium.addOrReplaceChild("stomach_average_short_medium_stomach_front_upper", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -4.0224F));
 
 		PartDefinition stomach_average_short_medium_stomach_front_upper_individual = stomach_average_short_medium_stomach_front_upper.addOrReplaceChild("stomach_average_short_medium_stomach_front_upper_individual", CubeListBuilder.create(), PartPose.offset(0.0084F, -0.8856F, -0.559F));
 
-		PartDefinition cube_r1 = stomach_average_short_medium_stomach_front_upper_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(443, 381).addBox(-5.0892F, -3.2676F, -5.4648F, 6.0F, 9.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.0892F, -2.9648F, -1.2324F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = stomach_average_short_medium_stomach_front_upper_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(444, 395).addBox(-5.0892F, -3.2676F, -5.4648F, 6.0F, 9.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.0892F, -2.9648F, -1.2324F, 1.5708F, 0.0F, 0.0F));
 
-		PartDefinition stomach_average_short_medium_stomach_front_lower = stomach_average_short_medium_stomach_front_upper.addOrReplaceChild("stomach_average_short_medium_stomach_front_lower", CubeListBuilder.create(), PartPose.offset(0.0399F, -0.5018F, -0.4799F));
+		PartDefinition stomach_average_short_medium_stomach_front_lower = stomach_average_short_medium_stomach_front_upper.addOrReplaceChild("stomach_average_short_medium_stomach_front_lower", CubeListBuilder.create(), PartPose.offset(0.0399F, -0.5018F, -0.48F));
 
-		PartDefinition cube_r2 = stomach_average_short_medium_stomach_front_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(465, 381).addBox(-4.08F, -4.24F, -5.52F, 4.0F, 9.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -3.02F, -0.26F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = stomach_average_short_medium_stomach_front_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(466, 395).addBox(-4.08F, -4.24F, -5.52F, 4.0F, 9.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -3.02F, -0.26F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition stomach_average_short_medium_stomach_back_upper = stomach_average_short_medium.addOrReplaceChild("stomach_average_short_medium_stomach_back_upper", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		PartDefinition stomach_average_short_medium_stomach_back_upper_individual = stomach_average_short_medium_stomach_back_upper.addOrReplaceChild("stomach_average_short_medium_stomach_back_upper_individual", CubeListBuilder.create(), PartPose.offset(-0.0399F, -1.2803F, 4.3655F));
 
-		PartDefinition cube_r3 = stomach_average_short_medium_stomach_back_upper_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(461, 395).addBox(-6.0984F, -4.2952F, -5.4096F, 6.0F, 10.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.0984F, -3.2354F, -1.2862F, 1.7453F, 0.0F, 0.0F));
+		PartDefinition cube_r3 = stomach_average_short_medium_stomach_back_upper_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(465, 381).addBox(-6.0984F, -4.2952F, -5.4096F, 6.0F, 10.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.0984F, -3.2354F, -1.2862F, 1.7453F, 0.0F, 0.0F));
 
-		PartDefinition stomach_average_short_medium_stomach_back_lower = stomach_average_short_medium_stomach_back_upper.addOrReplaceChild("stomach_average_short_medium_stomach_back_lower", CubeListBuilder.create(), PartPose.offset(0.0399F, -0.9417F, 4.5813F));
+		PartDefinition stomach_average_short_medium_stomach_back_lower = stomach_average_short_medium_stomach_back_upper.addOrReplaceChild("stomach_average_short_medium_stomach_back_lower", CubeListBuilder.create(), PartPose.offset(0.0399F, -0.9416F, 4.5813F));
 
-		PartDefinition cube_r4 = stomach_average_short_medium_stomach_back_lower.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(445, 395).addBox(-4.08F, -4.24F, -5.52F, 4.0F, 10.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -3.3346F, -1.3597F, 1.7453F, 0.0F, 0.0F));
+		PartDefinition cube_r4 = stomach_average_short_medium_stomach_back_lower.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(448, 381).addBox(-4.08F, -4.24F, -5.52F, 4.0F, 10.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -3.3346F, -1.3597F, 1.7453F, 0.0F, 0.0F));
 
 		PartDefinition backAnchor = stomach_average_short_medium.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.5F, 7.9274F));
 

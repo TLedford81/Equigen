@@ -39,27 +39,27 @@ public class hips_lean_large_2 extends MultipartHipModel<GeneticHorseEntity> {
 
 		PartDefinition hips_lean_large_2_left_hip_glute_base = hips_muscular_large_2_left_hip.addOrReplaceChild("hips_lean_large_2_left_hip_glute_base", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition hips_lean_large_2_left_hip_glute_base_individual = hips_lean_large_2_left_hip_glute_base.addOrReplaceChild("hips_lean_large_2_left_hip_glute_base_individual", CubeListBuilder.create().texOffs(295, 890).addBox(-2.4312F, -4.457F, -4.0414F, 4.0F, 9.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(2.6491F, 0.295F, -0.1017F));
+		PartDefinition hips_lean_large_2_left_hip_glute_base_individual = hips_lean_large_2_left_hip_glute_base.addOrReplaceChild("hips_lean_large_2_left_hip_glute_base_individual", CubeListBuilder.create().texOffs(270, 903).addBox(-2.4312F, -4.457F, -4.0414F, 4.0F, 9.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(2.6491F, 0.295F, -0.1017F));
 
-		PartDefinition hips_lean_large_2_left_hip_glute_outer = hips_lean_large_2_left_hip_glute_base.addOrReplaceChild("hips_lean_large_2_left_hip_glute_outer", CubeListBuilder.create().texOffs(297, 877).addBox(-2.0F, -3.5F, -3.0F, 4.0F, 7.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(2.6816F, 0.2318F, -0.0705F));
+		PartDefinition hips_lean_large_2_left_hip_glute_outer = hips_lean_large_2_left_hip_glute_base.addOrReplaceChild("hips_lean_large_2_left_hip_glute_outer", CubeListBuilder.create().texOffs(294, 907).addBox(-2.0F, -3.5F, -3.0F, 4.0F, 7.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(2.6816F, 0.2318F, -0.0705F));
 
 		PartDefinition hips_lean_large_2_right_hip = hips_lean_large_2.addOrReplaceChild("hips_lean_large_2_right_hip", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		PartDefinition hips_lean_large_2_right_hip_glute_base = hips_lean_large_2_right_hip.addOrReplaceChild("hips_lean_large_2_right_hip_glute_base", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition hips_lean_large_2_right_hip_glue_base_individual = hips_lean_large_2_right_hip_glute_base.addOrReplaceChild("hips_lean_large_2_right_hip_glue_base_individual", CubeListBuilder.create().texOffs(273, 877).addBox(-2.0F, -4.5F, -4.0F, 4.0F, 9.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.7943F, 0.295F, -0.1017F));
+		PartDefinition hips_lean_large_2_right_hip_glue_base_individual = hips_lean_large_2_right_hip_glute_base.addOrReplaceChild("hips_lean_large_2_right_hip_glue_base_individual", CubeListBuilder.create().texOffs(270, 886).addBox(-2.0F, -4.5F, -4.0F, 4.0F, 9.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.7943F, 0.295F, -0.1017F));
 
-		PartDefinition hips_lean_large_2_right_hip_glue_outer = hips_lean_large_2_right_hip_glute_base.addOrReplaceChild("hips_lean_large_2_right_hip_glue_outer", CubeListBuilder.create().texOffs(275, 894).addBox(-2.0F, -3.5F, -3.0F, 4.0F, 7.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.3184F, 0.2318F, -0.0705F));
+		PartDefinition hips_lean_large_2_right_hip_glue_outer = hips_lean_large_2_right_hip_glute_base.addOrReplaceChild("hips_lean_large_2_right_hip_glue_outer", CubeListBuilder.create().texOffs(294, 894).addBox(-2.0F, -3.5F, -3.0F, 4.0F, 7.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.3184F, 0.2318F, -0.0705F));
 
 		PartDefinition hips_lean_large_2_hips_top = hips_lean_large_2.addOrReplaceChild("hips_lean_large_2_hips_top", CubeListBuilder.create(), PartPose.offset(0.0F, -1.162F, 1.2514F));
 
 		PartDefinition hips_lean_large_2_hips_top_upper = hips_lean_large_2_hips_top.addOrReplaceChild("hips_lean_large_2_hips_top_upper", CubeListBuilder.create(), PartPose.offset(0.6874F, -0.1402F, -0.1653F));
 
-		PartDefinition cube_r1 = hips_lean_large_2_hips_top_upper.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(298, 907).addBox(-4.08F, -4.24F, -7.36F, 4.0F, 4.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.3912F, 3.2541F, 1.2217F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = hips_lean_large_2_hips_top_upper.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(288, 882).addBox(-4.08F, -4.24F, -7.36F, 4.0F, 4.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.3912F, 3.2541F, 1.2217F, 0.0F, 0.0F));
 
 		PartDefinition hips_lean_large_2_hips_top_lower = hips_lean_large_2_hips_top.addOrReplaceChild("hips_lean_large_2_hips_top_lower", CubeListBuilder.create(), PartPose.offset(0.6874F, 0.5672F, -0.4105F));
 
-		PartDefinition cube_r2 = hips_lean_large_2_hips_top_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(270, 907).addBox(-5.08F, -4.24F, -7.36F, 6.0F, 5.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.5623F, 2.7843F, 1.2217F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = hips_lean_large_2_hips_top_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(268, 873).addBox(-5.08F, -4.24F, -7.36F, 6.0F, 5.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.5623F, 2.7843F, 1.2217F, 0.0F, 0.0F));
 
 		PartDefinition backAnchor = hips_lean_large_2.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.7151F, -4.25F, 0.5363F));
 
