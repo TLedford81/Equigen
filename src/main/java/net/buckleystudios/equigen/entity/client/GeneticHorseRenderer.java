@@ -59,12 +59,28 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         this.modelSet = context.getModelSet();
     }
 
-    @Override
-    public ResourceLocation getTextureLocation(GeneticHorseEntity entity) {
-        return ResourceLocation.fromNamespaceAndPath(
-                EquigenMod.MODID,
-                "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + ".png"
-        );
+    public ResourceLocation getTextureLocation(GeneticHorseEntity entity, int selectedTexture) {
+        if(selectedTexture == 1) {
+            return ResourceLocation.fromNamespaceAndPath(
+                    EquigenMod.MODID,
+                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + ".png"
+            );
+        } else if(selectedTexture == 2) {
+            return ResourceLocation.fromNamespaceAndPath(
+                    EquigenMod.MODID,
+                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "2.png"
+            );
+        } else {
+            return ResourceLocation.fromNamespaceAndPath(
+                    EquigenMod.MODID,
+                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "3.png"
+            );
+        }
+    }
+
+    public int getSelectedTexture(GeneticHorseEntity entity){
+        int mass = Math.round(entity.getRenderGenetics().get("MUSCLE_MASS"));
+        return mass;
     }
 
     // Recreate MobRenderer's model-space transforms so the parts aren't upside-down
@@ -158,6 +174,12 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
             poseStack.popPose();
         }
     }
+
+    @Override
+    public ResourceLocation getTextureLocation(GeneticHorseEntity entity) {
+        return null;
+    }
+
     private void renderParts(GeneticHorseEntity entity, float entityYaw, float partialTicks,
                              PoseStack poseStack, MultiBufferSource buffer, int packedLight,
                              Map<String, MultipartModel<GeneticHorseEntity>> modelMap) {
@@ -302,7 +324,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         pose.pushPose();
         model.renderToBuffer(
                 pose,
-                buffer.getBuffer(RenderType.entityCutout(getTextureLocation(entity))),
+                buffer.getBuffer(RenderType.entityCutout(getTextureLocation(entity, this.getSelectedTexture(entity)))),
                 packedLight,
                 OverlayTexture.NO_OVERLAY
         );
@@ -326,7 +348,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         child.beforeAttached(e, partialTicks, pose);
         if (chain != null) chain.run();
         child.afterAttached(e, partialTicks);
-        child.renderToBuffer(pose, buffer.getBuffer(RenderType.entityCutout(getTextureLocation(e))),
+        child.renderToBuffer(pose, buffer.getBuffer(RenderType.entityCutout(getTextureLocation(e, this.getSelectedTexture(e)))),
                 light, OverlayTexture.NO_OVERLAY);
 
         pose.popPose();
