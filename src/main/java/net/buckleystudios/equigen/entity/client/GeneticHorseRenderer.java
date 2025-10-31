@@ -75,6 +75,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         this.scale(e, pose, partialTicks);
         pose.translate(0.0F, -1.5F, 0.0F);
     }
+
     @Override
     public void render(GeneticHorseEntity entity, float entityYaw, float partialTicks,
                        PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
@@ -115,8 +116,8 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         if (entity.isBaby()) measurePose.scale(0.5f, 0.6f, 0.5f);
         enterEntityModelSpace(entity, measurePose, entityYaw, partialTicks);
 
-        MultiBufferSource measureModel = new MeasuringBufferSource(buffer,        tracker,     true);
-        MultiBufferSource measureHoof  = new MeasuringBufferSource(buffer,        hoofTracker, true);
+        MultiBufferSource measureModel = new MeasuringBufferSource(buffer, tracker,     true);
+        MultiBufferSource measureHoof  = new MeasuringBufferSource(buffer, hoofTracker, true);
         renderParts(entity, entityYaw, partialTicks, measurePose, measureModel, measureHoof, packedLight, modelMap);
 
         float footY = hoofTracker.valid()
@@ -177,7 +178,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
                 modelMap.get("backModel"), "chestAnchor", modelMap.get("chestModel"), "backAnchor",
                 () -> {
-        // chest -> neck -> head -> ears
+                    // chest -> neck -> head -> ears
                     attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
                             modelMap.get("chestModel"), "neckAnchor", modelMap.get("neckModel"), "chestAnchor",
                             () -> {
@@ -269,10 +270,10 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         );
 
         // withers + stomach
-
         attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
                 modelMap.get("backModel"), "stomachAnchor", modelMap.get("stomachModel"), "backAnchor", null);
     }
+
     private void applyTransform(PoseStack pose, PartTransform p, PartTransform c) {
         if (p == null) return;
         pose.translate((float)p.position.x, (float)p.position.y, (float)p.position.z);
@@ -365,8 +366,6 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         Vector4f v = new Vector4f(0, 0, 0, 1).mul(m);
         ps.popPose();
 
-        float riderDown = 1f / 16f; // small sink into the back (pixels->blocks)
-        // IMPORTANT: include dy so the seat follows the rendered vertical shift
         return new Vec3(v.x, v.y, v.z);
     }
 
@@ -392,6 +391,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
     private MultipartModel<GeneticHorseEntity> getMultipartModel(List<String> partsToRender, String prefix) {
         return asMultipartModel(getPartFromPrefix(partsToRender, prefix));
     }
+
 
     private EntityModel<GeneticHorseEntity> getPartModel(String partId) {
         return partCache.computeIfAbsent(partId, id -> switch (id) {

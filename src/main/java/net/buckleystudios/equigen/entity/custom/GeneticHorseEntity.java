@@ -1085,35 +1085,101 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     }
 
     @Override
-    protected Vec3 getPassengerAttachmentPoint(Entity passenger, EntityDimensions dims, float partialTick) {
-        return new Vec3(0, getSeatLocal().y, 0);
+    protected EntityDimensions getDefaultDimensions(Pose pose) {
+        float height = calculateHorseHeight();
+        float width = 1f;
+        return EntityDimensions.scalable(width, height);
     }
 
-    @Override
-    protected void positionRider(Entity passenger, MoveFunction callback) {
-        Vec3 local = getSeatLocal();
+    public Float calculateHorseHeight(){
+        float totalHeight = 0f;
+        float offset = -2.2f;
+        float kneeHeight = 2f;
+        float hoofHeight = 2f;
+        Map<String, Float> renderGenetics = getRenderGenetics();
 
-        // rotate local X/Z by horse yaw
-        float yaw = this.getYRot() * Mth.DEG_TO_RAD;
-        double cos = Mth.cos(yaw), sin = Mth.sin(yaw);
-        double rx = local.x * cos - local.z * sin;
-        double rz = local.x * sin + local.z * cos;
-
-        // raise the passenger so their pelvis sits on the anchor (feet are at entity pos!)
-        // Works well for players; tweak the constant if you want them a bit higher/lower.
-        double riderOffsetY = passenger.getBbHeight() * 0.5 - 1.6;
-
-        callback.accept(
-                passenger,
-                this.getX() + rx,
-                this.getY() + (local.y + riderOffsetY),
-                this.getZ() + rz
-        );
-
-        if (passenger instanceof LivingEntity le) {
-            clampRotation(le);
+        for(String gene : renderGenetics.keySet()){
+            totalHeight += getHeightModifier(gene, renderGenetics.get(gene));
         }
+        totalHeight += kneeHeight + hoofHeight + offset;
+
+        EquigenMod.LOGGER.info("Returning BBU Height of {}", totalHeight);
+        totalHeight /= 16; // Convert BB Values to MC
+        EquigenMod.LOGGER.info("Returning MCU Height of {}", totalHeight);
+        return totalHeight;
     }
+
+    public float getHeightModifier(String gene, Float value){
+        if(gene.equals("BOTTOM_LEG")){
+            return switch (Math.round(value)){
+                case 1 -> 3.55f;
+                case 2 -> 4.35f;
+                case 3 -> 5.35f;
+                case 4 -> 6.25f;
+                case 5 -> 7.75f;
+                case 6 -> 8.15f;
+                case 7 -> 7.75f;
+                case 8 -> 8.85f;
+                case 9 -> 8.55f;
+                default -> 0;
+            };
+        }
+
+        if(gene.equals("TOP_LEG")){
+            return switch (Math.round(value)){
+                case 1 -> 5.5f;
+                case 2 -> 6.1f;
+                case 3 -> 6.75f;
+                case 4 -> 8.5f;
+                case 5 -> 8.15f;
+                case 6 -> 8.4f;
+                default -> 0;
+            };
+        }
+        if(gene.equals("HIP_SIZE")){
+            return switch (Math.round(value)){
+                case 1 -> 5.75f;
+                case 3 -> 6.5f;
+                default -> 0;
+            };
+        }
+
+
+
+        else return 0;
+    }
+
+
+    //    @Override
+//    protected Vec3 getPassengerAttachmentPoint(Entity passenger, EntityDimensions dims, float partialTick) {
+//        return new Vec3(0, getSeatLocal().y, 0);
+//    }
+//
+//    @Override
+//    protected void positionRider(Entity passenger, MoveFunction callback) {
+//        Vec3 local = getSeatLocal();
+//
+//        // rotate local X/Z by horse yaw
+//        float yaw = this.getYRot() * Mth.DEG_TO_RAD;
+//        double cos = Mth.cos(yaw), sin = Mth.sin(yaw);
+//        double rx = local.x * cos - local.z * sin;
+//        double rz = local.x * sin + local.z * cos;
+//
+//        // raise the passenger so their pelvis sits on the anchor (feet are at entity pos!)
+//        // Works well for players; tweak the constant if you want them a bit higher/lower.
+//        double riderOffsetY = passenger.getBbHeight() * 0.5 - 1.6;
+//
+//        callback.accept(
+//                passenger,
+//                this.getX() + rx,
+//                this.getY() + (local.y + riderOffsetY),
+//                this.getZ() + rz
+//        );
+//
+//        if (passenger instanceof LivingEntity le) {
+//            clampRotation(le);
+//        }
+//    }
 
 
     public void setSeatLocal(double x, double y, double z) {
@@ -1178,6 +1244,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public void tick() {
         super.tick();
         if (this.level().isClientSide) {
+            this.refreshDimensions();
             this.setupAnimationStates();
             float gaitStaminaDrain = 0f;
             float jumpStaminaDrain = 0f;
