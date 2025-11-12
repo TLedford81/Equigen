@@ -1124,22 +1124,49 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                 default -> 0;
             };
         }
-
         if(gene.equals("TOP_LEG")){
-            return switch (Math.round(value)){
-                case 1 -> 5.5f;
-                case 2 -> 6.1f;
-                case 3 -> 6.75f;
-                case 4 -> 8.5f;
-                case 5 -> 8.15f;
-                case 6 -> 8.4f;
-                default -> 0;
-            };
+            float topHindLegWidth = this.getRenderGenetics().get("TOP_HIND_LEG_WIDTH");
+            if (topHindLegWidth == 1) {
+                return switch (Math.round(value)){
+                    case 1 -> 4.3f;
+                    case 2 -> 5.15f;
+                    case 3 -> 7.15f;
+                    case 4, 5 -> 7.95f;
+                    case 6, 7 -> 8.0f;
+                    case 8, 9 -> 8.4f;
+                    default -> 0;
+                };
+            } else if (topHindLegWidth == 2) {
+                return switch (Math.round(value)){
+                    case 1 -> 4.4f;
+                    case 2 -> 5.8f;
+                    case 3 -> 6.75f;
+                    case 4, 5 -> 8.0f;
+                    case 6, 7 -> 8.15f;
+                    case 8, 9 -> 8.4f;
+                    default -> 0;
+                };
+            } else if (topHindLegWidth == 3) {
+                return switch (Math.round(value)){
+                    case 1 -> 4.6f;
+                    case 2 -> 5.6f;
+                    case 3 -> 7.15f;
+                    case 4, 5 -> 7.95f;
+                    case 6, 7 -> 8.2f;
+                    case 8, 9 -> 8.4f;
+                    default -> 0;
+                };
+            }
         }
         if(gene.equals("HIP_SIZE")){
             return switch (Math.round(value)){
                 case 1 -> 5.75f;
+                case 2 -> 6.0f;
                 case 3 -> 6.5f;
+                case 4 -> 7.5f;
+                case 5 -> 7.5f;
+                case 6 -> 8.5f;
+
                 default -> 0;
             };
         }

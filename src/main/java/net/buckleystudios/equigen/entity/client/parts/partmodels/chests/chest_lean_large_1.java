@@ -59,7 +59,7 @@ public class chest_lean_large_1 extends MultipartChestModel<GeneticHorseEntity> 
 
 		PartDefinition chest_lean_large_1_chest_left_pectoral_bottom = chest_lean_large_1_chest_left_pectoral.addOrReplaceChild("chest_lean_large_1_chest_left_pectoral_bottom", CubeListBuilder.create(), PartPose.offset(0.936F, 3.7336F, 0.7219F));
 
-		PartDefinition cube_r5 = chest_lean_large_1_chest_left_pectoral_bottom.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(265, 681).addBox(-2.08F, -7.68F, -4.52F, 3.0F, 4.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.58F, -3.8409F, 4.6466F, 1.9199F, 0.0F, 0.0F));
+		PartDefinition cube_r5 = chest_lean_large_1_chest_left_pectoral_bottom.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(258, 653).addBox(-2.08F, -7.68F, -4.52F, 3.0F, 4.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.58F, -3.8409F, 4.6466F, 1.9199F, 0.0F, 0.0F));
 
 		PartDefinition chest_lean_large_1_chest_left_deltoid = chest_lean_large_1_chest_left.addOrReplaceChild("chest_lean_large_1_chest_left_deltoid", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
@@ -91,7 +91,7 @@ public class chest_lean_large_1 extends MultipartChestModel<GeneticHorseEntity> 
 
 		PartDefinition neckAnchor = chest_lean_large_1.addOrReplaceChild("neckAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.25F, -4.5F, -2.8212F));
 
-		PartDefinition backAnchor = chest_lean_large_1.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.25F, -3.5F, 4.6788F));
+		PartDefinition backAnchor = chest_lean_large_1.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.25F, -4.5F, 4.6788F));
 
 		PartDefinition frontLeftLegAnchor = chest_lean_large_1.addOrReplaceChild("frontLeftLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(2.75F, 4.25F, -1.8212F));
 
