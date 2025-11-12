@@ -1573,6 +1573,35 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         }
         generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
 
+        //Genetic Names
+        generatedPages.add(Filterable.passThrough(Component.literal("\n\n\n\n       §b§lRENDERED \n       §b§lPARTS")));
+        page = new StringBuilder();
+        pageLineCount = 0;
+        totalLineCount = 0;
+        boolean colorSwap = false;
+        String color;
+        for (String partName : this.getPartsToRender()) {
+            colorSwap = !colorSwap;
+            color = colorSwap ? "§6" : "§d";
+            page.append(color + partName + "\n");
+            pageLineCount += 2;
+            totalLineCount += 1;
+
+            List<Integer> largeLines = List.of();
+            for (int geneNum : largeLines) {
+                if (totalLineCount == geneNum) {
+                    pageLineCount += 1;
+                }
+            }
+
+            if (pageLineCount >= 13) {
+                generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
+                page = new StringBuilder();
+                pageLineCount = 0;
+            }
+        }
+        generatedPages.add(Filterable.passThrough(Component.literal(page.toString())));
+
 
         //Finalization
         WrittenBookContent content = new WrittenBookContent(Filterable.passThrough(this.getName().getString() + "'s Information"), "Equigen", 0,
