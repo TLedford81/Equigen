@@ -46,6 +46,7 @@ public class ModEventBusEvents {
         event.registerLayerDefinition(ModModelLayers.PILLAGER_KING, PillagerKingModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.EGRET, EgretModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.GENETIC_HORSE, GeneticHorseModelBase::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.GENETIC_HORSE_MARKINGS, GeneticHorseModelBase::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.TEST_ENTITY, TestEntityModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.SODIUM_GRENADE, SodiumGrenadeProjectileModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.LASSO, SodiumGrenadeProjectileModel::createBodyLayer);

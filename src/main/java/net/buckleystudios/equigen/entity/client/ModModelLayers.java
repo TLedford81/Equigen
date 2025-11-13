@@ -21,6 +21,9 @@ public class ModModelLayers {
     public static final ModelLayerLocation BASE = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "base"), "main"
     );
+    public static final ModelLayerLocation GENETIC_HORSE_MARKINGS = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "genetic_horse_markings"), "markings"
+    );
 
 
     /* Backs */

@@ -32,12 +32,12 @@ public class GeneticHorseModelBase<T extends GeneticHorseEntity> extends Hierarc
     @Override
     public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         //SETUP ANIMATION
-        this.root().getAllParts().forEach(ModelPart::resetPose);
-        applyHeadRotation(netHeadYaw, headPitch);
+//        this.root().getAllParts().forEach(ModelPart::resetPose);
+//        applyHeadRotation(netHeadYaw, headPitch);
 
-        this.animateWalk(GeneticHorseAnimations.GetAnimation("walking", entity), limbSwing, limbSwingAmount, 10f, 2.5f);
+//        this.animateWalk(GeneticHorseAnimations.GetAnimation("walking", entity), limbSwing, limbSwingAmount, 10f, 2.5f);
 //        this.animateWalk(GeneticHorseAnimations.GetAnimation("galloping", entity), limbSwing, limbSwingAmount, 2f, 2.5f);
-        this.animate(entity.idleAnimationState, GeneticHorseAnimations.GetAnimation("idle", entity), ageInTicks, 1);
+//        this.animate(entity.idleAnimationState, GeneticHorseAnimations.GetAnimation("idle", entity), ageInTicks, 1);
     }
 
     @Override

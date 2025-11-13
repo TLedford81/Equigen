@@ -43,6 +43,7 @@ import org.joml.Matrix4f;
 import org.joml.Vector4f;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,9 +55,24 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
     private final Map<Integer, Vec3> lastSeatSent = new HashMap<>();
     private int seatSendCooldown = 0;
 
+    private final ResourceLocation LONG_SOCK = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/test/marking_1.png");
+    private final ResourceLocation AVERAGE_SOCK = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/test/marking_2.png");
+    private final ResourceLocation SHORT_SOCK = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/test/marking_3.png");
+
     public GeneticHorseRenderer(EntityRendererProvider.Context context) {
         super(context, new GeneticHorseModelBase<>(context.bakeLayer(ModModelLayers.GENETIC_HORSE)), 1f);
         this.modelSet = context.getModelSet();
+    }
+
+    @Override
+    public ResourceLocation getTextureLocation(GeneticHorseEntity entity) {
+        try {
+            int sel = getSelectedTexture(entity);
+            sel = Math.max(1, Math.min(3, sel));
+            return getTextureLocation(entity, sel);
+        } catch (Exception ignored) {
+            return ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/genetic_horse.png");
+        }
     }
 
     public ResourceLocation getTextureLocation(GeneticHorseEntity entity, int selectedTexture) {
@@ -79,11 +95,32 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
     }
 
     public int getSelectedTexture(GeneticHorseEntity entity){
-        int mass = Math.round(entity.getRenderGenetics().get("MUSCLE_MASS"));
-        return mass;
+        float f = entity.getRenderGenetics().getOrDefault("MUSCLE_MASS", 1f);
+        int mass = Math.round(f);
+        return Math.max(1, Math.min(3, mass));
     }
 
-    // Recreate MobRenderer's model-space transforms so the parts aren't upside-down
+    private Map<Integer, List<ResourceLocation>> getMarkingTextures() {
+        List<ResourceLocation> BODY_MARKINGS = new ArrayList<>();
+        List<ResourceLocation> FRONT_LEFT_LEG_MARKINGS = new ArrayList<>();
+        List<ResourceLocation> FRONT_RIGHT_LEG_MARKINGS = new ArrayList<>();
+        List<ResourceLocation> BACK_LEFT_LEG_MARKINGS = new ArrayList<>();
+        List<ResourceLocation> BACK_RIGHT_LEG_MARKINGS = new ArrayList<>();
+
+        //TODO: Body Marking Logic
+        BODY_MARKINGS.add(SHORT_SOCK);
+        FRONT_LEFT_LEG_MARKINGS.add(LONG_SOCK);
+        //
+
+        return Map.of(
+                0, BODY_MARKINGS,
+                1, FRONT_LEFT_LEG_MARKINGS,
+                2, FRONT_RIGHT_LEG_MARKINGS,
+                3, BACK_LEFT_LEG_MARKINGS,
+                4, BACK_RIGHT_LEG_MARKINGS
+        );
+    }
+
     private void enterEntityModelSpace(GeneticHorseEntity e, PoseStack pose, float entityYaw, float partialTicks) {
         float ageInTicks = e.tickCount + partialTicks;
         this.setupRotations(e, pose, ageInTicks, entityYaw, partialTicks, 1.0f);
@@ -175,10 +212,6 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         }
     }
 
-    @Override
-    public ResourceLocation getTextureLocation(GeneticHorseEntity entity) {
-        return null;
-    }
 
     private void renderParts(GeneticHorseEntity entity, float entityYaw, float partialTicks,
                              PoseStack poseStack, MultiBufferSource buffer, int packedLight,
@@ -221,13 +254,13 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
 
                     // chest -> front left leg chain
                     attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                            modelMap.get("chestModel"), "frontLeftLegAnchor", modelMap.get("topFrontLeftLegModel"), "chestAnchor",
+                            modelMap.get("chestModel"), "frontLeftLegAnchor", modelMap.get("topFrontLeftLegModel"), "chestAnchor", 1,
                             () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                    modelMap.get("topFrontLeftLegModel"), "kneeAnchor", modelMap.get("kneeFrontLeftLegModel"), "topLegAnchor",
+                                    modelMap.get("topFrontLeftLegModel"), "kneeAnchor", modelMap.get("kneeFrontLeftLegModel"), "topLegAnchor", 1,
                                     () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                            modelMap.get("kneeFrontLeftLegModel"), "bottomLegAnchor", modelMap.get("bottomFrontLeftLegModel"), "kneeAnchor",
+                                            modelMap.get("kneeFrontLeftLegModel"), "bottomLegAnchor", modelMap.get("bottomFrontLeftLegModel"), "kneeAnchor", 1,
                                             () -> attachAndChain(poseStack, hoofBuffer, packedLight, entity, partialTicks,
-                                                    modelMap.get("bottomFrontLeftLegModel"), "hoofAnchor", modelMap.get("hoofFrontLeftLegModel"), "bottomLegAnchor",
+                                                    modelMap.get("bottomFrontLeftLegModel"), "hoofAnchor", modelMap.get("hoofFrontLeftLegModel"), "bottomLegAnchor", 1,
                                                     null
                                             )
                                     )
@@ -236,13 +269,13 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
 
                     // chest -> front right leg chain
                     attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                            modelMap.get("chestModel"), "frontRightLegAnchor", modelMap.get("topFrontRightLegModel"), "chestAnchor",
+                            modelMap.get("chestModel"), "frontRightLegAnchor", modelMap.get("topFrontRightLegModel"), "chestAnchor", 2,
                             () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                    modelMap.get("topFrontRightLegModel"), "kneeAnchor", modelMap.get("kneeFrontRightLegModel"), "topLegAnchor",
+                                    modelMap.get("topFrontRightLegModel"), "kneeAnchor", modelMap.get("kneeFrontRightLegModel"), "topLegAnchor", 2,
                                     () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                            modelMap.get("kneeFrontRightLegModel"), "bottomLegAnchor", modelMap.get("bottomFrontRightLegModel"), "kneeAnchor",
+                                            modelMap.get("kneeFrontRightLegModel"), "bottomLegAnchor", modelMap.get("bottomFrontRightLegModel"), "kneeAnchor", 2,
                                             () -> attachAndChain(poseStack, hoofBuffer, packedLight, entity, partialTicks,
-                                                    modelMap.get("bottomFrontRightLegModel"), "hoofAnchor", modelMap.get("hoofFrontRightLegModel"), "bottomLegAnchor",
+                                                    modelMap.get("bottomFrontRightLegModel"), "hoofAnchor", modelMap.get("hoofFrontRightLegModel"), "bottomLegAnchor", 2,
                                                     null
                                             )
                                     )
@@ -261,13 +294,13 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
 
                     // hips -> back left leg chain
                     attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                            modelMap.get("hipsModel"), "backLeftLegAnchor", modelMap.get("topBackLeftLegModel"), "hipsAnchor",
+                            modelMap.get("hipsModel"), "backLeftLegAnchor", modelMap.get("topBackLeftLegModel"), "hipsAnchor", 3,
                             () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                    modelMap.get("topBackLeftLegModel"), "kneeAnchor", modelMap.get("kneeBackLeftLegModel"), "topLegAnchor",
+                                    modelMap.get("topBackLeftLegModel"), "kneeAnchor", modelMap.get("kneeBackLeftLegModel"), "topLegAnchor", 3,
                                     () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                            modelMap.get("kneeBackLeftLegModel"), "bottomLegAnchor", modelMap.get("bottomBackLeftLegModel"), "kneeAnchor",
+                                            modelMap.get("kneeBackLeftLegModel"), "bottomLegAnchor", modelMap.get("bottomBackLeftLegModel"), "kneeAnchor", 3,
                                             () -> attachAndChain(poseStack, hoofBuffer, packedLight, entity, partialTicks,
-                                                    modelMap.get("bottomBackLeftLegModel"), "hoofAnchor", modelMap.get("hoofBackLeftLegModel"), "bottomLegAnchor",
+                                                    modelMap.get("bottomBackLeftLegModel"), "hoofAnchor", modelMap.get("hoofBackLeftLegModel"), "bottomLegAnchor", 3,
                                                     null
                                             )
                                     )
@@ -276,13 +309,13 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
 
                     // hips -> back right leg chain
                     attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                            modelMap.get("hipsModel"), "backRightLegAnchor", modelMap.get("topBackRightLegModel"), "hipsAnchor",
+                            modelMap.get("hipsModel"), "backRightLegAnchor", modelMap.get("topBackRightLegModel"), "hipsAnchor", 4,
                             () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                    modelMap.get("topBackRightLegModel"), "kneeAnchor", modelMap.get("kneeBackRightLegModel"), "topLegAnchor",
+                                    modelMap.get("topBackRightLegModel"), "kneeAnchor", modelMap.get("kneeBackRightLegModel"), "topLegAnchor", 4,
                                     () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                            modelMap.get("kneeBackRightLegModel"), "bottomLegAnchor", modelMap.get("bottomBackRightLegModel"), "kneeAnchor",
+                                            modelMap.get("kneeBackRightLegModel"), "bottomLegAnchor", modelMap.get("bottomBackRightLegModel"), "kneeAnchor", 4,
                                             () -> attachAndChain(poseStack, hoofBuffer, packedLight, entity, partialTicks,
-                                                    modelMap.get("bottomBackRightLegModel"), "hoofAnchor", modelMap.get("hoofBackRightLegModel"), "bottomLegAnchor",
+                                                    modelMap.get("bottomBackRightLegModel"), "hoofAnchor", modelMap.get("hoofBackRightLegModel"), "bottomLegAnchor", 4,
                                                     null
                                             )
                                     )
@@ -328,14 +361,30 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                 packedLight,
                 OverlayTexture.NO_OVERLAY
         );
+        Map<Integer, List<ResourceLocation>> marks = getMarkingTextures();
+        if (marks.containsKey(0)) {
+            for(int i = 0; i < marks.get(0).size(); i++) {
+                model.renderToBuffer(pose,
+                        buffer.getBuffer(RenderType.entityCutoutNoCull(marks.get(0).get(i))),
+                        packedLight, OverlayTexture.NO_OVERLAY);
+            }
+        }
         pose.popPose();
     }
 
-
     private void attachAndChain(
-            PoseStack pose, MultiBufferSource buffer, int light, GeneticHorseEntity e, float partialTicks,
+            PoseStack pose, MultiBufferSource buffer, int packedLight, GeneticHorseEntity entity, float partialTicks,
             MultipartModel<GeneticHorseEntity> parent, String anchorInParentModel,
             MultipartModel<GeneticHorseEntity> child,  String anchorInChildModel,
+            Runnable chain // may be null
+    ){
+        attachAndChain(pose, buffer, packedLight, entity, partialTicks, parent, anchorInParentModel, child, anchorInChildModel, 0, chain);
+    }
+
+    private void attachAndChain(
+            PoseStack pose, MultiBufferSource buffer, int packedLight, GeneticHorseEntity entity, float partialTicks,
+            MultipartModel<GeneticHorseEntity> parent, String anchorInParentModel,
+            MultipartModel<GeneticHorseEntity> child,  String anchorInChildModel, int legID,
             Runnable chain // may be null
     ) {
         if (parent == null || child == null) return;
@@ -345,15 +394,24 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         pose.pushPose();
 
         applyTransform(pose, pA, cA);
-        child.beforeAttached(e, partialTicks, pose);
+        child.beforeAttached(entity, partialTicks, pose);
         if (chain != null) chain.run();
-        child.afterAttached(e, partialTicks);
-        child.renderToBuffer(pose, buffer.getBuffer(RenderType.entityCutout(getTextureLocation(e, this.getSelectedTexture(e)))),
-                light, OverlayTexture.NO_OVERLAY);
+        child.afterAttached(entity, partialTicks);
+        child.renderToBuffer(pose, buffer.getBuffer(RenderType.entityCutout(getTextureLocation(entity, this.getSelectedTexture(entity)))),
+                packedLight, OverlayTexture.NO_OVERLAY);
+
+        //0 = N/A, 1 = Front Left, 2 = Front Right, 3 = Back Left, 4 = Back Right
+        Map<Integer, List<ResourceLocation>> marks = getMarkingTextures();
+        if (marks.containsKey(legID)) {
+            for(int i = 0; i < marks.get(legID).size(); i++) {
+                child.renderToBuffer(pose,
+                        buffer.getBuffer(RenderType.entityCutoutNoCull(marks.get(legID).get(i))),
+                        packedLight, OverlayTexture.NO_OVERLAY);
+            }
+        }
 
         pose.popPose();
     }
-
     private PoseStack makeNeutralModelSpace(GeneticHorseEntity e) {
         PoseStack ps = new PoseStack();
         if (e.isBaby()) ps.scale(0.5f, 0.6f, 0.5f);
