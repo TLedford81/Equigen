@@ -93,6 +93,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public static final EntityDataAccessor<Float> GENE_STOMACH_CURVE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_TAIL_THICKNESS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_TAIL_LENGTH = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> GENE_SCALE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
 
     private static final EntityDataAccessor<Boolean> PREGNANT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.BOOLEAN);
 
@@ -149,7 +150,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     List<String> CONFORMATION_GENETICS = List.of("HOOF_SIZE", "LEG_WIDTH", "BOTTOM_LEG", "TOP_LEG", "TOP_HIND_LEG_WIDTH", "MUSCLE_MASS", "CHEST_SIZE",
             "HIP_SIZE", "HIP_PLACEMENT", "BACK_LENGTH", "BACK_GIRTH", "BACK_HEIGHT", "WITHERS", "STOMACH_CURVE", "STOMACH_HEIGHT", "STOMACH_LENGTH", "TAIL_SET",
-            "TAIL_LENGTH", "TAIL_THICKNESS", "NECK_CURVE", "NECK_POS", "NECK_LENGTH", "HEAD_SIZE", "HEAD_TYPE", "EAR_SIZE");
+            "TAIL_LENGTH", "TAIL_THICKNESS", "NECK_CURVE", "NECK_POS", "NECK_LENGTH", "HEAD_SIZE", "HEAD_TYPE", "EAR_SIZE", "SCALE");
     List<String> COAT_GENETICS = List.of("BLACK_MODIFIER", "RED_MODIFIER", "CREAM", "DUN", "GREYING", "SILVER", "CHAMPAGNE", "SOOTY", "FLAXEN",
             "PEARL", "MUSHROOM", "ROAN", "PANGARE");
     List<String> COAT_VARIATION_GENETICS = List.of("BLACK_VARIATION", "RED_VARIATION", "CREAM_VARIATION", "DUN_VARIATION", "GREYING_VARIATION",
@@ -254,11 +255,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     }
 
     // BASIC SETTINGS //
-
-    //TODO: Make it so the MOTHER always gives birth, kinda weird when daddy pops out a baby.
-    // Possibly something to do with the code that allows only one parent to give birth?
-
-    //TODO: Change this method to only allow mating when one of the parents is a Male and one is Female
     @Override
     public boolean canMate(Animal otherAnimal) {
         if (!(otherAnimal instanceof GeneticHorseEntity geneticHorseEntity)) return false;
@@ -446,6 +442,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         builder.define(GENE_STOMACH_CURVE, 0.0f);
         builder.define(GENE_TAIL_THICKNESS, 0.0f);
         builder.define(GENE_TAIL_LENGTH, 0.0f);
+        builder.define(GENE_SCALE, 0.0f);
 
         builder.define(SEAT_LOCAL_X, 0f);
         builder.define(SEAT_LOCAL_Y, 0.9f);
@@ -1088,7 +1085,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     protected EntityDimensions getDefaultDimensions(Pose pose) {
         float height = calculateHorseHeight();
         float width = 1f;
-        return EntityDimensions.scalable(width, height);
+        float scale = this.getRenderGenetics().get("SCALE");
+        return EntityDimensions.scalable(width * scale, height * scale);
     }
 
     public Float calculateHorseHeight(){
@@ -1655,6 +1653,10 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                     float randomNum = random.nextFloat(value.getMaxSize() - 2) + 3;
                     randomNum = (float) Math.round(randomNum * 100) / 100;
                     this.setGenetic(value.name(), randomNum);
+                } else if (value.name().equals("SCALE")){
+                    float randomNum = random.nextFloat(value.getMaxSize());
+                    randomNum = (float) Math.round(randomNum * 100) / 100;
+                    this.setGenetic(value.name(), randomNum);
                 } else {
                     int randomNum = random.nextInt(Math.round(value.getMaxSize())) + 1;
                     this.setGenetic(value.name(), randomNum);
@@ -2014,6 +2016,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         this.entityData.set(GENE_STOMACH_CURVE, this.getGenetic("STOMACH_CURVE"));
         this.entityData.set(GENE_TAIL_THICKNESS, this.getGenetic("TAIL_THICKNESS"));
         this.entityData.set(GENE_TAIL_LENGTH, this.getGenetic("TAIL_LENGTH"));
+        this.entityData.set(GENE_SCALE, this.getGenetic("SCALE"));
         EquigenMod.LOGGER.info("Muscle Mass Set in Render Genetics: " + this.entityData.get(GENE_MUSCLE_MASS));
     }
 
@@ -2037,6 +2040,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         GENE_MAP.put("STOMACH_CURVE", this.entityData.get(GENE_STOMACH_CURVE));
         GENE_MAP.put("TAIL_THICKNESS", this.entityData.get(GENE_TAIL_THICKNESS));
         GENE_MAP.put("TAIL_LENGTH", this.entityData.get(GENE_TAIL_LENGTH));
+        GENE_MAP.put("SCALE", this.entityData.get(GENE_SCALE));
         return GENE_MAP;
     }
 

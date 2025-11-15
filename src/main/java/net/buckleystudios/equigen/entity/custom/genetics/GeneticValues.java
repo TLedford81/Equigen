@@ -30,6 +30,7 @@ public enum GeneticValues {
     HEAD_SIZE,
     HEAD_TYPE,
     EAR_SIZE,
+    SCALE,
 
     /* Textures*/
     BLACK_MODIFIER,
@@ -168,6 +169,7 @@ public enum GeneticValues {
             case HEAD_TYPE -> 4;
             case HEAD_SIZE -> 3;
             case EAR_SIZE -> 3;
+            case SCALE -> 2;
 
             /* Textures*/
             case BLACK_MODIFIER -> 3;

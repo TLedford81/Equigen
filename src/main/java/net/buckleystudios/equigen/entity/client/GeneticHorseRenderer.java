@@ -26,7 +26,6 @@ import net.buckleystudios.equigen.entity.client.parts.partmodels.withers.withers
 import net.buckleystudios.equigen.entity.client.parts.partmodels.withers.withers_lean;
 import net.buckleystudios.equigen.entity.client.parts.partmodels.withers.withers_muscular;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
-import net.buckleystudios.equigen.network.CTSSeatAnchor;
 import net.buckleystudios.equigen.util.BoundsTracker;
 import net.buckleystudios.equigen.util.MeasuringBufferSource;
 import net.minecraft.client.model.EntityModel;
@@ -38,7 +37,6 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.network.PacketDistributor;
 import org.joml.Matrix4f;
 import org.joml.Vector4f;
 
@@ -181,26 +179,30 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         final float extraLiftPx = 2f;
         dy -= extraLiftPx / 16f;
 
-        MultipartModel<GeneticHorseEntity> back = modelMap.get("backModel");
-        Vec3 seatLocal = computeSeatLocal(entity, back, dy);
-        if (seatLocal != null) {
-            if (--seatSendCooldown <= 0) {
-                Vec3 last = lastSeatSent.get(entity.getId());
-                double eps = 1.0 / 64.0;
-                if (last == null || last.distanceToSqr(seatLocal) > eps*eps) {
-                    PacketDistributor.sendToServer(new CTSSeatAnchor(
-                            entity.getId(),
-                            (float) seatLocal.x, (float) seatLocal.y, (float) seatLocal.z
-                    ));
-                    lastSeatSent.put(entity.getId(), seatLocal);
-                }
-                seatSendCooldown = 5; // 5 client ticks
-            }
-        }
+//        MultipartModel<GeneticHorseEntity> back = modelMap.get("backModel");
+//        Vec3 seatLocal = computeSeatLocal(entity, back, dy);
+//        if (seatLocal != null) {
+//            if (--seatSendCooldown <= 0) {
+//                Vec3 last = lastSeatSent.get(entity.getId());
+//                double eps = 1.0 / 64.0;
+//                if (last == null || last.distanceToSqr(seatLocal) > eps*eps) {
+//                    PacketDistributor.sendToServer(new CTSSeatAnchor(
+//                            entity.getId(),
+//                            (float) seatLocal.x, (float) seatLocal.y, (float) seatLocal.z
+//                    ));
+//                    lastSeatSent.put(entity.getId(), seatLocal);
+//                }
+//                seatSendCooldown = 5; // 5 client ticks
+//            }
+//        }
 
         //Pass 2
         poseStack.pushPose();
         try {
+            Map<String, Float> renderGenetics = entity.getRenderGenetics();
+            Float scaleGenetic = renderGenetics.get("SCALE");
+            poseStack.scale(scaleGenetic, scaleGenetic, scaleGenetic);
+
             if (entity.isBaby()) poseStack.scale(0.5f, 0.6f, 0.5f);
             enterEntityModelSpace(entity, poseStack, entityYaw, partialTicks);
             poseStack.translate(0f, dy, 0f);
