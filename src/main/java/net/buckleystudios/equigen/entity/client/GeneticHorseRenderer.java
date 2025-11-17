@@ -403,11 +403,11 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                 packedLight, OverlayTexture.NO_OVERLAY);
 
         //0 = N/A, 1 = Front Left, 2 = Front Right, 3 = Back Left, 4 = Back Right
-        Map<Integer, List<ResourceLocation>> marks = getMarkingTextures();
-        if (marks.containsKey(legID)) {
-            for(int i = 0; i < marks.get(legID).size(); i++) {
+        Map<Integer, List<ResourceLocation>> markingTextures = getMarkingTextures();
+        if (markingTextures.containsKey(legID)) {
+            for(int i = 0; i < markingTextures.get(legID).size(); i++) {
                 child.renderToBuffer(pose,
-                        buffer.getBuffer(RenderType.entityCutoutNoCull(marks.get(legID).get(i))),
+                        buffer.getBuffer(RenderType.entityCutoutNoCull(markingTextures.get(legID).get(i))),
                         packedLight, OverlayTexture.NO_OVERLAY);
             }
         }
