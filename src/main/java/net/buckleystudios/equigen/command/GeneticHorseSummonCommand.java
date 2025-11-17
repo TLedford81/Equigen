@@ -6,6 +6,7 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.custom.genetics.GeneticBreeds;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticValues;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -13,8 +14,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.MobSpawnType;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class GeneticHorseSummonCommand {
 
@@ -24,7 +24,8 @@ public class GeneticHorseSummonCommand {
         dispatcher.register(Commands.literal("equigen")
                 .then(Commands.literal("genetichorse")
                         .then(Commands.literal("summon")
-                                .executes(this::SummonCustomGeneticHorse))));
+                                .then(Commands.argument("breed", StringArgumentType.word()))
+                                    .executes(this::SummonCustomGeneticHorse))));
         dispatcher.register(Commands.literal("equigen")
                 .then(Commands.literal("genetichorse")
                         .then(Commands.literal("set")
@@ -46,9 +47,22 @@ public class GeneticHorseSummonCommand {
     }
 
     private int SummonCustomGeneticHorse(CommandContext<CommandSourceStack> context){
+        String breed = StringArgumentType.getString(context, "breed").toUpperCase();
         ServerLevel serverLevel = context.getSource().getLevel();
         GeneticHorseEntity entity = new GeneticHorseEntity(ModEntities.GENETIC_HORSE.get(), serverLevel);
-        entity.HandleNewSpawnWithCustomGenetics(customGenes);
+
+        List<String> breedList = new ArrayList<>();
+        for(GeneticBreeds b : GeneticBreeds.values()){
+            breedList.add(b.name());
+        }
+        if(!breed.equals("CUSTOM") && !breedList.contains(breed)){
+            context.getSource().sendSystemMessage(Component.literal("Invalid Breed, Proceeding with Custom Breed."));
+            breed = "CUSTOM";
+        }
+
+
+
+        entity.HandleNewSpawnWithCustomGenetics(breed, customGenes);
         serverLevel.addFreshEntity(entity);
         entity.moveTo(context.getSource().getPosition());
             entity.finalizeSpawn(
@@ -96,7 +110,7 @@ public class GeneticHorseSummonCommand {
             GeneticValues key = GeneticValues.values()[i];
             if(key.name().equals(targetGene)){
                 nameIsValid = true;
-                if(key.getMaxSize() >= targetValue){
+                if(key.getDefaultMaxSize() >= targetValue){
                     if(targetValue > 0) {
                         valueIsValid = true;
                         customGenes.put(targetGene, targetValue);

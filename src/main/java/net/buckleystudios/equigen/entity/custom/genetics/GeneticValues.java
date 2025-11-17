@@ -1,5 +1,7 @@
 package net.buckleystudios.equigen.entity.custom.genetics;
 
+import java.util.List;
+
 public enum GeneticValues {
     /* Gender */
     GENDER,
@@ -137,7 +139,7 @@ public enum GeneticValues {
     SPAWNED_CODE_VERSION,
     CURRENT_CODE_VERSION;
 
-    public float getMaxSize(){
+    public float getDefaultMaxSize(){
         return switch (this){
             /* Gender */
             // 1 = Stallion, 2 = Mare
@@ -275,4 +277,73 @@ public enum GeneticValues {
             case CURRENT_CODE_VERSION -> 0;  // To be implemented later when we are able to put floats in this code //
         };
     }
+    public boolean isTextureGene(){
+        List<GeneticValues> textureGenes = List.of(
+                BLACK_MODIFIER,
+                BLACK_VARIATION,
+                RED_MODIFIER,
+                RED_VARIATION,
+                CREAM,
+                CREAM_VARIATION,
+                DUN,
+                DUN_VARIATION,
+                GREYING,
+                GREYING_VARIATION,
+                SILVER,
+                SILVER_VARIATION,
+                CHAMPAGNE,
+                CHAMPAGNE_VARIATION,
+                SOOTY,
+                SOOTY_VARIATION,
+                FLAXEN,
+                FLAXEN_VARIATION,
+                PEARL,
+                PEARL_VARIATION,
+                MUSHROOM,
+                MUSHROOM_VARIATION,
+                ROAN,
+                ROAN_VARIATION,
+                PANGARE,
+                PANGARE_VARIATION,
+                FRAME_OVERO,
+                FRAME_OVERO_VARIATION_1,
+                FRAME_OVERO_VARIATION_2,
+                FRAME_OVERO_VARIATION_3,
+                RABICANO,
+                RABICANO_VARIATION_1,
+                RABICANO_VARIATION_2,
+                RABICANO_VARIATION_3,
+                LEOPARD_COMPLEX,
+                LEOPARD_COMPLEX_VARIATION_1,
+                LEOPARD_COMPLEX_VARIATION_2,
+                LEOPARD_COMPLEX_VARIATION_3,
+                SPLASHED_WHITE,
+                SPLASHED_WHITE_VARIATION_1,
+                SPLASHED_WHITE_VARIATION_2,
+                SPLASHED_WHITE_VARIATION_3,
+                TOBIANO,
+                TOBIANO_VARIATION_1,
+                TOBIANO_VARIATION_2,
+                TOBIANO_VARIATION_3,
+                SABINO,
+                SABINO_VARIATION_1,
+                SABINO_VARIATION_2,
+                SABINO_VARIATION_3,
+                WHITE_SPOTTING,
+                WHITE_SPOTTING_VARIATION_1,
+                WHITE_SPOTTING_VARIATION_2,
+                WHITE_SPOTTING_VARIATION_3,
+                FACE_MARKING,
+                FRONT_LEFT_LEG_MARKING,
+                FRONT_RIGHT_LEG_MARKING,
+                BACK_LEFT_LEG_MARKING,
+                BACK_RIGHT_LEG_MARKING,
+                LEG_MARKING_COLOR,
+                LEFT_EYE_COLOR,
+                RIGHT_EYE_COLOR,
+                HOOF_COLOR,
+                MANE_LENGTH);
+        return textureGenes.contains(this);
+    }
 }
+

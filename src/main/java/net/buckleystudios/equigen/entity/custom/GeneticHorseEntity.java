@@ -4,6 +4,7 @@ import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.effect.ModEffects;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.ModEntityAttributes;
+import net.buckleystudios.equigen.entity.custom.genetics.GeneticBreeds;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticPartNameBuilder;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticValues;
 import net.buckleystudios.equigen.item.ModItems;
@@ -43,6 +44,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.entity.living.BabyEntitySpawnEvent;
 import org.jetbrains.annotations.Nullable;
@@ -101,6 +103,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public static final EntityDataAccessor<Float> SEAT_LOCAL_Y = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> SEAT_LOCAL_Z = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
 
+    public String breed;
     public static final int geneticCount = GeneticValues.values().length;
     private Map<String, Float> GENETICS = new HashMap<String, Float>();
     private int hungerTickTimer;
@@ -183,6 +186,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
         this.tameWithName(level.getNearestPlayer(this, 100.0d));
         if(!this.hasCustomSpawn){
+            this.setBreed(GeneticBreeds.getRandom());
             this.RandomizeGenetics();
         }
         this.HandleNewSpawnSkillsAndProficiencies();
@@ -341,7 +345,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
         this.HandleProficiencies();
 
-        //Genetic Code
+        //Genetics
+        this.setBreed(tag.getString("Breed"));
+
         for (int i = 0; i < geneticCount; i++) {
             GeneticValues key = GeneticValues.values()[i];
 
@@ -357,6 +363,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     @Override
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
+
+        //Genetics
+        tag.putString("Breed", this.getBreed());
 
         Set<String> keys = GENETICS.keySet();
         for(String key : keys){
@@ -395,7 +404,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         tag.putInt("StrengthProficiency", this.entityData.get(STRENGTH_PROFICIENCY));
         tag.putInt("EnduranceProficiency", this.entityData.get(ENDURANCE_PROFICIENCY));
         tag.putInt("AgilityProficiency", this.entityData.get(AGILITY_PROFICIENCY));
-
     }
 
     @Override
@@ -722,7 +730,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             case "Endurance" -> entityData.set(SKILL_ENDURANCE, value);
             case "Agility" -> entityData.set(SKILL_AGILITY, value);
         }
-        EquigenMod.LOGGER.info("Setting Skill '{}' to a value of '{}'", sSkill, value);
+//        EquigenMod.LOGGER.info("Setting Skill '{}' to a value of '{}'", sSkill, value);
         this.HandleSkills();
     }
 
@@ -1101,9 +1109,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         }
         totalHeight += kneeHeight + hoofHeight + offset;
 
-        EquigenMod.LOGGER.info("Returning BBU Height of {}", totalHeight);
         totalHeight /= 16; // Convert BB Values to MC
-        EquigenMod.LOGGER.info("Returning MCU Height of {}", totalHeight);
         return totalHeight;
     }
 
@@ -1173,52 +1179,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
         else return 0;
     }
-
-
-    //    @Override
-//    protected Vec3 getPassengerAttachmentPoint(Entity passenger, EntityDimensions dims, float partialTick) {
-//        return new Vec3(0, getSeatLocal().y, 0);
-//    }
-//
-//    @Override
-//    protected void positionRider(Entity passenger, MoveFunction callback) {
-//        Vec3 local = getSeatLocal();
-//
-//        // rotate local X/Z by horse yaw
-//        float yaw = this.getYRot() * Mth.DEG_TO_RAD;
-//        double cos = Mth.cos(yaw), sin = Mth.sin(yaw);
-//        double rx = local.x * cos - local.z * sin;
-//        double rz = local.x * sin + local.z * cos;
-//
-//        // raise the passenger so their pelvis sits on the anchor (feet are at entity pos!)
-//        // Works well for players; tweak the constant if you want them a bit higher/lower.
-//        double riderOffsetY = passenger.getBbHeight() * 0.5 - 1.6;
-//
-//        callback.accept(
-//                passenger,
-//                this.getX() + rx,
-//                this.getY() + (local.y + riderOffsetY),
-//                this.getZ() + rz
-//        );
-//
-//        if (passenger instanceof LivingEntity le) {
-//            clampRotation(le);
-//        }
-//    }
-
-
-    public void setSeatLocal(double x, double y, double z) {
-        EquigenMod.LOGGER.info("Setting Seat Local: {}, {}, {}", x, y, z);
-        this.entityData.set(SEAT_LOCAL_X, (float)x);
-        this.entityData.set(SEAT_LOCAL_Y, (float)y);
-        this.entityData.set(SEAT_LOCAL_Z, (float)z);
-    }
-
-    public Vec3 getSeatLocal() {
-        return new Vec3(this.entityData.get(SEAT_LOCAL_X), this.entityData.get(SEAT_LOCAL_Y), this.entityData.get(SEAT_LOCAL_Z));
-    }
-
-
 
     protected void clampRotation(Entity entityToUpdate) {
         entityToUpdate.setYBodyRot(this.getYRot());
@@ -1559,12 +1519,16 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                         "\n\n§2UUID:§r\n" + this.getStringUUID() +
                         "\n§2Owner:§r\n" + owner +
                         "\n§2Owner UUID:§r\n" + ownerUUID +
-                        "\n§2Age:§r\n" + this.getAge() + " (" + growthStage + ")" +
+                        "\n§2Breed:§r\n" + this.getBreed()
+        )));
+
+        generatedPages.add(Filterable.passThrough(Component.literal(
+                "§2Age:§r\n" + this.getAge() + " (" + growthStage + ")" +
                         "\n§2Texture:§r\n" + "N/A"
         )));
 
         generatedPages.add(Filterable.passThrough(Component.literal(
-                "§2Hunger:§r\n" + this.getHunger() +
+                        "§2Hunger:§r\n" + this.getHunger() +
                         "\n§2Thirst:§r\n" + this.getThirst() +
                         "\n§2Total Cleanliness:§r\n" + this.getCleanliness() +
                         "\n§2Hair Cleanliness:§r\n" + this.getCleanliness("hair") +
@@ -1572,6 +1536,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                         "\n§2Happiness:§r\n" + this.getHappiness() +
                         "\n§2Stress:§r\n" + this.getStress()
         )));
+
 
         //Genetics
         generatedPages.add(Filterable.passThrough(Component.literal("\n\n\n\n        §b§lGENETICS")));
@@ -1636,29 +1601,60 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
 
     // GENETICS //
-    public void HandleNewSpawnWithCustomGenetics(Map<String, Integer> customGenes){
+    public void HandleNewSpawnWithCustomGenetics(String breed, Map<String, Integer> customGenes){
         this.hasCustomSpawn = true;
+        this.setBreed(breed);
         this.RandomizeGenetics();
         for (String gene : customGenes.keySet()){
             this.setGenetic(gene, customGenes.get(gene));
         }
     }
 
+    public void setBreed(String breed){
+        EquigenMod.LOGGER.info("Setting Breed to {}", breed);
+        this.breed = breed;
+    }
+
+    public String getBreed(){
+        if (this.breed != null){
+            return this.breed;
+        } else {
+            return "CUSTOM";
+        }
+    }
+
     public void RandomizeGenetics(){
         Random random = new Random();
+        Map<String, Vec2> breedLimits = GeneticBreeds.valueOf(this.getBreed()).getGeneticLimits();
+
         for(int i = 0; i < geneticCount; i++) {
             GeneticValues value = GeneticValues.values()[i];
-            if (value.getMaxSize() != 0) {
+            if (value.getDefaultMaxSize() != 0) {
                 if (SKILL_GENETICS.contains(value.name())) {
-                    float randomNum = random.nextFloat(value.getMaxSize() - 2) + 3;
-                    randomNum = (float) Math.round(randomNum * 100) / 100;
+                    float min = breedLimits.containsKey(value.name()) ? breedLimits.get(value.name()).x : 0;
+                    float max = breedLimits.containsKey(value.name()) ? breedLimits.get(value.name()).y : value.getDefaultMaxSize();
+                    float randomNum = 0;
+                    if(max != 0){
+                        randomNum = random.nextFloat(min, max - 2) + 3;
+                        randomNum = (float) Math.round(randomNum * 100) / 100;
+                    }
                     this.setGenetic(value.name(), randomNum);
                 } else if (value.name().equals("SCALE")){
-                    float randomNum = random.nextFloat(value.getMaxSize());
-                    randomNum = (float) Math.round(randomNum * 100) / 100;
+                    float min = breedLimits.containsKey(value.name()) ? breedLimits.get(value.name()).x : 0;
+                    float max = breedLimits.containsKey(value.name()) ? breedLimits.get(value.name()).y : value.getDefaultMaxSize();
+                    float randomNum = 0;
+                    if(max != 0) {
+                        randomNum = random.nextFloat(min, max);
+                        randomNum = (float) Math.round(randomNum * 100) / 100;
+                    }
                     this.setGenetic(value.name(), randomNum);
                 } else {
-                    int randomNum = random.nextInt(Math.round(value.getMaxSize())) + 1;
+                    int min = Math.round(breedLimits.containsKey(value.name()) ? breedLimits.get(value.name()).x : 0);
+                    int max = Math.round(breedLimits.containsKey(value.name()) ? breedLimits.get(value.name()).y : value.getDefaultMaxSize());
+                    int randomNum = 0;
+                    if(max != 0){
+                        randomNum = random.nextInt(min, max) + 1;
+                    }
                     this.setGenetic(value.name(), randomNum);
 //                EquigenMod.LOGGER.info("Genetic " + value.name() + " set to " + randomNum);
                 }
@@ -1678,7 +1674,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             GeneticValues value = GeneticValues.values()[i];
             EquigenMod.LOGGER.info("Deciding the " + value.name() + " genetic....");
             if (reroll.isEmpty()) {
-                if (value.getMaxSize() != 0) {
+                if (value.getDefaultMaxSize() != 0) {
                     float minValue, maxValue;
                     float motherGenetic = mother.getGenetic(value.name());
                     float fatherGenetic = father.getGenetic(value.name());
@@ -1712,7 +1708,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                 } else if (COAT_GENETICS.contains(value.name())) {
                         newGeneticValue = punnettInheritance(motherGenetic, fatherGenetic);
                     } else if (COAT_VARIATION_GENETICS.contains(value.name())) {
-                        newGeneticValue = standardInheritance((percentileGenerator(45, 45, 10)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(value.getMaxSize()) + 1)));
+                        newGeneticValue = standardInheritance((percentileGenerator(45, 45, 10)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(value.getDefaultMaxSize()) + 1)));
                     } else if (PATTERN_GENETICS.contains(value.name())) {
                         newGeneticValue = punnettInheritance(motherGenetic, fatherGenetic);
                     } else if (PATTERN_VARIATION_GENETICS.contains(value.name())) {
@@ -1732,22 +1728,22 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                             case '3' -> newGeneticValue = ladderInheritance("PATTERN", value, percentileGenerator(40, 40, 8, 8, 4), motherGenetic, fatherGenetic,
                                         mother.getGenetic(value.name().replace(variationNum, '2')),
                                         father.getGenetic(value.name().replace(variationNum, '2')),
-                                        Math.round(random.nextFloat((value.getMaxSize()) + 1)));
+                                        Math.round(random.nextFloat((value.getDefaultMaxSize()) + 1)));
 
                             default -> newGeneticValue = 0.0F;
                         }
                         EquigenMod.LOGGER.info("Setting " + value.name() + " genetic to " + newGeneticValue);
 
                     } else if (MARKING_GENETICS.contains(value.name())) {
-                        newGeneticValue = standardInheritance((percentileGenerator(40, 40, 10, 10)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, value.getMaxSize()) + 1)), 0.0F);
+                        newGeneticValue = standardInheritance((percentileGenerator(40, 40, 10, 10)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, value.getDefaultMaxSize()) + 1)), 0.0F);
                     } else if (PERSONALITY_GENETICS.contains(value.name())) {
-                        newGeneticValue = ladderInheritance("PERSONALITY", value, percentileGenerator(20, 20, 60), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, (value.getMaxSize()) + 1.0F))));
+                        newGeneticValue = ladderInheritance("PERSONALITY", value, percentileGenerator(20, 20, 60), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, (value.getDefaultMaxSize()) + 1.0F))));
 
                     } else if (TRAIT_GENETICS.contains(value.name())) {
-                        newGeneticValue = ladderInheritance("TRAIT", value, (percentileGenerator(20, 20, 60)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, value.getMaxSize()) + 1.0F)));
+                        newGeneticValue = ladderInheritance("TRAIT", value, (percentileGenerator(20, 20, 60)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, value.getDefaultMaxSize()) + 1.0F)));
 
                     } else if (LOVE_AND_HATE_GENETICS.contains(value.name())) {
-                        newGeneticValue = standardInheritance((percentileGenerator(20, 20, 60)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, value.getMaxSize()) + 1)));
+                        newGeneticValue = standardInheritance((percentileGenerator(20, 20, 60)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, value.getDefaultMaxSize()) + 1)));
 
                     } else if (SKILL_GENETICS.contains(value.name())) {
                         newGeneticValue = random.nextFloat(minValue, maxValue + 1f);
@@ -1756,7 +1752,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                         EquigenMod.LOGGER.info("Genetic = " + value.name() + ". minValue = " + minValue + ". maxValue = " + maxValue);
                         newGeneticValue = random.nextInt(Math.round(minValue), Math.round(maxValue) + 1);
                     }
-                    newGeneticValue = Math.clamp(newGeneticValue, 0, value.getMaxSize());
+                    newGeneticValue = Math.clamp(newGeneticValue, 0, value.getDefaultMaxSize());
                     this.setGenetic(value.name(), newGeneticValue);
 
                 }
@@ -2017,7 +2013,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         this.entityData.set(GENE_TAIL_THICKNESS, this.getGenetic("TAIL_THICKNESS"));
         this.entityData.set(GENE_TAIL_LENGTH, this.getGenetic("TAIL_LENGTH"));
         this.entityData.set(GENE_SCALE, this.getGenetic("SCALE"));
-        EquigenMod.LOGGER.info("Muscle Mass Set in Render Genetics: " + this.entityData.get(GENE_MUSCLE_MASS));
     }
 
     public Map<String, Float> getRenderGenetics(){
@@ -2046,7 +2041,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     public void setGenetic(String key, float number) {
 //        LOGGER.info("Setting Geneic: " + key + " / " + number);
-        float clampedNumber = Math.clamp(number, 0, GeneticValues.valueOf(key).getMaxSize());
+        float clampedNumber = Math.clamp(number, 0, GeneticValues.valueOf(key).getDefaultMaxSize());
         this.GENETICS.put(key, clampedNumber);
         if (key.equals("GENDER") || key.equals("BLACK_MODIFIER")) {
             EquigenMod.LOGGER.info("Setting " + key + " to " + clampedNumber);

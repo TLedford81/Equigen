@@ -36,11 +36,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.phys.Vec3;
-import org.joml.Matrix4f;
-import org.joml.Vector4f;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,8 +46,6 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
 
     private final EntityModelSet modelSet;
     private final Map<String, EntityModel<GeneticHorseEntity>> partCache = new HashMap<>();
-    private final Map<Integer, Vec3> lastSeatSent = new HashMap<>();
-    private int seatSendCooldown = 0;
 
     private final ResourceLocation LONG_SOCK = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/test/marking_1.png");
     private final ResourceLocation AVERAGE_SOCK = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/test/marking_2.png");
@@ -106,7 +100,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         List<ResourceLocation> BACK_RIGHT_LEG_MARKINGS = new ArrayList<>();
 
         //TODO: Body Marking Logic
-        BODY_MARKINGS.add(SHORT_SOCK);
+        BACK_RIGHT_LEG_MARKINGS.add(SHORT_SOCK);
         FRONT_LEFT_LEG_MARKINGS.add(LONG_SOCK);
         //
 
@@ -178,23 +172,6 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
 
         final float extraLiftPx = 2f;
         dy -= extraLiftPx / 16f;
-
-//        MultipartModel<GeneticHorseEntity> back = modelMap.get("backModel");
-//        Vec3 seatLocal = computeSeatLocal(entity, back, dy);
-//        if (seatLocal != null) {
-//            if (--seatSendCooldown <= 0) {
-//                Vec3 last = lastSeatSent.get(entity.getId());
-//                double eps = 1.0 / 64.0;
-//                if (last == null || last.distanceToSqr(seatLocal) > eps*eps) {
-//                    PacketDistributor.sendToServer(new CTSSeatAnchor(
-//                            entity.getId(),
-//                            (float) seatLocal.x, (float) seatLocal.y, (float) seatLocal.z
-//                    ));
-//                    lastSeatSent.put(entity.getId(), seatLocal);
-//                }
-//                seatSendCooldown = 5; // 5 client ticks
-//            }
-//        }
 
         //Pass 2
         poseStack.pushPose();
@@ -428,26 +405,6 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         pose.mulPose(Axis.YP.rotation((float)p.rotation.y));
         pose.mulPose(Axis.ZP.rotation((float)p.rotation.z));
         pose.scale((float)p.scale.x, (float)p.scale.y, (float)p.scale.z);
-    }
-
-    private @Nullable Vec3 computeSeatLocal(GeneticHorseEntity e,
-                                            MultipartModel<GeneticHorseEntity> back,
-                                            float dy) {
-        if (back == null) return null;
-
-        PartTransform pA = back.anchors().get("playerAnchor");
-        if (pA == null) pA = back.anchors().get("hipsAnchor");
-        if (pA == null) return null;
-
-        PoseStack ps = makeNeutralModelSpace(e); // baby scale + flip + translate(0,-1.5,0)
-        ps.pushPose();
-        applyAnchorOnly(ps, pA);
-
-        Matrix4f m = ps.last().pose();
-        Vector4f v = new Vector4f(0, 0, 0, 1).mul(m);
-        ps.popPose();
-
-        return new Vec3(v.x, v.y, v.z);
     }
 
     // Find first ID in the list with a given prefix (e.g., "back_", "chest_", "neck_")
