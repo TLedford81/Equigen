@@ -49,7 +49,7 @@ public class stomach_average_long_high extends MultipartStomachModel<GeneticHors
 
 		PartDefinition cube_r4 = stomach_average_long_high_stomach_back_lower.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(568, 419).addBox(-4.08F, -0.24F, -5.52F, 4.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.9004F, -3.8217F, 1.7453F, 0.0F, 0.0F));
 
-		PartDefinition backAnchor = stomach_average_long_high.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.25F, 6.9777F));
+		PartDefinition backAnchor = stomach_average_long_high.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.25F, 7.7821F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}

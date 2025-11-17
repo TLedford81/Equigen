@@ -49,7 +49,7 @@ public class stomach_muscular_long_high extends MultipartStomachModel<GeneticHor
 
 		PartDefinition cube_r4 = stomach_muscular_long_high_stomach_back_lower.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(564, 498).addBox(-5.08F, -0.24F, -5.52F, 5.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.58F, -2.9004F, -3.8217F, 1.7453F, 0.0F, 0.0F));
 
-		PartDefinition backAnchor = stomach_muscular_long_high.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.25F, 6.9777F));
+		PartDefinition backAnchor = stomach_muscular_long_high.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.25F, 7.7821F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}

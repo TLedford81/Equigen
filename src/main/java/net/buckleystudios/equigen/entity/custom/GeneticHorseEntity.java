@@ -93,6 +93,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public static final EntityDataAccessor<Float> GENE_STOMACH_CURVE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_TAIL_THICKNESS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_TAIL_LENGTH = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> GENE_RED_MODIFIER = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> GENE_BLACK_MODIFIER = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_SCALE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
 
     private static final EntityDataAccessor<Boolean> PREGNANT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.BOOLEAN);
@@ -442,6 +444,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         builder.define(GENE_STOMACH_CURVE, 0.0f);
         builder.define(GENE_TAIL_THICKNESS, 0.0f);
         builder.define(GENE_TAIL_LENGTH, 0.0f);
+        builder.define(GENE_RED_MODIFIER, 0.0f);
+        builder.define(GENE_BLACK_MODIFIER, 0.0f);
         builder.define(GENE_SCALE, 0.0f);
 
         builder.define(SEAT_LOCAL_X, 0f);
@@ -1085,7 +1089,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     protected EntityDimensions getDefaultDimensions(Pose pose) {
         float height = calculateHorseHeight();
         float width = 1f;
-        float scale = this.getRenderGenetics().get("SCALE");
+        float scale = ((this.getRenderGenetics().get("SCALE") / 2.0F) + 0.75F);
         return EntityDimensions.scalable(width * scale, height * scale);
     }
 
@@ -1101,9 +1105,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         }
         totalHeight += kneeHeight + hoofHeight + offset;
 
-        EquigenMod.LOGGER.info("Returning BBU Height of {}", totalHeight);
+//        EquigenMod.LOGGER.info("Returning BBU Height of {}", totalHeight);
         totalHeight /= 16; // Convert BB Values to MC
-        EquigenMod.LOGGER.info("Returning MCU Height of {}", totalHeight);
+//        EquigenMod.LOGGER.info("Returning MCU Height of {}", totalHeight);
         return totalHeight;
     }
 
@@ -2016,6 +2020,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         this.entityData.set(GENE_STOMACH_CURVE, this.getGenetic("STOMACH_CURVE"));
         this.entityData.set(GENE_TAIL_THICKNESS, this.getGenetic("TAIL_THICKNESS"));
         this.entityData.set(GENE_TAIL_LENGTH, this.getGenetic("TAIL_LENGTH"));
+        this.entityData.set(GENE_RED_MODIFIER, this.getGenetic("RED_MODIFIER"));
+        this.entityData.set(GENE_BLACK_MODIFIER, this.getGenetic("BLACK_MODIFIER"));
         this.entityData.set(GENE_SCALE, this.getGenetic("SCALE"));
         EquigenMod.LOGGER.info("Muscle Mass Set in Render Genetics: " + this.entityData.get(GENE_MUSCLE_MASS));
     }
@@ -2040,6 +2046,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         GENE_MAP.put("STOMACH_CURVE", this.entityData.get(GENE_STOMACH_CURVE));
         GENE_MAP.put("TAIL_THICKNESS", this.entityData.get(GENE_TAIL_THICKNESS));
         GENE_MAP.put("TAIL_LENGTH", this.entityData.get(GENE_TAIL_LENGTH));
+        GENE_MAP.put("RED_MODIFIER", this.entityData.get(GENE_RED_MODIFIER));
+        GENE_MAP.put("BLACK_MODIFIER", this.entityData.get(GENE_BLACK_MODIFIER));
         GENE_MAP.put("SCALE", this.entityData.get(GENE_SCALE));
         return GENE_MAP;
     }

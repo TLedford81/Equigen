@@ -169,7 +169,7 @@ public enum GeneticValues {
             case HEAD_TYPE -> 4;
             case HEAD_SIZE -> 3;
             case EAR_SIZE -> 3;
-            case SCALE -> 2;
+            case SCALE -> 1;
 
             /* Textures*/
             case BLACK_MODIFIER -> 3;
