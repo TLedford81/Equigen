@@ -6,6 +6,9 @@ public enum GeneticValues {
     /* Gender */
     GENDER,
 
+    /* Scale */
+    SCALE,
+
     /* Conformation */
     HOOF_SIZE,
     LEG_WIDTH,
@@ -32,7 +35,6 @@ public enum GeneticValues {
     HEAD_SIZE,
     HEAD_TYPE,
     EAR_SIZE,
-    SCALE,
 
     /* Textures*/
     BLACK_MODIFIER,
@@ -145,6 +147,9 @@ public enum GeneticValues {
             // 1 = Stallion, 2 = Mare
             case GENDER -> 2;
 
+            /* Scale */
+            case SCALE -> 1;
+
             /* Conformation */
             case HOOF_SIZE -> 2;
             case LEG_WIDTH -> 3;
@@ -171,7 +176,6 @@ public enum GeneticValues {
             case HEAD_TYPE -> 4;
             case HEAD_SIZE -> 3;
             case EAR_SIZE -> 3;
-            case SCALE -> 1;
 
             /* Textures*/
             case BLACK_MODIFIER -> 3;

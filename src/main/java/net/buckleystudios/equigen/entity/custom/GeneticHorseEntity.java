@@ -155,7 +155,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     List<String> CONFORMATION_GENETICS = List.of("HOOF_SIZE", "LEG_WIDTH", "BOTTOM_LEG", "TOP_LEG", "TOP_HIND_LEG_WIDTH", "MUSCLE_MASS", "CHEST_SIZE",
             "HIP_SIZE", "HIP_PLACEMENT", "BACK_LENGTH", "BACK_GIRTH", "BACK_HEIGHT", "WITHERS", "STOMACH_CURVE", "STOMACH_HEIGHT", "STOMACH_LENGTH", "TAIL_SET",
-            "TAIL_LENGTH", "TAIL_THICKNESS", "NECK_CURVE", "NECK_POS", "NECK_LENGTH", "HEAD_SIZE", "HEAD_TYPE", "EAR_SIZE", "SCALE");
+            "TAIL_LENGTH", "TAIL_THICKNESS", "NECK_CURVE", "NECK_POS", "NECK_LENGTH", "HEAD_SIZE", "HEAD_TYPE", "EAR_SIZE");
     List<String> COAT_GENETICS = List.of("BLACK_MODIFIER", "RED_MODIFIER", "CREAM", "DUN", "GREYING", "SILVER", "CHAMPAGNE", "SOOTY", "FLAXEN",
             "PEARL", "MUSHROOM", "ROAN", "PANGARE");
     List<String> COAT_VARIATION_GENETICS = List.of("BLACK_VARIATION", "RED_VARIATION", "CREAM_VARIATION", "DUN_VARIATION", "GREYING_VARIATION",
@@ -170,7 +170,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     List<String> MARKING_GENETICS = List.of("FACE_MARKING", "FRONT_LEFT_LEG_MARKING", "FRONT_RIGHT_LEG_MARKING", "BACK_LEFT_LEG_MARKING",
             "BACK_RIGHT_LEG_MARKING");
     List<String> PERSONALITY_GENETICS = List.of("MAIN_PERSONALITY", "FIRST_SUB_PERSONALITY", "SECOND_SUB_PERSONALITY", "THIRD_SUB_PERSONALITY");
-    List<String> PERSONALITY_PERCENTAGE_GENETICS = List.of("MAIN_PERSONALITY_PERCENTAGE", "FIRST_SUB_PERSONALITY_PERCENTAGE",
+    List<String> PERCENTAGE_GENETICS = List.of("SCALE", "MAIN_PERSONALITY_PERCENTAGE", "FIRST_SUB_PERSONALITY_PERCENTAGE",
             "SECOND_SUB_PERSONALITY_PERCENTAGE", "THIRD_SUB_PERSONALITY_PERCENTAGE");
     List<String> TRAIT_GENETICS = List.of("FIRST_TRAIT", "SECOND_TRAIT", "THIRD_TRAIT");
     List<String> TRAIT_VARIATION_GENETICS = List.of("FIRST_TRAIT_VARIATION", "SECOND_TRAIT_VARIATION", "THIRD_TRAIT_VARIATION");
@@ -1742,7 +1742,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                         newGeneticValue = standardInheritance((percentileGenerator(40, 40, 10, 10)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, value.getDefaultMaxSize()) + 1)), 0.0F);
                     } else if (PERSONALITY_GENETICS.contains(value.name())) {
                         newGeneticValue = ladderInheritance("PERSONALITY", value, percentileGenerator(20, 20, 60), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, (value.getDefaultMaxSize()) + 1.0F))));
-
+                    } else if (PERCENTAGE_GENETICS.contains(value.name())) {
+                    // NEED TO EDIT CHANCES TO HAVE MORE RANDOM VARIATION, NOT DONE!!
+                        newGeneticValue = ladderInheritance("PERCENTAGE", value, percentileGenerator(20, 20, 60), motherGenetic, fatherGenetic, ((motherGenetic + fatherGenetic) / 2));
                     } else if (TRAIT_GENETICS.contains(value.name())) {
                         newGeneticValue = ladderInheritance("TRAIT", value, (percentileGenerator(20, 20, 60)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, value.getDefaultMaxSize()) + 1.0F)));
 
@@ -1848,8 +1850,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                     type = value.name().replace("THIRD", " ");
                 }
             }
-
         }
+
         float genetic;
 
         if (rolls == 2) {
