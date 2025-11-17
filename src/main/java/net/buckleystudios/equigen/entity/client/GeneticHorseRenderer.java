@@ -71,17 +71,22 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         if(selectedTexture == 1) {
             return ResourceLocation.fromNamespaceAndPath(
                     EquigenMod.MODID,
-                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + ".png"
+                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_chestnut.png"
             );
         } else if(selectedTexture == 2) {
             return ResourceLocation.fromNamespaceAndPath(
                     EquigenMod.MODID,
-                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "2.png"
+                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_bay.png"
+            );
+        } else if (selectedTexture == 3) {
+            return ResourceLocation.fromNamespaceAndPath(
+                    EquigenMod.MODID,
+                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_black.png"
             );
         } else {
             return ResourceLocation.fromNamespaceAndPath(
                     EquigenMod.MODID,
-                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "3.png"
+                    "textures/entity/genetic_horse/genetic_horse_old" + (entity.isSaddled() ? "_saddled" : "")
             );
         }
     }
@@ -90,6 +95,17 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         float f = entity.getRenderGenetics().getOrDefault("MUSCLE_MASS", 1f);
         int mass = Math.round(f);
         return Math.max(1, Math.min(3, mass));
+    }
+    public String getCoatColor(GeneticHorseEntity entity) {
+        int baseColor = getSelectedTexture(entity);
+        String coatColor = "";
+        switch(baseColor) {
+            case 1 -> coatColor = "CHESTNUT";
+            case 2 -> coatColor = "BAY";
+            case 3 -> coatColor = "BLACK";
+            default -> coatColor = "";
+        }
+        return coatColor;
     }
 
     private Map<Integer, List<ResourceLocation>> getMarkingTextures() {
@@ -100,8 +116,8 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         List<ResourceLocation> BACK_RIGHT_LEG_MARKINGS = new ArrayList<>();
 
         //TODO: Body Marking Logic
-        BACK_RIGHT_LEG_MARKINGS.add(SHORT_SOCK);
-        FRONT_LEFT_LEG_MARKINGS.add(LONG_SOCK);
+//        BODY_MARKINGS.add(SHORT_SOCK);
+//        FRONT_LEFT_LEG_MARKINGS.add(LONG_SOCK);
         //
 
         return Map.of(
@@ -177,7 +193,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         poseStack.pushPose();
         try {
             Map<String, Float> renderGenetics = entity.getRenderGenetics();
-            Float scaleGenetic = renderGenetics.get("SCALE");
+            Float scaleGenetic = ((renderGenetics.get("SCALE") / 2.0F) + 0.75F);
             poseStack.scale(scaleGenetic, scaleGenetic, scaleGenetic);
 
             if (entity.isBaby()) poseStack.scale(0.5f, 0.6f, 0.5f);
@@ -190,7 +206,6 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
             poseStack.popPose();
         }
     }
-
 
     private void renderParts(GeneticHorseEntity entity, float entityYaw, float partialTicks,
                              PoseStack poseStack, MultiBufferSource buffer, int packedLight,
@@ -350,6 +365,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         }
         pose.popPose();
     }
+
 
     private void attachAndChain(
             PoseStack pose, MultiBufferSource buffer, int packedLight, GeneticHorseEntity entity, float partialTicks,
