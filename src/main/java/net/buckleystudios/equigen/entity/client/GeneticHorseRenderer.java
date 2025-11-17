@@ -411,7 +411,6 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
                         packedLight, OverlayTexture.NO_OVERLAY);
             }
         }
-
         pose.popPose();
     }
     private PoseStack makeNeutralModelSpace(GeneticHorseEntity e) {
