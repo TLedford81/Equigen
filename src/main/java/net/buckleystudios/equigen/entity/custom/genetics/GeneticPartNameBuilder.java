@@ -31,8 +31,6 @@ public class GeneticPartNameBuilder {
         this.entity = entity;
     }
 
-    //TODO: Client can not see these values, fix pls
-
     public String PartStringGenerator(String PART){
         Map<String, Float> GENETICS = entity.getRenderGenetics();
         String MUSCLE_MASS        = GeneticIdentifier("MUSCLE_MASS", GENETICS.get("MUSCLE_MASS"), PART);

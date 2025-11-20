@@ -143,4 +143,14 @@ public enum GeneticBreeds {
         GeneticBreeds[] values = GeneticBreeds.values();
         return values[random.nextInt(0, values.length)].name();
     }
+
+    public static boolean contains(String queriedBreed){
+        for(GeneticBreeds breed : GeneticBreeds.values()){
+            if(breed.name().equals(queriedBreed)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

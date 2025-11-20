@@ -1,7 +1,7 @@
 package net.buckleystudios.equigen.entity.custom;
 
 import net.buckleystudios.equigen.entity.ModEntities;
-import net.buckleystudios.equigen.entity.client.EgretVariants;
+import net.buckleystudios.equigen.entity.client.egret.EgretVariants;
 import net.buckleystudios.equigen.item.ModItems;
 import net.buckleystudios.equigen.sound.ModSounds;
 import net.minecraft.Util;

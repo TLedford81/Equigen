@@ -1,6 +1,7 @@
 package net.buckleystudios.equigen.command;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.FloatArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
@@ -24,14 +25,14 @@ public class GeneticHorseSummonCommand {
         dispatcher.register(Commands.literal("equigen")
                 .then(Commands.literal("genetichorse")
                         .then(Commands.literal("summon")
-                                .then(Commands.argument("breed", StringArgumentType.word()))
-                                    .executes(this::SummonCustomGeneticHorse))));
+                                .then(Commands.argument("breed", StringArgumentType.word())
+                                    .executes(this::SummonCustomGeneticHorse)))));
         dispatcher.register(Commands.literal("equigen")
                 .then(Commands.literal("genetichorse")
                         .then(Commands.literal("set")
                                 .then(Commands.literal("gene")
                                         .then(Commands.argument("gene", StringArgumentType.word())
-                                                .then(Commands.argument("value", IntegerArgumentType.integer(1))
+                                                .then(Commands.argument("value", FloatArgumentType.floatArg())
                                                         .executes(this::SetCustomGene)))))));
         dispatcher.register(Commands.literal("equigen")
                 .then(Commands.literal("genetichorse")
