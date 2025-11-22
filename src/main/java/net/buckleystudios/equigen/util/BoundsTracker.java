@@ -11,6 +11,5 @@ public final class BoundsTracker {
     }
 
     public float height() { return maxY - minY; }
-    public boolean valid() { return minY != Float.POSITIVE_INFINITY; }
 }
 
