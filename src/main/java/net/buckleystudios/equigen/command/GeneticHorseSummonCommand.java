@@ -2,7 +2,6 @@ package net.buckleystudios.equigen.command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.FloatArgumentType;
-import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import net.buckleystudios.equigen.entity.ModEntities;
@@ -15,11 +14,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.MobSpawnType;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class GeneticHorseSummonCommand {
 
-    private static Map<String, Integer> customGenes = new HashMap<>();
+    private static Map<String, Float> customGenes = new HashMap<>();
 
     public GeneticHorseSummonCommand(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(Commands.literal("equigen")
@@ -103,7 +105,7 @@ public class GeneticHorseSummonCommand {
 
     private int SetCustomGene(CommandContext<CommandSourceStack> context){
         String targetGene = StringArgumentType.getString(context, "gene").toUpperCase();
-        Integer targetValue = IntegerArgumentType.getInteger(context, "value");
+        float targetValue = FloatArgumentType.getFloat(context, "value");
         boolean nameIsValid = false;
         boolean valueIsValid = false;
 

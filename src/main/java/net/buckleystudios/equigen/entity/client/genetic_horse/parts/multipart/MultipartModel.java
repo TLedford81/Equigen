@@ -1,6 +1,7 @@
 package net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.buckleystudios.equigen.entity.client.genetic_horse.GeneticHorseAnimations;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.HierarchicalModel;
@@ -20,8 +21,20 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
 
     @Override
     public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.root().getAllParts().forEach(ModelPart::resetPose);
 
+        this.animateWalk(GeneticHorseAnimations.gallop(animationRoot()),
+                limbSwing, limbSwingAmount, 2f, 2.5f);
+
+//		this.animate(entity.idleAnimationState, GeneticHorseAnimations.gallopBack(), ageInTicks);
     }
+
+    //TODO: Replace the animationRoot() method with this line after grunt work is finished:
+    //    public abstract String animationRoot();
+
+    public String animationRoot(){
+        return "";
+    };
 
     protected PartTransform asTransform(ModelPart part) {
         return new PartTransform(

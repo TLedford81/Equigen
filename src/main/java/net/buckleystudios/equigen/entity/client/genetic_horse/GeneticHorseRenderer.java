@@ -177,7 +177,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         if (back == null) return;
 
         // Root
-        renderRootPart(poseStack, modelBuffer, packedLight, entity, back);
+        renderRootPart(poseStack, modelBuffer, packedLight, partialTicks, entity, back);
 
         // back -> chest chain
         attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
@@ -301,12 +301,21 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
     }
 
     private void renderRootPart(
-            PoseStack pose, MultiBufferSource buffer, int packedLight,
+            PoseStack pose, MultiBufferSource buffer, int packedLight, float partialTicks,
             GeneticHorseEntity entity,
             MultipartModel<GeneticHorseEntity> model
     ) {
         if (model == null) return;
         pose.pushPose();
+        float ageInTicks = entity.tickCount + partialTicks;
+        float limbSwing        = entity.walkAnimation.position(partialTicks);
+        float limbSwingAmount  = entity.walkAnimation.speed(partialTicks);
+
+        if (entity.tickCount % 10 == 0) {
+            EquigenMod.LOGGER.info("walk pos={} spd={}", limbSwing, limbSwingAmount);
+        }
+        model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
+        model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, 0f, 0f);
         model.renderToBuffer(
                 pose,
                 buffer.getBuffer(RenderType.entityCutout(getTextureLocation(entity, this.getSelectedTexture(entity)))),
@@ -343,11 +352,19 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         PartTransform pA = parent.anchors().get(anchorInParentModel);
         PartTransform cA = child.anchors().get(anchorInChildModel);
         if (pA == null || cA == null) return;
+        float ageInTicks      = entity.tickCount + partialTicks;
+        float limbSwing       = entity.walkAnimation.position(partialTicks);
+        float limbSwingAmount = entity.walkAnimation.speed(partialTicks);
+
         pose.pushPose();
 
         applyTransform(pose, pA, cA);
+
         child.beforeAttached(entity, partialTicks, pose);
         if (chain != null) chain.run();
+        child.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
+        child.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, 0f, 0f);
+
         child.afterAttached(entity, partialTicks);
         child.renderToBuffer(pose, buffer.getBuffer(RenderType.entityCutout(getTextureLocation(entity, this.getSelectedTexture(entity)))),
                 packedLight, OverlayTexture.NO_OVERLAY);
@@ -363,4 +380,5 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         }
         pose.popPose();
     }
+
 }

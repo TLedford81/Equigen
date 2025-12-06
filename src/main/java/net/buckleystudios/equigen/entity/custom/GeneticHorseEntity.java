@@ -1218,13 +1218,36 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     @Override
     public boolean canJump() {
-        EquigenMod.LOGGER.info((this.getCurrentStamina() > 0) + " / " + this.isJumpReady);
         return this.getCurrentStamina() > 0 && this.isJumpReady;
     }
 
     @Override
     public boolean canEatGrass() {
         return this.getHunger() <= 9.0f;
+    }
+
+    public final AnimationState locomotionState = new AnimationState();
+    private float ghAnimSpeed = 0.0F;  // our smoothed “animationSpeed”
+
+    @Override
+    public void aiStep() {
+        super.aiStep();
+
+        if (this.level().isClientSide) {
+            // vanilla-style movement delta
+            double dx = this.getX() - this.xo;
+            double dz = this.getZ() - this.zo;
+            float dist = (float) Math.sqrt(dx * dx + dz * dz);
+
+            // scale a bit (vanilla multiplies by ~4 for animation speed feel)
+            float target = dist * 4.0F;
+
+            ghAnimSpeed += (target - ghAnimSpeed) * 0.4F; // low-pass filter
+            this.walkAnimation.update(ghAnimSpeed, 1.0F);
+
+            if (target > 0.01F) locomotionState.startIfStopped(this.tickCount);
+            else               locomotionState.stop();
+        }
     }
 
 
@@ -1241,6 +1264,12 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             float enduranceModifier = endurance * 0.1f;
             float jump = this.getCurrentSkillLevel("Jump");
             int jumpCooldownModifier = Math.round(jump * 5);
+
+            if (isMoving()) {
+                idleAnimationState.stop();
+            } else {
+                idleAnimationState.startIfStopped(this.tickCount);
+            }
 
             if(this.isEating()){
                 this.alterHunger(0.001f);
@@ -1606,7 +1635,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
 
     // GENETICS //
-    public void HandleNewSpawnWithCustomGenetics(String breed, Map<String, Integer> customGenes){
+    public void HandleNewSpawnWithCustomGenetics(String breed, Map<String, Float> customGenes){
         this.hasCustomSpawn = true;
         this.setBreed(breed);
         this.RandomizeGenetics();

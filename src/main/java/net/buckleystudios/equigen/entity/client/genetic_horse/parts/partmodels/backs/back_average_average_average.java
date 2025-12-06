@@ -5,8 +5,8 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartBackModel;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
+import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartBackModel;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -15,6 +15,7 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class back_average_average_average extends MultipartBackModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart back_average_average_average;
 	private final ModelPart chestAnchor;
 	private final ModelPart hipsAnchor;
@@ -22,13 +23,15 @@ public class back_average_average_average extends MultipartBackModel<GeneticHors
 	private final ModelPart withersAnchor;
 	private final ModelPart playerAnchor;
 
+
 	public back_average_average_average(ModelPart root) {
+		this.root = root;
 		this.back_average_average_average = root.getChild("back_average_average_average");
-		this.chestAnchor = this.back_average_average_average.getChild("chestAnchor");
-		this.hipsAnchor = this.back_average_average_average.getChild("hipsAnchor");
+		this.chestAnchor   = this.back_average_average_average.getChild("chestAnchor");
+		this.hipsAnchor    = this.back_average_average_average.getChild("hipsAnchor");
 		this.stomachAnchor = this.back_average_average_average.getChild("stomachAnchor");
 		this.withersAnchor = this.back_average_average_average.getChild("withersAnchor");
-		this.playerAnchor = this.back_average_average_average.getChild("playerAnchor");
+		this.playerAnchor  = this.back_average_average_average.getChild("playerAnchor");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -63,17 +66,18 @@ public class back_average_average_average extends MultipartBackModel<GeneticHors
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.root().getAllParts().forEach(ModelPart::resetPose);
+	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
+		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-		back_average_average_average.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+	public ModelPart root() {
+		return this.root;
 	}
 
-	public ModelPart root() {
-		return back_average_average_average;
+	@Override
+	public String animationRoot() {
+		return "back_average_average_average";
 	}
 
 	@Override
@@ -83,7 +87,7 @@ public class back_average_average_average extends MultipartBackModel<GeneticHors
 				"hipsAnchor", asTransform(this.hipsAnchor),
 				"stomachAnchor", asTransform(this.stomachAnchor),
 				"withersAnchor", asTransform(this.withersAnchor),
-				"playerAnchor", asTransform(this.playerAnchor)
+				"playerAnchor", asTransform(this.playerAnchor) //Deprecated
 		);
 	}
 }
