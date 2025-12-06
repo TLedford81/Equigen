@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GeneticHorseModelBase<GeneticHorseEntity>> {
+public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_ModelBase<GeneticHorseEntity>> {
 
     private final EntityModelSet modelSet;
 
@@ -32,7 +32,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
     private final ResourceLocation SHORT_SOCK = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/test/marking_3.png");
 
     public GeneticHorseRenderer(EntityRendererProvider.Context context) {
-        super(context, new GeneticHorseModelBase<>(context.bakeLayer(ModModelLayers.GENETIC_HORSE)), 1f);
+        super(context, new GH_ModelBase<>(context.bakeLayer(ModModelLayers.GENETIC_HORSE)), 1f);
         this.modelSet = context.getModelSet();
     }
 

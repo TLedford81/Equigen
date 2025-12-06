@@ -4,7 +4,7 @@ import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.client.*;
 import net.buckleystudios.equigen.entity.client.egret.EgretModel;
-import net.buckleystudios.equigen.entity.client.genetic_horse.GeneticHorseModelBase;
+import net.buckleystudios.equigen.entity.client.genetic_horse.GH_ModelBase;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.backs.*;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.bottomlegs.*;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.chests.*;
@@ -50,13 +50,13 @@ public class ModEventBusEvents {
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(ModModelLayers.PILLAGER_KING, PillagerKingModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.EGRET, EgretModel::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.GENETIC_HORSE, GeneticHorseModelBase::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.GENETIC_HORSE_MARKINGS, GeneticHorseModelBase::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.GENETIC_HORSE, GH_ModelBase::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.GENETIC_HORSE_MARKINGS, GH_ModelBase::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.TEST_ENTITY, TestEntityModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.SODIUM_GRENADE, SodiumGrenadeProjectileModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.LASSO, SodiumGrenadeProjectileModel::createBodyLayer);
 
-        event.registerLayerDefinition(ModModelLayers.BASE, GeneticHorseModelBase::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BASE, GH_ModelBase::createBodyLayer);
         // Backs
         event.registerLayerDefinition(ModModelLayers.BACK_LEAN_SHORT_THIN, back_lean_short_thin::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.BACK_LEAN_SHORT_AVERAGE, back_lean_short_average::createBodyLayer);

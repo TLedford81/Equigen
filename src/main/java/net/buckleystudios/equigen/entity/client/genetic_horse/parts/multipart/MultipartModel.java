@@ -1,7 +1,7 @@
 package net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.buckleystudios.equigen.entity.client.genetic_horse.animations.Gallop;
+import net.buckleystudios.equigen.entity.client.genetic_horse.animations.GH_Animations;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.HierarchicalModel;
@@ -46,8 +46,10 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
                           float headPitch) {
         this.root().getAllParts().forEach(ModelPart::resetPose);
 
+        this.animate(entity.idleAnimationState, GH_Animations.getAnimation("walk", animationRoot(), this.legID), ageInTicks, 1);
+
         this.animateWalk(
-                Gallop.getAnimation(animationRoot(), this.legID),
+                GH_Animations.getAnimation("walk" animationRoot(), this.legID),
                 limbSwing, limbSwingAmount,
                 2f, 2.5f
         );

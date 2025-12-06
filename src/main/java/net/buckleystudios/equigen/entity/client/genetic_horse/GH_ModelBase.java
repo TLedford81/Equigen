@@ -12,11 +12,11 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 
-public class GeneticHorseModelBase<T extends GeneticHorseEntity> extends HierarchicalModel<T> {
+public class GH_ModelBase<T extends GeneticHorseEntity> extends HierarchicalModel<T> {
 
     public final ModelPart main;
 
-    public GeneticHorseModelBase(ModelPart root) {
+    public GH_ModelBase(ModelPart root) {
         this.main = root.getChild("main");
     }
 
