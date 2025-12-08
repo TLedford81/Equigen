@@ -5,8 +5,8 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartHoofModel;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
+import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartHoofModel;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -15,10 +15,12 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class hoof_large extends MultipartHoofModel<GeneticHorseEntity> {
+    private final ModelPart root;
     private final ModelPart hoof_large;
     private final ModelPart bottomLegAnchor;
 
     public hoof_large(ModelPart root) {
+        this.root = root;
         this.hoof_large = root.getChild("hoof_large");
         this.bottomLegAnchor = this.hoof_large.getChild("bottomLegAnchor");
     }
@@ -37,18 +39,18 @@ public class hoof_large extends MultipartHoofModel<GeneticHorseEntity> {
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		hoof_large.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
     public ModelPart root() {
-        return hoof_large;
+        return root;
+    }
+
+    @Override
+    public String animationRoot() {
+        return "hoof_large";
     }
 
     @Override

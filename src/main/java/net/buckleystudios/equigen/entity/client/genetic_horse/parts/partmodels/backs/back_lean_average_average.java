@@ -15,6 +15,7 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class back_lean_average_average extends MultipartBackModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart back_lean_average_average;
 	private final ModelPart chestAnchor;
 	private final ModelPart hipsAnchor;
@@ -23,6 +24,7 @@ public class back_lean_average_average extends MultipartBackModel<GeneticHorseEn
 	private final ModelPart playerAnchor;
 
 	public back_lean_average_average(ModelPart root) {
+		this.root = root;
 		this.back_lean_average_average = root.getChild("back_lean_average_average");
 		this.chestAnchor = this.back_lean_average_average.getChild("chestAnchor");
 		this.hipsAnchor = this.back_lean_average_average.getChild("hipsAnchor");
@@ -63,17 +65,17 @@ public class back_lean_average_average extends MultipartBackModel<GeneticHorseEn
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		back_lean_average_average.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
 	public ModelPart root() {
-		return back_lean_average_average;
+		return root;
+	}
+
+	@Override
+	public String animationRoot() {
+		return "back_lean_average_average";
 	}
 
 	@Override

@@ -5,8 +5,8 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartBackModel;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
+import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartBackModel;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -15,6 +15,7 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class back_muscular_long_thick extends MultipartBackModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart back_muscular_long_thick;
 	private final ModelPart chestAnchor;
 	private final ModelPart hipsAnchor;
@@ -23,6 +24,7 @@ public class back_muscular_long_thick extends MultipartBackModel<GeneticHorseEnt
 	private final ModelPart playerAnchor;
 
 	public back_muscular_long_thick(ModelPart root) {
+		this.root = root;
 		this.back_muscular_long_thick = root.getChild("back_muscular_long_thick");
 		this.chestAnchor = this.back_muscular_long_thick.getChild("chestAnchor");
 		this.hipsAnchor = this.back_muscular_long_thick.getChild("hipsAnchor");
@@ -63,17 +65,17 @@ public class back_muscular_long_thick extends MultipartBackModel<GeneticHorseEnt
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		back_muscular_long_thick.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
 	public ModelPart root() {
-		return back_muscular_long_thick;
+		return root;
+	}
+
+	@Override
+	public String animationRoot() {
+		return "back_muscular_long_thick";
 	}
 
 	@Override

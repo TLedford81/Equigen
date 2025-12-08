@@ -15,6 +15,7 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class chest_muscular_average_1 extends MultipartChestModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart chest_muscular_average_1;
 	private final ModelPart neckAnchor;
 	private final ModelPart backAnchor;
@@ -22,6 +23,7 @@ public class chest_muscular_average_1 extends MultipartChestModel<GeneticHorseEn
 	private final ModelPart frontRightLegAnchor;
 
 	public chest_muscular_average_1(ModelPart root) {
+		this.root = root;
 		this.chest_muscular_average_1 = root.getChild("chest_muscular_average_1");
 		this.neckAnchor = this.chest_muscular_average_1.getChild("neckAnchor");
 		this.backAnchor = this.chest_muscular_average_1.getChild("backAnchor");
@@ -101,11 +103,6 @@ public class chest_muscular_average_1 extends MultipartChestModel<GeneticHorseEn
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		chest_muscular_average_1.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
@@ -114,6 +111,11 @@ public class chest_muscular_average_1 extends MultipartChestModel<GeneticHorseEn
     public ModelPart root() {
         return chest_muscular_average_1;
     }
+
+	@Override
+	public String animationRoot() {
+		return "chest_muscular_average_1";
+	}
 
 	@Override
 	public Map<String, PartTransform> anchors() {

@@ -43,7 +43,7 @@ public class neck_muscular_straight_short_2 extends MultipartNeckModel<GeneticHo
 
 		PartDefinition neck_muscular_straight_short_2_crest_lower = neck_muscular_straight_short_2_crest.addOrReplaceChild("neck_muscular_straight_short_2_crest_lower", CubeListBuilder.create(), PartPose.offset(0.2404F, 0.2768F, 1.6832F));
 
-		PartDefinition cube_r2 = neck_muscular_straight_short_2_crest_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(428, 894).addBox(-4.08F, -5.0F, -0.92F, 4.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, 1.129F, 2.232F, 1.1345F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = neck_muscular_straight_short_2_crest_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(444, 894).addBox(-4.08F, -5.0F, -0.92F, 4.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, 1.129F, 2.232F, 1.1345F, 0.0F, 0.0F));
 
 		PartDefinition neck_muscular_straight_short_2_middle_individual = neck_muscular_straight_short_2_individual.addOrReplaceChild("neck_muscular_straight_short_2_middle_individual", CubeListBuilder.create(), PartPose.offset(0.3343F, -1.0526F, -2.2656F));
 
@@ -53,7 +53,7 @@ public class neck_muscular_straight_short_2 extends MultipartNeckModel<GeneticHo
 
 		PartDefinition neck_muscular_straight_short_2_lower_individual = neck_muscular_straight_short_2_individual.addOrReplaceChild("neck_muscular_straight_short_2_lower_individual", CubeListBuilder.create(), PartPose.offset(0.3826F, -0.2308F, -4.2206F));
 
-		PartDefinition cube_r5 = neck_muscular_straight_short_2_lower_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(440, 894).addBox(-5.0784F, -5.0F, -0.9017F, 4.0F, 5.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.0784F, 2.3336F, 1.4179F, 0.9599F, 0.0F, 0.0F));
+		PartDefinition cube_r5 = neck_muscular_straight_short_2_lower_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(428, 894).addBox(-5.0784F, -5.0F, -0.9017F, 4.0F, 5.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.0784F, 2.3336F, 1.4179F, 0.9599F, 0.0F, 0.0F));
 
 		PartDefinition neck_muscular_straight_short_2_mane = neck_muscular_straight_short_2.addOrReplaceChild("neck_muscular_straight_short_2_mane", CubeListBuilder.create(), PartPose.offset(-3.5754F, -7.1508F, 0.7898F));
 

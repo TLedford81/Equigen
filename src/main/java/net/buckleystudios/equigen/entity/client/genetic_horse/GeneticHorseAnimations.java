@@ -60,6 +60,35 @@ public class GeneticHorseAnimations {
                         ))
                         .build();
             }
+            else if(part.startsWith("bottom_legs")){
+                return AnimationDefinition.Builder.withLength(1.0F)
+                        //TOP BACK LEG
+                        .addAnimation(part , new AnimationChannel(AnimationChannel.Targets.ROTATION,
+                                new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
+                                new Keyframe(0.2917F, KeyframeAnimations.degreeVec(-14.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
+                                new Keyframe(1.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)))
+                        //BOTTOM BACK LEG
+                        .addAnimation(part + "_bottom_lower_individual", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+                        new Keyframe(0.0F, KeyframeAnimations.degreeVec(37.5F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
+                        new Keyframe(0.2083F, KeyframeAnimations.degreeVec(19.5F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
+                        new Keyframe(1.0F, KeyframeAnimations.degreeVec(37.5F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
+
+                        )).build();
+            }
+            else if(part.startsWith("hips")){
+               //There is no hips animation in this file so I just copy pasted the chest.
+                return AnimationDefinition.Builder.withLength(1.0F)
+                        .addAnimation(part, new AnimationChannel(AnimationChannel.Targets.ROTATION,
+                                new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
+                                new Keyframe(0.1667F, KeyframeAnimations.degreeVec(6.5F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
+                                new Keyframe(0.3333F, KeyframeAnimations.degreeVec(-30.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
+                                new Keyframe(1.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
+                        ))
+                        .addAnimation(part, new AnimationChannel(AnimationChannel.Targets.POSITION,
+                                new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
+                                new Keyframe(1.0F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
+                        )).build();
+            }
             else if(part.startsWith("aasasdasddadsad")){
                 return AnimationDefinition.Builder.withLength(1.0F).build();
             }
@@ -102,11 +131,7 @@ public class GeneticHorseAnimations {
                             new Keyframe(0.2083F, KeyframeAnimations.degreeVec(6.7279F, -5.35F, 0.7598F), AnimationChannel.Interpolations.CATMULLROM),
                             new Keyframe(1.0F, KeyframeAnimations.degreeVec(51.7279F, -5.35F, 0.7598F), AnimationChannel.Interpolations.CATMULLROM)
                     ))
-                    .addAnimation("bottom_2_front_right", new AnimationChannel(AnimationChannel.Targets.ROTATION,
-                            new Keyframe(0.0F, KeyframeAnimations.degreeVec(37.5F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
-                            new Keyframe(0.2083F, KeyframeAnimations.degreeVec(19.5F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
-                            new Keyframe(1.0F, KeyframeAnimations.degreeVec(37.5F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
-                    ))
+
                     .addAnimation("top_front_left", new AnimationChannel(AnimationChannel.Targets.ROTATION,
                             new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
                             new Keyframe(1.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
@@ -134,11 +159,7 @@ public class GeneticHorseAnimations {
                             new Keyframe(0.4167F, KeyframeAnimations.degreeVec(6.04F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
                             new Keyframe(0.5833F, KeyframeAnimations.degreeVec(-23.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
                             new Keyframe(1.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
-                    ))
-                    .addAnimation("bottom_back_left", new AnimationChannel(AnimationChannel.Targets.ROTATION,
-                            new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
-                            new Keyframe(0.2917F, KeyframeAnimations.degreeVec(-14.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
-                            new Keyframe(1.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
+
                     ))
                     .addAnimation("bottom_2_back_left", new AnimationChannel(AnimationChannel.Targets.ROTATION,
                             new Keyframe(0.0F, KeyframeAnimations.degreeVec(30.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),

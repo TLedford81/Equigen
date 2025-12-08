@@ -16,12 +16,14 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class neck_average_arched_long_1 extends MultipartNeckModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart neck_average_arched_long_1;
 	private final ModelPart headAnchor;
 	private final ModelPart chestAnchor;
 	private final ModelPart withersAnchor;
 
 	public neck_average_arched_long_1(ModelPart root) {
+		this.root = root;
 		this.neck_average_arched_long_1 = root.getChild("neck_average_arched_long_1");
 		this.headAnchor = this.neck_average_arched_long_1.getChild("headAnchor");
 		this.chestAnchor = this.neck_average_arched_long_1.getChild("chestAnchor");
@@ -40,21 +42,21 @@ public class neck_average_arched_long_1 extends MultipartNeckModel<GeneticHorseE
 
 		PartDefinition neck_average_arched_long_1_crest_upper = neck_average_arched_long_1_crest.addOrReplaceChild("neck_average_arched_long_1_crest_upper", CubeListBuilder.create(), PartPose.offset(-0.0402F, -2.0059F, -2.0315F));
 
-		PartDefinition cube_r1 = neck_average_arched_long_1_crest_upper.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(585, 619).addBox(-3.1434F, -5.8622F, -2.7188F, 4.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.1434F, -0.0037F, 2.5214F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = neck_average_arched_long_1_crest_upper.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(614, 624).addBox(-3.1434F, -5.8622F, -2.7188F, 4.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.1434F, -0.0037F, 2.5214F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition neck_average_arched_long_1_crest_lower = neck_average_arched_long_1_crest.addOrReplaceChild("neck_average_arched_long_1_crest_lower", CubeListBuilder.create(), PartPose.offset(-0.0926F, 1.6451F, 2.2412F));
 
-		PartDefinition cube_r2 = neck_average_arched_long_1_crest_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(615, 609).addBox(-4.08F, -10.0F, -0.92F, 4.0F, 12.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, 2.885F, 2.7718F, 0.7854F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = neck_average_arched_long_1_crest_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(586, 624).addBox(-4.08F, -10.0F, -0.92F, 4.0F, 12.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, 2.885F, 2.7718F, 0.7854F, 0.0F, 0.0F));
 
 		PartDefinition neck_average_arched_long_1_middle_individual = neck_average_arched_long_1_individual.addOrReplaceChild("neck_average_arched_long_1_middle_individual", CubeListBuilder.create(), PartPose.offset(-0.0308F, -2.1312F, -0.1863F));
 
-		PartDefinition cube_r3 = neck_average_arched_long_1_middle_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(597, 607).addBox(-5.0F, -10.0F, -1.0F, 5.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.4442F, 2.6139F, 2.2422F, 0.7854F, 0.0F, 0.0F));
+		PartDefinition cube_r3 = neck_average_arched_long_1_middle_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(585, 608).addBox(-5.0F, -10.0F, -1.0F, 5.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.4442F, 2.6139F, 2.2422F, 0.7854F, 0.0F, 0.0F));
 
-		PartDefinition cube_r4 = neck_average_arched_long_1_middle_individual.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(598, 623).addBox(-5.0784F, -9.0F, -0.9017F, 4.0F, 9.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.1342F, 5.5526F, -0.0171F, 0.2618F, 0.0F, 0.0F));
+		PartDefinition cube_r4 = neck_average_arched_long_1_middle_individual.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(598, 624).addBox(-5.0784F, -9.0F, -0.9017F, 4.0F, 9.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.1342F, 5.5526F, -0.0171F, 0.2618F, 0.0F, 0.0F));
 
 		PartDefinition neck_average_arched_long_1_lower_individual = neck_average_arched_long_1_individual.addOrReplaceChild("neck_average_arched_long_1_lower_individual", CubeListBuilder.create(), PartPose.offset(-0.0891F, 0.309F, -0.5025F));
 
-		PartDefinition cube_r5 = neck_average_arched_long_1_lower_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(614, 623).addBox(-5.0792F, -11.0F, -0.9108F, 5.0F, 11.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5792F, 5.573F, 0.6151F, 0.3054F, 0.0F, 0.0F));
+		PartDefinition cube_r5 = neck_average_arched_long_1_lower_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(603, 609).addBox(-5.0792F, -11.0F, -0.9108F, 5.0F, 11.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5792F, 5.573F, 0.6151F, 0.3054F, 0.0F, 0.0F));
 
 		PartDefinition neck_average_arched_long_1_mane = neck_average_arched_long_1.addOrReplaceChild("neck_average_arched_long_1_mane", CubeListBuilder.create(), PartPose.offset(0.0F, -8.4022F, -1.2514F));
 
@@ -108,19 +110,19 @@ public class neck_average_arched_long_1 extends MultipartNeckModel<GeneticHorseE
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		neck_average_arched_long_1.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
     public ModelPart root() {
-        return neck_average_arched_long_1;
+        return root;
     }
+
+	@Override
+	public String animationRoot() {
+		return "neck_average_arched_long_1";
+	}
 
 	@Override
 	public Map<String, PartTransform> anchors() {

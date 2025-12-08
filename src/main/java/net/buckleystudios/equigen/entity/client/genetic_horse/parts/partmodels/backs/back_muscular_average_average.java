@@ -15,6 +15,7 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class back_muscular_average_average extends MultipartBackModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart back_muscular_average_average;
 	private final ModelPart chestAnchor;
 	private final ModelPart hipsAnchor;
@@ -23,6 +24,7 @@ public class back_muscular_average_average extends MultipartBackModel<GeneticHor
 	private final ModelPart playerAnchor;
 
 	public back_muscular_average_average(ModelPart root) {
+		this.root = root;
 		this.back_muscular_average_average = root.getChild("back_muscular_average_average");
 		this.chestAnchor = this.back_muscular_average_average.getChild("chestAnchor");
 		this.hipsAnchor = this.back_muscular_average_average.getChild("hipsAnchor");
@@ -63,17 +65,17 @@ public class back_muscular_average_average extends MultipartBackModel<GeneticHor
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		back_muscular_average_average.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
 	public ModelPart root() {
-		return back_muscular_average_average;
+		return root;
+	}
+
+	@Override
+	public String animationRoot() {
+		return "back_muscular_average_average";
 	}
 
 	@Override

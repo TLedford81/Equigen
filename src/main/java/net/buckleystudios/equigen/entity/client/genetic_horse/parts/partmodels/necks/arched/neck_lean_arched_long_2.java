@@ -16,12 +16,14 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class neck_lean_arched_long_2 extends MultipartNeckModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart neck_lean_arched_long_2;
 	private final ModelPart headAnchor;
 	private final ModelPart chestAnchor;
 	private final ModelPart withersAnchor;
 
 	public neck_lean_arched_long_2(ModelPart root) {
+		this.root = root;
 		this.neck_lean_arched_long_2 = root.getChild("neck_lean_arched_long_2");
 		this.headAnchor = this.neck_lean_arched_long_2.getChild("headAnchor");
 		this.chestAnchor = this.neck_lean_arched_long_2.getChild("chestAnchor");
@@ -40,21 +42,21 @@ public class neck_lean_arched_long_2 extends MultipartNeckModel<GeneticHorseEnti
 
 		PartDefinition neck_lean_arched_long_2_crest_upper = neck_lean_arched_long_2_crest.addOrReplaceChild("neck_lean_arched_long_2_crest_upper", CubeListBuilder.create(), PartPose.offset(-0.0402F, -9.9154F, -5.7723F));
 
-		PartDefinition cube_r1 = neck_lean_arched_long_2_crest_upper.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(638, 582).addBox(-3.1434F, -5.8622F, -2.7188F, 4.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.1434F, 0.4432F, 2.3426F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = neck_lean_arched_long_2_crest_upper.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(671, 583).addBox(-3.1434F, -5.8622F, -2.7188F, 4.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.1434F, 0.4432F, 2.3426F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition neck_lean_arched_long_2_crest_lower = neck_lean_arched_long_2_crest.addOrReplaceChild("neck_lean_arched_long_2_crest_lower", CubeListBuilder.create(), PartPose.offset(-0.0926F, -5.4639F, -1.4142F));
 
-		PartDefinition cube_r2 = neck_lean_arched_long_2_crest_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(666, 571).addBox(-4.08F, -10.0F, -0.92F, 4.0F, 13.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, 2.5314F, 2.4183F, 0.7854F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = neck_lean_arched_long_2_crest_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(643, 583).addBox(-4.08F, -10.0F, -0.92F, 4.0F, 13.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, 2.5314F, 2.4183F, 0.7854F, 0.0F, 0.0F));
 
 		PartDefinition neck_lean_arched_long_2_middle_individual = neck_lean_arched_long_2_individual.addOrReplaceChild("neck_lean_arched_long_2_middle_individual", CubeListBuilder.create(), PartPose.offset(-0.0042F, -3.2313F, -2.8365F));
 
-		PartDefinition cube_r3 = neck_lean_arched_long_2_middle_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(650, 569).addBox(-4.0F, -10.0F, -1.0F, 4.0F, 13.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.9707F, 1.9721F, 1.6879F, 0.7854F, 0.0F, 0.0F));
+		PartDefinition cube_r3 = neck_lean_arched_long_2_middle_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(645, 566).addBox(-4.0F, -10.0F, -1.0F, 4.0F, 13.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.9707F, 1.9721F, 1.6879F, 0.7854F, 0.0F, 0.0F));
 
-		PartDefinition cube_r4 = neck_lean_arched_long_2_middle_individual.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(650, 586).addBox(-5.0784F, -9.0F, -0.9017F, 4.0F, 10.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.1077F, 5.3578F, 0.0543F, 0.2618F, 0.0F, 0.0F));
+		PartDefinition cube_r4 = neck_lean_arched_long_2_middle_individual.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(655, 583).addBox(-5.0784F, -9.0F, -0.9017F, 4.0F, 10.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.1077F, 5.3578F, 0.0543F, 0.2618F, 0.0F, 0.0F));
 
 		PartDefinition neck_lean_arched_long_2_lower_individual = neck_lean_arched_long_2_individual.addOrReplaceChild("neck_lean_arched_long_2_lower_individual", CubeListBuilder.create(), PartPose.offset(-0.1255F, -0.9561F, -3.5567F));
 
-		PartDefinition cube_r5 = neck_lean_arched_long_2_lower_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(666, 586).addBox(-4.0792F, -11.0F, -0.9108F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.0792F, 5.0961F, 0.4647F, 0.3054F, 0.0F, 0.0F));
+		PartDefinition cube_r5 = neck_lean_arched_long_2_lower_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(661, 567).addBox(-4.0792F, -11.0F, -0.9108F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.0792F, 5.0961F, 0.4647F, 0.3054F, 0.0F, 0.0F));
 
 		PartDefinition neck_lean_arched_long_2_mane = neck_lean_arched_long_2.addOrReplaceChild("neck_lean_arched_long_2_mane", CubeListBuilder.create(), PartPose.offset(0.0F, -6.6145F, 0.0F));
 
@@ -100,16 +102,11 @@ public class neck_lean_arched_long_2 extends MultipartNeckModel<GeneticHorseEnti
 
 		PartDefinition chestAnchor = neck_lean_arched_long_2.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(-1, 0).addBox(-2.0F, -1.0F, -1.0F, 3.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.1F, -1.0F, -2.0F));
 
-		PartDefinition withersAnchor = neck_lean_arched_long_2.addOrReplaceChild("withersAnchor", CubeListBuilder.create(), PartPose.offset(-0.1F, -0.8346F, 3.0529F));
+		PartDefinition withersAnchor = neck_lean_arched_long_2.addOrReplaceChild("withersAnchor", CubeListBuilder.create(), PartPose.offset(-0.1F, -0.8346F, 3.0528F));
 
 		PartDefinition cube_r13 = withersAnchor.addOrReplaceChild("cube_r13", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.6545F, 0.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
-	}
-
-	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
 	}
 
 	@Override
@@ -119,8 +116,13 @@ public class neck_lean_arched_long_2 extends MultipartNeckModel<GeneticHorseEnti
 
     @Override
     public ModelPart root() {
-        return neck_lean_arched_long_2;
+        return root;
     }
+
+	@Override
+	public String animationRoot() {
+		return "neck_lean_arched_long_2";
+	}
 
 	@Override
 	public Map<String, PartTransform> anchors() {

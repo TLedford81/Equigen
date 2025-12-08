@@ -5,8 +5,8 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartBackModel;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
+import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartBackModel;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -15,6 +15,7 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class back_lean_long_thin extends MultipartBackModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart back_lean_long_thin;
 	private final ModelPart back_lean_long_thin_back_ribs;
 	private final ModelPart back_lean_long_thin_back_top_lower;
@@ -27,6 +28,7 @@ public class back_lean_long_thin extends MultipartBackModel<GeneticHorseEntity> 
 	private final ModelPart playerAnchor;
 
 	public back_lean_long_thin(ModelPart root) {
+		this.root = root;
 		this.back_lean_long_thin = root.getChild("back_lean_long_thin");
 		this.back_lean_long_thin_back_ribs = this.back_lean_long_thin.getChild("back_lean_long_thin_back_ribs");
 		this.back_lean_long_thin_back_top_lower = this.back_lean_long_thin.getChild("back_lean_long_thin_back_top_lower");
@@ -71,17 +73,17 @@ public class back_lean_long_thin extends MultipartBackModel<GeneticHorseEntity> 
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		back_lean_long_thin.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
 	public ModelPart root() {
-		return back_lean_long_thin;
+		return root;
+	}
+
+	@Override
+	public String animationRoot() {
+		return "back_lean_long_thin";
 	}
 
 	@Override

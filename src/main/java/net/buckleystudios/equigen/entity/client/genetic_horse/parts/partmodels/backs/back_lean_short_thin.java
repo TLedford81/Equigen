@@ -15,6 +15,7 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class back_lean_short_thin extends MultipartBackModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart back_lean_short_thin;
 	private final ModelPart chestAnchor;
 	private final ModelPart hipsAnchor;
@@ -23,6 +24,7 @@ public class back_lean_short_thin extends MultipartBackModel<GeneticHorseEntity>
 	private final ModelPart playerAnchor;
 
 	public back_lean_short_thin(ModelPart root) {
+		this.root = root;
 		this.back_lean_short_thin = root.getChild("back_lean_short_thin");
 		this.chestAnchor = this.back_lean_short_thin.getChild("chestAnchor");
 		this.hipsAnchor = this.back_lean_short_thin.getChild("hipsAnchor");
@@ -63,17 +65,17 @@ public class back_lean_short_thin extends MultipartBackModel<GeneticHorseEntity>
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		back_lean_short_thin.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
 	public ModelPart root() {
-		return back_lean_short_thin;
+		return root;
+	}
+
+	@Override
+	public String animationRoot() {
+		return "back_lean_short_thin";
 	}
 
 	@Override

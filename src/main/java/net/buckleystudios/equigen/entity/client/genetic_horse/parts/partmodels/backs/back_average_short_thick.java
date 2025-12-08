@@ -15,6 +15,7 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class back_average_short_thick extends MultipartBackModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart back_average_short_thick;
 	private final ModelPart chestAnchor;
 	private final ModelPart hipsAnchor;
@@ -23,6 +24,7 @@ public class back_average_short_thick extends MultipartBackModel<GeneticHorseEnt
 	private final ModelPart playerAnchor;
 
 	public back_average_short_thick(ModelPart root) {
+		this.root = root;
 		this.back_average_short_thick = root.getChild("back_average_short_thick");
 		this.chestAnchor = this.back_average_short_thick.getChild("chestAnchor");
 		this.hipsAnchor = this.back_average_short_thick.getChild("hipsAnchor");
@@ -63,17 +65,17 @@ public class back_average_short_thick extends MultipartBackModel<GeneticHorseEnt
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		back_average_short_thick.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
 	public ModelPart root() {
-		return back_average_short_thick;
+		return root;
+	}
+
+	@Override
+	public String animationRoot() {
+		return "back_average_short_thick";
 	}
 
 	@Override

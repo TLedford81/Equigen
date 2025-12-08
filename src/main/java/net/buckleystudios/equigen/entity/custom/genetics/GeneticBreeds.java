@@ -110,7 +110,7 @@ public enum GeneticBreeds {
             case MONGOLIAN_WILD -> {
                 custom.put("MUSCLE_MASS", new Vec2(0, 2));
                 custom.put("HEAD_TYPE", new Vec2(2, 3)); // Stocky
-                custom.put("NECK_LENGTH", new Vec2(0, 2));
+                custom.put("NECK_LENGTH", new Vec2(0, 4));
                 custom.put("NECK_CURVE", new Vec2(1, 2)); // Straight
 //                custom.put("NECK_POS", new Vec2(3, 4));
                 custom.put("BACK_LENGTH", new Vec2(0, 2));

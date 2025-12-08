@@ -15,11 +15,13 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class bottom_legs_average_short_1 extends MultipartBottomLegModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart bottom_legs_average_short_1;
 	private final ModelPart kneeAnchor;
 	private final ModelPart hoofAnchor;
 
 	public bottom_legs_average_short_1(ModelPart root) {
+		this.root = root;
 		this.bottom_legs_average_short_1 = root.getChild("bottom_legs_average_short_1");
 		this.kneeAnchor = this.bottom_legs_average_short_1.getChild("kneeAnchor");
 		this.hoofAnchor = this.bottom_legs_average_short_1.getChild("hoofAnchor");
@@ -47,18 +49,18 @@ public class bottom_legs_average_short_1 extends MultipartBottomLegModel<Genetic
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color ) {
 		bottom_legs_average_short_1.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
 	@Override
 	public ModelPart root() {
-		return bottom_legs_average_short_1;
+		return root;
+	}
+
+	@Override
+	public String animationRoot() {
+		return "bottom_legs_average_short_1";
 	}
 
 	@Override

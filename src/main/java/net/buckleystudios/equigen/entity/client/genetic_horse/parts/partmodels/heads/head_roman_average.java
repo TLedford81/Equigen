@@ -15,12 +15,14 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class head_roman_average extends MultipartHeadModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart head_roman_average;
 	private final ModelPart neckAnchor;
 	private final ModelPart leftEarAnchor;
 	private final ModelPart rightEarAnchor;
 
 	public head_roman_average(ModelPart root) {
+		this.root = root;
 		this.head_roman_average = root.getChild("head_roman_average");
 		this.neckAnchor = this.head_roman_average.getChild("neckAnchor");
 		this.leftEarAnchor = this.head_roman_average.getChild("leftEarAnchor");
@@ -81,21 +83,19 @@ public class head_roman_average extends MultipartHeadModel<GeneticHorseEntity> {
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		head_roman_average.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
     public ModelPart root() {
-        return head_roman_average;
+        return root;
     }
 
-
+	@Override
+	public String animationRoot() {
+		return "head_roman_average";
+	}
 
 	@Override
 	public Map<String, PartTransform> anchors() {

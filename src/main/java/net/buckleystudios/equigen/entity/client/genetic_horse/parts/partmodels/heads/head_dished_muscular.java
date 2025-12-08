@@ -15,12 +15,14 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class head_dished_muscular extends MultipartHeadModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart head_dished_muscular;
 	private final ModelPart neckAnchor;
 	private final ModelPart leftEarAnchor;
 	private final ModelPart rightEarAnchor;
 
 	public head_dished_muscular(ModelPart root) {
+		this.root = root;
 		this.head_dished_muscular = root.getChild("head_dished_muscular");
 		this.neckAnchor = this.head_dished_muscular.getChild("neckAnchor");
 		this.leftEarAnchor = this.head_dished_muscular.getChild("leftEarAnchor");
@@ -81,19 +83,19 @@ public class head_dished_muscular extends MultipartHeadModel<GeneticHorseEntity>
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		head_dished_muscular.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
     public ModelPart root() {
-        return head_dished_muscular;
+        return root;
     }
+
+	@Override
+	public String animationRoot() {
+		return "head_dished_muscular";
+	}
 
 	@Override
 	public Map<String, PartTransform> anchors() {

@@ -15,6 +15,7 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class hips_average_large_2 extends MultipartHipModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart hips_average_large_2;
 	private final ModelPart backAnchor;
 	private final ModelPart tailAnchor;
@@ -22,6 +23,7 @@ public class hips_average_large_2 extends MultipartHipModel<GeneticHorseEntity> 
 	private final ModelPart backRightLegAnchor;
 
 	public hips_average_large_2(ModelPart root) {
+		this.root = root;
 		this.hips_average_large_2 = root.getChild("hips_average_large_2");
 		this.backAnchor = this.hips_average_large_2.getChild("backAnchor");
 		this.tailAnchor = this.hips_average_large_2.getChild("tailAnchor");
@@ -73,11 +75,6 @@ public class hips_average_large_2 extends MultipartHipModel<GeneticHorseEntity> 
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		hips_average_large_2.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
@@ -87,6 +84,10 @@ public class hips_average_large_2 extends MultipartHipModel<GeneticHorseEntity> 
         return hips_average_large_2;
     }
 
+	@Override
+	public String animationRoot() {
+		return "hips_average_large_2";
+	}
 
 	@Override
 	public Map<String, PartTransform> anchors() {

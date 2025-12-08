@@ -12,9 +12,12 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
 public class ears extends MultipartEarModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart ears;
 
+
 	public ears(ModelPart root) {
+		this.root = root;
 		this.ears = root.getChild("ears");
 	}
 
@@ -48,18 +51,17 @@ public class ears extends MultipartEarModel<GeneticHorseEntity> {
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		ears.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
     public ModelPart root() {
-        return ears;
+        return root;
     }
 
+	@Override
+	public String animationRoot() {
+		return "ears";
+	}
 }

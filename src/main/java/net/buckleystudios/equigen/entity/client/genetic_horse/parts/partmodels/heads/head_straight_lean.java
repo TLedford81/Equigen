@@ -15,12 +15,14 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class head_straight_lean extends MultipartHeadModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart head_straight_lean;
 	private final ModelPart neckAnchor;
 	private final ModelPart leftEarAnchor;
 	private final ModelPart rightEarAnchor;
 
 	public head_straight_lean(ModelPart root) {
+		this.root = root;
 		this.head_straight_lean = root.getChild("head_straight_lean");
 		this.neckAnchor = this.head_straight_lean.getChild("neckAnchor");
 		this.leftEarAnchor = this.head_straight_lean.getChild("leftEarAnchor");
@@ -81,19 +83,19 @@ public class head_straight_lean extends MultipartHeadModel<GeneticHorseEntity> {
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		head_straight_lean.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
     public ModelPart root() {
-        return head_straight_lean;
+        return root;
     }
+
+	@Override
+	public String animationRoot() {
+		return "head_straight_lean";
+	}
 
 	@Override
 	public Map<String, PartTransform> anchors() {

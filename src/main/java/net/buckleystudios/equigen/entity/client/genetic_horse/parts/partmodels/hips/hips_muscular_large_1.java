@@ -15,6 +15,7 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class hips_muscular_large_1 extends MultipartHipModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart hips_muscular_large_1;
 	private final ModelPart backAnchor;
 	private final ModelPart tailAnchor;
@@ -22,6 +23,7 @@ public class hips_muscular_large_1 extends MultipartHipModel<GeneticHorseEntity>
 	private final ModelPart backRightLegAnchor;
 
 	public hips_muscular_large_1(ModelPart root) {
+		this.root = root;
 		this.hips_muscular_large_1 = root.getChild("hips_muscular_large_1");
 		this.backAnchor = this.hips_muscular_large_1.getChild("backAnchor");
 		this.tailAnchor = this.hips_muscular_large_1.getChild("tailAnchor");
@@ -73,19 +75,19 @@ public class hips_muscular_large_1 extends MultipartHipModel<GeneticHorseEntity>
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		hips_muscular_large_1.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
     public ModelPart root() {
-        return hips_muscular_large_1;
+        return root;
     }
+
+	@Override
+	public String animationRoot() {
+		return "hips_muscular_large_1";
+	}
 
 	@Override
 	public Map<String, PartTransform> anchors() {

@@ -15,6 +15,7 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class neck_lean_straight_long_2 extends MultipartNeckModel<GeneticHorseEntity> {
+	private final ModelPart
 	private final ModelPart neck_lean_straight_long_2;
 	private final ModelPart headAnchor;
 	private final ModelPart chestAnchor;

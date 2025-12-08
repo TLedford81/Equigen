@@ -15,6 +15,7 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class hips_muscular_small_2 extends MultipartHipModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart hips_muscular_small_2;
 	private final ModelPart backAnchor;
 	private final ModelPart tailAnchor;
@@ -22,6 +23,7 @@ public class hips_muscular_small_2 extends MultipartHipModel<GeneticHorseEntity>
 	private final ModelPart backRightLegAnchor;
 
 	public hips_muscular_small_2(ModelPart root) {
+		this.root = root;
 		this.hips_muscular_small_2 = root.getChild("hips_muscular_small_2");
 		this.backAnchor = this.hips_muscular_small_2.getChild("backAnchor");
 		this.tailAnchor = this.hips_muscular_small_2.getChild("tailAnchor");
