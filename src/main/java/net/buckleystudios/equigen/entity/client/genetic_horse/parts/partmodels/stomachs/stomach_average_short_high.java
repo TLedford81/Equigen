@@ -5,8 +5,8 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartStomachModel;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
+import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartStomachModel;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -15,10 +15,12 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class stomach_average_short_high extends MultipartStomachModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart stomach_average_short_high;
 	private final ModelPart backAnchor;
 
 	public stomach_average_short_high(ModelPart root) {
+		this.root = root;
 		this.stomach_average_short_high = root.getChild("stomach_average_short_high");
 		this.backAnchor = this.stomach_average_short_high.getChild("backAnchor");
 	}
@@ -55,19 +57,19 @@ public class stomach_average_short_high extends MultipartStomachModel<GeneticHor
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		stomach_average_short_high.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
     public ModelPart root() {
-        return stomach_average_short_high;
+        return root;
     }
+
+	@Override
+	public String animationRoot() {
+		return "stomach_average_short_high";
+	}
 
 	@Override
 	public Map<String, PartTransform> anchors() {

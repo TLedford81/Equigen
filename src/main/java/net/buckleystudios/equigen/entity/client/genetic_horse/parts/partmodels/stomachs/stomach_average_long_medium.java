@@ -15,10 +15,12 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class stomach_average_long_medium extends MultipartStomachModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart stomach_average_long_medium;
 	private final ModelPart backAnchor;
 
 	public stomach_average_long_medium(ModelPart root) {
+		this.root = root;
 		this.stomach_average_long_medium = root.getChild("stomach_average_long_medium");
 		this.backAnchor = this.stomach_average_long_medium.getChild("backAnchor");
 	}
@@ -55,19 +57,19 @@ public class stomach_average_long_medium extends MultipartStomachModel<GeneticHo
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		stomach_average_long_medium.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
     public ModelPart root() {
-        return stomach_average_long_medium;
+        return root;
     }
+
+	@Override
+	public String animationRoot() {
+		return "stomach_average_long_medium";
+	}
 
 	@Override
 	public Map<String, PartTransform> anchors() {

@@ -30,11 +30,11 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
     }
 
     //TODO: Replace the animationRoot() method with this line after grunt work is finished:
-    //    public abstract String animationRoot();
+        public abstract String animationRoot();
 
-    public String animationRoot(){
-        return "";
-    };
+//    public String animationRoot(){
+//        return "";
+//    };
 
     protected PartTransform asTransform(ModelPart part) {
         return new PartTransform(

@@ -15,12 +15,14 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class neck_lean_swan_short_2 extends MultipartNeckModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart neck_lean_swan_short_2;
 	private final ModelPart headAnchor;
 	private final ModelPart chestAnchor;
 	private final ModelPart withersAnchor;
 
 	public neck_lean_swan_short_2(ModelPart root) {
+		this.root = root;
 		this.neck_lean_swan_short_2 = root.getChild("neck_lean_swan_short_2");
 		this.headAnchor = this.neck_lean_swan_short_2.getChild("headAnchor");
 		this.chestAnchor = this.neck_lean_swan_short_2.getChild("chestAnchor");
@@ -107,19 +109,19 @@ public class neck_lean_swan_short_2 extends MultipartNeckModel<GeneticHorseEntit
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		neck_lean_swan_short_2.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
     public ModelPart root() {
-        return neck_lean_swan_short_2;
+        return root;
     }
+
+	@Override
+	public String animationRoot() {
+		return "neck_lean_swan_short_2";
+	}
 
 	@Override
 	public Map<String, PartTransform> anchors() {

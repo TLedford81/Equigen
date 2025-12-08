@@ -311,15 +311,15 @@ public class ModEventBusEvents {
         event.registerLayerDefinition(ModModelLayers.KNEES, knees::createBodyLayer);
 
         //Bottom Legs
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_SHORT_1, bottom_legs_thin_short_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_SHORT_2, bottom_legs_thin_short_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_SHORT_3, bottom_legs_thin_short_3::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_AVERAGE_1, bottom_legs_thin_average_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_AVERAGE_2, bottom_legs_thin_average_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_AVERAGE_3, bottom_legs_thin_average_3::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_LONG_1, bottom_legs_thin_long_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_LONG_2, bottom_legs_thin_long_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_LONG_3, bottom_legs_thin_long_3::createBodyLayer);
+//        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_SHORT_1, bottom_legs_thin_short_1::createBodyLayer);
+//        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_SHORT_2, bottom_legs_thin_short_2::createBodyLayer);
+//        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_SHORT_3, bottom_legs_thin_short_3::createBodyLayer);
+//        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_AVERAGE_1, bottom_legs_thin_average_1::createBodyLayer);
+//        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_AVERAGE_2, bottom_legs_thin_average_2::createBodyLayer);
+//        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_AVERAGE_3, bottom_legs_thin_average_3::createBodyLayer);
+//        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_LONG_1, bottom_legs_thin_long_1::createBodyLayer);
+//        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_LONG_2, bottom_legs_thin_long_2::createBodyLayer);
+//        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_LONG_3, bottom_legs_thin_long_3::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_AVERAGE_SHORT_1, bottom_legs_average_short_1::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_AVERAGE_SHORT_2, bottom_legs_average_short_2::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_AVERAGE_SHORT_3, bottom_legs_average_short_3::createBodyLayer);

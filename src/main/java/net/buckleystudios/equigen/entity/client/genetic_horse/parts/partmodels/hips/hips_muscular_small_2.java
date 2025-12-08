@@ -75,19 +75,19 @@ public class hips_muscular_small_2 extends MultipartHipModel<GeneticHorseEntity>
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		hips_muscular_small_2.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
     public ModelPart root() {
-        return hips_muscular_small_2;
+        return root;
     }
+
+	@Override
+	public String animationRoot() {
+		return "hips_muscular_small_2";
+	}
 
 	@Override
 	public Map<String, PartTransform> anchors() {

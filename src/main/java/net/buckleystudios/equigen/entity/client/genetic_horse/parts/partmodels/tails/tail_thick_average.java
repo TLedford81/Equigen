@@ -15,10 +15,12 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class tail_thick_average extends MultipartTailModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart tail_thick_average;
 	private final ModelPart hipsAnchor;
 
 	public tail_thick_average(ModelPart root) {
+		this.root = root;
 		this.tail_thick_average = root.getChild("tail_thick_average");
 		this.hipsAnchor = this.tail_thick_average.getChild("hipsAnchor");
 	}
@@ -57,19 +59,19 @@ public class tail_thick_average extends MultipartTailModel<GeneticHorseEntity> {
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		tail_thick_average.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
     public ModelPart root() {
-        return tail_thick_average;
+        return root;
     }
+
+	@Override
+	public String animationRoot() {
+		return "tail_thick_average";
+	}
 
 	@Override
 	public Map<String, PartTransform> anchors() {

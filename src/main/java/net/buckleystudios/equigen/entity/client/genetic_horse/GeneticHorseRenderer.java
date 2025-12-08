@@ -51,17 +51,17 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         if(selectedTexture == 1) {
             return ResourceLocation.fromNamespaceAndPath(
                     EquigenMod.MODID,
-                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_bay.png"
+                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + ".png"
             );
         } else if(selectedTexture == 2) {
             return ResourceLocation.fromNamespaceAndPath(
                     EquigenMod.MODID,
-                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_black.png"
+                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "2.png"
             );
         } else if (selectedTexture == 3) {
             return ResourceLocation.fromNamespaceAndPath(
                     EquigenMod.MODID,
-                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_chestnut.png"
+                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "3.png"
             );
         } else {
             return ResourceLocation.fromNamespaceAndPath(

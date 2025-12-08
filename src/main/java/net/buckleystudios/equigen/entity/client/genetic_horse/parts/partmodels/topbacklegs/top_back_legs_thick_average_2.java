@@ -15,11 +15,13 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class top_back_legs_thick_average_2 extends MultipartBackTopLegModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart top_back_legs_thick_average_2;
 	private final ModelPart hipsAnchor;
 	private final ModelPart kneeAnchor;
 
 	public top_back_legs_thick_average_2(ModelPart root) {
+		this.root = root;
 		this.top_back_legs_thick_average_2 = root.getChild("top_back_legs_thick_average_2");
 		this.hipsAnchor = this.top_back_legs_thick_average_2.getChild("hipsAnchor");
 		this.kneeAnchor = this.top_back_legs_thick_average_2.getChild("kneeAnchor");
@@ -47,19 +49,19 @@ public class top_back_legs_thick_average_2 extends MultipartBackTopLegModel<Gene
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		top_back_legs_thick_average_2.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
     public ModelPart root() {
-        return top_back_legs_thick_average_2;
+        return root;
     }
+
+	@Override
+	public String animationRoot() {
+		return "top_back_legs_thick_average_2";
+	}
 
 	@Override
 	public Map<String, PartTransform> anchors() {

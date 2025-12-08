@@ -15,10 +15,12 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class tail_thin_long extends MultipartTailModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart tail_thin_long;
 	private final ModelPart hipsAnchor;
 
 	public tail_thin_long(ModelPart root) {
+		this.root = root;
 		this.tail_thin_long = root.getChild("tail_thin_long");
 		this.hipsAnchor = this.tail_thin_long.getChild("hipsAnchor");
 	}
@@ -57,19 +59,19 @@ public class tail_thin_long extends MultipartTailModel<GeneticHorseEntity> {
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		tail_thin_long.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
     public ModelPart root() {
-        return tail_thin_long;
+        return root;
     }
+
+	@Override
+	public String animationRoot() {
+		return "tail_thin_long";
+	}
 
 	@Override
 	public Map<String, PartTransform> anchors() {

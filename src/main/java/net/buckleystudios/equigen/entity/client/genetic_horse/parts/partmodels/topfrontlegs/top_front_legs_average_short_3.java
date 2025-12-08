@@ -15,11 +15,13 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class top_front_legs_average_short_3 extends MultipartFrontTopLegModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart top_front_legs_average_short_3;
 	private final ModelPart chestAnchor;
 	private final ModelPart kneeAnchor;
 
 	public top_front_legs_average_short_3(ModelPart root) {
+		this.root = root;
 		this.top_front_legs_average_short_3 = root.getChild("top_front_legs_average_short_3");
 		this.chestAnchor = this.top_front_legs_average_short_3.getChild("chestAnchor");
 		this.kneeAnchor = this.top_front_legs_average_short_3.getChild("kneeAnchor");
@@ -49,19 +51,20 @@ public class top_front_legs_average_short_3 extends MultipartFrontTopLegModel<Ge
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		top_front_legs_average_short_3.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
 	@Override
 	public ModelPart root() {
-		return top_front_legs_average_short_3;
+		return root;
 	}
+
+	@Override
+	public String animationRoot() {
+		return "top_front_legs_average_short_3";
+	}
+
 	@Override
 	public Map<String, PartTransform> anchors() {
 		return Map.of(

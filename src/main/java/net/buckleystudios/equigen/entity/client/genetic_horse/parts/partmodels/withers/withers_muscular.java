@@ -15,10 +15,12 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class withers_muscular extends MultipartWithersModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart withers_muscular;
 	private final ModelPart neckAnchor;
 
 	public withers_muscular(ModelPart root) {
+		this.root = root;
 		this.withers_muscular = root.getChild("withers_muscular");
 		this.neckAnchor = this.withers_muscular.getChild("neckAnchor");
 	}
@@ -45,19 +47,19 @@ public class withers_muscular extends MultipartWithersModel<GeneticHorseEntity> 
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		withers_muscular.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
     public ModelPart root() {
-        return withers_muscular;
+        return root;
     }
+
+	@Override
+	public String animationRoot() {
+		return "withers_muscular";
+	}
 
 	@Override
 	public Map<String, PartTransform> anchors() {

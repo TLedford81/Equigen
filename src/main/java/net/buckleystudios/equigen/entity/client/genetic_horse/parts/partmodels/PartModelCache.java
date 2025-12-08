@@ -527,24 +527,24 @@ public class PartModelCache {
                     new top_front_legs_thick_long_3(modelSet.bakeLayer(ModModelLayers.TOP_FRONT_LEGS_THICK_LONG_3));
 
             //Bottom Legs
-            case "bottom_legs_thin_short_1" ->
-                    new bottom_legs_thin_short_1(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_SHORT_1));
-            case "bottom_legs_thin_short_2" ->
-                    new bottom_legs_thin_short_2(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_SHORT_2));
-            case "bottom_legs_thin_short_3" ->
-                    new bottom_legs_thin_short_3(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_SHORT_3));
-            case "bottom_legs_thin_average_1" ->
-                    new bottom_legs_thin_average_1(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_AVERAGE_1));
-            case "bottom_legs_thin_average_2" ->
-                    new bottom_legs_thin_average_2(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_AVERAGE_2));
-            case "bottom_legs_thin_average_3" ->
-                    new bottom_legs_thin_average_3(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_AVERAGE_3));
-            case "bottom_legs_thin_long_1" ->
-                    new bottom_legs_thin_long_1(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_LONG_1));
-            case "bottom_legs_thin_long_2" ->
-                    new bottom_legs_thin_long_2(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_LONG_2));
-            case "bottom_legs_thin_long_3" ->
-                    new bottom_legs_thin_long_3(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_LONG_3));
+//            case "bottom_legs_thin_short_1" ->
+//                    new bottom_legs_thin_short_1(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_SHORT_1));
+//            case "bottom_legs_thin_short_2" ->
+//                    new bottom_legs_thin_short_2(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_SHORT_2));
+//            case "bottom_legs_thin_short_3" ->
+//                    new bottom_legs_thin_short_3(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_SHORT_3));
+//            case "bottom_legs_thin_average_1" ->
+//                    new bottom_legs_thin_average_1(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_AVERAGE_1));
+//            case "bottom_legs_thin_average_2" ->
+//                    new bottom_legs_thin_average_2(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_AVERAGE_2));
+//            case "bottom_legs_thin_average_3" ->
+//                    new bottom_legs_thin_average_3(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_AVERAGE_3));
+//            case "bottom_legs_thin_long_1" ->
+//                    new bottom_legs_thin_long_1(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_LONG_1));
+//            case "bottom_legs_thin_long_2" ->
+//                    new bottom_legs_thin_long_2(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_LONG_2));
+//            case "bottom_legs_thin_long_3" ->
+//                    new bottom_legs_thin_long_3(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_THIN_LONG_3));
             case "bottom_legs_average_short_1" ->
                     new bottom_legs_average_short_1(modelSet.bakeLayer(ModModelLayers.BOTTOM_LEGS_AVERAGE_SHORT_1));
             case "bottom_legs_average_short_2" ->

@@ -15,10 +15,12 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class stomach_lean_short_low extends MultipartStomachModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart stomach_lean_short_low;
 	private final ModelPart backAnchor;
 
 	public stomach_lean_short_low(ModelPart root) {
+		this.root = root;
 		this.stomach_lean_short_low = root.getChild("stomach_lean_short_low");
 		this.backAnchor = this.stomach_lean_short_low.getChild("backAnchor");
 	}
@@ -55,19 +57,19 @@ public class stomach_lean_short_low extends MultipartStomachModel<GeneticHorseEn
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		stomach_lean_short_low.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
     public ModelPart root() {
-        return stomach_lean_short_low;
+        return root;
     }
+
+	@Override
+	public String animationRoot() {
+		return "stomach_lean_short_low";
+	}
 
 	@Override
 	public Map<String, PartTransform> anchors() {

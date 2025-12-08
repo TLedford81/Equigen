@@ -15,10 +15,12 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class withers_average extends MultipartWithersModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart withers_average;
 	private final ModelPart neckAnchor;
 
 	public withers_average(ModelPart root) {
+		this.root = root;
 		this.withers_average = root.getChild("withers_average");
 		this.neckAnchor = this.withers_average.getChild("neckAnchor");
 	}
@@ -45,21 +47,19 @@ public class withers_average extends MultipartWithersModel<GeneticHorseEntity> {
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		withers_average.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
     public ModelPart root() {
-        return withers_average;
+        return root;
     }
 
-
+	@Override
+	public String animationRoot() {
+		return "withers_average";
+	}
 
 	@Override
 	public Map<String, PartTransform> anchors() {

@@ -15,11 +15,13 @@ import net.minecraft.client.model.geom.builders.*;
 import java.util.Map;
 
 public class top_front_legs_thick_long_2 extends MultipartFrontTopLegModel<GeneticHorseEntity> {
+	private final ModelPart root;
 	private final ModelPart top_front_legs_thick_long_2;
 	private final ModelPart chestAnchor;
 	private final ModelPart kneeAnchor;
 
 	public top_front_legs_thick_long_2(ModelPart root) {
+		this.root = root;
 		this.top_front_legs_thick_long_2 = root.getChild("top_front_legs_thick_long_2");
 		this.chestAnchor = this.top_front_legs_thick_long_2.getChild("chestAnchor");
 		this.kneeAnchor = this.top_front_legs_thick_long_2.getChild("kneeAnchor");
@@ -49,18 +51,18 @@ public class top_front_legs_thick_long_2 extends MultipartFrontTopLegModel<Genet
 	}
 
 	@Override
-	public void setupAnim(GeneticHorseEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.root().getAllParts().forEach(ModelPart::resetPose);
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		top_front_legs_thick_long_2.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
 	@Override
 	public ModelPart root() {
-		return top_front_legs_thick_long_2;
+		return root;
+	}
+
+	@Override
+	public String animationRoot() {
+		return "top_front_legs_thick_long_2";
 	}
 
 	@Override
