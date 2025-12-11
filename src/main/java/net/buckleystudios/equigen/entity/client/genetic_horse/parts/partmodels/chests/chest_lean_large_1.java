@@ -6,13 +6,10 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartChestModel;
-import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-
-import java.util.Map;
 
 public class chest_lean_large_1 extends MultipartChestModel<GeneticHorseEntity> {
 	private final ModelPart root;
@@ -104,7 +101,7 @@ public class chest_lean_large_1 extends MultipartChestModel<GeneticHorseEntity> 
 
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-		chest_lean_large_1.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
@@ -118,13 +115,14 @@ public class chest_lean_large_1 extends MultipartChestModel<GeneticHorseEntity> 
 	}
 
 	@Override
-	public Map<String, PartTransform> computeAnchors() {
-		return Map.of(
-				"backAnchor", asTransform(backAnchor),
-				"neckAnchor", asTransform(neckAnchor),
-				"frontLeftLegAnchor", asTransform(frontLeftLegAnchor),
-				"frontRightLegAnchor", asTransform(frontRightLegAnchor)
-		);
+	protected void defineAnchorPaths() {
+		ModelPart root = this.root();
+		ModelPart chest = this.chest_lean_large_1;
+
+		registerAnchorPath("backAnchor", root, chest, this.backAnchor);
+		registerAnchorPath("neckAnchor", root, chest, this.neckAnchor);
+		registerAnchorPath("frontLeftLegAnchor", root, chest, this.frontLeftLegAnchor);
+		registerAnchorPath("frontRightLegAnchor", root, chest, this.frontRightLegAnchor);
 	}
 
 }

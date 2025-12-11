@@ -5,14 +5,11 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartStomachModel;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-
-import java.util.Map;
 
 public class stomach_average_short_high extends MultipartStomachModel<GeneticHorseEntity> {
 	private final ModelPart root;
@@ -58,7 +55,7 @@ public class stomach_average_short_high extends MultipartStomachModel<GeneticHor
 
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-		stomach_average_short_high.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
@@ -72,10 +69,10 @@ public class stomach_average_short_high extends MultipartStomachModel<GeneticHor
 	}
 
 	@Override
-	public Map<String, PartTransform> computeAnchors() {
-		return Map.of(
-				"backAnchor",  asTransform(this.backAnchor)
-		);
-	}
+	protected void defineAnchorPaths() {
+		ModelPart root = this.root();
+		ModelPart stomach = this.stomach_average_short_high;
 
+		registerAnchorPath("backAnchor", root, stomach, this.backAnchor);
+	}
 }

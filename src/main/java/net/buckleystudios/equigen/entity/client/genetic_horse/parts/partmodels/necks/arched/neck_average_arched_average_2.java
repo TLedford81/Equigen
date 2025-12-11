@@ -7,13 +7,10 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartNeckModel;
-import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-
-import java.util.Map;
 
 public class neck_average_arched_average_2 extends MultipartNeckModel<GeneticHorseEntity> {
 	private final ModelPart root;
@@ -111,7 +108,7 @@ public class neck_average_arched_average_2 extends MultipartNeckModel<GeneticHor
 
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-		neck_average_arched_average_2.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
@@ -125,11 +122,13 @@ public class neck_average_arched_average_2 extends MultipartNeckModel<GeneticHor
 	}
 
 	@Override
-	public Map<String, PartTransform> computeAnchors() {
-		return Map.of(
-				"headAnchor", asTransform(headAnchor),
-				"chestAnchor", asTransform(chestAnchor),
-				"withersAnchor", asTransform(withersAnchor));
+	protected void defineAnchorPaths() {
+		ModelPart root = this.root();
+		ModelPart neck = this.neck_average_arched_average_2;
+
+		registerAnchorPath("headAnchor", root, neck, this.headAnchor);
+		registerAnchorPath("chestAnchor", root, neck, this.chestAnchor);
+		registerAnchorPath("withersAnchor", root, neck, this.withersAnchor);
 	}
 
 	@Override

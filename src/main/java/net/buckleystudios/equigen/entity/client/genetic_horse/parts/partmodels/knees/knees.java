@@ -44,7 +44,7 @@ public class knees extends MultipartKneeModel<GeneticHorseEntity> {
 
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-		knees.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
@@ -63,5 +63,15 @@ public class knees extends MultipartKneeModel<GeneticHorseEntity> {
                 "topLegAnchor", asTransform(this.topLegAnchor),
                 "bottomLegAnchor", asTransform(bottomLegAnchor)
         );
+    }
+
+    @Override
+    protected void defineAnchorPaths() {
+        ModelPart root = this.root();
+        ModelPart knees = this.knees;
+
+        registerAnchorPath("topLegAnchor", root, knees, this.topLegAnchor);
+        registerAnchorPath("bottomLegAnchor", root, knees, this.bottomLegAnchor);
+
     }
 }

@@ -60,7 +60,7 @@ public class ears extends MultipartEarModel<GeneticHorseEntity> {
 
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-		ears.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
@@ -72,4 +72,5 @@ public class ears extends MultipartEarModel<GeneticHorseEntity> {
 	public String animationRoot() {
 		return "ears";
 	}
+
 }

@@ -6,13 +6,10 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartBackTopLegModel;
-import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-
-import java.util.Map;
 
 public class top_back_legs_thick_long_2 extends MultipartBackTopLegModel<GeneticHorseEntity> {
 	private final ModelPart root;
@@ -50,7 +47,7 @@ public class top_back_legs_thick_long_2 extends MultipartBackTopLegModel<Genetic
 
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-		top_back_legs_thick_long_2.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
@@ -64,9 +61,12 @@ public class top_back_legs_thick_long_2 extends MultipartBackTopLegModel<Genetic
 	}
 
 	@Override
-	public Map<String, PartTransform> computeAnchors() {
-		return Map.of(
-				"hipsAnchor", asTransform(this.hipsAnchor),
-				"kneeAnchor", asTransform(this.kneeAnchor));
+	protected void defineAnchorPaths() {
+		ModelPart root = this.root();
+		ModelPart top_back_legs = this.top_back_legs_thick_long_2;
+
+		registerAnchorPath("hipsAnchor", root, top_back_legs, this.hipsAnchor);
+		registerAnchorPath("kneeAnchor", root, top_back_legs, this.kneeAnchor);
+
 	}
 }

@@ -1,7 +1,6 @@
 package net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.client.genetic_horse.GeneticHorseAnimations;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
@@ -77,7 +76,7 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
                 anchors.put(name, computeTransformForPath(path));
             }
         }
-        EquigenMod.LOGGER.debug("Anchors for {}: {}", this.getClass().getSimpleName(), anchors.keySet());
+//        EquigenMod.LOGGER.debug("Anchors for {}: {}", this.getClass().getSimpleName(), anchors.keySet());
     }
 
     private PartTransform computeTransformForPath(List<ModelPart> path) {

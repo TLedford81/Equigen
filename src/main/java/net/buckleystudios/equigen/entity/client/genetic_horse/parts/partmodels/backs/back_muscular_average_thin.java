@@ -6,13 +6,10 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartBackModel;
-import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-
-import java.util.Map;
 
 public class back_muscular_average_thin extends MultipartBackModel<GeneticHorseEntity> {
 	private final ModelPart root;
@@ -66,7 +63,7 @@ public class back_muscular_average_thin extends MultipartBackModel<GeneticHorseE
 
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-		back_muscular_average_thin.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
 	public ModelPart root() {
@@ -79,14 +76,15 @@ public class back_muscular_average_thin extends MultipartBackModel<GeneticHorseE
 	}
 
 	@Override
-	public Map<String, PartTransform> computeAnchors() {
-		return Map.of(
-				"chestAnchor",  asTransform(this.chestAnchor),
-				"hipsAnchor", asTransform(this.hipsAnchor),
-				"stomachAnchor", asTransform(this.stomachAnchor),
-				"withersAnchor", asTransform(this.withersAnchor),
-				"playerAnchor", asTransform(this.playerAnchor)
-		);
+	protected void defineAnchorPaths() {
+		ModelPart root = this.root();
+		ModelPart back = this.back_muscular_average_thin;
+
+		registerAnchorPath("chestAnchor",   root, back, this.chestAnchor);
+		registerAnchorPath("hipsAnchor",    root, back, this.hipsAnchor);
+		registerAnchorPath("stomachAnchor", root, back, this.stomachAnchor);
+		registerAnchorPath("withersAnchor", root, back, this.withersAnchor);
+		registerAnchorPath("playerAnchor",  root, back, this.playerAnchor);
 	}
 
 }

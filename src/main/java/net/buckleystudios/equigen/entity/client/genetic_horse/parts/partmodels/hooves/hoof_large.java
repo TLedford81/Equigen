@@ -5,14 +5,11 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartHoofModel;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-
-import java.util.Map;
 
 public class hoof_large extends MultipartHoofModel<GeneticHorseEntity> {
     private final ModelPart root;
@@ -40,7 +37,7 @@ public class hoof_large extends MultipartHoofModel<GeneticHorseEntity> {
 
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-		hoof_large.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
@@ -54,9 +51,11 @@ public class hoof_large extends MultipartHoofModel<GeneticHorseEntity> {
     }
 
     @Override
-    public Map<String, PartTransform> computeAnchors() {
-        return Map.of(
-                "bottomLegAnchor", asTransform(this.bottomLegAnchor)
-        );
+    protected void defineAnchorPaths() {
+        ModelPart root = this.root();
+        ModelPart hoof = this.hoof_large;
+
+        registerAnchorPath("bottomLegAnchor", root, hoof, this.bottomLegAnchor);
+
     }
 }

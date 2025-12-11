@@ -6,13 +6,10 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartWithersModel;
-import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-
-import java.util.Map;
 
 public class withers_lean extends MultipartWithersModel<GeneticHorseEntity> {
 	private final ModelPart root;
@@ -48,7 +45,7 @@ public class withers_lean extends MultipartWithersModel<GeneticHorseEntity> {
 
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-		withers_lean.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
@@ -61,9 +58,10 @@ public class withers_lean extends MultipartWithersModel<GeneticHorseEntity> {
 		return "withers_lean";
 	}
 
-	@Override
-	public Map<String, PartTransform> computeAnchors() {
-		return Map.of(
-				"neckAnchor", asTransform(neckAnchor));
+	protected void defineAnchorPaths() {
+		ModelPart root = this.root();
+		ModelPart withers = this.withers_lean;
+
+		registerAnchorPath("neckAnchor", root, withers, this.neckAnchor);
 	}
 }

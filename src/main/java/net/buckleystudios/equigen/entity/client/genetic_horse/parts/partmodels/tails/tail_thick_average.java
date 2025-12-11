@@ -6,13 +6,10 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartTailModel;
-import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-
-import java.util.Map;
 
 public class tail_thick_average extends MultipartTailModel<GeneticHorseEntity> {
 	private final ModelPart root;
@@ -60,7 +57,7 @@ public class tail_thick_average extends MultipartTailModel<GeneticHorseEntity> {
 
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-		tail_thick_average.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
@@ -74,9 +71,11 @@ public class tail_thick_average extends MultipartTailModel<GeneticHorseEntity> {
 	}
 
 	@Override
-	public Map<String, PartTransform> computeAnchors() {
-		return Map.of(
-				"hipsAnchor", asTransform(hipsAnchor));
+	protected void defineAnchorPaths() {
+		ModelPart root = this.root();
+		ModelPart tail = this.tail_thick_average;
+
+		registerAnchorPath("hipsAnchor", root, tail, this.hipsAnchor);
 	}
 
 }

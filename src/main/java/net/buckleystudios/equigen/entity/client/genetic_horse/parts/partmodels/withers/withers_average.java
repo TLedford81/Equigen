@@ -48,7 +48,7 @@ public class withers_average extends MultipartWithersModel<GeneticHorseEntity> {
 
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-		withers_average.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
     @Override
@@ -65,5 +65,12 @@ public class withers_average extends MultipartWithersModel<GeneticHorseEntity> {
 	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"neckAnchor", asTransform(neckAnchor));
+	}
+	@Override
+	protected void defineAnchorPaths() {
+		ModelPart root = this.root();
+		ModelPart withers = this.withers_average;
+
+		registerAnchorPath("neckAnchor", root, withers, this.neckAnchor);
 	}
 }
