@@ -79,7 +79,7 @@ public class back_muscular_average_thin extends MultipartBackModel<GeneticHorseE
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
+	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"chestAnchor",  asTransform(this.chestAnchor),
 				"hipsAnchor", asTransform(this.hipsAnchor),

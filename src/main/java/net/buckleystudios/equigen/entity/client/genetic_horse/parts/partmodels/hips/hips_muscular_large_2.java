@@ -90,7 +90,7 @@ public class hips_muscular_large_2 extends MultipartHipModel<GeneticHorseEntity>
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
+	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"backAnchor", asTransform(backAnchor),
 				"tailAnchor", asTransform(tailAnchor),

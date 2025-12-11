@@ -72,7 +72,7 @@ public class stomach_muscular_short_high extends MultipartStomachModel<GeneticHo
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
+	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"backAnchor",  asTransform(this.backAnchor)
 		);

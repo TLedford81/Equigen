@@ -74,7 +74,7 @@ public class tail_thin_short extends MultipartTailModel<GeneticHorseEntity> {
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
+	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"hipsAnchor", asTransform(hipsAnchor));
 	}

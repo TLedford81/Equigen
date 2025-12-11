@@ -124,7 +124,7 @@ public class neck_lean_straight_long_2 extends MultipartNeckModel<GeneticHorseEn
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
+	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"headAnchor", asTransform(headAnchor),
 				"chestAnchor", asTransform(chestAnchor),

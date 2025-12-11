@@ -87,7 +87,7 @@ public class back_lean_long_thin extends MultipartBackModel<GeneticHorseEntity> 
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
+	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"chestAnchor",  asTransform(this.chestAnchor),
 				"hipsAnchor", asTransform(this.hipsAnchor),

@@ -181,116 +181,117 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
 
         // back -> chest chain
         attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                modelMap.get("backModel"), "chestAnchor", modelMap.get("chestModel"), "backAnchor",
-                () -> {
-                    // chest -> neck -> head -> ears
-                    attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                            modelMap.get("chestModel"), "neckAnchor", modelMap.get("neckModel"), "chestAnchor",
-                            () -> {
-                                attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                        modelMap.get("neckModel"), "headAnchor", modelMap.get("headModel"), "neckAnchor",
-                                        () -> {
-                                            attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                                    modelMap.get("headModel"), "leftEarAnchor", modelMap.get("leftEarModel"), "headAnchor", null);
-                                            attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                                    modelMap.get("headModel"), "rightEarAnchor", modelMap.get("rightEarModel"), "headAnchor", null);
-                                        }
-                                );
-                                attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                        modelMap.get("neckModel"), "withersAnchor", modelMap.get("withersModel"), "neckAnchor", null);
-
-                            }
-                    );
-                    // chest -> front left leg chain
-                    attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                            modelMap.get("chestModel"), "frontLeftLegAnchor", modelMap.get("topFrontLeftLegModel"), "chestAnchor", 1,
-                            () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                    modelMap.get("topFrontLeftLegModel"), "kneeAnchor", modelMap.get("kneeFrontLeftLegModel"), "topLegAnchor", 1,
-                                    () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                            modelMap.get("kneeFrontLeftLegModel"), "bottomLegAnchor", modelMap.get("bottomFrontLeftLegModel"), "kneeAnchor", 1,
-                                            () -> attachAndChain(poseStack, hoofBuffer, packedLight, entity, partialTicks,
-                                                    modelMap.get("bottomFrontLeftLegModel"), "hoofAnchor", modelMap.get("hoofFrontLeftLegModel"), "bottomLegAnchor", 1,
-                                                    null
-                                            )
-                                    )
-                            )
-                    );
-                    // chest -> front right leg chain
-                    attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                            modelMap.get("chestModel"), "frontRightLegAnchor", modelMap.get("topFrontRightLegModel"), "chestAnchor", 2,
-                            () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                    modelMap.get("topFrontRightLegModel"), "kneeAnchor", modelMap.get("kneeFrontRightLegModel"), "topLegAnchor", 2,
-                                    () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                            modelMap.get("kneeFrontRightLegModel"), "bottomLegAnchor", modelMap.get("bottomFrontRightLegModel"), "kneeAnchor", 2,
-                                            () -> attachAndChain(poseStack, hoofBuffer, packedLight, entity, partialTicks,
-                                                    modelMap.get("bottomFrontRightLegModel"), "hoofAnchor", modelMap.get("hoofFrontRightLegModel"), "bottomLegAnchor", 2,
-                                                    null
-                                            )
-                                    )
-                            )
-                    );
-                }
-        );
-        // back -> hips (and rear chain: tail + back legs)
-        attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                modelMap.get("backModel"), "hipsAnchor", modelMap.get("hipsModel"), "backAnchor",
-                () -> {
-                    // hips -> tail
-                    attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                            modelMap.get("hipsModel"), "tailAnchor", modelMap.get("tailModel"), "hipsAnchor", null);
-                    // hips -> back left leg chain
-                    attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                            modelMap.get("hipsModel"), "backLeftLegAnchor", modelMap.get("topBackLeftLegModel"), "hipsAnchor", 3,
-                            () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                    modelMap.get("topBackLeftLegModel"), "kneeAnchor", modelMap.get("kneeBackLeftLegModel"), "topLegAnchor", 3,
-                                    () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                            modelMap.get("kneeBackLeftLegModel"), "bottomLegAnchor", modelMap.get("bottomBackLeftLegModel"), "kneeAnchor", 3,
-                                            () -> attachAndChain(poseStack, hoofBuffer, packedLight, entity, partialTicks,
-                                                    modelMap.get("bottomBackLeftLegModel"), "hoofAnchor", modelMap.get("hoofBackLeftLegModel"), "bottomLegAnchor", 3,
-                                                    null
-                                            )
-                                    )
-                            )
-                    );
-                    // hips -> back right leg chain
-                    attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                            modelMap.get("hipsModel"), "backRightLegAnchor", modelMap.get("topBackRightLegModel"), "hipsAnchor", 4,
-                            () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                    modelMap.get("topBackRightLegModel"), "kneeAnchor", modelMap.get("kneeBackRightLegModel"), "topLegAnchor", 4,
-                                    () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                                            modelMap.get("kneeBackRightLegModel"), "bottomLegAnchor", modelMap.get("bottomBackRightLegModel"), "kneeAnchor", 4,
-                                            () -> attachAndChain(poseStack, hoofBuffer, packedLight, entity, partialTicks,
-                                                    modelMap.get("bottomBackRightLegModel"), "hoofAnchor", modelMap.get("hoofBackRightLegModel"), "bottomLegAnchor", 4,
-                                                    null
-                                            )
-                                    )
-                            )
-                    );
-                }
-        );
-        // stomach
-        attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
-                modelMap.get("backModel"), "stomachAnchor", modelMap.get("stomachModel"), "backAnchor", null);
+                modelMap.get("backModel"), "chestAnchor", modelMap.get("chestModel"), "backAnchor", null);
+//                () -> {
+//                    // chest -> neck -> head -> ears
+//                    attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+//                            modelMap.get("chestModel"), "neckAnchor", modelMap.get("neckModel"), "chestAnchor",
+//                            () -> {
+//                                attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+//                                        modelMap.get("neckModel"), "headAnchor", modelMap.get("headModel"), "neckAnchor",
+//                                        () -> {
+//                                            attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+//                                                    modelMap.get("headModel"), "leftEarAnchor", modelMap.get("leftEarModel"), "headAnchor", null);
+//                                            attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+//                                                    modelMap.get("headModel"), "rightEarAnchor", modelMap.get("rightEarModel"), "headAnchor", null);
+//                                        }
+//                                );
+//                                attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+//                                        modelMap.get("neckModel"), "withersAnchor", modelMap.get("withersModel"), "neckAnchor", null);
+//
+//                            }
+//                    );
+//                    // chest -> front left leg chain
+//                    attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+//                            modelMap.get("chestModel"), "frontLeftLegAnchor", modelMap.get("topFrontLeftLegModel"), "chestAnchor", 1,
+//                            () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+//                                    modelMap.get("topFrontLeftLegModel"), "kneeAnchor", modelMap.get("kneeFrontLeftLegModel"), "topLegAnchor", 1,
+//                                    () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+//                                            modelMap.get("kneeFrontLeftLegModel"), "bottomLegAnchor", modelMap.get("bottomFrontLeftLegModel"), "kneeAnchor", 1,
+//                                            () -> attachAndChain(poseStack, hoofBuffer, packedLight, entity, partialTicks,
+//                                                    modelMap.get("bottomFrontLeftLegModel"), "hoofAnchor", modelMap.get("hoofFrontLeftLegModel"), "bottomLegAnchor", 1,
+//                                                    null
+//                                            )
+//                                    )
+//                            )
+//                    );
+//                    // chest -> front right leg chain
+//                    attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+//                            modelMap.get("chestModel"), "frontRightLegAnchor", modelMap.get("topFrontRightLegModel"), "chestAnchor", 2,
+//                            () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+//                                    modelMap.get("topFrontRightLegModel"), "kneeAnchor", modelMap.get("kneeFrontRightLegModel"), "topLegAnchor", 2,
+//                                    () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+//                                            modelMap.get("kneeFrontRightLegModel"), "bottomLegAnchor", modelMap.get("bottomFrontRightLegModel"), "kneeAnchor", 2,
+//                                            () -> attachAndChain(poseStack, hoofBuffer, packedLight, entity, partialTicks,
+//                                                    modelMap.get("bottomFrontRightLegModel"), "hoofAnchor", modelMap.get("hoofFrontRightLegModel"), "bottomLegAnchor", 2,
+//                                                    null
+//                                            )
+//                                    )
+//                            )
+//                    );
+//                }
+//        );
+////         back -> hips (and rear chain: tail + back legs)
+//        attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+//                modelMap.get("backModel"), "hipsAnchor", modelMap.get("hipsModel"), "backAnchor",
+//                () -> {
+//                    // hips -> tail
+//                    attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+//                            modelMap.get("hipsModel"), "tailAnchor", modelMap.get("tailModel"), "hipsAnchor", null);
+//                    // hips -> back left leg chain
+//                    attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+//                            modelMap.get("hipsModel"), "backLeftLegAnchor", modelMap.get("topBackLeftLegModel"), "hipsAnchor", 3,
+//                            () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+//                                    modelMap.get("topBackLeftLegModel"), "kneeAnchor", modelMap.get("kneeBackLeftLegModel"), "topLegAnchor", 3,
+//                                    () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+//                                            modelMap.get("kneeBackLeftLegModel"), "bottomLegAnchor", modelMap.get("bottomBackLeftLegModel"), "kneeAnchor", 3,
+//                                            () -> attachAndChain(poseStack, hoofBuffer, packedLight, entity, partialTicks,
+//                                                    modelMap.get("bottomBackLeftLegModel"), "hoofAnchor", modelMap.get("hoofBackLeftLegModel"), "bottomLegAnchor", 3,
+//                                                    null
+//                                            )
+//                                    )
+//                            )
+//                    );
+//                    // hips -> back right leg chain
+//                    attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+//                            modelMap.get("hipsModel"), "backRightLegAnchor", modelMap.get("topBackRightLegModel"), "hipsAnchor", 4,
+//                            () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+//                                    modelMap.get("topBackRightLegModel"), "kneeAnchor", modelMap.get("kneeBackRightLegModel"), "topLegAnchor", 4,
+//                                    () -> attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+//                                            modelMap.get("kneeBackRightLegModel"), "bottomLegAnchor", modelMap.get("bottomBackRightLegModel"), "kneeAnchor", 4,
+//                                            () -> attachAndChain(poseStack, hoofBuffer, packedLight, entity, partialTicks,
+//                                                    modelMap.get("bottomBackRightLegModel"), "hoofAnchor", modelMap.get("hoofBackRightLegModel"), "bottomLegAnchor", 4,
+//                                                    null
+//                                            )
+//                                    )
+//                            )
+//                    );
+//                }
+//        );
+//        // stomach
+//        attachAndChain(poseStack, modelBuffer, packedLight, entity, partialTicks,
+//                modelMap.get("backModel"), "stomachAnchor", modelMap.get("stomachModel"), "backAnchor", null);
     }
 
-    private void applyTransform(PoseStack pose, PartTransform p, PartTransform c) {
-        if (p == null) return;
-        pose.translate((float)p.position.x, (float)p.position.y, (float)p.position.z);
-        pose.mulPose(Axis.XP.rotation((float)p.rotation.x)); // RADS
-        pose.mulPose(Axis.YP.rotation((float)p.rotation.y));
-        pose.mulPose(Axis.ZP.rotation((float)p.rotation.z));
-        pose.scale((float)p.scale.x, (float)p.scale.y, (float)p.scale.z);
+    private void applyTransform(PoseStack pose, PartTransform parent, PartTransform child) {
+        if (parent == null || child == null) return;
 
-        if (c == null) return;
-        float sx = (float)(c.scale.x == 0 ? 1.0 : 1.0 / c.scale.x);
-        float sy = (float)(c.scale.y == 0 ? 1.0 : 1.0 / c.scale.y);
-        float sz = (float)(c.scale.z == 0 ? 1.0 : 1.0 / c.scale.z);
-        pose.scale(sx, sy, sz);
-        pose.mulPose(Axis.ZP.rotation((float)-c.rotation.z)); // RADS
-        pose.mulPose(Axis.YP.rotation((float)-c.rotation.y));
-        pose.mulPose(Axis.XP.rotation((float)-c.rotation.x));
-        pose.translate(-(float)c.position.x, -(float)c.position.y, -(float)c.position.z);
+        float dx = (float)(parent.position.x - child.position.x);
+        float dy = (float)(parent.position.y - child.position.y);
+        float dz = (float)(parent.position.z - child.position.z);
+        pose.translate(dx, dy, dz);
+
+        float rx = (float)(parent.rotation.x - child.rotation.x);
+        float ry = (float)(parent.rotation.y - child.rotation.y);
+        float rz = (float)(parent.rotation.z - child.rotation.z);
+
+        pose.mulPose(Axis.XP.rotation(rx));
+        pose.mulPose(Axis.YP.rotation(ry));
+        pose.mulPose(Axis.ZP.rotation(rz));
+
+        //Ignore scale for now
     }
+
 
     private void enterEntityModelSpace(GeneticHorseEntity e, PoseStack pose, float entityYaw, float partialTicks) {
         float ageInTicks = e.tickCount + partialTicks;
@@ -311,9 +312,6 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         float limbSwing        = entity.walkAnimation.position(partialTicks);
         float limbSwingAmount  = entity.walkAnimation.speed(partialTicks);
 
-        if (entity.tickCount % 10 == 0) {
-            EquigenMod.LOGGER.info("walk pos={} spd={}", limbSwing, limbSwingAmount);
-        }
         model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
         model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, 0f, 0f);
         model.renderToBuffer(
@@ -339,7 +337,8 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
             MultipartModel<GeneticHorseEntity> child,  String anchorInChildModel,
             Runnable chain // Nullable
     ){
-        attachAndChain(pose, buffer, packedLight, entity, partialTicks, parent, anchorInParentModel, child, anchorInChildModel, 0, chain);
+        attachAndChain(pose, buffer, packedLight, entity, partialTicks,
+                parent, anchorInParentModel, child, anchorInChildModel, 0, chain);
     }
 
     private void attachAndChain(
@@ -349,36 +348,65 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
             Runnable chain // Nullable
     ) {
         if (parent == null || child == null) return;
-        PartTransform pA = parent.anchors().get(anchorInParentModel);
-        PartTransform cA = child.anchors().get(anchorInChildModel);
-        if (pA == null || cA == null) return;
+
         float ageInTicks      = entity.tickCount + partialTicks;
         float limbSwing       = entity.walkAnimation.position(partialTicks);
         float limbSwingAmount = entity.walkAnimation.speed(partialTicks);
 
         pose.pushPose();
 
-        applyTransform(pose, pA, cA);
+        parent.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
+        parent.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, 0f, 0f);
 
         child.beforeAttached(entity, partialTicks, pose);
-        if (chain != null) chain.run();
         child.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
         child.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, 0f, 0f);
 
-        child.afterAttached(entity, partialTicks);
-        child.renderToBuffer(pose, buffer.getBuffer(RenderType.entityCutout(getTextureLocation(entity, this.getSelectedTexture(entity)))),
-                packedLight, OverlayTexture.NO_OVERLAY);
+        PartTransform pA = parent.anchors().get(anchorInParentModel);
+        PartTransform cA = child.anchors().get(anchorInChildModel);
 
-        //0 = N/A, 1 = Front Left, 2 = Front Right, 3 = Back Left, 4 = Back Right
+        EquigenMod.LOGGER.debug("ANCHOR DEBUG -- parent {} = pos{}, rot{} | child {} = pos{}, rot{}",
+                anchorInParentModel,
+                pA.position, pA.rotation,
+                anchorInChildModel,
+                cA.position, cA.rotation);
+
+        if (pA == null || cA == null) {
+            EquigenMod.LOGGER.warn("Missing anchors: parent={}, child={}", anchorInParentModel, anchorInChildModel);
+            EquigenMod.LOGGER.warn("Parent anchor keys: {}", parent.anchors().keySet());
+            EquigenMod.LOGGER.warn("Child anchor keys: {}", child.anchors().keySet());
+            pose.popPose();
+            return;
+        }
+
+        applyTransform(pose, pA, cA);
+
+        if (chain != null) chain.run();
+
+        child.afterAttached(entity, partialTicks);
+
+        child.renderToBuffer(
+                pose,
+                buffer.getBuffer(RenderType.entityCutout(getTextureLocation(entity, this.getSelectedTexture(entity)))),
+                packedLight,
+                OverlayTexture.NO_OVERLAY
+        );
+
         Map<Integer, List<ResourceLocation>> markingTextures = getMarkingTextures();
         if (markingTextures.containsKey(legID)) {
-            for(int i = 0; i < markingTextures.get(legID).size(); i++) {
-                child.renderToBuffer(pose,
-                        buffer.getBuffer(RenderType.entityCutoutNoCull(markingTextures.get(legID).get(i))),
-                        packedLight, OverlayTexture.NO_OVERLAY);
+            for (ResourceLocation tex : markingTextures.get(legID)) {
+                child.renderToBuffer(
+                        pose,
+                        buffer.getBuffer(RenderType.entityCutoutNoCull(tex)),
+                        packedLight,
+                        OverlayTexture.NO_OVERLAY
+                );
             }
         }
+
         pose.popPose();
     }
+
+
 
 }

@@ -64,7 +64,7 @@ public class top_back_legs_average_long_2 extends MultipartBackTopLegModel<Genet
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
+	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"hipsAnchor", asTransform(this.hipsAnchor),
 				"kneeAnchor", asTransform(this.kneeAnchor));

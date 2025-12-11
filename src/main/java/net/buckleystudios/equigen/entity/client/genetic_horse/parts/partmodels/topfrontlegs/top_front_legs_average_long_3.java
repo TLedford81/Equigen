@@ -68,7 +68,7 @@ public class top_front_legs_average_long_3 extends MultipartFrontTopLegModel<Gen
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
+	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"chestAnchor", asTransform(this.chestAnchor),
 				"kneeAnchor", asTransform(this.kneeAnchor));

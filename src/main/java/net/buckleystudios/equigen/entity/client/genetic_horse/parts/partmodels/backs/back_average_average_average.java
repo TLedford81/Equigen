@@ -5,16 +5,14 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartBackModel;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
-import java.util.Map;
-
 public class back_average_average_average extends MultipartBackModel<GeneticHorseEntity> {
+
 	private final ModelPart root;
 	private final ModelPart back_average_average_average;
 	private final ModelPart chestAnchor;
@@ -33,6 +31,7 @@ public class back_average_average_average extends MultipartBackModel<GeneticHors
 		this.withersAnchor = this.back_average_average_average.getChild("withersAnchor");
 		this.playerAnchor  = this.back_average_average_average.getChild("playerAnchor");
 	}
+
 
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
@@ -66,11 +65,6 @@ public class back_average_average_average extends MultipartBackModel<GeneticHors
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
-	}
-
-	@Override
 	public ModelPart root() {
 		return this.root;
 	}
@@ -81,13 +75,19 @@ public class back_average_average_average extends MultipartBackModel<GeneticHors
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
-		return Map.of(
-				"chestAnchor",  asTransform(this.chestAnchor),
-				"hipsAnchor", asTransform(this.hipsAnchor),
-				"stomachAnchor", asTransform(this.stomachAnchor),
-				"withersAnchor", asTransform(this.withersAnchor),
-				"playerAnchor", asTransform(this.playerAnchor) //Deprecated
-		);
+	public void renderToBuffer(PoseStack poseStack, VertexConsumer vc, int packedLight, int packedOverlay, int color) {
+		root.render(poseStack, vc, packedLight, packedOverlay, color);
+	}
+
+	@Override
+	protected void defineAnchorPaths() {
+		ModelPart root = this.root();
+		ModelPart back = this.back_average_average_average;
+
+		registerAnchorPath("chestAnchor",   root, back, this.chestAnchor);
+		registerAnchorPath("hipsAnchor",    root, back, this.hipsAnchor);
+		registerAnchorPath("stomachAnchor", root, back, this.stomachAnchor);
+		registerAnchorPath("withersAnchor", root, back, this.withersAnchor);
+		registerAnchorPath("playerAnchor",  root, back, this.playerAnchor);
 	}
 }

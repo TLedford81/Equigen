@@ -125,7 +125,7 @@ public class neck_average_arched_short_2 extends MultipartNeckModel<GeneticHorse
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
+	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"headAnchor", asTransform(headAnchor),
 				"chestAnchor", asTransform(chestAnchor),

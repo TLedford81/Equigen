@@ -64,7 +64,7 @@ public class bottom_legs_average_short_2 extends MultipartBottomLegModel<Genetic
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
+	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"kneeAnchor", asTransform(this.kneeAnchor),
 				"hoofAnchor", asTransform(this.hoofAnchor));

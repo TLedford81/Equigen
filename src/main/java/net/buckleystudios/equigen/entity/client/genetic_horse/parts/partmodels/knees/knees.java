@@ -58,7 +58,7 @@ public class knees extends MultipartKneeModel<GeneticHorseEntity> {
     }
 
     @Override
-    public Map<String, PartTransform> anchors() {
+    public Map<String, PartTransform> computeAnchors() {
         return Map.of(
                 "topLegAnchor", asTransform(this.topLegAnchor),
                 "bottomLegAnchor", asTransform(bottomLegAnchor)

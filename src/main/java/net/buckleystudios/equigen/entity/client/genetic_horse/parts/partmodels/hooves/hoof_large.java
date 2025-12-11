@@ -54,7 +54,7 @@ public class hoof_large extends MultipartHoofModel<GeneticHorseEntity> {
     }
 
     @Override
-    public Map<String, PartTransform> anchors() {
+    public Map<String, PartTransform> computeAnchors() {
         return Map.of(
                 "bottomLegAnchor", asTransform(this.bottomLegAnchor)
         );

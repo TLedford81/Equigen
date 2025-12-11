@@ -118,7 +118,7 @@ public class chest_average_small_2 extends MultipartChestModel<GeneticHorseEntit
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
+	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"backAnchor", asTransform(backAnchor),
 				"neckAnchor", asTransform(neckAnchor),

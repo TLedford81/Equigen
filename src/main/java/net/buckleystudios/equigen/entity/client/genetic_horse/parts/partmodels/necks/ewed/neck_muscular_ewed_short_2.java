@@ -122,7 +122,7 @@ public class neck_muscular_ewed_short_2 extends MultipartNeckModel<GeneticHorseE
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
+	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"headAnchor", asTransform(headAnchor),
 				"chestAnchor", asTransform(chestAnchor),

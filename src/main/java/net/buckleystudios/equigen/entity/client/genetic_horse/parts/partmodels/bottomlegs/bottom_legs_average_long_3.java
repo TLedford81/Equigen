@@ -64,7 +64,7 @@ public class bottom_legs_average_long_3 extends MultipartBottomLegModel<GeneticH
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
+	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"kneeAnchor", asTransform(this.kneeAnchor),
 				"hoofAnchor", asTransform(this.hoofAnchor));

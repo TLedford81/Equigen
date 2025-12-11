@@ -72,7 +72,7 @@ public class stomach_lean_average_low extends MultipartStomachModel<GeneticHorse
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
+	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"backAnchor",  asTransform(this.backAnchor)
 		);

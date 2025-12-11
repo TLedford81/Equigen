@@ -83,7 +83,7 @@ public class hips_average_small_2 extends MultipartHipModel<GeneticHorseEntity> 
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
+	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"backAnchor", asTransform(backAnchor),
 				"tailAnchor", asTransform(tailAnchor),

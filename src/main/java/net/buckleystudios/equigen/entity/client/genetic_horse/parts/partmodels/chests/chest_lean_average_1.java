@@ -118,7 +118,7 @@ public class chest_lean_average_1 extends MultipartChestModel<GeneticHorseEntity
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
+	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"backAnchor", asTransform(backAnchor),
 				"neckAnchor", asTransform(neckAnchor),

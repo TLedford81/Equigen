@@ -98,7 +98,7 @@ public class head_straight_lean extends MultipartHeadModel<GeneticHorseEntity> {
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
+	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"neckAnchor", asTransform(neckAnchor),
 				"leftEarAnchor", asTransform(leftEarAnchor),

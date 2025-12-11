@@ -72,7 +72,7 @@ public class stomach_average_short_medium extends MultipartStomachModel<GeneticH
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
+	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"backAnchor",  asTransform(this.backAnchor)
 		);

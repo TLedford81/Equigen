@@ -122,7 +122,7 @@ public class neck_lean_ewed_average_2 extends MultipartNeckModel<GeneticHorseEnt
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
+	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"headAnchor", asTransform(headAnchor),
 				"chestAnchor", asTransform(chestAnchor),

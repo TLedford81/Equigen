@@ -124,7 +124,7 @@ public class neck_average_swan_short_1 extends MultipartNeckModel<GeneticHorseEn
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
+	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"headAnchor", asTransform(headAnchor),
 				"chestAnchor", asTransform(chestAnchor),

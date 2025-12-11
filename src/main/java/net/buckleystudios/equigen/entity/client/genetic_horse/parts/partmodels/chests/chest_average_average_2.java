@@ -1,18 +1,12 @@
-package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.chests;// Made with Blockbench 4.12.2
-// Exported for Minecraft version 1.17 or later with Mojang mappings
-// Paste this class into your mod and generate all required imports
-
+package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.chests;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartChestModel;
-import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-
-import java.util.Map;
 
 public class chest_average_average_2 extends MultipartChestModel<GeneticHorseEntity> {
 	private final ModelPart root;
@@ -25,11 +19,12 @@ public class chest_average_average_2 extends MultipartChestModel<GeneticHorseEnt
 	public chest_average_average_2(ModelPart root) {
 		this.root = root;
 		this.chest_average_average_2 = root.getChild("chest_average_average_2");
-		this.neckAnchor = this.chest_average_average_2.getChild("neckAnchor");
-		this.backAnchor = this.chest_average_average_2.getChild("backAnchor");
-		this.frontLeftLegAnchor = this.chest_average_average_2.getChild("frontLeftLegAnchor");
+		this.neckAnchor       = this.chest_average_average_2.getChild("neckAnchor");
+		this.backAnchor       = this.chest_average_average_2.getChild("backAnchor");
+		this.frontLeftLegAnchor  = this.chest_average_average_2.getChild("frontLeftLegAnchor");
 		this.frontRightLegAnchor = this.chest_average_average_2.getChild("frontRightLegAnchor");
 	}
+
 
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
@@ -103,14 +98,15 @@ public class chest_average_average_2 extends MultipartChestModel<GeneticHorseEnt
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-		chest_average_average_2.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer,
+							   int packedLight, int packedOverlay, int color) {
+		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 
-    @Override
-    public ModelPart root() {
-        return root;
-    }
+	@Override
+	public ModelPart root() {
+		return root;
+	}
 
 	@Override
 	public String animationRoot() {
@@ -118,13 +114,13 @@ public class chest_average_average_2 extends MultipartChestModel<GeneticHorseEnt
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
-		return Map.of(
-				"backAnchor", asTransform(backAnchor),
-				"neckAnchor", asTransform(neckAnchor),
-				"frontLeftLegAnchor", asTransform(frontLeftLegAnchor),
-				"frontRightLegAnchor", asTransform(frontRightLegAnchor)
-		);
-	}
+	protected void defineAnchorPaths() {
+		ModelPart root = this.root();
+		ModelPart chest = this.chest_average_average_2;
 
+		registerAnchorPath("backAnchor", root, chest, this.backAnchor);
+		registerAnchorPath("neckAnchor", root, chest, this.neckAnchor);
+		registerAnchorPath("frontLeftLegAnchor", root, chest, this.frontLeftLegAnchor);
+		registerAnchorPath("frontRightLegAnchor", root, chest, this.frontRightLegAnchor);
+	}
 }

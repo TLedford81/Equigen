@@ -66,7 +66,7 @@ public class top_front_legs_thick_short_3 extends MultipartFrontTopLegModel<Gene
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
+	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"chestAnchor", asTransform(this.chestAnchor),
 				"kneeAnchor", asTransform(this.kneeAnchor));

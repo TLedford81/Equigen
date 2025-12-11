@@ -64,7 +64,7 @@ public class top_back_legs_thick_long_1 extends MultipartBackTopLegModel<Genetic
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
+	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"hipsAnchor", asTransform(this.hipsAnchor),
 				"kneeAnchor", asTransform(this.kneeAnchor));

@@ -74,7 +74,7 @@ public class tail_average_average extends MultipartTailModel<GeneticHorseEntity>
 	}
 
 	@Override
-	public Map<String, PartTransform> anchors() {
+	public Map<String, PartTransform> computeAnchors() {
 		return Map.of(
 				"hipsAnchor", asTransform(hipsAnchor));
 	}
