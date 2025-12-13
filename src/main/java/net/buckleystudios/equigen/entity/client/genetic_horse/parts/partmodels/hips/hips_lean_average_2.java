@@ -78,7 +78,7 @@ public class hips_lean_average_2 extends MultipartHipModel<GeneticHorseEntity> {
 
     @Override
     public ModelPart root() {
-        return hips_lean_average_2;
+        return root;
     }
 
 	@Override
