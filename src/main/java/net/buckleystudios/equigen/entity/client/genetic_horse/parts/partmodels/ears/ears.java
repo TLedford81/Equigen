@@ -5,14 +5,11 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartEarModel;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-
-import java.util.Map;
 
 public class ears extends MultipartEarModel<GeneticHorseEntity> {
 	private final ModelPart root;
@@ -54,11 +51,6 @@ public class ears extends MultipartEarModel<GeneticHorseEntity> {
 	}
 
 	@Override
-	public Map<String, PartTransform> computeAnchors() {
-		return Map.of();
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
@@ -73,4 +65,10 @@ public class ears extends MultipartEarModel<GeneticHorseEntity> {
 		return "ears";
 	}
 
+	@Override
+	protected void defineAnchorPaths() {
+		ModelPart root = this.root();
+
+		registerAnchorPath("headAnchor", root, this.ears);
+	}
 }

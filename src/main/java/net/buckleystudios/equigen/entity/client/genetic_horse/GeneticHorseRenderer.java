@@ -356,19 +356,21 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
         pose.pushPose();
 
         parent.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
+        parent.setLegID(legID);
         parent.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, 0f, 0f);
 
         child.beforeAttached(entity, partialTicks, pose);
         child.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
+        child.setLegID(legID);
         child.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, 0f, 0f);
 
         PartTransform pA = parent.anchors().get(anchorInParentModel);
         PartTransform cA = child.anchors().get(anchorInChildModel);
 
         if (pA == null || cA == null) {
-//            EquigenMod.LOGGER.warn("Missing anchors: parent={}, child={}", anchorInParentModel, anchorInChildModel);
-//            EquigenMod.LOGGER.warn("Parent anchor keys: {}", parent.anchors().keySet());
-//            EquigenMod.LOGGER.warn("Child anchor keys: {}", child.anchors().keySet());
+            EquigenMod.LOGGER.warn("Missing anchors: parent={}, child={}", anchorInParentModel, anchorInChildModel);
+            EquigenMod.LOGGER.warn("Parent anchor keys: {}", parent.anchors().keySet());
+            EquigenMod.LOGGER.warn("Child anchor keys: {}", child.anchors().keySet());
             pose.popPose();
             return;
         }
@@ -378,7 +380,6 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, Geneti
 //                pA.position, pA.rotation,
 //                anchorInChildModel,
 //                cA.position, cA.rotation);
-
 
         applyTransform(pose, pA, cA);
 

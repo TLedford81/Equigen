@@ -1,7 +1,7 @@
 package net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.buckleystudios.equigen.entity.client.genetic_horse.GeneticHorseAnimations;
+import net.buckleystudios.equigen.entity.client.genetic_horse.animations.Gallop;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.HierarchicalModel;
@@ -32,6 +32,11 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
         return anchors;
     }
 
+    private int legID = 0;
+    public void setLegID(int legID){
+        this.legID = legID;
+    }
+
     @Override
     public void setupAnim(GeneticHorseEntity entity,
                           float limbSwing,
@@ -42,7 +47,7 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
         this.root().getAllParts().forEach(ModelPart::resetPose);
 
         this.animateWalk(
-                GeneticHorseAnimations.gallop(animationRoot()),
+                Gallop.getAnimation(animationRoot(), this.legID),
                 limbSwing, limbSwingAmount,
                 2f, 2.5f
         );
