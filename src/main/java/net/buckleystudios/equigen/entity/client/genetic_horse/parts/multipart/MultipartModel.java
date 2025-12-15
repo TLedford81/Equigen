@@ -49,7 +49,7 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
         this.animate(entity.idleAnimationState, GH_Animations.getAnimation("walk", animationRoot(), this.legID), ageInTicks, 1);
 
         this.animateWalk(
-                GH_Animations.getAnimation("walk" animationRoot(), this.legID),
+                GH_Animations.getAnimation("walk", animationRoot(), this.legID),
                 limbSwing, limbSwingAmount,
                 2f, 2.5f
         );
