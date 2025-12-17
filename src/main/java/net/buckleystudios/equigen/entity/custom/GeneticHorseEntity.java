@@ -54,7 +54,7 @@ import java.util.*;
 
 public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJumping {
     public final AnimationState idleAnimationState = new AnimationState();
-    private int idleAnimationTimeout = 0;
+
     public static final EntityDataAccessor<Float> HUNGER = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> THIRST = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> HOOF_CLEANLINESS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
@@ -959,13 +959,13 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     // ANIMATION //
     private void setupAnimationStates() {
-        if (this.idleAnimationTimeout <= 0) {
-            this.idleAnimationTimeout = 50; //Length (in ticks) of Idle Animation
-            this.idleAnimationState.start(this.tickCount);
+        if (isMoving()) {
+            idleAnimationState.stop();
         } else {
-            --this.idleAnimationTimeout;
+            idleAnimationState.startIfStopped(this.tickCount);
         }
     }
+
 
     // FOOD //
     @Override
@@ -1265,12 +1265,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             float jump = this.getCurrentSkillLevel("Jump");
             int jumpCooldownModifier = Math.round(jump * 5);
 
-            if (isMoving()) {
-                idleAnimationState.stop();
-            } else {
-                idleAnimationState.startIfStopped(this.tickCount);
-            }
-
             if(this.isEating()){
                 this.alterHunger(0.001f);
 //                EquigenMod.LOGGER.info("EATING: " + this.getHunger());
@@ -1562,7 +1556,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         //TODO: FIX TEXTURE SPOT IN DEBUG BOOK
 
         generatedPages.add(Filterable.passThrough(Component.literal(
-                        "§2Hunger:§r\n" + this.getHunger() +
+                "§2Hunger:§r\n" + this.getHunger() +
                         "\n§2Thirst:§r\n" + this.getThirst() +
                         "\n§2Total Cleanliness:§r\n" + this.getCleanliness() +
                         "\n§2Hair Cleanliness:§r\n" + this.getCleanliness("hair") +
@@ -1733,19 +1727,19 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                     maxValue += 1; //Allows for slight variation
 
                     float newGeneticValue;
-                if (CONFORMATION_GENETICS.contains(value.name())) {
-                    float difference;
-                    if (fatherGenetic > motherGenetic) {
-                        difference = fatherGenetic - motherGenetic;
-                    } else {
-                        difference = motherGenetic - fatherGenetic;
-                    }
-                    if (difference >= 4) {
-                        newGeneticValue = calculator.standardInheritance(calculator.percentileGenerator(35, 35, 30),((Math.round(random.nextFloat((minValue) + 3.0F) + minValue + 1.0F))), (Math.round(random.nextFloat((maxValue)) + maxValue - 3.0F)), (Math.round(random.nextFloat((maxValue) + 1.0F) + minValue)));
-                    } else {
-                        newGeneticValue = calculator.standardInheritance(calculator.percentileGenerator(35, 35, 30), motherGenetic, fatherGenetic, (Math.round(random.nextFloat((maxValue) + 1.0F) + minValue)));
-                    }
-                } else if (COAT_GENETICS.contains(value.name())) {
+                    if (CONFORMATION_GENETICS.contains(value.name())) {
+                        float difference;
+                        if (fatherGenetic > motherGenetic) {
+                            difference = fatherGenetic - motherGenetic;
+                        } else {
+                            difference = motherGenetic - fatherGenetic;
+                        }
+                        if (difference >= 4) {
+                            newGeneticValue = calculator.standardInheritance(calculator.percentileGenerator(35, 35, 30),((Math.round(random.nextFloat((minValue) + 3.0F) + minValue + 1.0F))), (Math.round(random.nextFloat((maxValue)) + maxValue - 3.0F)), (Math.round(random.nextFloat((maxValue) + 1.0F) + minValue)));
+                        } else {
+                            newGeneticValue = calculator.standardInheritance(calculator.percentileGenerator(35, 35, 30), motherGenetic, fatherGenetic, (Math.round(random.nextFloat((maxValue) + 1.0F) + minValue)));
+                        }
+                    } else if (COAT_GENETICS.contains(value.name())) {
                         newGeneticValue = calculator.punnettInheritance(motherGenetic, fatherGenetic);
                     } else if (COAT_VARIATION_GENETICS.contains(value.name())) {
                         newGeneticValue = calculator.standardInheritance((calculator.percentileGenerator(45, 45, 10)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(value.getDefaultMaxSize()) + 1)));
@@ -1755,20 +1749,20 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                         char variationNum = value.name().charAt(value.name().length() - 1);
                         switch (variationNum) {
                             case '1' -> newGeneticValue = calculator.ladderInheritance("PATTERN", value, calculator.percentileGenerator(39, 39, 10, 10, 2), motherGenetic, fatherGenetic,
-                                        mother.getGenetic(value.name().replace(variationNum, '2')), //Calls the Variation 2 Genetic
-                                        father.getGenetic(value.name().replace(variationNum, '2')), 0.0F);
+                                    mother.getGenetic(value.name().replace(variationNum, '2')), //Calls the Variation 2 Genetic
+                                    father.getGenetic(value.name().replace(variationNum, '2')), 0.0F);
 
                             case '2' -> newGeneticValue = calculator.ladderInheritance("PATTERN", value, calculator.percentileGenerator(35, 35, 5, 5, 8, 8, 4), motherGenetic, fatherGenetic,
-                                        mother.getGenetic(value.name().replace(variationNum, '1')),
-                                        father.getGenetic(value.name().replace(variationNum, '1')),
-                                        mother.getGenetic(value.name().replace(variationNum, '3')),
-                                        father.getGenetic(value.name().replace(variationNum, '3')),
-                                        0.0F);
+                                    mother.getGenetic(value.name().replace(variationNum, '1')),
+                                    father.getGenetic(value.name().replace(variationNum, '1')),
+                                    mother.getGenetic(value.name().replace(variationNum, '3')),
+                                    father.getGenetic(value.name().replace(variationNum, '3')),
+                                    0.0F);
 
                             case '3' -> newGeneticValue = calculator.ladderInheritance("PATTERN", value, calculator.percentileGenerator(40, 40, 8, 8, 4), motherGenetic, fatherGenetic,
-                                        mother.getGenetic(value.name().replace(variationNum, '2')),
-                                        father.getGenetic(value.name().replace(variationNum, '2')),
-                                        Math.round(random.nextFloat((value.getDefaultMaxSize()) + 1)));
+                                    mother.getGenetic(value.name().replace(variationNum, '2')),
+                                    father.getGenetic(value.name().replace(variationNum, '2')),
+                                    Math.round(random.nextFloat((value.getDefaultMaxSize()) + 1)));
 
                             default -> newGeneticValue = 0.0F;
                         }
@@ -1779,7 +1773,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                     } else if (PERSONALITY_GENETICS.contains(value.name())) {
                         newGeneticValue = calculator.ladderInheritance("PERSONALITY", value, calculator.percentileGenerator(20, 20, 60), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, (value.getDefaultMaxSize()) + 1.0F))));
                     } else if (PERCENTAGE_GENETICS.contains(value.name())) {
-                    // NEED TO EDIT CHANCES TO HAVE MORE RANDOM VARIATION, NOT DONE!!
+                        // NEED TO EDIT CHANCES TO HAVE MORE RANDOM VARIATION, NOT DONE!!
                         newGeneticValue = calculator.ladderInheritance("PERCENTAGE", value, calculator.percentileGenerator(20, 20, 60), motherGenetic, fatherGenetic, ((motherGenetic + fatherGenetic) / 2));
                     } else if (TRAIT_GENETICS.contains(value.name())) {
                         newGeneticValue = calculator.ladderInheritance("TRAIT", value, (calculator.percentileGenerator(20, 20, 60)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, value.getDefaultMaxSize()) + 1.0F)));

@@ -5,7 +5,7 @@ import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.animation.Keyframe;
 import net.minecraft.client.animation.KeyframeAnimations;
 
-public class GH_WalkAnimation extends GH_Animations {
+public class GH_WalkAnimation extends GH_Animation {
     public static AnimationDefinition animate(String part, int legID) {
         if (!isValidLegID(legID)) return inanimate();
 

@@ -3,7 +3,7 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.animations;
 import net.buckleystudios.equigen.EquigenMod;
 import net.minecraft.client.animation.AnimationDefinition;
 
-public abstract class GH_Animations {
+public abstract class GH_Animation {
     protected static final int LegID_FrontLeft = 1;
     protected static final int LegID_FrontRight = 2;
     protected static final int LegID_BackLeft = 3;
@@ -19,13 +19,5 @@ public abstract class GH_Animations {
             return false;
         }
         return true;
-    }
-
-    public static AnimationDefinition getAnimation(String animationName, String part, int legID){
-        switch (animationName){
-            case "walk": return GH_WalkAnimation.animate(part, legID);
-        }
-        EquigenMod.LOGGER.error("Invalid animation name: {}", animationName);
-        return inanimate();
     }
 }

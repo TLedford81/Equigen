@@ -1,9 +1,13 @@
 package net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.buckleystudios.equigen.entity.client.genetic_horse.animations.GH_Animations;
+import net.buckleystudios.equigen.entity.client.genetic_horse.animations.GH_Animation;
+import net.buckleystudios.equigen.entity.client.genetic_horse.animations.GH_GallopAnimation;
+import net.buckleystudios.equigen.entity.client.genetic_horse.animations.GH_IdleAnimation;
+import net.buckleystudios.equigen.entity.client.genetic_horse.animations.GH_WalkAnimation;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
+import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.phys.Vec3;
@@ -28,10 +32,6 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
         return anchors;
     }
 
-    public Map<String, PartTransform> computeAnchors() {
-        return anchors;
-    }
-
     private int legID = 0;
     public void setLegID(int legID){
         this.legID = legID;
@@ -46,10 +46,21 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
                           float headPitch) {
         this.root().getAllParts().forEach(ModelPart::resetPose);
 
-        this.animate(entity.idleAnimationState, GH_Animations.getAnimation("walk", animationRoot(), this.legID), ageInTicks, 1);
+        int gait = entity.getCurrentGait();
 
-        this.animateWalk(
-                GH_Animations.getAnimation("walk", animationRoot(), this.legID),
+        this.animate(entity.idleAnimationState,
+                GH_IdleAnimation.animate(animationRoot(), this.legID),
+                ageInTicks, 1);
+
+        AnimationDefinition clip = switch (gait) {
+            case 0 -> GH_WalkAnimation.animate(animationRoot(), this.legID);
+//            case 1 -> GH_TrotAnimation.animate(animationRoot(), this.legID);
+//            case 2 -> GH_CanterAnimation.animate(animationRoot(), this.legID);
+            case 3 -> GH_GallopAnimation.animate(animationRoot(), this.legID);
+            default -> GH_Animation.inanimate();
+        };
+
+        this.animateWalk(clip,
                 limbSwing, limbSwingAmount,
                 2f, 2.5f
         );
@@ -64,7 +75,6 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
 
     //TODO: Replace the animationRoot() method with this line after grunt work is finished:
     public abstract String animationRoot();
-
 
     protected void registerAnchorPath(String name, ModelPart... parts) {
         if (parts == null || parts.length == 0) {
@@ -111,8 +121,6 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
         pose.popPose();
         return result;
     }
-
-
 
     @Deprecated
     protected PartTransform asTransform(ModelPart part) {

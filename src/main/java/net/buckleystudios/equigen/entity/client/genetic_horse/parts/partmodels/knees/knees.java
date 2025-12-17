@@ -6,13 +6,10 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartKneeModel;
-import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-
-import java.util.Map;
 
 public class knees extends MultipartKneeModel<GeneticHorseEntity> {
     private final ModelPart root;
@@ -55,14 +52,6 @@ public class knees extends MultipartKneeModel<GeneticHorseEntity> {
     @Override
     public String animationRoot() {
         return "knees";
-    }
-
-    @Override
-    public Map<String, PartTransform> computeAnchors() {
-        return Map.of(
-                "topLegAnchor", asTransform(this.topLegAnchor),
-                "bottomLegAnchor", asTransform(bottomLegAnchor)
-        );
     }
 
     @Override
