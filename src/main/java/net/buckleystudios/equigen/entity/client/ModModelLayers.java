@@ -430,8 +430,11 @@ public class ModModelLayers {
     );
 
     /* Ears */
-    public static final ModelLayerLocation EARS = new ModelLayerLocation(
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "ears"), "main"
+    public static final ModelLayerLocation LEFT_EAR = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "left_ear"), "main"
+    );
+    public static final ModelLayerLocation RIGHT_EAR = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "right_ear"), "main"
     );
 
     /* Front Top Legs */

@@ -2,13 +2,14 @@ package net.buckleystudios.equigen.event;
 
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.ModEntities;
-import net.buckleystudios.equigen.entity.client.*;
+import net.buckleystudios.equigen.entity.client.ModModelLayers;
 import net.buckleystudios.equigen.entity.client.egret.EgretModel;
 import net.buckleystudios.equigen.entity.client.genetic_horse.GH_ModelBase;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.backs.*;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.bottomlegs.*;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.chests.*;
-import net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.ears.ears;
+import net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.ears.left_ear;
+import net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.ears.right_ear;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.heads.*;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.hips.*;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.hooves.hoof_average;
@@ -220,7 +221,9 @@ public class ModEventBusEvents {
         event.registerLayerDefinition(ModModelLayers.NECK_MUSCULAR_SWAN_LONG_2, neck_muscular_swan_long_2::createBodyLayer);
 
         // Ears
-        event.registerLayerDefinition(ModModelLayers.EARS, ears::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.LEFT_EAR, left_ear::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.RIGHT_EAR, right_ear::createBodyLayer);
+
 
         // Heads
         event.registerLayerDefinition(ModModelLayers.HEAD_DISHED_LEAN, head_dished_lean::createBodyLayer);

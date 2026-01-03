@@ -30,15 +30,19 @@ public class GeneticsCalculator {
         EquigenMod.LOGGER.info("Percentile Result = " + percentileResult + ", setting genetic to " + geneticValue);
         return geneticValue;
     }
+
     public float standardInheritance(int percentileResult, float gen1, float gen2, float gen3, float gen4, float gen5, float gen6) {
         return standardInheritance(percentileResult, gen1, gen2, gen3, gen4, gen5, gen6, 0.0F);
     }
+
     public float standardInheritance(int percentileResult, float gen1, float gen2, float gen3, float gen4, float gen5) {
         return standardInheritance(percentileResult, gen1, gen2, gen3, gen4, gen5, 0.0F);
     }
+
     public float standardInheritance(int percentileResult, float gen1, float gen2, float gen3, float gen4) {
         return standardInheritance(percentileResult, gen1, gen2, gen3, gen4, 0.0F);
     }
+
     public float standardInheritance(int percentileResult, float gen1, float gen2, float gen3) {
         return standardInheritance(percentileResult, gen1, gen2, gen3, 0.0F);
     }
@@ -66,11 +70,13 @@ public class GeneticsCalculator {
 
 
     int rolls = 0;
+
     public float ladderInheritance(String geneticType, GeneticValues value, int percentileResult, float gen1, float gen2, float gen3, float gen4, float gen5, float gen6, float gen7) {
         //This is an inheritance method where the genetic cannot be repeated, and will therefore be rerolled if it matches other genetics.
         char variation = 0;
         int variationNum = -1;
         String type = "";
+        EquigenMod.LOGGER.info("Percentile Result (Ladder) = " + percentileResult);
         if (geneticType.equals("PATTERN")) {
             variation = value.name().charAt(value.name().length() - 1);
             variationNum = Character.getNumericValue(variation);
@@ -139,36 +145,41 @@ public class GeneticsCalculator {
         }
         return genetic;
     }
+
     public float ladderInheritance(String geneticType, GeneticValues value, int percentileResult, float gen1, float gen2, float gen3, float gen4, float gen5, float gen6) {
-        return ladderInheritance(geneticType, value,percentileResult, gen1, gen2, gen3, gen4, gen5, gen6, 0.0F);
+        return ladderInheritance(geneticType, value, percentileResult, gen1, gen2, gen3, gen4, gen5, gen6, 0.0F);
     }
+
     public float ladderInheritance(String geneticType, GeneticValues value, int percentileResult, float gen1, float gen2, float gen3, float gen4, float gen5) {
-        return ladderInheritance(geneticType, value,percentileResult, gen1, gen2, gen3, gen4, gen5, 0.0F);
+        return ladderInheritance(geneticType, value, percentileResult, gen1, gen2, gen3, gen4, gen5, 0.0F);
     }
+
     public float ladderInheritance(String geneticType, GeneticValues value, int percentileResult, float gen1, float gen2, float gen3, float gen4) {
-        return ladderInheritance(geneticType, value,percentileResult, gen1, gen2, gen3, gen4,0.0F);
+        return ladderInheritance(geneticType, value, percentileResult, gen1, gen2, gen3, gen4, 0.0F);
     }
+
     public float ladderInheritance(String geneticType, GeneticValues value, int percentileResult, float gen1, float gen2, float gen3) {
-        return ladderInheritance(geneticType, value,percentileResult, gen1, gen2, gen3,0.0F);
+        return ladderInheritance(geneticType, value, percentileResult, gen1, gen2, gen3, 0.0F);
     }
 
     //Splits up the genetic code into Alleles
     public List<Integer> getAlleles(float genetic) {
         List<Integer> genotypes = new ArrayList<>();
-        switch ((int)genetic) {
-            case 1 :
+        switch ((int) genetic) {
+            case 1:
                 genotypes.add(0);
                 genotypes.add(0);
                 break;
-            case 2 :
+            case 2:
                 genotypes.add(0);
                 genotypes.add(1);
                 break;
-            case 3 :
+            case 3:
                 genotypes.add(1);
                 genotypes.add(1);
                 break;
-            default : EquigenMod.LOGGER.error("Invalid genotype " + genetic);
+            default:
+                EquigenMod.LOGGER.error("Invalid genotype " + genetic);
         }
         return genotypes;
     }
@@ -186,54 +197,28 @@ public class GeneticsCalculator {
     }
 
 
-    public int percentileGenerator(int r1, int r2, int r3, int r4, int r5, int r6, int r7) {
-        int r2Max = r1 + r2;
-        int r3Max = r2Max + r3;
-        int r4Max = r3Max + r4;
-        int r5Max = r4Max + r5;
-        int r6Max = r5Max + r6;
-        int r7Max = r6Max + r7;
-        int random = (int) Math.round(Math.random() * 100);
+    public int percentileGenerator(List<Integer> arrs) {
+        List<Integer> maxArrs = new ArrayList<>();
+        int cumulativeArrs = 0;
 
-        if(r7Max != 100) {
-            EquigenMod.LOGGER.error("ERROR! Percentages put in don't add up to 100. They add up to " + r7Max);
-            return -1;
+        for (int r : arrs) {
+            cumulativeArrs += r;
+            maxArrs.add(cumulativeArrs);
         }
-        if (random <= r1) {
-            return 1;
+        if (cumulativeArrs != 100) {
+            EquigenMod.LOGGER.error("Percentile Generator: The percentage chances of the selected genetics don't add up to 100");
         }
-        if (random <= r2Max) {
-            return 2;
+        Random RNG = new Random();
+        int GeneratedNumber = RNG.nextInt(100) + 1;
+        EquigenMod.LOGGER.info("Random Generated Number = " + GeneratedNumber);
+        for (int i = (maxArrs.size() - 1); i > -1; i--) {
+            if (GeneratedNumber <= maxArrs.get(i)) {
+                EquigenMod.LOGGER.info("Percentile Result " + i + " Selected!");
+                return i;
+            }
         }
-        if (random <= r3Max) {
-            return 3;
-        }
-        if (random <= r4Max) {
-            return 4;
-        }
-        if (random <= r5Max) {
-            return 5;
-        }
-        if (random <= r6Max) {
-            return 6;
-        }
-        if (random <= r7Max) {
-            return 7;
-        } else {
-            return 0;
-        }
+        EquigenMod.LOGGER.error("Percentile Generator: Somehow, The Random number between 1-100 isn't actually between 1-100");
+        return 0;
 
-    }
-    public int percentileGenerator(int r1, int r2, int r3, int r4, int r5, int r6) {
-        return percentileGenerator(r1, r2, r3, r4, r5, r6, 0);
-    }
-    public int percentileGenerator(int r1, int r2, int r3, int r4, int r5) {
-        return percentileGenerator(r1, r2, r3, r4, r5, 0);
-    }
-    public int percentileGenerator(int r1, int r2, int r3, int r4) {
-        return percentileGenerator(r1, r2, r3, r4, 0);
-    }
-    public int percentileGenerator(int r1, int r2, int r3) {
-        return percentileGenerator(r1, r2, r3, 0);
     }
 }

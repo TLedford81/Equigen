@@ -178,6 +178,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     List<String> LOVE_AND_HATE_GENETICS = List.of("FAVORITE_TERRAIN", "HATED_TERRAIN", "FAVORITE_FOOD", "HATED_FOOD", "FAVORITE_GRASS","HATED_GRASS");
     List<String> SKILL_GENETICS = List.of("SPEED_MAX_LEVEL", "STRENGTH_MAX_LEVEL", "JUMP_MAX_LEVEL", "ENDURANCE_MAX_LEVEL", "AGILITY_MAX_LEVEL");
     List<String> ABILITY_GENETICS = List.of("CHARGE", "KICK", "REAR", "ADRENALINE");
+    List<String> RANDOM_GENETICS = List.of("GENDER");
 
 
     // SPAWNING //
@@ -1711,7 +1712,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                 if (value.getDefaultMaxSize() != 0) {
                     float minValue, maxValue;
                     float motherGenetic = mother.getGenetic(value.name());
+                    EquigenMod.LOGGER.info("motherGenetic = " + motherGenetic);
                     float fatherGenetic = father.getGenetic(value.name());
+                    EquigenMod.LOGGER.info("fatherGenetic = " + fatherGenetic);
 
                     EquigenMod.LOGGER.info("Mother = " + mother.getName() + " Father = " + father.getName());
 
@@ -1735,31 +1738,31 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                             difference = motherGenetic - fatherGenetic;
                         }
                         if (difference >= 4) {
-                            newGeneticValue = calculator.standardInheritance(calculator.percentileGenerator(35, 35, 30),((Math.round(random.nextFloat((minValue) + 3.0F) + minValue + 1.0F))), (Math.round(random.nextFloat((maxValue)) + maxValue - 3.0F)), (Math.round(random.nextFloat((maxValue) + 1.0F) + minValue)));
+                            newGeneticValue = calculator.standardInheritance(calculator.percentileGenerator(List.of(35, 35, 30)),((Math.round(random.nextFloat((minValue) + 3.0F) + minValue + 1.0F))), (Math.round(random.nextFloat((maxValue)) + maxValue - 3.0F)), (Math.round(random.nextFloat((maxValue) + 1.0F) + minValue)));
                         } else {
-                            newGeneticValue = calculator.standardInheritance(calculator.percentileGenerator(35, 35, 30), motherGenetic, fatherGenetic, (Math.round(random.nextFloat((maxValue) + 1.0F) + minValue)));
+                            newGeneticValue = calculator.standardInheritance(calculator.percentileGenerator(List.of(35, 35, 30)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat((maxValue) + 1.0F) + minValue)));
                         }
                     } else if (COAT_GENETICS.contains(value.name())) {
                         newGeneticValue = calculator.punnettInheritance(motherGenetic, fatherGenetic);
                     } else if (COAT_VARIATION_GENETICS.contains(value.name())) {
-                        newGeneticValue = calculator.standardInheritance((calculator.percentileGenerator(45, 45, 10)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(value.getDefaultMaxSize()) + 1)));
+                        newGeneticValue = calculator.standardInheritance((calculator.percentileGenerator(List.of(45, 45, 10))), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(value.getDefaultMaxSize()) + 1)));
                     } else if (PATTERN_GENETICS.contains(value.name())) {
                         newGeneticValue = calculator.punnettInheritance(motherGenetic, fatherGenetic);
                     } else if (PATTERN_VARIATION_GENETICS.contains(value.name())) {
                         char variationNum = value.name().charAt(value.name().length() - 1);
                         switch (variationNum) {
-                            case '1' -> newGeneticValue = calculator.ladderInheritance("PATTERN", value, calculator.percentileGenerator(39, 39, 10, 10, 2), motherGenetic, fatherGenetic,
+                            case '1' -> newGeneticValue = calculator.ladderInheritance("PATTERN", value, calculator.percentileGenerator(List.of(39, 39, 10, 10, 2)), motherGenetic, fatherGenetic,
                                     mother.getGenetic(value.name().replace(variationNum, '2')), //Calls the Variation 2 Genetic
                                     father.getGenetic(value.name().replace(variationNum, '2')), 0.0F);
 
-                            case '2' -> newGeneticValue = calculator.ladderInheritance("PATTERN", value, calculator.percentileGenerator(35, 35, 5, 5, 8, 8, 4), motherGenetic, fatherGenetic,
+                            case '2' -> newGeneticValue = calculator.ladderInheritance("PATTERN", value, calculator.percentileGenerator(List.of(35, 35, 5, 5, 8, 8, 4)), motherGenetic, fatherGenetic,
                                     mother.getGenetic(value.name().replace(variationNum, '1')),
                                     father.getGenetic(value.name().replace(variationNum, '1')),
                                     mother.getGenetic(value.name().replace(variationNum, '3')),
                                     father.getGenetic(value.name().replace(variationNum, '3')),
                                     0.0F);
 
-                            case '3' -> newGeneticValue = calculator.ladderInheritance("PATTERN", value, calculator.percentileGenerator(40, 40, 8, 8, 4), motherGenetic, fatherGenetic,
+                            case '3' -> newGeneticValue = calculator.ladderInheritance("PATTERN", value, calculator.percentileGenerator(List.of(40, 40, 8, 8, 4)), motherGenetic, fatherGenetic,
                                     mother.getGenetic(value.name().replace(variationNum, '2')),
                                     father.getGenetic(value.name().replace(variationNum, '2')),
                                     Math.round(random.nextFloat((value.getDefaultMaxSize()) + 1)));
@@ -1769,21 +1772,27 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                         EquigenMod.LOGGER.info("Setting " + value.name() + " genetic to " + newGeneticValue);
 
                     } else if (MARKING_GENETICS.contains(value.name())) {
-                        newGeneticValue = calculator.standardInheritance((calculator.percentileGenerator(40, 40, 10, 10)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, value.getDefaultMaxSize()) + 1)), 0.0F);
+                        newGeneticValue = calculator.standardInheritance((calculator.percentileGenerator(List.of(40, 40, 10, 10))), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, value.getDefaultMaxSize()) + 1)), 0.0F);
                     } else if (PERSONALITY_GENETICS.contains(value.name())) {
-                        newGeneticValue = calculator.ladderInheritance("PERSONALITY", value, calculator.percentileGenerator(20, 20, 60), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, (value.getDefaultMaxSize()) + 1.0F))));
+                        newGeneticValue = calculator.ladderInheritance("PERSONALITY", value, calculator.percentileGenerator(List.of(20, 20, 60)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, (value.getDefaultMaxSize()) + 1.0F))));
                     } else if (PERCENTAGE_GENETICS.contains(value.name())) {
+                        //TODO There seems to be a bug with the percentile generator in this one. Keeps selecting "option 3" when there is only a 2 percent chance of doing that.
                         // NEED TO EDIT CHANCES TO HAVE MORE RANDOM VARIATION, NOT DONE!!
-                        newGeneticValue = calculator.ladderInheritance("PERCENTAGE", value, calculator.percentileGenerator(20, 20, 60), motherGenetic, fatherGenetic, ((motherGenetic + fatherGenetic) / 2));
+                        newGeneticValue = calculator.standardInheritance(calculator.percentileGenerator(List.of(10, 10, 2, 78)), motherGenetic, fatherGenetic, ((float) (random.nextInt(0, 100)) / 100), ((random.nextFloat(1, (maxValue)) + minValue) * 100) / 100);
                     } else if (TRAIT_GENETICS.contains(value.name())) {
-                        newGeneticValue = calculator.ladderInheritance("TRAIT", value, (calculator.percentileGenerator(20, 20, 60)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, value.getDefaultMaxSize()) + 1.0F)));
+                        newGeneticValue = calculator.ladderInheritance("TRAIT", value, (calculator.percentileGenerator(List.of(20, 20, 60))), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, value.getDefaultMaxSize()) + 1.0F)));
 
                     } else if (LOVE_AND_HATE_GENETICS.contains(value.name())) {
-                        newGeneticValue = calculator.standardInheritance((calculator.percentileGenerator(20, 20, 60)), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, value.getDefaultMaxSize()) + 1)));
+                        newGeneticValue = calculator.standardInheritance((calculator.percentileGenerator(List.of(20, 20, 60))), motherGenetic, fatherGenetic, (Math.round(random.nextFloat(1, value.getDefaultMaxSize()) + 1)));
 
                     } else if (SKILL_GENETICS.contains(value.name())) {
                         newGeneticValue = random.nextFloat(minValue, maxValue + 1f);
                         newGeneticValue = (float) Math.round(newGeneticValue * 100) / 100;
+
+                    } else if (RANDOM_GENETICS.contains(value.name())){
+                        newGeneticValue = Math.round(random.nextFloat(1, value.getDefaultMaxSize()));
+                        EquigenMod.LOGGER.info("Random Genetic, genetic value result = " + newGeneticValue);
+
                     } else {
                         EquigenMod.LOGGER.info("Genetic = " + value.name() + ". minValue = " + minValue + ". maxValue = " + maxValue);
                         newGeneticValue = random.nextInt(Math.round(minValue), Math.round(maxValue) + 1);
@@ -1877,7 +1886,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 //        parts.add(partNameBuilder.PartStringGenerator("bottom_legs"));
         parts.add(partNameBuilder.PartStringGenerator("chest"));
 //        parts.add("chest_average_average_1");
-        parts.add(partNameBuilder.PartStringGenerator("ears"));
+        parts.add(partNameBuilder.PartStringGenerator("left_ear"));
+        parts.add(partNameBuilder.PartStringGenerator("right_ear"));
         parts.add(partNameBuilder.PartStringGenerator("top_front_legs"));
 //        parts.add("top_front_legs_average_average_1");
         parts.add(partNameBuilder.PartStringGenerator("top_back_legs"));

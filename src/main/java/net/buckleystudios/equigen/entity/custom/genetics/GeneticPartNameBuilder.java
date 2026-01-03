@@ -52,7 +52,7 @@ public class GeneticPartNameBuilder {
         String TAIL_LENGTH        = GeneticIdentifier("TAIL_LENGTH", GENETICS.get("TAIL_LENGTH"), PART);
 
         return switch(PART) {
-            case "ears", "knees" -> GeneValueNameBuilder(List.of(PART));
+            case "left_ear", "right_ear", "knees" -> GeneValueNameBuilder(List.of(PART));
             case "top_front_legs" -> GeneValueNameBuilder(List.of(PART, LEG_WIDTH, TOP_LEG));
             case "top_back_legs" -> GeneValueNameBuilder(List.of(PART, TOP_HIND_LEG_WIDTH, TOP_LEG));
             case "bottom_legs" -> GeneValueNameBuilder(List.of(PART, LEG_WIDTH, BOTTOM_LEG));

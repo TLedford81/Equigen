@@ -6,7 +6,8 @@ import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.Mu
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.backs.*;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.bottomlegs.*;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.chests.*;
-import net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.ears.ears;
+import net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.ears.left_ear;
+import net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.ears.right_ear;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.heads.*;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.hips.*;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.hooves.hoof_average;
@@ -335,8 +336,10 @@ public class PartModelCache {
                     new neck_muscular_swan_long_2(modelSet.bakeLayer(ModModelLayers.NECK_MUSCULAR_SWAN_LONG_2));
 
             // Ears
-            case "ears" ->
-                    new ears(modelSet.bakeLayer(ModModelLayers.EARS));
+            case "left_ear" ->
+                    new left_ear(modelSet.bakeLayer(ModModelLayers.LEFT_EAR));
+            case "right_ear" ->
+                    new right_ear(modelSet.bakeLayer(ModModelLayers.RIGHT_EAR));
 
             // Heads
             case "head_dished_lean" ->

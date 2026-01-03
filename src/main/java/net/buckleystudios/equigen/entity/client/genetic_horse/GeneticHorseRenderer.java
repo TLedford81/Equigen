@@ -139,8 +139,8 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
         modelMap.put("backModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "back"));
         modelMap.put("headModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "head"));
         modelMap.put("neckModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "neck"));
-        modelMap.put("leftEarModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "ear"));
-        modelMap.put("rightEarModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "ear"));
+        modelMap.put("leftEarModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "left_ear"));
+        modelMap.put("rightEarModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "right_ear"));
         modelMap.put("topFrontLeftLegModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "top_front_legs"));
         modelMap.put("kneeFrontLeftLegModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "knees"));
         modelMap.put("bottomFrontLeftLegModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "bottom_legs"));
