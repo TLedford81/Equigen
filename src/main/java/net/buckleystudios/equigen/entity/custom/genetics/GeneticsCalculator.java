@@ -18,13 +18,13 @@ public class GeneticsCalculator {
     public float standardInheritance(int percentileResult, float gen1, float gen2, float gen3, float gen4, float gen5, float gen6, float gen7) {
         float geneticValue;
         switch (percentileResult) {
-            case 1 -> geneticValue = gen1;
-            case 2 -> geneticValue = gen2;
-            case 3 -> geneticValue = gen3;
-            case 4 -> geneticValue = gen4;
-            case 5 -> geneticValue = gen5;
-            case 6 -> geneticValue = gen6;
-            case 7 -> geneticValue = gen7;
+            case 0 -> geneticValue = gen1;
+            case 1 -> geneticValue = gen2;
+            case 2 -> geneticValue = gen3;
+            case 3 -> geneticValue = gen4;
+            case 4 -> geneticValue = gen5;
+            case 5 -> geneticValue = gen6;
+            case 6 -> geneticValue = gen7;
             default -> geneticValue = 0.0F;
         }
         EquigenMod.LOGGER.info("Percentile Result = " + percentileResult + ", setting genetic to " + geneticValue);
@@ -195,8 +195,7 @@ public class GeneticsCalculator {
             return 3;
         }
     }
-
-
+    Random RNG = new Random();
     public int percentileGenerator(List<Integer> arrs) {
         List<Integer> maxArrs = new ArrayList<>();
         int cumulativeArrs = 0;
@@ -208,10 +207,9 @@ public class GeneticsCalculator {
         if (cumulativeArrs != 100) {
             EquigenMod.LOGGER.error("Percentile Generator: The percentage chances of the selected genetics don't add up to 100");
         }
-        Random RNG = new Random();
         int GeneratedNumber = RNG.nextInt(100) + 1;
         EquigenMod.LOGGER.info("Random Generated Number = " + GeneratedNumber);
-        for (int i = (maxArrs.size() - 1); i > -1; i--) {
+        for (int i = 0; i < maxArrs.size(); i++) {
             if (GeneratedNumber <= maxArrs.get(i)) {
                 EquigenMod.LOGGER.info("Percentile Result " + i + " Selected!");
                 return i;
@@ -221,4 +219,88 @@ public class GeneticsCalculator {
         return 0;
 
     }
+
+    public int random(int minValue, int maxValue, int valueCap, float variation) {
+        // Variation = percentage variation (in form of decimal) above and below the minValue and maxValue that the number can be.
+        // To prevent skewing towards the larger number, it will average the 2 numbers and then times the variation by it. Then subtract/add the difference to the numbers.
+        if (variation > 1.0f) {
+            EquigenMod.LOGGER.error("ERROR! Random number varation is greater than 1.0 Variation is " + variation);
+            return -1;
+        }
+        maxValue++;
+        valueCap++;
+        float averagedNum = (float) (minValue + maxValue) / 2.0f;
+        float difference = ((averagedNum * (1 + variation)) - (averagedNum));
+        int newMin = (int) (minValue - difference);
+        int newMax = (int) (maxValue + difference);
+        EquigenMod.LOGGER.info("Min = " + newMin + " Max = " + newMax);
+
+        if (newMin <= 0) {
+            newMin = 1;
+            EquigenMod.LOGGER.info("NEWMIN WAS LESS THAN 1");
+        }
+        if (newMax > valueCap) {
+            newMax = valueCap;
+            EquigenMod.LOGGER.info("NEWMAX WAS GREATER THAN " + valueCap);
+        }
+        if (newMin == newMax) {
+            return newMin;
+        }
+
+        if (minValue > maxValue) {
+            EquigenMod.LOGGER.error("ERROR! Random number newMin (" + newMin + ") is larger than  (" + newMax + ")");
+            return -1;
+        }
+        return (RNG.nextInt((newMax - newMin) + 1) + newMin);
+    }
+
+    public int random (int minValue, int maxValue, int valueCap) {
+        return random(minValue, maxValue, valueCap,0.00f);
+    }
+
+
+    public float random(float minValue, float maxValue, float valueCap, float variation, int roundTo) {
+        //Variation = percentage variation (in form of decimal) above and below the minValue and maxValue that the number can be. For example,
+        //if maxValue is 0.5 and variation is 0.10, then the actual max is 0.55.
+
+        //roundTo is the amount of decimal places that you want it to be rounded to. If you want it to be 2 decimal places you would put 100.
+        if (variation > 1.0f) {
+            EquigenMod.LOGGER.error("ERROR! Random number varation is greater than 1.0 Variation is " + variation);
+            return -1;
+        }
+        maxValue = maxValue + 0.01f;
+        valueCap = valueCap + 0.01f;
+        float averagedNum = ((minValue + maxValue) / 2);
+        float difference = ((averagedNum * (1 + variation)) - (averagedNum));
+        EquigenMod.LOGGER.info("DIFFERENCE = " + difference);
+        float newMin = (minValue - difference);
+        float newMax = (maxValue + difference);
+
+        if (newMin < 0) {
+            newMin = 0;
+        }
+        if (newMax > valueCap) {
+            newMax = valueCap;
+        }
+        if (newMin == newMax) {
+            EquigenMod.LOGGER.info("MINVALUE = MAXVALUE");
+            return newMin;
+        }
+
+        EquigenMod.LOGGER.info("New Min = " + newMin + ". New Max = " + newMax);
+
+        if (minValue > maxValue) {
+            EquigenMod.LOGGER.error("ERROR! Random number newMin (" + newMin + ") is larger than  (" + newMax + ")");
+            return -1;
+        }
+        int rounded = (int)((RNG.nextFloat((newMax - newMin) + 0.01F) + newMin) * roundTo);
+        EquigenMod.LOGGER.info("Rounded random = " + rounded);
+
+        return ((float) rounded / roundTo);
+    }
+
+    public float random (float minValue, float maxValue, float valueCap, int roundTo) {
+        return random(minValue, maxValue, valueCap, 0.00f, roundTo);
+    }
+
 }
