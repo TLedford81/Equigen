@@ -220,17 +220,18 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     // BREEDING & PREGNANCY //
     @Override
     public void spawnChildFromBreeding(ServerLevel level, Animal mate) {
+        EquigenMod.LOGGER.info("{} MATE IS {}", this.getName(), mate.getName());
         GeneticHorseEntity geneticHorseMate = (GeneticHorseEntity) mate;
         if (this.getGenetic("GENDER") == 1) {
-            geneticHorseMate.setPregnant(true, mate);
+            geneticHorseMate.setPregnant(true, this);
             geneticHorseMate.pregnancyTickTimer = PregnancyLength;
         } else if (this.getGenetic("GENDER") == 2){
             this.setPregnant(true, mate);
             this.pregnancyTickTimer = PregnancyLength;
         }
         EquigenMod.LOGGER.info("IM PREGNANT!");
-        this.setAge(6000);
-        mate.setAge(6000);
+        this.setAge(20);
+        mate.setAge(20);
         this.resetLove();
         mate.resetLove();
     }
@@ -240,6 +241,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     }
 
     public void setPregnant(boolean pregnant, Animal mate) {
+        EquigenMod.LOGGER.info("{} is pregnant with {}'s child", this.getName(), mate.getName());
         this.entityData.set(PREGNANT, pregnant);
         this.RecentMate = mate;
     }
@@ -260,6 +262,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         GeneticHorseEntity ghe = (GeneticHorseEntity) ageablemob;
         ghe.HandleNewSpawnSkillsAndProficiencies();
         ghe.HandleNewSpawnWithParentalGenetics(this, (GeneticHorseEntity) mate);
+        this.RecentMate = null;
     }
 
     // BASIC SETTINGS //
@@ -1697,6 +1700,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     }
 
     public void HandleNewSpawnWithParentalGenetics(GeneticHorseEntity parent){
+        EquigenMod.LOGGER.info("I WAS CALLED");
         this.HandleNewSpawnWithParentalGenetics(parent, parent);
     }
 
