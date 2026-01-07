@@ -8,7 +8,8 @@ public enum GeneticBreeds {
     ARABIAN,
     CHARGER,
     TURKOMAN,
-    MONGOLIAN_WILD;
+    MONGOLIAN_WILD,
+    RANDOM;
 
     public Map<String, Vec2> getGeneticLimits() {
         Map<String, Vec2> custom = new HashMap<>();
@@ -88,7 +89,7 @@ public enum GeneticBreeds {
                 custom.put("NECK_CURVE", new Vec2(2, 3)); // Ewed
 //                custom.put("NECK_POS", new Vec2(3, 4));
                 custom.put("BACK_LENGTH", new Vec2(1, 3));
-                custom.put("BACK_GIRTH", new Vec2(0, 3));
+                custom.put("BACK_GIRTH", new Vec2(1, 3));
 //                custom.put("BACK_HEIGHT", new Vec2(0, 2));
                 custom.put("STOMACH_CURVE", new Vec2(0, 2));
 //                custom.put("STOMACH_HEIGHT", new Vec2(0, 2));
@@ -132,6 +133,9 @@ public enum GeneticBreeds {
                 custom.put("TAIL_THICKNESS", new Vec2(0, 3));
                 custom.put("HOOF_SIZE", new Vec2(0, 1));
                 custom.put("SCALE", new Vec2(0.10F, 0.30F));
+            }
+            case RANDOM -> {
+                custom.put("BLACK_VARIATION", new Vec2(1, 4));
             }
         };
 

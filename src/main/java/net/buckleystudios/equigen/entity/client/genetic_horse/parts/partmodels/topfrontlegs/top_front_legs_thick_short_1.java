@@ -40,7 +40,7 @@ public class top_front_legs_thick_short_1 extends MultipartFrontTopLegModel<Gene
 
 		PartDefinition cube_r2 = top_front_legs_thick_short_1_top_front_right_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(193, 208).mirror().addBox(-1.058F, -2.0808F, -5.7678F, 2.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.058F, -3.164F, 1.0023F, 1.4399F, 0.0F, 0.0F));
 
-		PartDefinition chestAnchor = top_front_legs_thick_short_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.45F, 0.05F));
+		PartDefinition chestAnchor = top_front_legs_thick_short_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.05F, -1.95F));
 
 		PartDefinition kneeAnchor = top_front_legs_thick_short_1.addOrReplaceChild("kneeAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 4.15F, 0.1F));
 

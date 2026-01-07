@@ -152,7 +152,7 @@ public enum GeneticValues {
 
             /* Conformation */
             case HOOF_SIZE -> 2;
-            case LEG_WIDTH -> 3;
+            case LEG_WIDTH -> 2;
             case BOTTOM_LEG -> 9;
             case TOP_LEG -> 9;
             case TOP_HIND_LEG_WIDTH -> 3;
@@ -178,9 +178,9 @@ public enum GeneticValues {
             case EAR_SIZE -> 3;
 
             /* Textures*/
-            case BLACK_MODIFIER -> 3;
+            case BLACK_MODIFIER -> 2;
             case BLACK_VARIATION -> 10;
-            case RED_MODIFIER -> 3;
+            case RED_MODIFIER -> 2;
             case RED_VARIATION -> 10;
             case CREAM -> 0; // If number is 0 that means the coat isn't in the game yet/won't be implemented right away //
             case CREAM_VARIATION -> 0;

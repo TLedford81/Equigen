@@ -95,13 +95,9 @@ public class GeneticPartNameBuilder {
                 default -> "";
             };
             case "LEG_WIDTH" -> switch (value) {
-                case 1 -> { if (part == "top_front_legs") {
-                    yield "average";} else {yield "thin";}
-                }
-                case 2 -> { if (part == "top_front_legs") {
-                   yield "average";} else {yield "average";}
-                }
-                case 3 -> "thick";
+                case 1 -> "average";
+
+                case 2 -> "thick";
                 default -> "";
                 };
 

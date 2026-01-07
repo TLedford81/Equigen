@@ -32,7 +32,7 @@ public class top_front_legs_average_average_2 extends MultipartFrontTopLegModel<
 
 		PartDefinition top_front_legs_average_average_2_top_front_front = top_front_legs_average_average_2.addOrReplaceChild("top_front_legs_average_average_2_top_front_front", CubeListBuilder.create(), PartPose.offset(-0.1889F, 3.1853F, -0.5909F));
 
-		PartDefinition cube_r1 = top_front_legs_average_average_2_top_front_front.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(314, 169).mirror().addBox(-1.1889F, -2.0F, -2.02F, 2.0F, 2.0F, 8.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.1889F, 1.7166F, 1.4048F, 1.789F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = top_front_legs_average_average_2_top_front_front.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(315, 179).mirror().addBox(-1.1889F, -2.0F, -2.02F, 2.0F, 2.0F, 8.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.1889F, 1.7166F, 1.4048F, 1.789F, 0.0F, 0.0F));
 
 		PartDefinition top_front_legs_average_average_2_top_front_middle = top_front_legs_average_average_2.addOrReplaceChild("top_front_legs_average_average_2_top_front_middle", CubeListBuilder.create(), PartPose.offset(0.1949F, 2.141F, -0.108F));
 
@@ -40,9 +40,9 @@ public class top_front_legs_average_average_2 extends MultipartFrontTopLegModel<
 
 		PartDefinition top_front_legs_average_average_2_top_front_back = top_front_legs_average_average_2.addOrReplaceChild("top_front_legs_average_average_2_top_front_back", CubeListBuilder.create(), PartPose.offset(0.2315F, 2.7216F, 0.7696F));
 
-		PartDefinition cube_r3 = top_front_legs_average_average_2_top_front_back.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(315, 179).mirror().addBox(-0.7685F, -2.0F, -1.84F, 2.0F, 2.0F, 7.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-0.2315F, 1.7763F, 0.7748F, 1.4399F, 0.0F, 0.0F));
+		PartDefinition cube_r3 = top_front_legs_average_average_2_top_front_back.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(316, 170).mirror().addBox(-0.7685F, -2.0F, -1.84F, 2.0F, 2.0F, 7.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-0.2315F, 1.7763F, 0.7748F, 1.4399F, 0.0F, 0.0F));
 
-		PartDefinition chestAnchor = top_front_legs_average_average_2.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.15F, -0.15F));
+		PartDefinition chestAnchor = top_front_legs_average_average_2.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.35F, -2.15F));
 
 		PartDefinition kneeAnchor = top_front_legs_average_average_2.addOrReplaceChild("kneeAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 6.25F, 0.15F));
 

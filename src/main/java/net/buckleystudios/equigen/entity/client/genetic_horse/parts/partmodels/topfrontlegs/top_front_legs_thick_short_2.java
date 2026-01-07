@@ -30,7 +30,7 @@ public class top_front_legs_thick_short_2 extends MultipartFrontTopLegModel<Gene
 
 		PartDefinition top_front_legs_thick_short_2 = partdefinition.addOrReplaceChild("top_front_legs_thick_short_2", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition top_front_legs_thick_short_2_top_front_front = top_front_legs_thick_short_2.addOrReplaceChild("top_front_legs_thick_short_2_top_front_front", CubeListBuilder.create(), PartPose.offset(-0.2152F, 2.3429F, -1.1228F));
+		PartDefinition top_front_legs_thick_short_2_top_front_front = top_front_legs_thick_short_2.addOrReplaceChild("top_front_legs_thick_short_2_top_front_front", CubeListBuilder.create(), PartPose.offset(-0.2152F, 2.3428F, -1.1228F));
 
 		PartDefinition cube_r1 = top_front_legs_thick_short_2_top_front_front.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(220, 220).mirror().addBox(-1.2152F, -1.0771F, -5.6637F, 2.0F, 2.0F, 6.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.2152F, -2.6173F, -0.5013F, 1.789F, 0.0F, 0.0F));
 
@@ -40,7 +40,7 @@ public class top_front_legs_thick_short_2 extends MultipartFrontTopLegModel<Gene
 
 		PartDefinition cube_r2 = top_front_legs_thick_short_2_top_front_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(220, 211).mirror().addBox(-1.058F, -2.0808F, -5.7678F, 2.0F, 3.0F, 6.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.058F, -2.6683F, 0.9371F, 1.4399F, 0.0F, 0.0F));
 
-		PartDefinition chestAnchor = top_front_legs_thick_short_2.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.25F, -0.25F));
+		PartDefinition chestAnchor = top_front_legs_thick_short_2.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.25F, -2.25F));
 
 		PartDefinition kneeAnchor = top_front_legs_thick_short_2.addOrReplaceChild("kneeAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 4.75F, 0.0F));
 

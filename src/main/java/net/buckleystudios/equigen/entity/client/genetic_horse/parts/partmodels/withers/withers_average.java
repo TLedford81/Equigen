@@ -30,11 +30,11 @@ public class withers_average extends MultipartWithersModel<GeneticHorseEntity> {
 
 		PartDefinition withers_average_upper = withers_average.addOrReplaceChild("withers_average_upper", CubeListBuilder.create(), PartPose.offset(-0.0492F, -0.7822F, -0.3656F));
 
-		PartDefinition cube_r1 = withers_average_upper.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(760, 25).addBox(-4.0792F, -6.9812F, -5.4648F, 4.0F, 11.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.0792F, -2.8074F, -0.7073F, 1.2654F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = withers_average_upper.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(761, 26).addBox(-4.0792F, -6.9812F, -4.4648F, 4.0F, 9.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.0792F, -2.8074F, -0.7073F, 1.2654F, 0.0F, 0.0F));
 
 		PartDefinition withers_average_lower = withers_average.addOrReplaceChild("withers_average_lower", CubeListBuilder.create(), PartPose.offset(-0.0277F, -0.0699F, -0.2929F));
 
-		PartDefinition cube_r2 = withers_average_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(780, 25).addBox(-5.08F, -6.88F, -5.52F, 6.0F, 11.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.8905F, -0.7872F, 1.2654F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = withers_average_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(781, 26).addBox(-5.08F, -6.88F, -4.52F, 6.0F, 9.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.8905F, -0.7872F, 1.2654F, 0.0F, 0.0F));
 
 		PartDefinition neckAnchor = withers_average.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(0.0F, -5.05F, -7.3226F));
 

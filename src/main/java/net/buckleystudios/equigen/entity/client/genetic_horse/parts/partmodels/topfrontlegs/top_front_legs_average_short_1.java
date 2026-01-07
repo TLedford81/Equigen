@@ -36,13 +36,13 @@ public class top_front_legs_average_short_1 extends MultipartFrontTopLegModel<Ge
 
 		PartDefinition top_front_legs_average_short_1_top_front_middle = top_front_legs_average_short_1.addOrReplaceChild("top_front_legs_average_short_1_top_front_middle", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition top_front_legs_average_short_1_top_front_back = top_front_legs_average_short_1.addOrReplaceChild("top_front_legs_average_short_1_top_front_back", CubeListBuilder.create(), PartPose.offset(0.058F, 1.9171F, 0.4318F));
+		PartDefinition top_front_legs_average_short_1_top_front_back = top_front_legs_average_short_1.addOrReplaceChild("top_front_legs_average_short_1_top_front_back", CubeListBuilder.create(), PartPose.offset(0.058F, 1.9171F, 0.4319F));
 
 		PartDefinition cube_r2 = top_front_legs_average_short_1_top_front_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(193, 173).addBox(-0.942F, -1.0808F, -5.7678F, 2.0F, 2.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.058F, -3.2293F, 0.5066F, 1.4399F, 0.0F, 0.0F));
 
-		PartDefinition chestAnchor = top_front_legs_average_short_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.45F, -0.05F));
+		PartDefinition chestAnchor = top_front_legs_average_short_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.45F, -1.3F));
 
-		PartDefinition kneeAnchor = top_front_legs_average_short_1.addOrReplaceChild("kneeAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 4.65F, 0.1F));
+		PartDefinition kneeAnchor = top_front_legs_average_short_1.addOrReplaceChild("kneeAnchor", CubeListBuilder.create().texOffs(0, 1).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 4.65F, 0.1F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}

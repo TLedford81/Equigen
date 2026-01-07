@@ -36,11 +36,11 @@ public class top_front_legs_thick_long_1 extends MultipartFrontTopLegModel<Genet
 
 		PartDefinition top_front_legs_thick_long_1_top_front_middle = top_front_legs_thick_long_1.addOrReplaceChild("top_front_legs_thick_long_1_top_front_middle", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition top_front_legs_thick_long_1_top_front_back = top_front_legs_thick_long_1.addOrReplaceChild("top_front_legs_thick_long_1_top_front_back", CubeListBuilder.create(), PartPose.offset(0.1868F, 3.3644F, 0.7216F));
+		PartDefinition top_front_legs_thick_long_1_top_front_back = top_front_legs_thick_long_1.addOrReplaceChild("top_front_legs_thick_long_1_top_front_back", CubeListBuilder.create(), PartPose.offset(0.1868F, 3.3644F, 0.7217F));
 
 		PartDefinition cube_r2 = top_front_legs_thick_long_1_top_front_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(388, 202).mirror().addBox(-0.8132F, -3.0F, -0.84F, 2.0F, 3.0F, 8.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-0.1868F, 3.2787F, 1.2189F, 1.4835F, 0.0F, 0.0F));
 
-		PartDefinition chestAnchor = top_front_legs_thick_long_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.35F, 0.15F));
+		PartDefinition chestAnchor = top_front_legs_thick_long_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.4F, -2.6F));
 
 		PartDefinition kneeAnchor = top_front_legs_thick_long_1.addOrReplaceChild("kneeAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 7.3F, 0.5F));
 

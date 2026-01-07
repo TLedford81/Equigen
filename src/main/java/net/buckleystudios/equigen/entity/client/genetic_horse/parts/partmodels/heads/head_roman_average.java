@@ -12,6 +12,7 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
 public class head_roman_average extends MultipartHeadModel<GeneticHorseEntity> {
+	//TODO If changing anything in this file, make sure that blockbench didn't add a rotation to the ear pivots. For some reason blockbench is doing that even though it doesn't have a rotation in blockbench.
 	private final ModelPart root;
 	private final ModelPart head_roman_average;
 	private final ModelPart neckAnchor;
@@ -68,11 +69,11 @@ public class head_roman_average extends MultipartHeadModel<GeneticHorseEntity> {
 
 		PartDefinition cube_r8 = neckAnchor.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.5672F, 0.0F, 0.0F));
 
-		PartDefinition leftEarAnchor = head_roman_average.addOrReplaceChild("leftEarAnchor", CubeListBuilder.create(), PartPose.offsetAndRotation(-1.5F, -2.0442F, -2.1495F, -0.1745F, 0.0F, 0.0F));
+		PartDefinition leftEarAnchor = head_roman_average.addOrReplaceChild("leftEarAnchor", CubeListBuilder.create(), PartPose.offset(-1.5F, -2.0442F, -2.1495F));
 
 		PartDefinition cube_r9 = leftEarAnchor.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(1, 1).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0442F, 0.3995F, 0.829F, 0.0F, 0.0F));
 
-		PartDefinition rightEarAnchor = head_roman_average.addOrReplaceChild("rightEarAnchor", CubeListBuilder.create(), PartPose.offsetAndRotation(1.5F, -2.0442F, -2.1495F, -0.1745F, 0.0F, 0.0F));
+		PartDefinition rightEarAnchor = head_roman_average.addOrReplaceChild("rightEarAnchor", CubeListBuilder.create(), PartPose.offset(1.5F, -2.0442F, -2.1495F));
 
 		PartDefinition cube_r10 = rightEarAnchor.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(1, 1).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0442F, 0.3995F, 0.829F, 0.0F, 0.0F));
 

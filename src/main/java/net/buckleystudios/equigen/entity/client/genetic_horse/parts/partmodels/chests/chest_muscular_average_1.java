@@ -92,9 +92,9 @@ public class chest_muscular_average_1 extends MultipartChestModel<GeneticHorseEn
 
 		PartDefinition backAnchor = chest_muscular_average_1.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -4.25F, 4.0F));
 
-		PartDefinition frontLeftLegAnchor = chest_muscular_average_1.addOrReplaceChild("frontLeftLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(3.75F, 3.75F, -1.75F));
+		PartDefinition frontLeftLegAnchor = chest_muscular_average_1.addOrReplaceChild("frontLeftLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(3.75F, 3.75F, -3.0F));
 
-		PartDefinition frontRightLegAnchor = chest_muscular_average_1.addOrReplaceChild("frontRightLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-3.5F, 3.75F, -1.75F));
+		PartDefinition frontRightLegAnchor = chest_muscular_average_1.addOrReplaceChild("frontRightLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-3.5F, 3.75F, -3.0F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
@@ -106,7 +106,7 @@ public class chest_muscular_average_1 extends MultipartChestModel<GeneticHorseEn
 
     @Override
     public ModelPart root() {
-        return chest_muscular_average_1;
+        return root;
     }
 
 	@Override
