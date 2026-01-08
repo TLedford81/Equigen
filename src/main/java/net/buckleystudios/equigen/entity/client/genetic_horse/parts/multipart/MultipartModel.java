@@ -11,11 +11,9 @@ import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Vector3f;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public abstract class MultipartModel<E extends GeneticHorseEntity> extends HierarchicalModel<GeneticHorseEntity> {
 
@@ -30,6 +28,11 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
 
     public Map<String, PartTransform> anchors() {
         return anchors;
+    }
+
+    @Deprecated
+    public PartTransform getAnchorForParent(){
+        return null;
     }
 
     private int legID = 0;
@@ -73,7 +76,6 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
         recomputeAnchors();
     }
 
-    //TODO: Replace the animationRoot() method with this line after grunt work is finished:
     public abstract String animationRoot();
 
     protected void registerAnchorPath(String name, ModelPart... parts) {
@@ -122,7 +124,6 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
         return result;
     }
 
-    @Deprecated
     protected PartTransform asTransform(ModelPart part) {
         return new PartTransform(
                 new Vec3(part.x / 16.0, part.y / 16.0, part.z / 16.0),
@@ -131,6 +132,7 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
         );
     }
 
-    public void afterAttached(GeneticHorseEntity e, float partialTicks) { }
+    public Vector3f getBaseRotation(GeneticHorseEntity e) { return new Vector3f(0,0,0); }
+    public void afterAttached(GeneticHorseEntity e, PoseStack pose, float partialTicks) { }
     public void beforeAttached(E entity, float partialTicks, PoseStack pose) { }
 }
