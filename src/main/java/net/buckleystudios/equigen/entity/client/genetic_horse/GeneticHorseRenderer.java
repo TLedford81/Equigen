@@ -17,6 +17,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import org.joml.Vector3f;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -273,23 +274,22 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                 modelMap.get("backModel"), "stomachAnchor", modelMap.get("stomachModel"), "backAnchor", null);
     }
 
-    private void applyTransform(PoseStack pose, PartTransform parent, PartTransform child) {
-        if (parent == null || child == null) return;
+    private void applyTransform(PoseStack pose, PartTransform parent, PartTransform child, Vector3f baseRotation) {
+        pose.translate(parent.position.x, parent.position.y, parent.position.z);
 
-        float dx = (float)(parent.position.x - child.position.x);
-        float dy = (float)(parent.position.y - child.position.y);
-        float dz = (float)(parent.position.z - child.position.z);
-        pose.translate(dx, dy, dz);
+        pose.mulPose(Axis.XP.rotationDegrees((float) parent.rotation.x));
+        pose.mulPose(Axis.YP.rotationDegrees((float) parent.rotation.y));
+        pose.mulPose(Axis.ZP.rotationDegrees((float) parent.rotation.z));
 
-        float rx = (float)(parent.rotation.x - child.rotation.x);
-        float ry = (float)(parent.rotation.y - child.rotation.y);
-        float rz = (float)(parent.rotation.z - child.rotation.z);
+        pose.mulPose(Axis.XP.rotationDegrees(baseRotation.x));
+        pose.mulPose(Axis.YP.rotationDegrees(baseRotation.y));
+        pose.mulPose(Axis.ZP.rotationDegrees(baseRotation.z));
 
-        pose.mulPose(Axis.XP.rotation(rx));
-        pose.mulPose(Axis.YP.rotation(ry));
-        pose.mulPose(Axis.ZP.rotation(rz));
+        pose.mulPose(Axis.ZP.rotationDegrees(-(float) child.rotation.z));
+        pose.mulPose(Axis.YP.rotationDegrees(-(float) child.rotation.y));
+        pose.mulPose(Axis.XP.rotationDegrees(-(float) child.rotation.x));
 
-        //Ignore scale for now
+        pose.translate(-child.position.x, -child.position.y, -child.position.z);
     }
 
 
@@ -381,11 +381,11 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
 //                anchorInChildModel,
 //                cA.position, cA.rotation);
 
-        applyTransform(pose, pA, cA);
+        applyTransform(pose, pA, cA, child.getBaseRotation(entity));
 
         if (chain != null) chain.run();
 
-        child.afterAttached(entity, partialTicks);
+        child.afterAttached(entity, pose, partialTicks);
 
         child.renderToBuffer(
                 pose,

@@ -5,6 +5,7 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartHeadModel;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
@@ -105,8 +106,7 @@ public class head_dished_average extends MultipartHeadModel<GeneticHorseEntity> 
 	}
 
 	@Override
-	public void afterAttached(GeneticHorseEntity e, float partialTicks) {
-		this.root().yRot = getNetYaw(e, partialTicks);
-		this.root().xRot = getPitch(e, "dished");
+	public PartTransform getAnchorForParent() {
+		return asTransform(neckAnchor);
 	}
 }
