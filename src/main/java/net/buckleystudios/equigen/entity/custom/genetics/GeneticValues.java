@@ -178,9 +178,9 @@ public enum GeneticValues {
             case EAR_SIZE -> 3;
 
             /* Textures*/
-            case BLACK_MODIFIER -> 2;
+            case BLACK_MODIFIER -> 3;
             case BLACK_VARIATION -> 10;
-            case RED_MODIFIER -> 2;
+            case RED_MODIFIER -> 3;
             case RED_VARIATION -> 10;
             case CREAM -> 0; // If number is 0 that means the coat isn't in the game yet/won't be implemented right away //
             case CREAM_VARIATION -> 0;
@@ -204,10 +204,10 @@ public enum GeneticValues {
             case ROAN_VARIATION -> 0;
             case PANGARE -> 0;
             case PANGARE_VARIATION -> 0;
-            case FRAME_OVERO -> 0;
-            case FRAME_OVERO_VARIATION_1 -> 0;
-            case FRAME_OVERO_VARIATION_2 -> 0;
-            case FRAME_OVERO_VARIATION_3 -> 0;
+            case FRAME_OVERO -> 3;
+            case FRAME_OVERO_VARIATION_1 -> 10;
+            case FRAME_OVERO_VARIATION_2 -> 10;
+            case FRAME_OVERO_VARIATION_3 -> 10;
             case RABICANO -> 0;
             case RABICANO_VARIATION_1 -> 0;
             case RABICANO_VARIATION_2 -> 0;

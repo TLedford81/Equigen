@@ -24,6 +24,11 @@ public enum GeneticBreeds {
         disabledGenetics.remove("RED_VARIATION");
         disabledGenetics.remove("BLACK_MODIFIER");
         disabledGenetics.remove("BLACK_VARIATION");
+        disabledGenetics.remove("FRAME_OVERO");
+        disabledGenetics.remove("FRAME_OVERO_VARIATION_1");
+        disabledGenetics.remove("FRAME_OVERO_VARIATION_2");
+        disabledGenetics.remove("FRAME_OVERO_VARIATION_3");
+
 
         for(String gene : disabledGenetics){
             custom.put(gene, new Vec2(0, 0));
@@ -55,6 +60,9 @@ public enum GeneticBreeds {
                 custom.put("TAIL_THICKNESS", new Vec2(0, 3));
                 custom.put("HOOF_SIZE", new Vec2(0, 2));
                 custom.put("SCALE", new Vec2(0.25F, 0.55F));
+                custom.put("FRAME_OVERO_VARIATION_1", new Vec2(0, 1));
+                custom.put("FRAME_OVERO_VARIATION_2", new Vec2(0, 1));
+                custom.put("FRAME_OVERO_VARIATION_3", new Vec2(1, 10));
             }
             case CHARGER -> {
                 custom.put("MUSCLE_MASS", new Vec2(1, 3));

@@ -9,10 +9,9 @@ import java.util.Random;
 
 public class GeneticsCalculator {
     public String reroll = "";
-    GeneticHorseEntity entity;
 
-    public GeneticsCalculator(GeneticHorseEntity entity) {
-        this.entity = entity;
+    public GeneticsCalculator() {
+
     }
 
     public float standardInheritance(int percentileResult, List<Float> arrs) {
@@ -51,11 +50,46 @@ public class GeneticsCalculator {
         return (float) possibleChildren.get(percentileResult);
     }
 
+    //Splits up the genetic code into Alleles
+    public List<Integer> getAlleles(float genetic) {
+        List<Integer> genotypes = new ArrayList<>();
+        switch ((int) genetic) {
+            case 1:
+                genotypes.add(0);
+                genotypes.add(0);
+                break;
+            case 2:
+                genotypes.add(0);
+                genotypes.add(1);
+                break;
+            case 3:
+                genotypes.add(1);
+                genotypes.add(1);
+                break;
+            default:
+                EquigenMod.LOGGER.error("Invalid genotype " + genetic);
+        }
+        return genotypes;
+    }
+
+    //Gets the genetic code from alleles. Ex: aa = 0, aA = 1, and AA = 2
+    private int getGenotypeFromAlleles(int a1, int a2) {
+        int sum = a1 + a2;
+        if (sum == 0) {
+            return 1;
+        } else if (sum == 1) {
+            return 2;
+        } else {
+            return 3;
+        }
+    }
+
 
     int rolls = 0;
 
-    public float ladderInheritance(String geneticType, GeneticValues value, int percentileResult, float gen1, float gen2, float gen3, float gen4, float gen5, float gen6, float gen7) {
+    public float ladderInheritance(GeneticHorseEntity entity, String geneticType, GeneticValues value, int percentileResult, List<Float> arrs) {
         //This is an inheritance method where the genetic cannot be repeated, and will therefore be rerolled if it matches other genetics.
+        //In coding 1 = genetic not present. 0 = genetic not implemented.
         char variation = 0;
         int variationNum = -1;
         String type = "";
@@ -89,14 +123,18 @@ public class GeneticsCalculator {
         float genetic;
 
         if (rolls == 2) {
-            genetic = standardInheritance(percentileResult, List.of(gen1, gen2, gen3, gen4, gen5, gen6, gen7));
+            genetic = 1.0f;
+            EquigenMod.LOGGER.info("ROLLS = 2. Times up..... genetic = " + genetic);
             rolls = 0;
+            return genetic;
         } else {
-            genetic = entity.getGenetic(type.replace(' ', '1'));
+            genetic = standardInheritance(percentileResult, arrs);
+            // genetic = entity.getGenetic(type.replace(' ', '1'));
+            EquigenMod.LOGGER.info("Genetic = " + genetic);
         }
-        // Set it so that after a certain number of rolls it sets the genetic to 0, except for in the case of Variation 3, so that people cant get horses with the same pattern variations and breed them to get better chance of randoms.
+        // Set it so that after a certain number of rolls it sets the genetic to 1, except for in the case of Variation 3, so that people cant get horses with the same pattern variations and breed them to get better chance of randoms.
 
-
+        EquigenMod.LOGGER.info("Genetic (ladder) = " + genetic);
         if (variationNum >= 2) {
             EquigenMod.LOGGER.info("Variation = " + variation + ". Variation Num = " + variationNum);
             float var1 = 0.0F;
@@ -108,6 +146,9 @@ public class GeneticsCalculator {
             float var2 = genetic;
 
             if (var1 == var2) {
+                if (genetic == 1.0F) {
+                    rolls++;
+                } // Makes it so that if the variation isn't present they only get 1 reroll, instead of 2.
                 reroll = value.name();
                 rolls++;
                 EquigenMod.LOGGER.info(value.name() + " is equal to variation 1, rerolling.");
@@ -120,6 +161,9 @@ public class GeneticsCalculator {
                 }
 
                 if (var1 == genetic || var2 == genetic) {
+                    if (genetic == 1.0F) {
+                        rolls++;
+                    } // Makes it so that if the variation isn't present they only get 1 reroll, instead of 2.
                     reroll = value.name();
                     rolls++;
                     EquigenMod.LOGGER.info(value.name() + " is equal to the other variations, rerolling.");
@@ -127,56 +171,6 @@ public class GeneticsCalculator {
             }
         }
         return genetic;
-    }
-
-    public float ladderInheritance(String geneticType, GeneticValues value, int percentileResult, float gen1, float gen2, float gen3, float gen4, float gen5, float gen6) {
-        return ladderInheritance(geneticType, value, percentileResult, gen1, gen2, gen3, gen4, gen5, gen6, 0.0F);
-    }
-
-    public float ladderInheritance(String geneticType, GeneticValues value, int percentileResult, float gen1, float gen2, float gen3, float gen4, float gen5) {
-        return ladderInheritance(geneticType, value, percentileResult, gen1, gen2, gen3, gen4, gen5, 0.0F);
-    }
-
-    public float ladderInheritance(String geneticType, GeneticValues value, int percentileResult, float gen1, float gen2, float gen3, float gen4) {
-        return ladderInheritance(geneticType, value, percentileResult, gen1, gen2, gen3, gen4, 0.0F);
-    }
-
-    public float ladderInheritance(String geneticType, GeneticValues value, int percentileResult, float gen1, float gen2, float gen3) {
-        return ladderInheritance(geneticType, value, percentileResult, gen1, gen2, gen3, 0.0F);
-    }
-
-    //Splits up the genetic code into Alleles
-    public List<Integer> getAlleles(float genetic) {
-        List<Integer> genotypes = new ArrayList<>();
-        switch ((int) genetic) {
-            case 0:
-                genotypes.add(0);
-                genotypes.add(0);
-                break;
-            case 1:
-                genotypes.add(0);
-                genotypes.add(1);
-                break;
-            case 2:
-                genotypes.add(1);
-                genotypes.add(1);
-                break;
-            default:
-                EquigenMod.LOGGER.error("Invalid genotype " + genetic);
-        }
-        return genotypes;
-    }
-
-    //Gets the genetic code from alleles. Ex: aa = 0, aA = 1, and AA = 2
-    private int getGenotypeFromAlleles(int a1, int a2) {
-        int sum = a1 + a2;
-        if (sum == 0) {
-            return 1;
-        } else if (sum == 1) {
-            return 2;
-        } else {
-            return 3;
-        }
     }
     Random RNG = new Random();
     public int percentileGenerator(List<Integer> arrs) {

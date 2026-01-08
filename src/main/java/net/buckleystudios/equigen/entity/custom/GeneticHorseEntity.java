@@ -1706,7 +1706,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     public void HandleNewSpawnWithParentalGenetics(GeneticHorseEntity mother, GeneticHorseEntity father) {
         Random random = new Random();
-        GeneticsCalculator calculator = new GeneticsCalculator(this);
+        GeneticsCalculator calculator = new GeneticsCalculator();
         // TODO - Figure out why it's duping the mother's genetic value only on some genetics.
         int rolls = 0;
         for (int i = 0; i < geneticCount; i++) {
@@ -1760,21 +1760,21 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                     } else if (PATTERN_VARIATION_GENETICS.contains(value.name())) {
                         char variationNum = value.name().charAt(value.name().length() - 1);
                         switch (variationNum) {
-                            case '1' -> newGeneticValue = calculator.ladderInheritance("PATTERN", value, calculator.percentileGenerator(List.of(39, 39, 10, 10, 2)), motherGenetic, fatherGenetic,
+                            case '1' -> newGeneticValue = calculator.ladderInheritance(this, "PATTERN", value, calculator.percentileGenerator(List.of(39, 39, 10, 10, 2)), List.of(motherGenetic, fatherGenetic,
                                     mother.getGenetic(value.name().replace(variationNum, '2')), //Calls the Variation 2 Genetic
-                                    father.getGenetic(value.name().replace(variationNum, '2')), 0.0F);
+                                    father.getGenetic(value.name().replace(variationNum, '2')), 1.0F));
 
-                            case '2' -> newGeneticValue = calculator.ladderInheritance("PATTERN", value, calculator.percentileGenerator(List.of(35, 35, 5, 5, 8, 8, 4)), motherGenetic, fatherGenetic,
+                            case '2' -> newGeneticValue = calculator.ladderInheritance(this, "PATTERN", value, calculator.percentileGenerator(List.of(35, 35, 5, 5, 8, 8, 4)), List.of(motherGenetic, fatherGenetic,
                                     mother.getGenetic(value.name().replace(variationNum, '1')),
                                     father.getGenetic(value.name().replace(variationNum, '1')),
                                     mother.getGenetic(value.name().replace(variationNum, '3')),
                                     father.getGenetic(value.name().replace(variationNum, '3')),
-                                    0.0F);
+                                    1.0F));
 
-                            case '3' -> newGeneticValue = calculator.ladderInheritance("PATTERN", value, calculator.percentileGenerator(List.of(40, 40, 8, 8, 4)), motherGenetic, fatherGenetic,
+                            case '3' -> newGeneticValue = calculator.ladderInheritance(this, "PATTERN", value, calculator.percentileGenerator(List.of(40, 40, 8, 8, 4)), List.of(motherGenetic, fatherGenetic,
                                     mother.getGenetic(value.name().replace(variationNum, '2')),
                                     father.getGenetic(value.name().replace(variationNum, '2')),
-                                    calculator.random(0.0F, valueMax, 0.0F, valueMax, 1));
+                                    calculator.random(2.0F, valueMax, 2.0F, valueMax, 1)));
 
                             default -> newGeneticValue = 0.0F;
                         }
@@ -1783,12 +1783,12 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                     } else if (MARKING_GENETICS.contains(value.name())) {
                         newGeneticValue = calculator.standardInheritance((calculator.percentileGenerator(List.of(40, 40, 10, 10))), List.of(motherGenetic, fatherGenetic, calculator.random(0.0F, valueMax, 0.0F, valueMax, 1), 0.0F));
                     } else if (PERSONALITY_GENETICS.contains(value.name())) {
-                        newGeneticValue = calculator.ladderInheritance("PERSONALITY", value, calculator.percentileGenerator(List.of(20, 20, 60)), motherGenetic, fatherGenetic, calculator.random(0.0F, valueMax, 0.0F, valueMax, 1));
+                        newGeneticValue = calculator.ladderInheritance(this, "PERSONALITY", value, calculator.percentileGenerator(List.of(20, 20, 60)), List.of(motherGenetic, fatherGenetic, calculator.random(0.0F, valueMax, 0.0F, valueMax, 1)));
                     } else if (PERCENTAGE_GENETICS.contains(value.name())) {
                         // NEED TO EDIT CHANCES TO HAVE MORE RANDOM VARIATION, NOT DONE!!
                         newGeneticValue = calculator.standardInheritance(calculator.percentileGenerator(List.of(10, 10, 2, 78)), List.of(motherGenetic, fatherGenetic, calculator.random(0.00F, 1.01F, 0.0F, valueMax,100), calculator.random(minValue, maxValue, 0.0F, valueMax ,100)));
                     } else if (TRAIT_GENETICS.contains(value.name())) {
-                        newGeneticValue = calculator.ladderInheritance("TRAIT", value, (calculator.percentileGenerator(List.of(20, 20, 60))), motherGenetic, fatherGenetic, calculator.random(1.0F, valueMax, 1.0F, valueMax, 1));
+                        newGeneticValue = calculator.ladderInheritance(this, "TRAIT", value, (calculator.percentileGenerator(List.of(20, 20, 60))), List.of(motherGenetic, fatherGenetic, calculator.random(1.0F, valueMax, 1.0F, valueMax, 1)));
 
                     } else if (LOVE_AND_HATE_GENETICS.contains(value.name())) {
                         newGeneticValue = calculator.standardInheritance((calculator.percentileGenerator(List.of(20, 20, 60))), List.of(motherGenetic, fatherGenetic, (calculator.random(1.0F, valueMax, 0.0f, valueMax, 1))));
@@ -1881,7 +1881,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 //        LOGGER.info("Setting Geneic: " + key + " / " + number);
         float clampedNumber = Math.clamp(number, 0, GeneticValues.valueOf(key).getDefaultMaxSize());
         this.GENETICS.put(key, clampedNumber);
-        if (key.equals("GENDER") || key.equals("BLACK_MODIFIER")) {
+        if (key.equals("GENDER") || key.equals("BLACK_MODIFIER") || key.equals("FRAME_OVERO")) {
             EquigenMod.LOGGER.info("Setting " + key + " to " + clampedNumber);
         }
         this.setRenderGenetics();
