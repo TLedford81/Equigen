@@ -3,59 +3,77 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import org.joml.Vector3f;
 
+import java.util.List;
 import java.util.Map;
 
 @OnlyIn(Dist.CLIENT)
 public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends MultipartModel<GeneticHorseEntity> {
+ private float neckRotation;
 
     public Map<String, Float> getGenetics(GeneticHorseEntity entity){
         return entity.getRenderGenetics();
     }
 
-    public float getPitch(GeneticHorseEntity e, String neckCurve) {
+    public Vector3f getBaseRotation(GeneticHorseEntity e) {
+        String targetPart = "";
         Map<String, Float> neckGenetics = getGenetics(e);
+        List<String> partsToRender = e.getPartsToRender();
+        for(String part : partsToRender){
+            if(part.startsWith("neck")){
+                targetPart = part.substring(5);
+                switch (Math.round(neckGenetics.get("MUSCLE_MASS"))) {
+                    case 1 -> targetPart = targetPart.substring(5);
+                    case 2 -> targetPart = targetPart.substring(8);
+                    case 3 -> targetPart = targetPart.substring(9);
+                }
+            }
+        }
         float pitch;
         // Neck Curves: 1 = Swan, 2 = Straight, 3 = Ewed, 4 = Arched
-        switch (neckCurve) {
-            case "swan" -> {
-                switch (Math.round(neckGenetics.get("NECK_POS"))) {
-                    case 1 -> pitch = -25.0F;
-                    case 2 -> pitch = -34.0F;
-                    case 3 -> pitch = -33.0F;
-                    default -> pitch = 0.0F;
-                }
+        if (targetPart.startsWith("swan")) {
+            switch (Math.round(neckGenetics.get("NECK_POS"))) {
+                case 1 -> pitch = 35.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
+                case 2 -> pitch = 20.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
+                case 3 -> pitch = 0.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
+                default -> pitch = 0.0F;
             }
-            case "straight" -> {
-                switch (Math.round(neckGenetics.get("NECK_POS"))) {
-                    case 1 -> pitch = -25.0F;
-                    case 2 -> pitch = -30.0F;
-                    case 3 -> pitch = -35.0F;
-                    default -> pitch = 0.0F;
-                }
+            // minus the neck rotation here
+        } else if (targetPart.startsWith("straight")) {
+            switch (Math.round(neckGenetics.get("NECK_POS"))) {
+                case 1 -> pitch = 35.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
+                case 2 -> pitch = 20.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
+                case 3 -> pitch = 0.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
+                default -> pitch = 0.0F;
             }
-            case "ewed" -> {
-                switch (Math.round(neckGenetics.get("NECK_POS"))) {
-                    case 1 -> pitch = -30.0F;
-                    case 2 -> pitch = -25.0F;
-                    case 3 -> pitch = -30.0F;
-                    default -> pitch = 0.0F;
-                }
+            // minus the neck rotation here
+        } else if (targetPart.startsWith("ewed")) {
+            switch (Math.round(neckGenetics.get("NECK_POS"))) {
+                case 1 -> pitch = 35.0F; // Roughly adjusted, need to test w/ varying lengths.
+                case 2 -> pitch = 20.0F; // Roughly adjusted, need to test w/ varying lengths.
+                case 3 -> pitch = 0.0F; // Roughly adjusted, need to test w/ varying lengths.
+                default -> pitch = 0.0F;
             }
-
-            case "arched" -> {
-                switch (Math.round(neckGenetics.get("NECK_POS"))) {
-                    case 1 -> pitch = -100.0F; // Roughly adjusted, need to test w/ varying lengths.
-                    case 2 -> pitch = -25.0F; // Roughly adjusted, need to test w/ varying lengths.
-                    case 3 -> pitch = 50.0F; // Roughly adjusted, need to test w/ varying lengths.
-                    default -> pitch = 0.0F;
-                }
-                // minus the neck rotation here
+            // minus the neck rotation here
+        } else if (targetPart.startsWith("arched")) {
+            switch (Math.round(neckGenetics.get("NECK_POS"))) {
+                // TODO need to find out how to rotate specifically the top part of the arched neck based on neck set.
+                // TODO Also need to lower the neck a lil if there is a lower set neck.
+                case 1 -> pitch = 35.0F; // Roughly adjusted, need to test w/ varying lengths.
+                case 2 -> pitch = 20.0F; // Roughly adjusted, need to test w/ varying lengths.
+                case 3 -> pitch = 0.0F; // Roughly adjusted, need to test w/ varying lengths.
+                default -> pitch = 0.0F;
             }
-            default -> pitch = 0;
+        } else {
+            pitch = 0;
         }
-//        return pitch / 180;
-        return pitch = 0;
+
+        neckRotation = pitch;
+        //        pitch = pitch * ((float)Math.PI / 180f);
+//        EquigenMod.LOGGER.info("Pitch {}", pitch);
+        return new Vector3f(pitch, 0, 0);
+//        return pitch = 0;
     }
 
 
@@ -65,5 +83,9 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
         float netYaw = net.minecraft.util.Mth.clamp(headYaw - bodyYaw, -45f, 45f);
 
         return netYaw * ((float) Math.PI / 180f);
+    }
+
+    public float getNeckRotation() {
+        return neckRotation;
     }
 }

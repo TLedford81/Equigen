@@ -92,6 +92,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public static final EntityDataAccessor<Float> GENE_NECK_POS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_NECK_CURVE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_NECK_LENGTH = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> GENE_WITHERS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_STOMACH_LENGTH = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_STOMACH_CURVE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_TAIL_THICKNESS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
@@ -453,6 +454,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         builder.define(GENE_NECK_POS, 0.0f);
         builder.define(GENE_NECK_CURVE, 0.0f);
         builder.define(GENE_NECK_LENGTH, 0.0f);
+        builder.define(GENE_WITHERS, 0.0f);
         builder.define(GENE_STOMACH_LENGTH, 0.0f);
         builder.define(GENE_STOMACH_CURVE, 0.0f);
         builder.define(GENE_TAIL_THICKNESS, 0.0f);
@@ -1867,6 +1869,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         GENE_MAP.put("NECK_POS", this.entityData.get(GENE_NECK_POS));
         GENE_MAP.put("NECK_CURVE", this.entityData.get(GENE_NECK_CURVE));
         GENE_MAP.put("NECK_LENGTH", this.entityData.get(GENE_NECK_LENGTH));
+        GENE_MAP.put("WITHERS", this.entityData.get(GENE_WITHERS));
         GENE_MAP.put("STOMACH_LENGTH", this.entityData.get(GENE_STOMACH_LENGTH));
         GENE_MAP.put("STOMACH_CURVE", this.entityData.get(GENE_STOMACH_CURVE));
         GENE_MAP.put("TAIL_THICKNESS", this.entityData.get(GENE_TAIL_THICKNESS));

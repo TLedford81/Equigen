@@ -5,7 +5,6 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Axis;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartNeckModel;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
@@ -129,14 +128,5 @@ public class neck_lean_arched_long_1 extends MultipartNeckModel<GeneticHorseEnti
 		registerAnchorPath("headAnchor", root, neck, this.headAnchor);
 		registerAnchorPath("chestAnchor", root, neck, this.chestAnchor);
 		registerAnchorPath("withersAnchor", root, neck, this.withersAnchor);
-	}
-
-	@Override
-	public void beforeAttached(GeneticHorseEntity entity, float partialTicks, PoseStack pose) {
-		super.beforeAttached(entity, partialTicks, pose);
-		float rx = getPitch(entity, "arched");
-		float ry = getNetYaw(entity, partialTicks);
-		pose.mulPose(Axis.XP.rotation(rx));
-		pose.mulPose(Axis.YP.rotation(ry));
 	}
 }
