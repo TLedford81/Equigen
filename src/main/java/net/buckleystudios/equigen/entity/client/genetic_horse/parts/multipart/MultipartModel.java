@@ -19,6 +19,7 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
 
     protected final Map<String, PartTransform> anchors = new HashMap<>();
     protected final Map<String, List<ModelPart>> anchorPaths = new HashMap<>();
+    protected Vector3f baseRotation;
 
     private boolean anchorPathsInitialized = false;
 
@@ -132,7 +133,8 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
         );
     }
 
-    public Vector3f getBaseRotation(GeneticHorseEntity e) { return new Vector3f(0,0,0); }
+    public void setBaseRotation(Vector3f rotation){ this.baseRotation = rotation; }
+    public Vector3f getBaseRotation(GeneticHorseEntity e) { return this.baseRotation; }
     public void afterAttached(GeneticHorseEntity e, PoseStack pose, float partialTicks) { }
     public void beforeAttached(E entity, float partialTicks, PoseStack pose) { }
 }

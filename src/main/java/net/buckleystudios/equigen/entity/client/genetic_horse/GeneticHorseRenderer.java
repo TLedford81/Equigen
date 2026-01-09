@@ -352,6 +352,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
         float ageInTicks      = entity.tickCount + partialTicks;
         float limbSwing       = entity.walkAnimation.position(partialTicks);
         float limbSwingAmount = entity.walkAnimation.speed(partialTicks);
+        String partType = anchorInParentModel.substring(0, anchorInParentModel.length() - 6);
 
         pose.pushPose();
 
@@ -381,7 +382,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
 //                anchorInChildModel,
 //                cA.position, cA.rotation);
 
-        applyTransform(pose, pA, cA, child.getBaseRotation(entity));
+        applyTransform(pose, pA, cA, getRotationForPart(partType, entity));
 
         if (chain != null) chain.run();
 
@@ -409,6 +410,84 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
         pose.popPose();
     }
 
+    //This method is dangerous, please for the love of all that is holy, DO NOT CAUSE AN INFINITE LOOP!
+    public Vector3f getRotationForPart(String partType, GeneticHorseEntity e){
+        String fullPartName, partInfo = "";
+
+        Map<String, Float> renderGenetics = e.getRenderGenetics();
+        List<String> partsToRender = e.getPartsToRender();
+        for(String part : partsToRender){
+            if(part.startsWith(partType)){
+                fullPartName = part;
+                partInfo = fullPartName.substring(partType.length() + 1);
+            }
+        }
+        //Calculate Pitch
+        float pitch;
+        switch (partType) {
+            case "head" -> {
+                Vector3f neckRot = getRotationForPart("neck", e);
+                // Neck Curves: 1 = Swan, 2 = Straight, 3 = Ewed, 4 = Arched
+                if (partInfo.startsWith("dished")) {
+                    switch (Math.round(renderGenetics.get("NECK_CURVE"))) {
+                        case 1 -> pitch = -20.0F; // Roughly adjusted, need to test w/ varying lengths.
+                        case 2 -> pitch = -29.0F; // Roughly adjusted, need to test w/ varying lengths.
+                        case 3 -> pitch = -28.0F; // Roughly adjusted, need to test w/ varying lengths.
+                        case 4 -> pitch = -25.0F; // Roughly adjusted, need to test w/ varying lengths.
+                        default -> pitch = 0.0F;
+                    }
+                    // minus the neck rotation here
+                    pitch -= neckRot.x;
+                } else if (partInfo.startsWith("roman")) {
+                    switch (Math.round(renderGenetics.get("NECK_CURVE"))) {
+                        case 1 -> pitch = -20.0F; // Roughly adjusted, need to test w/ varying lengths.
+                        case 2 -> pitch = -25.0F; // Roughly adjusted, need to test w/ varying lengths.
+                        case 3 -> pitch = -30.0F; // Roughly adjusted, need to test w/ varying lengths.
+                        case 4 -> pitch = -20.0F; // Roughly adjusted, need to test w/ varying lengths.
+                        default -> pitch = 0.0F;
+                    }
+                    // minus the neck rotation here
+                    pitch -= neckRot.x;
+                } else if (partInfo.startsWith("stocky")) {
+                    switch (Math.round(renderGenetics.get("NECK_CURVE"))) {
+                        case 1 -> pitch = -25.0F; // Roughly adjusted, need to test w/ varying lengths.
+                        case 2 -> pitch = -20.0F; // Roughly adjusted, need to test w/ varying lengths.
+                        case 3 -> pitch = -25.0F; // Roughly adjusted, need to test w/ varying lengths.
+                        case 4 -> pitch = -20.0F; // Roughly adjusted, need to test w/ varying lengths.
+                        default -> pitch = 0.0F;
+                    }
+                    // minus the neck rotation here
+                    pitch -= neckRot.x;
+                } else if (partInfo.startsWith("straight")) {
+                    switch (Math.round(renderGenetics.get("NECK_CURVE"))) {
+                        case 1 -> pitch = -13.0F; // Roughly adjusted, need to test w/ varying lengths.
+                        case 2 -> pitch = -10.0F; // Roughly adjusted, need to test w/ varying lengths.
+                        case 3 -> pitch = -15.0F; // Roughly adjusted, need to test w/ varying lengths.
+                        case 4 -> pitch = -5.0F; // Roughly adjusted, need to test w/ varying lengths.
+                        default -> pitch = 0.0F;
+                    }
+                    pitch -= neckRot.x;
+                } else {
+                    pitch = 0;
+                }
+            }
+            case "neck" ->{
+                // Calculate Neck Rotation
+                pitch = 50;
+            }
+            case "withers" ->{
+                Vector3f neckRot = getRotationForPart("neck", e);
+                pitch = -neckRot.x;
+            }
+            default -> pitch = 0;
+        }
+
+
+//        pitch = pitch * ((float)Math.PI / 180f);
+//        EquigenMod.LOGGER.info("Pitch {}", pitch);
+        return new Vector3f(pitch, 0, 0);
+//        return pitch = 0;
+    }
 
 
 }
