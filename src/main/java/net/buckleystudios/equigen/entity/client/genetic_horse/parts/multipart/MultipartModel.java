@@ -135,6 +135,6 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
 
     public void setBaseRotation(Vector3f rotation){ this.baseRotation = rotation; }
     public Vector3f getBaseRotation(GeneticHorseEntity e) { return this.baseRotation; }
-    public void afterAttached(GeneticHorseEntity e, PoseStack pose, float partialTicks) { }
+    public void handlePartChildRotations(GeneticHorseEntity e, PoseStack pose, float partialTicks) { }
     public void beforeAttached(E entity, float partialTicks, PoseStack pose) { }
 }
