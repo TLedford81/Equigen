@@ -49,20 +49,20 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
     }
 
     public ResourceLocation getTextureLocation(GeneticHorseEntity entity, int selectedTexture) {
-        if(selectedTexture == 1) {
+        if (selectedTexture == 1) {
             return ResourceLocation.fromNamespaceAndPath(
                     EquigenMod.MODID,
-                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + ".png"
+                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_bay.png"
             );
-        } else if(selectedTexture == 2) {
+        } else if (selectedTexture == 2) {
             return ResourceLocation.fromNamespaceAndPath(
                     EquigenMod.MODID,
-                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "2.png"
+                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_black.png"
             );
         } else if (selectedTexture == 3) {
             return ResourceLocation.fromNamespaceAndPath(
                     EquigenMod.MODID,
-                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "3.png"
+                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_chestnut.png"
             );
         } else {
             return ResourceLocation.fromNamespaceAndPath(
@@ -72,7 +72,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
         }
     }
 
-    public int getSelectedTexture(GeneticHorseEntity entity){
+    public int getSelectedTexture(GeneticHorseEntity entity) {
         float f = entity.getRenderGenetics().getOrDefault("MUSCLE_MASS", 1f);
         int mass = Math.round(f);
         return Math.max(1, Math.min(3, mass));
@@ -81,7 +81,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
     public String getCoatColor(GeneticHorseEntity entity) {
         int baseColor = getSelectedTexture(entity);
         String coatColor = "";
-        switch(baseColor) {
+        switch (baseColor) {
             case 1 -> coatColor = "CHESTNUT";
             case 2 -> coatColor = "BAY";
             case 3 -> coatColor = "BLACK";
@@ -133,7 +133,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
         }
     }
 
-    private Map<String, MultipartModel<GeneticHorseEntity>> createModelMap(GeneticHorseEntity entity){
+    private Map<String, MultipartModel<GeneticHorseEntity>> createModelMap(GeneticHorseEntity entity) {
         List<String> partsToRender = entity.getPartsToRender();
         Map<String, MultipartModel<GeneticHorseEntity>> modelMap = new HashMap<>();
         modelMap.put("chestModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "chest"));
@@ -309,8 +309,8 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
         if (model == null) return;
         pose.pushPose();
         float ageInTicks = entity.tickCount + partialTicks;
-        float limbSwing        = entity.walkAnimation.position(partialTicks);
-        float limbSwingAmount  = entity.walkAnimation.speed(partialTicks);
+        float limbSwing = entity.walkAnimation.position(partialTicks);
+        float limbSwingAmount = entity.walkAnimation.speed(partialTicks);
 
         model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
         model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, 0f, 0f);
@@ -322,7 +322,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
         );
         Map<Integer, List<ResourceLocation>> marks = getMarkingTextures();
         if (marks.containsKey(0)) {
-            for(int i = 0; i < marks.get(0).size(); i++) {
+            for (int i = 0; i < marks.get(0).size(); i++) {
                 model.renderToBuffer(pose,
                         buffer.getBuffer(RenderType.entityCutoutNoCull(marks.get(0).get(i))),
                         packedLight, OverlayTexture.NO_OVERLAY);
@@ -334,9 +334,9 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
     private void attachAndChain(
             PoseStack pose, MultiBufferSource buffer, int packedLight, GeneticHorseEntity entity, float partialTicks,
             MultipartModel<GeneticHorseEntity> parent, String anchorInParentModel,
-            MultipartModel<GeneticHorseEntity> child,  String anchorInChildModel,
+            MultipartModel<GeneticHorseEntity> child, String anchorInChildModel,
             Runnable chain // Nullable
-    ){
+    ) {
         attachAndChain(pose, buffer, packedLight, entity, partialTicks,
                 parent, anchorInParentModel, child, anchorInChildModel, 0, chain);
     }
@@ -344,13 +344,13 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
     private void attachAndChain(
             PoseStack pose, MultiBufferSource buffer, int packedLight, GeneticHorseEntity entity, float partialTicks,
             MultipartModel<GeneticHorseEntity> parent, String anchorInParentModel,
-            MultipartModel<GeneticHorseEntity> child,  String anchorInChildModel, int legID,
+            MultipartModel<GeneticHorseEntity> child, String anchorInChildModel, int legID,
             Runnable chain // Nullable
     ) {
         if (parent == null || child == null) return;
 
-        float ageInTicks      = entity.tickCount + partialTicks;
-        float limbSwing       = entity.walkAnimation.position(partialTicks);
+        float ageInTicks = entity.tickCount + partialTicks;
+        float limbSwing = entity.walkAnimation.position(partialTicks);
         float limbSwingAmount = entity.walkAnimation.speed(partialTicks);
         String partType = anchorInParentModel.substring(0, anchorInParentModel.length() - 6);
 
@@ -411,83 +411,141 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
     }
 
     //This method is dangerous, please for the love of all that is holy, DO NOT CAUSE AN INFINITE LOOP!
-    public Vector3f getRotationForPart(String partType, GeneticHorseEntity e){
-        String fullPartName, partInfo = "";
+    // This sign can't stop me because I can't read! -Madeleine
+    public Vector3f getRotationForPart(String partType, GeneticHorseEntity e) {
+        String fullPartName = "", partInfo = "";
 
         Map<String, Float> renderGenetics = e.getRenderGenetics();
         List<String> partsToRender = e.getPartsToRender();
-        for(String part : partsToRender){
-            if(part.startsWith(partType)){
+        for (String part : partsToRender) {
+            if (part.startsWith(partType)) {
                 fullPartName = part;
-                partInfo = fullPartName.substring(partType.length() + 1);
-            }
-        }
-        //Calculate Pitch
-        float pitch;
-        switch (partType) {
-            case "head" -> {
-                Vector3f neckRot = getRotationForPart("neck", e);
-                // Neck Curves: 1 = Swan, 2 = Straight, 3 = Ewed, 4 = Arched
-                if (partInfo.startsWith("dished")) {
-                    switch (Math.round(renderGenetics.get("NECK_CURVE"))) {
-                        case 1 -> pitch = -20.0F; // Roughly adjusted, need to test w/ varying lengths.
-                        case 2 -> pitch = -29.0F; // Roughly adjusted, need to test w/ varying lengths.
-                        case 3 -> pitch = -28.0F; // Roughly adjusted, need to test w/ varying lengths.
-                        case 4 -> pitch = -25.0F; // Roughly adjusted, need to test w/ varying lengths.
-                        default -> pitch = 0.0F;
+                if (partType.equals("neck")) {
+                    int muscleMass;
+                    switch (Math.round(renderGenetics.get("MUSCLE_MASS"))) {
+                        case 1 -> muscleMass = 5;
+                        case 2 -> muscleMass = 8;
+                        case 3 -> muscleMass = 9;
+                        default -> muscleMass = 0;
                     }
-                    // minus the neck rotation here
-                    pitch -= neckRot.x;
-                } else if (partInfo.startsWith("roman")) {
-                    switch (Math.round(renderGenetics.get("NECK_CURVE"))) {
-                        case 1 -> pitch = -20.0F; // Roughly adjusted, need to test w/ varying lengths.
-                        case 2 -> pitch = -25.0F; // Roughly adjusted, need to test w/ varying lengths.
-                        case 3 -> pitch = -30.0F; // Roughly adjusted, need to test w/ varying lengths.
-                        case 4 -> pitch = -20.0F; // Roughly adjusted, need to test w/ varying lengths.
-                        default -> pitch = 0.0F;
-                    }
-                    // minus the neck rotation here
-                    pitch -= neckRot.x;
-                } else if (partInfo.startsWith("stocky")) {
-                    switch (Math.round(renderGenetics.get("NECK_CURVE"))) {
-                        case 1 -> pitch = -25.0F; // Roughly adjusted, need to test w/ varying lengths.
-                        case 2 -> pitch = -20.0F; // Roughly adjusted, need to test w/ varying lengths.
-                        case 3 -> pitch = -25.0F; // Roughly adjusted, need to test w/ varying lengths.
-                        case 4 -> pitch = -20.0F; // Roughly adjusted, need to test w/ varying lengths.
-                        default -> pitch = 0.0F;
-                    }
-                    // minus the neck rotation here
-                    pitch -= neckRot.x;
-                } else if (partInfo.startsWith("straight")) {
-                    switch (Math.round(renderGenetics.get("NECK_CURVE"))) {
-                        case 1 -> pitch = -13.0F; // Roughly adjusted, need to test w/ varying lengths.
-                        case 2 -> pitch = -10.0F; // Roughly adjusted, need to test w/ varying lengths.
-                        case 3 -> pitch = -15.0F; // Roughly adjusted, need to test w/ varying lengths.
-                        case 4 -> pitch = -5.0F; // Roughly adjusted, need to test w/ varying lengths.
-                        default -> pitch = 0.0F;
-                    }
-                    pitch -= neckRot.x;
+                    partInfo = fullPartName.substring((partType.length() + muscleMass + 1));
                 } else {
-                    pitch = 0;
+                    partInfo = fullPartName.substring((partType.length() + 1));
                 }
             }
-            case "neck" ->{
-                // Calculate Neck Rotation
-                pitch = 50;
-            }
-            case "withers" ->{
-                Vector3f neckRot = getRotationForPart("neck", e);
-                pitch = -neckRot.x;
-            }
-            default -> pitch = 0;
         }
+            //Calculate Pitch
+            float pitch;
+            switch (partType) {
+                case "head" -> {
+                    Vector3f neckRot = getRotationForPart("neck", e);
+                    // Neck Curves: 1 = Swan, 2 = Straight, 3 = Ewed, 4 = Arched
+                    if (partInfo.startsWith("dished")) {
+                        switch (Math.round(renderGenetics.get("NECK_CURVE"))) {
+                            case 1 -> pitch = -20.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            case 2 -> pitch = -29.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            case 3 -> pitch = -28.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            case 4 -> pitch = -25.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            default -> pitch = 0.0F;
+                        }
+                        // minus the neck rotation here
+                        pitch -= neckRot.x;
+                    } else if (partInfo.startsWith("roman")) {
+                        switch (Math.round(renderGenetics.get("NECK_CURVE"))) {
+                            case 1 -> pitch = -20.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            case 2 -> pitch = -25.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            case 3 -> pitch = -30.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            case 4 -> pitch = -20.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            default -> pitch = 0.0F;
+                        }
+                        // minus the neck rotation here
+                        pitch -= neckRot.x;
+                    } else if (partInfo.startsWith("stocky")) {
+                        switch (Math.round(renderGenetics.get("NECK_CURVE"))) {
+                            case 1 -> pitch = -25.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            case 2 -> pitch = -20.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            case 3 -> pitch = -25.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            case 4 -> pitch = -20.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            default -> pitch = 0.0F;
+                        }
+                        pitch -= neckRot.x;
+                    } else if (partInfo.startsWith("straight")) {
+                        switch (Math.round(renderGenetics.get("NECK_CURVE"))) {
+                            case 1 -> pitch = -13.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            case 2 -> pitch = -10.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            case 3 -> pitch = -15.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            case 4 -> pitch = -5.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            default -> pitch = 0.0F;
+                        }
+                        pitch -= neckRot.x;
+                    } else {
+                        pitch = 0;
+                    }
+                }
+                case "neck" -> {
+                    // Calculate Neck Rotation
+                    if (partInfo.startsWith("swan")) {
+                        switch (Math.round(renderGenetics.get("NECK_POS"))) {
+                            case 1 -> pitch = 35.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
+                            case 2 -> pitch = 20.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
+                            case 3 -> pitch = 0.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
+                            default -> pitch = 0.0F;
+                        }
+                    } else if (partInfo.startsWith("straight")) {
+                        switch (Math.round(renderGenetics.get("NECK_POS"))) {
+                            case 1 -> pitch = 35.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
+                            case 2 -> pitch = 20.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
+                            case 3 -> pitch = 0.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
+                            default -> pitch = 0.0F;
+                        }
+                    } else if (partInfo.startsWith("ewed")) {
+                        switch (Math.round(renderGenetics.get("NECK_POS"))) {
+                            case 1 -> pitch = 35.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            case 2 -> pitch = 20.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            case 3 -> pitch = 0.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            default -> pitch = 0.0F;
+                        }
+                    } else if (partInfo.startsWith("arched")) {
+                        switch (Math.round(renderGenetics.get("NECK_POS"))) {
+                            // TODO need to find out how to rotate specifically the top part of the arched neck based on neck set.
+                            // TODO Also need to lower the neck a lil if there is a lower set neck.
+                            case 1 -> pitch = 35.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            case 2 -> pitch = 20.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            case 3 -> pitch = 0.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            default -> pitch = 0.0F;
+                        }
+                    } else {
+                        pitch = 0;
+                    }
+                }
+                case "withers" -> {
+                    switch (Math.round(renderGenetics.get("WITHERS"))) {
+                        case 1 -> pitch = 0.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
+                        case 2 -> pitch = -20.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
+                        case 3 -> pitch = -30.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
+                        default -> pitch = 0.0F;
+                    }
+//                    EquigenMod.LOGGER.info("WITHERS GENE = " + (Math.round(renderGenetics.get("WITHERS"))));
+//                    EquigenMod.LOGGER.info("WITHERS ROTATION = " + pitch);
+                    Vector3f neckRot = getRotationForPart("neck", e);
+                    pitch -= neckRot.x;
+                }
+                case "tail" -> {
+                    switch (Math.round(renderGenetics.get("TAIL_SET"))) {
+                        case 1 -> pitch = 0.0F; // TODO Implement rotation only part of the tail, then implement actual values
+                        case 2 -> pitch = 20.0F;
+                        case 3 -> pitch = 100.0F;
+                        default -> pitch = 0.0F;
+                    }
+                }
+                default -> pitch = 0;
+            }
 
 
 //        pitch = pitch * ((float)Math.PI / 180f);
 //        EquigenMod.LOGGER.info("Pitch {}", pitch);
-        return new Vector3f(pitch, 0, 0);
+            return new Vector3f(pitch, 0, 0);
 //        return pitch = 0;
-    }
-
+        }
 
 }

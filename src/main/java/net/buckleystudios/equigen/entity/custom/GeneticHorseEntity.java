@@ -95,6 +95,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public static final EntityDataAccessor<Float> GENE_WITHERS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_STOMACH_LENGTH = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_STOMACH_CURVE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> GENE_TAIL_SET = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_TAIL_THICKNESS = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_TAIL_LENGTH = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> GENE_RED_MODIFIER = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
@@ -457,6 +458,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         builder.define(GENE_WITHERS, 0.0f);
         builder.define(GENE_STOMACH_LENGTH, 0.0f);
         builder.define(GENE_STOMACH_CURVE, 0.0f);
+        builder.define(GENE_TAIL_SET, 0.0f);
         builder.define(GENE_TAIL_THICKNESS, 0.0f);
         builder.define(GENE_TAIL_LENGTH, 0.0f);
         builder.define(GENE_RED_MODIFIER, 0.0f);
@@ -1109,22 +1111,137 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     }
 
     public Float calculateHorseHeight(){
-        float totalHeight = 0f;
+        float bottomLegs;
+        float frontHeight = 0;
+        float backHeight = 0;
         float offset = -2.2f;
         float kneeHeight = 2f;
         float hoofHeight = 2f;
         Map<String, Float> renderGenetics = getRenderGenetics();
+        bottomLegs = getBottomLegHeightModifier("BOTTOM_LEG", renderGenetics.get("BOTTOM_LEG"));
 
         for(String gene : renderGenetics.keySet()){
-            totalHeight += getHeightModifier(gene, renderGenetics.get(gene));
+            frontHeight += getFrontHeightModifier(gene, renderGenetics.get(gene));
+            backHeight += getBackHeightModifier(gene, renderGenetics.get(gene));
         }
-        totalHeight += kneeHeight + hoofHeight + offset;
 
-        totalHeight /= 16; // Convert BB Values to MC
-        return totalHeight;
+        frontHeight += bottomLegs + kneeHeight + hoofHeight + offset;
+        backHeight += bottomLegs + kneeHeight + hoofHeight + offset;
+//        EquigenMod.LOGGER.info("UNCONVERTED: FrontHeight = {} BackHeight = {}", frontHeight, backHeight);
+
+
+        frontHeight /= 16;
+        backHeight /= 16; // Convert BB Values to MC
+//        EquigenMod.LOGGER.info("CONVERTED: FrontHeight = {} BackHeight = {}", frontHeight, backHeight);
+        if (backHeight > frontHeight) {
+            return frontHeight;
+        } else {
+            return backHeight;
+        }
     }
 
-    public float getHeightModifier(String gene, Float value){
+    public float getFrontHeightModifier(String gene, Float value){
+        if(gene.equals("TOP_LEG")){
+            float topFrontLegWidth = this.getRenderGenetics().get("LEG_WIDTH");
+            if (topFrontLegWidth == 1 || topFrontLegWidth == 2) {
+                return switch (Math.round(value)){
+                    case 1 -> 4.2f;
+                    case 2 -> 4.85f;
+                    case 3 -> 5.6f;
+                    case 4 -> 6.5f;
+                    case 5, 6 -> 6.6f;
+                    case 7 -> 7.7f;
+                    case 8 -> 8.75f;
+                    case 9 -> 8.5f;
+                    default -> 0;
+                };
+            } else if (topFrontLegWidth == 3) {
+                return switch (Math.round(value)){
+                    case 1 -> 4.2f;
+                    case 2 -> 5.0f;
+                    case 3 -> 5.65f;
+                    case 4 -> 5.7f;
+                    case 5 -> 6.4f;
+                    case 6 -> 6.6f;
+                    case 7 -> 7.7f;
+                    case 8 -> 9.05f;
+                    case 9 -> 8.5f;
+                    default -> 0;
+                };
+            }
+        }
+        if (gene.equals("CHEST_SIZE")) {
+            return switch (Math.round(value)){
+                case 1 -> 7.0f;
+                case 2 -> 6.75f;
+                case 3 -> 8.0f; // TODO One of these is different on average muscle mass.
+                case 4 -> 7.75f;
+                case 5 -> 8.75f;
+                case 6 -> 9.0f;
+
+                default -> 0;
+            };
+        }
+
+
+
+        else return 0;
+    }
+
+    public float getBackHeightModifier(String gene, Float value){
+        if(gene.equals("TOP_LEG")){
+            float topHindLegWidth = this.getRenderGenetics().get("TOP_HIND_LEG_WIDTH");
+            if (topHindLegWidth == 1) {
+                return switch (Math.round(value)){
+                    case 1 -> 4.3f;
+                    case 2 , 3 ->  5.5f;
+                    case 4 -> 7.15f;
+                    case 5, 6 -> 7.95f;
+                    case 7 -> 8.0f;
+                    case 8, 9 -> 8.4f;
+                    default -> 0;
+                };
+            } else if (topHindLegWidth == 2) {
+               return switch (Math.round(value)){
+                    case 1 -> 4.4f;
+                    case 2, 3 -> 5.8f;
+                    case 4 -> 6.75f;
+                    case 5, 6 -> 8.0f;
+                    case 7 -> 8.15f;
+                    case 8, 9 -> 8.4f;
+                    default -> 0;
+                };
+            } else if (topHindLegWidth == 3) {
+                return switch (Math.round(value)){
+                    case 1 ->4.6f;
+                    case 2, 3 -> 5.6f;
+                    case 4 -> 7.15f;
+                    case 5, 6 -> 7.95f;
+                    case 7 -> 8.2f;
+                    case 8, 9 -> 8.4f;
+                    default -> 0;
+                };
+            }
+        }
+        if(gene.equals("HIP_SIZE")){
+            return switch (Math.round(value)){
+                case 1 -> 5.25f; // TODO Different for lean. Fix in pivot points.
+                case 2 -> 6.0f; // TODO Different for muscular, fix in pivot points.
+                case 3 -> 6.5f;
+                case 4 -> 7.5f;
+                case 5 -> 7.5f;
+                case 6 -> 8.5f; // TODO Different for average. Fix in pivot points.
+
+                default -> 0;
+            };
+        }
+
+
+
+        else return 0;
+    }
+
+    public float getBottomLegHeightModifier (String gene, float value) {
         if(gene.equals("BOTTOM_LEG")){
             return switch (Math.round(value)){
                 case 1 -> 3.55f;
@@ -1138,57 +1255,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                 case 9 -> 8.55f;
                 default -> 0;
             };
+        } else {
+            return 0;
         }
-        if(gene.equals("TOP_LEG")){
-            float topHindLegWidth = this.getRenderGenetics().get("TOP_HIND_LEG_WIDTH");
-            if (topHindLegWidth == 1) {
-                return switch (Math.round(value)){
-                    case 1 -> 4.3f;
-                    case 2 -> 5.15f;
-                    case 3 -> 7.15f;
-                    case 4, 5 -> 7.95f;
-                    case 6, 7 -> 8.0f;
-                    case 8, 9 -> 8.4f;
-                    default -> 0;
-                };
-            } else if (topHindLegWidth == 2) {
-                return switch (Math.round(value)){
-                    case 1 -> 4.4f;
-                    case 2 -> 5.8f;
-                    case 3 -> 6.75f;
-                    case 4, 5 -> 8.0f;
-                    case 6, 7 -> 8.15f;
-                    case 8, 9 -> 8.4f;
-                    default -> 0;
-                };
-            } else if (topHindLegWidth == 3) {
-                return switch (Math.round(value)){
-                    case 1 -> 4.6f;
-                    case 2 -> 5.6f;
-                    case 3 -> 7.15f;
-                    case 4, 5 -> 7.95f;
-                    case 6, 7 -> 8.2f;
-                    case 8, 9 -> 8.4f;
-                    default -> 0;
-                };
-            }
-        }
-        if(gene.equals("HIP_SIZE")){
-            return switch (Math.round(value)){
-                case 1 -> 5.75f;
-                case 2 -> 6.0f;
-                case 3 -> 6.5f;
-                case 4 -> 7.5f;
-                case 5 -> 7.5f;
-                case 6 -> 8.5f;
-
-                default -> 0;
-            };
-        }
-
-
-
-        else return 0;
     }
 
     protected void clampRotation(Entity entityToUpdate) {
@@ -1844,8 +1913,10 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         this.entityData.set(GENE_NECK_POS, this.getGenetic("NECK_POS"));
         this.entityData.set(GENE_NECK_CURVE, this.getGenetic("NECK_CURVE"));
         this.entityData.set(GENE_NECK_LENGTH, this.getGenetic("NECK_LENGTH"));
+        this.entityData.set(GENE_WITHERS, this.getGenetic("WITHERS"));
         this.entityData.set(GENE_STOMACH_LENGTH, this.getGenetic("STOMACH_LENGTH"));
         this.entityData.set(GENE_STOMACH_CURVE, this.getGenetic("STOMACH_CURVE"));
+        this.entityData.set(GENE_TAIL_SET, this.getGenetic("TAIL_SET"));
         this.entityData.set(GENE_TAIL_THICKNESS, this.getGenetic("TAIL_THICKNESS"));
         this.entityData.set(GENE_TAIL_LENGTH, this.getGenetic("TAIL_LENGTH"));
         this.entityData.set(GENE_RED_MODIFIER, this.getGenetic("RED_MODIFIER"));
@@ -1872,6 +1943,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         GENE_MAP.put("WITHERS", this.entityData.get(GENE_WITHERS));
         GENE_MAP.put("STOMACH_LENGTH", this.entityData.get(GENE_STOMACH_LENGTH));
         GENE_MAP.put("STOMACH_CURVE", this.entityData.get(GENE_STOMACH_CURVE));
+        GENE_MAP.put("TAIL_SET", this.entityData.get(GENE_TAIL_SET));
         GENE_MAP.put("TAIL_THICKNESS", this.entityData.get(GENE_TAIL_THICKNESS));
         GENE_MAP.put("TAIL_LENGTH", this.entityData.get(GENE_TAIL_LENGTH));
         GENE_MAP.put("RED_MODIFIER", this.entityData.get(GENE_RED_MODIFIER));
