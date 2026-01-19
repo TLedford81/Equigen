@@ -20,6 +20,8 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
     protected final Map<String, PartTransform> anchors = new HashMap<>();
     protected final Map<String, List<ModelPart>> anchorPaths = new HashMap<>();
     protected Vector3f baseRotation;
+    private PoseStack pose;
+    private float partialTicks;
 
     private boolean anchorPathsInitialized = false;
 
@@ -41,6 +43,10 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
         this.legID = legID;
     }
 
+    public void preSetupAnim(PoseStack pose, float partialTicks){
+        this.pose = pose;
+        this.partialTicks = partialTicks;
+    }
     @Override
     public void setupAnim(GeneticHorseEntity entity,
                           float limbSwing,
@@ -68,6 +74,8 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
                 limbSwing, limbSwingAmount,
                 2f, 2.5f
         );
+
+        this.handlePartChildRotations(entity, pose, partialTicks);
 
         if (!anchorPathsInitialized) {
             defineAnchorPaths();

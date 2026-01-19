@@ -14,6 +14,9 @@ import net.minecraft.client.model.geom.builders.*;
 public class neck_average_arched_average_2 extends MultipartNeckModel<GeneticHorseEntity> {
 	private final ModelPart root;
 	private final ModelPart neck_average_arched_average_2;
+	private final ModelPart neck_average_arched_average_2_individual;
+	private final ModelPart neck_average_arched_average_2_crest;
+	private final ModelPart neck_average_arched_average_2_crest_upper;
 	private final ModelPart headAnchor;
 	private final ModelPart chestAnchor;
 	private final ModelPart withersAnchor;
@@ -21,7 +24,10 @@ public class neck_average_arched_average_2 extends MultipartNeckModel<GeneticHor
 	public neck_average_arched_average_2(ModelPart root) {
 		this.root = root;
 		this.neck_average_arched_average_2 = root.getChild("neck_average_arched_average_2");
-		this.headAnchor = this.neck_average_arched_average_2.getChild("headAnchor");
+		this.neck_average_arched_average_2_individual = neck_average_arched_average_2.getChild("neck_average_arched_average_2_individual");
+		this.neck_average_arched_average_2_crest = neck_average_arched_average_2_individual.getChild("neck_average_arched_average_2_crest");
+		this.neck_average_arched_average_2_crest_upper = neck_average_arched_average_2_crest.getChild("neck_average_arched_average_2_crest_upper");
+		this.headAnchor = this.neck_average_arched_average_2_crest_upper.getChild("headAnchor");
 		this.chestAnchor = this.neck_average_arched_average_2.getChild("chestAnchor");
 		this.withersAnchor = this.neck_average_arched_average_2.getChild("withersAnchor");
 	}
@@ -92,7 +98,7 @@ public class neck_average_arched_average_2 extends MultipartNeckModel<GeneticHor
 
 		PartDefinition cube_r11 = neck_average_arched_average_2_bottom_mane_flow.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(859, 773).addBox(-0.8139F, -0.0002F, -5.3921F, 1.0F, 7.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0726F, 1.4302F, 1.2514F, -0.8937F, -0.1201F, -0.1036F));
 
-		PartDefinition headAnchor = neck_average_arched_average_2.addOrReplaceChild("headAnchor", CubeListBuilder.create(), PartPose.offset(0.25F, -8.6327F, -6.4239F));
+		PartDefinition headAnchor = neck_average_arched_average_2_crest_upper.addOrReplaceChild("headAnchor", CubeListBuilder.create(), PartPose.offset(0.25F, -8.6327F, -6.4239F));
 
 		PartDefinition cube_r12 = headAnchor.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -0.1309F, 0.0F, 0.0F));
 
@@ -124,8 +130,11 @@ public class neck_average_arched_average_2 extends MultipartNeckModel<GeneticHor
 	protected void defineAnchorPaths() {
 		ModelPart root = this.root();
 		ModelPart neck = this.neck_average_arched_average_2;
+		ModelPart individual = neck_average_arched_average_2_individual;
+		ModelPart crest = neck_average_arched_average_2_crest;
+		ModelPart crest_upper = neck_average_arched_average_2_crest_upper;
 
-		registerAnchorPath("headAnchor", root, neck, this.headAnchor);
+		registerAnchorPath("headAnchor", root, neck, individual, crest, crest_upper, this.headAnchor);
 		registerAnchorPath("chestAnchor", root, neck, this.chestAnchor);
 		registerAnchorPath("withersAnchor", root, neck, this.withersAnchor);
 	}

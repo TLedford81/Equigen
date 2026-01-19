@@ -12,13 +12,15 @@ import java.util.Map;
 
 @OnlyIn(Dist.CLIENT)
 public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends MultipartModel<GeneticHorseEntity> {
- private float neckRotation;
+    private float neckRotation;
+    public float x;
 
     public Map<String, Float> getGenetics(GeneticHorseEntity entity){
         return entity.getRenderGenetics();
     }
     @Override
     public void handlePartChildRotations(GeneticHorseEntity e, PoseStack pose, float partialTicks) {
+//        x += 1;
         String partName = "";
         List<String> partsToRender = e.getPartsToRender();
         Map<String,Float> renderGenetics = e.getRenderGenetics();
@@ -36,6 +38,7 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
         }
         EquigenMod.LOGGER.info("Pitch = {}", pitch);
 //        pitch /= 16;
+//        pitch = (pitch + x) * Mth.DEG_TO_RAD;
         EquigenMod.LOGGER.info("Pitch calculated = {}", pitch);
         ModelPart individual = root().getChild(partName).getChild(partName + "_individual");
         ModelPart crest = individual.getChild(partName + "_crest");

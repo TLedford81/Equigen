@@ -365,6 +365,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
         child.beforeAttached(entity, partialTicks, pose);
         child.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
         child.setLegID(legID);
+        child.preSetupAnim(pose, partialTicks);
         child.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, 0f, 0f);
 
         PartTransform pA = parent.anchors().get(anchorInParentModel);
@@ -385,7 +386,6 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
 //                cA.position, cA.rotation);
 
         applyTransform(pose, pA, cA, getRotationForPart(partType, entity));
-        child.handlePartChildRotations(entity, pose, partialTicks);
 
         if (chain != null) chain.run();
 
