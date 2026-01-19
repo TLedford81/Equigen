@@ -62,7 +62,7 @@ public class hips_average_small_2 extends MultipartHipModel<GeneticHorseEntity> 
 
 		PartDefinition backAnchor = hips_average_small_2.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.4469F, -3.0F, 0.1257F));
 
-		PartDefinition tailAnchor = hips_average_small_2.addOrReplaceChild("tailAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.4469F, -0.5F, 3.6257F));
+		PartDefinition tailAnchor = hips_average_small_2.addOrReplaceChild("tailAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.3469F, -1.75F, 3.6257F));
 
 		PartDefinition backLeftLegAnchor = hips_average_small_2.addOrReplaceChild("backLeftLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(3.6969F, 3.0F, 1.1257F));
 

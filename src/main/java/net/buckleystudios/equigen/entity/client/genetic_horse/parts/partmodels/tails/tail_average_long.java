@@ -28,29 +28,29 @@ public class tail_average_long extends MultipartTailModel<GeneticHorseEntity> {
 
 		PartDefinition tail_average_long = partdefinition.addOrReplaceChild("tail_average_long", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition tail_average_long_tail_connector = tail_average_long.addOrReplaceChild("tail_average_long_tail_connector", CubeListBuilder.create(), PartPose.offset(0.0F, 0.1788F, -0.0147F));
+		PartDefinition tail_average_long_tail_connector = tail_average_long.addOrReplaceChild("tail_average_long_tail_connector", CubeListBuilder.create(), PartPose.offset(0.0F, 1.5288F, -0.1646F));
 
-		PartDefinition tail_average_long_tail_connector_rotator = tail_average_long_tail_connector.addOrReplaceChild("tail_average_long_tail_connector_rotator", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 2.5922F));
+		PartDefinition tail_average_long_tail_connector_rotator = tail_average_long_tail_connector.addOrReplaceChild("tail_average_long_tail_connector_rotator", CubeListBuilder.create(), PartPose.offset(0.0F, -1.35F, 2.7422F));
 
 		PartDefinition tail_average_long_tail_connector_indiviudal = tail_average_long_tail_connector_rotator.addOrReplaceChild("tail_average_long_tail_connector_indiviudal", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -2.5922F));
 
 		PartDefinition cube_r1 = tail_average_long_tail_connector_indiviudal.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(997, 668).addBox(-0.5531F, 0.0071F, -0.555F, 2.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.4469F, -0.5363F, 0.7151F, -0.2182F, 0.0F, 0.0F));
 
-		PartDefinition tail_average_long_tail_top = tail_average_long_tail_connector.addOrReplaceChild("tail_average_long_tail_top", CubeListBuilder.create(), PartPose.offset(0.4469F, 0.9832F, 2.324F));
+		PartDefinition tail_average_long_tail_top = tail_average_long_tail_connector.addOrReplaceChild("tail_average_long_tail_top", CubeListBuilder.create(), PartPose.offset(0.4469F, -0.7668F, 0.974F));
 
-		PartDefinition tail_average_long_tail_top_individual = tail_average_long_tail_top.addOrReplaceChild("tail_average_long_tail_top_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.1788F));
+		PartDefinition tail_average_long_tail_top_individual = tail_average_long_tail_top.addOrReplaceChild("tail_average_long_tail_top_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 0.4F, 1.6788F));
 
-		PartDefinition cube_r2 = tail_average_long_tail_top_individual.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(984, 677).addBox(-1.0F, -2.0785F, 0.1082F, 3.0F, 3.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.9832F, -0.8045F, -0.9832F, -1.3963F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = tail_average_long_tail_top_individual.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(986, 679).addBox(-1.0F, -2.0785F, 0.1082F, 3.0F, 3.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.9832F, -0.8045F, -0.9832F, -1.3963F, 0.0F, 0.0F));
 
-		PartDefinition tail_average_long_tail_middle = tail_average_long_tail_top.addOrReplaceChild("tail_average_long_tail_middle", CubeListBuilder.create(), PartPose.offset(-0.3575F, 4.3978F, 0.7151F));
+		PartDefinition tail_average_long_tail_middle = tail_average_long_tail_top.addOrReplaceChild("tail_average_long_tail_middle", CubeListBuilder.create(), PartPose.offset(-0.3575F, 3.2978F, 2.9651F));
 
-		PartDefinition tail_average_long_tail_middle_individual = tail_average_long_tail_middle.addOrReplaceChild("tail_average_long_tail_middle_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition tail_average_long_tail_middle_individual = tail_average_long_tail_middle.addOrReplaceChild("tail_average_long_tail_middle_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -1.0F));
 
-		PartDefinition cube_r3 = tail_average_long_tail_middle_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(981, 665).addBox(-1.0F, -0.9635F, -0.1495F, 4.0F, 4.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.0726F, -0.0179F, 0.9832F, -1.6144F, 0.0F, 0.0F));
+		PartDefinition cube_r3 = tail_average_long_tail_middle_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(979, 663).addBox(-1.0F, -0.9635F, -0.1495F, 4.0F, 4.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.0726F, -0.0179F, 0.9832F, -1.5708F, 0.0F, 0.0F));
 
-		PartDefinition tail_average_long_tail_bottom = tail_average_long_tail_middle.addOrReplaceChild("tail_average_long_tail_bottom", CubeListBuilder.create(), PartPose.offset(0.0894F, 8.0268F, -0.1788F));
+		PartDefinition tail_average_long_tail_bottom = tail_average_long_tail_middle.addOrReplaceChild("tail_average_long_tail_bottom", CubeListBuilder.create(), PartPose.offset(0.0894F, 9.7768F, -0.8288F));
 
-		PartDefinition cube_r4 = tail_average_long_tail_bottom.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(999, 673).addBox(-1.0F, -1.8391F, -0.9493F, 3.0F, 3.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.7151F, 0.5363F, -0.5363F, -1.6144F, 0.0F, 0.0F));
+		PartDefinition cube_r4 = tail_average_long_tail_bottom.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(1001, 673).addBox(-1.0F, -1.8391F, -0.9493F, 3.0F, 3.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.7151F, 0.5363F, -0.5363F, -1.5708F, 0.0F, 0.0F));
 
 		PartDefinition hipsAnchor = tail_average_long.addOrReplaceChild("hipsAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.5F, -0.25F));
 

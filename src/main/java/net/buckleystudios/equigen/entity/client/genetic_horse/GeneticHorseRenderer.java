@@ -52,17 +52,17 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
         if (selectedTexture == 1) {
             return ResourceLocation.fromNamespaceAndPath(
                     EquigenMod.MODID,
-                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_bay.png"
+                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + ".png"
             );
         } else if (selectedTexture == 2) {
             return ResourceLocation.fromNamespaceAndPath(
                     EquigenMod.MODID,
-                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_black.png"
+                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "2.png"
             );
         } else if (selectedTexture == 3) {
             return ResourceLocation.fromNamespaceAndPath(
                     EquigenMod.MODID,
-                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_chestnut.png"
+                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "3.png"
             );
         } else {
             return ResourceLocation.fromNamespaceAndPath(
@@ -124,7 +124,9 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
             if (entity.isBaby()) poseStack.scale(0.5f, 0.6f, 0.5f);
             enterEntityModelSpace(entity, poseStack, entityYaw, partialTicks);
             float offset = 3f;
-            poseStack.translate(0f, -entity.calculateHorseHeight() + (offset / 16f), 0f);
+            float height = entity.calculateHorseHeight();
+//            EquigenMod.LOGGER.info("RENDER height = " + height);
+            poseStack.translate(0f, -height, 0f);
 
             MultiBufferSource out = new MeasuringBufferSource(buffer, new BoundsTracker());
             renderParts(entity, entityYaw, partialTicks, poseStack, out, packedLight, modelMap);
@@ -529,14 +531,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                     Vector3f neckRot = getRotationForPart("neck", e);
                     pitch -= neckRot.x;
                 }
-                case "tail" -> {
-                    switch (Math.round(renderGenetics.get("TAIL_SET"))) {
-                        case 1 -> pitch = 0.0F; // TODO Implement rotation only part of the tail, then implement actual values
-                        case 2 -> pitch = 20.0F;
-                        case 3 -> pitch = 100.0F;
-                        default -> pitch = 0.0F;
-                    }
-                }
+                // Tail rotation completely handled in MultipartTailModel client file.
                 default -> pitch = 0;
             }
 

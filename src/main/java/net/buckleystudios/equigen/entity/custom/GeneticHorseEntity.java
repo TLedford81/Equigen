@@ -1114,17 +1114,19 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         float bottomLegs;
         float frontHeight = 0;
         float backHeight = 0;
-        float offset = -2.2f;
-        float kneeHeight = 2f;
-        float hoofHeight = 2f;
+        float offset = -3.0f;
+        float kneeHeight = 1.0f;
+        float hoofHeight = 1.0f;
         Map<String, Float> renderGenetics = getRenderGenetics();
         bottomLegs = getBottomLegHeightModifier("BOTTOM_LEG", renderGenetics.get("BOTTOM_LEG"));
 
         for(String gene : renderGenetics.keySet()){
             frontHeight += getFrontHeightModifier(gene, renderGenetics.get(gene));
+//            EquigenMod.LOGGER.info("Added {}, Front height now equals {}", gene, frontHeight);
             backHeight += getBackHeightModifier(gene, renderGenetics.get(gene));
+//            EquigenMod.LOGGER.info("BACK HEIGHT = {} with {} added", backHeight, gene);
         }
-
+//        EquigenMod.LOGGER.info("Bottom legs = {} knee height = {} hoofheight = {} offset = {}", bottomLegs, kneeHeight, hoofHeight, offset);
         frontHeight += bottomLegs + kneeHeight + hoofHeight + offset;
         backHeight += bottomLegs + kneeHeight + hoofHeight + offset;
 //        EquigenMod.LOGGER.info("UNCONVERTED: FrontHeight = {} BackHeight = {}", frontHeight, backHeight);
@@ -1134,8 +1136,10 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         backHeight /= 16; // Convert BB Values to MC
 //        EquigenMod.LOGGER.info("CONVERTED: FrontHeight = {} BackHeight = {}", frontHeight, backHeight);
         if (backHeight > frontHeight) {
+//            EquigenMod.LOGGER.info("RETURNING frontHeight = {}", frontHeight);
             return frontHeight;
         } else {
+//            EquigenMod.LOGGER.info("RETURNING backHeight = {}", backHeight);
             return backHeight;
         }
     }
@@ -1143,41 +1147,41 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public float getFrontHeightModifier(String gene, Float value){
         if(gene.equals("TOP_LEG")){
             float topFrontLegWidth = this.getRenderGenetics().get("LEG_WIDTH");
-            if (topFrontLegWidth == 1 || topFrontLegWidth == 2) {
-                return switch (Math.round(value)){
-                    case 1 -> 4.2f;
-                    case 2 -> 4.85f;
-                    case 3 -> 5.6f;
-                    case 4 -> 6.5f;
-                    case 5, 6 -> 6.6f;
-                    case 7 -> 7.7f;
-                    case 8 -> 8.75f;
-                    case 9 -> 8.5f;
+            if (topFrontLegWidth == 1) {
+                return switch (Math.round(value)){ // NUMBERS CONFIRMED
+                    case 1 -> 4.2f; //
+                    case 2 -> 4.85f; //
+                    case 3 -> 5.6f; //
+                    case 4 -> 6.5f; //
+                    case 5, 6 -> 6.6f; //
+                    case 7 -> 7.7f; //
+                    case 8 -> 8.75f; //
+                    case 9 -> 8.5f; //
                     default -> 0;
                 };
-            } else if (topFrontLegWidth == 3) {
-                return switch (Math.round(value)){
-                    case 1 -> 4.2f;
-                    case 2 -> 5.0f;
-                    case 3 -> 5.65f;
-                    case 4 -> 5.7f;
-                    case 5 -> 6.4f;
-                    case 6 -> 6.6f;
-                    case 7 -> 7.7f;
-                    case 8 -> 9.05f;
-                    case 9 -> 8.5f;
+            } else if (topFrontLegWidth == 2) {
+                return switch (Math.round(value)){ // NUMBERS CONFIRMED
+                    case 1 -> 4.2f; //
+                    case 2 -> 5.0f; //
+                    case 3 -> 5.65f; //
+                    case 4 -> 5.7f; //
+                    case 5 -> 6.4f; //
+                    case 6 -> 6.6f; //
+                    case 7 -> 7.7f; //
+                    case 8 -> 8.75f; //
+                    case 9 -> 8.5f; //
                     default -> 0;
                 };
             }
         }
-        if (gene.equals("CHEST_SIZE")) {
+        if (gene.equals("CHEST_SIZE")) { // NUMBERS CONFIRMED
             return switch (Math.round(value)){
-                case 1 -> 7.0f;
-                case 2 -> 6.75f;
-                case 3 -> 8.0f; // TODO One of these is different on average muscle mass.
-                case 4 -> 7.75f;
-                case 5 -> 8.75f;
-                case 6 -> 9.0f;
+                case 1 -> 7.0f; // lean = 7.0 average = 7.0 muscular = 7.0
+                case 2 -> 6.75f; // lean = 6.75 average = 6.75 muscular = 6.75
+                case 3 -> 8.0f; // lean = 8.0 average = 8.0 muscular = 8.0
+                case 4 -> 7.75f; // lean = 7.75 average = 7.75 muscular = 7.75
+                case 5 -> 8.75f; // lean = 8.75 average = 8.75 muscular = 8.75
+                case 6 -> 9.0f; // lean = 9.0 average = 9.0 muscular = 9.0
 
                 default -> 0;
             };
@@ -1189,48 +1193,48 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     }
 
     public float getBackHeightModifier(String gene, Float value){
-        if(gene.equals("TOP_LEG")){
+        if(gene.equals("TOP_LEG")){ // NUMBERS CONFIRMED
             float topHindLegWidth = this.getRenderGenetics().get("TOP_HIND_LEG_WIDTH");
             if (topHindLegWidth == 1) {
                 return switch (Math.round(value)){
-                    case 1 -> 4.3f;
-                    case 2 , 3 ->  5.5f;
-                    case 4 -> 7.15f;
-                    case 5, 6 -> 7.95f;
-                    case 7 -> 8.0f;
-                    case 8, 9 -> 8.4f;
+                    case 1 -> 4.3f; //
+                    case 2 , 3 ->  5.5f; //
+                    case 4 -> 7.15f; //
+                    case 5, 6 -> 7.95f; //
+                    case 7 -> 8.0f; //
+                    case 8, 9 -> 8.4f; //
                     default -> 0;
                 };
             } else if (topHindLegWidth == 2) {
                return switch (Math.round(value)){
-                    case 1 -> 4.4f;
-                    case 2, 3 -> 5.8f;
-                    case 4 -> 6.75f;
-                    case 5, 6 -> 8.0f;
-                    case 7 -> 8.15f;
-                    case 8, 9 -> 8.4f;
+                    case 1 -> 4.4f; //
+                    case 2, 3 -> 5.8f; //
+                    case 4 -> 6.75f; //
+                    case 5, 6 -> 8.0f; //
+                    case 7 -> 8.15f; //
+                    case 8, 9 -> 8.4f; //
                     default -> 0;
                 };
             } else if (topHindLegWidth == 3) {
                 return switch (Math.round(value)){
-                    case 1 ->4.6f;
-                    case 2, 3 -> 5.6f;
-                    case 4 -> 7.15f;
-                    case 5, 6 -> 7.95f;
-                    case 7 -> 8.2f;
-                    case 8, 9 -> 8.4f;
+                    case 1 -> 4.6f; //
+                    case 2, 3 -> 5.6f; //
+                    case 4 -> 7.15f; //
+                    case 5, 6 -> 7.95f; //
+                    case 7 -> 8.2f; //
+                    case 8, 9 -> 8.4f; //
                     default -> 0;
                 };
             }
         }
         if(gene.equals("HIP_SIZE")){
             return switch (Math.round(value)){
-                case 1 -> 5.25f; // TODO Different for lean. Fix in pivot points.
-                case 2 -> 6.0f; // TODO Different for muscular, fix in pivot points.
-                case 3 -> 6.5f;
-                case 4 -> 7.5f;
-                case 5 -> 7.5f;
-                case 6 -> 8.5f; // TODO Different for average. Fix in pivot points.
+                case 1 -> 5.25f; // lean = 5.25 average = 5.25 muscular = 5.25
+                case 2 -> 6.0f; // lean = 6.0 average = 6.0 muscular = 6.0
+                case 3 -> 6.5f; // lean = 6.5 average = 6.5 muscular = 6.5
+                case 4 -> 7.5f; // lean = 7.5 average = 7.5 muscular = 7.5
+                case 5 -> 7.5f; // lean = 7.5 average = 7.5 muscular = 7.5
+                case 6 -> 8.5f; // lean = 8.5 average = 8.5 muscular = 8.5
 
                 default -> 0;
             };
@@ -1243,18 +1247,36 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     public float getBottomLegHeightModifier (String gene, float value) {
         if(gene.equals("BOTTOM_LEG")){
-            return switch (Math.round(value)){
-                case 1 -> 3.55f;
-                case 2 -> 4.35f;
-                case 3 -> 5.35f;
-                case 4 -> 6.25f;
-                case 5 -> 7.75f;
-                case 6 -> 8.15f;
-                case 7 -> 7.75f;
-                case 8 -> 8.85f;
-                case 9 -> 8.55f;
-                default -> 0;
-            };
+            int legWidth = Math.round(this.getRenderGenetics().get("LEG_WIDTH"));
+            if (legWidth == 1) {
+                return switch (Math.round(value)){ // NUMBERS CONFIRMED
+                    case 1 -> 3.55f; //
+                    case 2 -> 4.35f; //
+                    case 3 -> 5.35f; //
+                    case 4 -> 6.25f; //
+                    case 5 -> 7.75f; //
+                    case 6 -> 8.15f; //
+                    case 7 -> 7.75f; //
+                    case 8 -> 8.85f; //
+                    case 9 -> 8.55f; //
+                    default -> 0;
+                };
+            } else if (legWidth == 2) { //TODO These values probably shouldn't be different. Change pivot points in average leg width to match the thick?
+                return switch (Math.round(value)){ // NUMBERS CONFIRMED
+                    case 1 -> 3.45f; //
+                    case 2 -> 4.25f; //
+                    case 3 -> 5.25f; //
+                    case 4 -> 6.15f; //
+                    case 5 -> 7.55f; //
+                    case 6 -> 7.65f; //
+                    case 7 -> 7.55f; //
+                    case 8 -> 8.85f; //
+                    case 9 -> 8.45f; //
+                    default -> 0;
+                };
+            } else {
+                return 0;
+            }
         } else {
             return 0;
         }
