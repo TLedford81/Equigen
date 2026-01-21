@@ -123,10 +123,8 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
 
             if (entity.isBaby()) poseStack.scale(0.5f, 0.6f, 0.5f);
             enterEntityModelSpace(entity, poseStack, entityYaw, partialTicks);
-            float offset = 3f;
-            float height = entity.calculateHorseHeight();
-//            EquigenMod.LOGGER.info("RENDER height = " + height);
-            poseStack.translate(0f, -height, 0f);
+
+            poseStack.translate(0f, -entity.calculateHorseHeight(), 0f);
 
             MultiBufferSource out = new MeasuringBufferSource(buffer, new BoundsTracker());
             renderParts(entity, entityYaw, partialTicks, poseStack, out, packedLight, modelMap);

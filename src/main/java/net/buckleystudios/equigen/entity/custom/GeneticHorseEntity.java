@@ -1114,7 +1114,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         float bottomLegs;
         float frontHeight = 0;
         float backHeight = 0;
-        float offset = -3.0f;
         float kneeHeight = 1.0f;
         float hoofHeight = 1.0f;
         Map<String, Float> renderGenetics = getRenderGenetics();
@@ -1127,8 +1126,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 //            EquigenMod.LOGGER.info("BACK HEIGHT = {} with {} added", backHeight, gene);
         }
 //        EquigenMod.LOGGER.info("Bottom legs = {} knee height = {} hoofheight = {} offset = {}", bottomLegs, kneeHeight, hoofHeight, offset);
-        frontHeight += bottomLegs + kneeHeight + hoofHeight + offset;
-        backHeight += bottomLegs + kneeHeight + hoofHeight + offset;
+        frontHeight += bottomLegs + kneeHeight + hoofHeight;
+        backHeight += bottomLegs + kneeHeight + hoofHeight;
 //        EquigenMod.LOGGER.info("UNCONVERTED: FrontHeight = {} BackHeight = {}", frontHeight, backHeight);
 
 
@@ -1184,7 +1183,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                 case 6 -> 9.0f; // lean = 9.0 average = 9.0 muscular = 9.0
 
                 default -> 0;
-            };
+            } / 2;
         }
 
 
@@ -1237,7 +1236,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
                 case 6 -> 8.5f; // lean = 8.5 average = 8.5 muscular = 8.5
 
                 default -> 0;
-            };
+            } / 2;
         }
 
 
@@ -1970,7 +1969,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         GENE_MAP.put("TAIL_LENGTH", this.entityData.get(GENE_TAIL_LENGTH));
         GENE_MAP.put("RED_MODIFIER", this.entityData.get(GENE_RED_MODIFIER));
         GENE_MAP.put("BLACK_MODIFIER", this.entityData.get(GENE_BLACK_MODIFIER));
-        GENE_MAP.put("SCALE", this.entityData.get(GENE_SCALE));
+//        GENE_MAP.put("SCALE", this.entityData.get(GENE_SCALE));
+        GENE_MAP.put("SCALE", 1.0f);
         return GENE_MAP;
     }
 

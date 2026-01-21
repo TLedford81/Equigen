@@ -1,9 +1,9 @@
 package net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -19,12 +19,11 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
         return entity.getRenderGenetics();
     }
     @Override
-    public void handlePartChildRotations(GeneticHorseEntity e, PoseStack pose, float partialTicks) {
-//        x += 1;
+    public void handlePartChildTransform(GeneticHorseEntity e, PoseStack pose, float partialTicks) {
         String partName = "";
+        float pitch = 0.0f;
         List<String> partsToRender = e.getPartsToRender();
         Map<String,Float> renderGenetics = e.getRenderGenetics();
-        float pitch = 0.0f;
         for(String part : partsToRender){
             if(part.startsWith("neck")){
                 partName = part;
@@ -36,10 +35,8 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
                 default ->  pitch = 0.0f;
             }
         }
-        EquigenMod.LOGGER.info("Pitch = {}", pitch);
 //        pitch /= 16;
-//        pitch = (pitch + x) * Mth.DEG_TO_RAD;
-        EquigenMod.LOGGER.info("Pitch calculated = {}", pitch);
+        pitch *= Mth.DEG_TO_RAD; //Convert Degrees (Readable Terms) into Radians (Minecraft's Rotation Units)
         ModelPart individual = root().getChild(partName).getChild(partName + "_individual");
         ModelPart crest = individual.getChild(partName + "_crest");
         ModelPart crestUpper = crest.getChild(partName + "_crest_upper");
@@ -54,8 +51,6 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
 //        topMane.setRotation(topMane.xRot, topMane.yRot, topMane.zRot);
         maneConnector.setRotation(pitch, maneConnector.yRot, maneConnector.zRot);
     }
-
-
 
     public float getNetYaw(GeneticHorseEntity e, float partialTicks) {
         float bodyYaw = net.minecraft.util.Mth.rotLerp(partialTicks, e.yBodyRotO, e.yBodyRot);
