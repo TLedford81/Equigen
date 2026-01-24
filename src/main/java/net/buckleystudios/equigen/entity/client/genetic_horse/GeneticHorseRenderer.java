@@ -391,6 +391,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
 //                cA.position, cA.rotation);
 
         applyTransform(pose, pA, cA, getRotationForPart(partType, entity));
+        child.handlePartChildPosition(entity, pose, partialTicks, legID);
 
         if (chain != null) chain.run();
 

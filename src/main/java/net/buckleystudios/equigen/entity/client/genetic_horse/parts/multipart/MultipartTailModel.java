@@ -14,7 +14,7 @@ public abstract class MultipartTailModel <E extends GeneticHorseEntity> extends 
 
     float x = 0;
     @Override
-    public void handlePartChildTransform(GeneticHorseEntity e, PoseStack pose, float partialTicks) {
+    public void handlePartChildRotation(GeneticHorseEntity e, PoseStack pose, float partialTicks, int LegID) {
         String partName = "";
         List<String> partsToRender = e.getPartsToRender();
         Map<String,Float> renderGenetics = e.getRenderGenetics();

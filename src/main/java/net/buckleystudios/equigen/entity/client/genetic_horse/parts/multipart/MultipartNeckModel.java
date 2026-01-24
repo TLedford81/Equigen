@@ -19,7 +19,7 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
         return entity.getRenderGenetics();
     }
     @Override
-    public void handlePartChildTransform(GeneticHorseEntity e, PoseStack pose, float partialTicks) {
+    public void handlePartChildRotation(GeneticHorseEntity e, PoseStack pose, float partialTicks, int LegID) {
         String partName = "";
         float pitch = 0.0f;
         float pos = 0.0f;

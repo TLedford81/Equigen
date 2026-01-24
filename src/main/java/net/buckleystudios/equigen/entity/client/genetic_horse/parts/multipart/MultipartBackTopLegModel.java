@@ -12,12 +12,15 @@ import java.util.Map;
 
 @OnlyIn(Dist.CLIENT)
 public abstract class MultipartBackTopLegModel <E extends GeneticHorseEntity> extends MultipartModel<GeneticHorseEntity> {
+    float x;
     @Override
-    public void handlePartChildPositions(GeneticHorseEntity e, PoseStack pose, float partialTicks) {
+    public void handlePartChildPosition(GeneticHorseEntity e, PoseStack pose, float partialTicks, int LegID) {
+        x += 1;
         String partName = "";
         float pitch = 0.0f;
         List<String> partsToRender = e.getPartsToRender();
         Map<String,Float> renderGenetics = e.getRenderGenetics();
+
         for(String part : partsToRender){
             if(part.startsWith("top_back_legs")){
                 partName = part;
@@ -30,7 +33,8 @@ public abstract class MultipartBackTopLegModel <E extends GeneticHorseEntity> ex
 
 //        legs.setRotation(legs.xRot, legs.yRot, (Mth.DEG_TO_RAD * -50));
 //        crest.setRotation(crest.xRot, crest.yRot, crest.zRot);
-        legs.setPos(legs.x, 100 , legs.z);
+        pose.translate(0, 10f / 16f, 0);
+//        legs.setPos(legs.x, x, legs.z);
         EquigenMod.LOGGER.info("LEGS POS = X - {} Y - {} Z - {}", legs.x, legs.y, legs.z);
     }
 }
