@@ -22,6 +22,7 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
     public void handlePartChildTransform(GeneticHorseEntity e, PoseStack pose, float partialTicks) {
         String partName = "";
         float pitch = 0.0f;
+        float pos = 0.0f;
         List<String> partsToRender = e.getPartsToRender();
         Map<String,Float> renderGenetics = e.getRenderGenetics();
         for(String part : partsToRender){
@@ -29,14 +30,23 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
                 partName = part;
             }
             switch (Math.round(renderGenetics.get("NECK_POS"))) {
-                case 1 -> pitch = 0.0f;
-                case 2 -> pitch = 100.0f;
-                case 3 -> pitch = 100.0f;
+                case 1 -> {
+                    pitch = -25.0f;
+//                    pos = -10.0f;
+                }
+                case 2 -> {
+                    pitch = -5.0f;
+//                    pos = -5.0f;
+                }
+                case 3 -> pitch = 0.0f;
                 default ->  pitch = 0.0f;
             }
         }
 //        pitch /= 16;
         pitch *= Mth.DEG_TO_RAD; //Convert Degrees (Readable Terms) into Radians (Minecraft's Rotation Units)
+//        pitch = (pitch + x) * Mth.DEG_TO_RAD;
+        pitch *= Mth.DEG_TO_RAD;
+//        EquigenMod.LOGGER.info("Pitch calculated = {}", pitch);
         ModelPart individual = root().getChild(partName).getChild(partName + "_individual");
         ModelPart crest = individual.getChild(partName + "_crest");
         ModelPart crestUpper = crest.getChild(partName + "_crest_upper");
@@ -44,6 +54,7 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
         ModelPart topMane = mane.getChild(partName + "_top_mane");
         ModelPart maneConnector = topMane.getChild(partName + "_top_mane_connector");
 
+        individual.setPos(individual.x, pos, individual.z);
 //        individual.setRotation(individual.xRot, individual.yRot, individual.zRot);
 //        crest.setRotation(crest.xRot, crest.yRot, crest.zRot);
         crestUpper.setRotation(pitch, crestUpper.yRot, crestUpper.zRot);

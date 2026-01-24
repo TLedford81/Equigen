@@ -32,11 +32,11 @@ public class bottom_legs_average_average_3 extends MultipartBottomLegModel<Genet
 
 		PartDefinition bottom_legs_average_average_3_individual = bottom_legs_average_average_3.addOrReplaceChild("bottom_legs_average_average_3_individual", CubeListBuilder.create(), PartPose.offset(0.005F, 2.3186F, 0.0139F));
 
-		PartDefinition cube_r1 = bottom_legs_average_average_3_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(2, 305).addBox(-0.995F, -0.5307F, -4.8186F, 2.0F, 1.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.005F, -2.3186F, 0.0307F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = bottom_legs_average_average_3_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(2, 300).addBox(-0.995F, -0.5307F, -4.8186F, 2.0F, 1.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.005F, -2.3186F, 0.0307F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition bottom_legs_average_average_3_bottom_lower_individual = bottom_legs_average_average_3.addOrReplaceChild("bottom_legs_average_average_3_bottom_lower_individual", CubeListBuilder.create(), PartPose.offset(-0.005F, 6.001F, -0.6502F));
 
-		PartDefinition cube_r2 = bottom_legs_average_average_3_bottom_lower_individual.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(4, 301).addBox(-1.005F, -0.4232F, -3.0644F, 2.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.005F, -1.4503F, 0.5916F, 1.1345F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = bottom_legs_average_average_3_bottom_lower_individual.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(4, 306).addBox(-1.005F, -0.4232F, -3.0644F, 2.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.005F, -1.4503F, 0.5916F, 1.1345F, 0.0F, 0.0F));
 
 		PartDefinition kneeAnchor = bottom_legs_average_average_3.addOrReplaceChild("kneeAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.25F, 0.0F));
 

@@ -52,17 +52,17 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
         if (selectedTexture == 1) {
             return ResourceLocation.fromNamespaceAndPath(
                     EquigenMod.MODID,
-                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + ".png"
+                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_chestnut.png"
             );
         } else if (selectedTexture == 2) {
             return ResourceLocation.fromNamespaceAndPath(
                     EquigenMod.MODID,
-                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "2.png"
+                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_black.png"
             );
         } else if (selectedTexture == 3) {
             return ResourceLocation.fromNamespaceAndPath(
                     EquigenMod.MODID,
-                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "3.png"
+                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_bay.png"
             );
         } else {
             return ResourceLocation.fromNamespaceAndPath(
@@ -73,9 +73,16 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
     }
 
     public int getSelectedTexture(GeneticHorseEntity entity) {
-        float f = entity.getRenderGenetics().getOrDefault("MUSCLE_MASS", 1f);
-        int mass = Math.round(f);
-        return Math.max(1, Math.min(3, mass));
+        float blackModifier = entity.getRenderGenetics().get("BLACK_MODIFIER");
+        float redModifier = entity.getRenderGenetics().get("RED_MODIFIER");
+        if (blackModifier == 1.0f) {
+            return 1; //Chestnut e/e _/_
+        } else if (redModifier == 1.0f && blackModifier >= 2.0f) {
+            return 2; //Black E/_ a/a
+        } else if (blackModifier >= 2.0f && redModifier >= 2.0f) {
+            return 3; //Bay E/_ A_
+        }
+        return 0;
     }
 
     public String getCoatColor(GeneticHorseEntity entity) {
@@ -83,8 +90,8 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
         String coatColor = "";
         switch (baseColor) {
             case 1 -> coatColor = "CHESTNUT";
-            case 2 -> coatColor = "BAY";
-            case 3 -> coatColor = "BLACK";
+            case 2 -> coatColor = "BLACK";
+            case 3 -> coatColor = "BAY";
             default -> coatColor = "";
         }
         return coatColor;

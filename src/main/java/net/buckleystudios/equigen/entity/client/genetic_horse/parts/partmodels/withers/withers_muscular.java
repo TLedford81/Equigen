@@ -34,7 +34,7 @@ public class withers_muscular extends MultipartWithersModel<GeneticHorseEntity> 
 
 		PartDefinition withers_muscular_lower = withers_muscular.addOrReplaceChild("withers_muscular_lower", CubeListBuilder.create(), PartPose.offset(0.098F, -0.0699F, -0.2929F));
 
-		PartDefinition cube_r2 = withers_muscular_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(834, 26).addBox(-6.08F, -6.88F, -4.52F, 7.0F, 9.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.58F, -2.8905F, -0.7872F, 1.2654F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = withers_muscular_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(834, 26).addBox(-6.08F, -6.88F, -4.52F, 6.0F, 9.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.98F, -2.8905F, -0.7872F, 1.2654F, 0.0F, 0.0F));
 
 		PartDefinition neckAnchor = withers_muscular.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(-0.1F, -5.05F, -7.412F));
 

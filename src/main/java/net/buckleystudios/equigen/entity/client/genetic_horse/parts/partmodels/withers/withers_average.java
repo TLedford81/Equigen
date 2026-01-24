@@ -34,7 +34,7 @@ public class withers_average extends MultipartWithersModel<GeneticHorseEntity> {
 
 		PartDefinition withers_average_lower = withers_average.addOrReplaceChild("withers_average_lower", CubeListBuilder.create(), PartPose.offset(-0.0277F, -0.0699F, -0.2929F));
 
-		PartDefinition cube_r2 = withers_average_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(781, 26).addBox(-5.08F, -6.88F, -4.52F, 6.0F, 9.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.8905F, -0.7872F, 1.2654F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = withers_average_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(781, 26).addBox(-5.08F, -6.88F, -4.52F, 5.0F, 9.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.53F, -2.8905F, -0.7872F, 1.2654F, 0.0F, 0.0F));
 
 		PartDefinition neckAnchor = withers_average.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(0.0F, -5.05F, -7.3226F));
 

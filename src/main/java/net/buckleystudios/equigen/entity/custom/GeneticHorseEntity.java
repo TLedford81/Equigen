@@ -1109,7 +1109,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         float scale = ((this.getRenderGenetics().get("SCALE") / 2.0F) + 0.75F);
         return EntityDimensions.scalable(width * scale, height * scale);
     }
-
+private float difference = 0;
+    private String tallerHalf;
     public Float calculateHorseHeight(){
         float bottomLegs;
         float frontHeight = 0;
@@ -1136,13 +1137,16 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 //        EquigenMod.LOGGER.info("CONVERTED: FrontHeight = {} BackHeight = {}", frontHeight, backHeight);
         if (backHeight > frontHeight) {
 //            EquigenMod.LOGGER.info("RETURNING frontHeight = {}", frontHeight);
+            difference = backHeight - frontHeight;
+            tallerHalf = "BACK";
             return frontHeight;
         } else {
 //            EquigenMod.LOGGER.info("RETURNING backHeight = {}", backHeight);
+            difference = frontHeight - backHeight;
+            tallerHalf = "FRONT";
             return backHeight;
         }
     }
-
     public float getFrontHeightModifier(String gene, Float value){
         if(gene.equals("TOP_LEG")){
             float topFrontLegWidth = this.getRenderGenetics().get("LEG_WIDTH");
@@ -1279,6 +1283,14 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         } else {
             return 0;
         }
+    }
+
+    public float getDifference() {
+        return difference;
+    }
+
+    public String getTallerHalf() {
+        return tallerHalf;
     }
 
     protected void clampRotation(Entity entityToUpdate) {
