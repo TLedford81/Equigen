@@ -190,7 +190,6 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
-        this.tameWithName(level.getNearestPlayer(this, 100.0d));
         if(!this.hasCustomSpawn){
             this.setBreed(GeneticBreeds.getRandom());
             this.RandomizeGenetics();
