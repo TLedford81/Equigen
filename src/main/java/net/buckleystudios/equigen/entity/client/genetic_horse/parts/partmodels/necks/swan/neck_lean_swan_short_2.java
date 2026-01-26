@@ -54,9 +54,9 @@ public class neck_lean_swan_short_2 extends MultipartNeckModel<GeneticHorseEntit
 
 		PartDefinition cube_r5 = neck_lean_swan_short_2_lower_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(427, 942).addBox(-5.0784F, -9.0F, -0.9017F, 3.0F, 8.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.5784F, 5.1192F, 0.0099F, 0.2182F, 0.0F, 0.0F));
 
-		PartDefinition neck_lean_swan_short2_mane = neck_lean_swan_short_2.addOrReplaceChild("neck_lean_swan_short2_mane", CubeListBuilder.create(), PartPose.offset(0.0F, -7.419F, 0.0F));
+		PartDefinition neck_lean_swan_short_2_mane = neck_lean_swan_short_2.addOrReplaceChild("neck_lean_swan_short_2_mane", CubeListBuilder.create(), PartPose.offset(0.0F, -7.419F, 0.0F));
 
-		PartDefinition neck_lean_swan_short_2_top_mane = neck_lean_swan_short2_mane.addOrReplaceChild("neck_lean_swan_short_2_top_mane", CubeListBuilder.create(), PartPose.offset(0.0838F, -1.1978F, -2.3163F));
+		PartDefinition neck_lean_swan_short_2_top_mane = neck_lean_swan_short_2_mane.addOrReplaceChild("neck_lean_swan_short_2_top_mane", CubeListBuilder.create(), PartPose.offset(0.0838F, -1.1978F, -2.3163F));
 
 		PartDefinition neck_lean_swan_short_2_top_mane_connector = neck_lean_swan_short_2_top_mane.addOrReplaceChild("neck_lean_swan_short_2_top_mane_connector", CubeListBuilder.create(), PartPose.offsetAndRotation(-0.7151F, -0.8939F, 1.162F, 0.2182F, 0.0F, 0.0F));
 
@@ -74,7 +74,7 @@ public class neck_lean_swan_short_2 extends MultipartNeckModel<GeneticHorseEntit
 
 		PartDefinition cube_r8 = neck_lean_swan_short_2_top_mane_flow.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(756, 975).addBox(-1.0707F, -0.1476F, -4.1526F, 1.0F, 7.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.4085F, 0.9511F, -0.4274F, -0.2133F, -0.3647F));
 
-		PartDefinition neck_lean_swan_short_2_bottom_mane = neck_lean_swan_short2_mane.addOrReplaceChild("neck_lean_swan_short_2_bottom_mane", CubeListBuilder.create(), PartPose.offset(0.0838F, 2.1095F, 2.4211F));
+		PartDefinition neck_lean_swan_short_2_bottom_mane = neck_lean_swan_short_2_mane.addOrReplaceChild("neck_lean_swan_short_2_bottom_mane", CubeListBuilder.create(), PartPose.offset(0.0838F, 2.1095F, 2.4211F));
 
 		PartDefinition neck_lean_swan_short_2_bottom_mane_connector = neck_lean_swan_short_2_bottom_mane.addOrReplaceChild("neck_lean_swan_short_2_bottom_mane_connector", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 0.7151F, 0.4469F, 0.0436F, 0.0F, 0.0F));
 
