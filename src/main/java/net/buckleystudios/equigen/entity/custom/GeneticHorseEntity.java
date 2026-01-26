@@ -1126,9 +1126,10 @@ private float difference = 0;
 //            EquigenMod.LOGGER.info("BACK HEIGHT = {} with {} added", backHeight, gene);
         }
 //        EquigenMod.LOGGER.info("Bottom legs = {} knee height = {} hoofheight = {} offset = {}", bottomLegs, kneeHeight, hoofHeight, offset);
-        frontHeight += bottomLegs + kneeHeight + hoofHeight;
-        backHeight += bottomLegs + kneeHeight + hoofHeight;
-//        EquigenMod.LOGGER.info("UNCONVERTED: FrontHeight = {} BackHeight = {}", frontHeight, backHeight);
+        float backOffset = (getBackGirthModifier("BACK",renderGenetics.get("BACK_GIRTH")) / 2);
+        frontHeight += bottomLegs + kneeHeight + hoofHeight - backOffset;
+        backHeight += bottomLegs + kneeHeight + hoofHeight - backOffset;
+        EquigenMod.LOGGER.info("UNCONVERTED: FrontHeight = {} BackHeight = {}", frontHeight, backHeight);
 
 
         frontHeight /= 16;
@@ -1186,7 +1187,7 @@ private float difference = 0;
                 case 6 -> 9.0f; // lean = 9.0 average = 9.0 muscular = 9.0
 
                 default -> 0;
-            } / 2;
+            };
         }
 
 
@@ -1239,7 +1240,7 @@ private float difference = 0;
                 case 6 -> 8.5f; // lean = 8.5 average = 8.5 muscular = 8.5
 
                 default -> 0;
-            } / 2;
+            };
         }
 
 
@@ -1279,6 +1280,20 @@ private float difference = 0;
             } else {
                 return 0;
             }
+        } else {
+            return 0;
+        }
+    }
+
+    public float getBackGirthModifier(String gene, Float value) {
+        if (gene.equals("BACK")) {
+            return switch (Math.round(value)) {
+                case 1 -> 6.0f;
+                case 2 -> 6.75f;
+                case 3 -> 7.75f;
+                default -> 0;
+
+            };
         } else {
             return 0;
         }

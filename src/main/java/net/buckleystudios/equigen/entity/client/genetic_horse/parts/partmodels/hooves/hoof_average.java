@@ -28,7 +28,8 @@ public class hoof_average extends MultipartHoofModel<GeneticHorseEntity> {
 
         PartDefinition hoof_average = partdefinition.addOrReplaceChild("hoof_average", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-        PartDefinition hoof_average_individual = hoof_average.addOrReplaceChild("hoof_average_individual", CubeListBuilder.create().texOffs(73, 132).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, 0.0F));
+        PartDefinition hoof_average_individual = hoof_average.addOrReplaceChild("hoof_average_individual", CubeListBuilder.create().texOffs(73, 132).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F))
+                .texOffs(73, 132).addBox(-1.0F, 1.0F, 1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, 0.0F));
 
         PartDefinition bottomLegAnchor = hoof_average.addOrReplaceChild("bottomLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, 0.0F));
 
