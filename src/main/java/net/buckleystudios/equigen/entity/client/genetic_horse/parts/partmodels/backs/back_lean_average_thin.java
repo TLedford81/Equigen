@@ -36,7 +36,7 @@ public class back_lean_average_thin extends MultipartBackModel<GeneticHorseEntit
 
 		PartDefinition back_lean_average_thin = partdefinition.addOrReplaceChild("back_lean_average_thin", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition back_lean_average_thin_back_ribs = back_lean_average_thin.addOrReplaceChild("back_lean_average_thin_back_ribs", CubeListBuilder.create().texOffs(274, 426).addBox(-3.0F, -3.0F, -6.0F, 6.0F, 6.0F, 12.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.0297F, 0.1397F, 0.0184F));
+		PartDefinition back_lean_average_thin_back_ribs = back_lean_average_thin.addOrReplaceChild("back_lean_average_thin_back_ribs", CubeListBuilder.create().texOffs(274, 426).addBox(-3.0F, -3.1397F, -6.0F, 6.0F, 6.0F, 12.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.0297F, 0.1397F, 0.0184F));
 
 		PartDefinition back_lean_average_thin_back_top_lower = back_lean_average_thin.addOrReplaceChild("back_lean_average_thin_back_top_lower", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -0.0894F));
 
@@ -48,11 +48,11 @@ public class back_lean_average_thin extends MultipartBackModel<GeneticHorseEntit
 
 		PartDefinition cube_r2 = back_lean_average_thin_back_top_upper.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(266, 423).addBox(-4.08F, -6.24F, -5.52F, 4.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.6621F, 1.5137F, 1.6581F, 0.0F, 0.0F));
 
-		PartDefinition chestAnchor = back_lean_average_thin.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.75F, -5.75F));
+		PartDefinition chestAnchor = back_lean_average_thin.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -0.75F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -3.0F, -5.75F));
 
 		PartDefinition hipsAnchor = back_lean_average_thin.addOrReplaceChild("hipsAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.75F, 6.0F));
 
-		PartDefinition stomachAnchor = back_lean_average_thin.addOrReplaceChild("stomachAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.25F, 5.0F));
+		PartDefinition stomachAnchor = back_lean_average_thin.addOrReplaceChild("stomachAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -0.75F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.0F, 5.0F));
 
 		PartDefinition withersAnchor = back_lean_average_thin.addOrReplaceChild("withersAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.75F, -5.75F));
 

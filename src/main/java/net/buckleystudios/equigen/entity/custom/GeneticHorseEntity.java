@@ -1130,7 +1130,7 @@ private float difference = 0;
         float backOffset = (getBackGirthModifier("BACK",renderGenetics.get("BACK_GIRTH")) / 2);
         frontHeight += bottomLegs + kneeHeight + hoofHeight - backOffset;
         backHeight += bottomLegs + kneeHeight + hoofHeight - backOffset;
-        EquigenMod.LOGGER.info("UNCONVERTED: FrontHeight = {} BackHeight = {}", frontHeight, backHeight);
+//        EquigenMod.LOGGER.info("UNCONVERTED: FrontHeight = {} BackHeight = {}", frontHeight, backHeight);
 
 
         frontHeight /= 16;
@@ -1180,12 +1180,9 @@ private float difference = 0;
         }
         if (gene.equals("CHEST_SIZE")) { // NUMBERS CONFIRMED
             return switch (Math.round(value)){
-                case 1 -> 7.0f; // lean = 7.0 average = 7.0 muscular = 7.0
-                case 2 -> 6.75f; // lean = 6.75 average = 6.75 muscular = 6.75
-                case 3 -> 8.0f; // lean = 8.0 average = 8.0 muscular = 8.0
-                case 4 -> 7.75f; // lean = 7.75 average = 7.75 muscular = 7.75
-                case 5 -> 8.75f; // lean = 8.75 average = 8.75 muscular = 8.75
-                case 6 -> 9.0f; // lean = 9.0 average = 9.0 muscular = 9.0
+                case 1, 2 -> 7.0f; // lean = 7.0 average = 7.0 muscular = 7.0
+                case 3, 4 -> 8.0f; // lean = 8.0 average = 8.0 muscular = 8.0
+                case 5, 6 -> 9.0f; // lean = 9.0 average = 9.0 muscular = 9.0
 
                 default -> 0;
             };
@@ -1233,12 +1230,10 @@ private float difference = 0;
         }
         if(gene.equals("HIP_SIZE")){
             return switch (Math.round(value)){
-                case 1 -> 5.25f; // lean = 5.25 average = 5.25 muscular = 5.25
-                case 2 -> 6.0f; // lean = 6.0 average = 6.0 muscular = 6.0
-                case 3 -> 6.5f; // lean = 6.5 average = 6.5 muscular = 6.5
-                case 4 -> 7.5f; // lean = 7.5 average = 7.5 muscular = 7.5
-                case 5 -> 7.5f; // lean = 7.5 average = 7.5 muscular = 7.5
-                case 6 -> 8.5f; // lean = 8.5 average = 8.5 muscular = 8.5
+                case 1 -> 6.0f;
+                case 2, 3 -> 7.0f;
+                case 4, 5 -> 8.0f;
+                case 6 -> 9.0f;
 
                 default -> 0;
             };
@@ -1290,8 +1285,8 @@ private float difference = 0;
         if (gene.equals("BACK")) {
             return switch (Math.round(value)) {
                 case 1 -> 6.0f;
-                case 2 -> 6.75f;
-                case 3 -> 7.75f;
+                case 2 -> 7.0f;
+                case 3 -> 8.0f;
                 default -> 0;
 
             };

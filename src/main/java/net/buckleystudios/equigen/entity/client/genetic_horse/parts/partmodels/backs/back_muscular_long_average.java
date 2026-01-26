@@ -36,7 +36,7 @@ public class back_muscular_long_average extends MultipartBackModel<GeneticHorseE
 
 		PartDefinition back_muscular_long_average = partdefinition.addOrReplaceChild("back_muscular_long_average", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition back_muscular_long_average_back_ribs = back_muscular_long_average.addOrReplaceChild("back_muscular_long_average_back_ribs", CubeListBuilder.create().texOffs(223, 581).addBox(-4.0F, -3.5F, -6.5F, 8.0F, 7.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.0465F, -0.0754F, -0.0347F));
+		PartDefinition back_muscular_long_average_back_ribs = back_muscular_long_average.addOrReplaceChild("back_muscular_long_average_back_ribs", CubeListBuilder.create().texOffs(223, 581).addBox(-4.0F, -3.4246F, -6.5F, 8.0F, 7.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.0465F, -0.0754F, -0.0347F));
 
 		PartDefinition back_muscular_long_average_back_top_lower = back_muscular_long_average.addOrReplaceChild("back_muscular_long_average_back_top_lower", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -0.3575F));
 

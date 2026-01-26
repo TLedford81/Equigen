@@ -528,10 +528,10 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                 case "withers" -> {
                     switch (Math.round(renderGenetics.get("WITHERS"))) {
                         case 1 -> pitch = 0.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
-                        case 2 -> pitch = -20.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
-                        case 3 -> pitch = -30.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
+                        case 2 -> pitch = -10.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
+                        case 3 -> pitch = -20.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                         default -> pitch = 0.0F;
-                    }
+                   }
 //                    EquigenMod.LOGGER.info("WITHERS GENE = " + (Math.round(renderGenetics.get("WITHERS"))));
 //                    EquigenMod.LOGGER.info("WITHERS ROTATION = " + pitch);
                     Vector3f neckRot = getRotationForPart("neck", e);

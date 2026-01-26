@@ -60,13 +60,13 @@ public class hips_average_small_2 extends MultipartHipModel<GeneticHorseEntity> 
 
 		PartDefinition cube_r2 = hips_average_small_2_hips_top_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(49, 933).addBox(-5.08F, -4.24F, -5.36F, 6.0F, 5.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -1.5145F, 2.5107F, 1.1781F, 0.0F, 0.0F));
 
-		PartDefinition backAnchor = hips_average_small_2.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.4469F, -3.0F, 0.1257F));
+		PartDefinition backAnchor = hips_average_small_2.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.4469F, -3.5F, 0.1257F));
 
 		PartDefinition tailAnchor = hips_average_small_2.addOrReplaceChild("tailAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.3469F, -1.75F, 3.6257F));
 
-		PartDefinition backLeftLegAnchor = hips_average_small_2.addOrReplaceChild("backLeftLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(3.6969F, 3.0F, 1.1257F));
+		PartDefinition backLeftLegAnchor = hips_average_small_2.addOrReplaceChild("backLeftLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(3.6969F, 3.5F, 1.1257F));
 
-		PartDefinition backRightLegAnchor = hips_average_small_2.addOrReplaceChild("backRightLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.8031F, 3.0F, 1.1257F));
+		PartDefinition backRightLegAnchor = hips_average_small_2.addOrReplaceChild("backRightLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.8031F, 3.5F, 1.1257F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}

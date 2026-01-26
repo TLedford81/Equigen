@@ -36,7 +36,7 @@ public class back_muscular_long_thick extends MultipartBackModel<GeneticHorseEnt
 
 		PartDefinition back_muscular_long_thick = partdefinition.addOrReplaceChild("back_muscular_long_thick", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition back_muscular_long_thick_back_ribs = back_muscular_long_thick.addOrReplaceChild("back_muscular_long_thick_back_ribs", CubeListBuilder.create().texOffs(290, 581).addBox(-4.0F, -4.0F, -6.5F, 8.0F, 8.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0429F, -0.0223F, -0.0347F));
+		PartDefinition back_muscular_long_thick_back_ribs = back_muscular_long_thick.addOrReplaceChild("back_muscular_long_thick_back_ribs", CubeListBuilder.create().texOffs(290, 581).addBox(-4.0F, -3.9777F, -6.5F, 8.0F, 8.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0429F, -0.0223F, -0.0347F));
 
 		PartDefinition back_muscular_long_thick_back_top_lower = back_muscular_long_thick.addOrReplaceChild("back_muscular_long_thick_back_top_lower", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -0.2682F));
 

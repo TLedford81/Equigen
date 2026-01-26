@@ -92,9 +92,9 @@ public class chest_lean_average_2 extends MultipartChestModel<GeneticHorseEntity
 
 		PartDefinition backAnchor = chest_lean_average_2.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -4.0F, 4.0F));
 
-		PartDefinition frontLeftLegAnchor = chest_lean_average_2.addOrReplaceChild("frontLeftLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(3.0F, 3.75F, -3.0F));
+		PartDefinition frontLeftLegAnchor = chest_lean_average_2.addOrReplaceChild("frontLeftLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.25F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(3.0F, 4.0F, -3.0F));
 
-		PartDefinition frontRightLegAnchor = chest_lean_average_2.addOrReplaceChild("frontRightLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.75F, 3.75F, -3.0F));
+		PartDefinition frontRightLegAnchor = chest_lean_average_2.addOrReplaceChild("frontRightLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.25F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.75F, 4.0F, -3.0F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}

@@ -36,13 +36,13 @@ public class back_muscular_average_average extends MultipartBackModel<GeneticHor
 
 		PartDefinition back_muscular_average_average = partdefinition.addOrReplaceChild("back_muscular_average_average", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition back_muscular_average_average_back_ribs = back_muscular_average_average.addOrReplaceChild("back_muscular_average_average_back_ribs", CubeListBuilder.create().texOffs(23, 580).addBox(-4.0F, -3.5F, -6.0F, 8.0F, 7.0F, 12.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0429F, -0.0754F, 0.0184F));
+		PartDefinition back_muscular_average_average_back_ribs = back_muscular_average_average.addOrReplaceChild("back_muscular_average_average_back_ribs", CubeListBuilder.create().texOffs(23, 580).addBox(-4.0F, -3.4246F, -6.0F, 8.0F, 7.0F, 12.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0429F, -0.0754F, 0.0184F));
 
 		PartDefinition back_muscular_average_average_back_top_lower = back_muscular_average_average.addOrReplaceChild("back_muscular_average_average_back_top_lower", CubeListBuilder.create(), PartPose.offset(0.1788F, 0.0F, -0.0894F));
 
 		PartDefinition back_muscular_average_average_back_top_lower_individual = back_muscular_average_average_back_top_lower.addOrReplaceChild("back_muscular_average_average_back_top_lower_individual", CubeListBuilder.create(), PartPose.offset(-0.1127F, -0.8025F, 1.9844F));
 
-		PartDefinition cube_r1 = back_muscular_average_average_back_top_lower_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(51, 578).addBox(-6.08F, -6.24F, -5.52F, 7.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.58F, -2.6621F, 1.5137F, 1.6581F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = back_muscular_average_average_back_top_lower_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(51, 577).addBox(-6.08F, -6.24F, -5.52F, 7.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.58F, -2.6621F, 1.5137F, 1.6581F, 0.0F, 0.0F));
 
 		PartDefinition back_muscular_average_average_back_top_upper = back_muscular_average_average_back_top_lower.addOrReplaceChild("back_muscular_average_average_back_top_upper", CubeListBuilder.create(), PartPose.offset(0.0297F, -1.0195F, 2.028F));
 

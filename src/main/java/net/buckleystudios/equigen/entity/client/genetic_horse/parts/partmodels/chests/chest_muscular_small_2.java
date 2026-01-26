@@ -92,9 +92,9 @@ public class chest_muscular_small_2 extends MultipartChestModel<GeneticHorseEnti
 
 		PartDefinition backAnchor = chest_muscular_small_2.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -3.5F, 3.2318F));
 
-		PartDefinition frontLeftLegAnchor = chest_muscular_small_2.addOrReplaceChild("frontLeftLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(3.5F, 3.25F, -2.5182F));
+		PartDefinition frontLeftLegAnchor = chest_muscular_small_2.addOrReplaceChild("frontLeftLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.25F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(3.5F, 3.5F, -2.5182F));
 
-		PartDefinition frontRightLegAnchor = chest_muscular_small_2.addOrReplaceChild("frontRightLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-3.75F, 3.25F, -2.5182F));
+		PartDefinition frontRightLegAnchor = chest_muscular_small_2.addOrReplaceChild("frontRightLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.25F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-3.75F, 3.5F, -2.5182F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}

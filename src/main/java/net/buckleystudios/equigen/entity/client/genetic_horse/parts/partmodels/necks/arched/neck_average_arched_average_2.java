@@ -17,6 +17,7 @@ public class neck_average_arched_average_2 extends MultipartNeckModel<GeneticHor
 	private final ModelPart neck_average_arched_average_2_individual;
 	private final ModelPart neck_average_arched_average_2_crest;
 	private final ModelPart neck_average_arched_average_2_crest_upper;
+	private final ModelPart neck_average_arched_average_2_crest_lower;
 	private final ModelPart headAnchor;
 	private final ModelPart chestAnchor;
 	private final ModelPart withersAnchor;
@@ -27,6 +28,7 @@ public class neck_average_arched_average_2 extends MultipartNeckModel<GeneticHor
 		this.neck_average_arched_average_2_individual = neck_average_arched_average_2.getChild("neck_average_arched_average_2_individual");
 		this.neck_average_arched_average_2_crest = neck_average_arched_average_2_individual.getChild("neck_average_arched_average_2_crest");
 		this.neck_average_arched_average_2_crest_upper = neck_average_arched_average_2_crest.getChild("neck_average_arched_average_2_crest_upper");
+		this.neck_average_arched_average_2_crest_lower = neck_average_arched_average_2_crest.getChild("neck_average_arched_average_2_crest_lower");
 		this.headAnchor = this.neck_average_arched_average_2_crest_upper.getChild("headAnchor");
 		this.chestAnchor = this.neck_average_arched_average_2.getChild("chestAnchor");
 		this.withersAnchor = this.neck_average_arched_average_2.getChild("withersAnchor");

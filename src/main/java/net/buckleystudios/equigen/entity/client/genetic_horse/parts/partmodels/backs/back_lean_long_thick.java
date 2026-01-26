@@ -36,7 +36,7 @@ public class back_lean_long_thick extends MultipartBackModel<GeneticHorseEntity>
 
 		PartDefinition back_lean_long_thick = partdefinition.addOrReplaceChild("back_lean_long_thick", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition back_lean_long_thick_back_ribs = back_lean_long_thick.addOrReplaceChild("back_lean_long_thick_back_ribs", CubeListBuilder.create().texOffs(298, 456).addBox(-3.0F, -4.0F, -6.5F, 6.0F, 8.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.0297F, -0.0223F, 0.0547F));
+		PartDefinition back_lean_long_thick_back_ribs = back_lean_long_thick.addOrReplaceChild("back_lean_long_thick_back_ribs", CubeListBuilder.create().texOffs(298, 456).addBox(-3.0F, -3.9777F, -6.5F, 6.0F, 8.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.0297F, -0.0223F, 0.0547F));
 
 		PartDefinition back_lean_long_thick_back_top_lower = back_lean_long_thick.addOrReplaceChild("back_lean_long_thick_back_top_lower", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -0.1788F));
 

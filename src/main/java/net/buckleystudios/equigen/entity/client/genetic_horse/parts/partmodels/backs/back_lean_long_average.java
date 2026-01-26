@@ -36,7 +36,7 @@ public class back_lean_long_average extends MultipartBackModel<GeneticHorseEntit
 
 		PartDefinition back_lean_long_average = partdefinition.addOrReplaceChild("back_lean_long_average", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition back_lean_long_average_back_ribs = back_lean_long_average.addOrReplaceChild("back_lean_long_average_back_ribs", CubeListBuilder.create().texOffs(236, 456).addBox(-3.0F, -3.5F, -6.5F, 6.0F, 7.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.0297F, -0.0754F, -0.0347F));
+		PartDefinition back_lean_long_average_back_ribs = back_lean_long_average.addOrReplaceChild("back_lean_long_average_back_ribs", CubeListBuilder.create().texOffs(236, 456).addBox(-3.0F, -3.4246F, -6.5F, 6.0F, 7.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.0297F, -0.0754F, -0.0347F));
 
 		PartDefinition back_lean_long_average_back_top_lower = back_lean_long_average.addOrReplaceChild("back_lean_long_average_back_top_lower", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -0.3575F));
 
