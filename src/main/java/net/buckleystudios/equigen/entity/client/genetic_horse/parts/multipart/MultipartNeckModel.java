@@ -22,7 +22,6 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
     public void handlePartChildRotation(GeneticHorseEntity e, PoseStack pose, float partialTicks, int LegID) {
         String partName = "";
         float pitch = 0.0f;
-        float pos = 0.0f;
         List<String> partsToRender = e.getPartsToRender();
         Map<String,Float> renderGenetics = e.getRenderGenetics();
         for(String part : partsToRender){
@@ -31,11 +30,22 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
             }
             switch (Math.round(renderGenetics.get("NECK_POS"))) {
                 case 1 -> {
-                    pitch = -35.0f;
+                    switch (Math.round(renderGenetics.get("NECK_CURVE"))) {
+                        case 1 -> pitch = -5.0F; // Swan
+                        case 2 -> pitch = 0.0F; // Straight
+                        case 3 -> pitch = -10.0F; // Ewed
+                        case 4 -> pitch = -30.0F; // Arched
+                        default -> pitch = 0.0F;
+                }
                 }
                 case 2 -> {
-                    pitch = -5.0f;
-                }
+                    switch (Math.round(renderGenetics.get("NECK_CURVE"))) {
+                        case 1 -> pitch = 0.0F; // Swan
+                        case 2 -> pitch = 0.0F; // Straight
+                        case 3 -> pitch = -2.0F; // Ewed
+                        case 4 -> pitch = -5.0F; // Arched
+                        default -> pitch = 0.0F;
+                    }                }
                 case 3 -> pitch = 0.0f;
                 default ->  pitch = 0.0f;
             }
@@ -65,6 +75,34 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
         float netYaw = net.minecraft.util.Mth.clamp(headYaw - bodyYaw, -45f, 45f);
 
         return netYaw * ((float) Math.PI / 180f);
+    }
+
+    public void handlePartChildPosition(GeneticHorseEntity e, PoseStack pose, float partialTicks, int LegID) {
+        float yPos = 0.0f;
+        List<String> partsToRender = e.getPartsToRender();
+        Map<String,Float> renderGenetics = e.getRenderGenetics();
+        for(String part : partsToRender){
+            if(part.startsWith("neck")){
+                switch (Math.round(renderGenetics.get("NECK_POS"))) {
+                    case 1 -> {
+                        switch (Math.round(renderGenetics.get("NECK_CURVE"))) {
+                            case 1 -> yPos = 2.2F; // Swan
+                            case 2 -> yPos = 0.75F; // Straight
+                            case 3 -> yPos = 1.2F; // Ewed
+                            case 4 -> yPos = 2.5F; // Arched
+                            default -> yPos = 0.0F;
+                        }
+                    }
+                    case 2 -> {
+                        yPos = 1.0f;
+                    }
+                    case 3 -> yPos = 0.0f;
+                    default ->  yPos = 0.0f;
+                }            }
+
+        }
+        yPos /= 16;
+            pose.translate(0, yPos, 0);
     }
 
     public float getNeckRotation() {

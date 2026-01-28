@@ -514,8 +514,6 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                         }
                     } else if (partInfo.startsWith("arched")) {
                         switch (Math.round(renderGenetics.get("NECK_POS"))) {
-                            // TODO need to find out how to rotate specifically the top part of the arched neck based on neck set.
-                            // TODO Also need to lower the neck a lil if there is a lower set neck.
                             case 1 -> pitch = 35.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 2 -> pitch = 20.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 3 -> pitch = 0.0F; // Roughly adjusted, need to test w/ varying lengths.
@@ -526,6 +524,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                     }
                 }
                 case "withers" -> {
+                    //TODO Figure out why some of the withers aren't connected to the pivot point.
                     switch (Math.round(renderGenetics.get("WITHERS"))) {
                         case 1 -> pitch = 0.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                         case 2 -> pitch = -10.0F; // VERY Roughly adjusted, need to test w/ varying lengths.

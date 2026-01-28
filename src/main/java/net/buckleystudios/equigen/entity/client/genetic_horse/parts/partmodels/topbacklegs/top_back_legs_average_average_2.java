@@ -40,7 +40,7 @@ public class top_back_legs_average_average_2 extends MultipartBackTopLegModel<Ge
 
 		PartDefinition hipsAnchor = top_back_legs_average_average_2.addOrReplaceChild("hipsAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.25F, 0.25F));
 
-		PartDefinition kneeAnchor = top_back_legs_average_average_2.addOrReplaceChild("kneeAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 8.25F, 2.1F));
+		PartDefinition kneeAnchor = top_back_legs_average_average_2.addOrReplaceChild("kneeAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -0.25F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 7.5F, 2.1F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
