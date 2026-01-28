@@ -1,5 +1,6 @@
 package net.buckleystudios.equigen.entity.custom.genetics;
 
+import net.buckleystudios.equigen.EquigenMod;
 import net.minecraft.world.phys.Vec2;
 
 import java.util.*;
@@ -9,8 +10,17 @@ public enum GeneticBreeds {
     CHARGER,
     TURKOMAN,
     MONGOLIAN_WILD,
-    RANDOM;
+    CUSTOM;
 
+    public static List<GeneticBreeds> getGeneticBreeds(){
+        List<GeneticBreeds> list = new ArrayList<>();
+        for (GeneticBreeds breed : GeneticBreeds.values()){
+            if(breed != CUSTOM){
+                list.add(breed);
+            }
+        }
+        return list;
+    }
     public Map<String, Vec2> getGeneticLimits() {
         Map<String, Vec2> custom = new HashMap<>();
         List<String> disabledGenetics = new ArrayList<>();
@@ -142,7 +152,7 @@ public enum GeneticBreeds {
                 custom.put("HOOF_SIZE", new Vec2(0, 1));
                 custom.put("SCALE", new Vec2(0.10F, 0.30F));
             }
-            case RANDOM -> {
+            case CUSTOM -> {
                 custom.put("BLACK_VARIATION", new Vec2(1, 4));
             }
         };
@@ -150,19 +160,54 @@ public enum GeneticBreeds {
         return custom;
     }
 
-    public static String getRandom(){
+    public static GeneticBreeds getRandom(){
         Random random = new Random();
-        GeneticBreeds[] values = GeneticBreeds.values();
-        return values[random.nextInt(0, values.length)].name();
+        List<GeneticBreeds> values = getGeneticBreeds();
+
+        return values.get(random.nextInt(0, values.size()));
+    }
+
+    public static GeneticBreeds getRandomWeighted(Map<GeneticBreeds, Integer> weightMap, boolean includeAll){
+        Random random = new Random();
+        Map<GeneticBreeds, Integer> modifiedWeightMap = new HashMap<>(weightMap);
+        if(includeAll){
+            for (GeneticBreeds breed : getGeneticBreeds()){
+                modifiedWeightMap.putIfAbsent(breed, 1);
+            }
+        }
+
+        int totalWeight = 0;
+        for (int weight : modifiedWeightMap.values()) {
+            totalWeight += weight;
+        }
+
+        if (totalWeight <= 0) {
+            EquigenMod.LOGGER.error("Can't get Weighted Probability: No Weights Added!");
+            return null;
+        }
+
+        int roll = random.nextInt(totalWeight);
+
+        for (Map.Entry<GeneticBreeds, Integer> entry : modifiedWeightMap.entrySet()) {
+            roll -= entry.getValue();
+            if (roll < 0) {
+                return entry.getKey();
+            }
+        }
+        EquigenMod.LOGGER.error("Can't get Weighted Probability: Weight Map is Empty!");
+        return null;
+    }
+
+    public static boolean contains(GeneticBreeds queriedBreed){
+        return contains(queriedBreed.name());
     }
 
     public static boolean contains(String queriedBreed){
-        for(GeneticBreeds breed : GeneticBreeds.values()){
+        for(GeneticBreeds breed : getGeneticBreeds()){
             if(breed.name().equals(queriedBreed)){
                 return true;
             }
         }
         return false;
     }
-
 }

@@ -28,11 +28,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), lookupProvider);
     }
 
-//    public ModBlockLootTables() {
-//        super(Collections.emptySet(), FeatureFlags.REGISTRY.allFlags());
-//    }
-
-
     @Override
     protected void generate() {
         //DROP SELF
@@ -40,6 +35,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.RAW_FOLIRITE_BLOCK.get());
         this.dropSelf(ModBlocks.INFUSION_TABLE.get());
         this.dropSelf(ModBlocks.STALL_NAMEPLATE.get());
+        this.dropSelf(ModBlocks.HORSE_SPAWN_MARKER.get());
 
         //FIG WOOD
         this.dropSelf(ModBlocks.FIG_PLANKS.get());

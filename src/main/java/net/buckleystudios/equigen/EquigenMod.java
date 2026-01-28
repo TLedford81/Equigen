@@ -21,6 +21,7 @@ import net.buckleystudios.equigen.sound.ModSounds;
 import net.buckleystudios.equigen.villager.ModVillagers;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.VillagerRenderer;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -89,6 +90,7 @@ public class EquigenMod {
             EntityRenderers.register(ModEntities.PILLAGER_KING.get(), PillagerKingRenderer::new);
             EntityRenderers.register(ModEntities.EGRET.get(), EgretRenderer::new);
             EntityRenderers.register(ModEntities.GENETIC_HORSE.get(), GeneticHorseRenderer::new);
+            EntityRenderers.register(ModEntities.HORSE_TRADER.get(), VillagerRenderer::new);
             EntityRenderers.register(ModEntities.TEST_ENTITY.get(), TestEntityRenderer::new);
             EntityRenderers.register(ModEntities.SODIUM_GRENADE.get(), SodiumGrenadeProjectileRenderer::new);
             EntityRenderers.register(ModEntities.LASSO.get(), LassoProjectileRenderer::new);

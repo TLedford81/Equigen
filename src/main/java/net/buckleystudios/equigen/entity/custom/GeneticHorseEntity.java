@@ -108,9 +108,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public static final EntityDataAccessor<Float> SEAT_LOCAL_Y = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> SEAT_LOCAL_Z = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
 
-    public String breed;
+    public GeneticBreeds breed;
     public static final int geneticCount = GeneticValues.values().length;
-    private Map<String, Float> GENETICS = new HashMap<String, Float>();
+    public Map<String, Float> GENETICS = new HashMap<String, Float>();
     private int hungerTickTimer;
     private int thirstTickTimer;
     private int stressRecoveryTickTimer;
@@ -354,7 +354,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         this.HandleProficiencies();
 
         //Genetics
-        this.setBreed(tag.getString("Breed"));
+        this.setBreed(GeneticBreeds.valueOf(tag.getString("Breed")));
 
         for (int i = 0; i < geneticCount; i++) {
             GeneticValues key = GeneticValues.values()[i];
@@ -373,7 +373,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         super.addAdditionalSaveData(tag);
 
         //Genetics
-        tag.putString("Breed", this.getBreed());
+        tag.putString("Breed", this.getBreed().name());
 
         Set<String> keys = GENETICS.keySet();
         for(String key : keys){
@@ -1595,8 +1595,19 @@ private float difference = 0;
     public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
         boolean flag = !this.isBaby() && this.isTamed() && pPlayer.isSecondaryUseActive();
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
-        if (!this.isVehicle() && !flag) {
+        if (!this.level().isClientSide()) {
+            CompoundTag data = this.getPersistentData();
 
+            if (data.getBoolean("EQG-ForSale")) {
+                String name = this.hasCustomName() ? this.getCustomName().getString() : this.getName().getString();
+                pPlayer.displayClientMessage(
+                        Component.literal(name + " is currently for sale!"), true
+                );
+                return InteractionResult.CONSUME;
+            }
+        }
+
+        if (!this.isVehicle() && !flag) {
             if(itemstack.is(ModItems.HORSE_BRUSH)){
                 this.alterCleanliness("hair", 1.0f);
                 this.level().playSound(null, this.getX(),
@@ -1636,6 +1647,33 @@ private float difference = 0;
                 return InteractionResult.CONSUME;
             } else {
                 return super.mobInteract(pPlayer, pHand);
+            }
+        }
+    }
+
+    @Override
+    public void remove(RemovalReason reason) {
+        super.remove(reason);
+        this.RemoveFromTrader();
+    }
+
+    @Override
+    public void die(DamageSource damageSource) {
+        super.die(damageSource);
+        this.RemoveFromTrader();
+    }
+
+    public void RemoveFromTrader(){
+        CompoundTag data = this.getPersistentData();
+        if (!data.getBoolean("EQG-ForSale")) return;
+        if (!data.hasUUID("EQG-TraderUUID")) return;
+
+        UUID traderId = data.getUUID("EQG-TraderUUID");
+
+        if (this.level() instanceof ServerLevel serverLevel) {
+            Entity entity = serverLevel.getEntity(traderId);
+            if (entity instanceof HorseTraderEntity trader) {
+                trader.onHorseDied(this.getUUID());
             }
         }
     }
@@ -1746,7 +1784,7 @@ private float difference = 0;
 
 
     // GENETICS //
-    public void HandleNewSpawnWithCustomGenetics(String breed, Map<String, Float> customGenes){
+    public void HandleNewSpawnWithCustomGenetics(GeneticBreeds breed, Map<String, Float> customGenes){
         this.hasCustomSpawn = true;
         this.setBreed(breed);
         this.RandomizeGenetics();
@@ -1755,16 +1793,16 @@ private float difference = 0;
         }
     }
 
-    public void setBreed(String breed){
+    public void setBreed(GeneticBreeds breed){
         EquigenMod.LOGGER.info("Setting Breed to {}", breed);
         this.breed = breed;
     }
 
-    public String getBreed(){
+    public GeneticBreeds getBreed(){
         if (this.breed != null){
             return this.breed;
         } else {
-            return "CUSTOM";
+            return GeneticBreeds.CUSTOM;
         }
     }
 
@@ -1773,7 +1811,7 @@ private float difference = 0;
         Map<String, Vec2> breedLimits;
 
         if(GeneticBreeds.contains(this.getBreed())){
-            breedLimits = GeneticBreeds.valueOf(this.getBreed()).getGeneticLimits();
+            breedLimits = this.getBreed().getGeneticLimits();
         } else {
             breedLimits = Map.of();
         }

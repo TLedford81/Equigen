@@ -38,6 +38,7 @@ public class ModItems {
     public static final DeferredItem<Item> HOOF_PICK = ITEMS.registerSimpleItem("hoof_pick", new Item.Properties());
 
 
+    public static final DeferredItem<Item> HORSE_DEED = ITEMS.registerItem("horse_deed", HorseDeedItem::new, new Item.Properties());
     public static final DeferredItem<Item> LASSO = ITEMS.registerItem("lasso", LassoItem::new, new Item.Properties());
     public static final DeferredItem<Item> SODIUM_GRENADE = ITEMS.registerItem("sodium_grenade", SodiumGrenadeItem::new, new Item.Properties());
     public static final DeferredItem<Item> FOLIRITE_PICKAXE = ITEMS.register("folirite_pickaxe", () -> new PickaxeItem(ModToolTiers.FOLIRITE_TIER,

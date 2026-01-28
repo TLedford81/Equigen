@@ -116,6 +116,7 @@
 
   "block.equigen.infusion_table": "Infusion Table",
   "block.equigen.stall_nameplate": "Stall Nameplate",
+  "block.equigen.horse_spawn_marker": "Horse Trader Spawn Marker",
 
   "block.equigen.folirite_block": "Block of Folirite",
   "block.equigen.raw_folirite_block": "Block of Raw Folirite",
@@ -182,8 +183,10 @@
   "creativetab.equigen.main_tab": "Equigen - Main",
   "creativetab.equigen.blocks_tab": "Equigen - Blocks",
   "creativetab.equigen.nature_tab": "Equigen - Natural",
+  "creativetab.equigen.dev_tab": "Equigen - Dev",
 
   "entity.minecraft.villager.equigen.stablemaster": "Stable Master",
+  "entity.equigen.horse_trader": "Horse Trader",
   "entity.equigen.genetic_horse": "Genetic Horse",
   "entity.equigen.egret": "Egret",
 

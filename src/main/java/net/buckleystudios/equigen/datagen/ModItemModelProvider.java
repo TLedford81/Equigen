@@ -28,6 +28,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.LASSO.get());
         basicItem(ModItems.HORSE_BRUSH.get());
         basicItem(ModItems.HOOF_PICK.get());
+        basicItem(ModItems.HORSE_DEED.get());
         basicItem(ModItems.SWEET_PEA_PETALS.get());
         basicItem(ModItems.LOCOWEED_PETALS.get());
         basicItem(ModItems.CALENDULA_PETALS.get());

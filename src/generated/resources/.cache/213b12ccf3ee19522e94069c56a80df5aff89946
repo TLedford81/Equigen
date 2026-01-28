@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-22T21:48:21.1080179	Block States: equigen
+// 1.21.1	2026-01-26T14:53:13.002175	Block States: equigen
 ab57e67d2d95a9c8c01d0ea6da0461f0f71d8426 assets/equigen/blockstates/alfalfa_crop.json
 2b2e1cd61c6f6242256416e08be0d93d7d61f7da assets/equigen/blockstates/apricot_button.json
 479a9063b913f595e64b226e31230c0e00be50d7 assets/equigen/blockstates/apricot_door.json
@@ -69,6 +69,7 @@ e0a2ffc795ed1135e5efea79ab08003125222548 assets/equigen/blockstates/green_ash_sa
 2380917f552a9d5170c881000dc849ccf693b18d assets/equigen/blockstates/green_ash_trapdoor.json
 1db32c30f02dfad8890f5602f0a0b2cdff1f4b91 assets/equigen/blockstates/green_ash_wood.json
 073f962885842057b447f2fd33aeec7eb08e89dc assets/equigen/blockstates/himalayan_rock_salt_ore.json
+f06c09fa611f374a63ced9f09bfe82ce2700b01d assets/equigen/blockstates/horse_spawn_marker.json
 bd88dba40e4cfd7394df046089bcefb3e6bab0c9 assets/equigen/blockstates/infusion_table.json
 a321972b278c153acba3041d6b3b0b2b070f142d assets/equigen/blockstates/magnolia_button.json
 4b1c7bb1f893e4b9e8a76a0cd4de0afd5717b50d assets/equigen/blockstates/magnolia_door.json
@@ -289,6 +290,7 @@ fae848e2361c1f50a814c22dc3326e510dfc91b5 assets/equigen/models/block/green_ash_t
 1b4c6f856b03eb5a09d062ead07eb0e9e9932962 assets/equigen/models/block/green_ash_wood.json
 b6af551f09ba83d97cdaf306a60803bd9de892b6 assets/equigen/models/block/green_ash_wood_horizontal.json
 950c05e4192ac873075cbaa8ab3a1df1bfa7e0f1 assets/equigen/models/block/himalayan_rock_salt_ore.json
+a43a5bcef6eeb0884bbb57167a0aad56f1a1f845 assets/equigen/models/block/horse_spawn_marker.json
 d2fa164efde82fca7328b878041b9211a13bce7e assets/equigen/models/block/magnolia_button.json
 9a7b1405d3203cf8bd41cc38303a1dfa2a72d113 assets/equigen/models/block/magnolia_button_pressed.json
 b01b9bb13f896499f745b27ce99657c862ea0ceb assets/equigen/models/block/magnolia_door_bottom_left.json
@@ -438,6 +440,7 @@ cd52d62d022c2f3b35b9faac2aa1a3227506c631 assets/equigen/models/item/green_ash_sl
 3f7227c17b1056749ce97039050c080101bad941 assets/equigen/models/item/green_ash_trapdoor.json
 f4ebc09e4acb9a3d07f4d64a2281c669c9fc9b5a assets/equigen/models/item/green_ash_wood.json
 8e97a5f73ff64747b4a87560acf06f3260e4cfac assets/equigen/models/item/himalayan_rock_salt_ore.json
+b1c68239b8c805ec2f857c9257db52a4ed4a9ebc assets/equigen/models/item/horse_spawn_marker.json
 f4f6f75f69fcdfdc77c37592b8f973a4b7f757bd assets/equigen/models/item/infusion_table.json
 feb327bcc52635afade8c1a35691588ddaf64874 assets/equigen/models/item/magnolia_fence_gate.json
 ac9867515a53536b2ba4697099bc15cba8deaea3 assets/equigen/models/item/magnolia_leaves.json

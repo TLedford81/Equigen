@@ -2,6 +2,7 @@ package net.buckleystudios.equigen.block.entity;
 
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.block.ModBlocks;
+import net.buckleystudios.equigen.block.entity.custom.HorseSpawnMarkerBlockEntity;
 import net.buckleystudios.equigen.block.entity.custom.InfusionTableBlockEntity;
 import net.buckleystudios.equigen.block.entity.custom.StallNameplateBlockEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -22,4 +23,8 @@ public class ModBlockEntities {
     public static final Supplier<BlockEntityType<StallNameplateBlockEntity>> STALL_NAMEPLATE_BE =
             BLOCK_ENTITIES.register("stall_manager_be", () -> BlockEntityType.Builder.of(
             StallNameplateBlockEntity::new, ModBlocks.STALL_NAMEPLATE.get()).build(null));
+
+    public static final Supplier<BlockEntityType<HorseSpawnMarkerBlockEntity>> HORSE_SPAWN_MARKER =
+            BLOCK_ENTITIES.register("horse_spawn_marker", () -> BlockEntityType.Builder.of(
+                    HorseSpawnMarkerBlockEntity::new, ModBlocks.HORSE_SPAWN_MARKER.get()).build(null));
 }

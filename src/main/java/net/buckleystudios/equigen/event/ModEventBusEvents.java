@@ -29,10 +29,7 @@ import net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.w
 import net.buckleystudios.equigen.entity.client.pillager_king.PillagerKingModel;
 import net.buckleystudios.equigen.entity.client.projectile.SodiumGrenadeProjectileModel;
 import net.buckleystudios.equigen.entity.client.test_entity.TestEntityModel;
-import net.buckleystudios.equigen.entity.custom.EgretEntity;
-import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
-import net.buckleystudios.equigen.entity.custom.PillagerKingEntity;
-import net.buckleystudios.equigen.entity.custom.TestEntityEntity;
+import net.buckleystudios.equigen.entity.custom.*;
 import net.buckleystudios.equigen.util.ModKeyMappings;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.animal.Animal;
@@ -352,6 +349,7 @@ public class ModEventBusEvents {
         event.put(ModEntities.PILLAGER_KING.get(), PillagerKingEntity.createAttributes().build());
         event.put(ModEntities.EGRET.get(), EgretEntity.createAttributes().build());
         event.put(ModEntities.GENETIC_HORSE.get(), GeneticHorseEntity.createAttributes().build());
+        event.put(ModEntities.HORSE_TRADER.get(), HorseTraderEntity.createAttributes().build());
         event.put(ModEntities.TEST_ENTITY.get(), TestEntityEntity.createAttributes().build());
     }
 

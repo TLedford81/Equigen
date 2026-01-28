@@ -25,6 +25,9 @@ public class ModEntities {
     public static final Supplier<EntityType<TestEntityEntity>> TEST_ENTITY =
             ENTITY_TYPES.register("test_entity", () -> EntityType.Builder.of(TestEntityEntity::new, MobCategory.CREATURE)
                     .sized(1f, 1.5f).build("test_entity"));
+    public static final Supplier<EntityType<HorseTraderEntity>> HORSE_TRADER =
+            ENTITY_TYPES.register("horse_trader", () -> EntityType.Builder.of(HorseTraderEntity::new, MobCategory.CREATURE)
+                    .sized(1f, 2f).build("horse_trader"));
 
     public static final Supplier<EntityType<SodiumGrenadeProjectileEntity>> SODIUM_GRENADE =
             ENTITY_TYPES.register("sodium_grenade", () -> EntityType.Builder.<SodiumGrenadeProjectileEntity>of(SodiumGrenadeProjectileEntity::new, MobCategory.MISC)

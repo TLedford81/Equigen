@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-27T20:13:10.6812507	Item Models: equigen
+// 1.21.1	2026-01-26T20:19:42.1004473	Item Models: equigen
 d834f1d768dceede3f7db7ea037606d176657df3 assets/equigen/models/item/alfalfa.json
 c0e11fb7b662a9c0feb69318a7e7c3ced455f687 assets/equigen/models/item/alfalfa_seeds.json
 9c687aadbfdb6b265dbf69c8c60bfedc48813592 assets/equigen/models/item/apricot.json
@@ -39,6 +39,7 @@ c1fc67786e4dbc66f92503ff51b6e91e7835d733 assets/equigen/models/item/green_ash_bu
 52cd09c941ee9a6710e65521a2722b36bae7c3b0 assets/equigen/models/item/himalayan_rock_salt.json
 c155e2a315331fd32a372ab5e86faf1e5cb6bfca assets/equigen/models/item/hoof_pick.json
 b9eafa9db65ec4457b35ac3222c2ce648954c5d5 assets/equigen/models/item/horse_brush.json
+c8906a4d4f15004f602386f9f818849398b02d55 assets/equigen/models/item/horse_deed.json
 671bd672e1d35a1edf1a67585c1d545cc4ce5c96 assets/equigen/models/item/lasso.json
 97188396d256e692d295c22cf49fc0a70e8cefda assets/equigen/models/item/lemon.json
 ec74c0ba1b37dafbb596ea08fcb889ebf5a0d3bc assets/equigen/models/item/locoweed_petals.json

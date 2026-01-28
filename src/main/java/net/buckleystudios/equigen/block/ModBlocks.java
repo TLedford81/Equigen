@@ -2,6 +2,7 @@ package net.buckleystudios.equigen.block;
 
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.block.custom.*;
+import net.buckleystudios.equigen.block.entity.custom.HorseSpawnMarkerBlockEntity;
 import net.buckleystudios.equigen.item.ModItems;
 import net.buckleystudios.equigen.worldgen.tree.ModTreeGrowers;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -274,6 +275,10 @@ public class ModBlocks {
             () -> new InfusionTableBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> STALL_NAMEPLATE = registerBlock("stall_nameplate",
             () -> new StallNameplateBlock(BlockBehaviour.Properties.of()));
+
+    //DEV BLOCKS
+    public static final DeferredBlock<Block> HORSE_SPAWN_MARKER = registerBlock("horse_spawn_marker",
+            () -> new HorseSpawnMarkerBlock(BlockBehaviour.Properties.of()));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block){
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

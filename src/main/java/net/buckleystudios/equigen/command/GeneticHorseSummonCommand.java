@@ -14,9 +14,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.MobSpawnType;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class GeneticHorseSummonCommand {
@@ -50,20 +48,19 @@ public class GeneticHorseSummonCommand {
     }
 
     private int SummonCustomGeneticHorse(CommandContext<CommandSourceStack> context){
-        String breed = StringArgumentType.getString(context, "breed").toUpperCase();
+        GeneticBreeds breed;
+        String queriedBreed = StringArgumentType.getString(context, "breed").toUpperCase();
+        if(GeneticBreeds.contains(queriedBreed)){
+            breed = GeneticBreeds.valueOf(queriedBreed);
+        } else {
+            breed = GeneticBreeds.CUSTOM;
+            if(!queriedBreed.equals("CUSTOM")){
+                context.getSource().sendSystemMessage(Component.literal("Invalid Breed, Proceeding with Custom Breed."));
+            }
+        }
+
         ServerLevel serverLevel = context.getSource().getLevel();
         GeneticHorseEntity entity = new GeneticHorseEntity(ModEntities.GENETIC_HORSE.get(), serverLevel);
-
-        List<String> breedList = new ArrayList<>();
-        for(GeneticBreeds b : GeneticBreeds.values()){
-            breedList.add(b.name());
-        }
-        if(!breed.equals("CUSTOM") && !breedList.contains(breed)){
-            context.getSource().sendSystemMessage(Component.literal("Invalid Breed, Proceeding with Custom Breed."));
-            breed = "CUSTOM";
-        }
-
-
 
         entity.HandleNewSpawnWithCustomGenetics(breed, customGenes);
         serverLevel.addFreshEntity(entity);
@@ -71,7 +68,7 @@ public class GeneticHorseSummonCommand {
             entity.finalizeSpawn(
                     serverLevel,
                     serverLevel.getCurrentDifficultyAt(entity.blockPosition()),
-                    MobSpawnType.COMMAND, // or CUSTOM if you want
+                    MobSpawnType.COMMAND,
                     null
             );
         return 1;

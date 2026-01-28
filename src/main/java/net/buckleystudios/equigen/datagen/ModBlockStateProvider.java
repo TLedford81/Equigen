@@ -338,6 +338,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(ModBlocks.INFUSION_TABLE.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/infusion_table")));
 
+        blockWithItem(ModBlocks.HORSE_SPAWN_MARKER);
+
         //Note: Later, Simplify the usage of SimpleBlockItem command
     }
 
