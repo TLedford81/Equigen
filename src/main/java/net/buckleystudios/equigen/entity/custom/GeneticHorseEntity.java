@@ -1210,7 +1210,7 @@ private float difference = 0;
                     case 1 -> 4.4f; //
                     case 2, 3 -> 5.8f; //
                     case 4 -> 6.75f; //
-                    case 5, 6 -> 8.0f; //
+                    case 5, 6 -> 7.25f; //
                     case 7 -> 8.15f; //
                     case 8, 9 -> 8.4f; //
                     default -> 0;

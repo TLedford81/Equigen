@@ -26,17 +26,17 @@ public class withers_lean extends MultipartWithersModel<GeneticHorseEntity> {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition withers_lean = partdefinition.addOrReplaceChild("withers_lean", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 1.162F));
+		PartDefinition withers_lean = partdefinition.addOrReplaceChild("withers_lean", CubeListBuilder.create(), PartPose.offset(0.0F, 18.95F, -6.25F));
 
-		PartDefinition withers_lean_upper = withers_lean.addOrReplaceChild("withers_lean_upper", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition withers_lean_upper = withers_lean.addOrReplaceChild("withers_lean_upper", CubeListBuilder.create(), PartPose.offset(0.0F, 5.05F, 7.412F));
 
 		PartDefinition cube_r1 = withers_lean_upper.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(712, 26).addBox(-4.0792F, -6.9812F, -4.4648F, 3.0F, 9.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.53F, -3.5896F, -1.0729F, 1.2654F, 0.0F, 0.0F));
 
-		PartDefinition withers_lean__lower = withers_lean.addOrReplaceChild("withers_lean__lower", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition withers_lean__lower = withers_lean.addOrReplaceChild("withers_lean__lower", CubeListBuilder.create(), PartPose.offset(0.0F, 5.05F, 7.412F));
 
 		PartDefinition cube_r2 = withers_lean__lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(733, 26).addBox(-3.08F, -6.88F, -4.52F, 4.0F, 9.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.016F, -2.9604F, -1.0801F, 1.2654F, 0.0F, 0.0F));
 
-		PartDefinition neckAnchor = withers_lean.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(-0.1F, -5.05F, -7.412F));
+		PartDefinition neckAnchor = withers_lean.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(-0.1F, 0.0F, 0.0F));
 
 		PartDefinition cube_r3 = neckAnchor.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0F, 0.0F, -0.3054F, 0.0F, 0.0F));
 
