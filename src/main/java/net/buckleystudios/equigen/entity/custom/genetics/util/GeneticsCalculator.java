@@ -1,7 +1,9 @@
-package net.buckleystudios.equigen.entity.custom.genetics;
+package net.buckleystudios.equigen.entity.custom.genetics.util;
 
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
+import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,7 +89,7 @@ public class GeneticsCalculator {
 
     int rolls = 0;
 
-    public float ladderInheritance(GeneticHorseEntity entity, String geneticType, GeneticValues value, int percentileResult, List<Float> arrs) {
+    public float ladderInheritance(GeneticHorseEntity entity, String geneticType, Genetics value, int percentileResult, List<Float> arrs) {
         //This is an inheritance method where the genetic cannot be repeated, and will therefore be rerolled if it matches other genetics.
         //In coding 1 = genetic not present. 0 = genetic not implemented.
         char variation = 0;
@@ -139,9 +141,9 @@ public class GeneticsCalculator {
             EquigenMod.LOGGER.info("Variation = " + variation + ". Variation Num = " + variationNum);
             float var1 = 0.0F;
             if (geneticType.equals("PATTERN")) {
-                var1 = entity.getGenetic(type.replace(' ', '1'));
+                var1 = GeneticsHandler.getGenetic(entity, type.replace(' ', '1'));
             } else {
-                var1 = entity.getGenetic(type.replace(" ", "FIRST"));
+                var1 = GeneticsHandler.getGenetic(entity, type.replace(" ", "FIRST"));
             }
             float var2 = genetic;
 
@@ -155,9 +157,9 @@ public class GeneticsCalculator {
             }
             if (variationNum == 3) {
                 if (geneticType.equals("PATTERN")) {
-                    var2 = entity.getGenetic(type.replace(' ', '2'));
+                    var2 = GeneticsHandler.getGenetic(entity, type.replace(' ', '2'));
                 } else {
-                    var2 = entity.getGenetic(type.replace(" ", "SECOND"));
+                    var2 = GeneticsHandler.getGenetic(entity, type.replace(" ", "SECOND"));
                 }
 
                 if (var1 == genetic || var2 == genetic) {

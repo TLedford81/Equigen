@@ -2,10 +2,12 @@ package net.buckleystudios.equigen.util;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
+import net.buckleystudios.equigen.network.packets.KeybindData;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.common.util.Lazy;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.lwjgl.glfw.GLFW;
 
 public class ModKeyMappings {
@@ -27,6 +29,8 @@ public class ModKeyMappings {
         while (GAIT_UP.get().consumeClick()) {
             Player player = Minecraft.getInstance().player;
             if(player != null){
+                PacketDistributor.sendToServer(new KeybindData(player.getName().getString(), 150));
+
                 if(player.getVehicle() instanceof GeneticHorseEntity geneticHorseEntity){
                     geneticHorseEntity.MovingGaitChange(1);
                 }

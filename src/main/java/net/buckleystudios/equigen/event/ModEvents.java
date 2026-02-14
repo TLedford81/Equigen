@@ -3,8 +3,13 @@ package net.buckleystudios.equigen.event;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.command.GeneticHorseSummonCommand;
+import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
 import net.buckleystudios.equigen.item.ModItems;
-import net.buckleystudios.equigen.util.ModKeyMappings;
+import net.buckleystudios.equigen.network.ClientPayloadHandler;
+import net.buckleystudios.equigen.network.ServerPayloadHandler;
+import net.buckleystudios.equigen.network.packets.GeneticData;
+import net.buckleystudios.equigen.network.packets.KeybindData;
 import net.buckleystudios.equigen.villager.ModVillagers;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
@@ -14,15 +19,18 @@ import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.neoforged.neoforge.event.village.WandererTradesEvent;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.registration.HandlerThread;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.neoforged.neoforge.server.command.ConfigCommand;
 
 import java.util.List;
 
-@EventBusSubscriber(modid = EquigenMod.MODID, bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = EquigenMod.MODID)
 public class ModEvents {
     @SubscribeEvent
     public static void onCommandsRegister(RegisterCommandsEvent event){
@@ -67,8 +75,18 @@ public class ModEvents {
     }
 
     @SubscribeEvent
-    public static void onClientTick(ClientTickEvent.Post event) {
-        ModKeyMappings.keyPressed();
+    public static void registerPayloads(RegisterPayloadHandlersEvent event){
+        final PayloadRegistrar registrar = event.registrar("1")
+                .executesOn(HandlerThread.MAIN);
+
+        registrar.playToServer(KeybindData.TYPE, KeybindData.STREAM_CODEC, ClientPayloadHandler::handleDataOnMain);
+        registrar.playToClient(GeneticData.TYPE, GeneticData.STREAM_CODEC, ServerPayloadHandler::handleGeneticDataOnClient);
     }
 
+    @SubscribeEvent
+    public static void onStartTracking(PlayerEvent.StartTracking event) {
+        if(event.getTarget() instanceof GeneticHorseEntity ghe){
+            GeneticsHandler.syncGeneticsToClient(ghe);
+        }
+    }
 }

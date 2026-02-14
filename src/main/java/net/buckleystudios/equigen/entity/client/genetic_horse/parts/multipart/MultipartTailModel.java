@@ -2,12 +2,13 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
+import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
 import net.minecraft.client.model.geom.ModelPart;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.List;
-import java.util.Map;
 
 @OnlyIn(Dist.CLIENT)
 public abstract class MultipartTailModel <E extends GeneticHorseEntity> extends MultipartModel<GeneticHorseEntity> {
@@ -17,13 +18,13 @@ public abstract class MultipartTailModel <E extends GeneticHorseEntity> extends 
     public void handlePartChildRotation(GeneticHorseEntity e, PoseStack pose, float partialTicks, int LegID) {
         String partName = "";
         List<String> partsToRender = e.getPartsToRender();
-        Map<String,Float> renderGenetics = e.getRenderGenetics();
+//        Map<String,Float> renderGenetics = e.getRenderGenetics();
         float pitch = 0.0f;
         for(String part : partsToRender){
             if(part.startsWith("tail")){
                 partName = part;
             }
-            switch (Math.round(renderGenetics.get("TAIL_SET"))) {
+            switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.TAIL_SET))) {
                 case 1 -> pitch = 0.0f;
                 case 2 -> pitch = 7.5f;
                 case 3 -> pitch = 15.0f;

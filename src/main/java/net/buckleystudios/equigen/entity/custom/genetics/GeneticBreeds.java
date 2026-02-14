@@ -12,7 +12,7 @@ public enum GeneticBreeds {
     MONGOLIAN_WILD,
     CUSTOM;
 
-    public static List<GeneticBreeds> getGeneticBreeds(){
+    public static List<GeneticBreeds> getBreeds(){
         List<GeneticBreeds> list = new ArrayList<>();
         for (GeneticBreeds breed : GeneticBreeds.values()){
             if(breed != CUSTOM){
@@ -21,11 +21,12 @@ public enum GeneticBreeds {
         }
         return list;
     }
-    public Map<String, Vec2> getGeneticLimits() {
+
+    public Map<String, Vec2> getLimits() {
         Map<String, Vec2> custom = new HashMap<>();
         List<String> disabledGenetics = new ArrayList<>();
 
-        for(GeneticValues gene : GeneticValues.values()){
+        for(Genetics gene : Genetics.values()){
             if(gene.isTextureGene()){
                 disabledGenetics.add(gene.name());
             }
@@ -162,7 +163,7 @@ public enum GeneticBreeds {
 
     public static GeneticBreeds getRandom(){
         Random random = new Random();
-        List<GeneticBreeds> values = getGeneticBreeds();
+        List<GeneticBreeds> values = getBreeds();
 
         return values.get(random.nextInt(0, values.size()));
     }
@@ -171,7 +172,7 @@ public enum GeneticBreeds {
         Random random = new Random();
         Map<GeneticBreeds, Integer> modifiedWeightMap = new HashMap<>(weightMap);
         if(includeAll){
-            for (GeneticBreeds breed : getGeneticBreeds()){
+            for (GeneticBreeds breed : getBreeds()){
                 modifiedWeightMap.putIfAbsent(breed, 1);
             }
         }
@@ -203,7 +204,7 @@ public enum GeneticBreeds {
     }
 
     public static boolean contains(String queriedBreed){
-        for(GeneticBreeds breed : getGeneticBreeds()){
+        for(GeneticBreeds breed : getBreeds()){
             if(breed.name().equals(queriedBreed)){
                 return true;
             }

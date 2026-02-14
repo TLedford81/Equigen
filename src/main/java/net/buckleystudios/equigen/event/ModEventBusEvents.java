@@ -30,14 +30,12 @@ import net.buckleystudios.equigen.entity.client.pillager_king.PillagerKingModel;
 import net.buckleystudios.equigen.entity.client.projectile.SodiumGrenadeProjectileModel;
 import net.buckleystudios.equigen.entity.client.test_entity.TestEntityModel;
 import net.buckleystudios.equigen.entity.custom.*;
-import net.buckleystudios.equigen.util.ModKeyMappings;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 
@@ -338,10 +336,6 @@ public class ModEventBusEvents {
         event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THICK_LONG_1, bottom_legs_thick_long_1::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THICK_LONG_2, bottom_legs_thick_long_2::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THICK_LONG_3, bottom_legs_thick_long_3::createBodyLayer);
-
-
-
-
     }
 
     @SubscribeEvent
@@ -359,11 +353,5 @@ public class ModEventBusEvents {
                 Animal::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(ModEntities.GENETIC_HORSE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 Animal::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
-    }
-
-    @SubscribeEvent
-    public static void registerBindings(RegisterKeyMappingsEvent event) {
-        event.register(ModKeyMappings.GAIT_UP.get());
-        event.register(ModKeyMappings.GAIT_DOWN.get());
     }
 }

@@ -7,7 +7,7 @@ import com.mojang.brigadier.context.CommandContext;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticBreeds;
-import net.buckleystudios.equigen.entity.custom.genetics.GeneticValues;
+import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class GeneticHorseSummonCommand {
 
-    private static Map<String, Float> customGenes = new HashMap<>();
+    private static Map<Genetics, Float> customGenes = new HashMap<>();
 
     public GeneticHorseSummonCommand(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(Commands.literal("equigen")
@@ -78,7 +78,7 @@ public class GeneticHorseSummonCommand {
         if(customGenes.isEmpty()){
             context.getSource().sendSystemMessage(Component.literal("No Genes Have Been Altered!"));
         } else {
-            for(String key : customGenes.keySet()){
+            for(Genetics key : customGenes.keySet()){
                 context.getSource().sendSystemMessage(Component.literal(key + ": " + customGenes.get(key)));
             }
         }
@@ -106,14 +106,14 @@ public class GeneticHorseSummonCommand {
         boolean nameIsValid = false;
         boolean valueIsValid = false;
 
-        for (int i = 0; i < GeneticValues.values().length; i++) {
-            GeneticValues key = GeneticValues.values()[i];
+        for (int i = 0; i < Genetics.values().length; i++) {
+            Genetics key = Genetics.values()[i];
             if(key.name().equals(targetGene)){
                 nameIsValid = true;
                 if(key.getDefaultMaxSize() >= targetValue){
                     if(targetValue > 0) {
                         valueIsValid = true;
-                        customGenes.put(targetGene, targetValue);
+                        customGenes.put(key, targetValue);
                         context.getSource().sendSystemMessage(Component.literal("Set Custom Gene " + targetGene + " with a value of " + targetValue + "."));
                     }
                 }

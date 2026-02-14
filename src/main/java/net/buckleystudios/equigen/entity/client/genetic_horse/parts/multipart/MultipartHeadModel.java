@@ -2,11 +2,12 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
+import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.List;
-import java.util.Map;
 
 @OnlyIn(Dist.CLIENT)
 public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends MultipartModel<GeneticHorseEntity> {
@@ -15,12 +16,12 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
         float zPos = 0.0f;
         float yPos = 0.0f;
         List<String> partsToRender = e.getPartsToRender();
-        Map<String,Float> renderGenetics = e.getRenderGenetics();
+//        Map<String,Float> renderGenetics = e.getRenderGenetics();
         for(String part : partsToRender){
             if(part.startsWith("head")){
-                switch (Math.round(renderGenetics.get("NECK_POS"))) {
+                switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_POS))) {
                     case 1 -> {
-                        switch (Math.round(renderGenetics.get("NECK_CURVE"))) {
+                        switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_CURVE))) {
                             case 1 -> {
                                 zPos = 1.5F;
                                 yPos = -1.0f;
@@ -41,7 +42,7 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                         }
                     }
                     case 2 -> {
-                        switch (Math.round(renderGenetics.get("NECK_CURVE"))) {
+                        switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_CURVE))) {
                             case 1 -> {
                                 zPos = 0.5F;
                                 yPos = -0.5f;

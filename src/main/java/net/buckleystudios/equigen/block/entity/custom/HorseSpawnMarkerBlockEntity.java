@@ -5,6 +5,8 @@ import net.buckleystudios.equigen.block.entity.ModBlockEntities;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticBreeds;
+import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
+import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
 import net.buckleystudios.equigen.util.SpawnMarkerIndex;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -52,7 +54,7 @@ public class HorseSpawnMarkerBlockEntity extends BlockEntity {
                     null
             );
 
-            float gender = entity.getGenetic("GENDER");
+            float gender = GeneticsHandler.getGenetic(entity, Genetics.GENDER);
 
             List<String> maleNames = List.of(
                     "Hoover",
@@ -101,7 +103,7 @@ public class HorseSpawnMarkerBlockEntity extends BlockEntity {
         return GeneticBreeds.getRandom();
     }
 
-    private Map<String, Float> getTargetGenes() {
+    private Map<Genetics, Float> getTargetGenes() {
         return Map.of();
     }
 

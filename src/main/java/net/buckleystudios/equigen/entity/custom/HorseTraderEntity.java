@@ -1,6 +1,8 @@
 package net.buckleystudios.equigen.entity.custom;
 
 import net.buckleystudios.equigen.block.entity.custom.HorseSpawnMarkerBlockEntity;
+import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
+import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
 import net.buckleystudios.equigen.item.ModItems;
 import net.buckleystudios.equigen.util.SpawnMarkerIndex;
 import net.minecraft.ChatFormatting;
@@ -147,7 +149,7 @@ public class HorseTraderEntity extends Villager {
         tag.putUUID("HorseUUID", ghe.getUUID());
         tag.putUUID("TraderUUID", this.getUUID());
         tag.putString("HorseBreed", ghe.getBreed().name());
-        tag.putString("HorseGender", ghe.getGenetic("GENDER") == 1 ? "Male" : "Female");
+        tag.putString("HorseGender", GeneticsHandler.getGenetic(ghe, Genetics.GENDER) == 1 ? "Male" : "Female");
 
         deed.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
 

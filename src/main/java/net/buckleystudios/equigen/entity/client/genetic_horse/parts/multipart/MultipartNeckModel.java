@@ -2,35 +2,33 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
+import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.List;
-import java.util.Map;
 
 @OnlyIn(Dist.CLIENT)
 public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends MultipartModel<GeneticHorseEntity> {
     private float neckRotation;
     public float x;
 
-    public Map<String, Float> getGenetics(GeneticHorseEntity entity){
-        return entity.getRenderGenetics();
-    }
     @Override
     public void handlePartChildRotation(GeneticHorseEntity e, PoseStack pose, float partialTicks, int LegID) {
         String partName = "";
         float pitch = 0.0f;
         List<String> partsToRender = e.getPartsToRender();
-        Map<String,Float> renderGenetics = e.getRenderGenetics();
+//        Map<String,Float> renderGenetics = e.getRenderGenetics();
         for(String part : partsToRender){
             if(part.startsWith("neck")){
                 partName = part;
             }
-            switch (Math.round(renderGenetics.get("NECK_POS"))) {
+            switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_POS))) {
                 case 1 -> {
-                    switch (Math.round(renderGenetics.get("NECK_CURVE"))) {
+                    switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_CURVE))) {
                         case 1 -> pitch = -5.0F; // Swan
                         case 2 -> pitch = 0.0F; // Straight
                         case 3 -> pitch = -10.0F; // Ewed
@@ -39,7 +37,7 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
                 }
                 }
                 case 2 -> {
-                    switch (Math.round(renderGenetics.get("NECK_CURVE"))) {
+                    switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_CURVE))) {
                         case 1 -> pitch = 0.0F; // Swan
                         case 2 -> pitch = 0.0F; // Straight
                         case 3 -> pitch = -2.0F; // Ewed
@@ -80,12 +78,12 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
     public void handlePartChildPosition(GeneticHorseEntity e, PoseStack pose, float partialTicks, int LegID) {
         float yPos = 0.0f;
         List<String> partsToRender = e.getPartsToRender();
-        Map<String,Float> renderGenetics = e.getRenderGenetics();
+//        Map<String,Float> renderGenetics = e.getRenderGenetics();
         for(String part : partsToRender){
             if(part.startsWith("neck")){
-                switch (Math.round(renderGenetics.get("NECK_POS"))) {
+                switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_POS))) {
                     case 1 -> {
-                        switch (Math.round(renderGenetics.get("NECK_CURVE"))) {
+                        switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_CURVE))) {
                             case 1 -> yPos = 2.2F; // Swan
                             case 2 -> yPos = 0.75F; // Straight
                             case 3 -> yPos = 1.2F; // Ewed

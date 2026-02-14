@@ -1,6 +1,8 @@
-package net.buckleystudios.equigen.entity.custom.genetics;
+package net.buckleystudios.equigen.entity.custom.genetics.util;
 
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
+import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
 
 import java.util.List;
 import java.util.Map;
@@ -32,24 +34,24 @@ public class GeneticPartNameBuilder {
     }
 
     public String PartStringGenerator(String PART){
-        Map<String, Float> GENETICS = entity.getRenderGenetics();
-        String MUSCLE_MASS        = GeneticIdentifier("MUSCLE_MASS", GENETICS.get("MUSCLE_MASS"), PART);
-        String BACK_LENGTH        = GeneticIdentifier("BACK_LENGTH", GENETICS.get("BACK_LENGTH"), PART);
-        String BACK_GIRTH         = GeneticIdentifier("BACK_GIRTH", GENETICS.get("BACK_GIRTH"), PART);
-        String TOP_LEG            = GeneticIdentifier("TOP_LEG", GENETICS.get("TOP_LEG"), PART);
-        String BOTTOM_LEG         = GeneticIdentifier("BOTTOM_LEG", GENETICS.get("BOTTOM_LEG"), PART);
-        String LEG_WIDTH           = GeneticIdentifier("LEG_WIDTH", GENETICS.get("LEG_WIDTH"), PART);
-        String TOP_HIND_LEG_WIDTH = GeneticIdentifier("TOP_HIND_LEG_WIDTH", GENETICS.get("TOP_HIND_LEG_WIDTH"), PART);
-        String CHEST_SIZE         = GeneticIdentifier("CHEST_SIZE", GENETICS.get("CHEST_SIZE"), PART);
-        String HEAD_TYPE          = GeneticIdentifier("HEAD_TYPE", GENETICS.get("HEAD_TYPE"), PART);
-        String HIP_SIZE           = GeneticIdentifier("HIP_SIZE", GENETICS.get("HIP_SIZE"), PART);
-        String HOOF_SIZE          = GeneticIdentifier("HOOF_SIZE", GENETICS.get("HOOF_SIZE"), PART);
-        String NECK_CURVE         = GeneticIdentifier("NECK_CURVE", GENETICS.get("NECK_CURVE"), PART);
-        String NECK_LENGTH        = GeneticIdentifier("NECK_LENGTH", GENETICS.get("NECK_LENGTH"), PART);
-        String STOMACH_LENGTH     = GeneticIdentifier("STOMACH_LENGTH", GENETICS.get("STOMACH_LENGTH"), PART);
-        String STOMACH_CURVE      = GeneticIdentifier("STOMACH_CURVE", GENETICS.get("STOMACH_CURVE"), PART);
-        String TAIL_THICKNESS     = GeneticIdentifier("TAIL_THICKNESS", GENETICS.get("TAIL_THICKNESS"), PART);
-        String TAIL_LENGTH        = GeneticIdentifier("TAIL_LENGTH", GENETICS.get("TAIL_LENGTH"), PART);
+        Map<Genetics, Float> GENETICS = GeneticsHandler.getRenderGenetics(entity);
+        String MUSCLE_MASS        = GeneticIdentifier("MUSCLE_MASS", GENETICS.get(Genetics.MUSCLE_MASS), PART);
+        String BACK_LENGTH        = GeneticIdentifier("BACK_LENGTH", GENETICS.get(Genetics.BACK_LENGTH), PART);
+        String BACK_GIRTH         = GeneticIdentifier("BACK_GIRTH", GENETICS.get(Genetics.BACK_GIRTH), PART);
+        String TOP_LEG            = GeneticIdentifier("TOP_LEG", GENETICS.get(Genetics.TOP_LEG), PART);
+        String BOTTOM_LEG         = GeneticIdentifier("BOTTOM_LEG", GENETICS.get(Genetics.BOTTOM_LEG), PART);
+        String LEG_WIDTH           = GeneticIdentifier("LEG_WIDTH", GENETICS.get(Genetics.LEG_WIDTH), PART);
+        String TOP_HIND_LEG_WIDTH = GeneticIdentifier("TOP_HIND_LEG_WIDTH", GENETICS.get(Genetics.TOP_HIND_LEG_WIDTH), PART);
+        String CHEST_SIZE         = GeneticIdentifier("CHEST_SIZE", GENETICS.get(Genetics.CHEST_SIZE), PART);
+        String HEAD_TYPE          = GeneticIdentifier("HEAD_TYPE", GENETICS.get(Genetics.HEAD_TYPE), PART);
+        String HIP_SIZE           = GeneticIdentifier("HIP_SIZE", GENETICS.get(Genetics.HIP_SIZE), PART);
+        String HOOF_SIZE          = GeneticIdentifier("HOOF_SIZE", GENETICS.get(Genetics.HOOF_SIZE), PART);
+        String NECK_CURVE         = GeneticIdentifier("NECK_CURVE", GENETICS.get(Genetics.NECK_CURVE), PART);
+        String NECK_LENGTH        = GeneticIdentifier("NECK_LENGTH", GENETICS.get(Genetics.NECK_LENGTH), PART);
+        String STOMACH_LENGTH     = GeneticIdentifier("STOMACH_LENGTH", GENETICS.get(Genetics.STOMACH_LENGTH), PART);
+        String STOMACH_CURVE      = GeneticIdentifier("STOMACH_CURVE", GENETICS.get(Genetics.STOMACH_CURVE), PART);
+        String TAIL_THICKNESS     = GeneticIdentifier("TAIL_THICKNESS", GENETICS.get(Genetics.TAIL_THICKNESS), PART);
+        String TAIL_LENGTH        = GeneticIdentifier("TAIL_LENGTH", GENETICS.get(Genetics.TAIL_LENGTH), PART);
 
         return switch(PART) {
             case "left_ear", "right_ear", "knees" -> GeneValueNameBuilder(List.of(PART));
