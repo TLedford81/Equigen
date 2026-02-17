@@ -164,7 +164,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public void spawnChildFromBreeding(ServerLevel level, Animal mate) {
         EquigenMod.LOGGER.info("{} MATE IS {}", this.getName(), mate.getName());
         GeneticHorseEntity geneticHorseMate = (GeneticHorseEntity) mate;
-        float gender = GeneticsHandler.getGenetic(this, Genetics.GENDER);
+        float gender = GeneticsHandler.getEntityGenetic(this, Genetics.GENDER);
 
         if (gender == 1) {
             geneticHorseMate.setPregnant(true, this);
@@ -216,8 +216,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
         if (!this.isInLove() || !geneticHorseEntity.isInLove()) return false;
 
-        float thisGender = GeneticsHandler.getGenetic(this, Genetics.GENDER);
-        float otherGender = GeneticsHandler.getGenetic(geneticHorseEntity, Genetics.GENDER);
+        float thisGender = GeneticsHandler.getEntityGenetic(this, Genetics.GENDER);
+        float otherGender = GeneticsHandler.getEntityGenetic(geneticHorseEntity, Genetics.GENDER);
 
         return (thisGender == 1 && otherGender == 2)
                 || (thisGender == 2 && otherGender == 1);
@@ -602,35 +602,35 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         //Speed
         ResourceLocation maxSpeedSkillID = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "speed_skill_max");
         AttributeModifier maxSpeedModifier = new AttributeModifier(maxSpeedSkillID,
-                GeneticsHandler.getGenetic(this, Genetics.SPEED_MAX_LEVEL), AttributeModifier.Operation.ADD_VALUE);
+                GeneticsHandler.getEntityGenetic(this, Genetics.SPEED_MAX_LEVEL), AttributeModifier.Operation.ADD_VALUE);
 
         attributes.getInstance(ModEntityAttributes.MAX_SKILL_SPEED).addOrReplacePermanentModifier(maxSpeedModifier);
 
         //Strength
         ResourceLocation maxStrengthSkillID = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "strength_skill_max");
         AttributeModifier maxStrengthModifier = new AttributeModifier(maxStrengthSkillID,
-                GeneticsHandler.getGenetic(this, Genetics.STRENGTH_MAX_LEVEL), AttributeModifier.Operation.ADD_VALUE);
+                GeneticsHandler.getEntityGenetic(this, Genetics.STRENGTH_MAX_LEVEL), AttributeModifier.Operation.ADD_VALUE);
 
         attributes.getInstance(ModEntityAttributes.MAX_SKILL_STRENGTH).addOrReplacePermanentModifier(maxStrengthModifier);
 
         //Jump
         ResourceLocation maxJumpSkillID = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "jump_skill_max");
         AttributeModifier maxJumpModifier = new AttributeModifier(maxJumpSkillID,
-                GeneticsHandler.getGenetic(this, Genetics.JUMP_MAX_LEVEL), AttributeModifier.Operation.ADD_VALUE);
+                GeneticsHandler.getEntityGenetic(this, Genetics.JUMP_MAX_LEVEL), AttributeModifier.Operation.ADD_VALUE);
 
         attributes.getInstance(ModEntityAttributes.MAX_SKILL_JUMP).addOrReplacePermanentModifier(maxJumpModifier);
 
         //Endurance
         ResourceLocation maxEnduranceSkillID = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "endurance_skill_max");
         AttributeModifier maxEnduranceModifier = new AttributeModifier(maxEnduranceSkillID,
-                GeneticsHandler.getGenetic(this, Genetics.ENDURANCE_MAX_LEVEL), AttributeModifier.Operation.ADD_VALUE);
+                GeneticsHandler.getEntityGenetic(this, Genetics.ENDURANCE_MAX_LEVEL), AttributeModifier.Operation.ADD_VALUE);
 
         attributes.getInstance(ModEntityAttributes.MAX_SKILL_ENDURANCE).addOrReplacePermanentModifier(maxEnduranceModifier);
 
         //Agility
         ResourceLocation maxAgilitySkillID = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "agility_skill_max");
         AttributeModifier maxAgilityModifier = new AttributeModifier(maxAgilitySkillID,
-                GeneticsHandler.getGenetic(this, Genetics.AGILITY_MAX_LEVEL), AttributeModifier.Operation.ADD_VALUE);
+                GeneticsHandler.getEntityGenetic(this, Genetics.AGILITY_MAX_LEVEL), AttributeModifier.Operation.ADD_VALUE);
 
         attributes.getInstance(ModEntityAttributes.MAX_SKILL_AGILITY).addOrReplacePermanentModifier(maxAgilityModifier);
 
@@ -1018,7 +1018,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     protected EntityDimensions getDefaultDimensions(Pose pose) {
         float height = calculateHorseHeight();
         float width = 1f;
-        float scale = ((GeneticsHandler.getGenetic(this, Genetics.SCALE)) + 0.75F);
+        float scale = ((GeneticsHandler.getEntityGenetic(this, Genetics.SCALE)) + 0.75F);
 //        EquigenMod.LOGGER.info("Scale: {}, Genetic Value: {}", scale, GeneticsHandler.getGenetic(this, Genetics.SCALE));
         return EntityDimensions.scalable(width * scale, height * scale);
     }
@@ -1064,7 +1064,7 @@ private float difference = 0;
     public float getFrontHeightModifier(Genetics gene, Float value){
         if(gene.is(Genetics.TOP_LEG)){
 //            float topFrontLegWidth = this.getRenderGenetics().get("LEG_WIDTH");
-            float topFrontLegWidth = GeneticsHandler.getGenetic(this, Genetics.LEG_WIDTH);
+            float topFrontLegWidth = GeneticsHandler.getEntityGenetic(this, Genetics.LEG_WIDTH);
             if (topFrontLegWidth == 1) {
                 return switch (Math.round(value)){ // NUMBERS CONFIRMED
                     case 1 -> 4.2f; //
@@ -1106,7 +1106,7 @@ private float difference = 0;
     public float getBackHeightModifier(Genetics gene, Float value){
         if(gene.is(Genetics.TOP_LEG)){ // NUMBERS CONFIRMED
 //            float topHindLegWidth = this.getRenderGenetics().get("TOP_HIND_LEG_WIDTH");
-            float topHindLegWidth = GeneticsHandler.getGenetic(this, Genetics.TOP_HIND_LEG_WIDTH);
+            float topHindLegWidth = GeneticsHandler.getEntityGenetic(this, Genetics.TOP_HIND_LEG_WIDTH);
             if (topHindLegWidth == 1) {
                 return switch (Math.round(value)){
                     case 1 -> 4.3f; //
@@ -1158,7 +1158,7 @@ private float difference = 0;
     public float getBottomLegHeightModifier (String gene, float value) {
         if(gene.equals("BOTTOM_LEG")){
 //            int legWidth = Math.round(this.getRenderGenetics().get("LEG_WIDTH"));
-            int legWidth = Math.round(GeneticsHandler.getGenetic(this, Genetics.LEG_WIDTH));
+            int legWidth = Math.round(GeneticsHandler.getEntityGenetic(this, Genetics.LEG_WIDTH));
             if (legWidth == 1) {
                 return switch (Math.round(value)){ // NUMBERS CONFIRMED
                     case 1 -> 3.55f; //
@@ -1631,9 +1631,9 @@ private float difference = 0;
             if (calculator.reroll.isEmpty()) {
                 if (value.getDefaultMaxSize() != 0) {
                     float minValue, maxValue;
-                    float motherGenetic = GeneticsHandler.getGenetic(mother, value.name());
+                    float motherGenetic = GeneticsHandler.getEntityGenetic(mother, value.name());
                     EquigenMod.LOGGER.info("motherGenetic = " + motherGenetic);
-                    float fatherGenetic = GeneticsHandler.getGenetic(father, value.name());
+                    float fatherGenetic = GeneticsHandler.getEntityGenetic(father, value.name());
                     EquigenMod.LOGGER.info("fatherGenetic = " + fatherGenetic);
 
                     EquigenMod.LOGGER.info("Mother = " + mother.getName() + " Father = " + father.getName());
@@ -1677,19 +1677,19 @@ private float difference = 0;
                         char variationNum = value.name().charAt(value.name().length() - 1);
                         switch (variationNum) {
                             case '1' -> newGeneticValue = calculator.ladderInheritance(this, "PATTERN", value, calculator.percentileGenerator(List.of(39, 39, 10, 10, 2)), List.of(motherGenetic, fatherGenetic,
-                                    GeneticsHandler.getGenetic(mother, value.name().replace(variationNum, '2')), //Calls the Variation 2 Genetic
-                                    GeneticsHandler.getGenetic(father, value.name().replace(variationNum, '2')), 1.0F));
+                                    GeneticsHandler.getEntityGenetic(mother, value.name().replace(variationNum, '2')), //Calls the Variation 2 Genetic
+                                    GeneticsHandler.getEntityGenetic(father, value.name().replace(variationNum, '2')), 1.0F));
 
                             case '2' -> newGeneticValue = calculator.ladderInheritance(this, "PATTERN", value, calculator.percentileGenerator(List.of(35, 35, 5, 5, 8, 8, 4)), List.of(motherGenetic, fatherGenetic,
-                                    GeneticsHandler.getGenetic(mother,value.name().replace(variationNum, '1')),
-                                    GeneticsHandler.getGenetic(father, value.name().replace(variationNum, '1')),
-                                    GeneticsHandler.getGenetic(mother,value.name().replace(variationNum, '3')),
-                                    GeneticsHandler.getGenetic(father, value.name().replace(variationNum, '3')),
+                                    GeneticsHandler.getEntityGenetic(mother,value.name().replace(variationNum, '1')),
+                                    GeneticsHandler.getEntityGenetic(father, value.name().replace(variationNum, '1')),
+                                    GeneticsHandler.getEntityGenetic(mother,value.name().replace(variationNum, '3')),
+                                    GeneticsHandler.getEntityGenetic(father, value.name().replace(variationNum, '3')),
                                     1.0F));
 
                             case '3' -> newGeneticValue = calculator.ladderInheritance(this, "PATTERN", value, calculator.percentileGenerator(List.of(40, 40, 8, 8, 4)), List.of(motherGenetic, fatherGenetic,
-                                    GeneticsHandler.getGenetic(mother, value.name().replace(variationNum, '2')),
-                                    GeneticsHandler.getGenetic(father, value.name().replace(variationNum, '2')),
+                                    GeneticsHandler.getEntityGenetic(mother, value.name().replace(variationNum, '2')),
+                                    GeneticsHandler.getEntityGenetic(father, value.name().replace(variationNum, '2')),
                                     calculator.random(2.0F, valueMax, 2.0F, valueMax, 1)));
 
                             default -> newGeneticValue = 0.0F;
@@ -1770,8 +1770,6 @@ private float difference = 0;
         parts.add(partNameBuilder.PartStringGenerator("tail"));
         parts.add(partNameBuilder.PartStringGenerator("withers"));
 //        parts.add("withers_average");
-
-
         return parts;
     }
 }

@@ -32,14 +32,14 @@ public class GeneticsHandler {
             EquigenMod.LOGGER.info("Setting " + genetic.name() + " to " + clampedNumber);
         }
 
-        if (!entity.level().isClientSide() && genetic.isRenderGene()) {
+        if (!entity.level().isClientSide() && genetic.isSyncToClient()) {
             syncGeneticsToClient(entity, List.of(genetic));
         }
     }
 
     public static void syncGeneticsToClient(LivingEntity entity, List<Genetics> geneList){
         for (Genetics gene : geneList){
-            PacketDistributor.sendToPlayersTrackingEntity(entity, new GeneticData(entity.getId(), gene.name(), getGenetic(entity, gene)));
+            PacketDistributor.sendToPlayersTrackingEntity(entity, new GeneticData(entity.getId(), gene.name(), getEntityGenetic(entity, gene)));
         }
     }
 
@@ -47,21 +47,21 @@ public class GeneticsHandler {
         syncGeneticsToClient(entity, Genetics.getGeneticsToRender());
     }
 
-    public static float getGenetic(LivingEntity entity, Genetics value) {
+    public static float getEntityGenetic(LivingEntity entity, Genetics value) {
         if(entity.hasData(value.getDataAttachment())){
             return entity.getData(value.getDataAttachment());
         }
         else return 0;
     }
 
-    public static float getGenetic(LivingEntity entity, String value) {
-        return getGenetic(entity, Genetics.valueOf(value));
+    public static float getEntityGenetic(LivingEntity entity, String value) {
+        return getEntityGenetic(entity, Genetics.valueOf(value));
     }
 
     public static Map<Genetics, Float> getRenderGenetics(LivingEntity entity){
         Map<Genetics, Float> output = new HashMap<>();
         for(Genetics value : Genetics.getGeneticsToRender()){
-            output.put(value, getGenetic(entity, value));
+            output.put(value, getEntityGenetic(entity, value));
         }
         return output;
     }

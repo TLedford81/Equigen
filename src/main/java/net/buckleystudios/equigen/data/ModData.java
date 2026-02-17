@@ -16,6 +16,7 @@ public class ModData {
         return ATTACHMENT_TYPES.register("gene_" + name,
                 () -> AttachmentType.builder(() -> 0.0f).serialize(Codec.FLOAT).build());
     }
+
     //Data Attachments
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> GENDER = RegisterGeneticDataType("gender");
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> SCALE = RegisterGeneticDataType("scale");
@@ -144,5 +145,4 @@ public class ModData {
 
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> SPAWNED_CODE_VERSION = RegisterGeneticDataType("spawned_code_version");
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> CURRENT_CODE_VERSION = RegisterGeneticDataType("current_code_version");
-
 }

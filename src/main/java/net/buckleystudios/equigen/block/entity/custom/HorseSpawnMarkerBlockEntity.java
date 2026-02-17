@@ -45,6 +45,7 @@ public class HorseSpawnMarkerBlockEntity extends BlockEntity {
             GeneticHorseEntity entity = new GeneticHorseEntity(ModEntities.GENETIC_HORSE.get(), serverLevel);
             entity.HandleNewSpawnWithCustomGenetics(getTargetBreed(serverLevel, this.worldPosition), getTargetGenes());
             serverLevel.addFreshEntity(entity);
+
             BlockPos pos = this.getBlockPos();
             entity.moveTo(new Vec3(pos.getX(), pos.getY(), pos.getZ()));
             entity.finalizeSpawn(
@@ -54,7 +55,7 @@ public class HorseSpawnMarkerBlockEntity extends BlockEntity {
                     null
             );
 
-            float gender = GeneticsHandler.getGenetic(entity, Genetics.GENDER);
+            float gender = GeneticsHandler.getEntityGenetic(entity, Genetics.GENDER);
 
             List<String> maleNames = List.of(
                     "Hoover",

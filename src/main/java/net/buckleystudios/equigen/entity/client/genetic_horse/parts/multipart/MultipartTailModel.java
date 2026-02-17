@@ -24,7 +24,7 @@ public abstract class MultipartTailModel <E extends GeneticHorseEntity> extends 
             if(part.startsWith("tail")){
                 partName = part;
             }
-            switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.TAIL_SET))) {
+            switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.TAIL_SET))) {
                 case 1 -> pitch = 0.0f;
                 case 2 -> pitch = 7.5f;
                 case 3 -> pitch = 15.0f;

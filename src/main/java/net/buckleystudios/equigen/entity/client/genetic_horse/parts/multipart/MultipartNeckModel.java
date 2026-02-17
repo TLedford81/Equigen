@@ -26,9 +26,9 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
             if(part.startsWith("neck")){
                 partName = part;
             }
-            switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_POS))) {
+            switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_POS))) {
                 case 1 -> {
-                    switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_CURVE))) {
+                    switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
                         case 1 -> pitch = -5.0F; // Swan
                         case 2 -> pitch = 0.0F; // Straight
                         case 3 -> pitch = -10.0F; // Ewed
@@ -37,7 +37,7 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
                 }
                 }
                 case 2 -> {
-                    switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_CURVE))) {
+                    switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
                         case 1 -> pitch = 0.0F; // Swan
                         case 2 -> pitch = 0.0F; // Straight
                         case 3 -> pitch = -2.0F; // Ewed
@@ -81,9 +81,9 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
 //        Map<String,Float> renderGenetics = e.getRenderGenetics();
         for(String part : partsToRender){
             if(part.startsWith("neck")){
-                switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_POS))) {
+                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_POS))) {
                     case 1 -> {
-                        switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_CURVE))) {
+                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
                             case 1 -> yPos = 2.2F; // Swan
                             case 2 -> yPos = 0.75F; // Straight
                             case 3 -> yPos = 1.2F; // Ewed

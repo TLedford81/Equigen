@@ -149,7 +149,7 @@ public class HorseTraderEntity extends Villager {
         tag.putUUID("HorseUUID", ghe.getUUID());
         tag.putUUID("TraderUUID", this.getUUID());
         tag.putString("HorseBreed", ghe.getBreed().name());
-        tag.putString("HorseGender", GeneticsHandler.getGenetic(ghe, Genetics.GENDER) == 1 ? "Male" : "Female");
+        tag.putString("HorseGender", GeneticsHandler.getEntityGenetic(ghe, Genetics.GENDER) == 1 ? "Male" : "Female");
 
         deed.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
 

@@ -75,8 +75,8 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
     }
 
     public int getSelectedTexture(GeneticHorseEntity entity) {
-        float blackModifier = GeneticsHandler.getGenetic(entity, Genetics.BLACK_MODIFIER);
-        float redModifier = GeneticsHandler.getGenetic(entity, Genetics.RED_MODIFIER);
+        float blackModifier = GeneticsHandler.getEntityGenetic(entity, Genetics.BLACK_MODIFIER);
+        float redModifier = GeneticsHandler.getEntityGenetic(entity, Genetics.RED_MODIFIER);
         if (blackModifier == 1.0f) {
             return 1; //Chestnut e/e _/_
         } else if (redModifier == 1.0f && blackModifier >= 2.0f) {
@@ -127,7 +127,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
         poseStack.pushPose();
         try {
 //            Map<GeneticValues, Float> renderGenetics = GeneticsHandler.getRenderGenetics(entity);
-            float scaleGenetic = ((GeneticsHandler.getGenetic(entity, Genetics.SCALE) / 2.0F) + 0.75F);
+            float scaleGenetic = ((GeneticsHandler.getEntityGenetic(entity, Genetics.SCALE) / 2.0F) + 0.75F);
             poseStack.scale(scaleGenetic, scaleGenetic, scaleGenetic);
 
             if (entity.isBaby()) poseStack.scale(0.5f, 0.6f, 0.5f);
@@ -431,7 +431,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                 fullPartName = part;
                 if (partType.equals("neck")) {
                     int muscleMass;
-                    switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.MUSCLE_MASS))) {
+                    switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.MUSCLE_MASS))) {
                         case 1 -> muscleMass = 5;
                         case 2 -> muscleMass = 8;
                         case 3 -> muscleMass = 9;
@@ -450,7 +450,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                     Vector3f neckRot = getRotationForPart("neck", e);
                     // Neck Curves: 1 = Swan, 2 = Straight, 3 = Ewed, 4 = Arched
                     if (partInfo.startsWith("dished")) {
-                        switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_CURVE))) {
+                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
                             case 1 -> pitch = -20.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 2 -> pitch = -29.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 3 -> pitch = -28.0F; // Roughly adjusted, need to test w/ varying lengths.
@@ -460,7 +460,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                         // minus the neck rotation here
                         pitch -= neckRot.x;
                     } else if (partInfo.startsWith("roman")) {
-                        switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_CURVE))) {
+                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
                             case 1 -> pitch = -20.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 2 -> pitch = -25.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 3 -> pitch = -30.0F; // Roughly adjusted, need to test w/ varying lengths.
@@ -470,7 +470,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                         // minus the neck rotation here
                         pitch -= neckRot.x;
                     } else if (partInfo.startsWith("stocky")) {
-                        switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_CURVE))) {
+                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
                             case 1 -> pitch = -25.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 2 -> pitch = -20.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 3 -> pitch = -25.0F; // Roughly adjusted, need to test w/ varying lengths.
@@ -479,7 +479,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                         }
                         pitch -= neckRot.x;
                     } else if (partInfo.startsWith("straight")) {
-                        switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_CURVE))) {
+                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
                             case 1 -> pitch = -13.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 2 -> pitch = -10.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 3 -> pitch = -15.0F; // Roughly adjusted, need to test w/ varying lengths.
@@ -494,28 +494,28 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                 case "neck" -> {
                     // Calculate Neck Rotation
                     if (partInfo.startsWith("swan")) {
-                        switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_POS))) {
+                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_POS))) {
                             case 1 -> pitch = 35.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                             case 2 -> pitch = 20.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                             case 3 -> pitch = 0.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                             default -> pitch = 0.0F;
                         }
                     } else if (partInfo.startsWith("straight")) {
-                        switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_POS))) {
+                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_POS))) {
                             case 1 -> pitch = 35.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                             case 2 -> pitch = 20.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                             case 3 -> pitch = 0.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                             default -> pitch = 0.0F;
                         }
                     } else if (partInfo.startsWith("ewed")) {
-                        switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_POS))) {
+                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_POS))) {
                             case 1 -> pitch = 35.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 2 -> pitch = 20.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 3 -> pitch = 0.0F; // Roughly adjusted, need to test w/ varying lengths.
                             default -> pitch = 0.0F;
                         }
                     } else if (partInfo.startsWith("arched")) {
-                        switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_POS))) {
+                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_POS))) {
                             case 1 -> pitch = 35.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 2 -> pitch = 20.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 3 -> pitch = 0.0F; // Roughly adjusted, need to test w/ varying lengths.
@@ -527,7 +527,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                 }
                 case "withers" -> {
                     //TODO Figure out why some of the withers aren't connected to the pivot point.
-                    switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.WITHERS))) {
+                    switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.WITHERS))) {
                         case 1 -> pitch = 0.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                         case 2 -> pitch = -10.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                         case 3 -> pitch = -20.0F; // VERY Roughly adjusted, need to test w/ varying lengths.

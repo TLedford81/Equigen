@@ -19,9 +19,9 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
 //        Map<String,Float> renderGenetics = e.getRenderGenetics();
         for(String part : partsToRender){
             if(part.startsWith("head")){
-                switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_POS))) {
+                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_POS))) {
                     case 1 -> {
-                        switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_CURVE))) {
+                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
                             case 1 -> {
                                 zPos = 1.5F;
                                 yPos = -1.0f;
@@ -42,7 +42,7 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                         }
                     }
                     case 2 -> {
-                        switch (Math.round(GeneticsHandler.getGenetic(e, Genetics.NECK_CURVE))) {
+                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
                             case 1 -> {
                                 zPos = 0.5F;
                                 yPos = -0.5f;

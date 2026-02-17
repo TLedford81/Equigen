@@ -141,9 +141,9 @@ public class GeneticsCalculator {
             EquigenMod.LOGGER.info("Variation = " + variation + ". Variation Num = " + variationNum);
             float var1 = 0.0F;
             if (geneticType.equals("PATTERN")) {
-                var1 = GeneticsHandler.getGenetic(entity, type.replace(' ', '1'));
+                var1 = GeneticsHandler.getEntityGenetic(entity, type.replace(' ', '1'));
             } else {
-                var1 = GeneticsHandler.getGenetic(entity, type.replace(" ", "FIRST"));
+                var1 = GeneticsHandler.getEntityGenetic(entity, type.replace(" ", "FIRST"));
             }
             float var2 = genetic;
 
@@ -157,9 +157,9 @@ public class GeneticsCalculator {
             }
             if (variationNum == 3) {
                 if (geneticType.equals("PATTERN")) {
-                    var2 = GeneticsHandler.getGenetic(entity, type.replace(' ', '2'));
+                    var2 = GeneticsHandler.getEntityGenetic(entity, type.replace(' ', '2'));
                 } else {
-                    var2 = GeneticsHandler.getGenetic(entity, type.replace(" ", "SECOND"));
+                    var2 = GeneticsHandler.getEntityGenetic(entity, type.replace(" ", "SECOND"));
                 }
 
                 if (var1 == genetic || var2 == genetic) {

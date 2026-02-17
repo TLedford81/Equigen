@@ -152,25 +152,25 @@ public enum Genetics {
     private final GeneticCategories category;
     private final float defaultMaxSize;
     private final boolean isTextureGene;
-    private final boolean isRenderGene;
+    private final boolean syncToClient;
 
-    Genetics(Supplier<AttachmentType<Float>> attachment, GeneticCategories category, float maxSize, boolean isRenderGene, boolean isTextureGene) {
+    Genetics(Supplier<AttachmentType<Float>> attachment, GeneticCategories category, float maxSize, boolean syncToClient, boolean isTextureGene) {
         this.attachment = attachment;
         this.category = category;
         this.defaultMaxSize = maxSize;
         this.isTextureGene = isTextureGene;
-        this.isRenderGene = isRenderGene;
+        this.syncToClient = syncToClient;
     }
     public float getDefaultMaxSize() {return defaultMaxSize;}
     public AttachmentType<Float> getDataAttachment() {return attachment.get();}
     public GeneticCategories getCategory(){return category;}
-    public boolean isRenderGene(){return isRenderGene;}
+    public boolean isSyncToClient(){return syncToClient;}
     public boolean isTextureGene(){return isTextureGene;}
 
     public static List<Genetics> getGeneticsToRender(){
         List<Genetics> output = new ArrayList<>();
         for(Genetics value : Genetics.values()){
-            if(value.isRenderGene()){
+            if(value.isSyncToClient()){
                 output.add(value);
             }
         }
@@ -189,215 +189,5 @@ public enum Genetics {
     public boolean is(Genetics value){
         return value == this;
     }
-
-    // DEPRECATED
-//    public float getDefaultMaxSize(){
-//        return switch (this){
-//            /* Gender */
-//            // 1 = Stallion, 2 = Mare
-//            case GENDER -> 2;
-//
-//            /* Scale */
-//            case SCALE -> 1;
-//
-//            /* Conformation */
-//            case HOOF_SIZE -> 2;
-//            case LEG_WIDTH -> 2;
-//            case BOTTOM_LEG -> 9;
-//            case TOP_LEG -> 9;
-//            case TOP_HIND_LEG_WIDTH -> 3;
-//            case MUSCLE_MASS -> 3;
-//            case CHEST_SIZE -> 6;
-//            case HIP_SIZE -> 6;
-//            case HIP_PLACEMENT -> 3;
-//            case BACK_LENGTH -> 3;
-//            case BACK_GIRTH -> 3;
-//            case BACK_HEIGHT -> 3;
-//            case WITHERS -> 3;
-//            case STOMACH_CURVE -> 3;
-//            case STOMACH_HEIGHT -> 3;
-//            case STOMACH_LENGTH -> 3;
-//            case TAIL_SET -> 3;
-//            case TAIL_LENGTH -> 3;
-//            case TAIL_THICKNESS -> 3;
-//            case NECK_CURVE -> 4;
-//            case NECK_POS -> 3;
-//            case NECK_LENGTH -> 6;
-//            case HEAD_TYPE -> 4;
-//            case HEAD_SIZE -> 3;
-//            case EAR_SIZE -> 3;
-//
-//            /* Textures*/
-//            case BLACK_MODIFIER -> 3;
-//            case BLACK_VARIATION -> 10;
-//            case RED_MODIFIER -> 3;
-//            case RED_VARIATION -> 10;
-//            case CREAM -> 0; // If number is 0 that means the coat isn't in the game yet/won't be implemented right away //
-//            case CREAM_VARIATION -> 0;
-//            case DUN -> 0;
-//            case DUN_VARIATION -> 0;
-//            case GREYING -> 0;
-//            case GREYING_VARIATION -> 0;
-//            case SILVER -> 0;
-//            case SILVER_VARIATION -> 0;
-//            case CHAMPAGNE -> 0;
-//            case CHAMPAGNE_VARIATION -> 0;
-//            case SOOTY -> 0;
-//            case SOOTY_VARIATION -> 0;
-//            case FLAXEN -> 0;
-//            case FLAXEN_VARIATION -> 0;
-//            case PEARL -> 0;
-//            case PEARL_VARIATION -> 0;
-//            case MUSHROOM -> 0;
-//            case MUSHROOM_VARIATION -> 0;
-//            case ROAN -> 0;
-//            case ROAN_VARIATION -> 0;
-//            case PANGARE -> 0;
-//            case PANGARE_VARIATION -> 0;
-//            case FRAME_OVERO -> 3;
-//            case FRAME_OVERO_VARIATION_1 -> 10;
-//            case FRAME_OVERO_VARIATION_2 -> 10;
-//            case FRAME_OVERO_VARIATION_3 -> 10;
-//            case RABICANO -> 0;
-//            case RABICANO_VARIATION_1 -> 0;
-//            case RABICANO_VARIATION_2 -> 0;
-//            case RABICANO_VARIATION_3 -> 0;
-//            case LEOPARD_COMPLEX -> 0;
-//            case LEOPARD_COMPLEX_VARIATION_1 -> 0;
-//            case LEOPARD_COMPLEX_VARIATION_2 -> 0;
-//            case LEOPARD_COMPLEX_VARIATION_3 -> 0;
-//            case SPLASHED_WHITE -> 0;
-//            case SPLASHED_WHITE_VARIATION_1 -> 0;
-//            case SPLASHED_WHITE_VARIATION_2 -> 0;
-//            case SPLASHED_WHITE_VARIATION_3 -> 0;
-//            case TOBIANO -> 0;
-//            case TOBIANO_VARIATION_1 -> 0;
-//            case TOBIANO_VARIATION_2 -> 0;
-//            case TOBIANO_VARIATION_3 -> 0;
-//            case SABINO -> 0;
-//            case SABINO_VARIATION_1 -> 0;
-//            case SABINO_VARIATION_2 -> 0;
-//            case SABINO_VARIATION_3 -> 0;
-//            case WHITE_SPOTTING -> 0;
-//            case WHITE_SPOTTING_VARIATION_1 -> 0;
-//            case WHITE_SPOTTING_VARIATION_2 -> 0;
-//            case WHITE_SPOTTING_VARIATION_3 -> 0;
-//            case FACE_MARKING -> 0;
-//            case FRONT_LEFT_LEG_MARKING -> 0;
-//            case FRONT_RIGHT_LEG_MARKING -> 0;
-//            case BACK_LEFT_LEG_MARKING -> 0;
-//            case BACK_RIGHT_LEG_MARKING -> 0;
-//            case LEG_MARKING_COLOR -> 0;
-//            case LEFT_EYE_COLOR -> 0;
-//            case RIGHT_EYE_COLOR -> 0;
-//            case HOOF_COLOR -> 0;
-//            case MANE_LENGTH -> 0;
-//
-//            /* Personality */
-//            case MAIN_PERSONALITY -> 0; // Need double-digit ints for these numbers //
-//            case MAIN_PERSONALITY_PERCENTAGE -> 0;
-//            case FIRST_SUB_PERSONALITY -> 0;
-//            case FIRST_SUB_PERSONALITY_PERCENTAGE -> 0;
-//            case SECOND_SUB_PERSONALITY -> 0;
-//            case SECOND_SUB_PERSONALITY_PERCENTAGE -> 0;
-//            case THIRD_SUB_PERSONALITY -> 0;
-//            case THIRD_SUB_PERSONALITY_PERCENTAGE -> 0;
-//            case FIRST_TRAIT -> 0;
-//            case FIRST_TRAIT_VARIATION -> 0;
-//            case SECOND_TRAIT -> 0;
-//            case SECOND_TRAIT_VARIATION -> 0;
-//            case THIRD_TRAIT -> 0;
-//            case THIRD_TRAIT_VARIATION -> 0;
-//            case FAVORITE_TERRAIN -> 0;
-//            case HATED_TERRAIN -> 0;
-//            case FAVORITE_FOOD -> 0;
-//            case HATED_FOOD -> 0;
-//            case FAVORITE_GRASS -> 0;
-//            case HATED_GRASS -> 0;
-//
-//            /* Skills & Abilities */
-//            case SPEED_MAX_LEVEL -> 10;
-//            case STRENGTH_MAX_LEVEL -> 10;
-//            case JUMP_MAX_LEVEL -> 10;
-//            case ENDURANCE_MAX_LEVEL -> 10;
-//            case AGILITY_MAX_LEVEL -> 10;
-//            case CHARGE -> 0;
-//            case KICK -> 0;
-//            case REAR -> 0;
-//            case ADRENALINE -> 0;
-//
-//            /* Genetic Code Version */
-//            case SPAWNED_CODE_VERSION -> 0;  // To be implemented later when we are able to put floats in this code //
-//            case CURRENT_CODE_VERSION -> 0;  // To be implemented later when we are able to put floats in this code //
-//        };
-//    }
-//    public boolean isTextureGene(){
-//        List<GeneticValues> textureGenes = List.of(
-//                BLACK_MODIFIER,
-//                BLACK_VARIATION,
-//                RED_MODIFIER,
-//                RED_VARIATION,
-//                CREAM,
-//                CREAM_VARIATION,
-//                DUN,
-//                DUN_VARIATION,
-//                GREYING,
-//                GREYING_VARIATION,
-//                SILVER,
-//                SILVER_VARIATION,
-//                CHAMPAGNE,
-//                CHAMPAGNE_VARIATION,
-//                SOOTY,
-//                SOOTY_VARIATION,
-//                FLAXEN,
-//                FLAXEN_VARIATION,
-//                PEARL,
-//                PEARL_VARIATION,
-//                MUSHROOM,
-//                MUSHROOM_VARIATION,
-//                ROAN,
-//                ROAN_VARIATION,
-//                PANGARE,
-//                PANGARE_VARIATION,
-//                FRAME_OVERO,
-//                FRAME_OVERO_VARIATION_1,
-//                FRAME_OVERO_VARIATION_2,
-//                FRAME_OVERO_VARIATION_3,
-//                RABICANO,
-//                RABICANO_VARIATION_1,
-//                RABICANO_VARIATION_2,
-//                RABICANO_VARIATION_3,
-//                LEOPARD_COMPLEX,
-//                LEOPARD_COMPLEX_VARIATION_1,
-//                LEOPARD_COMPLEX_VARIATION_2,
-//                LEOPARD_COMPLEX_VARIATION_3,
-//                SPLASHED_WHITE,
-//                SPLASHED_WHITE_VARIATION_1,
-//                SPLASHED_WHITE_VARIATION_2,
-//                SPLASHED_WHITE_VARIATION_3,
-//                TOBIANO,
-//                TOBIANO_VARIATION_1,
-//                TOBIANO_VARIATION_2,
-//                TOBIANO_VARIATION_3,
-//                SABINO,
-//                SABINO_VARIATION_1,
-//                SABINO_VARIATION_2,
-//                SABINO_VARIATION_3,
-//                WHITE_SPOTTING,
-//                WHITE_SPOTTING_VARIATION_1,
-//                WHITE_SPOTTING_VARIATION_2,
-//                WHITE_SPOTTING_VARIATION_3,
-//                FACE_MARKING,
-//                FRONT_LEFT_LEG_MARKING,
-//                FRONT_RIGHT_LEG_MARKING,
-//                BACK_LEFT_LEG_MARKING,
-//                BACK_RIGHT_LEG_MARKING,
-//                LEG_MARKING_COLOR,
-//                LEFT_EYE_COLOR,
-//                RIGHT_EYE_COLOR,
-//                HOOF_COLOR,
-//                MANE_LENGTH);
-//        return textureGenes.contains(this);
-//    }
 }
 
