@@ -1022,13 +1022,14 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 //        EquigenMod.LOGGER.info("Scale: {}, Genetic Value: {}", scale, GeneticsHandler.getGenetic(this, Genetics.SCALE));
         return EntityDimensions.scalable(width * scale, height * scale);
     }
+    //TODO I broke the height. Have to go fix it again. Sadge.
 private float difference = 0;
     private String tallerHalf;
     public Float calculateHorseHeight(){
         float bottomLegs;
         float frontHeight = 0;
         float backHeight = 0;
-        float kneeHeight = 1.0f;
+        float kneeHeight = 2.0f;
         float hoofHeight = 1.0f;
         Map<Genetics, Float> renderGenetics = GeneticsHandler.getRenderGenetics(this);
         bottomLegs = getBottomLegHeightModifier("BOTTOM_LEG", renderGenetics.get(Genetics.BOTTOM_LEG));
@@ -1092,7 +1093,7 @@ private float difference = 0;
                 };
             }
         }
-        if (gene.equals("CHEST_SIZE")) { // NUMBERS CONFIRMED
+        if (gene.is(Genetics.CHEST_SIZE)) { // NUMBERS CONFIRMED
             return switch (Math.round(value)){
                 case 1, 2 -> 7.0f; // lean = 7.0 average = 7.0 muscular = 7.0
                 case 3, 4 -> 8.0f; // lean = 8.0 average = 8.0 muscular = 8.0
@@ -1139,12 +1140,12 @@ private float difference = 0;
                 };
             }
         }
-        if(gene.equals("HIP_SIZE")){
+        if(gene.is(Genetics.HIP_SIZE)){
             return switch (Math.round(value)){
-                case 1 -> 6.0f;
+                case 1 -> 6.125f;
                 case 2, 3 -> 7.0f;
-                case 4, 5 -> 8.0f;
-                case 6 -> 9.0f;
+                case 4, 5 -> 8.125f;
+                case 6 -> 9.025f;
 
                 default -> 0;
             };
