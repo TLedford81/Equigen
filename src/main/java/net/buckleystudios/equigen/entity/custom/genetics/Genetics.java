@@ -38,8 +38,8 @@ public enum Genetics {
     NECK_CURVE (ModData.NECK_CURVE, GeneticCategories.CONFORMATION_GENETICS, 4, true, false),
     NECK_POS (ModData.NECK_POS, GeneticCategories.CONFORMATION_GENETICS, 3, true, false),
     NECK_LENGTH (ModData.NECK_LENGTH, GeneticCategories.CONFORMATION_GENETICS, 6, true, false),
-    HEAD_SIZE (ModData.HEAD_SIZE, GeneticCategories.CONFORMATION_GENETICS, 4, false, false),
-    HEAD_TYPE (ModData.HEAD_TYPE, GeneticCategories.CONFORMATION_GENETICS, 3, true, false),
+    HEAD_SIZE (ModData.HEAD_SIZE, GeneticCategories.CONFORMATION_GENETICS, 3, false, false),
+    HEAD_TYPE (ModData.HEAD_TYPE, GeneticCategories.CONFORMATION_GENETICS, 4, true, false),
     EAR_SIZE (ModData.EAR_SIZE, GeneticCategories.CONFORMATION_GENETICS, 3, false, false),
 
     /* Textures*/

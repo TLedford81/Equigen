@@ -17,6 +17,7 @@ public class neck_muscular_ewed_long_1 extends MultipartNeckModel<GeneticHorseEn
 	private final ModelPart neck_muscular_ewed_long_1_individual;
 	private final ModelPart neck_muscular_ewed_long_1_crest;
 	private final ModelPart neck_muscular_ewed_long_1_crest_upper;
+	private final ModelPart neck_muscular_ewed_long_1_crest_upper_individual;
 	private final ModelPart neck_muscular_ewed_long_1_crest_lower;
 	private final ModelPart headAnchor;
 	private final ModelPart chestAnchor;
@@ -28,8 +29,9 @@ public class neck_muscular_ewed_long_1 extends MultipartNeckModel<GeneticHorseEn
 		this.neck_muscular_ewed_long_1_individual = neck_muscular_ewed_long_1.getChild("neck_muscular_ewed_long_1_individual");
 		this.neck_muscular_ewed_long_1_crest = neck_muscular_ewed_long_1_individual.getChild("neck_muscular_ewed_long_1_crest");
 		this.neck_muscular_ewed_long_1_crest_upper = neck_muscular_ewed_long_1_crest.getChild("neck_muscular_ewed_long_1_crest_upper");
+		this.neck_muscular_ewed_long_1_crest_upper_individual = neck_muscular_ewed_long_1_crest_upper.getChild("neck_muscular_ewed_long_1_crest_upper_individual");
 		this.neck_muscular_ewed_long_1_crest_lower = neck_muscular_ewed_long_1_crest.getChild("neck_muscular_ewed_long_1_crest_lower");
-		this.headAnchor = this.neck_muscular_ewed_long_1_crest_upper.getChild("headAnchor");
+		this.headAnchor = this.neck_muscular_ewed_long_1_crest_upper_individual.getChild("headAnchor");
 		this.chestAnchor = this.neck_muscular_ewed_long_1.getChild("chestAnchor");
 		this.withersAnchor = this.neck_muscular_ewed_long_1_crest_lower.getChild("withersAnchor");
 	}
@@ -44,67 +46,67 @@ public class neck_muscular_ewed_long_1 extends MultipartNeckModel<GeneticHorseEn
 
 		PartDefinition neck_muscular_ewed_long_1_crest = neck_muscular_ewed_long_1_individual.addOrReplaceChild("neck_muscular_ewed_long_1_crest", CubeListBuilder.create(), PartPose.offset(0.0F, -5.095F, -0.3575F));
 
-		PartDefinition neck_muscular_ewed_long_1_crest_upper = neck_muscular_ewed_long_1_crest.addOrReplaceChild("neck_muscular_ewed_long_1_crest_upper", CubeListBuilder.create(), PartPose.offset(-0.0995F, -2.2747F, -2.3729F));
+		PartDefinition neck_muscular_ewed_long_1_crest_upper = neck_muscular_ewed_long_1_crest.addOrReplaceChild("neck_muscular_ewed_long_1_crest_upper", CubeListBuilder.create(), PartPose.offset(-0.0995F, -2.7747F, -2.3729F));
 
-		PartDefinition cube_r1 = neck_muscular_ewed_long_1_crest_upper.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(589, 777).addBox(-5.0792F, -4.0F, -2.8908F, 5.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5792F, 0.4175F, 0.1828F, 0.9599F, 0.0F, 0.0F));
+		PartDefinition neck_muscular_ewed_long_1_crest_upper_individual = neck_muscular_ewed_long_1_crest_upper.addOrReplaceChild("neck_muscular_ewed_long_1_crest_upper_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition headAnchor = neck_muscular_ewed_long_1_crest_upper.addOrReplaceChild("headAnchor", CubeListBuilder.create(), PartPose.offset(-0.0449F, -2.1714F, -3.2542F));
+		PartDefinition cube_r1 = neck_muscular_ewed_long_1_crest_upper_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(589, 777).addBox(-5.0792F, -4.0F, -2.8908F, 5.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5792F, 0.9175F, 0.1828F, 0.9599F, 0.0F, 0.0F));
+
+		PartDefinition headAnchor = neck_muscular_ewed_long_1_crest_upper_individual.addOrReplaceChild("headAnchor", CubeListBuilder.create(), PartPose.offset(-0.0449F, -1.6714F, -3.2542F));
 
 		PartDefinition cube_r2 = headAnchor.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -0.6109F, 0.0F, 0.0F));
 
-		PartDefinition neck_muscular_ewed_long_1_crest_lower = neck_muscular_ewed_long_1_crest.addOrReplaceChild("neck_muscular_ewed_long_1_crest_lower", CubeListBuilder.create(), PartPose.offset(0.0086F, 1.6302F, 0.749F));
+		PartDefinition neck_muscular_ewed_long_1_top_mane = neck_muscular_ewed_long_1_crest_upper.addOrReplaceChild("neck_muscular_ewed_long_1_top_mane", CubeListBuilder.create(), PartPose.offset(0.5465F, -1.5507F, 1.1578F));
 
-		PartDefinition cube_r3 = neck_muscular_ewed_long_1_crest_lower.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(607, 777).addBox(-5.08F, -7.0F, -0.92F, 5.0F, 10.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.58F, 1.6842F, 1.0816F, 0.6109F, 0.0F, 0.0F));
-
-		PartDefinition withersAnchor = neck_muscular_ewed_long_1_crest_lower.addOrReplaceChild("withersAnchor", CubeListBuilder.create(), PartPose.offset(-0.2031F, 3.7217F, 2.7006F));
-
-		PartDefinition cube_r4 = withersAnchor.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.6109F, 0.0F, 0.0F));
-
-		PartDefinition neck_muscular_ewed_long_1_middle_individual = neck_muscular_ewed_long_1_individual.addOrReplaceChild("neck_muscular_ewed_long_1_middle_individual", CubeListBuilder.create(), PartPose.offset(-0.1229F, -2.4963F, -1.7768F));
-
-		PartDefinition cube_r5 = neck_muscular_ewed_long_1_middle_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(588, 762).addBox(-5.0F, -8.0F, -1.0F, 6.0F, 11.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.0F, 2.6215F, 0.6148F, 0.6109F, 0.0F, 0.0F));
-
-		PartDefinition neck_muscular_ewed_long_1_lower_individual = neck_muscular_ewed_long_1_individual.addOrReplaceChild("neck_muscular_ewed_long_1_lower_individual", CubeListBuilder.create(), PartPose.offset(-0.1174F, -0.976F, -3.1326F));
-
-		PartDefinition cube_r6 = neck_muscular_ewed_long_1_lower_individual.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(608, 762).addBox(-6.0784F, -8.0F, -0.9017F, 5.0F, 11.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.5784F, 2.6991F, -0.4138F, 0.2618F, 0.0F, 0.0F));
-
-		PartDefinition neck_muscular_ewed_long_1_mane = neck_muscular_ewed_long_1.addOrReplaceChild("neck_muscular_ewed_long_1_mane", CubeListBuilder.create(), PartPose.offset(0.0F, -8.4022F, 0.0F));
-
-		PartDefinition neck_muscular_ewed_long_1_top_mane = neck_muscular_ewed_long_1_mane.addOrReplaceChild("neck_muscular_ewed_long_1_top_mane", CubeListBuilder.create(), PartPose.offset(0.4414F, -2.3598F, -1.5118F));
-
-		PartDefinition neck_muscular_ewed_long_1_top_mane_connector = neck_muscular_ewed_long_1_top_mane.addOrReplaceChild("neck_muscular_ewed_long_1_top_mane_connector", CubeListBuilder.create(), PartPose.offset(-0.7151F, -1.5196F, -1.5196F));
+		PartDefinition neck_muscular_ewed_long_1_top_mane_connector = neck_muscular_ewed_long_1_top_mane.addOrReplaceChild("neck_muscular_ewed_long_1_top_mane_connector", CubeListBuilder.create(), PartPose.offset(-0.7151F, -0.7696F, -1.0196F));
 
 		PartDefinition neck_muscular_ewed_long_1_top_mane_connector_individual = neck_muscular_ewed_long_1_top_mane_connector.addOrReplaceChild("neck_muscular_ewed_long_1_top_mane_connector_individual", CubeListBuilder.create(), PartPose.offset(0.0726F, 0.395F, -0.7819F));
 
-		PartDefinition cube_r7 = neck_muscular_ewed_long_1_top_mane_connector_individual.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(929, 874).addBox(-2.0F, -2.0F, -3.0F, 2.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 1.3927F, 0.2456F, -0.6109F, 0.0F, 0.0F));
+		PartDefinition cube_r3 = neck_muscular_ewed_long_1_top_mane_connector_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(929, 874).addBox(-2.0F, -2.0F, -3.0F, 2.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 1.3927F, 0.2456F, -0.6109F, 0.0F, 0.0F));
 
 		PartDefinition neck_muscular_ewed_long_1_top_mane_connector2 = neck_muscular_ewed_long_1_top_mane_connector.addOrReplaceChild("neck_muscular_ewed_long_1_top_mane_connector2", CubeListBuilder.create(), PartPose.offset(0.8045F, -0.3575F, -0.0894F));
 
 		PartDefinition neck_muscular_ewed_long_1_top_mane_connector2_individual = neck_muscular_ewed_long_1_top_mane_connector2.addOrReplaceChild("neck_muscular_ewed_long_1_top_mane_connector2_individual", CubeListBuilder.create(), PartPose.offset(1.6452F, 0.2536F, -0.4057F));
 
-		PartDefinition cube_r8 = neck_muscular_ewed_long_1_top_mane_connector2_individual.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(929, 880).addBox(-2.0F, -2.0F, -3.0F, 3.0F, 1.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5F, 1.8023F, -0.0412F, -0.6109F, 0.0F, 0.0F));
+		PartDefinition cube_r4 = neck_muscular_ewed_long_1_top_mane_connector2_individual.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(929, 880).addBox(-2.0F, -2.0F, -3.0F, 3.0F, 1.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5F, 1.8023F, -0.0412F, -0.6109F, 0.0F, 0.0F));
 
 		PartDefinition neck_muscular_ewed_long_1_top_mane_flow = neck_muscular_ewed_long_1_top_mane_connector2.addOrReplaceChild("neck_muscular_ewed_long_1_top_mane_flow", CubeListBuilder.create(), PartPose.offsetAndRotation(2.8603F, 0.0F, -0.0894F, -0.1745F, 0.0F, 0.0F));
 
-		PartDefinition cube_r9 = neck_muscular_ewed_long_1_top_mane_flow.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(917, 874).addBox(-1.0707F, -0.1476F, -2.1526F, 1.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.0257F, 0.1998F, -0.4712F, -0.2206F, -0.3514F));
+		PartDefinition cube_r5 = neck_muscular_ewed_long_1_top_mane_flow.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(917, 874).addBox(-1.0707F, -0.1476F, -2.1526F, 1.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.0257F, 0.1998F, -0.4712F, -0.2206F, -0.3514F));
 
-		PartDefinition neck_muscular_ewed_long_1_bottom_mane = neck_muscular_ewed_long_1_mane.addOrReplaceChild("neck_muscular_ewed_long_1_bottom_mane", CubeListBuilder.create(), PartPose.offset(0.4414F, 0.6793F, 0.2759F));
+		PartDefinition neck_muscular_ewed_long_1_crest_lower = neck_muscular_ewed_long_1_crest.addOrReplaceChild("neck_muscular_ewed_long_1_crest_lower", CubeListBuilder.create(), PartPose.offset(0.0086F, 1.6302F, 0.749F));
 
-		PartDefinition neck_muscular_ewed_long_1_bottom_mane_connector = neck_muscular_ewed_long_1_bottom_mane.addOrReplaceChild("neck_muscular_ewed_long_1_bottom_mane_connector", CubeListBuilder.create(), PartPose.offset(0.0F, 0.7151F, 0.4469F));
+		PartDefinition cube_r6 = neck_muscular_ewed_long_1_crest_lower.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(607, 777).addBox(-5.08F, -7.0F, -0.92F, 5.0F, 10.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.58F, 1.6842F, 1.0816F, 0.6109F, 0.0F, 0.0F));
+
+		PartDefinition withersAnchor = neck_muscular_ewed_long_1_crest_lower.addOrReplaceChild("withersAnchor", CubeListBuilder.create(), PartPose.offset(-0.2031F, 3.7217F, 2.7006F));
+
+		PartDefinition cube_r7 = withersAnchor.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.6109F, 0.0F, 0.0F));
+
+		PartDefinition neck_muscular_ewed_long_1_bottom_mane = neck_muscular_ewed_long_1_crest_lower.addOrReplaceChild("neck_muscular_ewed_long_1_bottom_mane", CubeListBuilder.create(), PartPose.offset(0.4383F, 2.9335F, 4.5736F));
+
+		PartDefinition neck_muscular_ewed_long_1_bottom_mane_connector = neck_muscular_ewed_long_1_bottom_mane.addOrReplaceChild("neck_muscular_ewed_long_1_bottom_mane_connector", CubeListBuilder.create(), PartPose.offset(0.0F, -4.2849F, -3.8031F));
 
 		PartDefinition neck_muscular_ewed_long_1_bottom_mane_connector_individual = neck_muscular_ewed_long_1_bottom_mane_connector.addOrReplaceChild("neck_muscular_ewed_long_1_bottom_mane_connector_individual", CubeListBuilder.create(), PartPose.offset(-0.6326F, 0.2784F, 0.2301F));
 
-		PartDefinition cube_r10 = neck_muscular_ewed_long_1_bottom_mane_connector_individual.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(941, 867).addBox(-2.0F, -2.0F, -1.01F, 2.0F, 2.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, -2.9534F, -3.5267F, -0.9163F, 0.0F, 0.0F));
+		PartDefinition cube_r8 = neck_muscular_ewed_long_1_bottom_mane_connector_individual.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(941, 867).addBox(-2.0F, -2.0F, -1.01F, 2.0F, 2.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, -2.9534F, -3.5267F, -0.9163F, 0.0F, 0.0F));
 
 		PartDefinition neck_muscular_ewed_long_1_bottom_mane_connector2 = neck_muscular_ewed_long_1_bottom_mane_connector.addOrReplaceChild("neck_muscular_ewed_long_1_bottom_mane_connector2", CubeListBuilder.create(), PartPose.offset(0.1788F, 0.0F, 0.8045F));
 
 		PartDefinition neck_muscular_ewed_long_1_bottom_mane_connector2_individual = neck_muscular_ewed_long_1_bottom_mane_connector2.addOrReplaceChild("neck_muscular_ewed_long_1_bottom_mane_connector2_individual", CubeListBuilder.create(), PartPose.offset(1.6453F, -0.114F, -0.1823F));
 
-		PartDefinition cube_r11 = neck_muscular_ewed_long_1_bottom_mane_connector2_individual.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(940, 880).addBox(-2.0F, -2.0F, -1.0F, 3.0F, 1.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5F, -2.657F, -3.9295F, -0.9163F, 0.0F, 0.0F));
+		PartDefinition cube_r9 = neck_muscular_ewed_long_1_bottom_mane_connector2_individual.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(940, 880).addBox(-2.0F, -2.0F, -1.0F, 3.0F, 1.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5F, -2.657F, -3.9295F, -0.9163F, 0.0F, 0.0F));
 
 		PartDefinition neck_muscular_ewed_long_1_bottom_mane_flow = neck_muscular_ewed_long_1_bottom_mane_connector2.addOrReplaceChild("neck_muscular_ewed_long_1_bottom_mane_flow", CubeListBuilder.create(), PartPose.offset(2.324F, -0.3575F, 0.0894F));
 
-		PartDefinition cube_r12 = neck_muscular_ewed_long_1_bottom_mane_flow.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(916, 874).addBox(-0.8139F, -0.0002F, -4.3921F, 1.0F, 7.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0726F, -0.8045F, -0.3575F, -0.8937F, -0.1201F, -0.1036F));
+		PartDefinition cube_r10 = neck_muscular_ewed_long_1_bottom_mane_flow.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(916, 874).addBox(-0.8139F, -0.0002F, -4.3921F, 1.0F, 7.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0726F, -0.8045F, -0.3575F, -0.8937F, -0.1201F, -0.1036F));
+
+		PartDefinition neck_muscular_ewed_long_1_middle_individual = neck_muscular_ewed_long_1_individual.addOrReplaceChild("neck_muscular_ewed_long_1_middle_individual", CubeListBuilder.create(), PartPose.offset(-0.1229F, -2.4963F, -1.7768F));
+
+		PartDefinition cube_r11 = neck_muscular_ewed_long_1_middle_individual.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(588, 762).addBox(-5.0F, -8.0F, -1.0F, 6.0F, 11.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.0F, 2.6215F, 0.6148F, 0.6109F, 0.0F, 0.0F));
+
+		PartDefinition neck_muscular_ewed_long_1_lower_individual = neck_muscular_ewed_long_1_individual.addOrReplaceChild("neck_muscular_ewed_long_1_lower_individual", CubeListBuilder.create(), PartPose.offset(-0.1174F, -0.976F, -3.1326F));
+
+		PartDefinition cube_r12 = neck_muscular_ewed_long_1_lower_individual.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(608, 762).addBox(-6.0784F, -8.0F, -0.9017F, 5.0F, 11.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.5784F, 2.6991F, -0.4138F, 0.2618F, 0.0F, 0.0F));
 
 		PartDefinition chestAnchor = neck_muscular_ewed_long_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.1F, -2.0F, -2.5F));
 
@@ -133,10 +135,11 @@ public class neck_muscular_ewed_long_1 extends MultipartNeckModel<GeneticHorseEn
 		ModelPart individual = neck_muscular_ewed_long_1_individual;
 		ModelPart crest = neck_muscular_ewed_long_1_crest;
 		ModelPart crest_upper = neck_muscular_ewed_long_1_crest_upper;
+		ModelPart crest_upper_individual = neck_muscular_ewed_long_1_crest_upper_individual;
 		ModelPart crest_lower = neck_muscular_ewed_long_1_crest_lower;
 
 
-		registerAnchorPath("headAnchor", root, neck, individual, crest, crest_upper, this.headAnchor);
+		registerAnchorPath("headAnchor", root, neck, individual, crest, crest_upper, crest_upper_individual, this.headAnchor);
 		registerAnchorPath("chestAnchor", root, neck, this.chestAnchor);
 		registerAnchorPath("withersAnchor", root, neck, individual, crest, crest_lower, this.withersAnchor);
 	}

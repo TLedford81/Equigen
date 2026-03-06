@@ -23,15 +23,49 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                     case 1 -> {
                         switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
                             case 1 -> {
-                                zPos = 1.5F;
-                                yPos = -1.0f;
+                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.HEAD_TYPE))) {
+                                    case 1 -> {
+                                        zPos = 1.7F;
+                                        yPos = -0.8f;
+                                    } // Dished
+                                    case 2 -> {
+                                        zPos = 1.5F;
+                                        yPos = -1.0f; // NEED TO IMPLEMENT BOTH
+                                    } // Roman
+                                    case 3 -> {
+                                        zPos = 1.5F;
+                                        yPos = -1.0f;
+                                    } // Stocky
+                                    case 4 -> {
+                                        zPos = 2.0F;
+                                        yPos = -1.0f;
+                                    } // Straight
+                                    default -> zPos = 0.0F;
+                                }
                             } // Swan
                             case 2 -> {
-                                zPos = 0.0F;
-                                yPos = 0.0f;
+                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.HEAD_TYPE))) {
+                                    case 1 -> {
+                                        zPos = 0.0F;
+                                        yPos = -0.0f;
+                                    } // Dished
+                                    case 2 -> {
+                                        zPos = 0.0F;
+                                        yPos = -0.0f; // NEED TO IMPLEMENT BOTH
+                                    } // Roman
+                                    case 3 -> {
+                                        zPos = 1.5F;
+                                        yPos = -1.0f;
+                                    } // Stocky
+                                    case 4 -> {
+                                        zPos = 10.0F;
+                                        yPos = 0.0f;
+                                    } // Straight
+                                    default -> zPos = 0.0F;
+                                }
                             } // Straight
                             case 3 -> {
-                                zPos = 1.2F;
+                                zPos = 1.5F;
                                 yPos = -0.7f;
                             } // Ewed
                             case 4 -> {

@@ -13,13 +13,13 @@ import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends MultipartModel<GeneticHorseEntity> {
-    private float neckRotation;
     public float x;
 
     @Override
     public void handlePartChildRotation(GeneticHorseEntity e, PoseStack pose, float partialTicks, int LegID) {
         String partName = "";
         float pitch = 0.0f;
+        float manePitch = 0.0f;
         List<String> partsToRender = e.getPartsToRender();
 //        Map<String,Float> renderGenetics = e.getRenderGenetics();
         for(String part : partsToRender){
@@ -41,30 +41,38 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
                         case 1 -> pitch = 0.0F; // Swan
                         case 2 -> pitch = 0.0F; // Straight
                         case 3 -> pitch = -2.0F; // Ewed
-                        case 4 -> pitch = -5.0F; // Arched
+                        case 4 -> pitch = -5.0F;// Arched
                         default -> pitch = 0.0F;
                     }                }
                 case 3 -> pitch = 0.0f;
                 default ->  pitch = 0.0f;
             }
         }
+        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
+            case 1 -> manePitch = 5.0F; // Swan
+            case 2 -> manePitch = -32.5f; // Straight
+            case 3 -> manePitch = 0.0F; // Ewed
+            case 4 -> manePitch = -7.5f; // Arched
+            default -> pitch = 0.0F;
+        } // Accounts for the rotation already applied to the manes in the model file, so that the rotations are the same.
 //        pitch /= 16;
         pitch *= Mth.DEG_TO_RAD; //Convert Degrees (Readable Terms) into Radians (Minecraft's Rotation Units)
+        manePitch *= Mth.DEG_TO_RAD;
 //        pitch = (pitch + x) * Mth.DEG_TO_RAD;
 //        EquigenMod.LOGGER.info("Pitch calculated = {}", pitch);
         ModelPart individual = root().getChild(partName).getChild(partName + "_individual");
         ModelPart crest = individual.getChild(partName + "_crest");
         ModelPart crestUpper = crest.getChild(partName + "_crest_upper");
-        ModelPart mane = root().getChild(partName).getChild(partName + "_mane");
-        ModelPart topMane = mane.getChild(partName + "_top_mane");
-        ModelPart maneConnector = topMane.getChild(partName + "_top_mane_connector");
+//        ModelPart mane = root().getChild(partName).getChild(partName + "_mane");
+        ModelPart topMane = crestUpper.getChild(partName + "_top_mane");
+//        ModelPart maneConnector = topMane.getChild(partName + "_top_mane_connector");
 
 //        individual.setRotation(individual.xRot, individual.yRot, individual.zRot);
 //        crest.setRotation(crest.xRot, crest.yRot, crest.zRot);
         crestUpper.setRotation(pitch, crestUpper.yRot, crestUpper.zRot);
 //        mane.setRotation(mane.xRot, mane.yRot, mane.zRot);
-//        topMane.setRotation(topMane.xRot, topMane.yRot, topMane.zRot);
-        maneConnector.setRotation(pitch, maneConnector.yRot, maneConnector.zRot);
+        topMane.setRotation(-manePitch, topMane.yRot, topMane.zRot);
+//        maneConnector.setRotation(manePitch, maneConnector.yRot, maneConnector.zRot);
     }
 
     public float getNetYaw(GeneticHorseEntity e, float partialTicks) {
@@ -101,9 +109,5 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
         }
         yPos /= 16;
             pose.translate(0, yPos, 0);
-    }
-
-    public float getNeckRotation() {
-        return neckRotation;
     }
 }
