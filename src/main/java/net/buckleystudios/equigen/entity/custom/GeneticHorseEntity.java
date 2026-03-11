@@ -1195,6 +1195,7 @@ private float difference = 0;
     }
 
     public float getBackGirthModifier(String gene, Float value) {
+        //TODO I think this might be the problem as to why some aren't completely flush. If its centering the model then we have to consider the other blocks.
         if (gene.equals("BACK")) {
             return switch (Math.round(value)) {
                 case 1 -> 6.0f;

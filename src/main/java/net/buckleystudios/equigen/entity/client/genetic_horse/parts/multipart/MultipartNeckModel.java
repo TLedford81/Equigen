@@ -85,6 +85,7 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
 
     public void handlePartChildPosition(GeneticHorseEntity e, PoseStack pose, float partialTicks, int LegID) {
         float yPos = 0.0f;
+        float zPos = 0.0f;
         List<String> partsToRender = e.getPartsToRender();
 //        Map<String,Float> renderGenetics = e.getRenderGenetics();
         for(String part : partsToRender){
@@ -92,9 +93,105 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
                 switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_POS))) {
                     case 1 -> {
                         switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
-                            case 1 -> yPos = 2.2F; // Swan
-                            case 2 -> yPos = 0.75F; // Straight
-                            case 3 -> yPos = 1.2F; // Ewed
+                            case 1 -> {
+                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                    case 1 ->
+                                     {
+                                         yPos = 1.7F;
+                                         zPos = -2.3f;
+                                     }
+                                     case 2 -> {
+                                         yPos = 1.5F;
+                                         zPos = -3.0f;
+                                     }
+                                     case 3 -> {
+                                         yPos = 2.5F;
+                                         zPos = -3.0f;
+                                     }
+                                     case 4 -> {
+                                         yPos = 2.4F;
+                                         zPos = -2.2f;
+                                     }
+                                    case 5 -> {
+                                        yPos = 2.25F;
+                                        zPos = -2.2f;
+                                    }
+                                    case 6 -> {
+                                        yPos = 2.5F;
+                                        zPos = -2.3f;
+                                    }
+                                    default -> {
+                                        yPos = 0.0f;
+                                        zPos = 0.0f;
+                                    }
+                                }
+                            } // Swan TESTED AND FINISHED
+                            case 2 -> {
+                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                    case 1 ->
+                                    {
+                                        yPos = 1.5F;
+                                        zPos = -4.5f;
+                                    }
+                                    case 2 -> {
+                                        yPos = 2.0F;
+                                        zPos = -4.0f;
+                                    }
+                                    case 3 -> {
+                                        yPos = 3.0F;
+                                        zPos = -3.5f;
+                                    }
+                                    case 4 -> {
+                                        yPos = 3.8F;
+                                        zPos = -3.5f;
+                                    }
+                                    case 5 -> {
+                                        yPos = 3.2F;
+                                        zPos = -3.5f;
+                                    }
+                                    case 6 -> {
+                                        yPos = 2.6F;
+                                        zPos = -4.5f;
+                                    }
+                                    default -> {
+                                        yPos = 0.0f;
+                                        zPos = 0.0f;
+                                    }
+                                }
+                            } // Straight TESTED AND FINISHED
+                            case 3 -> {
+                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                    case 1 ->
+                                    {
+                                        yPos = 0.75F;
+                                        zPos = -4.5f;
+                                    }
+                                    case 2 -> {
+                                        yPos = 1.1F;
+                                        zPos = -4.3f;
+                                    }
+                                    case 3 -> {
+                                        yPos = 0.4F;
+                                        zPos = -4.8f;
+                                    }
+                                    case 4 -> {
+                                        yPos = 3.1F; // START FROM HERE!! Only finished up to 3.
+                                        zPos = -2.3f;
+                                    }
+                                    case 5 -> {
+                                        yPos = 3.1F;
+                                        zPos = -2.3f;
+                                    }
+                                    case 6 -> {
+                                        yPos = 3.1F;
+                                        zPos = -2.3f;
+                                    }
+                                    default -> {
+                                        yPos = 0.0f;
+                                        zPos = 0.0f;
+                                    }
+                                }
+                            } // Ewed TESTED TODO The short_1 model looks WACK. Do something to fix.
                             case 4 -> yPos = 2.5F; // Arched
                             default -> yPos = 0.0F;
                         }
@@ -108,6 +205,8 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
 
         }
         yPos /= 16;
-            pose.translate(0, yPos, 0);
+        zPos /= 16;
+
+        pose.translate(0, yPos, zPos);
     }
 }

@@ -51,7 +51,7 @@ public enum GeneticBreeds {
                 custom.put("HEAD_TYPE", new Vec2(0, 1));
                 custom.put("NECK_LENGTH", new Vec2(2, 5));
                 custom.put("NECK_CURVE", new Vec2(3, 4));
-//                custom.put("NECK_POS", new Vec2(3, 4));
+                custom.put("NECK_POS", new Vec2(3, 4));
                 custom.put("BACK_LENGTH", new Vec2(1, 3));
                 custom.put("BACK_GIRTH", new Vec2(0, 2));
 //                custom.put("BACK_HEIGHT", new Vec2(0, 2));
@@ -74,13 +74,18 @@ public enum GeneticBreeds {
                 custom.put("FRAME_OVERO_VARIATION_1", new Vec2(0, 1));
                 custom.put("FRAME_OVERO_VARIATION_2", new Vec2(0, 1));
                 custom.put("FRAME_OVERO_VARIATION_3", new Vec2(1, 10));
+                custom.put("FRONT_LEFT_LEG_MARKING", new Vec2(0, 20));
+                custom.put("FRONT_RIGHT_LEG_MARKING", new Vec2(0, 20));
+                custom.put("BACK_LEFT_LEG_MARKING", new Vec2(0, 20));
+                custom.put("BACK_RIGHT_LEG_MARKING", new Vec2(0, 20));
+
             }
             case CHARGER -> {
                 custom.put("MUSCLE_MASS", new Vec2(1, 3));
                 custom.put("HEAD_TYPE", new Vec2(1, 2)); // Roman
                 custom.put("NECK_LENGTH", new Vec2(3, 6));
                 custom.put("NECK_CURVE", new Vec2(0, 1)); //Swan
-//                custom.put("NECK_POS", new Vec2(3, 4));
+                custom.put("NECK_POS", new Vec2(2, 4));
                 custom.put("BACK_LENGTH", new Vec2(1, 3));
                 custom.put("BACK_GIRTH", new Vec2(1, 3));
 //                custom.put("BACK_HEIGHT", new Vec2(0, 2));
@@ -100,13 +105,17 @@ public enum GeneticBreeds {
                 custom.put("TAIL_THICKNESS", new Vec2(0, 3));
                 custom.put("HOOF_SIZE", new Vec2(1, 2));
                 custom.put("SCALE", new Vec2(0.40F, 0.75F));
+                custom.put("FRONT_LEFT_LEG_MARKING", new Vec2(0, 20));
+                custom.put("FRONT_RIGHT_LEG_MARKING", new Vec2(0, 20));
+                custom.put("BACK_LEFT_LEG_MARKING", new Vec2(0, 20));
+                custom.put("BACK_RIGHT_LEG_MARKING", new Vec2(0, 20));
             }
             case TURKOMAN -> {
                 custom.put("MUSCLE_MASS", new Vec2(0, 2));
                 custom.put("HEAD_TYPE", new Vec2(3, 4)); // Straight
                 custom.put("NECK_LENGTH", new Vec2(2, 4));
                 custom.put("NECK_CURVE", new Vec2(2, 3)); // Ewed
-//                custom.put("NECK_POS", new Vec2(3, 4));
+                custom.put("NECK_POS", new Vec2(1, 3));
                 custom.put("BACK_LENGTH", new Vec2(1, 3));
                 custom.put("BACK_GIRTH", new Vec2(1, 3));
 //                custom.put("BACK_HEIGHT", new Vec2(0, 2));
@@ -126,13 +135,17 @@ public enum GeneticBreeds {
                 custom.put("TAIL_THICKNESS", new Vec2(0, 3));
                 custom.put("HOOF_SIZE", new Vec2(0, 2));
                 custom.put("SCALE", new Vec2(0.20F, 0.5F));
+                custom.put("FRONT_LEFT_LEG_MARKING", new Vec2(0, 20));
+                custom.put("FRONT_RIGHT_LEG_MARKING", new Vec2(0, 20));
+                custom.put("BACK_LEFT_LEG_MARKING", new Vec2(0, 20));
+                custom.put("BACK_RIGHT_LEG_MARKING", new Vec2(0, 20));
             }
             case MONGOLIAN_WILD -> {
                 custom.put("MUSCLE_MASS", new Vec2(0, 2));
                 custom.put("HEAD_TYPE", new Vec2(2, 3)); // Stocky
                 custom.put("NECK_LENGTH", new Vec2(0, 4));
                 custom.put("NECK_CURVE", new Vec2(1, 2)); // Straight
-//                custom.put("NECK_POS", new Vec2(3, 4));
+                custom.put("NECK_POS", new Vec2(2, 4));
                 custom.put("BACK_LENGTH", new Vec2(0, 2));
                 custom.put("BACK_GIRTH", new Vec2(0, 2));
 //                custom.put("BACK_HEIGHT", new Vec2(0, 2));

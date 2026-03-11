@@ -88,7 +88,7 @@ public class chest_average_large_1 extends MultipartChestModel<GeneticHorseEntit
 
 		PartDefinition chest_average_large_1_chest_right_deltoid_base = chest_average_large_1_chest_right_deltoid.addOrReplaceChild("chest_average_large_1_chest_right_deltoid_base", CubeListBuilder.create().texOffs(228, 762).addBox(-2.0F, -4.5F, -4.5F, 4.0F, 9.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.0503F, -0.0028F, 0.1781F));
 
-		PartDefinition neckAnchor = chest_average_large_1.addOrReplaceChild("neckAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.25F, -4.5F, -2.8212F));
+		PartDefinition neckAnchor = chest_average_large_1.addOrReplaceChild("neckAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.25F, -4.5F, -3.2962F));
 
 		PartDefinition backAnchor = chest_average_large_1.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.25F, -4.5F, 4.6788F));
 

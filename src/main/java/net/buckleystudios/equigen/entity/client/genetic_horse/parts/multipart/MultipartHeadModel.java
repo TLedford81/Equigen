@@ -58,7 +58,7 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                                         yPos = -1.0f;
                                     } // Stocky
                                     case 4 -> {
-                                        zPos = 10.0F;
+                                        zPos = 1.0F;
                                         yPos = 0.0f;
                                     } // Straight
                                     default -> zPos = 0.0F;

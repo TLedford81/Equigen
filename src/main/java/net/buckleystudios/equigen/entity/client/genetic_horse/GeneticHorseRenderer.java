@@ -30,9 +30,30 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
 
     private final EntityModelSet modelSet;
 
-    private final ResourceLocation LONG_SOCK = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/test/marking_1.png");
-    private final ResourceLocation AVERAGE_SOCK = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/test/marking_2.png");
-    private final ResourceLocation SHORT_SOCK = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/test/marking_3.png");
+    private final ResourceLocation partial_pastern = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/pastern/partial_pastern.png");
+    private final ResourceLocation pastern = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/pastern/pastern.png");
+    private final ResourceLocation small_pastern = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/pastern/small_pastern.png");
+
+
+    private final ResourceLocation sock_1 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/socks/sock_1.png");
+    private final ResourceLocation sock_2 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/socks/sock_2.png");
+    private final ResourceLocation sock_3 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/socks/sock_3.png");
+    private final ResourceLocation sock_4 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/socks/sock_4.png");
+    private final ResourceLocation sock_5 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/socks/sock_5.png");
+    private final ResourceLocation sock_6 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/socks/sock_6.png");
+    private final ResourceLocation sock_7 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/socks/sock_7.png");
+    private final ResourceLocation sock_8 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/socks/sock_8.png");
+
+    private final ResourceLocation stocking_1 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/stockings/stocking_1.png");
+    private final ResourceLocation stocking_2 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/stockings/stocking_2.png");
+    private final ResourceLocation stocking_3 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/stockings/stocking_3.png");
+    private final ResourceLocation stocking_4 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/stockings/stocking_4.png");
+    private final ResourceLocation stocking_5 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/stockings/stocking_5.png");
+    private final ResourceLocation stocking_6 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/stockings/stocking_6.png");
+    private final ResourceLocation stocking_7 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/stockings/stocking_7.png");
+    private final ResourceLocation stocking_8 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/stockings/stocking_8.png");
+
+
 
     public GeneticHorseRenderer(EntityRendererProvider.Context context) {
         super(context, new GH_ModelBase<>(context.bakeLayer(ModModelLayers.GENETIC_HORSE)), 1f);
@@ -99,12 +120,25 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
         return coatColor;
     }
 
-    private Map<Integer, List<ResourceLocation>> getMarkingTextures() {
+    private Map<Integer, List<ResourceLocation>> getMarkingTextures(GeneticHorseEntity e) {
         List<ResourceLocation> BODY_MARKINGS = new ArrayList<>();
         List<ResourceLocation> FRONT_LEFT_LEG_MARKINGS = new ArrayList<>();
         List<ResourceLocation> FRONT_RIGHT_LEG_MARKINGS = new ArrayList<>();
         List<ResourceLocation> BACK_LEFT_LEG_MARKINGS = new ArrayList<>();
         List<ResourceLocation> BACK_RIGHT_LEG_MARKINGS = new ArrayList<>();
+
+        ResourceLocation front_left_leg = getLegWhiteMarking((int) GeneticsHandler.getEntityGenetic(e, Genetics.FRONT_LEFT_LEG_MARKING));
+        ResourceLocation front_right_leg = getLegWhiteMarking((int) GeneticsHandler.getEntityGenetic(e, Genetics.FRONT_RIGHT_LEG_MARKING));
+        ResourceLocation back_left_leg = getLegWhiteMarking((int) GeneticsHandler.getEntityGenetic(e, Genetics.BACK_LEFT_LEG_MARKING));
+        ResourceLocation back_right_leg = getLegWhiteMarking((int) GeneticsHandler.getEntityGenetic(e, Genetics.BACK_RIGHT_LEG_MARKING));
+
+        if (front_left_leg != null) FRONT_LEFT_LEG_MARKINGS.add(front_left_leg);
+        if (front_right_leg != null) FRONT_RIGHT_LEG_MARKINGS.add(front_right_leg);
+        if (back_left_leg != null) BACK_LEFT_LEG_MARKINGS.add(back_left_leg);
+        if (back_right_leg != null) BACK_RIGHT_LEG_MARKINGS.add(back_right_leg);
+
+
+        //TODO finish coronet leg marking.
 
         //TODO: Body Marking Logic
 //        BODY_MARKINGS.add(SHORT_SOCK);
@@ -118,6 +152,32 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                 3, BACK_LEFT_LEG_MARKINGS,
                 4, BACK_RIGHT_LEG_MARKINGS
         );
+    }
+
+    private ResourceLocation getLegWhiteMarking(int gene) {
+        return switch (gene) {
+            case 1 -> small_pastern;
+            case 2 -> partial_pastern;
+            case 3 -> pastern;
+            case 4 -> sock_1;
+            case 5 -> sock_2;
+            case 6 -> sock_3;
+            case 7 -> sock_4;
+            case 8 -> sock_5;
+            case 9 -> sock_6;
+            case 10 -> sock_7;
+            case 11 -> sock_8;
+            case 12 -> stocking_1;
+            case 13 -> stocking_2;
+            case 14 -> stocking_3;
+            case 15 -> stocking_4;
+            case 16 -> stocking_5;
+            case 17 -> stocking_6;
+            case 18 -> stocking_7;
+            case 19 -> stocking_8;
+            default -> null;
+        };
+
     }
 
     @Override
@@ -329,7 +389,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                 packedLight,
                 OverlayTexture.NO_OVERLAY
         );
-        Map<Integer, List<ResourceLocation>> marks = getMarkingTextures();
+        Map<Integer, List<ResourceLocation>> marks = getMarkingTextures(entity);
         if (marks.containsKey(0)) {
             for (int i = 0; i < marks.get(0).size(); i++) {
                 model.renderToBuffer(pose,
@@ -404,7 +464,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                 OverlayTexture.NO_OVERLAY
         );
 
-        Map<Integer, List<ResourceLocation>> markingTextures = getMarkingTextures();
+        Map<Integer, List<ResourceLocation>> markingTextures = getMarkingTextures(entity);
         if (markingTextures.containsKey(legID)) {
             for (ResourceLocation tex : markingTextures.get(legID)) {
                 child.renderToBuffer(
@@ -502,14 +562,14 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                         }
                     } else if (partInfo.startsWith("straight")) {
                         switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_POS))) {
-                            case 1 -> pitch = 35.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
+                            case 1 -> pitch = 40.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                             case 2 -> pitch = 20.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                             case 3 -> pitch = 0.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                             default -> pitch = 0.0F;
                         }
                     } else if (partInfo.startsWith("ewed")) {
                         switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_POS))) {
-                            case 1 -> pitch = 35.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            case 1 -> pitch = 40.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 2 -> pitch = 20.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 3 -> pitch = 0.0F; // Roughly adjusted, need to test w/ varying lengths.
                             default -> pitch = 0.0F;

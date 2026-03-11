@@ -88,7 +88,7 @@ public class chest_muscular_large_1 extends MultipartChestModel<GeneticHorseEnti
 
 		PartDefinition chest_muscular_large_1_chest_right_deltoid_base = chest_muscular_large_1_chest_right_deltoid.addOrReplaceChild("chest_muscular_large_1_chest_right_deltoid_base", CubeListBuilder.create().texOffs(229, 832).addBox(-2.5F, -4.5F, -4.5F, 5.0F, 9.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.9303F, -0.0478F, 0.2213F));
 
-		PartDefinition neckAnchor = chest_muscular_large_1.addOrReplaceChild("neckAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -4.5F, -2.7318F));
+		PartDefinition neckAnchor = chest_muscular_large_1.addOrReplaceChild("neckAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -4.5F, -3.2568F));
 
 		PartDefinition backAnchor = chest_muscular_large_1.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -4.5F, 4.7682F));
 
