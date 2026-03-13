@@ -557,28 +557,28 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                         switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_POS))) {
                             case 1 -> pitch = 35.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                             case 2 -> pitch = 20.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
-                            case 3 -> pitch = 0.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
+                            case 3 -> pitch = 5.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                             default -> pitch = 0.0F;
                         }
                     } else if (partInfo.startsWith("straight")) {
                         switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_POS))) {
                             case 1 -> pitch = 40.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                             case 2 -> pitch = 20.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
-                            case 3 -> pitch = 0.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
+                            case 3 -> pitch = 5.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                             default -> pitch = 0.0F;
                         }
                     } else if (partInfo.startsWith("ewed")) {
                         switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_POS))) {
                             case 1 -> pitch = 40.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 2 -> pitch = 20.0F; // Roughly adjusted, need to test w/ varying lengths.
-                            case 3 -> pitch = 0.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            case 3 -> pitch = 5.0F; // Roughly adjusted, need to test w/ varying lengths.
                             default -> pitch = 0.0F;
                         }
                     } else if (partInfo.startsWith("arched")) {
                         switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_POS))) {
-                            case 1 -> pitch = 35.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            case 1 -> pitch = 40.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 2 -> pitch = 20.0F; // Roughly adjusted, need to test w/ varying lengths.
-                            case 3 -> pitch = 0.0F; // Roughly adjusted, need to test w/ varying lengths.
+                            case 3 -> pitch = 5.0F; // Roughly adjusted, need to test w/ varying lengths.
                             default -> pitch = 0.0F;
                         }
                     } else {

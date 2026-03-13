@@ -175,29 +175,195 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
                                         zPos = -4.8f;
                                     }
                                     case 4 -> {
-                                        yPos = 3.1F; // START FROM HERE!! Only finished up to 3.
-                                        zPos = -2.3f;
+                                        yPos = 1.0F; // START FROM HERE!! Only finished up to 3.
+                                        zPos = -4.8f;
                                     }
                                     case 5 -> {
-                                        yPos = 3.1F;
-                                        zPos = -2.3f;
+                                        yPos = 2.0F;
+                                        zPos = -4.3f;
                                     }
                                     case 6 -> {
-                                        yPos = 3.1F;
-                                        zPos = -2.3f;
+                                        yPos = 1.75F;
+                                        zPos = -4.5f;
                                     }
                                     default -> {
                                         yPos = 0.0f;
                                         zPos = 0.0f;
                                     }
                                 }
-                            } // Ewed TESTED TODO The short_1 model looks WACK. Do something to fix.
-                            case 4 -> yPos = 2.5F; // Arched
+                            } // Ewed TESTED AND FINISHED
+                            case 4 -> {
+                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                    case 1 ->
+                                    {
+                                        yPos = 1.0F;
+                                        zPos = -3.5f;
+                                    }
+                                    case 2 -> {
+                                        yPos = 1.1F;
+                                        zPos = -4.0f;
+                                    }
+                                    case 3 -> {
+                                        yPos = 0.2F;
+                                        zPos = -4.8f;
+                                    }
+                                    case 4 -> {
+                                        yPos = 0.75F;
+                                        zPos = -4.8f;
+                                    }
+                                    case 5 -> {
+                                        yPos = 1.8F;
+                                        zPos = -4.3f;
+                                    }
+                                    case 6 -> {
+                                        yPos = 0.9F;
+                                        zPos = -4.2f;
+                                    }
+                                    default -> {
+                                        yPos = 0.0f;
+                                        zPos = 0.0f;
+                                    }
+                                }
+                            } // Arched TESTED AND FINISHED
                             default -> yPos = 0.0F;
                         }
                     }
                     case 2 -> {
-                        yPos = 1.0f;
+                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
+                            case 1 -> {
+                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                    case 1 ->
+                                    {
+                                        yPos = 1.0F;
+                                        zPos = 0.0f;
+                                    }
+                                    case 2 -> {
+                                        yPos = 0.75F;
+                                        zPos = 0.3f;
+                                    }
+                                    case 3 -> {
+                                        yPos = 1.2F;
+                                        zPos = -1.0f;
+                                    }
+                                    case 4 -> {
+                                        yPos = 1.15F;
+                                        zPos = 0.0f;
+                                    }
+                                    case 5 -> {
+                                        yPos = 1.0F;
+                                        zPos = 0.3f;
+                                    }
+                                    case 6 -> {
+                                        yPos = 1.1F;
+                                        zPos = 0.0f;
+                                    }
+                                    default -> {
+                                        yPos = 0.0f;
+                                        zPos = 0.0f;
+                                    }
+                                }
+                            } // Swan
+                            case 2 -> {
+                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                    case 1 ->
+                                    {
+                                        yPos = 1.0F;
+                                        zPos = -1.0f;
+                                    }
+                                    case 2 -> {
+                                        yPos = 1.0F;
+                                        zPos = -0.9f;
+                                    }
+                                    case 3 -> {
+                                        yPos = 1.2F;
+                                        zPos = -0.5f;
+                                    }
+                                    case 4 -> {
+                                        yPos = 1.3F;
+                                        zPos = 0.0f;
+                                    }
+                                    case 5 -> {
+                                        yPos = 1.3F;
+                                        zPos = 0.1f;
+                                    }
+                                    case 6 -> {
+                                        yPos = 1.5F;
+                                        zPos = 0.0f;
+                                    }
+                                    default -> {
+                                        yPos = 0.0f;
+                                        zPos = 0.0f;
+                                    }
+                                }
+                            } // Straight TESTED AND FINISHED
+                            case 3 -> {
+                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                    case 1 ->
+                                    {
+                                        yPos = 1.0F;
+                                        zPos = 0.0f;
+                                    }
+                                    case 2 -> {
+                                        yPos = 1.2F;
+                                        zPos = -0.1f;
+                                    }
+                                    case 3 -> {
+                                        yPos = 1.3F;
+                                        zPos = 0.0f;
+                                    }
+                                    case 4 -> {
+                                        yPos = 1.3F;
+                                        zPos = 0.3f;
+                                    }
+                                    case 5 -> {
+                                        yPos = 1.4F;
+                                        zPos = 0.0f;
+                                    }
+                                    case 6 -> {
+                                        yPos = 1.5F;
+                                        zPos = 0.0f;
+                                    }
+                                    default -> {
+                                        yPos = 0.0F;
+                                        zPos = 0.0f;
+                                    }
+                                }
+                            } // Ewed TESTED AND FINISHED
+                            case 4 -> {
+                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                    case 1 ->
+                                    {
+                                        yPos = 0.8F;
+                                        zPos = -0.5f;
+                                    }
+                                    case 2 -> {
+                                        yPos = 0.8F;
+                                        zPos = -1.0f;
+                                    }
+                                    case 3 -> {
+                                        yPos = 0.5F;
+                                        zPos = -1.0f;
+                                    }
+                                    case 4 -> {
+                                        yPos = 0.4F;
+                                        zPos = -1.0f;
+                                    }
+                                    case 5 -> {
+                                        yPos = 1.0F;
+                                        zPos = 0.0f;
+                                    }
+                                    case 6 -> {
+                                        yPos = 1.1F;
+                                        zPos = 0.15f;
+                                    }
+                                    default -> {
+                                        yPos = 0.0F;
+                                        zPos = 0.0f;
+                                    }
+                                }
+                            } // Arched
+                            default -> yPos = 0.0F;
+                        }
                     }
                     case 3 -> yPos = 0.0f;
                     default ->  yPos = 0.0f;

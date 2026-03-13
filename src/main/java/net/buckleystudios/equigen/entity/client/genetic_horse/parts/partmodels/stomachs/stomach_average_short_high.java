@@ -32,11 +32,11 @@ public class stomach_average_short_high extends MultipartStomachModel<GeneticHor
 
 		PartDefinition stomach_average_short_high_stomach_front_upper_individual = stomach_average_short_high_stomach_front_upper.addOrReplaceChild("stomach_average_short_high_stomach_front_upper_individual", CubeListBuilder.create(), PartPose.offset(0.0084F, -0.3856F, -0.6332F));
 
-		PartDefinition cube_r1 = stomach_average_short_high_stomach_front_upper_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(490, 393).addBox(-5.0892F, -3.2676F, -5.4648F, 6.0F, 13.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.0892F, -3.4648F, -3.2324F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = stomach_average_short_high_stomach_front_upper_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(490, 393).addBox(-5.0892F, -2.2676F, -5.4648F, 6.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.0892F, -3.4648F, -3.2324F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition stomach_average_short_high_stomach_front_lower = stomach_average_short_high_stomach_front_upper.addOrReplaceChild("stomach_average_short_high_stomach_front_lower", CubeListBuilder.create(), PartPose.offset(0.0399F, -0.0018F, -0.5541F));
 
-		PartDefinition cube_r2 = stomach_average_short_high_stomach_front_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(510, 393).addBox(-4.08F, -4.24F, -5.52F, 4.0F, 13.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -3.52F, -2.26F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = stomach_average_short_high_stomach_front_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(510, 393).addBox(-4.08F, -3.24F, -5.52F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -3.52F, -2.26F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition stomach_average_short_high_stomach_back_upper = stomach_average_short_high.addOrReplaceChild("stomach_average_short_high_stomach_back_upper", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 1.6089F));
 

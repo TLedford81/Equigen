@@ -34,7 +34,7 @@ public class back_average_long_average extends MultipartBackModel<GeneticHorseEn
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition back_average_long_average = partdefinition.addOrReplaceChild("back_average_long_average", CubeListBuilder.create(), PartPose.offset(0.0F, 23.975F, 0.0F));
+		PartDefinition back_average_long_average = partdefinition.addOrReplaceChild("back_average_long_average", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
 		PartDefinition back_average_long_average_back_ribs = back_average_long_average.addOrReplaceChild("back_average_long_average_back_ribs", CubeListBuilder.create().texOffs(230, 519).addBox(-3.5F, -3.475F, -6.5F, 7.0F, 7.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.0828F, 0.0F, -0.0347F));
 
@@ -52,7 +52,7 @@ public class back_average_long_average extends MultipartBackModel<GeneticHorseEn
 
 		PartDefinition hipsAnchor = back_average_long_average.addOrReplaceChild("hipsAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -0.775F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -3.475F, 6.25F));
 
-		PartDefinition stomachAnchor = back_average_long_average.addOrReplaceChild("stomachAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.025F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.525F, 5.45F));
+		PartDefinition stomachAnchor = back_average_long_average.addOrReplaceChild("stomachAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.025F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.525F, 7.45F));
 
 		PartDefinition withersAnchor = back_average_long_average.addOrReplaceChild("withersAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -0.775F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -3.475F, -6.25F));
 

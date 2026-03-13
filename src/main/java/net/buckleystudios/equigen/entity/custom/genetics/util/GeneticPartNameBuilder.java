@@ -64,7 +64,7 @@ public class GeneticPartNameBuilder {
             case "hips" -> GeneValueNameBuilder(List.of(PART, MUSCLE_MASS, HIP_SIZE));
             case "hoof" -> GeneValueNameBuilder(List.of(PART, HOOF_SIZE));
             case "neck" -> GeneValueNameBuilder(List.of(PART, MUSCLE_MASS, NECK_CURVE, NECK_LENGTH));
-            case "stomach" -> GeneValueNameBuilder(List.of(PART, MUSCLE_MASS, STOMACH_LENGTH, STOMACH_CURVE));
+            case "stomach" -> GeneValueNameBuilder(List.of(PART, MUSCLE_MASS, BACK_LENGTH, STOMACH_CURVE));
             case "tail" -> GeneValueNameBuilder(List.of(PART, TAIL_THICKNESS, TAIL_LENGTH));
             case "withers" -> GeneValueNameBuilder(List.of(PART, MUSCLE_MASS));
             default -> "";
