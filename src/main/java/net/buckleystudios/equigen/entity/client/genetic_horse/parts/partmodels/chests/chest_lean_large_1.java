@@ -88,7 +88,7 @@ public class chest_lean_large_1 extends MultipartChestModel<GeneticHorseEntity> 
 
 		PartDefinition chest_lean_large_1_chest_right_deltoid_base = chest_lean_large_1_chest_right_deltoid.addOrReplaceChild("chest_lean_large_1_chest_right_deltoid_base", CubeListBuilder.create().texOffs(231, 690).addBox(-2.0F, -4.5F, -4.5F, 4.0F, 9.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.5022F, -0.0478F, 0.2213F));
 
-		PartDefinition neckAnchor = chest_lean_large_1.addOrReplaceChild("neckAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.25F, -4.5F, -2.8212F));
+		PartDefinition neckAnchor = chest_lean_large_1.addOrReplaceChild("neckAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.25F, -4.5F, -3.2462F));
 
 		PartDefinition backAnchor = chest_lean_large_1.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.25F, -4.5F, 4.6788F));
 

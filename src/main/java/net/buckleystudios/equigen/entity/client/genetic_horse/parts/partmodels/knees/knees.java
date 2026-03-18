@@ -34,7 +34,7 @@ public class knees extends MultipartKneeModel<GeneticHorseEntity> {
 
         PartDefinition topLegAnchor = knees.addOrReplaceChild("topLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.01F, -1.0F, -0.99F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.0F, 0.0F));
 
-        PartDefinition bottomLegAnchor = knees.addOrReplaceChild("bottomLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.01F, -1.01F, -0.99F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.5F, 0.0F));
+        PartDefinition bottomLegAnchor = knees.addOrReplaceChild("bottomLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.01F, -1.01F, -0.99F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, 0.0F));
 
         return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
