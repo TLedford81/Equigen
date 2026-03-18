@@ -522,7 +522,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         return 10.0f;
     }
 
-    public boolean isNeedsFulilled(){
+    public boolean isNeedsFulfilled(){
         return (this.getCleanliness() > 5f &&
                 this.getHunger() > 5f &&
                 this.getThirst() > 5f);
@@ -532,8 +532,12 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         return this.entityData.get(STAMINA);
     }
 
+    public float getMaxStamina(){
+        return 10;
+    }
+
     public void setStamina(float value){
-        float clampedValue = Math.clamp(value, 0, 10);
+        float clampedValue = Math.clamp(value, 0, getMaxStamina());
         this.entityData.set(STAMINA, clampedValue);
     }
 
@@ -1412,7 +1416,7 @@ private float difference = 0;
             }
 
             if (stressRecoveryTickTimer >= 200) {
-                if (this.getStress() > 0 && isNeedsFulilled()) {
+                if (this.getStress() > 0 && isNeedsFulfilled()) {
                     this.alterStress(-1.0f);
                 }
                 this.stressRecoveryTickTimer = 0;

@@ -9,6 +9,7 @@ import net.buckleystudios.equigen.entity.client.pillager_king.PillagerKingRender
 import net.buckleystudios.equigen.entity.client.projectile.LassoProjectileRenderer;
 import net.buckleystudios.equigen.entity.client.projectile.SodiumGrenadeProjectileRenderer;
 import net.buckleystudios.equigen.entity.client.test_entity.TestEntityRenderer;
+import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.buckleystudios.equigen.network.ClientGeneticSync;
 import net.buckleystudios.equigen.screen.Infusion_Table.InfusionTableScreen;
 import net.buckleystudios.equigen.screen.ModMenuTypes;
@@ -16,15 +17,21 @@ import net.buckleystudios.equigen.screen.Stall_Nameplate.StallNameplateScreen;
 import net.buckleystudios.equigen.screen.Test_Entity.TestEntityScreen;
 import net.buckleystudios.equigen.util.ModKeyMappings;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.VillagerRenderer;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.level.FoliageColor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
+
+import java.util.List;
 
 @EventBusSubscriber(modid = EquigenMod.MODID, value = Dist.CLIENT)
 public class ModClientEvents {
@@ -46,11 +53,76 @@ public class ModClientEvents {
         event.register(ModMenuTypes.STALL_NAMEPLATE_MENU.get(), StallNameplateScreen::new);
     }
 
+    private static final List<ResourceLocation> gaitIndicators = List.of(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "walk_gait_indicator"),
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "trot_gait_indicator"),
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "gallop_gait_indicator"),
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "canter_gait_indicator"));
+
     @SubscribeEvent
     public static void registerHUD(RegisterGuiLayersEvent event){
+//        Minecraft mc = Minecraft.getInstance();
+        event.registerAbove(VanillaGuiLayers.VEHICLE_HEALTH, ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "gait_indicator"),
+                ((guiGraphics, deltaTracker) -> {
+                    int x = guiGraphics.guiWidth() / 2;
+                    int y = guiGraphics.guiHeight();
 
+                    if(Minecraft.getInstance().player.isPassenger()) {
+                        if (Minecraft.getInstance().player.getVehicle() instanceof GeneticHorseEntity ghe) {
+                            ResourceLocation currentGaitSprite;
+                            currentGaitSprite = gaitIndicators.get(ghe.getCurrentGait());
+                            guiGraphics.blitSprite(
+                                    ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "gait_indicator_background"),
+                                    x - 175, y - 20, 75, 16);
+                            guiGraphics.blitSprite(currentGaitSprite,
+                                    x - 175, y - 20, 75, 16);
+                        }
+                    }
+                }));
+
+        event.registerAbove(VanillaGuiLayers.JUMP_METER, ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "stamina_bar"),
+                ((guiGraphics, deltaTracker) -> {
+                    if(Minecraft.getInstance().player.isPassenger()) {
+                        if (Minecraft.getInstance().player.getVehicle() instanceof GeneticHorseEntity ghe) {
+                            renderStaminaBar(guiGraphics, ghe);
+                        }
+                    }
+                }));
     }
 
+    private static void renderStaminaBar(GuiGraphics graphics, GeneticHorseEntity ghe){
+        float stamina = ghe.getCurrentStamina();
+        float maxStamina = ghe.getMaxStamina();
+        float staminaPercentage = Mth.clamp(stamina / maxStamina, 0f, 1f);
+        int barWidth = 182;
+        int barHeight = 5;
+
+        int x = (graphics.guiWidth() - barWidth) / 2;
+        int y = graphics.guiHeight() - 48;
+
+        graphics.blit(
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/gui/stamina_bar_background.png"),
+                x, y,
+                0, 0,
+                barWidth, barHeight,
+                barWidth, barHeight
+        );
+        int filled = (int)(staminaPercentage * barWidth);
+        graphics.blit(
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/gui/stamina_bar_fill.png"),
+                x, y,
+                0, 0,
+                filled, barHeight,
+                barWidth, barHeight
+        );
+        graphics.blit(
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/gui/stamina_bar_overlay.png"),
+                x, y,
+                0, 0,
+                barWidth, barHeight,
+                barWidth, barHeight
+        );
+    }
 
     @SubscribeEvent
     public static void registerColoredBlocks(RegisterColorHandlersEvent.Block event){
