@@ -54,7 +54,7 @@ public class neck_muscular_straight_long_1 extends MultipartNeckModel<GeneticHor
 
 		PartDefinition headAnchor = neck_muscular_straight_long_1_crest_upper_individual.addOrReplaceChild("headAnchor", CubeListBuilder.create(), PartPose.offset(-0.0952F, 0.8837F, -3.6152F));
 
-		PartDefinition cube_r2 = headAnchor.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -0.0436F, 0.9991F, 1.6144F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = headAnchor.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.1F, -0.0436F, 0.9991F, 1.6144F, 0.0F, 0.0F));
 
 		PartDefinition neck_muscular_straight_long_1_top_mane = neck_muscular_straight_long_1_crest_upper.addOrReplaceChild("neck_muscular_straight_long_1_top_mane", CubeListBuilder.create(), PartPose.offsetAndRotation(0.525F, -1.6689F, 0.5668F, 0.5672F, 0.0F, 0.0F));
 
@@ -84,11 +84,11 @@ public class neck_muscular_straight_long_1 extends MultipartNeckModel<GeneticHor
 
 		PartDefinition neck_muscular_straight_long_1_bottom_mane = neck_muscular_straight_long_1_crest_lower.addOrReplaceChild("neck_muscular_straight_long_1_bottom_mane", CubeListBuilder.create(), PartPose.offsetAndRotation(0.6479F, 1.0641F, 5.3419F, 0.5672F, 0.0F, 0.0F));
 
-		PartDefinition neck_muscular_straight_long_1_bottom_mane_connector = neck_muscular_straight_long_1_bottom_mane.addOrReplaceChild("neck_muscular_straight_long_1_bottom_mane_connector", CubeListBuilder.create(), PartPose.offset(-0.8939F, -5.2404F, -3.6844F));
+		PartDefinition neck_muscular_straight_long_1_bottom_mane_connector = neck_muscular_straight_long_1_bottom_mane.addOrReplaceChild("neck_muscular_straight_long_1_bottom_mane_connector", CubeListBuilder.create(), PartPose.offset(-0.8939F, -5.2405F, -3.6844F));
 
 		PartDefinition neck_muscular_straight_long_1_bottom_mane_connector_individual = neck_muscular_straight_long_1_bottom_mane_connector.addOrReplaceChild("neck_muscular_straight_long_1_bottom_mane_connector_individual", CubeListBuilder.create(), PartPose.offset(0.2613F, 1.7476F, 0.9583F));
 
-		PartDefinition cube_r8 = neck_muscular_straight_long_1_bottom_mane_connector_individual.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(941, 931).addBox(-2.0F, -2.0F, 0.99F, 2.0F, 2.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, -4.3332F, -4.2549F, -0.9599F, 0.0F, 0.0F));
+		PartDefinition cube_r8 = neck_muscular_straight_long_1_bottom_mane_connector_individual.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(941, 931).addBox(-2.0F, -2.0F, 0.99F, 2.0F, 2.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, -4.3331F, -4.2549F, -0.9599F, 0.0F, 0.0F));
 
 		PartDefinition neck_muscular_straight_long_1_bottom_mane_connector2 = neck_muscular_straight_long_1_bottom_mane_connector.addOrReplaceChild("neck_muscular_straight_long_1_bottom_mane_connector2", CubeListBuilder.create(), PartPose.offset(1.162F, 1.4302F, 1.8771F));
 
@@ -112,7 +112,7 @@ public class neck_muscular_straight_long_1 extends MultipartNeckModel<GeneticHor
 
 		PartDefinition neck_muscular_straight_long_1_mane = neck_muscular_straight_long_1.addOrReplaceChild("neck_muscular_straight_long_1_mane", CubeListBuilder.create(), PartPose.offset(0.0F, -8.581F, 0.0F));
 
-		PartDefinition chestAnchor = neck_muscular_straight_long_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.1F, -1.0F, -1.75F));
+		PartDefinition chestAnchor = neck_muscular_straight_long_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.1F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.0F, -1.75F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}

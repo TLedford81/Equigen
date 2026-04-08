@@ -32,11 +32,11 @@ public class stomach_muscular_long_medium extends MultipartStomachModel<GeneticH
 
 		PartDefinition stomach_muscular_long_medium_stomach_front_upper_individual = stomach_muscular_long_medium_stomach_front_upper.addOrReplaceChild("stomach_muscular_long_medium_stomach_front_upper_individual", CubeListBuilder.create(), PartPose.offset(-0.0206F, -0.8856F, -0.9099F));
 
-		PartDefinition cube_r1 = stomach_muscular_long_medium_stomach_front_upper_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(513, 510).addBox(-6.0892F, -4.2676F, -5.4648F, 7.0F, 11.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5892F, -2.9648F, -1.2324F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = stomach_muscular_long_medium_stomach_front_upper_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(513, 510).addBox(-6.0892F, -3.2676F, -5.4648F, 7.0F, 10.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5892F, -2.9648F, -1.2324F, 1.5708F, 0.0F, 0.0F));
 
-		PartDefinition stomach_muscular_long_medium_stomach_front_lower = stomach_muscular_long_medium_stomach_front_upper.addOrReplaceChild("stomach_muscular_long_medium_stomach_front_lower", CubeListBuilder.create(), PartPose.offset(0.011F, -0.5018F, -0.8309F));
+		PartDefinition stomach_muscular_long_medium_stomach_front_lower = stomach_muscular_long_medium_stomach_front_upper.addOrReplaceChild("stomach_muscular_long_medium_stomach_front_lower", CubeListBuilder.create(), PartPose.offset(0.0109F, -0.5018F, -0.8309F));
 
-		PartDefinition cube_r2 = stomach_muscular_long_medium_stomach_front_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(537, 510).addBox(-5.08F, -5.24F, -5.52F, 5.0F, 11.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.58F, -3.02F, -0.26F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = stomach_muscular_long_medium_stomach_front_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(537, 510).addBox(-5.08F, -4.24F, -5.52F, 5.0F, 10.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.58F, -3.02F, -0.26F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition stomach_muscular_long_medium_stomach_back_upper = stomach_muscular_long_medium.addOrReplaceChild("stomach_muscular_long_medium_stomach_back_upper", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 

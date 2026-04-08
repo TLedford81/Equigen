@@ -86,7 +86,7 @@ public class neck_muscular_straight_average_1 extends MultipartNeckModel<Genetic
 
 		PartDefinition neck_muscular_straight_average_1_bottom_mane_connector = neck_muscular_straight_average_1_bottom_mane.addOrReplaceChild("neck_muscular_straight_average_1_bottom_mane_connector", CubeListBuilder.create(), PartPose.offset(-0.8939F, -3.2225F, -2.0057F));
 
-		PartDefinition neck_muscular_straight_average_1_bottom_mane_connector_individual = neck_muscular_straight_average_1_bottom_mane_connector.addOrReplaceChild("neck_muscular_straight_average_1_bottom_mane_connector_individual", CubeListBuilder.create(), PartPose.offset(0.0F, -0.2681F, -0.2682F));
+		PartDefinition neck_muscular_straight_average_1_bottom_mane_connector_individual = neck_muscular_straight_average_1_bottom_mane_connector.addOrReplaceChild("neck_muscular_straight_average_1_bottom_mane_connector_individual", CubeListBuilder.create(), PartPose.offset(0.0F, -0.2682F, -0.2682F));
 
 		PartDefinition cube_r8 = neck_muscular_straight_average_1_bottom_mane_connector_individual.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(833, 935).addBox(-2.0F, -2.0F, 0.99F, 2.0F, 2.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.2613F, -2.3174F, -3.0285F, -0.9599F, 0.0F, 0.0F));
 
@@ -98,7 +98,7 @@ public class neck_muscular_straight_average_1 extends MultipartNeckModel<Genetic
 
 		PartDefinition neck_muscular_straight_average_1_bottom_mane_flow = neck_muscular_straight_average_1_bottom_mane_connector2.addOrReplaceChild("neck_muscular_straight_average_1_bottom_mane_flow", CubeListBuilder.create(), PartPose.offset(2.2346F, 0.0894F, 0.2682F));
 
-		PartDefinition cube_r10 = neck_muscular_straight_average_1_bottom_mane_flow.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(812, 939).addBox(-0.8139F, -0.0002F, -2.3921F, 1.0F, 7.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8939F, -1.5195F, -0.8045F, -0.9774F, -0.0927F, -0.1377F));
+		PartDefinition cube_r10 = neck_muscular_straight_average_1_bottom_mane_flow.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(812, 939).addBox(-0.8139F, -0.0002F, -2.3921F, 1.0F, 7.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8939F, -1.5196F, -0.8045F, -0.9774F, -0.0927F, -0.1377F));
 
 		PartDefinition neck_muscular_straight_average_1_middle_individual = neck_muscular_straight_average_1_individual.addOrReplaceChild("neck_muscular_straight_average_1_middle_individual", CubeListBuilder.create(), PartPose.offset(0.2617F, -0.9778F, -1.6868F));
 
@@ -110,7 +110,7 @@ public class neck_muscular_straight_average_1 extends MultipartNeckModel<Genetic
 
 		PartDefinition cube_r13 = neck_muscular_straight_average_1_lower_individual.addOrReplaceChild("cube_r13", CubeListBuilder.create().texOffs(483, 893).addBox(-4.0784F, -5.0F, -0.9017F, 3.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5784F, 2.0468F, 1.0083F, 0.9599F, 0.0F, 0.0F));
 
-		PartDefinition chestAnchor = neck_muscular_straight_average_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.1F, -1.5F, -1.5F));
+		PartDefinition chestAnchor = neck_muscular_straight_average_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.1F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.5F, -1.5F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}

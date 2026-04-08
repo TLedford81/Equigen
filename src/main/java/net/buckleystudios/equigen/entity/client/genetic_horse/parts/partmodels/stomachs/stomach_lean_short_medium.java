@@ -32,11 +32,11 @@ public class stomach_lean_short_medium extends MultipartStomachModel<GeneticHors
 
 		PartDefinition stomach_lean_short_medium_stomach_front_upper_individual = stomach_lean_short_medium_stomach_front_upper.addOrReplaceChild("stomach_lean_short_medium_stomach_front_upper_individual", CubeListBuilder.create(), PartPose.offset(0.0241F, -0.8856F, -0.4487F));
 
-		PartDefinition cube_r1 = stomach_lean_short_medium_stomach_front_upper_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(449, 318).addBox(-4.0892F, -3.2676F, -5.4648F, 5.0F, 9.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.5892F, -2.9648F, -1.2324F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = stomach_lean_short_medium_stomach_front_upper_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(449, 318).addBox(-4.0892F, -2.2676F, -5.4648F, 5.0F, 8.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.5892F, -2.9648F, -1.2324F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition stomach_lean_short_medium_stomach_front_lower = stomach_lean_short_medium_stomach_front_upper.addOrReplaceChild("stomach_lean_short_medium_stomach_front_lower", CubeListBuilder.create(), PartPose.offset(0.0026F, -0.5018F, -0.3697F));
 
-		PartDefinition cube_r2 = stomach_lean_short_medium_stomach_front_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(469, 318).addBox(-4.08F, -4.24F, -5.52F, 4.0F, 9.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -3.02F, -0.26F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = stomach_lean_short_medium_stomach_front_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(469, 318).addBox(-4.08F, -3.24F, -5.52F, 4.0F, 8.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -3.02F, -0.26F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition stomach_lean_short_medium_stomach_back_upper = stomach_lean_short_medium.addOrReplaceChild("stomach_lean_short_medium_stomach_back_upper", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 

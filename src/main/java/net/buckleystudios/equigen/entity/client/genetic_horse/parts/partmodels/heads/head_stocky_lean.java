@@ -65,9 +65,9 @@ public class head_stocky_lean extends MultipartHeadModel<GeneticHorseEntity> {
 
 		PartDefinition cube_r7 = head_stocky_lean_fringe.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(918, 35).addBox(-1.0F, -2.0F, -2.0F, 1.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.4857F, 0.5899F, -1.3777F, -1.5612F, 0.7089F, -1.5859F));
 
-		PartDefinition neckAnchor = head_stocky_lean.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(-0.05F, -1.1327F, -0.4239F));
+		PartDefinition neckAnchor = head_stocky_lean.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(-0.25F, -1.1327F, -0.4239F));
 
-		PartDefinition cube_r8 = neckAnchor.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 1.1781F, 0.0F, 0.0F));
+		PartDefinition cube_r8 = neckAnchor.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.2F, 0.0F, 0.0F, 1.1781F, 0.0F, 0.0F));
 
 		PartDefinition leftEarAnchor = head_stocky_lean.addOrReplaceChild("leftEarAnchor", CubeListBuilder.create(), PartPose.offset(-1.05F, -2.3477F, -1.5621F));
 

@@ -52,7 +52,7 @@ public class neck_average_swan_short_1 extends MultipartNeckModel<GeneticHorseEn
 
 		PartDefinition cube_r1 = neck_average_swan_short_1_crest_upper_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(380, 981).addBox(-4.0892F, -6.0F, -3.8808F, 4.0F, 6.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.0892F, 0.518F, 1.064F, 1.0908F, 0.0F, 0.0F));
 
-		PartDefinition headAnchor = neck_average_swan_short_1_crest_upper_individual.addOrReplaceChild("headAnchor", CubeListBuilder.create(), PartPose.offset(0.0512F, -2.209F, -4.0358F));
+		PartDefinition headAnchor = neck_average_swan_short_1_crest_upper_individual.addOrReplaceChild("headAnchor", CubeListBuilder.create(), PartPose.offset(-0.0488F, -2.109F, -4.2858F));
 
 		PartDefinition cube_r2 = headAnchor.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 1.0908F, 0.0F, 0.0F));
 
@@ -84,7 +84,7 @@ public class neck_average_swan_short_1 extends MultipartNeckModel<GeneticHorseEn
 
 		PartDefinition neck_average_swan_short_1_bottom_mane = neck_average_swan_short_1_crest_lower.addOrReplaceChild("neck_average_swan_short_1_bottom_mane", CubeListBuilder.create(), PartPose.offsetAndRotation(0.6615F, 1.2676F, 2.932F, -0.0873F, 0.0F, 0.0F));
 
-		PartDefinition neck_average_swan_short_1_bottom_mane_connector = neck_average_swan_short_1_bottom_mane.addOrReplaceChild("neck_average_swan_short_1_bottom_mane_connector", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, -0.839F, -1.2951F, 0.0436F, 0.0F, 0.0F));
+		PartDefinition neck_average_swan_short_1_bottom_mane_connector = neck_average_swan_short_1_bottom_mane.addOrReplaceChild("neck_average_swan_short_1_bottom_mane_connector", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, -0.839F, -1.2952F, 0.0436F, 0.0F, 0.0F));
 
 		PartDefinition neck_average_swan_short_1_bottom_mane_connector_individual = neck_average_swan_short_1_bottom_mane_connector.addOrReplaceChild("neck_average_swan_short_1_bottom_mane_connector_individual", CubeListBuilder.create(), PartPose.offset(-0.6326F, -1.3083F, -0.9874F));
 

@@ -59,7 +59,7 @@ public class neck_average_straight_average_2 extends MultipartNeckModel<GeneticH
 
 		PartDefinition neck_average_straight_average_2_top_mane = neck_average_straight_average_2_crest_upper.addOrReplaceChild("neck_average_straight_average_2_top_mane", CubeListBuilder.create(), PartPose.offsetAndRotation(0.4886F, -1.8675F, 0.8031F, 0.5672F, 0.0F, 0.0F));
 
-		PartDefinition neck_average_straight_average_2_top_mane_connector = neck_average_straight_average_2_top_mane.addOrReplaceChild("neck_average_straight_average_2_top_mane_connector", CubeListBuilder.create(), PartPose.offset(-0.8045F, -0.5264F, -2.8306F));
+		PartDefinition neck_average_straight_average_2_top_mane_connector = neck_average_straight_average_2_top_mane.addOrReplaceChild("neck_average_straight_average_2_top_mane_connector", CubeListBuilder.create(), PartPose.offset(-0.8045F, -0.5264F, -2.8305F));
 
 		PartDefinition neck_average_straight_average_2_top_mane_connector_individual = neck_average_straight_average_2_top_mane_connector.addOrReplaceChild("neck_average_straight_average_2_top_mane_connector_individual", CubeListBuilder.create(), PartPose.offset(0.162F, 0.1884F, 0.4861F));
 
@@ -99,7 +99,7 @@ public class neck_average_straight_average_2 extends MultipartNeckModel<GeneticH
 
 		PartDefinition neck_average_straight_average_2_bottom_mane_flow = neck_average_straight_average_2_bottom_mane_connector2.addOrReplaceChild("neck_average_straight_average_2_bottom_mane_flow", CubeListBuilder.create(), PartPose.offset(2.1452F, -0.1788F, -0.0894F));
 
-		PartDefinition cube_r10 = neck_average_straight_average_2_bottom_mane_flow.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(863, 938).addBox(-0.8139F, -0.0002F, -2.3921F, 1.0F, 7.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8939F, -1.5195F, -0.8045F, -0.9753F, -0.1144F, -0.1002F));
+		PartDefinition cube_r10 = neck_average_straight_average_2_bottom_mane_flow.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(863, 938).addBox(-0.8139F, -0.0002F, -2.3921F, 1.0F, 7.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8939F, -1.5196F, -0.8045F, -0.9753F, -0.1144F, -0.1002F));
 
 		PartDefinition neck_average_straight_average_2_middle_individual = neck_average_straight_average_2_individual.addOrReplaceChild("neck_average_straight_average_2_middle_individual", CubeListBuilder.create(), PartPose.offset(0.3874F, -0.8902F, -1.1793F));
 

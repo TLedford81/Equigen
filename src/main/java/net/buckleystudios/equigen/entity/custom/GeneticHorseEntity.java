@@ -1026,7 +1026,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 //        EquigenMod.LOGGER.info("Scale: {}, Genetic Value: {}", scale, GeneticsHandler.getGenetic(this, Genetics.SCALE));
         return EntityDimensions.scalable(width * scale, height * scale);
     }
-    //TODO I broke the height. Have to go fix it again. Sadge.
+    //TODO Height is almost completely flush, figure out why it isn't exactly flush.
 private float difference = 0;
     private String tallerHalf;
     public Float calculateHorseHeight(){
@@ -1629,7 +1629,6 @@ private float difference = 0;
     public void HandleNewSpawnWithParentalGenetics(GeneticHorseEntity mother, GeneticHorseEntity father) {
         Random random = new Random();
         GeneticsCalculator calculator = new GeneticsCalculator();
-        // TODO - Figure out why it's duping the mother's genetic value only on some genetics.
         int rolls = 0;
         for (int i = 0; i < Genetics.values().length; i++) {
             Genetics value = Genetics.values()[i];

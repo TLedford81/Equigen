@@ -52,7 +52,7 @@ public class neck_average_straight_long_2 extends MultipartNeckModel<GeneticHors
 
 		PartDefinition cube_r1 = neck_average_straight_long_2_crest_upper_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(634, 862).addBox(-3.08F, -4.0F, -3.92F, 5.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.58F, -0.7328F, 0.4842F, 1.6144F, 0.0F, 0.0F));
 
-		PartDefinition headAnchor = neck_average_straight_long_2_crest_upper_individual.addOrReplaceChild("headAnchor", CubeListBuilder.create(), PartPose.offset(-0.0421F, 0.3881F, -3.4532F));
+		PartDefinition headAnchor = neck_average_straight_long_2_crest_upper_individual.addOrReplaceChild("headAnchor", CubeListBuilder.create(), PartPose.offset(-0.0421F, 0.3881F, -3.2032F));
 
 		PartDefinition cube_r2 = headAnchor.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -0.0436F, 0.9991F, 1.6144F, 0.0F, 0.0F));
 
@@ -86,7 +86,7 @@ public class neck_average_straight_long_2 extends MultipartNeckModel<GeneticHors
 
 		PartDefinition neck_average_straight_long_2_bottom_mane_connector = neck_average_straight_long_2_bottom_mane.addOrReplaceChild("neck_average_straight_long_2_bottom_mane_connector", CubeListBuilder.create(), PartPose.offset(-0.8939F, -6.0308F, -4.3666F));
 
-		PartDefinition neck_average_straight_long_2_bottom_mane_connector_individual = neck_average_straight_long_2_bottom_mane_connector.addOrReplaceChild("neck_average_straight_long_2_bottom_mane_connector_individual", CubeListBuilder.create(), PartPose.offset(0.2613F, 2.1572F, 1.2451F));
+		PartDefinition neck_average_straight_long_2_bottom_mane_connector_individual = neck_average_straight_long_2_bottom_mane_connector.addOrReplaceChild("neck_average_straight_long_2_bottom_mane_connector_individual", CubeListBuilder.create(), PartPose.offset(0.2613F, 2.1572F, 1.245F));
 
 		PartDefinition cube_r8 = neck_average_straight_long_2_bottom_mane_connector_individual.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(997, 928).addBox(-2.0F, -2.0F, 0.99F, 2.0F, 2.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, -4.7427F, -4.5417F, -0.9599F, 0.0F, 0.0F));
 

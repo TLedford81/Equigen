@@ -56,7 +56,7 @@ public class neck_muscular_straight_long_2 extends MultipartNeckModel<GeneticHor
 
 		PartDefinition cube_r2 = headAnchor.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -0.0436F, 0.9991F, 1.6144F, 0.0F, 0.0F));
 
-		PartDefinition neck_muscular_straight_long_2_top_mane = neck_muscular_straight_long_2_crest_upper.addOrReplaceChild("neck_muscular_straight_long_2_top_mane", CubeListBuilder.create(), PartPose.offsetAndRotation(0.6143F, -1.3069F, 0.1835F, 0.5672F, 0.0F, 0.0F));
+		PartDefinition neck_muscular_straight_long_2_top_mane = neck_muscular_straight_long_2_crest_upper.addOrReplaceChild("neck_muscular_straight_long_2_top_mane", CubeListBuilder.create(), PartPose.offsetAndRotation(0.6143F, -1.3069F, 0.1836F, 0.5672F, 0.0F, 0.0F));
 
 		PartDefinition neck_muscular_straight_long_2_top_mane_connector = neck_muscular_straight_long_2_top_mane.addOrReplaceChild("neck_muscular_straight_long_2_top_mane_connector", CubeListBuilder.create(), PartPose.offset(-0.8045F, -0.816F, -2.6239F));
 
@@ -86,7 +86,7 @@ public class neck_muscular_straight_long_2 extends MultipartNeckModel<GeneticHor
 
 		PartDefinition neck_muscular_straight_long_2_bottom_mane_connector = neck_muscular_straight_long_2_bottom_mane.addOrReplaceChild("neck_muscular_straight_long_2_bottom_mane_connector", CubeListBuilder.create(), PartPose.offset(-0.8939F, -6.1226F, -3.9524F));
 
-		PartDefinition neck_muscular_straight_long_2_bottom_mane_connector_individual = neck_muscular_straight_long_2_bottom_mane_connector.addOrReplaceChild("neck_muscular_straight_long_2_bottom_mane_connector_individual", CubeListBuilder.create(), PartPose.offset(0.2613F, 2.1572F, 1.2451F));
+		PartDefinition neck_muscular_straight_long_2_bottom_mane_connector_individual = neck_muscular_straight_long_2_bottom_mane_connector.addOrReplaceChild("neck_muscular_straight_long_2_bottom_mane_connector_individual", CubeListBuilder.create(), PartPose.offset(0.2613F, 2.1572F, 1.245F));
 
 		PartDefinition cube_r8 = neck_muscular_straight_long_2_bottom_mane_connector_individual.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(997, 928).addBox(-2.0F, -2.0F, 0.99F, 2.0F, 2.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, -4.7427F, -4.5417F, -0.9599F, 0.0F, 0.0F));
 

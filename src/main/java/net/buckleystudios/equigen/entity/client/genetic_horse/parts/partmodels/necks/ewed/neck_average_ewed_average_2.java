@@ -52,7 +52,7 @@ public class neck_average_ewed_average_2 extends MultipartNeckModel<GeneticHorse
 
 		PartDefinition cube_r1 = neck_average_ewed_average_2_crest_upper_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(533, 744).addBox(-4.08F, -4.0F, -2.92F, 4.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, 0.8935F, 0.3783F, 0.9599F, 0.0F, 0.0F));
 
-		PartDefinition headAnchor = neck_average_ewed_average_2_crest_upper_individual.addOrReplaceChild("headAnchor", CubeListBuilder.create(), PartPose.offset(-0.038F, -1.516F, -3.0285F));
+		PartDefinition headAnchor = neck_average_ewed_average_2_crest_upper_individual.addOrReplaceChild("headAnchor", CubeListBuilder.create(), PartPose.offset(0.062F, -1.416F, -2.8285F));
 
 		PartDefinition cube_r2 = headAnchor.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -0.6109F, 0.0F, 0.0F));
 
@@ -72,9 +72,11 @@ public class neck_average_ewed_average_2 extends MultipartNeckModel<GeneticHorse
 
 		PartDefinition neck_average_ewed_average_2_top_mane_flow = neck_average_ewed_average_2_top_mane_connector2.addOrReplaceChild("neck_average_ewed_average_2_top_mane_flow", CubeListBuilder.create(), PartPose.offsetAndRotation(2.1452F, 0.0F, -0.0894F, -0.1309F, 0.0F, 0.0F));
 
-		PartDefinition cube_r5 = neck_average_ewed_average_2_top_mane_flow.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(729, 829).addBox(-1.0707F, -0.1476F, -2.1526F, 1.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.5295F, 5.3757F, -2.8502F, -0.5159F, -0.0327F, -0.0032F));
+		PartDefinition cube_r5 = neck_average_ewed_average_2_top_mane_flow.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(729, 829).addBox(-1.0707F, -0.1476F, -2.1526F, 1.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.0257F, 0.1998F, -0.4712F, -0.2206F, -0.3514F));
 
-		PartDefinition cube_r6 = neck_average_ewed_average_2_top_mane_flow.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(729, 829).addBox(-1.0707F, -0.1476F, -2.1526F, 1.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.0257F, 0.1998F, -0.4712F, -0.2206F, -0.3514F));
+		PartDefinition neck_average_ewed_average_2_top_mane_flow_lower = neck_average_ewed_average_2_top_mane_flow.addOrReplaceChild("neck_average_ewed_average_2_top_mane_flow_lower", CubeListBuilder.create(), PartPose.offset(3.0F, 5.0F, -3.0F));
+
+		PartDefinition cube_r6 = neck_average_ewed_average_2_top_mane_flow_lower.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(739, 829).addBox(-1.0707F, -0.1476F, -2.1526F, 1.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5295F, 0.3756F, 0.1498F, -0.5159F, -0.0327F, -0.0032F));
 
 		PartDefinition neck_average_ewed_average_2_crest_lower = neck_average_ewed_average_2_crest.addOrReplaceChild("neck_average_ewed_average_2_crest_lower", CubeListBuilder.create(), PartPose.offset(-0.1171F, 0.2374F, 1.0879F));
 
@@ -100,9 +102,11 @@ public class neck_average_ewed_average_2 extends MultipartNeckModel<GeneticHorse
 
 		PartDefinition neck_average_ewed_average_2_bottom_mane_flow = neck_average_ewed_average_2_bottom_mane_connector2.addOrReplaceChild("neck_average_ewed_average_2_bottom_mane_flow", CubeListBuilder.create(), PartPose.offset(1.7877F, 0.3575F, 0.2682F));
 
-		PartDefinition cube_r11 = neck_average_ewed_average_2_bottom_mane_flow.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(856, 836).addBox(-0.8139F, -0.0002F, -4.3921F, 1.0F, 7.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.8939F, 3.4819F, -5.0712F, -0.9171F, 0.0807F, -0.0051F));
+		PartDefinition cube_r11 = neck_average_ewed_average_2_bottom_mane_flow.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(861, 837).addBox(-0.8139F, -0.0002F, -4.3921F, 1.0F, 7.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8939F, -0.2681F, 0.1788F, -0.9163F, -0.0927F, -0.1377F));
 
-		PartDefinition cube_r12 = neck_average_ewed_average_2_bottom_mane_flow.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(856, 836).addBox(-0.8139F, -0.0002F, -4.3921F, 1.0F, 7.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8939F, -0.2681F, 0.1788F, -0.9163F, -0.0927F, -0.1377F));
+		PartDefinition neck_average_ewed_average_2_bottom_mane_flow_lower = neck_average_ewed_average_2_bottom_mane_flow.addOrReplaceChild("neck_average_ewed_average_2_bottom_mane_flow_lower", CubeListBuilder.create(), PartPose.offset(1.5F, 4.0F, -5.25F));
+
+		PartDefinition cube_r12 = neck_average_ewed_average_2_bottom_mane_flow_lower.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(889, 837).addBox(-0.8139F, -0.0002F, -4.3921F, 1.0F, 7.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.3939F, -0.5181F, 0.1788F, -0.9171F, 0.0807F, -0.0051F));
 
 		PartDefinition neck_average_ewed_average_2_middle_individual = neck_average_ewed_average_2_individual.addOrReplaceChild("neck_average_ewed_average_2_middle_individual", CubeListBuilder.create(), PartPose.offset(-0.1592F, -2.9059F, -2.0636F));
 
@@ -114,7 +118,7 @@ public class neck_average_ewed_average_2 extends MultipartNeckModel<GeneticHorse
 
 		PartDefinition neck_average_ewed_average_2_mane = neck_average_ewed_average_2.addOrReplaceChild("neck_average_ewed_average_2_mane", CubeListBuilder.create(), PartPose.offset(0.0F, -7.419F, -1.0726F));
 
-		PartDefinition chestAnchor = neck_average_ewed_average_2.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.75F, -2.5F));
+		PartDefinition chestAnchor = neck_average_ewed_average_2.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.55F, -2.8F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}

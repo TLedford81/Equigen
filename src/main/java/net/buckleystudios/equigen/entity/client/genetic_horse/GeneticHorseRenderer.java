@@ -586,7 +586,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                     }
                 }
                 case "withers" -> {
-                    //TODO Figure out why some of the withers aren't connected to the pivot point.
+                    //TODO Fix the withers sticking through the body
                     switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.WITHERS))) {
                         case 1 -> pitch = 0.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                         case 2 -> pitch = -10.0F; // VERY Roughly adjusted, need to test w/ varying lengths.

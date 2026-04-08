@@ -32,11 +32,11 @@ public class stomach_lean_average_medium extends MultipartStomachModel<GeneticHo
 
 		PartDefinition stomach_lean_average_medium_stomach_front_upper_individual = stomach_lean_average_medium_stomach_front_upper.addOrReplaceChild("stomach_lean_average_medium_stomach_front_upper_individual", CubeListBuilder.create(), PartPose.offset(0.0241F, -0.8856F, -0.2727F));
 
-		PartDefinition cube_r1 = stomach_lean_average_medium_stomach_front_upper_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(388, 352).addBox(-4.0892F, -4.2676F, -5.4648F, 5.0F, 10.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.5892F, -2.9648F, -0.7324F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = stomach_lean_average_medium_stomach_front_upper_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(388, 352).addBox(-4.0892F, -3.2676F, -5.4648F, 5.0F, 9.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.5892F, -2.9648F, -0.7324F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition stomach_lean_average_medium_stomach_front_lower = stomach_lean_average_medium_stomach_front_upper.addOrReplaceChild("stomach_lean_average_medium_stomach_front_lower", CubeListBuilder.create(), PartPose.offset(0.0026F, -0.5018F, -0.1936F));
 
-		PartDefinition cube_r2 = stomach_lean_average_medium_stomach_front_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(408, 352).addBox(-4.08F, -5.24F, -5.52F, 4.0F, 10.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -3.02F, 0.24F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = stomach_lean_average_medium_stomach_front_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(408, 352).addBox(-4.08F, -4.24F, -5.52F, 4.0F, 9.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -3.02F, 0.24F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition stomach_lean_average_medium_stomach_back_upper = stomach_lean_average_medium.addOrReplaceChild("stomach_lean_average_medium_stomach_back_upper", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 

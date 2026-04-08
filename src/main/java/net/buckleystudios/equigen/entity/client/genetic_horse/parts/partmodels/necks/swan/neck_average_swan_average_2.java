@@ -52,7 +52,7 @@ public class neck_average_swan_average_2 extends MultipartNeckModel<GeneticHorse
 
 		PartDefinition cube_r1 = neck_average_swan_average_2_crest_upper_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(549, 975).addBox(-3.0892F, -6.0F, -3.8808F, 4.0F, 6.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0892F, 0.1605F, 0.7064F, 1.0908F, 0.0F, 0.0F));
 
-		PartDefinition headAnchor = neck_average_swan_average_2_crest_upper_individual.addOrReplaceChild("headAnchor", CubeListBuilder.create(), PartPose.offset(-0.0368F, -2.4114F, -4.6009F));
+		PartDefinition headAnchor = neck_average_swan_average_2_crest_upper_individual.addOrReplaceChild("headAnchor", CubeListBuilder.create(), PartPose.offset(0.0632F, -2.5114F, -4.7009F));
 
 		PartDefinition cube_r2 = headAnchor.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 1.0908F, 0.0F, 0.0F));
 

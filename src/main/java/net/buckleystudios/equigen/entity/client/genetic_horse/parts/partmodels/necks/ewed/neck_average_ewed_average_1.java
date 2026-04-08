@@ -58,21 +58,21 @@ public class neck_average_ewed_average_1 extends MultipartNeckModel<GeneticHorse
 
 		PartDefinition neck_average_ewed_average_1_top_mane = neck_average_ewed_average_1_crest_upper.addOrReplaceChild("neck_average_ewed_average_1_top_mane", CubeListBuilder.create(), PartPose.offset(0.4746F, -1.5833F, 1.3835F));
 
-		PartDefinition neck_average_ewed_average_1_top_mane_connector = neck_average_ewed_average_1_top_mane.addOrReplaceChild("neck_average_ewed_average_1_top_mane_connector", CubeListBuilder.create(), PartPose.offset(-0.7151F, -0.6696F, -1.0196F));
+		PartDefinition neck_average_ewed_average_1_top_mane_connector = neck_average_ewed_average_1_top_mane.addOrReplaceChild("neck_average_ewed_average_1_top_mane_connector", CubeListBuilder.create(), PartPose.offset(-0.7151F, -0.6695F, -1.0195F));
 
 		PartDefinition neck_average_ewed_average_1_top_mane_connector_individual = neck_average_ewed_average_1_top_mane_connector.addOrReplaceChild("neck_average_ewed_average_1_top_mane_connector_individual", CubeListBuilder.create(), PartPose.offset(0.0726F, 0.395F, -0.7819F));
 
-		PartDefinition cube_r3 = neck_average_ewed_average_1_top_mane_connector_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(820, 844).addBox(-2.0F, -2.0F, -3.0F, 2.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 1.3927F, 0.2456F, -0.6109F, 0.0F, 0.0F));
+		PartDefinition cube_r3 = neck_average_ewed_average_1_top_mane_connector_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(810, 858).addBox(-2.0F, -2.0F, -3.0F, 2.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 1.3927F, 0.2456F, -0.6109F, 0.0F, 0.0F));
 
 		PartDefinition neck_average_ewed_average_1_top_mane_connector2 = neck_average_ewed_average_1_top_mane_connector.addOrReplaceChild("neck_average_ewed_average_1_top_mane_connector2", CubeListBuilder.create(), PartPose.offset(0.8045F, -0.3575F, -0.0894F));
 
 		PartDefinition neck_average_ewed_average_1_top_mane_connector2_individual = neck_average_ewed_average_1_top_mane_connector2.addOrReplaceChild("neck_average_ewed_average_1_top_mane_connector2_individual", CubeListBuilder.create(), PartPose.offset(1.1453F, 0.2536F, -0.4057F));
 
-		PartDefinition cube_r4 = neck_average_ewed_average_1_top_mane_connector2_individual.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(820, 850).addBox(-2.0F, -2.0F, -3.0F, 2.0F, 1.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 1.8023F, -0.0412F, -0.6109F, 0.0F, 0.0F));
+		PartDefinition cube_r4 = neck_average_ewed_average_1_top_mane_connector2_individual.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(810, 864).addBox(-2.0F, -2.0F, -3.0F, 2.0F, 1.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 1.8023F, -0.0412F, -0.6109F, 0.0F, 0.0F));
 
 		PartDefinition neck_average_ewed_average_1_top_mane_flow = neck_average_ewed_average_1_top_mane_connector2.addOrReplaceChild("neck_average_ewed_average_1_top_mane_flow", CubeListBuilder.create(), PartPose.offsetAndRotation(2.1452F, 0.0F, -0.0894F, -0.1309F, 0.0F, 0.0F));
 
-		PartDefinition cube_r5 = neck_average_ewed_average_1_top_mane_flow.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(807, 844).addBox(-1.0707F, -0.1476F, -2.1526F, 1.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.0257F, 0.1998F, -0.4712F, -0.2206F, -0.3514F));
+		PartDefinition cube_r5 = neck_average_ewed_average_1_top_mane_flow.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(729, 829).addBox(-1.0707F, -0.1476F, -2.1526F, 1.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.0257F, 0.1998F, -0.4712F, -0.2206F, -0.3514F));
 
 		PartDefinition neck_average_ewed_average_1_crest_lower = neck_average_ewed_average_1_crest.addOrReplaceChild("neck_average_ewed_average_1_crest_lower", CubeListBuilder.create(), PartPose.offset(-0.1171F, 1.5261F, 1.7843F));
 
@@ -88,17 +88,17 @@ public class neck_average_ewed_average_1 extends MultipartNeckModel<GeneticHorse
 
 		PartDefinition neck_average_ewed_average_1_bottom_mane_connector_individual = neck_average_ewed_average_1_bottom_mane_connector.addOrReplaceChild("neck_average_ewed_average_1_bottom_mane_connector_individual", CubeListBuilder.create(), PartPose.offset(-0.6326F, -3.4149F, -2.7787F));
 
-		PartDefinition cube_r8 = neck_average_ewed_average_1_bottom_mane_connector_individual.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(828, 841).addBox(-2.0F, -2.0F, -1.01F, 2.0F, 2.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, -2.16F, -2.9179F, -0.9163F, 0.0F, 0.0F));
+		PartDefinition cube_r8 = neck_average_ewed_average_1_bottom_mane_connector_individual.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(822, 848).addBox(-2.0F, -2.0F, -1.01F, 2.0F, 2.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, -2.16F, -2.9179F, -0.9163F, 0.0F, 0.0F));
 
 		PartDefinition neck_average_ewed_average_1_bottom_mane_connector2 = neck_average_ewed_average_1_bottom_mane_connector.addOrReplaceChild("neck_average_ewed_average_1_bottom_mane_connector2", CubeListBuilder.create(), PartPose.offset(0.1788F, -4.3302F, -2.3106F));
 
 		PartDefinition neck_average_ewed_average_1_bottom_mane_connector2_individual = neck_average_ewed_average_1_bottom_mane_connector2.addOrReplaceChild("neck_average_ewed_average_1_bottom_mane_connector2_individual", CubeListBuilder.create(), PartPose.offset(1.1453F, 0.5228F, -0.076F));
 
-		PartDefinition cube_r9 = neck_average_ewed_average_1_bottom_mane_connector2_individual.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(828, 852).addBox(-2.0F, -2.0F, -1.0F, 2.0F, 1.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, -1.8636F, -3.3207F, -0.9163F, 0.0F, 0.0F));
+		PartDefinition cube_r9 = neck_average_ewed_average_1_bottom_mane_connector2_individual.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(822, 859).addBox(-2.0F, -2.0F, -1.0F, 2.0F, 1.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, -1.8636F, -3.3207F, -0.9163F, 0.0F, 0.0F));
 
 		PartDefinition neck_average_ewed_average_1_bottom_mane_flow = neck_average_ewed_average_1_bottom_mane_connector2.addOrReplaceChild("neck_average_ewed_average_1_bottom_mane_flow", CubeListBuilder.create(), PartPose.offset(1.7877F, 0.3576F, 0.2682F));
 
-		PartDefinition cube_r10 = neck_average_ewed_average_1_bottom_mane_flow.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(808, 846).addBox(-0.8139F, -0.0002F, -4.3921F, 1.0F, 7.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8939F, -0.2682F, 0.1788F, -0.8901F, -0.0927F, -0.1377F));
+		PartDefinition cube_r10 = neck_average_ewed_average_1_bottom_mane_flow.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(804, 837).addBox(-0.8139F, -0.0002F, -4.3921F, 1.0F, 7.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8939F, -0.2682F, 0.1788F, -0.8901F, -0.0927F, -0.1377F));
 
 		PartDefinition neck_average_ewed_average_1_middle_individual = neck_average_ewed_average_1_individual.addOrReplaceChild("neck_average_ewed_average_1_middle_individual", CubeListBuilder.create(), PartPose.offset(-0.0698F, -3.3155F, -2.3504F));
 

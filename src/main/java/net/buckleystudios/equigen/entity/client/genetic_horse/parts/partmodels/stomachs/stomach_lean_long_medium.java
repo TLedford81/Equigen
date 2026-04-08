@@ -32,11 +32,11 @@ public class stomach_lean_long_medium extends MultipartStomachModel<GeneticHorse
 
 		PartDefinition stomach_lean_long_medium_stomach_front_upper_individual = stomach_lean_long_medium_stomach_front_upper.addOrReplaceChild("stomach_lean_long_medium_stomach_front_upper_individual", CubeListBuilder.create(), PartPose.offset(0.0241F, -0.8856F, -0.9612F));
 
-		PartDefinition cube_r1 = stomach_lean_long_medium_stomach_front_upper_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(521, 352).addBox(-4.0892F, -4.2676F, -5.4648F, 5.0F, 11.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.5892F, -2.9648F, -1.2324F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = stomach_lean_long_medium_stomach_front_upper_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(521, 352).addBox(-4.0892F, -3.2676F, -5.4648F, 5.0F, 10.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.5892F, -2.9648F, -1.2324F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition stomach_lean_long_medium_stomach_front_lower = stomach_lean_long_medium_stomach_front_upper.addOrReplaceChild("stomach_lean_long_medium_stomach_front_lower", CubeListBuilder.create(), PartPose.offset(0.0026F, -0.5018F, -0.8822F));
 
-		PartDefinition cube_r2 = stomach_lean_long_medium_stomach_front_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(541, 352).addBox(-4.08F, -5.24F, -5.52F, 4.0F, 11.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -3.02F, -0.26F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = stomach_lean_long_medium_stomach_front_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(541, 352).addBox(-4.08F, -4.24F, -5.52F, 4.0F, 10.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -3.02F, -0.26F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition stomach_lean_long_medium_stomach_back_upper = stomach_lean_long_medium.addOrReplaceChild("stomach_lean_long_medium_stomach_back_upper", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
@@ -44,7 +44,7 @@ public class stomach_lean_long_medium extends MultipartStomachModel<GeneticHorse
 
 		PartDefinition cube_r3 = stomach_lean_long_medium_stomach_back_upper_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(541, 338).addBox(-5.0984F, -4.2952F, -5.4096F, 5.0F, 10.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5984F, -3.2354F, -1.2862F, 1.7453F, 0.0F, 0.0F));
 
-		PartDefinition stomach_lean_long_medium_stomach_back_lower = stomach_lean_long_medium_stomach_back_upper.addOrReplaceChild("stomach_lean_long_medium_stomach_back_lower", CubeListBuilder.create(), PartPose.offset(0.0026F, -0.8523F, 4.9835F));
+		PartDefinition stomach_lean_long_medium_stomach_back_lower = stomach_lean_long_medium_stomach_back_upper.addOrReplaceChild("stomach_lean_long_medium_stomach_back_lower", CubeListBuilder.create(), PartPose.offset(0.0026F, -0.8523F, 4.9836F));
 
 		PartDefinition cube_r4 = stomach_lean_long_medium_stomach_back_lower.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(525, 338).addBox(-4.08F, -4.24F, -5.52F, 4.0F, 10.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -3.3346F, -1.3597F, 1.7453F, 0.0F, 0.0F));
 

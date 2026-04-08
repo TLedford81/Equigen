@@ -110,7 +110,7 @@ public class neck_muscular_swan_short_1 extends MultipartNeckModel<GeneticHorseE
 
 		PartDefinition cube_r13 = neck_muscular_swan_short_1_lower_individual.addOrReplaceChild("cube_r13", CubeListBuilder.create().texOffs(371, 995).addBox(-6.0784F, -9.0F, -0.9017F, 4.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(4.0784F, 5.6074F, 0.1181F, 0.2182F, 0.0F, 0.0F));
 
-		PartDefinition chestAnchor = neck_muscular_swan_short_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.1F, -2.5F, -0.25F));
+		PartDefinition chestAnchor = neck_muscular_swan_short_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.25F, -0.5F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}

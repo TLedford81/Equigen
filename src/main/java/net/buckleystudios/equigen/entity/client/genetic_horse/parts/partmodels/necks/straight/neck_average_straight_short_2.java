@@ -52,11 +52,11 @@ public class neck_average_straight_short_2 extends MultipartNeckModel<GeneticHor
 
 		PartDefinition cube_r1 = neck_average_straight_short_2_crest_upper_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(408, 863).addBox(-3.08F, -4.0F, -3.92F, 5.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.58F, -0.4646F, 0.216F, 1.6144F, 0.0F, 0.0F));
 
-		PartDefinition headAnchor = neck_average_straight_short_2_crest_upper_individual.addOrReplaceChild("headAnchor", CubeListBuilder.create(), PartPose.offset(0.0291F, 0.7309F, -3.6485F));
+		PartDefinition headAnchor = neck_average_straight_short_2_crest_upper_individual.addOrReplaceChild("headAnchor", CubeListBuilder.create(), PartPose.offset(0.0291F, 0.5808F, -3.5985F));
 
-		PartDefinition cube_r2 = headAnchor.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -0.0436F, 0.999F, 1.6144F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = headAnchor.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.1064F, 0.9491F, 1.6144F, 0.0F, 0.0F));
 
-		PartDefinition neck_average_straight_short_2_top_mane = neck_average_straight_short_2_crest_upper.addOrReplaceChild("neck_average_straight_short_2_top_mane", CubeListBuilder.create(), PartPose.offsetAndRotation(0.6674F, -1.4993F, 0.7062F, 0.5672F, 0.0F, 0.0F));
+		PartDefinition neck_average_straight_short_2_top_mane = neck_average_straight_short_2_crest_upper.addOrReplaceChild("neck_average_straight_short_2_top_mane", CubeListBuilder.create(), PartPose.offsetAndRotation(0.6674F, -1.4994F, 0.7062F, 0.5672F, 0.0F, 0.0F));
 
 		PartDefinition neck_average_straight_short_2_top_mane_connector = neck_average_straight_short_2_top_mane.addOrReplaceChild("neck_average_straight_short_2_top_mane_connector", CubeListBuilder.create(), PartPose.offset(-0.8045F, -0.7996F, -2.8843F));
 

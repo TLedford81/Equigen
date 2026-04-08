@@ -37,7 +37,7 @@ public class head_dished_average extends MultipartHeadModel<GeneticHorseEntity> 
 
 		PartDefinition head_dished_average_jaw_individual = head_dished_average_jaw.addOrReplaceChild("head_dished_average_jaw_individual", CubeListBuilder.create(), PartPose.offset(0.0262F, -0.0488F, -0.4117F));
 
-		PartDefinition cube_r1 = head_dished_average_jaw_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(986, 82).addBox(-3.9554F, -0.7109F, -1.1891F, 5.0F, 3.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.4554F, 0.0154F, -1.1314F, 0.7854F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = head_dished_average_jaw_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(984, 81).addBox(-3.9554F, -0.7109F, -1.1891F, 5.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.4554F, 0.0154F, -1.1314F, 0.7854F, 0.0F, 0.0F));
 
 		PartDefinition head_dished_average_jaw_branch = head_dished_average_jaw.addOrReplaceChild("head_dished_average_jaw_branch", CubeListBuilder.create(), PartPose.offset(-0.0754F, 1.6533F, -1.6106F));
 
@@ -45,7 +45,7 @@ public class head_dished_average extends MultipartHeadModel<GeneticHorseEntity> 
 
 		PartDefinition head_dished_average_nose_bridge = head_dished_average.addOrReplaceChild("head_dished_average_nose_bridge", CubeListBuilder.create(), PartPose.offset(-0.0738F, 1.8254F, -2.0903F));
 
-		PartDefinition cube_r3 = head_dished_average_nose_bridge.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(990, 74).addBox(-3.08F, -3.24F, -1.84F, 4.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.08F, -0.8028F, -0.1369F, 2.8798F, 0.0F, 0.0F));
+		PartDefinition cube_r3 = head_dished_average_nose_bridge.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(990, 73).addBox(-3.08F, -3.24F, -1.84F, 4.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.08F, -0.8028F, -0.1369F, 2.8798F, 0.0F, 0.0F));
 
 		PartDefinition head_dished_average_forehead = head_dished_average.addOrReplaceChild("head_dished_average_forehead", CubeListBuilder.create(), PartPose.offset(-0.0207F, -0.4084F, -1.4273F));
 

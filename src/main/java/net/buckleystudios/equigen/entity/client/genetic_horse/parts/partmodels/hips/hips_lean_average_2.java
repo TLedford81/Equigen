@@ -34,6 +34,8 @@ public class hips_lean_average_2 extends MultipartHipModel<GeneticHorseEntity> {
 
 		PartDefinition hips_lean_average_2 = partdefinition.addOrReplaceChild("hips_lean_average_2", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
+		PartDefinition cube_r1 = hips_lean_average_2.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(157, 880).addBox(-5.08F, -4.24F, -7.36F, 6.0F, 5.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.2311F, -2.5314F, 3.2676F, 1.2217F, 0.0F, 0.0F));
+
 		PartDefinition hips_lean_average_2_left_hip = hips_lean_average_2.addOrReplaceChild("hips_lean_average_2_left_hip", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		PartDefinition hips_lean_average_2_left_hip_glute_base = hips_lean_average_2_left_hip.addOrReplaceChild("hips_lean_average_2_left_hip_glute_base", CubeListBuilder.create(), PartPose.offset(-0.0894F, 0.0F, -0.4469F));
@@ -54,13 +56,11 @@ public class hips_lean_average_2 extends MultipartHipModel<GeneticHorseEntity> {
 
 		PartDefinition hips_lean_average_2_hips_top_upper = hips_lean_average_2_hips_top.addOrReplaceChild("hips_lean_average_2_hips_top_upper", CubeListBuilder.create(), PartPose.offset(0.2404F, 0.3962F, -0.9698F));
 
-		PartDefinition cube_r1 = hips_lean_average_2_hips_top_upper.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(177, 888).addBox(-4.08F, -4.24F, -7.36F, 4.0F, 4.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.3912F, 3.2541F, 1.2217F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = hips_lean_average_2_hips_top_upper.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(177, 888).addBox(-4.08F, -4.24F, -7.36F, 4.0F, 4.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.3912F, 3.2541F, 1.2217F, 0.0F, 0.0F));
 
 		PartDefinition hips_lean_average_2_hips_top_lower = hips_lean_average_2_hips_top.addOrReplaceChild("hips_lean_average_2_hips_top_lower", CubeListBuilder.create(), PartPose.offset(0.2404F, 1.0141F, -0.9468F));
 
-		PartDefinition cube_r2 = hips_lean_average_2_hips_top_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(157, 880).addBox(-5.08F, -4.24F, -7.36F, 6.0F, 5.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.5623F, 2.7843F, 1.2217F, 0.0F, 0.0F));
-
-		PartDefinition backAnchor = hips_lean_average_2.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -4.025F, 0.0F));
+		PartDefinition backAnchor = hips_lean_average_2.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -3.9F, 0.0F));
 
 		PartDefinition tailAnchor = hips_lean_average_2.addOrReplaceChild("tailAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.1F, -2.55F, 3.25F));
 

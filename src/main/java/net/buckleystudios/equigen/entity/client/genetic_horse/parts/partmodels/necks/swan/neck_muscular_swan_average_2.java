@@ -110,7 +110,7 @@ public class neck_muscular_swan_average_2 extends MultipartNeckModel<GeneticHors
 
 		PartDefinition cube_r13 = neck_muscular_swan_average_2_lower_individual.addOrReplaceChild("cube_r13", CubeListBuilder.create().texOffs(540, 992).addBox(-4.8996F, -9.0F, -0.9017F, 4.0F, 10.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.8996F, 4.1429F, -0.2065F, 0.2182F, 0.0F, 0.0F));
 
-		PartDefinition chestAnchor = neck_muscular_swan_average_2.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.1F, -2.25F, -1.5F));
+		PartDefinition chestAnchor = neck_muscular_swan_average_2.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.1F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.25F, -1.5F));
 
 		return LayerDefinition.create(meshdefinition, 1024, 1024);
 	}
