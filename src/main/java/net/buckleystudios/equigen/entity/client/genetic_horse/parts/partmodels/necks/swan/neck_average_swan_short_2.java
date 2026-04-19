@@ -62,25 +62,29 @@ public class neck_average_swan_short_2 extends MultipartNeckModel<GeneticHorseEn
 
 		PartDefinition neck_average_swan_short_2_top_mane_connector_individual = neck_average_swan_short_2_top_mane_connector.addOrReplaceChild("neck_average_swan_short_2_top_mane_connector_individual", CubeListBuilder.create(), PartPose.offset(0.0726F, -0.1786F, -1.601F));
 
-		PartDefinition cube_r3 = neck_average_swan_short_2_top_mane_connector_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(772, 973).addBox(-2.0F, -2.0F, -5.0F, 2.0F, 2.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 1.9663F, 1.0647F, -0.6109F, 0.0F, 0.0F));
+		PartDefinition cube_r3 = neck_average_swan_short_2_top_mane_connector_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(761, 984).addBox(-2.0F, -2.0F, -5.0F, 2.0F, 2.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 1.9663F, 1.0647F, -0.6109F, 0.0F, 0.0F));
 
 		PartDefinition neck_average_swan_short_2_top_mane_connector2 = neck_average_swan_short_2_top_mane_connector.addOrReplaceChild("neck_average_swan_short_2_top_mane_connector2", CubeListBuilder.create(), PartPose.offset(0.8045F, -0.8045F, -0.8045F));
 
 		PartDefinition neck_average_swan_short_2_top_mane_connector2_individual = neck_average_swan_short_2_top_mane_connector2.addOrReplaceChild("neck_average_swan_short_2_top_mane_connector2_individual", CubeListBuilder.create(), PartPose.offset(1.1453F, 0.1269F, -0.5098F));
 
-		PartDefinition cube_r4 = neck_average_swan_short_2_top_mane_connector2_individual.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(772, 981).addBox(-2.0F, -2.0F, -5.0F, 2.0F, 1.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 2.3759F, 0.7779F, -0.6109F, 0.0F, 0.0F));
+		PartDefinition cube_r4 = neck_average_swan_short_2_top_mane_connector2_individual.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(761, 992).addBox(-2.0F, -2.0F, -5.0F, 2.0F, 1.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 2.3759F, 0.7779F, -0.6109F, 0.0F, 0.0F));
 
 		PartDefinition neck_average_swan_short_2_top_mane_flow = neck_average_swan_short_2_top_mane_connector2.addOrReplaceChild("neck_average_swan_short_2_top_mane_flow", CubeListBuilder.create(), PartPose.offsetAndRotation(1.8771F, 0.0F, -0.0894F, -0.0873F, 0.0F, 0.0F));
 
-		PartDefinition cube_r5 = neck_average_swan_short_2_top_mane_flow.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(756, 975).addBox(-1.0707F, -0.1476F, -4.1526F, 1.0F, 7.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.4085F, 0.9511F, -0.4274F, -0.2133F, -0.3647F));
+		PartDefinition cube_r5 = neck_average_swan_short_2_top_mane_flow.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(729, 956).addBox(-1.0707F, -0.1476F, -4.1526F, 1.0F, 7.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.4085F, 0.9511F, -0.4274F, -0.2133F, -0.3647F));
+
+		PartDefinition neck_average_swan_short_2_top_mane_flow_lower = neck_average_swan_short_2_top_mane_flow.addOrReplaceChild("neck_average_swan_short_2_top_mane_flow_lower", CubeListBuilder.create(), PartPose.offset(2.825F, 5.6238F, -2.7986F));
+
+		PartDefinition cube_r6 = neck_average_swan_short_2_top_mane_flow_lower.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(743, 956).addBox(-1.0707F, -0.1476F, -4.1526F, 1.0F, 7.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.4085F, 0.9511F, -0.4649F, -0.0998F, -0.1258F));
 
 		PartDefinition neck_average_swan_short_2_crest_lower = neck_average_swan_short_2_crest.addOrReplaceChild("neck_average_swan_short_2_crest_lower", CubeListBuilder.create(), PartPose.offset(0.1511F, 3.1227F, 2.5698F));
 
-		PartDefinition cube_r6 = neck_average_swan_short_2_crest_lower.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(426, 980).addBox(-4.08F, -12.0F, -0.92F, 4.0F, 7.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, 7.0087F, 4.8099F, 0.6109F, 0.0F, 0.0F));
+		PartDefinition cube_r7 = neck_average_swan_short_2_crest_lower.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(426, 980).addBox(-4.08F, -12.0F, -0.92F, 4.0F, 7.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, 7.0087F, 4.8099F, 0.6109F, 0.0F, 0.0F));
 
 		PartDefinition withersAnchor = neck_average_swan_short_2_crest_lower.addOrReplaceChild("withersAnchor", CubeListBuilder.create(), PartPose.offset(0.0065F, 2.7829F, 1.8269F));
 
-		PartDefinition cube_r7 = withersAnchor.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.6109F, 0.0F, 0.0F));
+		PartDefinition cube_r8 = withersAnchor.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.6109F, 0.0F, 0.0F));
 
 		PartDefinition neck_average_swan_short_2_bottom_mane = neck_average_swan_short_2_crest_lower.addOrReplaceChild("neck_average_swan_short_2_bottom_mane", CubeListBuilder.create(), PartPose.offsetAndRotation(0.6403F, 1.508F, 3.0952F, -0.0873F, 0.0F, 0.0F));
 
@@ -88,27 +92,31 @@ public class neck_average_swan_short_2 extends MultipartNeckModel<GeneticHorseEn
 
 		PartDefinition neck_average_swan_short_2_bottom_mane_connector_individual = neck_average_swan_short_2_bottom_mane_connector.addOrReplaceChild("neck_average_swan_short_2_bottom_mane_connector_individual", CubeListBuilder.create(), PartPose.offset(-0.6326F, -0.9116F, -0.6831F));
 
-		PartDefinition cube_r8 = neck_average_swan_short_2_bottom_mane_connector_individual.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(782, 976).addBox(-2.0F, -2.0F, -1.01F, 2.0F, 2.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, -1.7634F, -2.6136F, -0.9163F, 0.0F, 0.0F));
+		PartDefinition cube_r9 = neck_average_swan_short_2_bottom_mane_connector_individual.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(777, 980).addBox(-2.0F, -2.0F, -1.01F, 2.0F, 2.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, -1.7634F, -2.6136F, -0.9163F, 0.0F, 0.0F));
 
 		PartDefinition neck_average_swan_short_2_bottom_mane_connector2 = neck_average_swan_short_2_bottom_mane_connector.addOrReplaceChild("neck_average_swan_short_2_bottom_mane_connector2", CubeListBuilder.create(), PartPose.offset(0.2682F, -1.162F, 0.3575F));
 
 		PartDefinition neck_average_swan_short_2_bottom_mane_connector2_individual = neck_average_swan_short_2_bottom_mane_connector2.addOrReplaceChild("neck_average_swan_short_2_bottom_mane_connector2_individual", CubeListBuilder.create(), PartPose.offset(1.0559F, -0.142F, -0.6485F));
 
-		PartDefinition cube_r9 = neck_average_swan_short_2_bottom_mane_connector2_individual.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(780, 986).addBox(-2.0F, -2.0F, -1.0F, 2.0F, 1.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, -1.4669F, -3.0163F, -0.9163F, 0.0F, 0.0F));
+		PartDefinition cube_r10 = neck_average_swan_short_2_bottom_mane_connector2_individual.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(777, 990).addBox(-2.0F, -2.0F, -1.0F, 2.0F, 1.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, -1.4669F, -3.0163F, -0.9163F, 0.0F, 0.0F));
 
 		PartDefinition neck_average_swan_short_2_bottom_mane_flow = neck_average_swan_short_2_bottom_mane_connector2.addOrReplaceChild("neck_average_swan_short_2_bottom_mane_flow", CubeListBuilder.create(), PartPose.offset(1.9665F, -0.1788F, -0.2682F));
 
-		PartDefinition cube_r10 = neck_average_swan_short_2_bottom_mane_flow.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(762, 980).addBox(-0.8139F, -0.0002F, -4.3921F, 1.0F, 7.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5363F, 0.1788F, 0.4469F, -0.8937F, -0.1201F, -0.1036F));
+		PartDefinition cube_r11 = neck_average_swan_short_2_bottom_mane_flow.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(763, 966).addBox(-0.8139F, -0.0002F, -4.3921F, 1.0F, 7.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5363F, 0.1788F, 0.4469F, -0.8937F, -0.1201F, -0.1036F));
+
+		PartDefinition neck_average_swan_short_2_bottom_mane_flow_lower = neck_average_swan_short_2_bottom_mane_flow.addOrReplaceChild("neck_average_swan_short_2_bottom_mane_flow_lower", CubeListBuilder.create(), PartPose.offset(1.175F, 4.05F, -5.25F));
+
+		PartDefinition cube_r12 = neck_average_swan_short_2_bottom_mane_flow_lower.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(783, 964).addBox(-0.8139F, -0.0002F, -4.3921F, 1.0F, 7.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5363F, 0.1788F, 0.4469F, -0.8966F, 0.0847F, 0.0599F));
 
 		PartDefinition neck_average_swan_short_2_middle_individual = neck_average_swan_short_2_individual.addOrReplaceChild("neck_average_swan_short_2_middle_individual", CubeListBuilder.create(), PartPose.offset(-0.1815F, -2.2372F, -0.9297F));
 
-		PartDefinition cube_r11 = neck_average_swan_short_2_middle_individual.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(408, 967).addBox(-5.0F, -10.0F, -2.0F, 5.0F, 8.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5055F, 4.4419F, 3.2252F, 0.5672F, 0.0F, 0.0F));
+		PartDefinition cube_r13 = neck_average_swan_short_2_middle_individual.addOrReplaceChild("cube_r13", CubeListBuilder.create().texOffs(408, 967).addBox(-5.0F, -10.0F, -2.0F, 5.0F, 8.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5055F, 4.4419F, 3.2252F, 0.5672F, 0.0F, 0.0F));
 
-		PartDefinition cube_r12 = neck_average_swan_short_2_middle_individual.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(408, 980).addBox(-6.08F, -9.0F, -0.92F, 5.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.5745F, 6.4792F, -0.0428F, 0.2618F, 0.0F, 0.0F));
+		PartDefinition cube_r14 = neck_average_swan_short_2_middle_individual.addOrReplaceChild("cube_r14", CubeListBuilder.create().texOffs(408, 980).addBox(-6.08F, -9.0F, -0.92F, 5.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.5745F, 6.4792F, -0.0428F, 0.2618F, 0.0F, 0.0F));
 
 		PartDefinition neck_average_swan_short_2_lower_individual = neck_average_swan_short_2_individual.addOrReplaceChild("neck_average_swan_short_2_lower_individual", CubeListBuilder.create(), PartPose.offset(-0.1174F, -1.3166F, -2.1548F));
 
-		PartDefinition cube_r13 = neck_average_swan_short_2_lower_individual.addOrReplaceChild("cube_r13", CubeListBuilder.create().texOffs(428, 968).addBox(-5.0784F, -9.0F, -0.9017F, 3.0F, 8.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.5784F, 5.1192F, 0.0099F, 0.2182F, 0.0F, 0.0F));
+		PartDefinition cube_r15 = neck_average_swan_short_2_lower_individual.addOrReplaceChild("cube_r15", CubeListBuilder.create().texOffs(428, 968).addBox(-5.0784F, -9.0F, -0.9017F, 3.0F, 8.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.5784F, 5.1192F, 0.0099F, 0.2182F, 0.0F, 0.0F));
 
 		PartDefinition chestAnchor = neck_average_swan_short_2.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.25F, -0.5F));
 

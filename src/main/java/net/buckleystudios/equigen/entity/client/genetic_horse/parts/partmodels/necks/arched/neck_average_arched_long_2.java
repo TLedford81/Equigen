@@ -72,13 +72,17 @@ public class neck_average_arched_long_2 extends MultipartNeckModel<GeneticHorseE
 
 		PartDefinition cube_r4 = neck_average_arched_long_2_top_mane_flow.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(735, 757).addBox(-1.0707F, -0.1476F, -2.1526F, 1.0F, 7.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.0257F, -1.0516F, 0.0323F, 0.0399F, -0.3352F));
 
+		PartDefinition neck_average_arched_long_2_top_mane_flow_lower = neck_average_arched_long_2_top_mane_flow.addOrReplaceChild("neck_average_arched_long_2_top_mane_flow_lower", CubeListBuilder.create(), PartPose.offset(2.25F, 6.6F, 0.25F));
+
+		PartDefinition cube_r5 = neck_average_arched_long_2_top_mane_flow_lower.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(747, 757).addBox(-1.0707F, -0.1476F, -2.1526F, 1.0F, 7.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.0257F, -1.0516F, 0.0428F, 0.0284F, -0.0298F));
+
 		PartDefinition neck_average_arched_long_2_crest_lower = neck_average_arched_long_2_crest.addOrReplaceChild("neck_average_arched_long_2_crest_lower", CubeListBuilder.create(), PartPose.offset(-0.0926F, 2.6701F, 2.7869F));
 
-		PartDefinition cube_r5 = neck_average_arched_long_2_crest_lower.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(643, 624).addBox(-4.08F, -10.0F, -0.92F, 4.0F, 13.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, 2.5314F, 2.4183F, 0.7854F, 0.0F, 0.0F));
+		PartDefinition cube_r6 = neck_average_arched_long_2_crest_lower.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(643, 624).addBox(-4.08F, -10.0F, -0.92F, 4.0F, 13.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, 2.5314F, 2.4183F, 0.7854F, 0.0F, 0.0F));
 
 		PartDefinition withersAnchor = neck_average_arched_long_2_crest_lower.addOrReplaceChild("withersAnchor", CubeListBuilder.create(), PartPose.offset(-0.0074F, 4.6293F, 4.4671F));
 
-		PartDefinition cube_r6 = withersAnchor.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.7854F, 0.0F, 0.0F));
+		PartDefinition cube_r7 = withersAnchor.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.7854F, 0.0F, 0.0F));
 
 		PartDefinition neck_average_arched_long_2_bottom_mane = neck_average_arched_long_2_crest_lower.addOrReplaceChild("neck_average_arched_long_2_bottom_mane", CubeListBuilder.create(), PartPose.offsetAndRotation(0.6233F, 3.5486F, 6.1538F, 0.1309F, 0.0F, 0.0F));
 
@@ -86,27 +90,31 @@ public class neck_average_arched_long_2 extends MultipartNeckModel<GeneticHorseE
 
 		PartDefinition neck_average_arched_long_2_bottom_mane_connector_individual = neck_average_arched_long_2_bottom_mane_connector.addOrReplaceChild("neck_average_arched_long_2_bottom_mane_connector_individual", CubeListBuilder.create(), PartPose.offset(-0.6326F, 0.2784F, 0.2301F));
 
-		PartDefinition cube_r7 = neck_average_arched_long_2_bottom_mane_connector_individual.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(990, 776).addBox(-2.0F, -2.0F, -2.01F, 2.0F, 2.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, -2.9534F, -3.5267F, -0.9163F, 0.0F, 0.0F));
+		PartDefinition cube_r8 = neck_average_arched_long_2_bottom_mane_connector_individual.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(990, 776).addBox(-2.0F, -2.0F, -2.01F, 2.0F, 2.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, -2.9534F, -3.5267F, -0.9163F, 0.0F, 0.0F));
 
 		PartDefinition neck_average_arched_long_2_bottom_mane_connector2 = neck_average_arched_long_2_bottom_mane_connector.addOrReplaceChild("neck_average_arched_long_2_bottom_mane_connector2", CubeListBuilder.create(), PartPose.offset(0.3575F, 0.0F, 0.8045F));
 
 		PartDefinition neck_average_arched_long_2_bottom_mane_connector2_individual = neck_average_arched_long_2_bottom_mane_connector2.addOrReplaceChild("neck_average_arched_long_2_bottom_mane_connector2_individual", CubeListBuilder.create(), PartPose.offset(0.9665F, -0.114F, -0.1823F));
 
-		PartDefinition cube_r8 = neck_average_arched_long_2_bottom_mane_connector2_individual.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(990, 791).addBox(-1.0F, -0.5F, -6.5F, 2.0F, 1.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -0.9163F, 0.0F, 0.0F));
+		PartDefinition cube_r9 = neck_average_arched_long_2_bottom_mane_connector2_individual.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(990, 791).addBox(-1.0F, -0.5F, -6.5F, 2.0F, 1.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -0.9163F, 0.0F, 0.0F));
 
 		PartDefinition neck_average_arched_long_2_bottom_mane_flow = neck_average_arched_long_2_bottom_mane_connector2.addOrReplaceChild("neck_average_arched_long_2_bottom_mane_flow", CubeListBuilder.create(), PartPose.offset(1.6089F, -0.3575F, 0.0F));
 
-		PartDefinition cube_r9 = neck_average_arched_long_2_bottom_mane_flow.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(967, 755).addBox(-0.8139F, -0.0002F, -5.3921F, 1.0F, 7.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0726F, -0.8045F, -0.3575F, -0.8937F, -0.1201F, -0.1036F));
+		PartDefinition cube_r10 = neck_average_arched_long_2_bottom_mane_flow.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(973, 758).addBox(-0.8139F, -0.0002F, -5.3921F, 1.0F, 7.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0726F, -0.8045F, -0.3575F, -0.8937F, -0.1201F, -0.1036F));
+
+		PartDefinition neck_average_arched_long_2_bottom_mane_flow_lower = neck_average_arched_long_2_bottom_mane_flow.addOrReplaceChild("neck_average_arched_long_2_bottom_mane_flow_lower", CubeListBuilder.create(), PartPose.offset(1.0F, 4.15F, -5.225F));
+
+		PartDefinition cube_r11 = neck_average_arched_long_2_bottom_mane_flow_lower.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(959, 795).addBox(-0.8139F, -0.0002F, -5.3921F, 1.0F, 7.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0726F, -0.8045F, -0.3575F, -0.8994F, 0.0164F, 0.0054F));
 
 		PartDefinition neck_average_arched_long_2_middle_individual = neck_average_arched_long_2_individual.addOrReplaceChild("neck_average_arched_long_2_middle_individual", CubeListBuilder.create(), PartPose.offset(-0.0308F, -3.2313F, -2.8365F));
 
-		PartDefinition cube_r10 = neck_average_arched_long_2_middle_individual.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(646, 607).addBox(-5.0F, -10.0F, -1.0F, 5.0F, 13.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.4442F, 1.9721F, 1.6879F, 0.7854F, 0.0F, 0.0F));
+		PartDefinition cube_r12 = neck_average_arched_long_2_middle_individual.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(646, 607).addBox(-5.0F, -10.0F, -1.0F, 5.0F, 13.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.4442F, 1.9721F, 1.6879F, 0.7854F, 0.0F, 0.0F));
 
-		PartDefinition cube_r11 = neck_average_arched_long_2_middle_individual.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(655, 624).addBox(-5.0784F, -9.0F, -0.9017F, 4.0F, 10.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.1342F, 5.3578F, 0.0543F, 0.2618F, 0.0F, 0.0F));
+		PartDefinition cube_r13 = neck_average_arched_long_2_middle_individual.addOrReplaceChild("cube_r13", CubeListBuilder.create().texOffs(655, 624).addBox(-5.0784F, -9.0F, -0.9017F, 4.0F, 10.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.1342F, 5.3578F, 0.0543F, 0.2618F, 0.0F, 0.0F));
 
 		PartDefinition neck_average_arched_long_2_lower_individual = neck_average_arched_long_2_individual.addOrReplaceChild("neck_average_arched_long_2_lower_individual", CubeListBuilder.create(), PartPose.offset(-0.0891F, -0.9561F, -3.5567F));
 
-		PartDefinition cube_r12 = neck_average_arched_long_2_lower_individual.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(664, 608).addBox(-5.0792F, -11.0F, -0.9108F, 5.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5792F, 5.0961F, 0.4647F, 0.3054F, 0.0F, 0.0F));
+		PartDefinition cube_r14 = neck_average_arched_long_2_lower_individual.addOrReplaceChild("cube_r14", CubeListBuilder.create().texOffs(664, 608).addBox(-5.0792F, -11.0F, -0.9108F, 5.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5792F, 5.0961F, 0.4647F, 0.3054F, 0.0F, 0.0F));
 
 		PartDefinition chestAnchor = neck_average_arched_long_2.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(-1, 0).addBox(-2.0F, -1.0F, -1.0F, 3.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.1F, -1.0F, -2.0F));
 

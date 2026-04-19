@@ -492,51 +492,115 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                                         }
                                     } // Dished FINSIHED
                                     case 2 -> {
-                                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
-                                            case 1 -> {
-                                                zPos = -0.5F;
-                                                yPos = 0.2f;
-                                            }
-                                            default -> {
-                                                yPos = 0.0f;
-                                                zPos = 0.0f;
-                                            }
-                                        }
-                                    } // Roman
+                                        zPos = 0.1F;
+                                        yPos = 0.5f;
+                                    } // Roman FINISHED
                                     case 3 -> {
                                         switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
-                                            case 1, 2, 3, 4 -> {
-                                                zPos = 0.7F;
-                                                yPos = 0.2f;
+                                            case 1, 5 -> {
+                                                zPos = 0.1F;
+                                                yPos = 0.3f;
+                                            }
+                                            case 2 -> {
+                                                zPos = 0.3F;
+                                                yPos = 0.45f;
+                                            }
+                                            case 3, 6 -> {
+                                                zPos = 0.1F;
+                                                yPos = 0.4f;
+                                            }
+                                            case 4 -> {
+                                                zPos = 0.55F;
+                                                yPos = 0.4f;
                                             }
                                             default -> {
                                                 yPos = 0.0f;
                                                 zPos = 0.0f;
                                             }
                                         }
-                                    } // Stocky
+                                    } // Stocky FINISHED
                                     case 4 -> {
+                                        yPos = 0.0f;
+                                        zPos = 0.0f;
+                                    } // Straight FINISHED
+                                }
+                            } // Straight FINISHED
+                            case 3 -> {
+                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.HEAD_TYPE))) {
+                                    case 1 -> {
+                                        zPos = 1.0F;
+                                        yPos = -0.3f;
+                                    } // Dished FINSIHED
+                                    case 2 -> {
+                                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                            case 1, 3, 4, 5, 6 -> {
+                                                zPos = 0.0F;
+                                                yPos = 0.5f;
+                                            }
+                                            case 2 -> {
+                                                zPos = 0.3F;
+                                                yPos = 0.3f;
+                                            }
+                                            default -> {
+                                                zPos = 0.0F;
+                                                yPos = 0.0f;
+                                            }
+                                        }
+                                    } // Roman FINISHED
+                                    case 3 -> {
                                         switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
                                             case 1, 4 -> {
-                                                yPos = -0.6f;
-                                                zPos = 0.9F;
+                                                zPos = 0.8F;
+                                                yPos = 0.4f;
+                                            }
+                                            case 2 -> {
+                                                zPos = 1.0F;
+                                                yPos = 0.2f;
+                                            }
+                                            case 3, 5, 6 -> {
+                                                zPos = 0.7F;
+                                                yPos = 0.35f;
                                             }
                                             default -> {
-                                                yPos = 0.0f;
-                                                zPos = 0.0f;
+                                                zPos = 1.0F;
+                                                yPos = -0.3f;
                                             }
                                         }
-                                    }
+                                    } // Stocky FINISHED
+                                    case 4 -> {
+                                        zPos = 0.9F;
+                                        yPos = 0.3f;
+                                    } // Straight FINISHED
                                 }
-                            } // Straight
-                            case 3 -> {
-                                zPos = 1.0F;
-                                yPos = -0.3f;
-                            } // Ewed
+                            } // Ewed FINISHED
                             case 4 -> {
-                                zPos = 1.25F;
-                                yPos = -1.0F;
-                            } // Arched
+                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.HEAD_TYPE))) {
+                                    case 1 -> {
+                                        zPos = 0.5F;
+                                        yPos = -0.5f;
+                                    } // Dished FINISHED
+                                    case 2 -> {
+                                        zPos = 0.2F;
+                                        yPos = 0.0f;
+                                    } // Roman FINISHED, might need some adjusting
+                                    case 3 -> {
+                                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                           case 4 -> {
+                                               zPos = 0.5F;
+                                               yPos = 0.35f;
+                                           }
+                                           default -> {
+                                                zPos = 0.5F;
+                                                yPos = 0.2f;
+                                           }
+                                        }
+                                    } // Stocky Finished, this one is WACK
+                                    case 4 -> {
+                                        zPos = 0.55F;
+                                        yPos = -0.6f;
+                                    } // Straight FINISHED, might need some adjustments.
+                                }
+                            } // Arched FINISHED
                             default -> zPos = 0.0F;
                         }                    }
                     case 3 -> zPos = 0.0f;
