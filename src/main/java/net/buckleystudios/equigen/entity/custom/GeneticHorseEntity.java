@@ -9,21 +9,22 @@ import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
 import net.buckleystudios.equigen.entity.custom.genetics.util.*;
 import net.buckleystudios.equigen.item.ModItems;
+import net.buckleystudios.equigen.screen.GeneticHorse.GeneticHorseEntityMenu;
 import net.buckleystudios.equigen.sound.ModSounds;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.*;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -48,7 +49,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJumping, Heritable {
+public class GeneticHorseEntity extends AbstractHorse implements
+        PlayerRideableJumping, Heritable, ContainerListener, HasCustomInventoryScreen {
     public final AnimationState idleAnimationState = new AnimationState();
 
     public static final EntityDataAccessor<Float> HUNGER = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
@@ -127,6 +129,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     // SPAWNING //
     public GeneticHorseEntity(EntityType<? extends AbstractHorse> entityType, Level level) {
         super(entityType, level);
+        this.createInventory();
     }
 
     @Override
@@ -305,6 +308,18 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 //        while(genString.length() < geneticCount * 2){
 //            genString.append("00");
 //        }
+
+        //Inventory
+        this.createInventory();
+        ListTag listtag = tag.getList("Items", 10);
+
+        for (int x = 0; x < listtag.size(); x++) {
+            CompoundTag compoundtag = listtag.getCompound(x);
+            int j = compoundtag.getByte("Slot") & 255;
+            if (j < this.inventory.getContainerSize()) {
+                this.inventory.setItem(j, ItemStack.parse(this.registryAccess(), compoundtag).orElse(ItemStack.EMPTY));
+            }
+        }
     }
 
     @Override
@@ -351,6 +366,18 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         tag.putInt("StrengthProficiency", this.entityData.get(STRENGTH_PROFICIENCY));
         tag.putInt("EnduranceProficiency", this.entityData.get(ENDURANCE_PROFICIENCY));
         tag.putInt("AgilityProficiency", this.entityData.get(AGILITY_PROFICIENCY));
+
+        //Inventory
+        ListTag listtag = new ListTag();
+        for (int x = 0; x < this.inventory.getContainerSize(); x++) {
+            ItemStack itemstack = this.inventory.getItem(x);
+            if (!itemstack.isEmpty()) {
+                CompoundTag compoundtag = new CompoundTag();
+                compoundtag.putByte("Slot", (byte)(x));
+                listtag.add(itemstack.save(this.registryAccess(), compoundtag));
+            }
+        }
+        tag.put("Items", listtag);
     }
 
     @Override
@@ -1777,5 +1804,60 @@ private float difference = 0;
         parts.add(partNameBuilder.PartStringGenerator("withers"));
 //        parts.add("withers_average");
         return parts;
+    }
+
+    @Override
+    protected void createInventory() {
+        SimpleContainer oldInventory = this.inventory;
+
+        this.inventory = new SimpleContainer(this.getCustomInventorySize());
+
+        if (oldInventory != null) {
+            oldInventory.removeListener(this);
+
+            int size = Math.min(oldInventory.getContainerSize(), this.inventory.getContainerSize());
+
+            for (int i = 0; i < size; i++) {
+                ItemStack stack = oldInventory.getItem(i);
+                if (!stack.isEmpty()) {
+                    this.inventory.setItem(i, stack.copy());
+                }
+            }
+        }
+
+        this.inventory.addListener(this);
+    }
+
+    public final int getCustomInventorySize() {
+        return getCustomInventorySize(4);
+    }
+
+    public static int getCustomInventorySize(int columns) {
+        return columns * 3 + 5;
+
+    }
+
+    public boolean hasInventoryChanged(Container inventory) {
+        return this.inventory != inventory;
+    }
+
+    @Override
+    public void containerChanged(Container container) {
+        super.containerChanged(container);
+    }
+
+    @Override
+    public void openCustomInventoryScreen(Player player) {
+        if (!this.level().isClientSide && (!this.isVehicle() || this.hasPassenger(player)) && this.isTamed()) {
+            ServerPlayer serverPlayer = (ServerPlayer) player;
+            if (player.containerMenu != player.inventoryMenu) {
+                player.closeContainer();
+            }
+
+            serverPlayer.openMenu(new SimpleMenuProvider((ix, playerInventory, playerEntityx) ->
+                    new GeneticHorseEntityMenu(ix, playerInventory, this.inventory, this, 4), this.getDisplayName()), buf -> {
+                buf.writeUUID(getUUID());
+            });
+        }
     }
 }

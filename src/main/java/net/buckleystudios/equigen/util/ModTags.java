@@ -11,12 +11,16 @@ import net.minecraft.world.level.block.Block;
 public class ModTags {
     public static class Items{
 
+        //Logs
         public static final TagKey<Item> FIG_LOGS = tag("fig_logs");
         public static final TagKey<Item> APRICOT_LOGS = tag("apricot_logs");
         public static final TagKey<Item> MAGNOLIA_LOGS = tag("magnolia_logs");
         public static final TagKey<Item> MULBERRY_LOGS = tag("mulberry_logs");
         public static final TagKey<Item> CITRUS_LOGS = tag("citrus_logs");
         public static final TagKey<Item> GREEN_ASH_LOGS = tag("green_ash_logs");
+
+        //Misc Tags
+        public static final TagKey<Item> HORSE_SADDLES = tag("horse_tack");
 
         private static TagKey<Item> tag(String name){
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, name));

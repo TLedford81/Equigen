@@ -62,7 +62,7 @@
   "block.equigen.apricot_fence_gate": "Apricot Fence Gate",
   "block.equigen.apricot_door": "Apricot Door",
   "block.equigen.apricot_trapdoor": "Apricot Trapdoor",
-  
+
   "block.equigen.mulberry_sapling": "Mulberry Sapling",
   "block.equigen.mulberry_log": "Mulberry Log",
   "block.equigen.mulberry_stripped_log": "Stripped Mulberry Log",
@@ -199,10 +199,10 @@
   "key.gait.gaittyup": "Gait Up",
   "key.gait.gaittydown": "Gait Down",
 
-  "equigen.gui.genetic_horse.stat.hunger": "HUNGER",
-  "equigen.gui.genetic_horse.stat.thirst": "THIRST",
-  "equigen.gui.genetic_horse.stat.cleanliness": "CLEANLINESS",
-  "equigen.gui.genetic_horse.stat.happiness": "HAPPINESS",
-  "equigen.gui.genetic_horse.stat.stress": "STRESS",
-  "equigen.gui.genetic_horse.tack": "TACK"
+  "equigen.gui.genetic_horse.stat.hunger": "BELLY RUMBLIN'",
+  "equigen.gui.genetic_horse.stat.thirst": "PARCHED GULLET",
+  "equigen.gui.genetic_horse.stat.cleanliness": "FILTH LEVEL",
+  "equigen.gui.genetic_horse.stat.happiness": "CREW SPIRITS",
+  "equigen.gui.genetic_horse.stat.stress": "SEA NERVES",
+  "equigen.gui.genetic_horse.tack": "GEAR 'N TACK"
 }

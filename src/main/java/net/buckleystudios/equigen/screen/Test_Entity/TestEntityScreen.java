@@ -13,13 +13,13 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class TestEntityScreen extends AbstractContainerScreen<TestEntityMenu> {
     private static final ResourceLocation GUI_TEXTURE_T0 =
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID,"textures/entity/test_entity/gui/test_entity_gui_tier0.png");
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID,"textures/entity/test_entity/gui/genetic_horse_gui_tier0.png");
     private static final ResourceLocation GUI_TEXTURE_T1 =
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID,"textures/entity/test_entity/gui/test_entity_gui_tier1.png");
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID,"textures/entity/test_entity/gui/genetic_horse_gui_tier1.png");
     private static final ResourceLocation GUI_TEXTURE_T2 =
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID,"textures/entity/test_entity/gui/test_entity_gui_tier2.png");
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID,"textures/entity/test_entity/gui/genetic_horse_gui_tier2.png");
     private static final ResourceLocation GUI_TEXTURE_T3 =
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID,"textures/entity/test_entity/gui/test_entity_gui_tier3.png");
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID,"textures/entity/test_entity/gui/genetic_horse_gui_tier3.png");
     private final TestEntityEntity testEntity;
     private float xMouse;
     private float yMouse;
