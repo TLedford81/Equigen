@@ -100,11 +100,11 @@ public class neck_muscular_arched_long_2 extends MultipartNeckModel<GeneticHorse
 
 		PartDefinition neck_muscular_arched_long_2_bottom_mane_flow = neck_muscular_arched_long_2_bottom_mane_connector2.addOrReplaceChild("neck_muscular_arched_long_2_bottom_mane_flow", CubeListBuilder.create(), PartPose.offset(2.2346F, -0.3575F, 0.0F));
 
-		PartDefinition cube_r10 = neck_muscular_arched_long_2_bottom_mane_flow.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(973, 758).addBox(-0.8139F, -0.0002F, -5.3921F, 1.0F, 7.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0726F, -0.8045F, -0.3575F, -0.9199F, -0.1201F, -0.1036F));
+		PartDefinition cube_r10 = neck_muscular_arched_long_2_bottom_mane_flow.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(959, 795).addBox(-0.8139F, -0.0002F, -5.3921F, 1.0F, 7.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0726F, -0.8045F, -0.3575F, -0.9199F, -0.1201F, -0.1036F));
 
 		PartDefinition neck_muscular_arched_long_2_bottom_mane_flow_lower = neck_muscular_arched_long_2_bottom_mane_flow.addOrReplaceChild("neck_muscular_arched_long_2_bottom_mane_flow_lower", CubeListBuilder.create(), PartPose.offset(1.0F, 4.1F, -5.5F));
 
-		PartDefinition cube_r11 = neck_muscular_arched_long_2_bottom_mane_flow_lower.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(960, 795).addBox(-0.8139F, -0.0002F, -5.3921F, 1.0F, 7.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0726F, -0.8045F, -0.3575F, -0.9243F, 0.054F, 0.0281F));
+		PartDefinition cube_r11 = neck_muscular_arched_long_2_bottom_mane_flow_lower.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(973, 758).addBox(-0.8139F, -0.0002F, -5.3921F, 1.0F, 7.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0726F, -0.8045F, -0.3575F, -0.9243F, 0.054F, 0.0281F));
 
 		PartDefinition neck_muscular_arched_long_2_middle_individual = neck_muscular_arched_long_2_individual.addOrReplaceChild("neck_muscular_arched_long_2_middle_individual", CubeListBuilder.create(), PartPose.offset(-0.0126F, -2.7397F, -2.8365F));
 

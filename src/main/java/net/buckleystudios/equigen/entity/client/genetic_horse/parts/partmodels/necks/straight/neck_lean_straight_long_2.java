@@ -76,7 +76,7 @@ public class neck_lean_straight_long_2 extends MultipartNeckModel<GeneticHorseEn
 
 		PartDefinition neck_lean_straight_long_2_top_mane_flow_lower = neck_lean_straight_long_2_top_mane_flow.addOrReplaceChild("neck_lean_straight_long_2_top_mane_flow_lower", CubeListBuilder.create(), PartPose.offset(2.5795F, 5.936F, -2.3353F));
 
-		PartDefinition cube_r6 = neck_lean_straight_long_2_top_mane_flow_lower.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(750, 894).addBox(-1.0707F, -0.1475F, -1.1526F, 1.0F, 7.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8939F, -0.4463F, -0.7381F, -0.3812F, -0.0931F, -0.1081F));
+		PartDefinition cube_r6 = neck_lean_straight_long_2_top_mane_flow_lower.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(750, 894).addBox(-1.0707F, -0.1476F, -1.1526F, 1.0F, 7.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8939F, -0.4463F, -0.7381F, -0.3812F, -0.0931F, -0.1081F));
 
 		PartDefinition neck_lean_straight_long_2_crest_lower = neck_lean_straight_long_2_crest.addOrReplaceChild("neck_lean_straight_long_2_crest_lower", CubeListBuilder.create(), PartPose.offset(0.2935F, 0.4963F, 3.0489F));
 
@@ -102,11 +102,11 @@ public class neck_lean_straight_long_2 extends MultipartNeckModel<GeneticHorseEn
 
 		PartDefinition neck_lean_straight_long_2_bottom_mane_flow = neck_lean_straight_long_2_bottom_mane_connector2.addOrReplaceChild("neck_lean_straight_long_2_bottom_mane_flow", CubeListBuilder.create(), PartPose.offset(1.6983F, 0.4469F, 0.5363F));
 
-		PartDefinition cube_r11 = neck_lean_straight_long_2_bottom_mane_flow.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(975, 897).addBox(-0.8139F, -0.0002F, -2.3921F, 1.0F, 7.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8939F, -2.6816F, -1.8771F, -0.9753F, -0.1144F, -0.1002F));
+		PartDefinition cube_r11 = neck_lean_straight_long_2_bottom_mane_flow.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(968, 925).addBox(-0.8139F, -0.0002F, -2.3921F, 1.0F, 7.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8939F, -2.6816F, -1.8771F, -0.9753F, -0.1144F, -0.1002F));
 
 		PartDefinition neck_lean_straight_long_2_bottom_mane_flow_lower = neck_lean_straight_long_2_bottom_mane_flow.addOrReplaceChild("neck_lean_straight_long_2_bottom_mane_flow_lower", CubeListBuilder.create(), PartPose.offset(0.9469F, 3.7537F, -5.5711F));
 
-		PartDefinition cube_r12 = neck_lean_straight_long_2_bottom_mane_flow_lower.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(968, 925).addBox(-0.8139F, -0.0002F, -2.3921F, 1.0F, 7.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8939F, -2.6816F, -1.8771F, -0.9761F, 0.1028F, 0.0463F));
+		PartDefinition cube_r12 = neck_lean_straight_long_2_bottom_mane_flow_lower.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(975, 897).addBox(-0.8139F, -0.0002F, -2.3921F, 1.0F, 7.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8939F, -2.6816F, -1.8771F, -0.9761F, 0.1028F, 0.0463F));
 
 		PartDefinition neck_lean_straight_long_2_middle_individual = neck_lean_straight_long_2_individual.addOrReplaceChild("neck_lean_straight_long_2_middle_individual", CubeListBuilder.create(), PartPose.offset(0.3511F, -0.3575F, -0.3432F));
 

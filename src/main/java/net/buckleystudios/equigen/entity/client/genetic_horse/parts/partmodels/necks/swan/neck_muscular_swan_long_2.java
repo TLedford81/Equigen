@@ -102,11 +102,11 @@ public class neck_muscular_swan_long_2 extends MultipartNeckModel<GeneticHorseEn
 
 		PartDefinition neck_muscular_swan_long_2_bottom_mane_flow = neck_muscular_swan_long_2_bottom_mane_connector2.addOrReplaceChild("neck_muscular_swan_long_2_bottom_mane_flow", CubeListBuilder.create(), PartPose.offset(2.1452F, -0.3576F, 0.0894F));
 
-		PartDefinition cube_r11 = neck_muscular_swan_long_2_bottom_mane_flow.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(965, 953).addBox(-0.8139F, -0.0002F, -4.3921F, 1.0F, 7.0F, 12.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0726F, -0.8045F, -0.3575F, -0.8937F, -0.1201F, -0.1036F));
+		PartDefinition cube_r11 = neck_muscular_swan_long_2_bottom_mane_flow.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(960, 983).addBox(-0.8139F, -0.0002F, -4.3921F, 1.0F, 7.0F, 12.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0726F, -0.8045F, -0.3575F, -0.8937F, -0.1201F, -0.1036F));
 
 		PartDefinition neck_muscular_swan_long_2_bottom_mane_flow_lower = neck_muscular_swan_long_2_bottom_mane_flow.addOrReplaceChild("neck_muscular_swan_long_2_bottom_mane_flow_lower", CubeListBuilder.create(), PartPose.offset(1.1743F, 4.2618F, -5.3049F));
 
-		PartDefinition cube_r12 = neck_muscular_swan_long_2_bottom_mane_flow_lower.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(960, 983).addBox(-0.8139F, -0.0002F, -4.3921F, 1.0F, 7.0F, 12.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0726F, -0.8045F, -0.3575F, -0.8966F, 0.0847F, 0.0599F));
+		PartDefinition cube_r12 = neck_muscular_swan_long_2_bottom_mane_flow_lower.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(965, 953).addBox(-0.8139F, -0.0002F, -4.3921F, 1.0F, 7.0F, 12.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0726F, -0.8045F, -0.3575F, -0.8966F, 0.0847F, 0.0599F));
 
 		PartDefinition neck_muscular_swan_long_2_middle_individual = neck_muscular_swan_long_2_individual.addOrReplaceChild("neck_muscular_swan_long_2_middle_individual", CubeListBuilder.create(), PartPose.offset(0.0504F, -3.6198F, -2.4883F));
 

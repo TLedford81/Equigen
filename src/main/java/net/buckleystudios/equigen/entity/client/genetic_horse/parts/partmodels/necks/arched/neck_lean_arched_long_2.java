@@ -100,11 +100,11 @@ public class neck_lean_arched_long_2 extends MultipartNeckModel<GeneticHorseEnti
 
 		PartDefinition neck_lean_arched_long_2_bottom_mane_flow = neck_lean_arched_long_2_bottom_mane_connector2.addOrReplaceChild("neck_lean_arched_long_2_bottom_mane_flow", CubeListBuilder.create(), PartPose.offset(1.6089F, -0.3575F, 0.0F));
 
-		PartDefinition cube_r10 = neck_lean_arched_long_2_bottom_mane_flow.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(973, 758).addBox(-0.8139F, -0.0002F, -5.3921F, 1.0F, 7.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0726F, -0.8045F, -0.3575F, -0.8937F, -0.1201F, -0.1036F));
+		PartDefinition cube_r10 = neck_lean_arched_long_2_bottom_mane_flow.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(959, 795).addBox(-0.8139F, -0.0002F, -5.3921F, 1.0F, 7.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0726F, -0.8045F, -0.3575F, -0.8937F, -0.1201F, -0.1036F));
 
-		PartDefinition neck_lean_arched_long_2_bottom_mane_flow_lower = neck_lean_arched_long_2_bottom_mane_flow.addOrReplaceChild("neck_lean_arched_long_2_bottom_mane_flow_lower", CubeListBuilder.create(), PartPose.offset(1.0F, 4.0543F, -5.186F));
+		PartDefinition neck_lean_arched_long_2_bottom_mane_flow_lower = neck_lean_arched_long_2_bottom_mane_flow.addOrReplaceChild("neck_lean_arched_long_2_bottom_mane_flow_lower", CubeListBuilder.create(), PartPose.offset(1.0F, 4.0542F, -5.186F));
 
-		PartDefinition cube_r11 = neck_lean_arched_long_2_bottom_mane_flow_lower.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(959, 795).addBox(-0.8139F, -0.0002F, -5.3921F, 1.0F, 7.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0726F, -0.8045F, -0.3575F, -0.8994F, 0.0164F, 0.0054F));
+		PartDefinition cube_r11 = neck_lean_arched_long_2_bottom_mane_flow_lower.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(973, 758).addBox(-0.8139F, -0.0002F, -5.3921F, 1.0F, 7.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0726F, -0.8045F, -0.3575F, -0.8994F, 0.0164F, 0.0054F));
 
 		PartDefinition neck_lean_arched_long_2_middle_individual = neck_lean_arched_long_2_individual.addOrReplaceChild("neck_lean_arched_long_2_middle_individual", CubeListBuilder.create(), PartPose.offset(-0.0042F, -3.2313F, -2.8365F));
 

@@ -102,11 +102,11 @@ public class neck_average_straight_long_2 extends MultipartNeckModel<GeneticHors
 
 		PartDefinition neck_average_straight_long_2_bottom_mane_flow = neck_average_straight_long_2_bottom_mane_connector2.addOrReplaceChild("neck_average_straight_long_2_bottom_mane_flow", CubeListBuilder.create(), PartPose.offset(2.1452F, 0.2682F, 0.6257F));
 
-		PartDefinition cube_r11 = neck_average_straight_long_2_bottom_mane_flow.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(975, 897).addBox(-0.8139F, -0.0002F, -2.3921F, 1.0F, 7.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8939F, -2.6816F, -1.8771F, -0.9753F, -0.1144F, -0.1002F));
+		PartDefinition cube_r11 = neck_average_straight_long_2_bottom_mane_flow.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(968, 925).addBox(-0.8139F, -0.0002F, -2.3921F, 1.0F, 7.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8939F, -2.6816F, -1.8771F, -0.9753F, -0.1144F, -0.1002F));
 
 		PartDefinition neck_average_straight_long_2_bottom_mane_flow_lower = neck_average_straight_long_2_bottom_mane_flow.addOrReplaceChild("neck_average_straight_long_2_bottom_mane_flow_lower", CubeListBuilder.create(), PartPose.offset(1.0F, 3.825F, -5.75F));
 
-		PartDefinition cube_r12 = neck_average_straight_long_2_bottom_mane_flow_lower.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(968, 925).addBox(-0.8139F, -0.0002F, -2.3921F, 1.0F, 7.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8939F, -2.6816F, -1.8771F, -0.9761F, 0.1028F, 0.0463F));
+		PartDefinition cube_r12 = neck_average_straight_long_2_bottom_mane_flow_lower.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(975, 897).addBox(-0.8139F, -0.0002F, -2.3921F, 1.0F, 7.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8939F, -2.6816F, -1.8771F, -0.9761F, 0.1028F, 0.0463F));
 
 		PartDefinition neck_average_straight_long_2_middle_individual = neck_average_straight_long_2_individual.addOrReplaceChild("neck_average_straight_long_2_middle_individual", CubeListBuilder.create(), PartPose.offset(0.298F, -0.3575F, -0.3432F));
 
