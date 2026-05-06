@@ -14,6 +14,7 @@ import net.buckleystudios.equigen.sound.ModSounds;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.ComponentUtils;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -75,9 +76,6 @@ public class GeneticHorseEntity extends AbstractHorse implements
     public static final EntityDataAccessor<Float> SKILL_JUMP = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> SKILL_ENDURANCE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> SKILL_AGILITY = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
-
-    private static final EntityDataAccessor<Boolean> PREGNANT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.BOOLEAN);
-
     public GeneticBreeds breed;
 //    public static final int geneticCount = GeneticValues.values().length;
 //    public Map<String, Float> GENETICS = new HashMap<String, Float>();
@@ -119,11 +117,8 @@ public class GeneticHorseEntity extends AbstractHorse implements
 
     public int pregnancyTickTimer;
     public int PregnancyLength = 200; //In Ticks
-    public Animal RecentMate;
-
-    private int var1PercentileResult = -1;
-    private int var2PercentileResult = -2;
-    private int var3PercentileResult = -3;
+    public Pregnancy currentPregnancy;
+    public Component breederName1, breederName2;
 
 
     // SPAWNING //
@@ -156,7 +151,7 @@ public class GeneticHorseEntity extends AbstractHorse implements
         if (child instanceof GeneticHorseEntity) {
             GeneticHorseEntity geneticHorseChild = (GeneticHorseEntity) child;
 
-            geneticHorseChild.HandleNewSpawnWithParentalGenetics(this);
+            geneticHorseChild.ApplyNewSpawnParentalGenetics(this);
             geneticHorseChild.HandleNewSpawnSkillsAndProficiencies();
         }
         super.onOffspringSpawnedFromEgg(player, child);
@@ -184,40 +179,64 @@ public class GeneticHorseEntity extends AbstractHorse implements
     }
 
     public boolean isPregnant() {
-        return this.entityData.get(PREGNANT);
+        return this.currentPregnancy != null;
     }
 
     public void setPregnant(boolean pregnant, Animal mate) {
-        EquigenMod.LOGGER.info("{} is pregnant with {}'s child", this.getName(), mate.getName());
-        this.entityData.set(PREGNANT, pregnant);
-        this.RecentMate = mate;
-    }
-
-    private void GiveBirth(ServerLevel level, Animal mate) {
-        this.setPregnant(false, mate);
-        EquigenMod.LOGGER.info("I GAVE BIRTH");
-        AgeableMob ageablemob = this.getBreedOffspring(level, mate);
-        final BabyEntitySpawnEvent event = new BabyEntitySpawnEvent(this, mate, ageablemob);
-        ageablemob = event.getChild();
-        if (ageablemob != null) {
-            ageablemob.setBaby(true);
-            ageablemob.moveTo(this.getX(), this.getY(), this.getZ(), 0.0F, 0.0F);
-            level.addFreshEntityWithPassengers(ageablemob);
+        if (mate instanceof GeneticHorseEntity ghe) {
+            this.currentPregnancy = pregnant ? new Pregnancy(mate.getUUID(), this.getLoveCause().getDisplayName(), mate.getLoveCause().getDisplayName(),
+                    this.GenerateNewSpawnParentalGenetics(this, ghe)) : null;
+        } else {
+            EquigenMod.LOGGER.error("Tried to make Non-GHE pregnant.");
         }
-
-        level.broadcastEntityEvent(this, (byte)18); // hearts particles
-        GeneticHorseEntity ghe = (GeneticHorseEntity) ageablemob;
-        ghe.HandleNewSpawnSkillsAndProficiencies();
-        ghe.HandleNewSpawnWithParentalGenetics(this, (GeneticHorseEntity) mate);
-        this.RecentMate = null;
     }
+    private void GiveBirth(ServerLevel level, UUID mate_UUID) {
+        EquigenMod.LOGGER.info("I GAVE BIRTH");
+        if(level.getEntity(mate_UUID) instanceof Animal mate) {
+            AgeableMob ageablemob = this.getBreedOffspring(level, mate);
+            final BabyEntitySpawnEvent event = new BabyEntitySpawnEvent(this, mate, ageablemob);
+            ageablemob = event.getChild();
+            if (ageablemob != null) {
+                ageablemob.setBaby(true);
+                ageablemob.moveTo(this.getX(), this.getY(), this.getZ(), 0.0F, 0.0F);
+                level.addFreshEntityWithPassengers(ageablemob);
+            }
+
+            level.broadcastEntityEvent(this, (byte) 18); // hearts particles
+            GeneticHorseEntity ghe = (GeneticHorseEntity) ageablemob;
+
+            ghe.HandleNewSpawnSkillsAndProficiencies();
+            ghe.ApplyNewSpawnParentalGenetics(this.currentPregnancy.babyGenes());
+            ghe.setBreeder1(this.currentPregnancy.breeder1());
+            ghe.setBreeder2(this.currentPregnancy.breeder2());
+            this.setPregnant(false, mate);
+            this.currentPregnancy = null;
+        }
+    }
+
+    public Component getBreederNames(){
+        if(this.breederName1 != null && this.breederName2 != null) {
+            if (this.breederName1.getString().equals(this.breederName2.getString())) {
+                return breederName1;
+            } else {
+                return ComponentUtils.formatList(List.of(breederName1, breederName2), Component.translatable("equigen.ui.separator"));
+            }
+        } else {
+            return Component.translatable("equigen.genetic_horse.unknown_breeder");
+        }
+    }
+
+    public void setBreeder1(Component name){ this.breederName1 = name; }
+    public void setBreeder2(Component name){ this.breederName2 = name; }
 
     // BASIC SETTINGS //
     @Override
     public boolean canMate(Animal otherAnimal) {
+
         if (!(otherAnimal instanceof GeneticHorseEntity geneticHorseEntity)) return false;
 
         if (!this.isInLove() || !geneticHorseEntity.isInLove()) return false;
+        if (this.isPregnant() || geneticHorseEntity.isPregnant()) return false;
 
         float thisGender = GeneticsHandler.getEntityGenetic(this, Genetics.GENDER);
         float otherGender = GeneticsHandler.getEntityGenetic(geneticHorseEntity, Genetics.GENDER);
@@ -304,10 +323,26 @@ public class GeneticHorseEntity extends AbstractHorse implements
         //Genetics
         this.setBreed(GeneticBreeds.valueOf(tag.getString("Breed")));
 
-//        StringBuilder genString = new StringBuilder(tag.getString("GeneticCode"));
-//        while(genString.length() < geneticCount * 2){
-//            genString.append("00");
-//        }
+        //Breeder
+        this.breederName1 = Component.literal(tag.getString("breeder_1"));
+        this.breederName2 = Component.literal(tag.getString("breeder_2"));
+
+        //Pregnancy
+        Map<Genetics, Float> loadedGenes = new HashMap<>();
+        for(Genetics gene : Genetics.values()){
+            if(tag.contains("pregnancy_gene_" + gene.name())){
+                loadedGenes.put(gene, tag.getFloat("pregnancy_gene_" + gene.name()));
+            }
+        }
+
+        if(tag.hasUUID("pregnancy_mate")) {
+            this.currentPregnancy = new Pregnancy(
+                    tag.getUUID("pregnancy_mate"),
+                    Component.literal(tag.getString("pregnancy_breeder1")),
+                    Component.literal(tag.getString("pregnancy_breeder2")),
+                    loadedGenes
+            );
+        }
 
         //Inventory
         this.createInventory();
@@ -378,6 +413,24 @@ public class GeneticHorseEntity extends AbstractHorse implements
             }
         }
         tag.put("Items", listtag);
+
+        //Breeder
+        if(this.breederName1 != null && this.breederName2 != null) {
+            tag.putString("breeder_1", this.breederName1.getString());
+            tag.putString("breeder_2", this.breederName2.getString());
+        }
+
+        //Pregnancy
+        if(this.currentPregnancy != null) {
+            for(Genetics gene : Genetics.values()){
+                if(this.currentPregnancy.babyGenes().containsKey(gene)){
+                    tag.putFloat("pregnancy_gene_" + gene.name(), this.currentPregnancy.babyGenes().get(gene));
+                }
+            }
+            tag.putUUID("pregnancy_mate", this.currentPregnancy.mate());
+            tag.putString("pregnancy_breeder1", this.currentPregnancy.breeder1().getString());
+            tag.putString("pregnancy_breeder2", this.currentPregnancy.breeder2().getString());
+        }
     }
 
     @Override
@@ -405,8 +458,6 @@ public class GeneticHorseEntity extends AbstractHorse implements
         builder.define(STRENGTH_PROFICIENCY, 0);
         builder.define(ENDURANCE_PROFICIENCY, 0);
         builder.define(AGILITY_PROFICIENCY, 0);
-
-        builder.define(PREGNANT, false);
     }
 
 
@@ -1482,8 +1533,9 @@ private float difference = 0;
                 this.removeEffect(ModEffects.STRESSED_EFFECT);
             }
 
+            if(this.isPregnant()) EquigenMod.LOGGER.info("IM PREGNANT: " + pregnancyTickTimer);
             if(pregnancyTickTimer <= 0 && this.isPregnant()){
-                GiveBirth(this.getServer().getLevel(this.level().dimension()), RecentMate);
+                GiveBirth(this.getServer().getLevel(this.level().dimension()), this.currentPregnancy.mate());
             }
         }
     }
@@ -1648,16 +1700,26 @@ private float difference = 0;
         }
     }
 
-    public void HandleNewSpawnWithParentalGenetics(GeneticHorseEntity parent){
-        EquigenMod.LOGGER.info("I WAS CALLED");
-        this.HandleNewSpawnWithParentalGenetics(parent, parent);
+    public void ApplyNewSpawnParentalGenetics(Map<Genetics, Float> genetics){
+        for (Genetics gene : genetics.keySet()){
+            GeneticsHandler.setEntityGenetic(this, gene, genetics.get(gene));
+        }
     }
 
-    public void HandleNewSpawnWithParentalGenetics(GeneticHorseEntity mother, GeneticHorseEntity father) {
+    public void ApplyNewSpawnParentalGenetics(GeneticHorseEntity parent){
+        this.ApplyNewSpawnParentalGenetics(GenerateNewSpawnParentalGenetics(this));
+    }
+
+    public Map<Genetics, Float> GenerateNewSpawnParentalGenetics(GeneticHorseEntity parent){
+        return this.GenerateNewSpawnParentalGenetics(parent, parent);
+    }
+
+    public Map<Genetics, Float> GenerateNewSpawnParentalGenetics(GeneticHorseEntity mother, GeneticHorseEntity father) {
         Random random = new Random();
         GeneticsCalculator calculator = new GeneticsCalculator();
         // TODO - Figure out why it's duping the mother's genetic value only on some genetics.
         int rolls = 0;
+        Map<Genetics, Float> map = new HashMap<>();
         for (int i = 0; i < Genetics.values().length; i++) {
             Genetics value = Genetics.values()[i];
             EquigenMod.LOGGER.info("Deciding the " + value.name() + " genetic....");
@@ -1758,7 +1820,7 @@ private float difference = 0;
                         newGeneticValue = calculator.random(minValue, maxValue, 1.0F, valueMax, 1);
                     }
                     newGeneticValue = Math.clamp(newGeneticValue, 0, value.getDefaultMaxSize());
-                    GeneticsHandler.setEntityGenetic(this, value, newGeneticValue);
+                    map.put(value, newGeneticValue);
 
                 }
             } else {
@@ -1767,6 +1829,7 @@ private float difference = 0;
                 calculator.reroll = "";
             }
         }
+        return map;
     }
 
     // MULTIPART MODEL //

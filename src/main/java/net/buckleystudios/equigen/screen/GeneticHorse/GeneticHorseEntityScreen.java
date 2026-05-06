@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 
 public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHorseEntityMenu> {
@@ -31,7 +32,6 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
         super.init();
         titleLabelX = 999;
         titleLabelY = 999;
-
         inventoryLabelX = 1000;
     }
 
@@ -45,6 +45,21 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
         RenderSystem.setShaderTexture(0, GUI_TEXTURE_BG);
         pGuiGraphics.blit(GUI_TEXTURE_BG, x, y, 0, 0, imageWidth, imageHeight);
         pGuiGraphics.drawCenteredString(this.font, geneticHorse.getName(), x + 128, y + 30, 0xe5c7a8);
+        pGuiGraphics.drawCenteredString(this.font, "(Nicknames Coming Soon)", x + 128, y + 40, 0xe5c7a8);
+        pGuiGraphics.drawCenteredString(this.font, geneticHorse.getBreed().name(), x + 128, y + 50, 0xe5c7a8);
+        float horseHeight = geneticHorse.calculateHorseHeight();
+        pGuiGraphics.drawCenteredString(this.font, Component.translatable("equigen.genetic_horse.measurement.format", horseHeight), x + 128, y + 60, 0xe5c7a8);
+
+        LivingEntity owner = geneticHorse.getOwner();
+
+        pGuiGraphics.drawCenteredString(this.font,
+                (owner != null) ? geneticHorse.getOwner().getName() : Component.translatable("equigen.genetic_horse.unowned"),
+                x + 128, y + 70, 0xe5c7a8);
+
+        pGuiGraphics.drawCenteredString(this.font, geneticHorse.getBreederNames(), x + 128, y + 80, 0xe5c7a8);
+        pGuiGraphics.drawCenteredString(this.font, "(Sire Coming Soon)", x + 128, y + 90, 0xe5c7a8);
+        pGuiGraphics.drawCenteredString(this.font, "(Dam Coming Soon)", x + 128, y + 100, 0xe5c7a8);
+
         drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.hunger"), x + 45, y + 54, 0.5f, 0xe5c7a8);
         drawProgressBar(pGuiGraphics, x + 8, y + 59, 75, 3, geneticHorse.getHunger(), geneticHorse.getMaxHunger());
         drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.thirst"), x + 45, y + 65, 0.5f, 0xe5c7a8);
@@ -57,7 +72,6 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
         drawProgressBar(pGuiGraphics, x + 8, y + 103, 75, 3, geneticHorse.getStress(), geneticHorse.getMaxStress());
 
         drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.tack"), x + 211, y + 55, 0.75f, 0xe5c7a8);
-
 
         InventoryScreen.renderEntityInInventoryFollowsMouse(pGuiGraphics, x + 92, y + 45, x + 165, y + 113, 20, 0.05F,
                 this.xMouse, this.yMouse, this.geneticHorse);

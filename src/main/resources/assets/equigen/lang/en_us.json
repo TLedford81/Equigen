@@ -204,5 +204,11 @@
   "equigen.gui.genetic_horse.stat.cleanliness": "CLEANLINESS",
   "equigen.gui.genetic_horse.stat.happiness": "HAPPINESS",
   "equigen.gui.genetic_horse.stat.stress": "STRESS",
-  "equigen.gui.genetic_horse.tack": "TACK"
+  "equigen.gui.genetic_horse.tack": "TACK",
+
+  "equigen.genetic_horse.unowned": "Unowned",
+  "equigen.genetic_horse.measurement.format": "%s Hands",
+
+  "equigen.ui.separator": " / ",
+  "equigen.genetic_horse.unknown_breeder": "Unknown"
 }
