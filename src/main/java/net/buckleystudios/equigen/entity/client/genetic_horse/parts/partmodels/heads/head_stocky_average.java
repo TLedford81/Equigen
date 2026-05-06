@@ -39,13 +39,13 @@ public class head_stocky_average extends MultipartHeadModel<GeneticHorseEntity> 
 
 		PartDefinition head_stocky_average_nose_bridge = head_stocky_average.addOrReplaceChild("head_stocky_average_nose_bridge", CubeListBuilder.create(), PartPose.offset(-0.6872F, 2.473F, -3.5345F));
 
-		PartDefinition cube_r2 = head_stocky_average_nose_bridge.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(907, 85).addBox(-3.08F, -2.24F, -1.84F, 4.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.08F, -0.3778F, -0.1744F, 2.618F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = head_stocky_average_nose_bridge.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(907, 85).addBox(-3.08F, -2.24F, -1.84F, 4.0F, 4.0F, 3.0F, new CubeDeformation(0.05F)), PartPose.offsetAndRotation(1.08F, -0.3778F, -0.1744F, 2.618F, 0.0F, 0.0F));
 
-		PartDefinition head_stocky_average_jaw = head_stocky_average.addOrReplaceChild("head_stocky_average_jaw", CubeListBuilder.create(), PartPose.offset(-0.7151F, 2.1453F, -0.8939F));
+		PartDefinition head_stocky_average_jaw = head_stocky_average.addOrReplaceChild("head_stocky_average_jaw", CubeListBuilder.create(), PartPose.offset(-0.7151F, 2.1452F, -0.8939F));
 
 		PartDefinition head_stocky_average_jaw_individual = head_stocky_average_jaw.addOrReplaceChild("head_stocky_average_jaw_individual", CubeListBuilder.create(), PartPose.offset(0.0077F, -0.0782F, -0.0297F));
 
-		PartDefinition cube_r3 = head_stocky_average_jaw_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(921, 76).addBox(-3.9595F, -0.919F, -3.081F, 5.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.4595F, -0.8217F, 0.0F, 0.7854F, 0.0F, 0.0F));
+		PartDefinition cube_r3 = head_stocky_average_jaw_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(921, 76).addBox(-3.9595F, -0.919F, -3.081F, 5.0F, 3.0F, 5.0F, new CubeDeformation(0.09F)), PartPose.offsetAndRotation(1.4595F, -0.8217F, 0.0F, 0.7854F, 0.0F, 0.0F));
 
 		PartDefinition head_stocky_average_jaw_branch = head_stocky_average_jaw.addOrReplaceChild("head_stocky_average_jaw_branch", CubeListBuilder.create(), PartPose.offset(0.0071F, 0.141F, -0.1419F));
 
@@ -59,11 +59,11 @@ public class head_stocky_average extends MultipartHeadModel<GeneticHorseEntity> 
 
 		PartDefinition head_stocky_average_mouth = head_stocky_average_muzzle.addOrReplaceChild("head_stocky_average_mouth", CubeListBuilder.create(), PartPose.offset(0.0F, 0.6257F, 0.7151F));
 
-		PartDefinition cube_r6 = head_stocky_average_mouth.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(908, 71).addBox(-1.5509F, -0.7538F, -2.9305F, 3.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0384F, 0.0027F, 0.9404F, 1.0036F, 0.0F, 0.0F));
+		PartDefinition cube_r6 = head_stocky_average_mouth.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(908, 71).addBox(-1.5509F, -0.7538F, -2.9305F, 3.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0384F, 0.0027F, 0.9404F, 0.9599F, 0.0F, 0.0F));
 
-		PartDefinition head_stocky_average_fringe = head_stocky_average.addOrReplaceChild("head_stocky_average_fringe", CubeListBuilder.create(), PartPose.offset(-0.7151F, -2.4134F, -1.5196F));
+		PartDefinition head_stocky_average_fringe = head_stocky_average.addOrReplaceChild("head_stocky_average_fringe", CubeListBuilder.create(), PartPose.offset(-0.7151F, -2.4134F, -1.5195F));
 
-		PartDefinition cube_r7 = head_stocky_average_fringe.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(918, 68).addBox(-1.0F, -2.0F, -2.0F, 1.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.4857F, 0.5899F, -1.3777F, -1.5612F, 0.7089F, -1.5859F));
+		PartDefinition cube_r7 = head_stocky_average_fringe.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(921, 17).addBox(-1.0F, -2.0F, -2.0F, 1.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.4857F, 0.5899F, -1.3777F, -1.5612F, 0.7089F, -1.5859F));
 
 		PartDefinition neckAnchor = head_stocky_average.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(-0.9651F, -1.1327F, -0.4239F));
 

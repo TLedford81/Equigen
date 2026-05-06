@@ -31,7 +31,7 @@ public class head_straight_average extends MultipartHeadModel<GeneticHorseEntity
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition head_straight_average = partdefinition.addOrReplaceChild("head_straight_average", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
+		PartDefinition head_straight_average = partdefinition.addOrReplaceChild("head_straight_average", CubeListBuilder.create(), PartPose.offset(0.05F, 24.0F, 0.0F));
 
 		PartDefinition head_straight_average_forehead = head_straight_average.addOrReplaceChild("head_straight_average_forehead", CubeListBuilder.create(), PartPose.offset(0.0F, -1.1523F, -1.8773F));
 
@@ -39,13 +39,13 @@ public class head_straight_average extends MultipartHeadModel<GeneticHorseEntity
 
 		PartDefinition head_straight_average_nose_bridge = head_straight_average.addOrReplaceChild("head_straight_average_nose_bridge", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0976F, -2.9967F));
 
-		PartDefinition cube_r2 = head_straight_average_nose_bridge.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(866, 80).addBox(-3.08F, -3.24F, -1.84F, 4.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.9639F, -0.4158F, -0.0166F, 2.2253F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = head_straight_average_nose_bridge.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(866, 80).addBox(-3.08F, -3.24F, -1.84F, 4.0F, 6.0F, 3.0F, new CubeDeformation(0.05F)), PartPose.offsetAndRotation(1.0139F, -0.4158F, -0.0166F, 2.2253F, 0.0F, 0.0F));
 
 		PartDefinition head_straight_average_jaw = head_straight_average.addOrReplaceChild("head_straight_average_jaw", CubeListBuilder.create(), PartPose.offset(0.0F, 1.8771F, -2.2346F));
 
 		PartDefinition head_jaw_individual = head_straight_average_jaw.addOrReplaceChild("head_jaw_individual", CubeListBuilder.create(), PartPose.offset(-0.1362F, -0.1038F, 0.4465F));
 
-		PartDefinition cube_r3 = head_jaw_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(864, 73).addBox(-3.9595F, -1.919F, -2.081F, 5.0F, 3.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.4595F, 0.366F, 0.2194F, 0.3491F, 0.0F, 0.0F));
+		PartDefinition cube_r3 = head_jaw_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(864, 73).addBox(-3.9595F, -1.919F, -2.081F, 5.0F, 3.0F, 4.0F, new CubeDeformation(0.09F)), PartPose.offsetAndRotation(1.4595F, 0.366F, 0.2194F, 0.3491F, 0.0F, 0.0F));
 
 		PartDefinition head_jaw_branch = head_straight_average_jaw.addOrReplaceChild("head_jaw_branch", CubeListBuilder.create(), PartPose.offset(-0.0928F, -0.0246F, 0.1157F));
 
@@ -53,17 +53,17 @@ public class head_straight_average extends MultipartHeadModel<GeneticHorseEntity
 
 		PartDefinition head_straight_average_fringe = head_straight_average.addOrReplaceChild("head_straight_average_fringe", CubeListBuilder.create(), PartPose.offset(0.0F, -3.2179F, -1.2514F));
 
-		PartDefinition cube_r5 = head_straight_average_fringe.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(877, 87).addBox(-1.0F, -2.0F, -2.0F, 1.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.4312F, 0.3218F, -1.8441F, -1.5333F, 0.6643F, -1.5315F));
+		PartDefinition cube_r5 = head_straight_average_fringe.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(880, 16).addBox(-1.0F, -2.0F, -2.0F, 1.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.4312F, 0.3218F, -1.8441F, -1.5333F, 0.6643F, -1.5315F));
 
 		PartDefinition head_straight_average_muzzle = head_straight_average.addOrReplaceChild("head_straight_average_muzzle", CubeListBuilder.create(), PartPose.offset(0.0F, 2.324F, -4.648F));
 
 		PartDefinition head_straight_average_muzzle_individual = head_straight_average_muzzle.addOrReplaceChild("head_straight_average_muzzle_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition cube_r6 = head_straight_average_muzzle_individual.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(885, 87).addBox(-1.4469F, -1.7862F, -3.7184F, 3.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.1945F, -0.8044F, 0.2117F, 0.7418F, 0.0F, 0.0F));
+		PartDefinition cube_r6 = head_straight_average_muzzle_individual.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(884, 87).addBox(-1.4469F, -1.7862F, -3.7184F, 3.0F, 3.0F, 3.0F, new CubeDeformation(0.05F)), PartPose.offsetAndRotation(-0.1946F, -0.8044F, 0.2117F, 0.7418F, 0.0F, 0.0F));
 
 		PartDefinition head_straight_average_mouth = head_straight_average_muzzle.addOrReplaceChild("head_straight_average_mouth", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 0.9832F, 0.0894F, -0.0873F, 0.0F, 0.0F));
 
-		PartDefinition cube_r7 = head_straight_average_mouth.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(883, 67).addBox(-1.9832F, -0.6095F, -3.149F, 3.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.4312F, -0.28F, 0.6617F, 0.7854F, 0.0F, 0.0F));
+		PartDefinition cube_r7 = head_straight_average_mouth.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(883, 67).addBox(-1.5F, -0.5F, -1.5F, 3.0F, 1.0F, 3.0F, new CubeDeformation(0.03F)), PartPose.offsetAndRotation(-0.1521F, 0.7086F, -0.5817F, 0.829F, 0.0F, 0.0F));
 
 		PartDefinition neckAnchor = head_straight_average.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(-0.25F, -2.3827F, -1.1739F));
 

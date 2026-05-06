@@ -29,7 +29,7 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
             switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_POS))) {
                 case 1 -> {
                     switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
-                        case 1 -> pitch = -5.0F; // Swan
+                        case 1 -> pitch = -15.0F; // Swan
                         case 2 -> pitch = 0.0F; // Straight
                         case 3 -> pitch = -10.0F; // Ewed
                         case 4 -> pitch = -30.0F; // Arched
