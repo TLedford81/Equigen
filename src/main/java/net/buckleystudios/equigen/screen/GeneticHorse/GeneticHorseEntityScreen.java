@@ -44,32 +44,32 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
 
         RenderSystem.setShaderTexture(0, GUI_TEXTURE_BG);
         pGuiGraphics.blit(GUI_TEXTURE_BG, x, y, 0, 0, imageWidth, imageHeight);
-        pGuiGraphics.drawCenteredString(this.font, geneticHorse.getName(), x + 128, y + 30, 0xe5c7a8);
-        pGuiGraphics.drawCenteredString(this.font, "(Nicknames Coming Soon)", x + 128, y + 40, 0xe5c7a8);
-        pGuiGraphics.drawCenteredString(this.font, geneticHorse.getBreed().name(), x + 128, y + 50, 0xe5c7a8);
-        float horseHeight = geneticHorse.calculateHorseHeight();
-        pGuiGraphics.drawCenteredString(this.font, Component.translatable("equigen.genetic_horse.measurement.format", horseHeight), x + 128, y + 60, 0xe5c7a8);
+        pGuiGraphics.drawCenteredString(this.font, geneticHorse.getName(), x + 128, y + 6, 0xe5c7a8);
+        pGuiGraphics.drawCenteredString(this.font, "(Nicknames Coming Soon)", x + 128, y + 15, 0xe5c7a8);
+        pGuiGraphics.drawCenteredString(this.font, geneticHorse.getBreed().name(), x + 192, y + 28, 0xe5c7a8);
+        float horseHeight = (float) Math.round((geneticHorse.calculateHorseHeight() * 9.842519685f) * 100) / 100; // Convert meters to hands
+        pGuiGraphics.drawCenteredString(this.font, Component.translatable("equigen.genetic_horse.measurement.format", horseHeight), x + 49, y + 6, 0xe5c7a8);
 
         LivingEntity owner = geneticHorse.getOwner();
 
-        pGuiGraphics.drawCenteredString(this.font,
-                (owner != null) ? geneticHorse.getOwner().getName() : Component.translatable("equigen.genetic_horse.unowned"),
-                x + 128, y + 70, 0xe5c7a8);
+        pGuiGraphics.drawCenteredString(this.font, "Owned by " +  //TODO Need to make these translatable
+                        /*((owner != null) ? geneticHorse.getOwner().getName() : Component.translatable("equigen.genetic_horse.unowned"))*/ "Unknown",
+                x + 42, y + 38, 0xe5c7a8);
 
-        pGuiGraphics.drawCenteredString(this.font, geneticHorse.getBreederNames(), x + 128, y + 80, 0xe5c7a8);
+        pGuiGraphics.drawCenteredString(this.font, "Bred by " + /*geneticHorse.getBreederNames() Not working right now*/ "Unknown", x + 42, y + 28, 0xe5c7a8);
         pGuiGraphics.drawCenteredString(this.font, "(Sire Coming Soon)", x + 128, y + 90, 0xe5c7a8);
         pGuiGraphics.drawCenteredString(this.font, "(Dam Coming Soon)", x + 128, y + 100, 0xe5c7a8);
 
-        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.hunger"), x + 45, y + 54, 0.5f, 0xe5c7a8);
-        drawProgressBar(pGuiGraphics, x + 8, y + 59, 75, 3, geneticHorse.getHunger(), geneticHorse.getMaxHunger());
-        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.thirst"), x + 45, y + 65, 0.5f, 0xe5c7a8);
-        drawProgressBar(pGuiGraphics, x + 8, y + 70, 75, 3, geneticHorse.getThirst(), geneticHorse.getMaxThirst());
-        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.cleanliness"), x + 45, y + 76, 0.5f, 0xe5c7a8);
-        drawProgressBar(pGuiGraphics, x + 8, y + 81, 75, 3, geneticHorse.getCleanliness(), geneticHorse.getMaxCleanliness("any"));
-        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.happiness"), x + 45, y + 87, 0.5f, 0xe5c7a8);
-        drawProgressBar(pGuiGraphics, x + 8, y + 92, 75, 3, geneticHorse.getHappiness(), geneticHorse.getMaxHappiness());
-        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.stress"), x + 45, y + 98, 0.5f, 0xe5c7a8);
-        drawProgressBar(pGuiGraphics, x + 8, y + 103, 75, 3, geneticHorse.getStress(), geneticHorse.getMaxStress());
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.hunger"), x + 62, y + 137, 0.5f, 0xe5c7a8);
+        drawProgressBar(pGuiGraphics, x + 8, y + 141, 115, 3, geneticHorse.getHunger(), geneticHorse.getMaxHunger());
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.thirst"), x + 62, y + 147, 0.5f, 0xe5c7a8);
+        drawProgressBar(pGuiGraphics, x + 8, y + 151, 115, 3, geneticHorse.getThirst(), geneticHorse.getMaxThirst());
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.cleanliness"), x + 62, y + 157, 0.5f, 0xe5c7a8);
+        drawProgressBar(pGuiGraphics, x + 8, y + 161, 115, 3, geneticHorse.getCleanliness(), geneticHorse.getMaxCleanliness("any"));
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.happiness"), x + 62, y + 167, 0.5f, 0xe5c7a8);
+        drawProgressBar(pGuiGraphics, x + 8, y + 171, 115, 3, geneticHorse.getHappiness(), geneticHorse.getMaxHappiness());
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.stress"), x + 62, y + 177, 0.5f, 0xe5c7a8);
+        drawProgressBar(pGuiGraphics, x + 8, y + 181, 115, 3, geneticHorse.getStress(), geneticHorse.getMaxStress());
 
         drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.tack"), x + 211, y + 55, 0.75f, 0xe5c7a8);
 
