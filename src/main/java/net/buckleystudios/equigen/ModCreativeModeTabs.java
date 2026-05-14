@@ -31,6 +31,10 @@ public class ModCreativeModeTabs{
                         pOutput.accept(ModItems.MULBERRY);
                         pOutput.accept(ModItems.OATS);
                         pOutput.accept(ModItems.NIGHTSHADE_BERRIES);
+                        pOutput.accept(ModItems.STANDARD_FEED);
+                        pOutput.accept(ModItems.FERTILITY_FEED);
+
+
 
                         //Horse Food Items
                         pOutput.accept(ModItems.ALFALFA);

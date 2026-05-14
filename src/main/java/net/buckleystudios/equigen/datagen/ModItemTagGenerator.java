@@ -24,10 +24,13 @@ public class ModItemTagGenerator extends ItemTagsProvider {
     protected void addTags(HolderLookup.Provider pProvider) {
 
         this.tag(ItemTags.HORSE_FOOD)
-                .add(ModItems.TIMOTHY_HAY.get());
+                .add(ModItems.STANDARD_FEED.get())
+                .add(ModItems.FERTILITY_FEED.get());
 
         this.tag(ItemTags.HORSE_TEMPT_ITEMS)
-                .add(ModItems.TIMOTHY_HAY.get());
+                .add(ModItems.STANDARD_FEED.get())
+                .add(ModItems.FERTILITY_FEED.get());
+
 
         this.tag(ItemTags.LOGS_THAT_BURN)
                 .add(ModBlocks.FIG_LOG.get().asItem())

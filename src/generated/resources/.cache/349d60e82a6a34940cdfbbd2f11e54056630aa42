@@ -1,4 +1,4 @@
-// 1.21.1	2026-01-26T20:19:42.1004473	Item Models: equigen
+// 1.21.1	2026-05-13T23:35:06.9759495	Item Models: equigen
 d834f1d768dceede3f7db7ea037606d176657df3 assets/equigen/models/item/alfalfa.json
 c0e11fb7b662a9c0feb69318a7e7c3ced455f687 assets/equigen/models/item/alfalfa_seeds.json
 9c687aadbfdb6b265dbf69c8c60bfedc48813592 assets/equigen/models/item/apricot.json
@@ -19,6 +19,7 @@ b3500ebf672d3f8a533ee98cd83a5a23b8367ae7 assets/equigen/models/item/citrus_sapli
 a7f8ea938f364d00f049a45a67d047491bee01b9 assets/equigen/models/item/corn.json
 71aa5c4b65fe0026bb183e76540cc4bcf5e379e9 assets/equigen/models/item/corn_seeds.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/equigen/models/item/egret_spawn_egg.json
+8e4feb27d50389eeed24d5ca69b10490fec52345 assets/equigen/models/item/fertility_feed.json
 c7025e2311f6df60b37b53ce48cf0aeb30ecd167 assets/equigen/models/item/fig.json
 ebd7cffb556b6b712c879bbad3043da3bc506fef assets/equigen/models/item/fig_button.json
 b8eb555fe8ab91a8d21e87688ba2604b538e3943 assets/equigen/models/item/fig_door.json
@@ -67,6 +68,7 @@ bd1886fc11e6c009e04a9e449be14fb9835c3583 assets/equigen/models/item/raw_folirite
 e7548ef50956b5fbd064b24e6646f8feebaeb6fc assets/equigen/models/item/sodium.json
 b67a0957744472325e32f87cede1e4ed836d519b assets/equigen/models/item/sodium_grenade.json
 1217a8f3167e33a88fb01c7c15c12d32c8f682c1 assets/equigen/models/item/stall_wand.json
+e8cef719db7d8f6a095df4c36a1e9915623307e0 assets/equigen/models/item/standard_feed.json
 445877713e5a88a951520edb21f2410c878d30e7 assets/equigen/models/item/sweet_pea.json
 2ba5f1379898771d5700f6053ce0be02caf476f2 assets/equigen/models/item/sweet_pea_petals.json
 df067f03611343b9023c1fe3cbcb32e32c5ca9f4 assets/equigen/models/item/sweet_pea_salve.json

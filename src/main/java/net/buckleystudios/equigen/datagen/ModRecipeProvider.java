@@ -179,6 +179,26 @@ public class ModRecipeProvider extends RecipeProvider implements RecipeBuilder {
                 .unlockedBy("has_item", has(ModBlocks.CALENDULA.get()))
                 .save(pRecipeOutput);
 
+        //Feeds
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.STANDARD_FEED.get(), 1)
+                .pattern("ooo")
+                .pattern("bc ")
+                .define('o', ModItems.OATS.get())
+                .define('b', ModItems.BARLEY.get())
+                .define('c', ModItems.CORN.get())
+                .unlockedBy("has_item", has(ModItems.OATS.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.FERTILITY_FEED.get(), 1)
+                .pattern("gsg")
+                .pattern("gfg")
+                .pattern("gsg")
+                .define('f', ModItems.STANDARD_FEED.get())
+                .define('s', ModItems.SWEET_PEA_PETALS.get())
+                .define('g', Items.GOLD_NUGGET.asItem())
+                .unlockedBy("has_item", has(ModItems.STANDARD_FEED.get()))
+                .save(pRecipeOutput);
+
         //Salves
 
         //TO DO: Locoweed Salve

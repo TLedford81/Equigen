@@ -53,6 +53,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.MULBERRY.get());
         basicItem(ModItems.NIGHTSHADE_BERRIES.get());
 
+        basicItem(ModItems.STANDARD_FEED.get());
+        basicItem(ModItems.FERTILITY_FEED.get());
+
+
         basicItem(ModItems.LOCOWEED_SALVE.get());
         basicItem(ModItems.NIGHTSHADE_SALVE.get());
         basicItem(ModItems.SWEET_PEA_SALVE.get());

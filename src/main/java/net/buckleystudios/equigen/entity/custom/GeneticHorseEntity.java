@@ -927,6 +927,14 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
             hunger = 2.0F;
             happiness = 240;
             thirst = 10;
+        } else if (stack.is(ModItems.STANDARD_FEED.get())) {
+            hunger = 2.0F;
+            happiness = 240;
+            thirst = 10;
+        } else if (stack.is(ModItems.FERTILITY_FEED.get())) {
+            hunger = 2.0F;
+            happiness = 240;
+            thirst = 10;
             if (!this.level().isClientSide && this.isTamed() && this.getAge() == 0 && !this.isInLove()) {
                 flag = true;
                 this.setInLove(player);

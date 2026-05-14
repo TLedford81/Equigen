@@ -37,6 +37,10 @@ public class ModItems {
     public static final DeferredItem<Item> HORSE_BRUSH = ITEMS.registerSimpleItem("horse_brush", new Item.Properties());
     public static final DeferredItem<Item> HOOF_PICK = ITEMS.registerSimpleItem("hoof_pick", new Item.Properties());
 
+    public static final DeferredItem<Item> STANDARD_FEED = ITEMS.registerSimpleItem("standard_feed", new Item.Properties());
+    public static final DeferredItem<Item> FERTILITY_FEED = ITEMS.registerSimpleItem("fertility_feed", new Item.Properties());
+
+
 
     public static final DeferredItem<Item> HORSE_DEED = ITEMS.registerItem("horse_deed", HorseDeedItem::new, new Item.Properties());
     public static final DeferredItem<Item> LASSO = ITEMS.registerItem("lasso", LassoItem::new, new Item.Properties());
