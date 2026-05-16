@@ -1,14 +1,11 @@
 package net.buckleystudios.equigen.datagen;
 
-import com.jcraft.jorbis.Block;
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.block.ModBlocks;
 import net.buckleystudios.equigen.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -47,7 +44,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(ModBlocks.GREEN_ASH_LOG.get())
                 .add(ModBlocks.GREEN_ASH_WOOD.get())
                 .add(ModBlocks.GREEN_ASH_STRIPPED_LOG.get())
-                .add(ModBlocks.GREEN_ASH_STRIPPED_WOOD.get());
+                .add(ModBlocks.GREEN_ASH_STRIPPED_WOOD.get())
+                .add(ModBlocks.ACACIA_HAY_RACK.get());
 
         this.tag(BlockTags.PLANKS)
                 .add(ModBlocks.APRICOT_PLANKS.get())
@@ -141,7 +139,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.DEEPSLATE_FOLIRITE_ORE.get(),
                         ModBlocks.HIMALAYAN_ROCK_SALT_ORE.get(),
                         ModBlocks.DEEPSLATE_HIMALAYAN_ROCK_SALT_ORE.get());
-
+        this.tag(BlockTags.MINEABLE_WITH_AXE)
+                .add(ModBlocks.ACACIA_HAY_RACK.get());
         this.tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.FOLIRITE_BLOCK.get(),
                         ModBlocks.RAW_FOLIRITE_BLOCK.get(),

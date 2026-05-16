@@ -1,0 +1,84 @@
+{
+	"format_version": "1.21.11",
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+	"textures": {
+		"hay": "equigen:block/hay_rack/timothy_hay",
+		"particle": "equigen:block/hay_rack/timothy_hay"
+	},
+	"elements": [
+		{
+			"from": [0.02854, 7.33749, 6.9651],
+			"to": [15.99267, 11.10749, 8.9851],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0.66424, 7.34749, 6.9751]},
+			"faces": {
+				"north": {"uv": [0, 0, 3.98603, 0.9375], "texture": "#hay"},
+				"east": {"uv": [8, 6, 8.5, 6.9375], "texture": "#hay"},
+				"south": {"uv": [0, 2, 3.98603, 2.9375], "texture": "#hay"},
+				"west": {"uv": [8, 8, 8.5, 8.9375], "texture": "#hay"},
+				"up": {"uv": [3.98603, 7.5, 0, 7], "texture": "#hay"},
+				"down": {"uv": [3.98603, 8, 0, 8.5], "texture": "#hay"}
+			}
+		},
+		{
+			"from": [0.03854, 9.29651, 7.46518],
+			"to": [15.98267, 11.54651, 9.96518],
+			"rotation": {"angle": 45, "axis": "x", "origin": [0.66424, 9.54651, 7.46518]},
+			"faces": {
+				"north": {"uv": [8, 0, 11.98603, 0.5625], "texture": "#hay"},
+				"east": {"uv": [0, 9, 0.625, 9.5625], "texture": "#hay"},
+				"south": {"uv": [8, 1, 11.98603, 1.5625], "texture": "#hay"},
+				"west": {"uv": [1.5, 9, 2.125, 9.5625], "texture": "#hay"},
+				"up": {"uv": [3.98603, 4.625, 0, 4], "texture": "#hay"},
+				"down": {"uv": [3.98603, 5.5, 0, 6.125], "texture": "#hay"}
+			}
+		},
+		{
+			"from": [0.04573, 8.50328, 7.0656],
+			"to": [15.97455, 11.00128, 9.5636],
+			"rotation": {"angle": 45, "axis": "x", "origin": [0.67143, 11.00128, 7.0656]},
+			"faces": {
+				"north": {"uv": [8, 2, 11.98221, 2.6245], "texture": "#hay"},
+				"east": {"uv": [3, 9, 3.6245, 9.6245], "texture": "#hay"},
+				"south": {"uv": [8, 3, 11.98221, 3.6245], "texture": "#hay"},
+				"west": {"uv": [4, 9, 4.6245, 9.6245], "texture": "#hay"},
+				"up": {"uv": [11.98221, 4.6245, 8, 4], "texture": "#hay"},
+				"down": {"uv": [11.98221, 5, 8, 5.6245], "texture": "#hay"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"thirdperson_lefthand": {
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_righthand": {
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"firstperson_lefthand": {
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"ground": {
+			"translation": [0, 4, 0],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"gui": {
+			"rotation": [19, -62, 0],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"fixed": {
+			"scale": [0.7, 0.7, 0.7]
+		}
+	},
+	"groups": [
+		{
+			"name": "hay",
+			"origin": [7.85977, 8, 8.1818],
+			"scope": 0,
+			"color": 0,
+			"children": [0, 1, 2]
+		}
+	]
+}

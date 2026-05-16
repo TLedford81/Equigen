@@ -1,0 +1,7 @@
+{
+  "parent": "equigen:block/hay_rack/base/hay_2",
+  "textures": {
+    "hay": "equigen:block/hay_rack/timothy_hay"
+
+  }
+}

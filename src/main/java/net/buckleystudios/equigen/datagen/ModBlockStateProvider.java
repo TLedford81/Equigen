@@ -3,6 +3,7 @@ package net.buckleystudios.equigen.datagen;
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.block.ModBlocks;
 import net.buckleystudios.equigen.block.custom.*;
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -11,6 +12,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
@@ -316,6 +318,24 @@ public class ModBlockStateProvider extends BlockStateProvider {
         makeCrop(((TimothyHayCropBlock) ModBlocks.TIMOTHY_HAY_CROP.get()), "timothy_hay_crop_stage", "timothy_hay_crop_stage");
         makeCrop(((BarleyCropBlock) ModBlocks.BARLEY_CROP.get()), "barley_crop_stage", "barley_crop_stage");
 
+        //Bale Blocks
+        simpleBlockWithItem(ModBlocks.ALFALFA_BALE.get(), models().cubeBottomTop("alfalfa_bale",
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/alfalfa_bale"),
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/alfalfa_bale_top"),
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/alfalfa_bale_top")));
+        simpleBlockWithItem(ModBlocks.TIMOTHY_BALE.get(), models().cubeBottomTop("timothy_bale",
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/timothy_hay_bale"),
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/timothy_hay_bale_top"),
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/timothy_hay_bale_top")));
+        simpleBlockWithItem(ModBlocks.BARLEY_BALE.get(), models().cubeBottomTop("barley_bale",
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/barley_bale"),
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/barley_bale_top"),
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/barley_bale_top")));
+        simpleBlockWithItem(ModBlocks.OAT_BALE.get(), models().cubeBottomTop("oat_bale",
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/oat_bale"),
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/oat_bale_top"),
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/oat_bale_top")));
+
         //Ore Blocks
         blockWithItem(ModBlocks.FOLIRITE_BLOCK);
         blockWithItem(ModBlocks.RAW_FOLIRITE_BLOCK);
@@ -329,6 +349,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/deepslate_himalayan_rock_salt_ore_side"),
                 ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/deepslate_himalayan_rock_salt_ore_bottomtop"),
                 ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "block/deepslate_himalayan_rock_salt_ore_bottomtop")));
+
+        //Racks
+        makeRack(ModBlocks.ACACIA_HAY_RACK.get(), "acacia_hay_rack");
 
         //Block Entities
         blockWithItem(ModBlocks.STALL_NAMEPLATE);
@@ -347,6 +370,82 @@ public class ModBlockStateProvider extends BlockStateProvider {
         Function<BlockState, ConfiguredModel[]> function = state -> cropStates(state, block, modelName, textureName);
 
         getVariantBuilder(block).forAllStates(function);
+    }
+
+    public void makeRack(Block block, String rackModelName) {
+        MultiPartBlockStateBuilder builder =
+                getMultipartBuilder(block);
+
+        ModelFile rackModel =
+                models().getExistingFile(
+                        modLoc("block/hay_rack/" + rackModelName)
+                );
+
+        itemModels().withExistingParent(
+                BuiltInRegistries.BLOCK.getKey(block).getPath(),
+                modLoc("block/hay_rack/" + rackModelName)
+        );
+
+        // Rack rotation
+        for (Direction dir : Direction.Plane.HORIZONTAL) {
+
+            int rotation = switch (dir) {
+                case NORTH -> 0;
+                case EAST -> 90;
+                case SOUTH -> 180;
+                case WEST -> 270;
+                default -> 0;
+            };
+
+            builder.part()
+                    .modelFile(rackModel)
+                    .rotationY(rotation)
+                    .addModel()
+                    .condition(HayRackBlock.FACING, dir);
+        }
+
+        // Hay models
+        for (HayRackBlock.HayType hayType : HayRackBlock.HayType.values()) {
+            if (hayType == HayRackBlock.HayType.EMPTY) {
+                continue;
+            }
+
+            for (Integer fill : HayRackBlock.FILL.getPossibleValues()) {
+                if (fill == 0)
+                    continue;
+
+                String modelName =
+                        "block/hay_rack/"
+                                + hayType.getSerializedName()
+                                + "_"
+                                + fill;
+
+                ModelFile hayModel =
+                        models().getExistingFile(
+                                modLoc(modelName)
+                        );
+
+                for (Direction dir : Direction.Plane.HORIZONTAL) {
+
+                    int rotation = switch (dir) {
+                        case NORTH -> 0;
+                        case EAST -> 90;
+                        case SOUTH -> 180;
+                        case WEST -> 270;
+                        default -> 0;
+                    };
+
+                    builder.part()
+                            .modelFile(hayModel)
+                            .rotationY(rotation)
+                            .addModel()
+                            .condition(HayRackBlock.HAY_TYPE, hayType)
+                            .condition(HayRackBlock.FILL, fill)
+                            .condition(HayRackBlock.FACING, dir);
+                }
+            }
+        }
+
     }
 
     private ConfiguredModel[] cropStates(BlockState state, ModCropBlock block, String modelName, String textureName) {

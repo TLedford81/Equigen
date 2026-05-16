@@ -40,6 +40,7 @@ public class ModCreativeModeTabs{
                         pOutput.accept(ModItems.ALFALFA);
                         pOutput.accept(ModItems.TIMOTHY_HAY);
 
+
                         //Seeds
                         pOutput.accept(ModItems.ALFALFA_SEEDS);
                         pOutput.accept(ModItems.BARLEY_SEEDS);
@@ -200,6 +201,16 @@ public class ModCreativeModeTabs{
                         pOutput.accept(ModBlocks.SWEET_PEA);
                         pOutput.accept(ModBlocks.CALENDULA);
 
+                        //BALES
+                        pOutput.accept(ModBlocks.TIMOTHY_BALE);
+                        pOutput.accept(ModBlocks.ALFALFA_BALE);
+                        pOutput.accept(ModBlocks.BARLEY_BALE);
+                        pOutput.accept(ModBlocks.OAT_BALE);
+
+                        //FEEDERS
+                        pOutput.accept(ModBlocks.ACACIA_HAY_RACK);
+
+
                         pOutput.accept(ModBlocks.FOLIRITE_BLOCK);
                         pOutput.accept(ModBlocks.RAW_FOLIRITE_BLOCK);
                         pOutput.accept(ModBlocks.FOLIRITE_ORE);
@@ -207,6 +218,7 @@ public class ModCreativeModeTabs{
                         pOutput.accept(ModBlocks.HIMALAYAN_ROCK_SALT_ORE);
                         pOutput.accept(ModBlocks.DEEPSLATE_HIMALAYAN_ROCK_SALT_ORE);
                         pOutput.accept(ModBlocks.STALL_NAMEPLATE);
+
                     }))).build());
 
     public static final Supplier<CreativeModeTab> DEV_TAB = CREATIVE_MODE_TABS.register("dev_tab",

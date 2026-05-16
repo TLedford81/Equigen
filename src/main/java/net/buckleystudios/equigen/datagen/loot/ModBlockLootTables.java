@@ -36,6 +36,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.INFUSION_TABLE.get());
         this.dropSelf(ModBlocks.STALL_NAMEPLATE.get());
         this.dropSelf(ModBlocks.HORSE_SPAWN_MARKER.get());
+        this.dropSelf(ModBlocks.ACACIA_HAY_RACK.get());
+
 
         //FIG WOOD
         this.dropSelf(ModBlocks.FIG_PLANKS.get());
@@ -148,6 +150,14 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 createLeavesDrops(block, ModBlocks.MULBERRY_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         this.add(ModBlocks.GREEN_ASH_LEAVES.get(), block ->
                 createLeavesDrops(block, ModBlocks.GREEN_ASH_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
+        //BALE DROPS
+        this.dropSelf(ModBlocks.ALFALFA_BALE.get());
+        this.dropSelf(ModBlocks.TIMOTHY_BALE.get());
+        this.dropSelf(ModBlocks.BARLEY_BALE.get());
+        this.dropSelf(ModBlocks.OAT_BALE.get());
+
+
 
         //CROP DROPS
         LootItemCondition.Builder oatCropLootItemConditionBuilder = LootItemBlockStatePropertyCondition

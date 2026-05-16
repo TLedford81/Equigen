@@ -2,7 +2,6 @@ package net.buckleystudios.equigen.block;
 
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.block.custom.*;
-import net.buckleystudios.equigen.block.entity.custom.HorseSpawnMarkerBlockEntity;
 import net.buckleystudios.equigen.item.ModItems;
 import net.buckleystudios.equigen.worldgen.tree.ModTreeGrowers;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -21,6 +20,16 @@ import java.util.function.Supplier;
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(EquigenMod.MODID);
+
+    //Bales
+    public static final DeferredBlock<Block> ALFALFA_BALE = registerBlock("alfalfa_bale",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.HAY_BLOCK)));
+    public static final DeferredBlock<Block> TIMOTHY_BALE = registerBlock("timothy_bale",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.HAY_BLOCK)));
+    public static final DeferredBlock<Block> BARLEY_BALE = registerBlock("barley_bale",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.HAY_BLOCK)));
+    public static final DeferredBlock<Block> OAT_BALE = registerBlock("oat_bale",
+            () -> new ModLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.HAY_BLOCK)));
 
     //Wood Types: Fig, Apricot, Magnolia, Citrus, Mulberry, Green Ash
     //Fig Wood
@@ -275,6 +284,9 @@ public class ModBlocks {
             () -> new InfusionTableBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> STALL_NAMEPLATE = registerBlock("stall_nameplate",
             () -> new StallNameplateBlock(BlockBehaviour.Properties.of()));
+    public static final DeferredBlock<Block> ACACIA_HAY_RACK = registerBlock("acacia_hay_rack",
+            () -> new HayRackBlock(BlockBehaviour.Properties.of().noOcclusion().strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+
 
     //DEV BLOCKS
     public static final DeferredBlock<Block> HORSE_SPAWN_MARKER = registerBlock("horse_spawn_marker",

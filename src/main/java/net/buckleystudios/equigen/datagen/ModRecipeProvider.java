@@ -179,6 +179,15 @@ public class ModRecipeProvider extends RecipeProvider implements RecipeBuilder {
                 .unlockedBy("has_item", has(ModBlocks.CALENDULA.get()))
                 .save(pRecipeOutput);
 
+        nineBlockStorageRecipes(pRecipeOutput, RecipeCategory.MISC, ModItems.ALFALFA.get(),
+                RecipeCategory.MISC, ModBlocks.ALFALFA_BALE.get());
+        nineBlockStorageRecipes(pRecipeOutput, RecipeCategory.MISC, ModItems.TIMOTHY_HAY.get(),
+                RecipeCategory.MISC, ModBlocks.TIMOTHY_BALE.get());
+        nineBlockStorageRecipes(pRecipeOutput, RecipeCategory.MISC, ModItems.BARLEY.get(),
+                RecipeCategory.MISC, ModBlocks.BARLEY_BALE.get());
+        nineBlockStorageRecipes(pRecipeOutput, RecipeCategory.MISC, ModItems.OATS.get(),
+                RecipeCategory.MISC, ModBlocks.OAT_BALE.get());
+
         //Feeds
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.STANDARD_FEED.get(), 1)
                 .pattern("ooo")
