@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-15T23:47:47.2081014	Recipes
+// 1.21.1	2026-05-17T18:03:52.6938497	Recipes
 3966c3d775938df069822c7d3f2a091feeb2b84a data/equigen/advancement/recipes/building_blocks/apricot_planks.json
 6b33b4bae58346d86b86fda1ecd3b0b9c3066369 data/equigen/advancement/recipes/building_blocks/apricot_pressure_plate.json
 492e3c610efcee07dea652407506a0e79fb26c8b data/equigen/advancement/recipes/building_blocks/apricot_slab.json
@@ -35,7 +35,11 @@ c2c64be7cf51f2ad5fc1502fffbb1d221e1c773f data/equigen/advancement/recipes/decora
 936d4783f5b79dd33db845797eff0abc9d8cb25d data/equigen/advancement/recipes/decorations/green_ash_fence.json
 5674b4e149ebd51f3fdd10ce5d2f11299c690b4a data/equigen/advancement/recipes/decorations/magnolia_fence.json
 9602aa1586211a11b3f703fd5daa2705008c6f7e data/equigen/advancement/recipes/decorations/mulberry_fence.json
+889f4de48806534e4b4cfa05d6a2a77fddac3974 data/equigen/advancement/recipes/food/acacia_hay_rack.json
+38eeb4b68935efca91353c378072a3bbdc639744 data/equigen/advancement/recipes/food/birch_hay_rack.json
 8259ba36fa12ed9b5b2fc5beb368cd04a6cc5a52 data/equigen/advancement/recipes/food/fertility_feed.json
+bd4efb9c3ffbea8bf5c1c3c73726f886e3a2a616 data/equigen/advancement/recipes/food/oak_hay_rack.json
+53f51d84ad16b45ee5d0e3c8c909e825c369ff40 data/equigen/advancement/recipes/food/spruce_hay_rack.json
 136756166566ec2bec2e7f3d04b37b26fd66dc31 data/equigen/advancement/recipes/food/standard_feed.json
 3262f7fe5e1b8a135ea5df57b306fe3489d8c9dd data/equigen/advancement/recipes/misc/calendula_petals.json
 df4d09d79b9a733fdf179d62965e494531e6811a data/equigen/advancement/recipes/misc/sweet_pea_petals.json
@@ -68,6 +72,7 @@ b49ff5a60bd47b18ad41cb1e65cdc851570693ad data/equigen/advancement/recipes/tools/
 be22b9d4f8689556ae7926eac94dda4a7627fb6c data/equigen/advancement/recipes/tools/folirite_pickaxe.json
 709c9e2ebd2d8bcf9c12f001d8cbdc2ed4b51e0b data/equigen/advancement/recipes/tools/folirite_shovel.json
 25f17d06996a71e5c2e49d6a2b23c97da9d7de9b data/equigen/advancement/recipes/tools/folirite_sword.json
+2d1bc656e51e8aecbd24899cc7ecfb3d9e38dbc6 data/equigen/recipe/acacia_hay_rack.json
 a8e3ca40e4dc702d8f668bc7b815fd28257b3ec7 data/equigen/recipe/apricot_button.json
 1daede0fd71e25cf207ad1e633b5252f4ebc66db data/equigen/recipe/apricot_door.json
 aa21c45f139f02e26ced2b84958c9261355cf145 data/equigen/recipe/apricot_fence.json
@@ -78,6 +83,7 @@ c2df63a95bb325cc19521e9ed9f2dc174e451370 data/equigen/recipe/apricot_pressure_pl
 8eb8b5cf1ce696bc120f47b8fd9ad99987b1d363 data/equigen/recipe/apricot_stairs.json
 bb249c6b5fbae9519046a72d3a6f80d418f17e3a data/equigen/recipe/apricot_trapdoor.json
 125cc48871a826918d114c7920fbb2ac856cde1e data/equigen/recipe/apricot_wood.json
+d861842edcd73d7b5ca1ce1a7b1889aa177b892f data/equigen/recipe/birch_hay_rack.json
 7889699fb48dde432ef60975e576a5b5ad03c4b1 data/equigen/recipe/calendula_petals.json
 6ccc5b1c2d778d9f26c9f477391c8c58466dcdcf data/equigen/recipe/citrus_button.json
 09866626107750f422d6a5c06d0ee9e995a9f14a data/equigen/recipe/citrus_door.json
@@ -135,6 +141,8 @@ a8e92ccd90010e50f6a1409f4b56bd541cd3fc2e data/equigen/recipe/mulberry_planks.jso
 1b5ac8ec86868fd223926db49df75aaf72753403 data/equigen/recipe/mulberry_stairs.json
 f33ae16e42b236f8d2f5b7d921a259181389255c data/equigen/recipe/mulberry_trapdoor.json
 fbb74731ac234bc52f5aac2258b3ef609a0e32e0 data/equigen/recipe/mulberry_wood.json
+41f099f98860e6125726ad9e4cb8ea236d5de990 data/equigen/recipe/oak_hay_rack.json
+ef3c7e4a5c43c508b225f3755d030303415f61df data/equigen/recipe/spruce_hay_rack.json
 98adeaa8423839f55e1112940a47b43f413d5321 data/equigen/recipe/standard_feed.json
 a060cf2dd330ea454bc3bbe070cbe2492e472282 data/equigen/recipe/sweet_pea_petals.json
 c373f19adfa6b533ecc38897d432bd7fd60a5d5b data/minecraft/advancement/recipes/building_blocks/folirite_block.json

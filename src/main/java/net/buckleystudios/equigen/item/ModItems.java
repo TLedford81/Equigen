@@ -83,7 +83,7 @@ public class ModItems {
 
     public static final DeferredItem<Item> BARLEY_SEEDS = ITEMS.register("barley_seeds",
             () -> new ItemNameBlockItem(ModBlocks.BARLEY_CROP.get(), new Item.Properties()));
-    public static final DeferredItem<Item> BARLEY = ITEMS.registerItem("barley", Item::new, new Item.Properties().food(ModFoodProperties.BARLEY));
+    public static final DeferredItem<Item> BARLEY = ITEMS.registerItem("barley", Item::new, new Item.Properties());
 
     public static final DeferredItem<Item> FIG = ITEMS.registerItem("fig", Item::new, new Item.Properties().food(ModFoodProperties.FIG));
     public static final DeferredItem<Item> APRICOT = ITEMS.registerItem("apricot", Item::new, new Item.Properties().food(ModFoodProperties.APRICOT));

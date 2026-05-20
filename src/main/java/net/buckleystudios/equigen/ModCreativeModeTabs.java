@@ -209,6 +209,10 @@ public class ModCreativeModeTabs{
 
                         //FEEDERS
                         pOutput.accept(ModBlocks.ACACIA_HAY_RACK);
+                        pOutput.accept(ModBlocks.BIRCH_HAY_RACK);
+                        pOutput.accept(ModBlocks.OAK_HAY_RACK);
+                        pOutput.accept(ModBlocks.SPRUCE_HAY_RACK);
+
 
 
                         pOutput.accept(ModBlocks.FOLIRITE_BLOCK);

@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-15T23:58:03.1218305	Block States: equigen
+// 1.21.1	2026-05-17T13:08:13.0839388	Block States: equigen
 54cab46cf56547768b0a2adbf874c9cf885a86af assets/equigen/blockstates/acacia_hay_rack.json
 62c481006f63a8658ee2c7aa7e53c90734d07602 assets/equigen/blockstates/alfalfa_bale.json
 ab57e67d2d95a9c8c01d0ea6da0461f0f71d8426 assets/equigen/blockstates/alfalfa_crop.json
@@ -19,6 +19,7 @@ cc70ea9060681bc64f01f6191d72e3db1051b378 assets/equigen/blockstates/apricot_stri
 c457a26496df00b45a12113af646bf545c7a397a assets/equigen/blockstates/apricot_wood.json
 9234b386526aa28bad3e4166cb2f5d2dd7843e0c assets/equigen/blockstates/barley_bale.json
 ea1d1eeb0fdd3a806ed3abfe3ba3ec662302e6d4 assets/equigen/blockstates/barley_crop.json
+c5732710bc30701590f375be3014558b7b68f4d3 assets/equigen/blockstates/birch_hay_rack.json
 aba93548c06dafff85a1f169002afdc267127b1f assets/equigen/blockstates/blue_locoweed.json
 207657957e6775c601cfa16b816b46d59d58945a assets/equigen/blockstates/calendula.json
 dfaad5b4db7b7a27f1a77defc75245a6d7b70d6b assets/equigen/blockstates/citrus_button.json
@@ -105,6 +106,7 @@ e10548d442b5fd1cbd3f39c944c66bb040b0bf7f assets/equigen/blockstates/mulberry_str
 6b698e97a942e754b4a62b0a53f93878de9bbf36 assets/equigen/blockstates/mulberry_trapdoor.json
 5a7359c2ef3a4e718a951c97e3bd5bfe8169e94f assets/equigen/blockstates/mulberry_wood.json
 e10a7806da5a3a0dbc5ea0229bf670e520681045 assets/equigen/blockstates/nightshade.json
+34bda8859a1b312671a9da0b47f85cffdfc82862 assets/equigen/blockstates/oak_hay_rack.json
 044872f21a15f76ed3331557638808ed67b96f71 assets/equigen/blockstates/oat_bale.json
 86fea83b5218e2f17f2b0b0a73d807f83ffc24f7 assets/equigen/blockstates/oat_crop.json
 a682d94ae5045e6e335f5c352f753469512f82cd assets/equigen/blockstates/pink_locoweed.json
@@ -116,6 +118,7 @@ e03ece8c1809293eb31ffe4da5a29bc126f2478a assets/equigen/blockstates/potted_pink_
 1fbe1097db83cc8d02c41f6e807e24a8d39a1d06 assets/equigen/blockstates/potted_sweet_pea.json
 aaa7e272b9b29b6dbc78a3df0896aa4ef20050b9 assets/equigen/blockstates/purple_locoweed.json
 44c8576a3041d085b79e0a5649d5b7f5082ac8e7 assets/equigen/blockstates/raw_folirite_block.json
+16fb34127c835dc32e8c2fc77960a2309aa82b4b assets/equigen/blockstates/spruce_hay_rack.json
 fb09738a20341739404e123885e5263aac1ad011 assets/equigen/blockstates/stall_nameplate.json
 21e19ded23e238d750299fc4f4e198ab0b953d47 assets/equigen/blockstates/sweet_pea.json
 4bfdef2f17e89ee887ac5c2242a1fd75bb5edcf3 assets/equigen/blockstates/timothy_bale.json
@@ -414,6 +417,7 @@ e82ca682c4181873dab1aeb7d52e90a42566f20f assets/equigen/models/item/apricot_stri
 fe71100a038500047437944b36f96e0b7716cb4b assets/equigen/models/item/apricot_trapdoor.json
 496da5f7e4624388c032e01c9a730e0512c58685 assets/equigen/models/item/apricot_wood.json
 fd956e34223205b20557bb6ccc8dace3be8dca05 assets/equigen/models/item/barley_bale.json
+f3cc2d91cc40a5eecfc87fcf73a3f2837b86f166 assets/equigen/models/item/birch_hay_rack.json
 732101ea6d41c87cd05b7513bb2eff4db0728a3a assets/equigen/models/item/citrus_fence_gate.json
 3bf00d99228dcf4272e341bc11798af171142265 assets/equigen/models/item/citrus_leaves.json
 12fc0755a8475bf49d35b5811cb49a76d1502964 assets/equigen/models/item/citrus_log.json
@@ -476,7 +480,9 @@ cff94fd8b49ab23abf254fcd6ea09fbfc0176988 assets/equigen/models/item/mulberry_sta
 05850498117f7db6e978c965f412dda3a757dd11 assets/equigen/models/item/mulberry_stripped_wood.json
 0fde3b0dcf1450fe390317ded34d850002b929ee assets/equigen/models/item/mulberry_trapdoor.json
 a823600c369860b36678bffec50465de606f130a assets/equigen/models/item/mulberry_wood.json
+29dd55a0e82a9ca79388c2ee7ec2a30c83835c85 assets/equigen/models/item/oak_hay_rack.json
 4e7c86ea75697062141310010a2c944be61d3d98 assets/equigen/models/item/oat_bale.json
 3ab78530d17317880ce139b16d6942da2a1d8aa5 assets/equigen/models/item/raw_folirite_block.json
+e30d4d1005fc7a20aeb2e4a7d54281ba1c99d399 assets/equigen/models/item/spruce_hay_rack.json
 9ead007cfcecb04ffe9190cdfc4c2f6c73acae05 assets/equigen/models/item/stall_nameplate.json
 b4e29493169b2c8ea9ecdeeee31aadf43034d5aa assets/equigen/models/item/timothy_bale.json

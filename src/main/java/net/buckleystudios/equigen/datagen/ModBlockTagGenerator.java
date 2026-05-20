@@ -44,8 +44,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(ModBlocks.GREEN_ASH_LOG.get())
                 .add(ModBlocks.GREEN_ASH_WOOD.get())
                 .add(ModBlocks.GREEN_ASH_STRIPPED_LOG.get())
-                .add(ModBlocks.GREEN_ASH_STRIPPED_WOOD.get())
-                .add(ModBlocks.ACACIA_HAY_RACK.get());
+                .add(ModBlocks.GREEN_ASH_STRIPPED_WOOD.get());
+
 
         this.tag(BlockTags.PLANKS)
                 .add(ModBlocks.APRICOT_PLANKS.get())
@@ -140,7 +140,11 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.HIMALAYAN_ROCK_SALT_ORE.get(),
                         ModBlocks.DEEPSLATE_HIMALAYAN_ROCK_SALT_ORE.get());
         this.tag(BlockTags.MINEABLE_WITH_AXE)
-                .add(ModBlocks.ACACIA_HAY_RACK.get());
+                .add(ModBlocks.ACACIA_HAY_RACK.get())
+                .add(ModBlocks.BIRCH_HAY_RACK.get())
+                .add(ModBlocks.OAK_HAY_RACK.get())
+                .add(ModBlocks.SPRUCE_HAY_RACK.get());
+
         this.tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.FOLIRITE_BLOCK.get(),
                         ModBlocks.RAW_FOLIRITE_BLOCK.get(),

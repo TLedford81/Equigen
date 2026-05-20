@@ -352,6 +352,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         //Racks
         makeRack(ModBlocks.ACACIA_HAY_RACK.get(), "acacia_hay_rack");
+        makeRack(ModBlocks.BIRCH_HAY_RACK.get(), "birch_hay_rack");
+        makeRack(ModBlocks.OAK_HAY_RACK.get(), "oak_hay_rack");
+        makeRack(ModBlocks.SPRUCE_HAY_RACK.get(), "spruce_hay_rack");
+
 
         //Block Entities
         blockWithItem(ModBlocks.STALL_NAMEPLATE);
@@ -401,22 +405,21 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     .modelFile(rackModel)
                     .rotationY(rotation)
                     .addModel()
-                    .condition(HayRackBlock.FACING, dir);
+                    .condition(ConsumableContainerBlock.FACING, dir);
         }
 
         // Hay models
-        for (HayRackBlock.HayType hayType : HayRackBlock.HayType.values()) {
-            if (hayType == HayRackBlock.HayType.EMPTY) {
+        for (ConsumableContainerBlock.ConsumableType consumableType : ConsumableContainerBlock.ConsumableType.values()) {
+            if (consumableType == ConsumableContainerBlock.ConsumableType.EMPTY) {
                 continue;
             }
-
-            for (Integer fill : HayRackBlock.FILL.getPossibleValues()) {
+            for (Integer fill : ConsumableContainerBlock.VISUAL_FILL.getPossibleValues()) {
                 if (fill == 0)
                     continue;
 
                 String modelName =
                         "block/hay_rack/"
-                                + hayType.getSerializedName()
+                                + consumableType.getSerializedName()
                                 + "_"
                                 + fill;
 
@@ -439,9 +442,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
                             .modelFile(hayModel)
                             .rotationY(rotation)
                             .addModel()
-                            .condition(HayRackBlock.HAY_TYPE, hayType)
-                            .condition(HayRackBlock.FILL, fill)
-                            .condition(HayRackBlock.FACING, dir);
+                            .condition(ConsumableContainerBlock.CONSUMABLE_TYPE, consumableType)
+                            .condition(ConsumableContainerBlock.VISUAL_FILL, fill)
+                            .condition(ConsumableContainerBlock.FACING, dir);
                 }
             }
         }

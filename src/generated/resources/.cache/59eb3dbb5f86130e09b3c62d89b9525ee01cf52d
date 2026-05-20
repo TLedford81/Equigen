@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-15T23:47:47.2070995	Loot Tables
+// 1.21.1	2026-05-17T13:08:13.0880508	Loot Tables
 e4da34a61d6469a35817e5672c11bd55e65c4179 data/equigen/loot_table/blocks/acacia_hay_rack.json
 5918958de549d0859b68e2af05552f3c52d05d4d data/equigen/loot_table/blocks/alfalfa_bale.json
 4e70cbf79e0b982cc1f607fcaf429ba37f0bd931 data/equigen/loot_table/blocks/alfalfa_crop.json
@@ -19,6 +19,7 @@ b5ad1dd9cc2c39428c0777a6de88da629f46874a data/equigen/loot_table/blocks/apricot_
 2c0d25844ceceaaf143127ad830abd963feda495 data/equigen/loot_table/blocks/apricot_wood.json
 3594e74cbefe6a22a03f5a7be9eb43d09de28700 data/equigen/loot_table/blocks/barley_bale.json
 52e575df40606069d291ea6420e19e086509047c data/equigen/loot_table/blocks/barley_crop.json
+1356902c6409dc034ba260dc3b1dcdc3443c17f2 data/equigen/loot_table/blocks/birch_hay_rack.json
 75cb86ec3d545c7f1e9515bfaaedefdab6b5a465 data/equigen/loot_table/blocks/blue_locoweed.json
 e503d99dadddab050f86896357a0fd16d54bc750 data/equigen/loot_table/blocks/calendula.json
 d30553914830c76dbc349fedd24b837ad204ea1a data/equigen/loot_table/blocks/citrus_button.json
@@ -105,6 +106,7 @@ e22b7155ee2fe2ca27ba46975866c16d206e0aab data/equigen/loot_table/blocks/mulberry
 ffaad1038cde86b82b466d12fb713eede25f365c data/equigen/loot_table/blocks/mulberry_trapdoor.json
 59fb3d7fecce1ebfa9ed9ddf7c1c97f721ba1e32 data/equigen/loot_table/blocks/mulberry_wood.json
 285008aa71b2f181623a2532594b4515d49d392f data/equigen/loot_table/blocks/nightshade.json
+11159bef57de48c81f26e569f8d093fc41d37faf data/equigen/loot_table/blocks/oak_hay_rack.json
 02da15e254d67563d7fbcfe1488af7f0828c643d data/equigen/loot_table/blocks/oat_bale.json
 aa14d743cbbafa70dc181355685c86922f86901b data/equigen/loot_table/blocks/oat_crop.json
 1745c05dc998f3c0d59722086f7ac045902f1763 data/equigen/loot_table/blocks/pink_locoweed.json
@@ -116,6 +118,7 @@ e5e135fff555392f6ad75ec28b3f89743abfb90b data/equigen/loot_table/blocks/potted_p
 7089497ca8d3bf16d6c87453fe3c0510541d00a3 data/equigen/loot_table/blocks/potted_sweet_pea.json
 0d892a3b1904f8e7d799feff913b2766a0862de0 data/equigen/loot_table/blocks/purple_locoweed.json
 e139d35419cf1157fdeeb6b8cd344c21cf84c68f data/equigen/loot_table/blocks/raw_folirite_block.json
+5a8ff521b19f17007d39c6130a894d7f52eca439 data/equigen/loot_table/blocks/spruce_hay_rack.json
 c688c83010bcf05767ba16146a879475ad449e95 data/equigen/loot_table/blocks/stall_nameplate.json
 037063fc5617b8f0c8a0189507ec807bbc52ffd6 data/equigen/loot_table/blocks/sweet_pea.json
 f84d618936f8c7d4ab8e55c9f1075da58b370785 data/equigen/loot_table/blocks/timothy_bale.json

@@ -1,0 +1,6 @@
+{
+  "parent": "equigen:block/hay_rack/base/hay_rack_empty",
+  "textures": {
+    "rack": "equigen:block/hay_rack/birch_hay_rack"
+  }
+}

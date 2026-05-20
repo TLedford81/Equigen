@@ -12,6 +12,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
@@ -206,6 +207,40 @@ public class ModRecipeProvider extends RecipeProvider implements RecipeBuilder {
                 .define('s', ModItems.SWEET_PEA_PETALS.get())
                 .define('g', Items.GOLD_NUGGET.asItem())
                 .unlockedBy("has_item", has(ModItems.STANDARD_FEED.get()))
+                .save(pRecipeOutput);
+
+        //HAY RACKS
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModBlocks.ACACIA_HAY_RACK.get(), 1)
+                .pattern("l l")
+                .pattern(" l ")
+                .pattern("s s")
+                .define('l', Blocks.ACACIA_LOG.asItem())
+                .define('s', Items.STICK.asItem())
+                .unlockedBy("has_item", has(Blocks.ACACIA_LOG.asItem()))
+                .save(pRecipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModBlocks.BIRCH_HAY_RACK.get(), 1)
+                .pattern("l l")
+                .pattern(" l ")
+                .pattern("s s")
+                .define('l', Blocks.BIRCH_LOG.asItem())
+                .define('s', Items.STICK.asItem())
+                .unlockedBy("has_item", has(Blocks.BIRCH_LOG.asItem()))
+                .save(pRecipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModBlocks.OAK_HAY_RACK.get(), 1)
+                .pattern("l l")
+                .pattern(" l ")
+                .pattern("s s")
+                .define('l', Blocks.OAK_LOG.asItem())
+                .define('s', Items.STICK.asItem())
+                .unlockedBy("has_item", has(Blocks.OAK_LOG.asItem()))
+                .save(pRecipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModBlocks.SPRUCE_HAY_RACK.get(), 1)
+                .pattern("l l")
+                .pattern(" l ")
+                .pattern("s s")
+                .define('l', Blocks.SPRUCE_LOG.asItem())
+                .define('s', Items.STICK.asItem())
+                .unlockedBy("has_item", has(Blocks.SPRUCE_LOG.asItem()))
                 .save(pRecipeOutput);
 
         //Salves

@@ -119,6 +119,10 @@
   "block.equigen.horse_spawn_marker": "Horse Trader Spawn Marker",
 
   "block.equigen.acacia_hay_rack": "Acacia Hay Rack",
+  "block.equigen.birch_hay_rack": "Birch Hay Rack",
+  "block.equigen.oak_hay_rack": "Oak Hay Rack",
+  "block.equigen.spruce_hay_rack": "Spruce Hay Rack",
+
 
   "block.equigen.folirite_block": "Block of Folirite",
   "block.equigen.raw_folirite_block": "Block of Raw Folirite",

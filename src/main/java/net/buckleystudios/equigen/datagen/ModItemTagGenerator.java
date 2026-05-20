@@ -25,7 +25,11 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 
         this.tag(ItemTags.HORSE_FOOD)
                 .add(ModItems.STANDARD_FEED.get())
-                .add(ModItems.FERTILITY_FEED.get());
+                .add(ModItems.FERTILITY_FEED.get())
+                .add(ModItems.ALFALFA.get())
+                .add(ModItems.BARLEY.get())
+                .add(ModItems.TIMOTHY_HAY.get())
+                .add(ModItems.OATS.get());
 
         this.tag(ItemTags.HORSE_TEMPT_ITEMS)
                 .add(ModItems.STANDARD_FEED.get())

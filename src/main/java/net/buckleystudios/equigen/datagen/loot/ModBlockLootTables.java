@@ -36,7 +36,12 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.INFUSION_TABLE.get());
         this.dropSelf(ModBlocks.STALL_NAMEPLATE.get());
         this.dropSelf(ModBlocks.HORSE_SPAWN_MARKER.get());
+
         this.dropSelf(ModBlocks.ACACIA_HAY_RACK.get());
+        this.dropSelf(ModBlocks.BIRCH_HAY_RACK.get());
+        this.dropSelf(ModBlocks.OAK_HAY_RACK.get());
+        this.dropSelf(ModBlocks.SPRUCE_HAY_RACK.get());
+
 
 
         //FIG WOOD

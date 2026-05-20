@@ -1,6 +1,10 @@
 {
   "values": [
     "equigen:standard_feed",
-    "equigen:fertility_feed"
+    "equigen:fertility_feed",
+    "equigen:alfalfa",
+    "equigen:barley",
+    "equigen:timothy_hay",
+    "equigen:oats"
   ]
 }

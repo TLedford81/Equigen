@@ -8,6 +8,8 @@ import net.buckleystudios.equigen.entity.custom.genetics.GeneticBreeds;
 import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
 import net.buckleystudios.equigen.entity.custom.genetics.util.*;
+import net.buckleystudios.equigen.entity.custom.goals.EatGoal;
+import net.buckleystudios.equigen.item.HorseConsumables;
 import net.buckleystudios.equigen.item.ModItems;
 import net.buckleystudios.equigen.sound.ModSounds;
 import net.minecraft.nbt.CompoundTag;
@@ -40,7 +42,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.entity.living.BabyEntitySpawnEvent;
@@ -387,14 +388,15 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new PanicGoal(this, 1.2));
-        this.goalSelector.addGoal(2, new RunAroundLikeCrazyGoal(this, 1.2));
+        this.goalSelector.addGoal(1, new PanicGoal(this, 0.7));
+        this.goalSelector.addGoal(2, new RunAroundLikeCrazyGoal(this, 1.0));
         this.goalSelector.addGoal(3, new BreedGoal(this, 1.0));
         this.goalSelector.addGoal(4, new TemptGoal(this, 1.25, stack -> stack.is(ItemTags.HORSE_TEMPT_ITEMS), false));
-        this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.0));
-        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 0.7));
-        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
-        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(5, new EatGoal(this));
+        this.goalSelector.addGoal(6, new FollowParentGoal(this, 1.0));
+        this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 0.2));
+        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(9, new RandomLookAroundGoal(this));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -904,48 +906,26 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         float happiness = 0;
         float thirst = 0;
 
-        if (stack.is(Items.WHEAT)) {
-            hunger = 2.0F;
-            happiness = 20;
-            thirst = 3;
-        } else if (stack.is(Items.SUGAR)) {
-            hunger = 1.0F;
-            happiness = 30;
-            thirst = 3;
-        } else if (stack.is(Blocks.HAY_BLOCK.asItem())) {
-            hunger = 20.0F;
-            happiness = 180;
-        } else if (stack.is(Items.APPLE)) {
-            hunger = 3.0F;
-            happiness = 60;
-            thirst = 3;
-        } else if (stack.is(Items.GOLDEN_CARROT)) {
-            hunger = 1.0F;
-            happiness = 60;
-            thirst = 5;
-        } else if (stack.is(ModItems.TIMOTHY_HAY.get())) {
-            hunger = 2.0F;
-            happiness = 240;
-            thirst = 10;
-        } else if (stack.is(ModItems.STANDARD_FEED.get())) {
-            hunger = 2.0F;
-            happiness = 240;
-            thirst = 10;
-        } else if (stack.is(ModItems.FERTILITY_FEED.get())) {
-            hunger = 2.0F;
-            happiness = 240;
-            thirst = 10;
-            if (!this.level().isClientSide && this.isTamed() && this.getAge() == 0 && !this.isInLove()) {
-                flag = true;
-                this.setInLove(player);
-            }
+        HorseConsumablesData data = HorseConsumables.get(stack);
+
+        if (data == null) {
+            return false;
         }
 
         if(this.getHunger() < this.getMaxHunger()){
             flag = true;
-            this.alterHunger(hunger);
-            this.alterThirst(thirst);
-            this.alterHappiness(happiness);
+            this.alterHunger(data.hungerRestored());
+            this.alterThirst(data.thirstRestored());
+            this.alterHappiness(data.happinessRestored());
+            this.alterStress(data.stressRestored());
+            EquigenMod.LOGGER.info("HORSE STATS: HUNGER = " + this.getHunger() + " THIRST = " + this.getThirst() + " HAPPINESS = " + this.getHappiness() + " STRESS = " + this.getStress());
+            // TODO health restored NEED METHOD TO CHANGE HEALTH
+            // tempt item
+            // breed item
+            if (data.loveitem() && !this.level().isClientSide && this.isTamed() && this.getAge() == 0 && !this.isInLove()) {
+                flag = true;
+                this.setInLove(player);
+            }
         }
 
         if (flag) {
@@ -1411,7 +1391,8 @@ private float difference = 0;
             //Stat Drop Over Time
             if (hungerTickTimer >= 200) {
                 if (this.getHunger() > 0) {
-                    this.alterHunger(-1.0f);
+                    this.alterHunger(-0.2f);
+                    EquigenMod.LOGGER.info("HUNGER DECREASE, HUNGER = " + this.getHunger());
                     this.alterCleanliness("hair", -1.0f);
                     this.alterCleanliness("hoof", -1.0f);
                 }
@@ -1420,14 +1401,14 @@ private float difference = 0;
 
             if (thirstTickTimer >= 200) {
                 if (this.getThirst() > 0) {
-                    this.alterThirst(-1.0f);
+                    this.alterThirst(-0.2f);
                 }
                 this.thirstTickTimer = 0;
             }
 
             if (stressRecoveryTickTimer >= 200) {
                 if (this.getStress() > 0 && isNeedsFulfilled()) {
-                    this.alterStress(-1.0f);
+                    this.alterStress(-0.2f);
                 }
                 this.stressRecoveryTickTimer = 0;
             }

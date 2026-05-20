@@ -284,9 +284,16 @@ public class ModBlocks {
             () -> new InfusionTableBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> STALL_NAMEPLATE = registerBlock("stall_nameplate",
             () -> new StallNameplateBlock(BlockBehaviour.Properties.of()));
-    public static final DeferredBlock<Block> ACACIA_HAY_RACK = registerBlock("acacia_hay_rack",
-            () -> new HayRackBlock(BlockBehaviour.Properties.of().noOcclusion().strength(2.0F, 3.0F).sound(SoundType.WOOD)));
 
+    //HAY RACKS
+    public static final DeferredBlock<Block> ACACIA_HAY_RACK = registerBlock("acacia_hay_rack",
+            () -> new ConsumableContainerBlock(BlockBehaviour.Properties.of().noOcclusion().strength(2.0F, 3.0F).sound(SoundType.WOOD), 5));
+    public static final DeferredBlock<Block> OAK_HAY_RACK = registerBlock("oak_hay_rack",
+            () -> new ConsumableContainerBlock(BlockBehaviour.Properties.of().noOcclusion().strength(2.0F, 3.0F).sound(SoundType.WOOD), 5));
+    public static final DeferredBlock<Block> BIRCH_HAY_RACK = registerBlock("birch_hay_rack",
+            () -> new ConsumableContainerBlock(BlockBehaviour.Properties.of().noOcclusion().strength(2.0F, 3.0F).sound(SoundType.WOOD), 5));
+    public static final DeferredBlock<Block> SPRUCE_HAY_RACK = registerBlock("spruce_hay_rack",
+            () -> new ConsumableContainerBlock(BlockBehaviour.Properties.of().noOcclusion().strength(2.0F, 3.0F).sound(SoundType.WOOD), 5));
 
     //DEV BLOCKS
     public static final DeferredBlock<Block> HORSE_SPAWN_MARKER = registerBlock("horse_spawn_marker",
