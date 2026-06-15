@@ -1,6 +1,5 @@
 package net.buckleystudios.equigen.entity.custom.goals;
 
-import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.block.custom.ConsumableContainerBlock;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.buckleystudios.equigen.item.HorseConsumables;
@@ -48,13 +47,13 @@ public class EatGoal extends Goal {
         }
         if (giveUpCooldown > 0) {
             giveUpCooldown--;
-            EquigenMod.LOGGER.info("GIVE UP COOLDOWN = " + giveUpCooldown);
+//            EquigenMod.LOGGER.info("GIVE UP COOLDOWN = " + giveUpCooldown);
             return false;
         }
         searchCooldown = 50 + horse.getRandom().nextInt(20);
 
         if (this.horse.getHunger() >= 8.0F) {
-            EquigenMod.LOGGER.info("NOT HUNGRY");
+//            EquigenMod.LOGGER.info("NOT HUNGRY");
             return false;
         }
             this.targetLocation = findFood();
@@ -64,7 +63,7 @@ public class EatGoal extends Goal {
 
     @Override
     public void start() {
-        EquigenMod.LOGGER.info("STARTING TO MOVE");
+//        EquigenMod.LOGGER.info("STARTING TO MOVE");
         this.lastPos = horse.position();
         this.stuckTicks = 0;
         this.repathCooldown = 0;
@@ -81,7 +80,7 @@ public class EatGoal extends Goal {
     @Override
     public boolean canContinueToUse() {
         if (targetLocation == null) {
-            EquigenMod.LOGGER.info("STOP: targetLocation null");
+//            EquigenMod.LOGGER.info("STOP: targetLocation null");
             return false;
         }
         if (horse.getHunger() >= 10) {
@@ -104,13 +103,13 @@ public class EatGoal extends Goal {
     private int consumeCooldown;
     @Override
     public void tick() {
-        EquigenMod.LOGGER.info("CONTINUING TO MOVE");
+//        EquigenMod.LOGGER.info("CONTINUING TO MOVE");
         if (targetLocation == null) return;
 
         if (horse.blockPosition().closerThan(targetLocation, 2.0)) {
-            EquigenMod.LOGGER.info("EATING");
-            EquigenMod.LOGGER.info("CONSUME COOLDOWN = " + consumeCooldown);
-            EquigenMod.LOGGER.info("FOOD TYPE = " + this.foodType);
+//            EquigenMod.LOGGER.info("EATING");
+//            EquigenMod.LOGGER.info("CONSUME COOLDOWN = " + consumeCooldown);
+//            EquigenMod.LOGGER.info("FOOD TYPE = " + this.foodType);
 
             horse.getNavigation().stop();
 
@@ -130,7 +129,7 @@ public class EatGoal extends Goal {
                 targetLocation = null;
                 return;
             } else {
-                EquigenMod.LOGGER.info("ERROR! UNKNOWN FOOD TYPE = " + this.foodType);
+//                EquigenMod.LOGGER.info("ERROR! UNKNOWN FOOD TYPE = " + this.foodType);
             }
 
             stuckTicks = 0;
@@ -144,21 +143,21 @@ public class EatGoal extends Goal {
 
             if (movedDistance < 0.0025D) {
                 stuckTicks++;
-                EquigenMod.LOGGER.info("Horse stuck, stuck ticks = " + stuckTicks);
+//                EquigenMod.LOGGER.info("Horse stuck, stuck ticks = " + stuckTicks);
             } else {
                 stuckTicks = 0;
                 lastPos = horse.position();
             }
 
             if (stuckTicks > 40) { // about 2 seconds
-                EquigenMod.LOGGER.info("Horse seems stuck, recalculating path");
+//                EquigenMod.LOGGER.info("Horse seems stuck, recalculating path");
                 stuckTimes++;
                 horse.getNavigation().stop();
                 if (stuckTimes >= 4) {
                     giveUpCooldown = 100;
                     stuckTimes = 0;
                     targetLocation = null;
-                    EquigenMod.LOGGER.info("STUCK STUCK STUCK! GIVING UP");
+//                    EquigenMod.LOGGER.info("STUCK STUCK STUCK! GIVING UP");
                     return;
                 }
                 if (repathCooldown <= 0) {
@@ -199,12 +198,12 @@ public class EatGoal extends Goal {
             default -> throw new IllegalStateException("Unexpected value: " + consumableType);
         }
         targetContainer.Eat(horse.level().getBlockState(targetLocation), targetLocation, horse.level(), horse);
-        EquigenMod.LOGGER.info("CONSUMABLE TYPE IS " + consumableType);
-        EquigenMod.LOGGER.info("HUNGER = " + horse.getHunger());
+//        EquigenMod.LOGGER.info("CONSUMABLE TYPE IS " + consumableType);
+//        EquigenMod.LOGGER.info("HUNGER = " + horse.getHunger());
     }
 
     private void eatGrass() {
-        EquigenMod.LOGGER.info("EATING GRASS");
+//        EquigenMod.LOGGER.info("EATING GRASS");
         Level level = horse.level();
 
         if (!level.isClientSide()) {
@@ -213,7 +212,7 @@ public class EatGoal extends Goal {
             } else if (targetBlock == Blocks.SHORT_GRASS) {
                 horse.alterHunger(HorseConsumables.SHORT_GRASS.hungerRestored());
             } else {
-                EquigenMod.LOGGER.info("BLOCK NEITHER SHORT OR TALL GRASS");
+//                EquigenMod.LOGGER.info("BLOCK NEITHER SHORT OR TALL GRASS");
             }
 
             level.destroyBlock(targetLocation, false);
@@ -222,7 +221,7 @@ public class EatGoal extends Goal {
     }
 
     private void eatGrassBlock() {
-        EquigenMod.LOGGER.info("EATING GRASS BLOCK");
+//        EquigenMod.LOGGER.info("EATING GRASS BLOCK");
         Level level = horse.level();
         if (!level.isClientSide()) {
             horse.alterHunger(HorseConsumables.GRASS_BLOCK.hungerRestored());
@@ -270,14 +269,14 @@ public class EatGoal extends Goal {
             double distance = pos.distSqr(horsePosition);
             Path path = horse.getNavigation().createPath(pos, 1);
             if (path == null || !path.canReach()) {
-                EquigenMod.LOGGER.info("PATH NULL OR NOT REACHABLE");
+//                EquigenMod.LOGGER.info("PATH NULL OR NOT REACHABLE");
                 continue;
             }
-            EquigenMod.LOGGER.info("PATH NOT NULL");
+//            EquigenMod.LOGGER.info("PATH NOT NULL");
             if (state.getBlock() instanceof ConsumableContainerBlock) {
                 int fill = state.getValue(CURRENT_FILL);
                 if (fill > 0 && distance < closestContainerDist) {
-                    EquigenMod.LOGGER.info("FOUND FOOD");
+//                    EquigenMod.LOGGER.info("FOUND FOOD");
                     closestContainer = pos.immutable();
                     closestContainerDist = distance;
                     consumableType = state.getValue(ConsumableContainerBlock.CONSUMABLE_TYPE);
@@ -298,27 +297,27 @@ public class EatGoal extends Goal {
                 }
             }
         }
-        EquigenMod.LOGGER.info("CLOSEST CONTAINER DIST = " + closestContainerDist);
-        EquigenMod.LOGGER.info("CLOSEST GRASS DIST = " + closestGrassDist);
-        EquigenMod.LOGGER.info("CLOSEST GRASS BLOCK DIST = " + closestGrassBlockDist);
+//        EquigenMod.LOGGER.info("CLOSEST CONTAINER DIST = " + closestContainerDist);
+//        EquigenMod.LOGGER.info("CLOSEST GRASS DIST = " + closestGrassDist);
+//        EquigenMod.LOGGER.info("CLOSEST GRASS BLOCK DIST = " + closestGrassBlockDist);
 
 
         if (closestContainer == null) {
-            EquigenMod.LOGGER.info("CLOSEST CONTAINER IS NULL");
+//            EquigenMod.LOGGER.info("CLOSEST CONTAINER IS NULL");
             if (closestGrass != null) {
-                EquigenMod.LOGGER.info("RETURNING CLOSEST GRASS");
+//                EquigenMod.LOGGER.info("RETURNING CLOSEST GRASS");
                 this.foodType = "grass";
                 return closestGrass;
             } else if (closestGrassBlock != null) {
-                EquigenMod.LOGGER.info("RETURNING CLOSEST GRASS BLOCK");
+//                EquigenMod.LOGGER.info("RETURNING CLOSEST GRASS BLOCK");
                 this.foodType = "grass_block";
                 return closestGrassBlock;
             } else {
-                EquigenMod.LOGGER.info("COULDNT FIND FOOD");
+//                EquigenMod.LOGGER.info("COULDNT FIND FOOD");
                 return null;
             }
         } else {
-            EquigenMod.LOGGER.info("CLOSEST CONTAINER IS NOT NULL");
+//            EquigenMod.LOGGER.info("CLOSEST CONTAINER IS NOT NULL");
             this.foodType = "container";
             return closestContainer;
         }

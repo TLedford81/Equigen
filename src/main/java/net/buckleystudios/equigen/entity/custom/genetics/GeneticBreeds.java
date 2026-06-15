@@ -39,6 +39,8 @@ public enum GeneticBreeds {
         disabledGenetics.remove("FRAME_OVERO_VARIATION_1");
         disabledGenetics.remove("FRAME_OVERO_VARIATION_2");
         disabledGenetics.remove("FRAME_OVERO_VARIATION_3");
+        disabledGenetics.remove("FACE_MARKING");
+
 
 
         for(String gene : disabledGenetics){

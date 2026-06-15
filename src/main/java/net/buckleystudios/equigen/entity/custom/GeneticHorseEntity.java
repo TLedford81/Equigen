@@ -80,9 +80,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public GeneticBreeds breed;
 //    public static final int geneticCount = GeneticValues.values().length;
 //    public Map<String, Float> GENETICS = new HashMap<String, Float>();
-    private int hungerTickTimer;
-    private int thirstTickTimer;
-    private int stressRecoveryTickTimer;
+    private int careTickTimer;
+    private int careTickIndex;
+    private int randomTickModifier;
     private int speedSkillXP;
     private int jumpSkillXP;
     private int strengthSkillXP;
@@ -268,9 +268,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         super.readAdditionalSaveData(tag);
 
         //Tick Timers
-        this.hungerTickTimer = tag.getInt("HungerTickTimer");
-        this.thirstTickTimer = tag.getInt("ThirstTickTimer");
-        this.stressRecoveryTickTimer = tag.getInt("StressRecoveryTickTimer");
+        this.careTickTimer = tag.getInt("CareTickTimer");
+        this.careTickIndex = tag.getInt("CareTickIndex");
 
         //Movement
         this.setGait(tag.getInt("CurrentGait"));
@@ -322,9 +321,8 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 //        }
 
         //Tick Timers
-        tag.putInt("HungerTickTimer", this.hungerTickTimer);
-        tag.putInt("ThirstTickTimer", this.thirstTickTimer);
-        tag.putInt("StressRecoveryTickTimer", this.stressRecoveryTickTimer);
+        tag.putInt("CareTickTimer", this.careTickTimer);
+        tag.putInt("CareTickIndex", this.careTickIndex);
 
         //Movement
         tag.putInt("CurrentGait", this.getCurrentGait());
@@ -1010,9 +1008,9 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     protected EntityDimensions getDefaultDimensions(Pose pose) {
         float height = calculateHorseHeight();
         float width = 1f;
-        float scale = ((GeneticsHandler.getEntityGenetic(this, Genetics.SCALE)) + 0.75F);
+        float scale = ((GeneticsHandler.getEntityGenetic(this, Genetics.SCALE) / 2.0f) + 0.75F);
 //        EquigenMod.LOGGER.info("Scale: {}, Genetic Value: {}", scale, GeneticsHandler.getGenetic(this, Genetics.SCALE));
-        return EntityDimensions.scalable(width * scale, height * scale);
+        return EntityDimensions.scalable(width * scale, (height * scale) + (backOffset()/ 16));
     }
     //TODO Height is almost completely flush, figure out why it isn't exactly flush.
 private float difference = 0;
@@ -1033,7 +1031,7 @@ private float difference = 0;
 //            EquigenMod.LOGGER.info("BACK HEIGHT = {} with {} added", backHeight, gene);
         }
 //        EquigenMod.LOGGER.info("Bottom legs = {} knee height = {} hoofheight = {} offset = {}", bottomLegs, kneeHeight, hoofHeight, offset);
-        float backOffset = (getBackGirthModifier("BACK",renderGenetics.get(Genetics.BACK_GIRTH)) / 2);
+        float backOffset = backOffset();
         frontHeight += bottomLegs + kneeHeight + hoofHeight - backOffset;
         backHeight += bottomLegs + kneeHeight + hoofHeight - backOffset;
 //        EquigenMod.LOGGER.info("UNCONVERTED: FrontHeight = {} BackHeight = {}", frontHeight, backHeight);
@@ -1201,6 +1199,11 @@ private float difference = 0;
         }
     }
 
+    public float backOffset () {
+        Map<Genetics, Float> renderGenetics = GeneticsHandler.getRenderGenetics(this);
+        return (getBackGirthModifier("BACK", renderGenetics.get(Genetics.BACK_GIRTH)) / 2);
+    }
+
     public float getDifference() {
         return this.difference;
     }
@@ -1229,12 +1232,20 @@ private float difference = 0;
                 this.setIsJumping(false);
                 if (this.playerJumpPendingScale > 0.0F && !this.isJumping()) {
                     this.executeRidersJump(this.playerJumpPendingScale, travelVector);
-                }
+                } // FOR FUTURE MADELEINE!!! PlayerJumpPendingScale makes the player move backwards when jumping to sync with animations. Might be useful once we actually have a jumping animation.
 
                 this.playerJumpPendingScale = 0.0F;
             }
         }
     }
+    @Override
+    protected Vec3 getPassengerAttachmentPoint(Entity entity, EntityDimensions dimensions, float partialTick) {
+        double y = calculateHorseHeight() + (backOffset() / 16);
+        return new Vec3(0.0D, y , 0.0D);
+        // This code disables playerJumpPendingScale. Implement when we have a jump animation.
+        //TODO Implement a player anchor on back models and have it use that y instead. Currently some horses you are floating above when sitting and I believe it's from this calcuation.
+    }
+
 
     public float getTurnSpeed() {
         return this.getCurrentSkillLevel("Agility") * (this.isTurnClutched ? 0.5f : 1.0f);
@@ -1389,28 +1400,10 @@ private float difference = 0;
             this.HandleProficiencies();
 
             //Stat Drop Over Time
-            if (hungerTickTimer >= 200) {
-                if (this.getHunger() > 0) {
-                    this.alterHunger(-0.2f);
-                    EquigenMod.LOGGER.info("HUNGER DECREASE, HUNGER = " + this.getHunger());
-                    this.alterCleanliness("hair", -1.0f);
-                    this.alterCleanliness("hoof", -1.0f);
-                }
-                this.hungerTickTimer = 0;
-            }
-
-            if (thirstTickTimer >= 200) {
-                if (this.getThirst() > 0) {
-                    this.alterThirst(-0.2f);
-                }
-                this.thirstTickTimer = 0;
-            }
-
-            if (stressRecoveryTickTimer >= 200) {
-                if (this.getStress() > 0 && isNeedsFulfilled()) {
-                    this.alterStress(-0.2f);
-                }
-                this.stressRecoveryTickTimer = 0;
+            if (careTickTimer >= 200 + randomTickModifier) {
+                decreaseCareStats();
+                EquigenMod.LOGGER.info("HORSE STATS: HUNGER = " + this.getHunger() + " THIRST = " + this.getThirst() + " CLEANLINESS = " + this.getCleanliness() + " STRESS = " + this.getStress());
+                EquigenMod.LOGGER.info("INDEX = " + careTickIndex);
             }
 
             //Horse's Hunger Depleted
@@ -1451,13 +1444,33 @@ private float difference = 0;
     }
 
     private void HandleConstantTickTimers(){
-        hungerTickTimer++;
-        thirstTickTimer++;
-        stressRecoveryTickTimer++;
+        careTickTimer++;
 
         if(this.isPregnant()){
             pregnancyTickTimer--;
         }
+    }
+
+    public void decreaseCareStats() {
+        if (careTickIndex == 0) {
+            if (this.getHunger() > 0) {
+                this.alterHunger(-0.2F);
+            }
+        } else if (careTickIndex == 1) {
+                if (this.getThirst() > 0) {
+                    this.alterThirst(-0.2F);
+                }
+        } else if (careTickIndex == 2) {
+                this.alterCleanliness("hair", -0.2F);
+                this.alterCleanliness("hoof", -0.2F);
+        } else if (careTickIndex == 3) {
+                if (this.getStress() > 0 && isNeedsFulfilled()) {
+                    this.alterStress(-0.2F);
+                }
+            }
+        randomTickModifier = random.nextInt(20);
+        careTickTimer = 0;
+        careTickIndex = (careTickIndex + 1) % 4;
     }
 
     public boolean isMoving(){
