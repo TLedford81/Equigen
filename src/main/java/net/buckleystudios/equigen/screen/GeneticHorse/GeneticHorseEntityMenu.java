@@ -2,6 +2,7 @@ package net.buckleystudios.equigen.screen.GeneticHorse;
 
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.buckleystudios.equigen.screen.ModMenuTypes;
+import net.buckleystudios.equigen.screen.util.ToggleableSlot;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -37,7 +38,7 @@ public class GeneticHorseEntityMenu extends AbstractContainerMenu {
 
         //--- TACK SLOTS ---
         //Saddle
-        this.addSlot(new Slot(this.geneticHorseContainer, 0, 175, 65){
+        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 0, 175, 65){
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return stack.is(Items.SADDLE);
@@ -45,19 +46,31 @@ public class GeneticHorseEntityMenu extends AbstractContainerMenu {
         });
 
         //Unused
-        this.addSlot(new Slot(this.geneticHorseContainer, 1, 194, 65){});
-        this.addSlot(new Slot(this.geneticHorseContainer, 2, 213, 65){});
-        this.addSlot(new Slot(this.geneticHorseContainer, 3, 232, 65){});
-        this.addSlot(new Slot(this.geneticHorseContainer, 4, 175, 85){});
-        this.addSlot(new Slot(this.geneticHorseContainer, 5, 194, 85){});
-        this.addSlot(new Slot(this.geneticHorseContainer, 6, 213, 85){});
-        this.addSlot(new Slot(this.geneticHorseContainer, 7, 232, 85){});
+        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 1, 194, 65){});
+        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 2, 213, 65){});
+        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 3, 232, 65){});
+        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 4, 175, 85){});
+        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 5, 194, 85){});
+        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 6, 213, 85){});
+        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 7, 232, 85){});
 
         //Hotbar slots
-        for (int j1 = 0; j1 < 9; j1++) {
-            this.addSlot(new Slot(inventory, j1, 44 + j1 * 19, 175));
+        for (int row = 0; row < 3; ++row) {
+            for (int col = 0; col < 9; ++col) {
+                this.addSlot(new ToggleableSlot(
+                        inventory,
+                        col + row * 9 + 9,   // Inventory index
+                        44 + col * 19,       // X
+                        117 + row * 19       // Y
+                ));
+            }
+        }
+
+        for (int s = 0; s < 9; s++) {
+            this.addSlot(new ToggleableSlot(inventory, s, 44 + s * 19, 175));
         }
     }
+
     /**
 
      * Determines whether supplied player can use this container

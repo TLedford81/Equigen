@@ -3,7 +3,10 @@ package net.buckleystudios.equigen.screen.GeneticHorse;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
+import net.buckleystudios.equigen.screen.util.ToggleableSlot;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.ImageButton;
+import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -12,18 +15,24 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.Slot;
 
 public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHorseEntityMenu> {
-    private static final ResourceLocation GUI_TEXTURE_BG =
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID,"textures/entity/genetic_horse/gui/horse_gui_background.png");
     private final GeneticHorseEntity geneticHorse;
     private float xMouse;
     private float yMouse;
+    private GHE_ScreenPages currentPage = GHE_ScreenPages.MAIN;
+    private static final WidgetSprites TAB_BUTTON_SPRITES = new WidgetSprites(
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "genetic_horse/tab"),
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "genetic_horse/tab_selected"),
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "genetic_horse/tab_highlighted"));
+    private ImageButton mainTabButton;
+    private ImageButton inventoryTabButton;
 
     public GeneticHorseEntityScreen(GeneticHorseEntityMenu pMenu, Inventory pPlayerInventory, Component title) {
         super(pMenu, pPlayerInventory, title);
         this.geneticHorse = pMenu.geneticHorse;
-        this.imageHeight = 194;
+        this.imageHeight = 204;
         this.imageWidth = 256;
     }
 
@@ -33,6 +42,21 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
         titleLabelX = 999;
         titleLabelY = 999;
         inventoryLabelX = 1000;
+
+        this.mainTabButton = this.addRenderableWidget(new ImageButton(
+                leftPos - 17, topPos,
+                17, 56,
+                TAB_BUTTON_SPRITES,
+                button -> switchPage(GHE_ScreenPages.MAIN)
+        ));
+        this.inventoryTabButton = this.addRenderableWidget(new ImageButton(
+                leftPos - 17, topPos + 60,
+                17, 56,
+                TAB_BUTTON_SPRITES,
+                button -> switchPage(GHE_ScreenPages.INVENTORY)
+        ));
+
+        updateTabsAndButtons();
     }
 
     @Override
@@ -42,23 +66,31 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
         int x = this.leftPos;
         int y = this.topPos;
 
-        RenderSystem.setShaderTexture(0, GUI_TEXTURE_BG);
-        pGuiGraphics.blit(GUI_TEXTURE_BG, x, y, 0, 0, imageWidth, imageHeight);
+        ResourceLocation backgroundRL = currentPage.getBGResourceLocation();
+        RenderSystem.setShaderTexture(0, backgroundRL);
+        pGuiGraphics.blit(backgroundRL, x, y, 0, 0, imageWidth, imageHeight);
+
+        switch(currentPage){
+            case MAIN -> drawMainScreen(pGuiGraphics, x, y);
+            case INVENTORY -> drawInventoryScreen(pGuiGraphics, x, y);
+        }
+    }
+
+    private void drawMainScreen(GuiGraphics pGuiGraphics, int x, int y){
+        LivingEntity owner = geneticHorse.getOwner();
         pGuiGraphics.drawCenteredString(this.font, geneticHorse.getName(), x + 128, y + 30, 0xe5c7a8);
         pGuiGraphics.drawCenteredString(this.font, "(Nicknames Coming Soon)", x + 128, y + 40, 0xe5c7a8);
         pGuiGraphics.drawCenteredString(this.font, geneticHorse.getBreed().name(), x + 128, y + 50, 0xe5c7a8);
         float horseHeight = geneticHorse.calculateHorseHeight();
         pGuiGraphics.drawCenteredString(this.font, Component.translatable("equigen.genetic_horse.measurement.format", horseHeight), x + 128, y + 60, 0xe5c7a8);
 
-        LivingEntity owner = geneticHorse.getOwner();
-
         pGuiGraphics.drawCenteredString(this.font,
                 (owner != null) ? geneticHorse.getOwner().getName() : Component.translatable("equigen.genetic_horse.unowned"),
                 x + 128, y + 70, 0xe5c7a8);
 
-        pGuiGraphics.drawCenteredString(this.font, geneticHorse.getBreederNames(), x + 128, y + 80, 0xe5c7a8);
-        pGuiGraphics.drawCenteredString(this.font, "(Sire Coming Soon)", x + 128, y + 90, 0xe5c7a8);
-        pGuiGraphics.drawCenteredString(this.font, "(Dam Coming Soon)", x + 128, y + 100, 0xe5c7a8);
+        pGuiGraphics.drawCenteredString(this.font, "Breeder: " + geneticHorse.getBreederName(), x + 128, y + 80, 0xe5c7a8);
+        pGuiGraphics.drawCenteredString(this.font, "Sire: " + geneticHorse.getSireName(), x + 128, y + 90, 0xe5c7a8);
+        pGuiGraphics.drawCenteredString(this.font, "Mare: " + geneticHorse.getMareName(), x + 128, y + 100, 0xe5c7a8);
 
         drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.hunger"), x + 45, y + 54, 0.5f, 0xe5c7a8);
         drawProgressBar(pGuiGraphics, x + 8, y + 59, 75, 3, geneticHorse.getHunger(), geneticHorse.getMaxHunger());
@@ -75,6 +107,43 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
 
         InventoryScreen.renderEntityInInventoryFollowsMouse(pGuiGraphics, x + 92, y + 45, x + 165, y + 113, 20, 0.05F,
                 this.xMouse, this.yMouse, this.geneticHorse);
+    }
+
+    private void drawInventoryScreen(GuiGraphics pGuiGraphics, int x, int y){
+        InventoryScreen.renderEntityInInventoryFollowsMouse(pGuiGraphics, x + 92, y + 45, x + 165, y + 113, 20, 0.05F,
+                this.xMouse, this.yMouse, this.geneticHorse);
+    }
+
+    private void toggleInventorySlots(boolean t){
+        for (Slot slot : this.menu.slots) {
+            if(slot instanceof ToggleableSlot s){
+                s.setActive(t);
+            }
+        }
+    }
+
+    private void switchPage(GHE_ScreenPages page){
+        this.currentPage = page;
+        updateTabsAndButtons();
+    }
+
+    private void updateTabsAndButtons(){
+        updateTabButtons();
+        toggleInventorySlots(currentPage == GHE_ScreenPages.INVENTORY);
+    }
+
+
+    private void updateTabButtons(){
+        switch (this.currentPage){
+            case MAIN -> {
+                this.mainTabButton.active = false;
+                this.inventoryTabButton.active = true;
+            }
+            case INVENTORY -> {
+                this.inventoryTabButton.active = false;
+                this.mainTabButton.active = true;
+            }
+        }
     }
 
     @Override

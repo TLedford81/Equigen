@@ -6,11 +6,12 @@ import net.minecraft.network.chat.Component;
 import java.util.Map;
 import java.util.UUID;
 
-public record Pregnancy (UUID mate, Component breeder1, Component breeder2, Map<Genetics, Float> babyGenes) {
-    public Pregnancy(UUID mate, Component breeder1, Component breeder2, Map<Genetics, Float> babyGenes) {
+public record Pregnancy (UUID mate, Map<Genetics, Float> babyGenes, Component breederName, Component mareName, Component sireName) {
+    public Pregnancy(UUID mate, Map<Genetics, Float> babyGenes, Component breederName, Component mareName, Component sireName) {
         this.mate = mate;
-        this.breeder1 = breeder1;
-        this.breeder2 = breeder2;
         this.babyGenes = babyGenes;
+        this.breederName = breederName;
+        this.mareName = mareName;
+        this.sireName = sireName;
     }
 }

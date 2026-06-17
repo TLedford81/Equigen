@@ -76,6 +76,10 @@ public class GeneticHorseEntity extends AbstractHorse implements
     public static final EntityDataAccessor<Float> SKILL_JUMP = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> SKILL_ENDURANCE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> SKILL_AGILITY = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
+
+    public static final EntityDataAccessor<String> BREEDER = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> SIRE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> MARE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
     public GeneticBreeds breed;
 //    public static final int geneticCount = GeneticValues.values().length;
 //    public Map<String, Float> GENETICS = new HashMap<String, Float>();
@@ -118,7 +122,6 @@ public class GeneticHorseEntity extends AbstractHorse implements
     public int pregnancyTickTimer;
     public int PregnancyLength = 200; //In Ticks
     public Pregnancy currentPregnancy;
-    public Component breederName1, breederName2;
 
 
     // SPAWNING //
@@ -184,15 +187,22 @@ public class GeneticHorseEntity extends AbstractHorse implements
 
     public void setPregnant(boolean pregnant, Animal mate) {
         if (mate instanceof GeneticHorseEntity ghe) {
-            this.currentPregnancy = pregnant ? new Pregnancy(mate.getUUID(), this.getLoveCause().getDisplayName(), mate.getLoveCause().getDisplayName(),
-                    this.GenerateNewSpawnParentalGenetics(this, ghe)) : null;
+            this.currentPregnancy = pregnant ? new Pregnancy(
+                    mate.getUUID(),
+                    this.GenerateNewSpawnParentalGenetics(this, ghe),
+                    this.ConcatenateBreederNames(this.getLoveCause().getName(), mate.getLoveCause().getName()),
+                    this.getName(),
+                    mate.getName())
+                    : null;
+            if(pregnant) EquigenMod.LOGGER.info("Pregnancy Begun, Breeder: {}", this.currentPregnancy.breederName());
         } else {
             EquigenMod.LOGGER.error("Tried to make Non-GHE pregnant.");
         }
     }
-    private void GiveBirth(ServerLevel level, UUID mate_UUID) {
+    private void GiveBirth() {
         EquigenMod.LOGGER.info("I GAVE BIRTH");
-        if(level.getEntity(mate_UUID) instanceof Animal mate) {
+        ServerLevel level = this.getServer().getLevel(this.level().dimension());
+        if(level.getEntity(this.currentPregnancy.mate()) instanceof Animal mate) {
             AgeableMob ageablemob = this.getBreedOffspring(level, mate);
             final BabyEntitySpawnEvent event = new BabyEntitySpawnEvent(this, mate, ageablemob);
             ageablemob = event.getChild();
@@ -207,27 +217,31 @@ public class GeneticHorseEntity extends AbstractHorse implements
 
             ghe.HandleNewSpawnSkillsAndProficiencies();
             ghe.ApplyNewSpawnParentalGenetics(this.currentPregnancy.babyGenes());
-            ghe.setBreeder1(this.currentPregnancy.breeder1());
-            ghe.setBreeder2(this.currentPregnancy.breeder2());
+            ghe.setBreederName(this.currentPregnancy.breederName());
+            ghe.setSireName(this.currentPregnancy.sireName());
+            ghe.setMareName(this.currentPregnancy.mareName());
+
             this.setPregnant(false, mate);
             this.currentPregnancy = null;
         }
     }
 
-    public Component getBreederNames(){
-        if(this.breederName1 != null && this.breederName2 != null) {
-            if (this.breederName1.getString().equals(this.breederName2.getString())) {
-                return breederName1;
-            } else {
-                return ComponentUtils.formatList(List.of(breederName1, breederName2), Component.translatable("equigen.ui.separator"));
-            }
-        } else {
-            return Component.translatable("equigen.genetic_horse.unknown_breeder");
-        }
+    public Component ConcatenateBreederNames(Component breederName1, Component breederName2){
+        Component breeder1 = breederName1 != null ? breederName1 : Component.translatable("equigen.genetic_horse.unknown_breeder");
+        Component breeder2 = breederName2 != null ? breederName2 : Component.translatable("equigen.genetic_horse.unknown_breeder");
+
+        if (breeder1.getString().equals(breeder2.getString())) { return breeder1; }
+        else { return ComponentUtils.formatList(List.of(breeder1, breeder2),
+                Component.translatable("equigen.ui.separator")); }
     }
 
-    public void setBreeder1(Component name){ this.breederName1 = name; }
-    public void setBreeder2(Component name){ this.breederName2 = name; }
+    public void setBreederName(Component name){ this.entityData.set(BREEDER, name.getString()); }
+    public void setSireName(Component name){ this.entityData.set(SIRE, name.getString()); }
+    public void setMareName(Component name){ this.entityData.set(MARE, name.getString()); }
+
+    public Component getBreederName(){ return Component.literal(this.entityData.get(BREEDER)); }
+    public Component getSireName(){ return Component.literal(this.entityData.get(SIRE)); }
+    public Component getMareName(){ return Component.literal(this.entityData.get(MARE)); }
 
     // BASIC SETTINGS //
     @Override
@@ -324,8 +338,7 @@ public class GeneticHorseEntity extends AbstractHorse implements
         this.setBreed(GeneticBreeds.valueOf(tag.getString("Breed")));
 
         //Breeder
-        this.breederName1 = Component.literal(tag.getString("breeder_1"));
-        this.breederName2 = Component.literal(tag.getString("breeder_2"));
+        this.setBreederName(Component.literal(tag.getString("breeder_1")));
 
         //Pregnancy
         Map<Genetics, Float> loadedGenes = new HashMap<>();
@@ -338,9 +351,10 @@ public class GeneticHorseEntity extends AbstractHorse implements
         if(tag.hasUUID("pregnancy_mate")) {
             this.currentPregnancy = new Pregnancy(
                     tag.getUUID("pregnancy_mate"),
-                    Component.literal(tag.getString("pregnancy_breeder1")),
-                    Component.literal(tag.getString("pregnancy_breeder2")),
-                    loadedGenes
+                    loadedGenes,
+                    Component.literal(tag.getString("pregnancy_breeder")),
+                    Component.literal(tag.getString("pregnancy_mare")),
+                    Component.literal(tag.getString("pregnancy_sire"))
             );
         }
 
@@ -415,9 +429,8 @@ public class GeneticHorseEntity extends AbstractHorse implements
         tag.put("Items", listtag);
 
         //Breeder
-        if(this.breederName1 != null && this.breederName2 != null) {
-            tag.putString("breeder_1", this.breederName1.getString());
-            tag.putString("breeder_2", this.breederName2.getString());
+        if(!this.entityData.get(BREEDER).isEmpty()) {
+            tag.putString("breeder", this.getBreederName().getString());
         }
 
         //Pregnancy
@@ -428,8 +441,9 @@ public class GeneticHorseEntity extends AbstractHorse implements
                 }
             }
             tag.putUUID("pregnancy_mate", this.currentPregnancy.mate());
-            tag.putString("pregnancy_breeder1", this.currentPregnancy.breeder1().getString());
-            tag.putString("pregnancy_breeder2", this.currentPregnancy.breeder2().getString());
+            tag.putString("pregnancy_breeder1", this.currentPregnancy.breederName().getString());
+            tag.putString("pregnancy_mare", this.currentPregnancy.mareName().getString());
+            tag.putString("pregnancy_sire", this.currentPregnancy.sireName().getString());
         }
     }
 
@@ -458,6 +472,11 @@ public class GeneticHorseEntity extends AbstractHorse implements
         builder.define(STRENGTH_PROFICIENCY, 0);
         builder.define(ENDURANCE_PROFICIENCY, 0);
         builder.define(AGILITY_PROFICIENCY, 0);
+
+        builder.define(BREEDER, "");
+        builder.define(SIRE, "");
+        builder.define(MARE, "");
+
     }
 
 
@@ -1535,7 +1554,7 @@ private float difference = 0;
 
             if(this.isPregnant()) EquigenMod.LOGGER.info("IM PREGNANT: " + pregnancyTickTimer);
             if(pregnancyTickTimer <= 0 && this.isPregnant()){
-                GiveBirth(this.getServer().getLevel(this.level().dimension()), this.currentPregnancy.mate());
+                GiveBirth();
             }
         }
     }
