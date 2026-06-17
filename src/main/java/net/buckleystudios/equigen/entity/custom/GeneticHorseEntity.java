@@ -565,10 +565,10 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
     private float getGaitSpeedModifier() {
         return switch (this.getCurrentGait()){
-            case WALK -> 1.0f;
-            case TROT -> 1.5f;
-            case CANTER -> 2.0f;
-            case GALLOP -> 2.5f;
+            case WALK -> 0.1f;
+            case TROT -> 0.6f;
+            case CANTER -> 1.0f;
+            case GALLOP -> 1.3f;
             default -> 1.0f;
         };
     }
