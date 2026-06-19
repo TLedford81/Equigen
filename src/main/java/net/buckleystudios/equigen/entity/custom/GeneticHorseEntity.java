@@ -80,6 +80,8 @@ public class GeneticHorseEntity extends AbstractHorse implements
     public static final EntityDataAccessor<String> BREEDER = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
     public static final EntityDataAccessor<String> SIRE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
     public static final EntityDataAccessor<String> MARE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<Boolean> PREGNANT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.BOOLEAN);
+
     public GeneticBreeds breed;
 //    public static final int geneticCount = GeneticValues.values().length;
 //    public Map<String, Float> GENETICS = new HashMap<String, Float>();
@@ -182,7 +184,7 @@ public class GeneticHorseEntity extends AbstractHorse implements
     }
 
     public boolean isPregnant() {
-        return this.currentPregnancy != null;
+        return this.entityData.get(PREGNANT);
     }
 
     public void setPregnant(boolean pregnant, Animal mate) {
@@ -194,7 +196,10 @@ public class GeneticHorseEntity extends AbstractHorse implements
                     this.getName(),
                     mate.getName())
                     : null;
-            if(pregnant) EquigenMod.LOGGER.info("Pregnancy Begun, Breeder: {}", this.currentPregnancy.breederName());
+            if(pregnant) EquigenMod.LOGGER.info("Pregnancy Begun, Breeder: {}, Horse ID = {}", this.currentPregnancy.breederName(), this.getId());
+            if (!this.level().isClientSide) {
+                this.entityData.set(PREGNANT, pregnant);
+            }
         } else {
             EquigenMod.LOGGER.error("Tried to make Non-GHE pregnant.");
         }
@@ -476,6 +481,7 @@ public class GeneticHorseEntity extends AbstractHorse implements
         builder.define(BREEDER, "");
         builder.define(SIRE, "");
         builder.define(MARE, "");
+        builder.define(PREGNANT, false);
 
     }
 

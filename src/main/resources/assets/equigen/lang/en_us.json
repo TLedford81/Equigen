@@ -208,6 +208,12 @@
 
   "equigen.genetic_horse.unowned": "Unowned",
   "equigen.genetic_horse.measurement.format": "%s Hands",
+  "equigen.gui.genetic_horse.breed": "BREED",
+  "equigen.gui.genetic_horse.actions": "ACTIONS",
+  "equigen.gui.genetic_horse.skills": "SKILLS",
+  "equigen.gui.genetic_horse.stats":"STATS",
+  "equigen.gui.genetic_horse.breeding_cooldown": "Breeding Cooldown",
+  "equigen.gui.genetic_horse.pregnancy_timer": "Pregnancy Timer",
 
   "equigen.ui.separator": " / ",
   "equigen.genetic_horse.unknown_breeder": "Unknown"
