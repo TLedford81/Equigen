@@ -18,7 +18,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.level.block.Rotation;
 
 public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHorseEntityMenu> {
     private final GeneticHorseEntity geneticHorse;
@@ -86,7 +85,7 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
         drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.breed"), x + 45, y + 55, 0.75f, 0xe5c7a8, true);
         drawTextBoundingBox(pGuiGraphics, geneticHorse.getBreed().name(), x + 5, y + 62, 79, 16, 0x412417, 0.7F, false);
         float horseHeight = (float) Math.round((geneticHorse.calculateHorseHeight() * 9.842519685f) * 100) / 100; // Convert meters to hands
-        drawTextBoundingBox(pGuiGraphics, Component.translatable("equigen.genetic_horse.measurement.format", horseHeight), x + 5, y + 5, 50, 10, 0x412417, 0.7F, false);
+        drawTextBoundingBox(pGuiGraphics, Component.translatable("equigen.genetic_horse.measurement.format", horseHeight), x + 7, y + 5, 50, 10, 0x412417, 0.7F, false);
         drawTextBoundingBox(pGuiGraphics,
                 (owner != null) ? geneticHorse.getOwner().getName() : Component.translatable("equigen.genetic_horse.unowned"),
                 x + 5, y + 27, 83, 12, 0x412417, 0.7f, false);
@@ -97,17 +96,27 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
 
         drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stats"), x + 64, y + 128, 0.6f, 0x412417, false);
         drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.hunger"), x + 64, y + 136, 0.5f, 0xe5c7a8, true);
-        drawProgressBar(pGuiGraphics, x + 7, y + 141, 115, 3, geneticHorse.getHunger(), geneticHorse.getMaxHunger());
+        drawProgressBar(pGuiGraphics, x + 8, y + 141, 115, 3, geneticHorse.getHunger(), geneticHorse.getMaxHunger(), geneticHorse.getMaxHunger(), false);
         drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.thirst"), x + 64, y + 146, 0.5f, 0xe5c7a8, true);
-        drawProgressBar(pGuiGraphics, x + 7, y + 151, 115, 3, geneticHorse.getThirst(), geneticHorse.getMaxThirst());
+        drawProgressBar(pGuiGraphics, x + 8, y + 151, 115, 3, geneticHorse.getThirst(), geneticHorse.getMaxThirst(), geneticHorse.getMaxThirst(), false);
         drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.cleanliness"), x + 64, y + 156, 0.5f, 0xe5c7a8, true);
-        drawProgressBar(pGuiGraphics, x + 7, y + 161, 115, 3, geneticHorse.getCleanliness(), geneticHorse.getMaxCleanliness("any"));
+        drawProgressBar(pGuiGraphics, x + 8, y + 161, 115, 3, geneticHorse.getCleanliness(), geneticHorse.getMaxCleanliness("any"), geneticHorse.getMaxCleanliness("any"), false);
         drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.happiness"), x + 64, y + 166, 0.5f, 0xe5c7a8, true);
-        drawProgressBar(pGuiGraphics, x + 7, y + 171, 115, 3, geneticHorse.getHappiness(), geneticHorse.getMaxHappiness());
+        drawProgressBar(pGuiGraphics, x + 8, y + 171, 115, 3, geneticHorse.getHappiness(), geneticHorse.getMaxHappiness(), geneticHorse.getMaxHappiness(), false);
         drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.stress"), x + 64, y + 176, 0.5f, 0xe5c7a8, true);
-        drawProgressBar(pGuiGraphics, x + 7, y + 181, 115, 3, geneticHorse.getStress(), geneticHorse.getMaxStress());
+        drawProgressBar(pGuiGraphics, x + 8, y + 181, 115, 3, geneticHorse.getStress(), geneticHorse.getMaxStress(), geneticHorse.getMaxStress(), false);
 
         drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.skills"), x + 189, y + 128, 0.6f, 0x412417, false);
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.skill.speed"), x + 189, y + 136, 0.5f, 0xe5c7a8, true);
+        drawProgressBar(pGuiGraphics, x + 133, y + 141, 115, 3, geneticHorse.getCurrentSkillLevel("Speed"), geneticHorse.getMaxSkillLevel("Speed"), 10F, true);
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.skill.strength"), x + 189, y + 146, 0.5f, 0xe5c7a8, true);
+        drawProgressBar(pGuiGraphics, x + 133, y + 151, 115, 3, geneticHorse.getCurrentSkillLevel("Strength"), geneticHorse.getMaxSkillLevel("Strength"), 10F, true);
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.skill.jump"), x + 189, y + 156, 0.5f, 0xe5c7a8, true);
+        drawProgressBar(pGuiGraphics, x + 133, y + 161, 115, 3, geneticHorse.getCurrentSkillLevel("Jump"), geneticHorse.getMaxSkillLevel("Jump"), 10F, true);
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.skill.endurance"), x + 189, y + 166, 0.5f, 0xe5c7a8, true);
+        drawProgressBar(pGuiGraphics, x + 133, y + 171, 115, 3, geneticHorse.getCurrentSkillLevel("Endurance"), geneticHorse.getMaxSkillLevel("Endurance"), 10F, true);
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.skill.agility"), x + 189, y + 176, 0.5f, 0xe5c7a8, true);
+        drawProgressBar(pGuiGraphics, x + 133, y + 181, 115, 3, geneticHorse.getCurrentSkillLevel("Agility"), geneticHorse.getMaxSkillLevel("Agility"), 10F, true);
 
         drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.actions"), x + 211, y + 55, 0.75f, 0xe5c7a8, true);
 
@@ -123,12 +132,8 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
     }
 
     private void drawInventoryScreen(GuiGraphics pGuiGraphics, int x, int y){
-        GeneticHorseEntity rotatedModel = this.geneticHorse;
-        float rotation = 90 * Mth.DEG_TO_RAD;
-
-        rotatedModel.rotate(Rotation.CLOCKWISE_90);
         InventoryScreen.renderEntityInInventoryFollowsMouse(pGuiGraphics, x + 92, y + 45, x + 165, y + 113, 20, 0.05F,
-                this.xMouse, this.yMouse, rotatedModel);
+                this.xMouse, this.yMouse, this.geneticHorse);
     }
 
     private void toggleInventorySlots(boolean t){
@@ -212,9 +217,18 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
     drawTextBoundingBox(g, text.getString(), x, y, width, height, color, minScale, dropShadow);
     }
 
-    private void drawProgressBar(GuiGraphics graphics, int x, int y, int barWidth, int barHeight, float currentValue, float maxValue){
-        float staminaPercentage = Mth.clamp(currentValue / maxValue, 0f, 1f);
-        int filled = (int)(staminaPercentage * barWidth);
+    private void drawProgressBar(GuiGraphics graphics, int x, int y, int barWidth, int barHeight, float currentValue, float maxValue, float maxPossible, boolean skill){
+        if (maxPossible <= 0) return;
+
+        float percentage = Mth.clamp(currentValue / maxPossible, 0f, 1f);
+        float max = Mth.clamp(maxValue / maxPossible, 0f, 1f);
+
+        int filled = (int)(percentage * barWidth);
+        int maxFilled = (int)(max * barWidth);
+
+        if (maxValue != maxPossible || skill) {
+            graphics.fill(x, y, x + maxFilled, y + barHeight, 0xffe0bd93); // Use ARGB code not hex.
+        }
         graphics.blit(
                 ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/gui/stamina_bar_fill.png"),
                 x, y,
