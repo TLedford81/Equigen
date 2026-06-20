@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.buckleystudios.equigen.screen.util.ToggleableSlot;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.components.WidgetSprites;
@@ -12,6 +13,7 @@ import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
@@ -80,32 +82,52 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
 
     private void drawMainScreen(GuiGraphics pGuiGraphics, int x, int y){
         LivingEntity owner = geneticHorse.getOwner();
-        pGuiGraphics.drawCenteredString(this.font, geneticHorse.getName(), x + 128, y + 30, 0xe5c7a8);
-        pGuiGraphics.drawCenteredString(this.font, "(Nicknames Coming Soon)", x + 128, y + 40, 0xe5c7a8);
-        pGuiGraphics.drawCenteredString(this.font, geneticHorse.getBreed().name(), x + 128, y + 50, 0xe5c7a8);
-        float horseHeight = geneticHorse.calculateHorseHeight();
-        pGuiGraphics.drawCenteredString(this.font, Component.translatable("equigen.genetic_horse.measurement.format", horseHeight), x + 128, y + 60, 0xe5c7a8);
-
-        pGuiGraphics.drawCenteredString(this.font,
+        drawTextBoundingBox(pGuiGraphics, geneticHorse.getName(), x + 56, y + 5, 140, 10, 0x412417,0.7f, false);
+        drawTextBoundingBox(pGuiGraphics, "(Nicknames Coming Soon)", x + 66, y + 15, 124, 10, 0x412417, 0.7F, false);
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.breed"), x + 45, y + 55, 0.75f, 0xe5c7a8, true);
+        drawTextBoundingBox(pGuiGraphics, geneticHorse.getBreed().name(), x + 5, y + 62, 79, 16, 0x412417, 0.7F, false);
+        float horseHeight = (float) Math.round((geneticHorse.calculateHorseHeight() * 9.842519685f) * 100) / 100; // Convert meters to hands
+        drawTextBoundingBox(pGuiGraphics, Component.translatable("equigen.genetic_horse.measurement.format", horseHeight), x + 7, y + 5, 50, 10, 0x412417, 0.7F, false);
+        drawTextBoundingBox(pGuiGraphics,
                 (owner != null) ? geneticHorse.getOwner().getName() : Component.translatable("equigen.genetic_horse.unowned"),
-                x + 128, y + 70, 0xe5c7a8);
+                x + 5, y + 27, 83, 12, 0x412417, 0.7f, false);
+        drawTextBoundingBox(pGuiGraphics, "Breeder: " + geneticHorse.getBreederName(), x + 5, y + 37, 83, 12, 0x412417, 0.7f, false);
 
-        pGuiGraphics.drawCenteredString(this.font, "Breeder: " + geneticHorse.getBreederName(), x + 128, y + 80, 0xe5c7a8);
-        pGuiGraphics.drawCenteredString(this.font, "Sire: " + geneticHorse.getSireName(), x + 128, y + 90, 0xe5c7a8);
-        pGuiGraphics.drawCenteredString(this.font, "Mare: " + geneticHorse.getMareName(), x + 128, y + 100, 0xe5c7a8);
+        drawTextBoundingBox(pGuiGraphics, "Sire: " + geneticHorse.getSireName(), x + 172, y + 29, 83, 10, 0x412417, 0.7F, false);
+        drawTextBoundingBox(pGuiGraphics, "Mare: " + geneticHorse.getMareName(), x + 172, y + 39, 83, 10, 0x412417, 0.7F, false);
 
-        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.hunger"), x + 45, y + 54, 0.5f, 0xe5c7a8);
-        drawProgressBar(pGuiGraphics, x + 8, y + 59, 75, 3, geneticHorse.getHunger(), geneticHorse.getMaxHunger());
-        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.thirst"), x + 45, y + 65, 0.5f, 0xe5c7a8);
-        drawProgressBar(pGuiGraphics, x + 8, y + 70, 75, 3, geneticHorse.getThirst(), geneticHorse.getMaxThirst());
-        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.cleanliness"), x + 45, y + 76, 0.5f, 0xe5c7a8);
-        drawProgressBar(pGuiGraphics, x + 8, y + 81, 75, 3, geneticHorse.getCleanliness(), geneticHorse.getMaxCleanliness("any"));
-        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.happiness"), x + 45, y + 87, 0.5f, 0xe5c7a8);
-        drawProgressBar(pGuiGraphics, x + 8, y + 92, 75, 3, geneticHorse.getHappiness(), geneticHorse.getMaxHappiness());
-        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.stress"), x + 45, y + 98, 0.5f, 0xe5c7a8);
-        drawProgressBar(pGuiGraphics, x + 8, y + 103, 75, 3, geneticHorse.getStress(), geneticHorse.getMaxStress());
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stats"), x + 64, y + 128, 0.6f, 0x412417, false);
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.hunger"), x + 64, y + 136, 0.5f, 0xe5c7a8, true);
+        drawProgressBar(pGuiGraphics, x + 8, y + 141, 115, 3, geneticHorse.getHunger(), geneticHorse.getMaxHunger(), geneticHorse.getMaxHunger(), false);
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.thirst"), x + 64, y + 146, 0.5f, 0xe5c7a8, true);
+        drawProgressBar(pGuiGraphics, x + 8, y + 151, 115, 3, geneticHorse.getThirst(), geneticHorse.getMaxThirst(), geneticHorse.getMaxThirst(), false);
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.cleanliness"), x + 64, y + 156, 0.5f, 0xe5c7a8, true);
+        drawProgressBar(pGuiGraphics, x + 8, y + 161, 115, 3, geneticHorse.getCleanliness(), geneticHorse.getMaxCleanliness("any"), geneticHorse.getMaxCleanliness("any"), false);
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.happiness"), x + 64, y + 166, 0.5f, 0xe5c7a8, true);
+        drawProgressBar(pGuiGraphics, x + 8, y + 171, 115, 3, geneticHorse.getHappiness(), geneticHorse.getMaxHappiness(), geneticHorse.getMaxHappiness(), false);
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.stress"), x + 64, y + 176, 0.5f, 0xe5c7a8, true);
+        drawProgressBar(pGuiGraphics, x + 8, y + 181, 115, 3, geneticHorse.getStress(), geneticHorse.getMaxStress(), geneticHorse.getMaxStress(), false);
 
-        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.tack"), x + 211, y + 55, 0.75f, 0xe5c7a8);
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.skills"), x + 189, y + 128, 0.6f, 0x412417, false);
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.skill.speed"), x + 189, y + 136, 0.5f, 0xe5c7a8, true);
+        drawProgressBar(pGuiGraphics, x + 133, y + 141, 115, 3, geneticHorse.getCurrentSkillLevel("Speed"), geneticHorse.getMaxSkillLevel("Speed"), 10F, true);
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.skill.strength"), x + 189, y + 146, 0.5f, 0xe5c7a8, true);
+        drawProgressBar(pGuiGraphics, x + 133, y + 151, 115, 3, geneticHorse.getCurrentSkillLevel("Strength"), geneticHorse.getMaxSkillLevel("Strength"), 10F, true);
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.skill.jump"), x + 189, y + 156, 0.5f, 0xe5c7a8, true);
+        drawProgressBar(pGuiGraphics, x + 133, y + 161, 115, 3, geneticHorse.getCurrentSkillLevel("Jump"), geneticHorse.getMaxSkillLevel("Jump"), 10F, true);
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.skill.endurance"), x + 189, y + 166, 0.5f, 0xe5c7a8, true);
+        drawProgressBar(pGuiGraphics, x + 133, y + 171, 115, 3, geneticHorse.getCurrentSkillLevel("Endurance"), geneticHorse.getMaxSkillLevel("Endurance"), 10F, true);
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.skill.agility"), x + 189, y + 176, 0.5f, 0xe5c7a8, true);
+        drawProgressBar(pGuiGraphics, x + 133, y + 181, 115, 3, geneticHorse.getCurrentSkillLevel("Agility"), geneticHorse.getMaxSkillLevel("Agility"), 10F, true);
+
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.actions"), x + 211, y + 55, 0.75f, 0xe5c7a8, true);
+
+        drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.stat.cleanliness"), x + 127, y + 115, 0.75f, 0x4124178, true);
+
+        drawCenteredText(pGuiGraphics,
+                (this.geneticHorse.isPregnant()) ? Component.translatable("equigen.gui.genetic_horse.pregnancy_timer") : Component.translatable("equigen.gui.genetic_horse.breeding_cooldown"),
+                x + 128, y + 116, 0.6F, 0x412417, false);
+        pGuiGraphics.renderComponentHoverEffect(this.font, null, 100, 100);
 
         renderGHEInInventoryFollowsMouse(pGuiGraphics, x + 92, y + 45, x + 165, y + 113, 20, 0.05F,
                 this.xMouse, this.yMouse, this.geneticHorse);
@@ -158,21 +180,57 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
         renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
-    private void drawCenteredText(GuiGraphics g, Component text, int x, int y, float size, int color) {
+    private void drawCenteredText(GuiGraphics g, Component text, int x, int y, float size, int color, boolean dropShadow) {
         g.pose().pushPose();
         g.pose().scale(size, size, 1f);
 
-        g.drawCenteredString(this.font, text,
+        this.drawCenteredStringNoDropShadow(g, this.font, text,
                 (int)(x / size),
                 (int)(y / size),
-                color);
+                color, dropShadow);
 
         g.pose().popPose();
     }
 
-    private void drawProgressBar(GuiGraphics graphics, int x, int y, int barWidth, int barHeight, float currentValue, float maxValue){
-        float staminaPercentage = Mth.clamp(currentValue / maxValue, 0f, 1f);
-        int filled = (int)(staminaPercentage * barWidth);
+
+    private void drawTextBoundingBox(GuiGraphics g, String text, int x, int y, int width, int height, int color, float minScale, boolean dropShadow) {
+//        //Text cannot go outside the bounds of this box. Use for names.
+        float scale = 1.0f;
+        while (!text.isEmpty() && scale > minScale && (font.width(text) * scale > width || font.lineHeight * scale > height)) {
+                scale -= 0.05f;
+        }
+        while ((font.width(text) * scale > width || font.lineHeight * scale > height)) {
+            text = text.substring(0, text.length() - 1);
+        }
+
+        g.pose().pushPose();
+
+        g.pose().translate(x, y, 0);
+        g.pose().scale(scale, scale, 1.0F);
+
+        int scaledCenterX = (int) (((width / 2F) / scale));
+        int scaledY = (int) (height / (2F * scale) - font.lineHeight / 2F);
+
+        drawCenteredStringNoDropShadow(g, font, text, scaledCenterX, scaledY, color, dropShadow);
+
+        g.pose().popPose();
+    }
+    private void drawTextBoundingBox(GuiGraphics g, Component text, int x, int y, int width, int height, int color, float minScale, boolean dropShadow) {
+    drawTextBoundingBox(g, text.getString(), x, y, width, height, color, minScale, dropShadow);
+    }
+
+    private void drawProgressBar(GuiGraphics graphics, int x, int y, int barWidth, int barHeight, float currentValue, float maxValue, float maxPossible, boolean skill){
+        if (maxPossible <= 0) return;
+
+        float percentage = Mth.clamp(currentValue / maxPossible, 0f, 1f);
+        float max = Mth.clamp(maxValue / maxPossible, 0f, 1f);
+
+        int filled = (int)(percentage * barWidth);
+        int maxFilled = (int)(max * barWidth);
+
+        if (maxValue != maxPossible || skill) {
+            graphics.fill(x, y, x + maxFilled, y + barHeight, 0xffe0bd93); // Use ARGB code not hex.
+        }
         graphics.blit(
                 ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/gui/stamina_bar_fill.png"),
                 x, y,
@@ -253,5 +311,16 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
 
         p_275689_.setXRot(pitch);
         graphics.disableScissor();
+    }
+
+    public void drawCenteredStringNoDropShadow(GuiGraphics graphics, Font font, Component text, int x, int y, int color, boolean dropShadow) {
+        FormattedCharSequence formattedcharsequence = text.getVisualOrderText();
+        graphics.drawString(font, formattedcharsequence, x - font.width(formattedcharsequence) / 2, y, color, dropShadow);
+    }
+    public void drawCenteredStringNoDropShadow(GuiGraphics graphics, Font font, String text, int x, int y, int color, boolean dropShadow) {
+        graphics.drawString(font, text, x - font.width(text) / 2, y, color, dropShadow);
+    }
+    public void drawCenteredStringNoDropShadow(GuiGraphics graphics, Font font, FormattedCharSequence text, int x, int y, int color, boolean dropShadow) {
+        graphics.drawString(font, text, x - font.width(text) / 2, y, color, dropShadow);
     }
 }

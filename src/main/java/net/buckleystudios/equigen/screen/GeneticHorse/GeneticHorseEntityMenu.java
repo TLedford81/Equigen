@@ -61,13 +61,13 @@ public class GeneticHorseEntityMenu extends AbstractContainerMenu {
                         inventory,
                         col + row * 9 + 9,   // Inventory index
                         44 + col * 19,       // X
-                        117 + row * 19       // Y
+                        121 + row * 19       // Y
                 ));
             }
         }
 
         for (int s = 0; s < 9; s++) {
-            this.addSlot(new ToggleableSlot(inventory, s, 44 + s * 19, 175));
+            this.addSlot(new ToggleableSlot(inventory, s, 44 + s * 19, 186));
         }
     }
 

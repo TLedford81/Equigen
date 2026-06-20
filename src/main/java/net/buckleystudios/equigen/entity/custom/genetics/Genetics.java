@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public enum Genetics {
+
     /* Gender */
     GENDER (ModData.GENDER, GeneticCategories.RANDOM_GENETICS, 2, false, false),
 
