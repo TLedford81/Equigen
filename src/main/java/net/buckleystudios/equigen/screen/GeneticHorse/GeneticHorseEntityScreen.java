@@ -16,6 +16,8 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
 
 public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHorseEntityMenu> {
     private final GeneticHorseEntity geneticHorse;
@@ -105,12 +107,12 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
 
         drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.tack"), x + 211, y + 55, 0.75f, 0xe5c7a8);
 
-        InventoryScreen.renderEntityInInventoryFollowsMouse(pGuiGraphics, x + 92, y + 45, x + 165, y + 113, 20, 0.05F,
+        renderGHEInInventoryFollowsMouse(pGuiGraphics, x + 92, y + 45, x + 165, y + 113, 20, 0.05F,
                 this.xMouse, this.yMouse, this.geneticHorse);
     }
 
     private void drawInventoryScreen(GuiGraphics pGuiGraphics, int x, int y){
-        InventoryScreen.renderEntityInInventoryFollowsMouse(pGuiGraphics, x + 92, y + 45, x + 165, y + 113, 20, 0.05F,
+        renderGHEInInventoryFollowsMouse(pGuiGraphics, x + 92, y + 45, x + 165, y + 113, 20, 0.05F,
                 this.xMouse, this.yMouse, this.geneticHorse);
     }
 
@@ -178,5 +180,78 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
                 filled, barHeight,
                 barWidth, barHeight
         );
+    }
+
+    public static void renderGHEInInventoryFollowsMouse(
+            GuiGraphics guiGraphics,
+            int x1,
+            int y1,
+            int x2,
+            int y2,
+            int scale,
+            float yOffset,
+            float mouseX,
+            float mouseY,
+            LivingEntity entity
+    ) {
+        float f = (float)(x1 + x2) / 2.0F;
+        float f1 = (float)(y1 + y2) / 2.0F;
+        float f2 = (float)Math.atan((double)((f - mouseX) / 40.0F));
+        float f3 = (float)Math.atan((double)((f1 - mouseY) / 40.0F));
+        // Forge: Allow passing in direct angle components instead of mouse position
+        renderGHEInInventoryFollowsAngle(guiGraphics, x1, y1, x2, y2, scale, yOffset, f2, f3, entity);
+    }
+
+    public static void renderGHEInInventoryFollowsAngle(
+            GuiGraphics graphics,
+            int p_275688_,
+            int p_275245_,
+            int p_275535_,
+            int p_294406_,
+            int p_294663_,
+            float p_275604_,
+            float angleXComponent,
+            float angleYComponent,
+            LivingEntity p_275689_
+    ) {
+        float f = (float)(p_275688_ + p_275535_) / 2.0F;
+        float f1 = (float)(p_275245_ + p_294406_) / 2.0F;
+        graphics.enableScissor(p_275688_, p_275245_, p_275535_, p_294406_);
+        float f2 = angleXComponent;
+        float f3 = angleYComponent;
+
+        Quaternionf quaternionf = new Quaternionf()
+                .rotateZ((float) Math.PI)
+                .rotateY((float) Math.PI);
+
+        Quaternionf quaternionf1 = new Quaternionf()
+                .rotateX(-f3 * 20.0F * (float)(Math.PI / 180.0))
+                .rotateY(-f2 * 20.0F * (float)(Math.PI / 180.0));
+
+        quaternionf.mul(quaternionf1);
+        float f4 = p_275689_.yBodyRot;
+        float f5 = p_275689_.getYRot();
+        float f6 = p_275689_.getXRot();
+        float f7 = p_275689_.yHeadRotO;
+        float f8 = p_275689_.yHeadRot;
+        p_275689_.yBodyRot = 180.0F + f2 * 20.0F;
+        p_275689_.setYRot(180.0F + f2 * 40.0F);
+        p_275689_.setXRot(-f3 * 20.0F);
+        p_275689_.yHeadRot = p_275689_.getYRot();
+        p_275689_.yHeadRotO = p_275689_.getYRot();
+        float f9 = p_275689_.getScale();
+        Vector3f vector3f = new Vector3f(0.0F, p_275689_.getBbHeight() / 2.0F + p_275604_ * f9, 0.0F);
+        float f10 = (float)p_294663_ / f9;
+        InventoryScreen.renderEntityInInventory(graphics, f, f1, f10, vector3f, quaternionf, quaternionf1, p_275689_);
+        float yaw = f2 * 40.0F;
+        float pitch = -f3 * 20.0F;
+
+        p_275689_.setYRot(yaw);
+        p_275689_.yBodyRot = yaw;
+        p_275689_.yHeadRot = yaw;
+        p_275689_.yHeadRotO = yaw;
+
+        p_275689_.setXRot(pitch);
+        graphics.disableScissor();
     }
 }
