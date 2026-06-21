@@ -26,12 +26,15 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
     private float xMouse;
     private float yMouse;
     private GHE_ScreenPages currentPage = GHE_ScreenPages.MAIN;
+    private int debugTabCurrentPage;
+    private ImageButton debugTabPageLeft, debugTabPageRight;
     private static final WidgetSprites TAB_BUTTON_SPRITES = new WidgetSprites(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "genetic_horse/tab"),
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "genetic_horse/tab_selected"),
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "genetic_horse/tab_highlighted"));
-    private ImageButton mainTabButton;
-    private ImageButton inventoryTabButton;
+    private Map<GHE_ScreenPages, ImageButton> tabs = new HashMap<>();
+
+    private int nextTabHeight;
 
     public GeneticHorseEntityScreen(GeneticHorseEntityMenu pMenu, Inventory pPlayerInventory, Component title) {
         super(pMenu, pPlayerInventory, title);
@@ -46,21 +49,41 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
         titleLabelX = 999;
         titleLabelY = 999;
         inventoryLabelX = 1000;
+        this.nextTabHeight = 0;
 
-        this.mainTabButton = this.addRenderableWidget(new ImageButton(
-                leftPos - 17, topPos,
-                17, 56,
-                TAB_BUTTON_SPRITES,
-                button -> switchPage(GHE_ScreenPages.MAIN)
-        ));
-        this.inventoryTabButton = this.addRenderableWidget(new ImageButton(
-                leftPos - 17, topPos + 60,
-                17, 56,
-                TAB_BUTTON_SPRITES,
-                button -> switchPage(GHE_ScreenPages.INVENTORY)
+        this.addTab(GHE_ScreenPages.MAIN);
+        this.addTab(GHE_ScreenPages.INVENTORY);
+        this.addTab(GHE_ScreenPages.DEBUG);
+
+        //Debug Tab
+        debugTabPageRight = this.addRenderableWidget(new ImageButton(
+                leftPos + (this.imageWidth - 15), topPos + (this.imageHeight - 20),
+                10, 10,
+                new WidgetSprites(
+                        ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "genetic_horse/page_right"),
+                        ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "genetic_horse/page_right")),
+                button -> this.debugTabCurrentPage++
         ));
 
+        debugTabPageLeft = this.addRenderableWidget(new ImageButton(
+                leftPos + 5, topPos + (this.imageHeight - 20),
+                10, 10,
+                new WidgetSprites(
+                        ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "genetic_horse/page_left"),
+                        ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "genetic_horse/page_left")),
+                button -> this.debugTabCurrentPage--
+        ));
         updateTabsAndButtons();
+    }
+
+    private void addTab(GHE_ScreenPages page){
+        this.tabs.put(page, this.addRenderableWidget(new ImageButton(
+                leftPos - 17, topPos + this.nextTabHeight,
+                17, 56,
+                TAB_BUTTON_SPRITES,
+                button -> switchPage(page)
+        )));
+        this.nextTabHeight += 60;
     }
 
     @Override
@@ -77,6 +100,7 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
         switch(currentPage){
             case MAIN -> drawMainScreen(pGuiGraphics, x, y);
             case INVENTORY -> drawInventoryScreen(pGuiGraphics, x, y);
+            case DEBUG -> drawDebugScreen(pGuiGraphics, x, y);
         }
     }
 
@@ -150,6 +174,69 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
                 x + 109, y + 50, 121, 52, 0xe5c7a8, 0.7F, 1.8F,true);
     }
 
+    private void drawDebugScreen(GuiGraphics guiGraphics, int x, int y){
+        Component text = Component.literal(GeneticDebugTools.GenerateDebugPage(geneticHorse));
+
+        List<List<FormattedCharSequence>> pages = getPagedLines(font, text, 250);
+        int lastPage = pages.size() - 1;
+
+        this.debugTabCurrentPage = Mth.clamp(this.debugTabCurrentPage, 0, lastPage);
+
+        drawPagedWordWrap(guiGraphics, this.debugTabCurrentPage, font, text, x + 3, y + 3, 250, 0x412417);
+
+        debugTabPageRight.visible = this.currentPage == GHE_ScreenPages.DEBUG && this.debugTabCurrentPage < lastPage;
+        debugTabPageLeft.visible = this.currentPage == GHE_ScreenPages.DEBUG && this.debugTabCurrentPage > 0;
+    }
+
+    private List<List<FormattedCharSequence>> getPagedLines(Font font, FormattedText text, int lineWidth) {
+        String rawText = text.getString();
+
+        List<List<FormattedCharSequence>> pages = new ArrayList<>();
+        List<FormattedCharSequence> currentPage = new ArrayList<>();
+
+        String[] sections = rawText.split("\\{P\\}", -1);
+
+        for (String section : sections) {
+            List<FormattedCharSequence> lines = font.split(Component.literal(section), lineWidth);
+
+            for (FormattedCharSequence line : lines) {
+                if (currentPage.size() >= 20) {
+                    pages.add(currentPage);
+                    currentPage = new ArrayList<>();
+                }
+
+                currentPage.add(line);
+            }
+
+            if (!currentPage.isEmpty()) {
+                pages.add(currentPage);
+                currentPage = new ArrayList<>();
+            }
+        }
+
+        if (pages.isEmpty()) {
+            pages.add(new ArrayList<>());
+        }
+
+        return pages;
+    }
+
+    public void drawPagedWordWrap(GuiGraphics graphics, int page, Font font,
+                              FormattedText text, int x, int y,
+                              int lineWidth, int color) {
+
+    List<List<FormattedCharSequence>> pages = getPagedLines(font, text, lineWidth);
+
+    if (page < 0 || page >= pages.size()) {
+        return;
+    }
+
+    for (FormattedCharSequence line : pages.get(page)) {
+        graphics.drawString(font, line, x, y, color, false);
+        y += 9;
+    }
+}
+
     private void toggleInventorySlots(boolean t){
         for (Slot slot : this.menu.slots) {
             if(slot instanceof ToggleableSlot s){
@@ -165,19 +252,21 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
 
     private void updateTabsAndButtons(){
         updateTabButtons();
+        updateDebugMenuButtons();
         toggleInventorySlots(currentPage == GHE_ScreenPages.INVENTORY);
     }
 
-
+    private void updateDebugMenuButtons(){
+        if(this.currentPage != GHE_ScreenPages.DEBUG){
+            this.debugTabPageLeft.visible = false;
+            this.debugTabPageRight.visible = false;
+        }
+    }
     private void updateTabButtons(){
-        switch (this.currentPage){
-            case MAIN -> {
-                this.mainTabButton.active = false;
-                this.inventoryTabButton.active = true;
-            }
-            case INVENTORY -> {
-                this.inventoryTabButton.active = false;
-                this.mainTabButton.active = true;
+        for(GHE_ScreenPages page : GHE_ScreenPages.values()){
+            if(this.tabs.containsKey(page)) {
+                this.tabs.get(page).active = this.currentPage != page;
+                EquigenMod.LOGGER.info(page.name() + ": " + (this.currentPage != page));
             }
         }
     }
