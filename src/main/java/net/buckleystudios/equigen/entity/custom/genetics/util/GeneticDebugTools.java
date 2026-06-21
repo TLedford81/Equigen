@@ -119,5 +119,57 @@ public class GeneticDebugTools {
                 generatedPages, true);
         itemStack.set(DataComponents.WRITTEN_BOOK_CONTENT, content);
     }
+
+    public static String GenerateDebugPage(GeneticHorseEntity entity){
+
+        StringBuilder information = new StringBuilder();
+        //Basic Horse Information
+        String owner;
+        String ownerUUID;
+        try {
+            owner = entity.getOwner().getDisplayName().getString();
+            ownerUUID = entity.getOwner().getStringUUID();
+
+        } catch (NullPointerException e){
+            owner = "None";
+            ownerUUID = "N/A";
+        }
+        String growthStage = entity.isBaby() ? "Baby" : "Adult";
+
+        information.append(
+                entity.getName().getString() +
+                        "\n\n§2UUID:§r\n" + entity.getStringUUID() +
+                        "\n§2Owner:§r\n" + owner +
+                        "\n§2Owner UUID:§r\n" + ownerUUID +
+                        "\n§2Breed:§r\n" + entity.getBreed() +
+                        "\n§2Age:§r\n" + entity.getAge() + " (" + growthStage + ")" +
+                        "\n§2Texture:§r\n" + "Not Yet Implemented" +
+                        "\n§2Hunger:§r\n" + entity.getHunger() +
+                        "\n§2Thirst:§r\n" + entity.getThirst() +
+                        "\n§2Total Cleanliness:§r\n" + entity.getCleanliness() +
+                        "\n§2Hair Cleanliness:§r\n" + entity.getCleanliness("hair") +
+                        "\n§2Hoof Cleanliness:§r\n" + entity.getCleanliness("hoof") +
+                        "\n§2Happiness:§r\n" + entity.getHappiness() +
+                        "\n§2Stress:§r\n" + entity.getStress()
+        );
+
+
+        //Genetics
+        information.append("{P}§b§l---GENETICS---\n\n");
+        for (Genetics genetic : Genetics.values()) {
+            information.append("§3§l" + genetic.name() + ": §0" + GeneticsHandler.getEntityGenetic(entity, genetic) + "\n");
+        }
+
+        //Genetic Names
+        information.append("{P}§b§l---RENDERED PARTS---\n\n");
+        boolean colorSwap = false;
+        String color;
+        for (String partName : entity.getPartsToRender()) {
+            colorSwap = !colorSwap;
+            color = colorSwap ? "§6" : "§d";
+            information.append(color + partName + "\n");
+        }
+        return information.toString();
+    }
     
 }
