@@ -81,6 +81,10 @@ public class GeneticHorseEntity extends AbstractHorse implements
     public static final EntityDataAccessor<String> SIRE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
     public static final EntityDataAccessor<String> MARE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
     public static final EntityDataAccessor<Boolean> PREGNANT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.BOOLEAN);
+    public static final EntityDataAccessor<Integer> PREGNANCY_LENGTH = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Integer> PREGNANCY_TIMER = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Integer> BREEDING_COOLDOWN = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Integer> MAX_BREEDING_COOLDOWN = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.INT);
 
     public GeneticBreeds breed;
 //    public static final int geneticCount = GeneticValues.values().length;
@@ -121,8 +125,6 @@ public class GeneticHorseEntity extends AbstractHorse implements
     private boolean isTurnClutched;
     private boolean isJumpReady = true;
 
-    public int pregnancyTickTimer;
-    public int PregnancyLength = 200; //In Ticks
     public Pregnancy currentPregnancy;
 
 
@@ -171,14 +173,16 @@ public class GeneticHorseEntity extends AbstractHorse implements
 
         if (gender == 1) {
             geneticHorseMate.setPregnant(true, this);
-            geneticHorseMate.pregnancyTickTimer = PregnancyLength;
+            geneticHorseMate.entityData.set(PREGNANCY_TIMER, geneticHorseMate.entityData.get(PREGNANCY_LENGTH));
+            geneticHorseMate.setBreedingCooldown(this.entityData.get(MAX_BREEDING_COOLDOWN) + this.entityData.get(PREGNANCY_LENGTH));
+            this.setBreedingCooldown(this.entityData.get(MAX_BREEDING_COOLDOWN));
         } else if (gender == 2){
             this.setPregnant(true, mate);
-            this.pregnancyTickTimer = PregnancyLength;
+            this.entityData.set(PREGNANCY_TIMER, this.entityData.get(PREGNANCY_LENGTH));
+            this.setBreedingCooldown(this.entityData.get(MAX_BREEDING_COOLDOWN) + this.entityData.get(PREGNANCY_LENGTH));
+            ((GeneticHorseEntity) mate).setBreedingCooldown(this.entityData.get(MAX_BREEDING_COOLDOWN));
         }
         EquigenMod.LOGGER.info("IM PREGNANT!");
-        this.setAge(20);
-        mate.setAge(20);
         this.resetLove();
         mate.resetLove();
     }
@@ -229,6 +233,48 @@ public class GeneticHorseEntity extends AbstractHorse implements
             this.setPregnant(false, mate);
             this.currentPregnancy = null;
         }
+    }
+
+    public int getPregnancyTickTimer() {
+        return this.entityData.get(PREGNANCY_TIMER);
+    }
+
+    public void setPregnancyTickTimer(int value) {
+        this.entityData.set(PREGNANCY_TIMER, value);
+    }
+
+    public int getPregnancyLength() {
+        return this.entityData.get(PREGNANCY_LENGTH);
+    }
+
+    public int getBreedingCooldown() {
+        return this.entityData.get(BREEDING_COOLDOWN);
+    }
+    public void setBreedingCooldown(int ticks) {
+        this.entityData.set(BREEDING_COOLDOWN, ticks);
+    }
+
+    public int getMaxBreedingCooldown() {
+        return this.entityData.get(MAX_BREEDING_COOLDOWN);
+    }
+    public void setMaxBreedingCooldown(int ticks) {
+        this.entityData.set(MAX_BREEDING_COOLDOWN, ticks);
+    }
+    public boolean hasBreedingCooldown() {
+        return getBreedingCooldown() > 0;
+    }
+    @Override
+    public boolean canFallInLove() {
+        return super.canFallInLove() && !hasBreedingCooldown();
+    }
+
+    @Override
+    public void setInLove(@Nullable Player player) {
+        if (hasBreedingCooldown()) {
+            return;
+        }
+
+        super.setInLove(player);
     }
 
     public Component ConcatenateBreederNames(Component breederName1, Component breederName2){
@@ -482,6 +528,10 @@ public class GeneticHorseEntity extends AbstractHorse implements
         builder.define(SIRE, "");
         builder.define(MARE, "");
         builder.define(PREGNANT, false);
+        builder.define(PREGNANCY_LENGTH, 200);
+        builder.define(PREGNANCY_TIMER, 0);
+        builder.define(BREEDING_COOLDOWN, 0);
+        builder.define(MAX_BREEDING_COOLDOWN, 200);
 
     }
 
@@ -1558,8 +1608,8 @@ private float difference = 0;
                 this.removeEffect(ModEffects.STRESSED_EFFECT);
             }
 
-            if(this.isPregnant()) EquigenMod.LOGGER.info("IM PREGNANT: " + pregnancyTickTimer);
-            if(pregnancyTickTimer <= 0 && this.isPregnant()){
+            if(this.isPregnant()) EquigenMod.LOGGER.info("IM PREGNANT: " + this.entityData.get(PREGNANCY_TIMER));
+            if(this.entityData.get(PREGNANCY_TIMER) <= 0 && this.isPregnant()){
                 GiveBirth();
             }
         }
@@ -1570,8 +1620,11 @@ private float difference = 0;
         thirstTickTimer++;
         stressRecoveryTickTimer++;
 
-        if(this.isPregnant()){
-            pregnancyTickTimer--;
+        if(!this.level().isClientSide && this.isPregnant() && this.getPregnancyTickTimer() > 0){
+            this.setPregnancyTickTimer(this.getPregnancyTickTimer() - 1);
+        }
+        if (!this.level().isClientSide && this.getBreedingCooldown() > 0) {
+            this.setBreedingCooldown(this.getBreedingCooldown() - 1);
         }
     }
 

@@ -205,6 +205,8 @@
   "equigen.gui.genetic_horse.stat.happiness": "HAPPINESS",
   "equigen.gui.genetic_horse.stat.stress": "STRESS",
   "equigen.gui.genetic_horse.tack": "TACK",
+  "equigen.gui.genetic_horse.inventory": "INVENTORY",
+  "equigen.gui.genetic_horse.saddlebag_required": "SADDLEBAG REQUIRED (Coming Soon)",
 
   "equigen.gui.genetic_horse.skill.speed": "SPEED",
   "equigen.gui.genetic_horse.skill.strength": "STRENGTH",

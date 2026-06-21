@@ -38,7 +38,7 @@ public class GeneticHorseEntityMenu extends AbstractContainerMenu {
 
         //--- TACK SLOTS ---
         //Saddle
-        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 0, 175, 65){
+        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 0, 27, 50){
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return stack.is(Items.SADDLE);
@@ -46,13 +46,16 @@ public class GeneticHorseEntityMenu extends AbstractContainerMenu {
         });
 
         //Unused
-        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 1, 194, 65){});
-        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 2, 213, 65){});
-        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 3, 232, 65){});
-        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 4, 175, 85){});
-        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 5, 194, 85){});
-        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 6, 213, 85){});
-        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 7, 232, 85){});
+        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 1, 46, 50){});
+        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 2, 65, 50){});
+        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 3, 84, 50){});
+        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 4, 46, 69){});
+        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 5, 65, 69){});
+        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 6, 27, 88){});
+        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 7, 46, 88){});
+        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 8, 65, 88){});
+        this.addSlot(new ToggleableSlot(this.geneticHorseContainer, 9, 84, 88){});
+
 
         //Hotbar slots
         for (int row = 0; row < 3; ++row) {
