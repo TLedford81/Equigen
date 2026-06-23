@@ -1660,80 +1660,131 @@ private float difference = 0;
 //                    maxValue += 1; //Allows for slight variation
 
                     float newGeneticValue;
-                    if (value.getCategory() == GeneticCategories.CONFORMATION_GENETICS) {
-                        // TODO - Add a method for conformation genetics that we DONT want to do the "find a value between mom and dad" such as neck curve and head type.
-                        // TODO - Also make the head multipart lol
-                        float difference;
-                        if (fatherGenetic > motherGenetic) {
-                            difference = fatherGenetic - motherGenetic;
-                        } else {
-                            difference = motherGenetic - fatherGenetic;
-                        }
-                        if (difference >= 4) {
-                            newGeneticValue = calculator.standardInheritance(calculator.percentileGenerator(List.of(35, 35, 30)),(List.of((calculator.random((minValue - 1), (minValue + 3), 1.0F, valueMax, 1)), (calculator.random((maxValue - 3), (maxValue + 1), 1.0F, valueMax, 1)), calculator.random(minValue, maxValue,1.0f, valueMax, 1))));
-                        } else {
-                            newGeneticValue = calculator.standardInheritance(calculator.percentileGenerator(List.of(35, 35, 30)), List.of(motherGenetic, fatherGenetic, calculator.random(minValue, maxValue, 0.0f, valueMax, 1)));
-                        }
-                    } else if (value.getCategory() == GeneticCategories.COAT_GENETICS) {
-                        newGeneticValue = calculator.punnettInheritance(motherGenetic, fatherGenetic);
-                    } else if (value.getCategory() == GeneticCategories.COAT_VARIATION_GENETICS) {
-                        newGeneticValue = calculator.standardInheritance((calculator.percentileGenerator(List.of(45, 45, 10))), List.of(motherGenetic, fatherGenetic, calculator.random(0.0f, valueMax, 0.0F, valueMax, 1)));
-                    } else if (value.getCategory() == GeneticCategories.PATTERN_GENETICS) {
-                        newGeneticValue = calculator.punnettInheritance(motherGenetic, fatherGenetic);
-                    } else if (value.getCategory() == GeneticCategories.PATTERN_VARIATION_GENETICS) {
-                        char variationNum = value.name().charAt(value.name().length() - 1);
-                        switch (variationNum) {
-                            case '1' -> newGeneticValue = calculator.ladderInheritance(this, "PATTERN", value, calculator.percentileGenerator(List.of(39, 39, 10, 10, 2)), List.of(motherGenetic, fatherGenetic,
-                                    GeneticsHandler.getEntityGenetic(mother, value.name().replace(variationNum, '2')), //Calls the Variation 2 Genetic
-                                    GeneticsHandler.getEntityGenetic(father, value.name().replace(variationNum, '2')), 1.0F));
-
-                            case '2' -> newGeneticValue = calculator.ladderInheritance(this, "PATTERN", value, calculator.percentileGenerator(List.of(35, 35, 5, 5, 8, 8, 4)), List.of(motherGenetic, fatherGenetic,
-                                    GeneticsHandler.getEntityGenetic(mother,value.name().replace(variationNum, '1')),
-                                    GeneticsHandler.getEntityGenetic(father, value.name().replace(variationNum, '1')),
-                                    GeneticsHandler.getEntityGenetic(mother,value.name().replace(variationNum, '3')),
-                                    GeneticsHandler.getEntityGenetic(father, value.name().replace(variationNum, '3')),
-                                    1.0F));
-
-                            case '3' -> newGeneticValue = calculator.ladderInheritance(this, "PATTERN", value, calculator.percentileGenerator(List.of(40, 40, 8, 8, 4)), List.of(motherGenetic, fatherGenetic,
-                                    GeneticsHandler.getEntityGenetic(mother, value.name().replace(variationNum, '2')),
-                                    GeneticsHandler.getEntityGenetic(father, value.name().replace(variationNum, '2')),
-                                    calculator.random(2.0F, valueMax, 2.0F, valueMax, 1)));
-
-                            default -> newGeneticValue = 0.0F;
-                        }
-                        EquigenMod.LOGGER.info("Setting " + value.name() + " genetic to " + newGeneticValue);
-
-                    } else if (value.getCategory() == GeneticCategories.MARKING_GENETICS) {
-                        newGeneticValue = calculator.standardInheritance((calculator.percentileGenerator(List.of(40, 40, 10, 10))), List.of(motherGenetic, fatherGenetic, calculator.random(0.0F, valueMax, 0.0F, valueMax, 1), 0.0F));
-                    } else if (value.getCategory() == GeneticCategories.PERSONALITY_GENETICS) {
-                        newGeneticValue = calculator.ladderInheritance(this, "PERSONALITY", value, calculator.percentileGenerator(List.of(20, 20, 60)), List.of(motherGenetic, fatherGenetic, calculator.random(0.0F, valueMax, 0.0F, valueMax, 1)));
-                    } else if (value.getCategory() == GeneticCategories.PERCENTAGE_GENETICS) {
-                        // NEED TO EDIT CHANCES TO HAVE MORE RANDOM VARIATION, NOT DONE!!
-                        newGeneticValue = calculator.standardInheritance(calculator.percentileGenerator(List.of(10, 10, 2, 78)), List.of(motherGenetic, fatherGenetic, calculator.random(0.00F, 1.01F, 0.0F, valueMax,100), calculator.random(minValue, maxValue, 0.0F, valueMax ,100)));
-                    } else if (value.getCategory() == GeneticCategories.TRAIT_GENETICS) {
-                        newGeneticValue = calculator.ladderInheritance(this, "TRAIT", value, (calculator.percentileGenerator(List.of(20, 20, 60))), List.of(motherGenetic, fatherGenetic, calculator.random(1.0F, valueMax, 1.0F, valueMax, 1)));
-
-                    } else if (value.getCategory() == GeneticCategories.LOVE_AND_HATE_GENETICS) {
-                        newGeneticValue = calculator.standardInheritance((calculator.percentileGenerator(List.of(20, 20, 60))), List.of(motherGenetic, fatherGenetic, (calculator.random(1.0F, valueMax, 0.0f, valueMax, 1))));
-
-                    } else if (value.getCategory() == GeneticCategories.SKILL_GENETICS) {
-                        float minSkillMax = minValue + 0.75F;
-                        float maxSkillMin = maxValue - 1.0F;
-                        if (minSkillMax > maxValue) {minSkillMax = maxValue;}
-                        if (maxSkillMin < minValue) {maxSkillMin = minValue;}
-                        newGeneticValue = calculator.standardInheritance((calculator.percentileGenerator(List.of(50, 40, 10))), (List.of((calculator.random((minValue - 1.0F), minSkillMax, 3.0F, valueMax, 100)),(calculator.random(minValue, maxSkillMin, 3.0F, valueMax, 100)), (calculator.random(maxSkillMin, (maxValue + 1.0F), 3.0F, valueMax, 100)))));
-
-                    } else if (value.getCategory() == GeneticCategories.RANDOM_GENETICS){
-                        newGeneticValue = Math.round(random.nextFloat(1, value.getDefaultMaxSize()));
-                        EquigenMod.LOGGER.info("Random Genetic, genetic value result = " + newGeneticValue);
-
+                    if (!value.requiresComplexInheritance()) {
+                        EquigenMod.LOGGER.info("NOT USING COMPLEX INHERITANCE. Mutation Chance = {}", value.getMutationChance());
+                        float remaining = (100 - value.getMutationChance())/2;
+                        float remainingRounded = 100 - remaining - value.getMutationChance(); // Ensures that the addded numbers of the percentile generator do equal 100
+                        newGeneticValue = calculator.standardInheritance(calculator.percentileGenerator(List.of(remaining, remainingRounded, value.getMutationChance())),
+                                List.of(minValue, maxValue,calculator.random(minValue, maxValue, 0.0f, valueMax, 1)));
                     } else {
-                        EquigenMod.LOGGER.info("Genetic = " + value.name() + ". minValue = " + minValue + ". maxValue = " + maxValue);
-                        newGeneticValue = calculator.random(minValue, maxValue, 1.0F, valueMax, 1);
+                        if (value.getCategory() == GeneticCategories.CONFORMATION_GENETICS) {
+                            // TODO - Add a method for conformation genetics that we DONT want to do the "find a value between mom and dad" such as neck curve and head type.
+                            // TODO - Also make the head multipart lol
+                            float difference;
+                            if (fatherGenetic > motherGenetic) {
+                                difference = fatherGenetic - motherGenetic;
+                            } else {
+                                difference = motherGenetic - fatherGenetic;
+                            }
+                            if (difference >= 4) {
+                                newGeneticValue = calculator.standardInheritance(calculator.percentileGenerator(List.of(35F, 35F, 30F)),
+                                        (List.of((calculator.random((minValue - 1), (minValue + 3), 1.0F, valueMax, 1)),
+                                                (calculator.random((maxValue - 3), (maxValue + 1), 1.0F, valueMax, 1)),
+                                                calculator.random(minValue, maxValue, 1.0f, valueMax, 1))));
+                            } else {
+                                newGeneticValue = calculator.standardInheritance(calculator.percentileGenerator(List.of(35F, 35F, 30F)),
+                                        List.of(motherGenetic,
+                                                fatherGenetic,
+                                                calculator.random(minValue, maxValue, 0.0f, valueMax, 1)));
+                            }
+                        } else if (value.getCategory() == GeneticCategories.COAT_GENETICS) {
+                            newGeneticValue = calculator.punnettInheritance(motherGenetic, fatherGenetic);
+                        } else if (value.getCategory() == GeneticCategories.COAT_VARIATION_GENETICS) {
+                            newGeneticValue = calculator.standardInheritance((calculator.percentileGenerator(List.of(45F, 45F, 10F))),
+                                    List.of(motherGenetic,
+                                            fatherGenetic,
+                                            calculator.random(0.0f, valueMax, 0.0F, valueMax, 1)));
+                        } else if (value.getCategory() == GeneticCategories.PATTERN_GENETICS) {
+                            newGeneticValue = calculator.punnettInheritance(motherGenetic, fatherGenetic);
+                        } else if (value.getCategory() == GeneticCategories.PATTERN_VARIATION_GENETICS) {
+                            char variationNum = value.name().charAt(value.name().length() - 1);
+                            switch (variationNum) {
+                                case '1' ->
+                                        newGeneticValue = calculator.ladderInheritance(this, "PATTERN", value, calculator.percentileGenerator(List.of(39F, 39F, 10F, 10F, 2F)),
+                                                List.of(motherGenetic,
+                                                        fatherGenetic,
+                                                        GeneticsHandler.getEntityGenetic(mother, value.name().replace(variationNum, '2')), //Calls the Variation 2 Genetic
+                                                        GeneticsHandler.getEntityGenetic(father, value.name().replace(variationNum, '2')), 1.0F));
+
+                                case '2' ->
+                                        newGeneticValue = calculator.ladderInheritance(this, "PATTERN", value, calculator.percentileGenerator(List.of(35F, 35F, 5F, 5F, 8F, 8F, 4F)),
+                                                List.of(motherGenetic,
+                                                        fatherGenetic,
+                                                        GeneticsHandler.getEntityGenetic(mother, value.name().replace(variationNum, '1')),
+                                                        GeneticsHandler.getEntityGenetic(father, value.name().replace(variationNum, '1')),
+                                                        GeneticsHandler.getEntityGenetic(mother, value.name().replace(variationNum, '3')),
+                                                        GeneticsHandler.getEntityGenetic(father, value.name().replace(variationNum, '3')),
+                                                        1.0F));
+
+                                case '3' ->
+                                        newGeneticValue = calculator.ladderInheritance(this, "PATTERN", value, calculator.percentileGenerator(List.of(40F, 40F, 8F, 8F, 4F)),
+                                                List.of(motherGenetic,
+                                                        fatherGenetic,
+                                                        GeneticsHandler.getEntityGenetic(mother, value.name().replace(variationNum, '2')),
+                                                        GeneticsHandler.getEntityGenetic(father, value.name().replace(variationNum, '2')),
+                                                        calculator.random(2.0F, valueMax, 2.0F, valueMax, 1)));
+
+                                default -> newGeneticValue = 0.0F;
+                            }
+                            EquigenMod.LOGGER.info("Setting " + value.name() + " genetic to " + newGeneticValue);
+
+                        } else if (value.getCategory() == GeneticCategories.MARKING_GENETICS) {
+                            newGeneticValue = calculator.standardInheritance((calculator.percentileGenerator(List.of(40F, 40F, 10F, 10F))),
+                                    List.of(
+                                            motherGenetic,
+                                            fatherGenetic,
+                                            calculator.random(0.0F, valueMax, 0.0F, valueMax, 1), 0.0F));
+                        } else if (value.getCategory() == GeneticCategories.PERSONALITY_GENETICS) {
+                            newGeneticValue = calculator.ladderInheritance(this, "PERSONALITY", value, calculator.percentileGenerator(List.of(20F, 20F, 60F)),
+                                    List.of(motherGenetic,
+                                            fatherGenetic,
+                                            calculator.random(0.0F, valueMax, 0.0F, valueMax, 1)));
+                        } else if (value.getCategory() == GeneticCategories.PERCENTAGE_GENETICS) {
+                            // NEED TO EDIT CHANCES TO HAVE MORE RANDOM VARIATION, NOT DONE!!
+                            newGeneticValue = calculator.standardInheritance(calculator.percentileGenerator(List.of(10F, 10F, 2F, 78F)),
+                                    List.of(motherGenetic,
+                                            fatherGenetic,
+                                            calculator.random(0.00F, 1.01F, 0.0F, valueMax, 100),
+                                            calculator.random(minValue, maxValue, 0.0F, valueMax, 100)));
+                        } else if (value.getCategory() == GeneticCategories.TRAIT_GENETICS) {
+                            newGeneticValue = calculator.ladderInheritance(this, "TRAIT", value, (calculator.percentileGenerator(List.of(20F, 20F, 60F))),
+                                    List.of(motherGenetic,
+                                            fatherGenetic,
+                                            calculator.random(1.0F, valueMax, 1.0F, valueMax, 1)));
+
+                        } else if (value.getCategory() == GeneticCategories.LOVE_AND_HATE_GENETICS) {
+                            newGeneticValue = calculator.standardInheritance((calculator.percentileGenerator(List.of(20F, 20F, 60F))),
+                                    List.of(motherGenetic,
+                                            fatherGenetic,
+                                            (calculator.random(1.0F, valueMax, 0.0f, valueMax, 1))));
+
+                        } else if (value.getCategory() == GeneticCategories.SKILL_GENETICS) {
+                            float minSkillMax = minValue + 0.75F;
+                            float maxSkillMin = maxValue - 1.0F;
+                            EquigenMod.LOGGER.info("MIN VALUE = {} MAX VALUE = {}", minSkillMax, maxSkillMin);
+                            if (minSkillMax > maxValue) {
+                                minSkillMax = maxValue;
+                            }
+                            if (maxSkillMin < minValue) {
+                                maxSkillMin = minValue;
+                            }
+                            newGeneticValue = calculator.standardInheritance((calculator.percentileGenerator(List.of(50F, 40F, 10F))),
+                                    (List.of((calculator.random((minValue - 1.0F), minSkillMax, 3.0F, valueMax, 100)), /*Lower percentage result*/
+                                            (calculator.random(minValue, maxSkillMin, 3.0F, valueMax, 100)), /*Medium percentage result (between lower of parents number and higher number - 1. TO NOTE!!! If parents are close in skill then this option just kind of averages it out?*/
+                                            (calculator.random(maxSkillMin, (maxValue + 1.0F), 3.0F, valueMax, 100))))); /*Highest percentage result, between highest parent number -1 and highest parent number + 1*/
+
+                        } else if (value.getCategory() == GeneticCategories.RANDOM_GENETICS) {
+                            newGeneticValue = Math.round(random.nextFloat(1, value.getDefaultMaxSize()));
+                            EquigenMod.LOGGER.info("Random Genetic, genetic value result = " + newGeneticValue);
+
+                        } else {
+                            EquigenMod.LOGGER.info("Genetic = " + value.name() + ". minValue = " + minValue + ". maxValue = " + maxValue);
+                            newGeneticValue = calculator.random(minValue, maxValue, 1.0F, valueMax, 1);
+                        }
+
                     }
                     newGeneticValue = Math.clamp(newGeneticValue, 0, value.getDefaultMaxSize());
                     GeneticsHandler.setEntityGenetic(this, value, newGeneticValue);
-
                 }
             } else {
                 EquigenMod.LOGGER.info("Rerolling " + calculator.reroll);

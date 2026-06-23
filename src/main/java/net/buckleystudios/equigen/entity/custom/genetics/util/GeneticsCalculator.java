@@ -175,15 +175,15 @@ public class GeneticsCalculator {
         return genetic;
     }
     Random RNG = new Random();
-    public int percentileGenerator(List<Integer> arrs) {
-        List<Integer> maxArrs = new ArrayList<>();
-        int cumulativeArrs = 0;
+    public int percentileGenerator(List<Float> arrs) {
+        List<Float> maxArrs = new ArrayList<>();
+        float cumulativeArrs = 0;
 
-        for (int r : arrs) {
+        for (Float r : arrs) {
             cumulativeArrs += r;
             maxArrs.add(cumulativeArrs);
         }
-        if (cumulativeArrs != 100) {
+        if (cumulativeArrs != 100.0F) {
             EquigenMod.LOGGER.error("Percentile Generator: The percentage chances of the selected genetics don't add up to 100");
         }
         int GeneratedNumber = RNG.nextInt(100) + 1;
@@ -200,32 +200,42 @@ public class GeneticsCalculator {
 
     }
 
+
     public float random(float minValue, float maxValue, float valueMin, float valueCap, float variation, int roundTo) {
         //Variation = percentage variation (in form of decimal) above and below the minValue and maxValue that the number can be. For example,
         //if maxValue is 0.5 and variation is 0.10, then the actual max is 0.55.
 
         //roundTo is the amount of decimal places that you want it to be rounded to. If you want it to be 2 decimal places you would put 100.
-        if (variation > 1.0f) {
-            EquigenMod.LOGGER.error("ERROR! Random number varation is greater than 1.0 Variation is " + variation);
-            return -1;
+//        if (variation > 1.0f) {
+//            EquigenMod.LOGGER.error("ERROR! Random number varation is greater than 1.0 Variation is " + variation);
+//            return -1;
+//        }
+        if (minValue < valueMin) {
+            minValue = valueMin;
+            EquigenMod.LOGGER.info("MIN VALUE LOWER THAN VALUE MIN");
         }
-        float newMin = findMin(minValue, maxValue, valueMin, variation);
-        float newMax = findMax(minValue, maxValue, valueCap, variation);
-        maxValue = maxValue + 0.01f;
-
-        if (newMin == newMax) {
-            EquigenMod.LOGGER.info("MINVALUE = MAXVALUE");
-            return newMin;
+        if (maxValue > valueCap) {
+            maxValue = valueCap;
+            EquigenMod.LOGGER.info("MAX VALUE LARGER THAN VALUE CAP");
         }
-
-        EquigenMod.LOGGER.info("New Min = " + newMin + ". New Max = " + newMax);
+//        float newMin = findMin(minValue, maxValue, valueMin, variation);
+//        float newMax = findMax(minValue, maxValue, valueCap, variation);
+//        maxValue = maxValue + 0.01f;
+//
+//        if (newMin == newMax) {
+//            EquigenMod.LOGGER.info("MINVALUE = MAXVALUE");
+//            return newMin;
+//        }
+//      I have literally no idea why I did this. Looking at my genetics code I haven't used the variation thing once. I just handle that per genetic.
+        // This thing was just causing bugs so disabling for now. Probably will remove in the future.
+//        EquigenMod.LOGGER.info("New Min = " + newMin + ". New Max = " + newMax);
 
         if (minValue > maxValue) {
-            EquigenMod.LOGGER.error("ERROR! Random number newMin (" + newMin + ") is larger than  (" + newMax + ")");
-            return -1;
+            EquigenMod.LOGGER.error("ERROR! Min (" + minValue + ") is larger than  (" + maxValue + ")");
+            return maxValue;
         }
-        int rounded = (int)((RNG.nextFloat((newMax - newMin) + 0.01F) + newMin) * roundTo);
-        EquigenMod.LOGGER.info("Rounded random = " + rounded);
+        int rounded = (int)((RNG.nextFloat((maxValue - minValue) + 0.01F) + minValue) * roundTo);
+        EquigenMod.LOGGER.info("ROUNDED RANDOM = {}, MAX VALUE = {}, MIN VALUE = {}", rounded/roundTo, maxValue, minValue);
 
         return ((float) rounded / roundTo);
     }
