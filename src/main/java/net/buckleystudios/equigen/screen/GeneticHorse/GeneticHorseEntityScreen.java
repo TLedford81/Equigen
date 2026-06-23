@@ -5,6 +5,7 @@ import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.custom.genetics.util.GeneticDebugTools;
 import net.buckleystudios.equigen.screen.util.ToggleableSlot;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ImageButton;
@@ -12,11 +13,16 @@ import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.MobEffectTextureManager;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
@@ -166,6 +172,9 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
         }
         if (this.geneticHorse.isPregnant()) {
             drawPregnancyTimer(pGuiGraphics, x + 90, y + 122, 75, 2, this.geneticHorse.getPregnancyTickTimer(), this.geneticHorse.getPregnancyLength(), 0xffad1fd0);
+        }
+        if (!geneticHorse.getActiveEffects().isEmpty()) {
+            drawStatusEffects(pGuiGraphics, x + 91, y + 27, 74, 12, 12, 12);
         }
 
         renderGHEInInventoryFollowsMouse(pGuiGraphics, x + 92, y + 45, x + 165, y + 113, 20, 0.05F,
@@ -464,5 +473,41 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
     }
     public void drawCenteredStringNoDropShadow(GuiGraphics graphics, Font font, FormattedCharSequence text, int x, int y, int color, boolean dropShadow) {
         graphics.drawString(font, text, x - font.width(text) / 2, y, color, dropShadow);
+    }
+
+    public void drawStatusEffects(GuiGraphics graphics, int x, int y, int width, int height, int iconWidth, int iconHeight) {
+        Minecraft minecraft = Minecraft.getInstance();
+        MobEffectTextureManager textureManager = minecraft.getMobEffectTextures();
+
+        int index = 0;
+        int spacing = 2;
+        int effectNumber = geneticHorse.getActiveEffects().size();
+        if (effectNumber > 5) {
+            effectNumber = 5;
+        }
+        int effectWidth = (iconWidth * effectNumber) + (spacing * (Math.max(0, effectNumber -1)));
+
+        int centeredX = (x + (width/2)) - (effectWidth / 2);
+
+
+        for(MobEffectInstance effectTexture : geneticHorse.getActiveEffects()) {
+            if (index >= 5) {
+                break;
+            }
+            Holder<MobEffect> effect = effectTexture.getEffect();
+
+            TextureAtlasSprite sprite = textureManager.get(effect);
+            //TODO Make it so that if effects dont have an icon texture they dont show up.
+            graphics.blit(
+                    centeredX + (index * (iconWidth + spacing)),
+                    y,
+                    0,
+                    iconWidth,
+                    iconHeight,
+                    sprite
+            );
+
+            index++;
+        }
     }
 }
