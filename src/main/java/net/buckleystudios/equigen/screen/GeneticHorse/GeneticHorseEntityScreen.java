@@ -13,6 +13,7 @@ import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.MobEffectTextureManager;
 import net.minecraft.core.Holder;
@@ -497,6 +498,9 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
             Holder<MobEffect> effect = effectTexture.getEffect();
 
             TextureAtlasSprite sprite = textureManager.get(effect);
+            if (sprite.contents().name().equals(MissingTextureAtlasSprite.getLocation())) {
+                continue;
+            }
             //TODO Make it so that if effects dont have an icon texture they dont show up.
             graphics.blit(
                     centeredX + (index * (iconWidth + spacing)),
