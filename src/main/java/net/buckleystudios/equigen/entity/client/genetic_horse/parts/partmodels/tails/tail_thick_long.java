@@ -6,10 +6,15 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartTailModel;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Block;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Part;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class tail_thick_long extends MultipartTailModel<GeneticHorseEntity> {
 	private final ModelPart root;
@@ -32,27 +37,27 @@ public class tail_thick_long extends MultipartTailModel<GeneticHorseEntity> {
 
 		PartDefinition tail_thick_long_tail_connector_rotator = tail_thick_long_tail_connector.addOrReplaceChild("tail_thick_long_tail_connector_rotator", CubeListBuilder.create(), PartPose.offset(0.0F, -1.1F, 2.6922F));
 
-		PartDefinition cube_r1 = tail_thick_long_tail_connector_rotator.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(996, 698).addBox(-0.5531F, 0.0071F, -0.555F, 2.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.4469F, -0.5363F, -1.8771F, -0.2182F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = tail_thick_long_tail_connector_rotator.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(31, 98).addBox(-0.5531F, 0.0071F, -0.555F, 2.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.4469F, -0.5363F, -1.8771F, -0.2182F, 0.0F, 0.0F));
 
 		PartDefinition tail_thick_long_tail_top = tail_thick_long_tail_connector.addOrReplaceChild("tail_thick_long_tail_top", CubeListBuilder.create(), PartPose.offset(0.4469F, -0.5425F, 0.7846F));
 
 		PartDefinition tail_thick_long_tail_top_individual = tail_thick_long_tail_top.addOrReplaceChild("tail_thick_long_tail_top_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0682F, 1.7288F));
 
-		PartDefinition cube_r2 = tail_thick_long_tail_top_individual.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(983, 710).addBox(-1.0F, -2.0785F, 0.1082F, 3.0F, 3.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.9832F, -0.4469F, -0.8939F, -1.3963F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = tail_thick_long_tail_top_individual.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(26, 123).addBox(-1.0F, -2.0785F, 0.1082F, 3.0F, 3.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.9832F, -0.4469F, -0.8939F, -1.3963F, 0.0F, 0.0F));
 
 		PartDefinition tail_thick_long_tail_middle = tail_thick_long_tail_top.addOrReplaceChild("tail_thick_long_tail_middle", CubeListBuilder.create(), PartPose.offset(-0.3575F, 3.3235F, 2.8545F));
 
 		PartDefinition tail_thick_long_tail_middle_individual = tail_thick_long_tail_middle.addOrReplaceChild("tail_thick_long_tail_middle_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -0.5F));
 
-		PartDefinition cube_r3 = tail_thick_long_tail_middle_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(976, 693).addBox(-1.0F, -0.9635F, -0.1495F, 5.0F, 5.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.6089F, -0.0179F, 1.3408F, -1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r3 = tail_thick_long_tail_middle_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(66, 63).addBox(-1.0F, -0.9635F, -0.1495F, 5.0F, 5.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.6089F, -0.0179F, 1.3408F, -1.5708F, 0.0F, 0.0F));
 
 		PartDefinition tail_thick_long_tail_bottom = tail_thick_long_tail_middle.addOrReplaceChild("tail_thick_long_tail_bottom", CubeListBuilder.create(), PartPose.offset(0.0894F, 9.7768F, -0.4288F));
 
-		PartDefinition cube_r4 = tail_thick_long_tail_bottom.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(1000, 703).addBox(-1.0F, -1.8391F, -0.9493F, 3.0F, 3.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.7151F, 0.5363F, -0.5363F, -1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r4 = tail_thick_long_tail_bottom.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(87, 60).addBox(-1.0F, -1.8391F, -0.9493F, 3.0F, 3.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.7151F, 0.5363F, -0.5363F, -1.5708F, 0.0F, 0.0F));
 
 		PartDefinition hipsAnchor = tail_thick_long.addOrReplaceChild("hipsAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.5F, -0.25F));
 
-		return LayerDefinition.create(meshdefinition, 1024, 1024);
+		return LayerDefinition.create(meshdefinition, 128, 160);
 	}
 
 	@Override
@@ -77,5 +82,14 @@ public class tail_thick_long extends MultipartTailModel<GeneticHorseEntity> {
 
 		registerAnchorPath("hipsAnchor", root, tail, this.hipsAnchor);
 	}
-
+	@Override
+	public Part getCubeDimensions() {
+		return new Part("tail_thick_long", new ArrayList<>(
+				Arrays.asList(
+						new Block(2, 2, 3),
+						new Block(3, 3, 4),
+						new Block(5, 5, 10),
+						new Block(3, 3, 6))
+		));
+	}
 }

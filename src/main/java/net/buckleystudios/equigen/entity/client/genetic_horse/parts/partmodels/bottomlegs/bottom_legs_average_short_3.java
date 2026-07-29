@@ -6,10 +6,15 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartBottomLegModel;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Block;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Part;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class bottom_legs_average_short_3 extends MultipartBottomLegModel<GeneticHorseEntity> {
 	private final ModelPart root;
@@ -30,19 +35,19 @@ public class bottom_legs_average_short_3 extends MultipartBottomLegModel<Genetic
 
 		PartDefinition bottom_legs_average_short_3 = partdefinition.addOrReplaceChild("bottom_legs_average_short_3", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition bottom_legs_average_short_3_bottom_individual = bottom_legs_average_short_3.addOrReplaceChild("bottom_legs_average_short_3_bottom_individual", CubeListBuilder.create(), PartPose.offset(-0.0189F, 1.2478F, 0.024F));
+		PartDefinition bottom_legs_average_short_3_bottom_individual = bottom_legs_average_short_3.addOrReplaceChild("bottom_legs_average_short_3_bottom_individual", CubeListBuilder.create(), PartPose.offset(-0.0188F, 1.2478F, 0.024F));
 
-		PartDefinition cube_r1 = bottom_legs_average_short_3_bottom_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(40, 268).addBox(-1.0189F, -0.4691F, -2.7809F, 2.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0189F, -1.2809F, -0.0309F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = bottom_legs_average_short_3_bottom_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(0, 155).addBox(-1.0189F, -0.4691F, -2.7809F, 2.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0188F, -1.2809F, -0.0309F, 1.5708F, 0.0F, 0.0F));
 
-		PartDefinition bottom_legs_average_short_3_bottom_lower_individual = bottom_legs_average_short_3.addOrReplaceChild("bottom_legs_average_short_3_bottom_lower_individual", CubeListBuilder.create(), PartPose.offset(0.0189F, 3.6186F, -0.639F));
+		PartDefinition bottom_legs_average_short_3_bottom_lower_individual = bottom_legs_average_short_3.addOrReplaceChild("bottom_legs_average_short_3_bottom_lower_individual", CubeListBuilder.create(), PartPose.offset(0.0188F, 3.6186F, -0.639F));
 
-		PartDefinition cube_r2 = bottom_legs_average_short_3_bottom_lower_individual.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(40, 272).addBox(-0.9811F, -0.4711F, -2.9947F, 2.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.0189F, -1.2761F, 0.7787F, 1.0036F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = bottom_legs_average_short_3_bottom_lower_individual.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(18, 138).addBox(-0.9811F, -0.4711F, -2.9947F, 2.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.0188F, -1.2761F, 0.7787F, 1.0036F, 0.0F, 0.0F));
 
 		PartDefinition kneeAnchor = bottom_legs_average_short_3.addOrReplaceChild("kneeAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.05F, 0.0F));
 
 		PartDefinition hoofAnchor = bottom_legs_average_short_3.addOrReplaceChild("hoofAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 5.3F, -1.6F));
 
-		return LayerDefinition.create(meshdefinition, 1024, 1024);
+		return LayerDefinition.create(meshdefinition, 128, 160);
 	}
 
 	@Override
@@ -67,5 +72,14 @@ public class bottom_legs_average_short_3 extends MultipartBottomLegModel<Genetic
 
 		registerAnchorPath("kneeAnchor", root, bottom_legs, this.kneeAnchor);
 		registerAnchorPath("hoofAnchor", root, bottom_legs, this.hoofAnchor);
+	}
+
+	@Override
+	public Part getCubeDimensions() {
+		return new Part("bottom_legs_average_short_3", new ArrayList<>(
+				Arrays.asList(
+						new Block(2, 1, 3),
+						new Block(2, 1, 3))
+		));
 	}
 }

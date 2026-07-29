@@ -6,10 +6,15 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartHipModel;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Block;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Part;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class hips_lean_average_1 extends MultipartHipModel<GeneticHorseEntity> {
 	private final ModelPart root;
@@ -38,27 +43,27 @@ public class hips_lean_average_1 extends MultipartHipModel<GeneticHorseEntity> {
 
 		PartDefinition hips_lean_average_1_left_hip_glute_base = hips_lean_average_1_left_hip.addOrReplaceChild("hips_lean_average_1_left_hip_glute_base", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -1.0726F));
 
-		PartDefinition hips_lean_average_1_left_hip_glute_base_individual = hips_lean_average_1_left_hip_glute_base.addOrReplaceChild("hips_lean_average_1_left_hip_glute_base_individual", CubeListBuilder.create().texOffs(100, 910).addBox(-2.0F, -3.5F, -3.5F, 4.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offset(1.5195F, 0.1927F, 0.1446F));
+		PartDefinition hips_lean_average_1_left_hip_glute_base_individual = hips_lean_average_1_left_hip_glute_base.addOrReplaceChild("hips_lean_average_1_left_hip_glute_base_individual", CubeListBuilder.create().texOffs(0, 119).addBox(-2.0F, -3.5F, -3.5F, 4.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offset(1.5195F, 0.1927F, 0.1446F));
 
-		PartDefinition hips_lean_average_1_left_hip_glute_outer = hips_lean_average_1_left_hip_glute_base.addOrReplaceChild("hips_lean_average_1_left_hip_glute_outer", CubeListBuilder.create().texOffs(122, 914).addBox(-2.0F, -2.5F, -2.5F, 4.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(1.9665F, -0.0196F, 0.1446F));
+		PartDefinition hips_lean_average_1_left_hip_glute_outer = hips_lean_average_1_left_hip_glute_base.addOrReplaceChild("hips_lean_average_1_left_hip_glute_outer", CubeListBuilder.create().texOffs(0, 93).addBox(-2.0F, -2.5F, -2.5F, 4.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(1.9665F, -0.0196F, 0.1446F));
 
 		PartDefinition hips_lean_average_1_right_hip = hips_lean_average_1.addOrReplaceChild("hips_lean_average_1_right_hip", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		PartDefinition hips_lean_average_1_right_hip_glute_base = hips_lean_average_1_right_hip.addOrReplaceChild("hips_lean_average_1_right_hip_glute_base", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -1.0726F));
 
-		PartDefinition hips_lean_average_1_right_hip_glue_base_individual = hips_lean_average_1_right_hip_glute_base.addOrReplaceChild("hips_lean_average_1_right_hip_glue_base_individual", CubeListBuilder.create().texOffs(100, 896).addBox(-2.0F, -3.5F, -3.5F, 4.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.4856F, 0.1558F, 0.1808F));
+		PartDefinition hips_lean_average_1_right_hip_glue_base_individual = hips_lean_average_1_right_hip_glute_base.addOrReplaceChild("hips_lean_average_1_right_hip_glue_base_individual", CubeListBuilder.create().texOffs(0, 136).addBox(-2.0F, -3.5F, -3.5F, 4.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.4856F, 0.1558F, 0.1808F));
 
-		PartDefinition hips_lean_average_1_right_hip_glue_outer = hips_lean_average_1_right_hip_glute_base.addOrReplaceChild("hips_lean_average_1_right_hip_glue_outer", CubeListBuilder.create().texOffs(122, 904).addBox(-2.0F, -2.5F, -2.5F, 4.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.0335F, -0.0196F, 0.1446F));
+		PartDefinition hips_lean_average_1_right_hip_glue_outer = hips_lean_average_1_right_hip_glute_base.addOrReplaceChild("hips_lean_average_1_right_hip_glue_outer", CubeListBuilder.create().texOffs(0, 106).addBox(-2.0F, -2.5F, -2.5F, 4.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.0335F, -0.0196F, 0.1446F));
 
 		PartDefinition hips_lean_average_1_hips_top = hips_lean_average_1.addOrReplaceChild("hips_lean_average_1_hips_top", CubeListBuilder.create(), PartPose.offset(0.0F, -0.9832F, 0.8939F));
 
 		PartDefinition hips_lean_average_1_hips_top_upper = hips_lean_average_1_hips_top.addOrReplaceChild("hips_lean_average_1_hips_top_upper", CubeListBuilder.create(), PartPose.offset(0.0086F, -0.0966F, -0.002F));
 
-		PartDefinition cube_r1 = hips_lean_average_1_hips_top_upper.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(122, 894).addBox(-5.08F, -4.24F, -5.36F, 5.0F, 4.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.58F, -1.4516F, 2.9121F, 1.2217F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = hips_lean_average_1_hips_top_upper.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(0, 69).addBox(-5.08F, -4.24F, -5.36F, 5.0F, 4.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.58F, -1.4516F, 2.9121F, 1.2217F, 0.0F, 0.0F));
 
 		PartDefinition hips_lean_average_1_hips_top_lower = hips_lean_average_1_hips_top.addOrReplaceChild("hips_lean_average_1_hips_top_lower", CubeListBuilder.create(), PartPose.offset(0.0617F, 0.7001F, -0.3367F));
 
-		PartDefinition cube_r2 = hips_lean_average_1_hips_top_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(99, 885).addBox(-5.08F, -4.24F, -5.36F, 6.0F, 5.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -1.6226F, 2.4422F, 1.2217F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = hips_lean_average_1_hips_top_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(0, 81).addBox(-5.08F, -4.24F, -5.36F, 6.0F, 5.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -1.6226F, 2.4422F, 1.2217F, 0.0F, 0.0F));
 
 		PartDefinition backAnchor = hips_lean_average_1.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -3.325F, 0.0F));
 
@@ -68,7 +73,7 @@ public class hips_lean_average_1 extends MultipartHipModel<GeneticHorseEntity> {
 
 		PartDefinition backRightLegAnchor = hips_lean_average_1.addOrReplaceChild("backRightLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.75F, 3.675F, 0.25F));
 
-		return LayerDefinition.create(meshdefinition, 1024, 1024);
+		return LayerDefinition.create(meshdefinition, 128, 160);
 	}
 
 	@Override
@@ -97,5 +102,16 @@ public class hips_lean_average_1 extends MultipartHipModel<GeneticHorseEntity> {
 		registerAnchorPath("backRightLegAnchor", root, hips, this.backRightLegAnchor);
 
 	}
-
+	@Override
+	public Part getCubeDimensions() {
+		return new Part("hips_lean_average_1", new ArrayList<>(
+				Arrays.asList(
+						new Block(4, 7, 7),
+						new Block(4, 5, 5),
+						new Block(4, 7, 7),
+						new Block(4, 5, 5),
+						new Block(5, 4, 6),
+						new Block(6, 5, 6))
+		));
+	}
 }

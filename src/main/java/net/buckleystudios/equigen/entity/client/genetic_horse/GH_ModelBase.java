@@ -26,7 +26,7 @@ public class GH_ModelBase<T extends GeneticHorseEntity> extends HierarchicalMode
 
         PartDefinition main = partdefinition.addOrReplaceChild("main", CubeListBuilder.create(), PartPose.offsetAndRotation(0.2682F, 24.0F, 7.2696F, 0.0F, 1.5708F, 0.0F));
 
-        return LayerDefinition.create(meshdefinition, 1024, 1024);
+        return LayerDefinition.create(meshdefinition, 256, 320);
     }
 
     @Override

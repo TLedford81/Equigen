@@ -7,10 +7,15 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartHeadModel;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Block;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Part;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class head_dished_lean extends MultipartHeadModel<GeneticHorseEntity> {
 	private final ModelPart root;
@@ -33,37 +38,37 @@ public class head_dished_lean extends MultipartHeadModel<GeneticHorseEntity> {
 
 		PartDefinition head_dished_lean = partdefinition.addOrReplaceChild("head_dished_lean", CubeListBuilder.create(), PartPose.offset(0.075F, 24.0F, 0.0F));
 
-		PartDefinition head_dished_lean_forehead = head_dished_lean.addOrReplaceChild("head_dished_lean_forehead", CubeListBuilder.create(), PartPose.offset(-0.0738F, -0.4084F, -1.4273F));
-
-		PartDefinition cube_r1 = head_dished_lean_forehead.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(1005, 47).addBox(-3.08F, -4.0F, -1.92F, 4.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.08F, -1.7583F, 1.0415F, 2.3998F, 0.0F, 0.0F));
-
-		PartDefinition head_dished_lean_nose_bridge = head_dished_lean.addOrReplaceChild("head_dished_lean_nose_bridge", CubeListBuilder.create(), PartPose.offset(-0.1269F, 1.8254F, -2.0903F));
-
-		PartDefinition cube_r2 = head_dished_lean_nose_bridge.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(990, 38).addBox(-3.08F, -3.24F, -1.84F, 3.0F, 5.0F, 3.0F, new CubeDeformation(0.02F)), PartPose.offsetAndRotation(1.58F, -0.8028F, -0.1369F, 2.8798F, 0.0F, 0.0F));
-
 		PartDefinition head_dished_lean_jaw = head_dished_lean.addOrReplaceChild("head_dished_lean_jaw", CubeListBuilder.create(), PartPose.offset(0.0F, 1.5195F, -0.2682F));
 
 		PartDefinition head_dished_lean_jaw_individual = head_dished_lean_jaw.addOrReplaceChild("head_dished_lean_jaw_individual", CubeListBuilder.create(), PartPose.offset(-0.1163F, 0.3088F, -0.1435F));
 
-		PartDefinition cube_r3 = head_dished_lean_jaw_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(987, 46).addBox(-3.9554F, -0.7109F, -1.1891F, 4.0F, 3.0F, 5.0F, new CubeDeformation(0.09F)), PartPose.offsetAndRotation(1.9555F, 0.0154F, -1.1314F, 0.7854F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = head_dished_lean_jaw_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(105, 91).addBox(-3.9554F, -0.7109F, -1.1891F, 4.0F, 3.0F, 5.0F, new CubeDeformation(0.09F)), PartPose.offsetAndRotation(1.9555F, 0.0154F, -1.1314F, 0.7854F, 0.0F, 0.0F));
 
 		PartDefinition head_dished_lean_jaw_branch = head_dished_lean_jaw.addOrReplaceChild("head_dished_lean_jaw_branch", CubeListBuilder.create(), PartPose.offset(-0.1285F, 2.0109F, -1.3424F));
 
-		PartDefinition cube_r4 = head_dished_lean_jaw_branch.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(1007, 40).addBox(-3.0799F, -3.2418F, -1.8382F, 3.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.5799F, -1.1189F, 0.0295F, 2.2689F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = head_dished_lean_jaw_branch.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(91, 102).addBox(-3.0799F, -3.2418F, -1.8382F, 3.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.5799F, -1.1189F, 0.0295F, 2.2689F, 0.0F, 0.0F));
+
+		PartDefinition head_dished_lean_nose_bridge = head_dished_lean.addOrReplaceChild("head_dished_lean_nose_bridge", CubeListBuilder.create(), PartPose.offset(-0.1269F, 1.8254F, -2.0903F));
+
+		PartDefinition cube_r3 = head_dished_lean_nose_bridge.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(62, 101).addBox(-3.08F, -3.24F, -1.84F, 3.0F, 5.0F, 3.0F, new CubeDeformation(0.02F)), PartPose.offsetAndRotation(1.58F, -0.8028F, -0.1369F, 2.8798F, 0.0F, 0.0F));
+
+		PartDefinition head_dished_lean_forehead = head_dished_lean.addOrReplaceChild("head_dished_lean_forehead", CubeListBuilder.create(), PartPose.offset(-0.0738F, -0.4084F, -1.4273F));
+
+		PartDefinition cube_r4 = head_dished_lean_forehead.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(73, 97).addBox(-3.08F, -4.0F, -1.92F, 4.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.08F, -1.7583F, 1.0415F, 2.3998F, 0.0F, 0.0F));
 
 		PartDefinition head_dished_lean_muzzle = head_dished_lean.addOrReplaceChild("head_dished_lean_muzzle", CubeListBuilder.create(), PartPose.offset(0.0F, 4.4837F, -3.1429F));
 
 		PartDefinition head_dished_lean_muzzle_individual = head_dished_lean_muzzle.addOrReplaceChild("head_dished_lean_muzzle_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition cube_r5 = head_dished_lean_muzzle_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(992, 54).addBox(-1.4469F, -0.7862F, -2.7184F, 3.0F, 2.0F, 2.0F, new CubeDeformation(0.06F)), PartPose.offsetAndRotation(-0.1772F, -0.7151F, 0.1041F, 0.7418F, 0.0F, 0.0F));
+		PartDefinition cube_r5 = head_dished_lean_muzzle_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(110, 101).addBox(-1.4469F, -0.7862F, -2.7184F, 3.0F, 2.0F, 2.0F, new CubeDeformation(0.06F)), PartPose.offsetAndRotation(-0.1772F, -0.7151F, 0.1041F, 0.7418F, 0.0F, 0.0F));
 
 		PartDefinition head_dished_lean_mouth = head_dished_lean_muzzle.addOrReplaceChild("head_dished_lean_mouth", CubeListBuilder.create(), PartPose.offset(0.0F, 0.8045F, 0.6078F));
 
-		PartDefinition cube_r6 = head_dished_lean_mouth.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(1007, 54).addBox(-1.9934F, -0.6134F, -2.1275F, 3.0F, 1.0F, 2.0F, new CubeDeformation(0.04F)), PartPose.offsetAndRotation(0.3552F, -0.0885F, 0.0165F, 0.7418F, 0.0F, 0.0F));
+		PartDefinition cube_r6 = head_dished_lean_mouth.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(93, 98).addBox(-1.9934F, -0.6134F, -2.1275F, 3.0F, 1.0F, 2.0F, new CubeDeformation(0.04F)), PartPose.offsetAndRotation(0.3552F, -0.0885F, 0.0165F, 0.7418F, 0.0F, 0.0F));
 
 		PartDefinition head_dished_lean_fringe = head_dished_lean.addOrReplaceChild("head_dished_lean_fringe", CubeListBuilder.create(), PartPose.offset(0.0F, -2.6816F, -1.3408F));
 
-		PartDefinition cube_r7 = head_dished_lean_fringe.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(1009, 19).addBox(-3.08F, -3.0F, 0.08F, 2.0F, 3.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.9894F, -0.0215F, 0.4187F, 2.3998F, 0.0F, 0.0F));
+		PartDefinition cube_r7 = head_dished_lean_fringe.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(86, 131).addBox(-3.08F, -3.0F, 0.08F, 2.0F, 3.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.9894F, -0.0215F, 0.4187F, 2.3998F, 0.0F, 0.0F));
 
 		PartDefinition neckAnchor = head_dished_lean.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(-0.075F, -2.1756F, -0.4873F));
 
@@ -71,13 +76,13 @@ public class head_dished_lean extends MultipartHeadModel<GeneticHorseEntity> {
 
 		PartDefinition leftEarAnchor = head_dished_lean.addOrReplaceChild("leftEarAnchor", CubeListBuilder.create(), PartPose.offset(-1.0F, -2.5442F, -1.3995F));
 
-		PartDefinition cube_r9 = leftEarAnchor.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(1, 1).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0442F, 0.3995F, 0.829F, 0.0F, 0.0F));
+		PartDefinition cube_r9 = leftEarAnchor.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0442F, 0.3995F, 0.829F, 0.0F, 0.0F));
 
 		PartDefinition rightEarAnchor = head_dished_lean.addOrReplaceChild("rightEarAnchor", CubeListBuilder.create(), PartPose.offset(1.0F, -2.5442F, -1.3995F));
 
-		PartDefinition cube_r10 = rightEarAnchor.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(1, 1).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0442F, 0.3995F, 0.829F, 0.0F, 0.0F));
+		PartDefinition cube_r10 = rightEarAnchor.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0442F, 0.3995F, 0.829F, 0.0F, 0.0F));
 
-		return LayerDefinition.create(meshdefinition, 1024, 1024);
+		return LayerDefinition.create(meshdefinition, 128, 160);
 	}
 
 	@Override
@@ -108,5 +113,19 @@ public class head_dished_lean extends MultipartHeadModel<GeneticHorseEntity> {
 	@Override
 	public PartTransform getAnchorForParent() {
 		return asTransform(neckAnchor);
+	}
+
+	@Override
+	public Part getCubeDimensions() {
+		return new Part("head_dished_lean", new ArrayList<>(
+				Arrays.asList(
+						new Block(4, 3, 5),
+						new Block(3, 5, 2),
+						new Block(3, 5, 3),
+						new Block(4, 4, 3),
+						new Block(3, 2, 2),
+						new Block(3, 1, 2),
+						new Block(2, 3, 1))
+		));
 	}
 }

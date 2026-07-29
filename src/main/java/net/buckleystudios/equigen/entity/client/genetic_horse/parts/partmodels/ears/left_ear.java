@@ -6,10 +6,15 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartEarModel;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Block;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Part;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class left_ear extends MultipartEarModel<GeneticHorseEntity> {
 	private final ModelPart root;
@@ -34,15 +39,15 @@ public class left_ear extends MultipartEarModel<GeneticHorseEntity> {
 
 		PartDefinition left_ear_outer = left_ear.addOrReplaceChild("left_ear_outer", CubeListBuilder.create(), PartPose.offset(-0.4818F, -1.853F, -1.0726F));
 
-		PartDefinition cube_r1 = left_ear_outer.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(22, 148).addBox(-1.01F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.495F, 1.5335F, 0.3138F, 0.5236F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = left_ear_outer.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(120, 146).addBox(-1.01F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.495F, 1.5335F, 0.3138F, 0.5236F, 0.0F, 0.0F));
 
 		PartDefinition left_ear_inner = left_ear.addOrReplaceChild("left_ear_inner", CubeListBuilder.create(), PartPose.offset(0.0182F, -1.853F, -1.0726F));
 
-		PartDefinition cube_r2 = left_ear_inner.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(22, 148).addBox(-1.0F, -3.0F, 0.0F, 1.0F, 3.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5F, 1.549F, 0.317F, 0.5236F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = left_ear_inner.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(121, 142).addBox(-1.0F, -3.0F, 0.0F, 1.0F, 3.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5F, 1.549F, 0.317F, 0.5236F, 0.0F, 0.0F));
 
 		PartDefinition headAnchor = left_ear.addOrReplaceChild("headAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -0.75F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.75F, -0.5F));
 
-		return LayerDefinition.create(meshdefinition, 1024, 1024);
+		return LayerDefinition.create(meshdefinition, 128, 160);
 	}
 
 	@Override
@@ -67,5 +72,12 @@ public class left_ear extends MultipartEarModel<GeneticHorseEntity> {
 
 		registerAnchorPath("headAnchor", root, left_ear, this.headAnchor);
 	}
-
+	@Override
+	public Part getCubeDimensions() {
+		return new Part("left_ear", new ArrayList<>(
+				Arrays.asList(
+						new Block(2, 2, 1),
+						new Block(1, 3, 1))
+		));
+	}
 }

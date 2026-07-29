@@ -6,6 +6,7 @@ import net.buckleystudios.equigen.entity.client.genetic_horse.animations.GH_Gall
 import net.buckleystudios.equigen.entity.client.genetic_horse.animations.GH_IdleAnimation;
 import net.buckleystudios.equigen.entity.client.genetic_horse.animations.GH_WalkAnimation;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Part;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.model.HierarchicalModel;
@@ -13,7 +14,10 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public abstract class MultipartModel<E extends GeneticHorseEntity> extends HierarchicalModel<GeneticHorseEntity> {
 
@@ -146,4 +150,6 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
     public void handlePartChildRotation(GeneticHorseEntity e, PoseStack pose, float partialTicks, int legID) { }
     public void handlePartChildPosition(GeneticHorseEntity e, PoseStack pose, float partialTicks, int legID) { }
     public void beforeAttached(E entity, float partialTicks, PoseStack pose) { }
+
+    public abstract Part getCubeDimensions();
 }

@@ -6,10 +6,15 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartFrontTopLegModel;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Block;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Part;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class top_front_legs_average_average_1 extends MultipartFrontTopLegModel<GeneticHorseEntity> {
     private final ModelPart root;
@@ -32,21 +37,21 @@ public class top_front_legs_average_average_1 extends MultipartFrontTopLegModel<
 
         PartDefinition top_front_legs_average_average_1_top_front = top_front_legs_average_average_1.addOrReplaceChild("top_front_legs_average_average_1_top_front", CubeListBuilder.create(), PartPose.offset(-0.1889F, 2.6971F, -0.6776F));
 
-        PartDefinition cube_r1 = top_front_legs_average_average_1_top_front.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(281, 184).mirror().addBox(-1.1889F, -2.0F, -1.02F, 2.0F, 2.0F, 7.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.1889F, 2.2048F, 1.5131F, 1.789F, 0.0F, 0.0F));
-
-        PartDefinition top_front_legs_average_average_1_top_middle = top_front_legs_average_average_1.addOrReplaceChild("top_front_legs_average_average_1_top_middle", CubeListBuilder.create(), PartPose.offset(0.1949F, 2.0153F, -0.108F));
-
-        PartDefinition cube_r2 = top_front_legs_average_average_1_top_middle.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(274, 184).mirror().addBox(-0.8051F, 0.0559F, -0.5299F, 2.0F, 1.0F, 5.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-0.1949F, 1.9701F, -0.5559F, 1.5708F, 0.0F, 0.0F));
+        PartDefinition cube_r1 = top_front_legs_average_average_1_top_front.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(42, 68).mirror().addBox(-1.1889F, -2.0F, -1.02F, 2.0F, 2.0F, 7.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.1889F, 2.2048F, 1.5131F, 1.789F, 0.0F, 0.0F));
 
         PartDefinition top_front_legs_average_average_1_top_back = top_front_legs_average_average_1.addOrReplaceChild("top_front_legs_average_average_1_top_back", CubeListBuilder.create(), PartPose.offset(0.2315F, 2.494F, 0.5882F));
 
-        PartDefinition cube_r3 = top_front_legs_average_average_1_top_back.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(281, 176).mirror().addBox(-0.7685F, -1.6455F, -0.7933F, 2.0F, 2.0F, 6.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-0.2315F, 2.272F, 0.352F, 1.4399F, 0.0F, 0.0F));
+        PartDefinition cube_r2 = top_front_legs_average_average_1_top_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(23, 114).mirror().addBox(-0.7685F, -1.6455F, -0.7933F, 2.0F, 2.0F, 6.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-0.2315F, 2.272F, 0.352F, 1.4399F, 0.0F, 0.0F));
+
+        PartDefinition top_front_legs_average_average_1_top_middle = top_front_legs_average_average_1.addOrReplaceChild("top_front_legs_average_average_1_top_middle", CubeListBuilder.create(), PartPose.offset(0.1949F, 2.0153F, -0.108F));
+
+        PartDefinition cube_r3 = top_front_legs_average_average_1_top_middle.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(18, 104).mirror().addBox(-0.8051F, 0.0559F, -0.5299F, 2.0F, 1.0F, 5.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-0.1949F, 1.9701F, -0.5559F, 1.5708F, 0.0F, 0.0F));
 
         PartDefinition chestAnchor = top_front_legs_average_average_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.25F, -2.0F));
 
         PartDefinition kneeAnchor = top_front_legs_average_average_1.addOrReplaceChild("kneeAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 6.25F, 0.0F));
 
-        return LayerDefinition.create(meshdefinition, 1024, 1024);
+        return LayerDefinition.create(meshdefinition, 128, 160);
 	}
 
 	@Override
@@ -71,5 +76,15 @@ public class top_front_legs_average_average_1 extends MultipartFrontTopLegModel<
         registerAnchorPath("chestAnchor", root, top_front_legs, this.chestAnchor);
         registerAnchorPath("kneeAnchor", root, top_front_legs, this.kneeAnchor);
 
+    }
+
+    @Override
+    public Part getCubeDimensions() {
+        return new Part("top_front_legs_average_average_1", new ArrayList<>(
+                Arrays.asList(
+                        new Block(2, 2, 7),
+                        new Block(2, 2, 6),
+                        new Block(2, 1, 5))
+        ));
     }
 }

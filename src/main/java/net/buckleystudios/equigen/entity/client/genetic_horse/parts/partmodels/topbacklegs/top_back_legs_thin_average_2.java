@@ -6,10 +6,15 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartBackTopLegModel;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Block;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Part;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class top_back_legs_thin_average_2 extends MultipartBackTopLegModel<GeneticHorseEntity> {
 	private final ModelPart root;
@@ -32,17 +37,17 @@ public class top_back_legs_thin_average_2 extends MultipartBackTopLegModel<Genet
 
 		PartDefinition top_back_legs_thin_average_2_top_back_front = top_back_legs_thin_average_2.addOrReplaceChild("top_back_legs_thin_average_2_top_back_front", CubeListBuilder.create(), PartPose.offset(-0.1444F, 4.2549F, 0.4433F));
 
-		PartDefinition cube_r1 = top_back_legs_thin_average_2_top_back_front.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(243, 288).mirror().addBox(-1.1444F, -3.0F, -1.0F, 2.0F, 2.0F, 10.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.1444F, 3.0747F, 3.2475F, 1.9199F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = top_back_legs_thin_average_2_top_back_front.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(35, 122).mirror().addBox(-1.1444F, -3.0F, -1.0F, 2.0F, 2.0F, 10.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.1444F, 3.0747F, 3.2475F, 1.9199F, 0.0F, 0.0F));
 
 		PartDefinition top_back_legs_thin_average_2_top_back_back = top_back_legs_thin_average_2.addOrReplaceChild("top_back_legs_thin_average_2_top_back_back", CubeListBuilder.create(), PartPose.offset(0.1444F, 3.3983F, 1.618F));
 
-		PartDefinition cube_r2 = top_back_legs_thin_average_2_top_back_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(244, 277).mirror().addBox(-0.8556F, -1.0F, -0.92F, 2.0F, 2.0F, 9.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-0.1444F, 3.4951F, 0.7748F, 1.789F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = top_back_legs_thin_average_2_top_back_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(49, 120).mirror().addBox(-0.8556F, -1.0F, -0.92F, 2.0F, 2.0F, 9.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-0.1444F, 3.4951F, 0.7748F, 1.789F, 0.0F, 0.0F));
 
 		PartDefinition hipsAnchor = top_back_legs_thin_average_2.addOrReplaceChild("hipsAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.25F, -0.15F));
 
 		PartDefinition kneeAnchor = top_back_legs_thin_average_2.addOrReplaceChild("kneeAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 8.2F, 2.4F));
 
-		return LayerDefinition.create(meshdefinition, 1024, 1024);
+		return LayerDefinition.create(meshdefinition, 128, 160);
 	}
 
 	@Override
@@ -69,5 +74,12 @@ public class top_back_legs_thin_average_2 extends MultipartBackTopLegModel<Genet
 		registerAnchorPath("kneeAnchor", root, top_back_legs, this.kneeAnchor);
 
 	}
-
+	@Override
+	public Part getCubeDimensions() {
+		return new Part("top_back_legs_thin_average_2", new ArrayList<>(
+				Arrays.asList(
+						new Block(2, 2, 10),
+						new Block(2, 2, 9))
+		));
+	}
 }

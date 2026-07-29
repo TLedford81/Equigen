@@ -6,10 +6,15 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartStomachModel;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Block;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Part;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class stomach_muscular_long_medium extends MultipartStomachModel<GeneticHorseEntity> {
 	private final ModelPart root;
@@ -32,25 +37,25 @@ public class stomach_muscular_long_medium extends MultipartStomachModel<GeneticH
 
 		PartDefinition stomach_muscular_long_medium_stomach_front_upper_individual = stomach_muscular_long_medium_stomach_front_upper.addOrReplaceChild("stomach_muscular_long_medium_stomach_front_upper_individual", CubeListBuilder.create(), PartPose.offset(-0.0206F, -0.8856F, -0.9099F));
 
-		PartDefinition cube_r1 = stomach_muscular_long_medium_stomach_front_upper_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(513, 510).addBox(-6.0892F, -3.2676F, -5.4648F, 7.0F, 10.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5892F, -2.9648F, -1.2324F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = stomach_muscular_long_medium_stomach_front_upper_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(60, 78).addBox(-6.0892F, -3.2676F, -5.4648F, 7.0F, 10.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5892F, -2.9648F, -1.2324F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition stomach_muscular_long_medium_stomach_front_lower = stomach_muscular_long_medium_stomach_front_upper.addOrReplaceChild("stomach_muscular_long_medium_stomach_front_lower", CubeListBuilder.create(), PartPose.offset(0.0109F, -0.5018F, -0.8309F));
 
-		PartDefinition cube_r2 = stomach_muscular_long_medium_stomach_front_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(537, 510).addBox(-5.08F, -4.24F, -5.52F, 5.0F, 10.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.58F, -3.02F, -0.26F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = stomach_muscular_long_medium_stomach_front_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(84, 78).addBox(-5.08F, -4.24F, -5.52F, 5.0F, 10.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.58F, -3.02F, -0.26F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition stomach_muscular_long_medium_stomach_back_upper = stomach_muscular_long_medium.addOrReplaceChild("stomach_muscular_long_medium_stomach_back_upper", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		PartDefinition stomach_muscular_long_medium_stomach_back_upper_individual = stomach_muscular_long_medium_stomach_back_upper.addOrReplaceChild("stomach_muscular_long_medium_stomach_back_upper_individual", CubeListBuilder.create(), PartPose.offset(0.0206F, -1.1909F, 4.9084F));
 
-		PartDefinition cube_r3 = stomach_muscular_long_medium_stomach_back_upper_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(536, 496).addBox(-7.0984F, -4.2952F, -5.4096F, 7.0F, 10.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.5984F, -3.2354F, -1.2862F, 1.7453F, 0.0F, 0.0F));
+		PartDefinition cube_r3 = stomach_muscular_long_medium_stomach_back_upper_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(40, 101).addBox(-7.0984F, -4.2952F, -5.4096F, 7.0F, 10.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.5984F, -3.2354F, -1.2862F, 1.7453F, 0.0F, 0.0F));
 
 		PartDefinition stomach_muscular_long_medium_stomach_back_lower = stomach_muscular_long_medium_stomach_back_upper.addOrReplaceChild("stomach_muscular_long_medium_stomach_back_lower", CubeListBuilder.create(), PartPose.offset(-0.0135F, -0.8548F, 4.9323F));
 
-		PartDefinition cube_r4 = stomach_muscular_long_medium_stomach_back_lower.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(518, 496).addBox(-5.0792F, -4.2976F, -5.4648F, 5.0F, 10.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5792F, -3.2902F, -1.2934F, 1.7453F, 0.0F, 0.0F));
+		PartDefinition cube_r4 = stomach_muscular_long_medium_stomach_back_lower.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(42, 84).addBox(-5.0792F, -4.2976F, -5.4648F, 5.0F, 10.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5792F, -3.2902F, -1.2934F, 1.7453F, 0.0F, 0.0F));
 
 		PartDefinition backAnchor = stomach_muscular_long_medium.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.5F, 8.3366F));
 
-		return LayerDefinition.create(meshdefinition, 1024, 1024);
+		return LayerDefinition.create(meshdefinition, 128, 160);
 	}
 
 	@Override
@@ -75,5 +80,14 @@ public class stomach_muscular_long_medium extends MultipartStomachModel<GeneticH
 
 		registerAnchorPath("backAnchor", root, stomach, this.backAnchor);
 	}
-
+	@Override
+	public Part getCubeDimensions() {
+		return new Part("stomach_muscular_long_medium", new ArrayList<>(
+				Arrays.asList(
+						new Block(7, 10, 5),
+						new Block(5, 10, 5),
+						new Block(7, 10, 4),
+						new Block(5, 10, 4))
+		));
+	}
 }

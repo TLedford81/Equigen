@@ -6,10 +6,15 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartBackModel;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Block;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Part;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class back_lean_long_thick extends MultipartBackModel<GeneticHorseEntity> {
 	private final ModelPart root;
@@ -36,29 +41,29 @@ public class back_lean_long_thick extends MultipartBackModel<GeneticHorseEntity>
 
 		PartDefinition back_lean_long_thick = partdefinition.addOrReplaceChild("back_lean_long_thick", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition back_lean_long_thick_back_ribs = back_lean_long_thick.addOrReplaceChild("back_lean_long_thick_back_ribs", CubeListBuilder.create().texOffs(298, 456).addBox(-3.0F, -3.9777F, -6.5F, 6.0F, 8.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.0297F, -0.0223F, 0.0547F));
+		PartDefinition back_lean_long_thick_back_ribs = back_lean_long_thick.addOrReplaceChild("back_lean_long_thick_back_ribs", CubeListBuilder.create().texOffs(33, 3).addBox(-3.0F, -3.9777F, -6.5F, 6.0F, 8.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.0297F, -0.0223F, 0.0547F));
 
 		PartDefinition back_lean_long_thick_back_top_lower = back_lean_long_thick.addOrReplaceChild("back_lean_long_thick_back_top_lower", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -0.1788F));
 
 		PartDefinition back_lean_long_thick_back_top_lower_individual = back_lean_long_thick_back_top_lower.addOrReplaceChild("back_lean_long_thick_back_top_lower_individual", CubeListBuilder.create(), PartPose.offset(-0.0066F, -1.2059F, 2.0226F));
 
-		PartDefinition cube_r1 = back_lean_long_thick_back_top_lower_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(323, 453).addBox(-4.08F, -7.24F, -5.52F, 5.0F, 10.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.58F, -2.7056F, 2.0118F, 1.6581F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = back_lean_long_thick_back_top_lower_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(64, 0).addBox(-4.08F, -7.24F, -5.52F, 5.0F, 10.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.58F, -2.7056F, 2.0118F, 1.6581F, 0.0F, 0.0F));
 
 		PartDefinition back_lean_long_thick_back_top_upper = back_lean_long_thick_back_top_lower.addOrReplaceChild("back_lean_long_thick_back_top_upper", CubeListBuilder.create(), PartPose.offset(0.0297F, -1.4229F, 2.0662F));
 
-		PartDefinition cube_r2 = back_lean_long_thick_back_top_upper.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(289, 452).addBox(-4.08F, -7.24F, -6.52F, 4.0F, 10.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -3.2037F, 1.9683F, 1.6581F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = back_lean_long_thick_back_top_upper.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(70, 17).addBox(-4.08F, -7.24F, -6.52F, 4.0F, 10.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -3.2037F, 1.9683F, 1.6581F, 0.0F, 0.0F));
 
 		PartDefinition chestAnchor = back_lean_long_thick.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -4.0F, -6.25F));
 
 		PartDefinition hipsAnchor = back_lean_long_thick.addOrReplaceChild("hipsAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -4.0F, 6.75F));
 
-		PartDefinition stomachAnchor = back_lean_long_thick.addOrReplaceChild("stomachAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 4.0F, 5.5F));
+		PartDefinition stomachAnchor = back_lean_long_thick.addOrReplaceChild("stomachAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 4.0F, 7.5F));
 
 		PartDefinition withersAnchor = back_lean_long_thick.addOrReplaceChild("withersAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -4.0F, -6.25F));
 
 		PartDefinition playerAnchor = back_lean_long_thick.addOrReplaceChild("playerAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.75F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -3.65F, 0.0F));
 
-		return LayerDefinition.create(meshdefinition, 1024, 1024);
+		return LayerDefinition.create(meshdefinition, 128, 160);
 	}
 
 	@Override
@@ -87,5 +92,14 @@ public class back_lean_long_thick extends MultipartBackModel<GeneticHorseEntity>
 		registerAnchorPath("playerAnchor",  root, back, this.playerAnchor);
 	}
 
+	@Override
+	public Part getCubeDimensions() {
+		return new Part("back_lean_long_thick", new ArrayList<>(
+				Arrays.asList(
+						new Block(6, 8, 13),
+						new Block(5, 10, 6),
+						new Block(4, 10, 7))
+		));
+	}
 
 }

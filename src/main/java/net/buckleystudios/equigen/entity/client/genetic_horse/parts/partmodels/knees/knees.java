@@ -6,10 +6,15 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartKneeModel;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Block;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Part;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class knees extends MultipartKneeModel<GeneticHorseEntity> {
     private final ModelPart root;
@@ -30,13 +35,13 @@ public class knees extends MultipartKneeModel<GeneticHorseEntity> {
 
         PartDefinition knees = partdefinition.addOrReplaceChild("knees", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-        PartDefinition knee_individual = knees.addOrReplaceChild("knee_individual", CubeListBuilder.create().texOffs(40, 142).mirror().addBox(-0.99F, -1.01F, -1.01F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 0.0F, 0.0F));
+        PartDefinition knee_individual = knees.addOrReplaceChild("knee_individual", CubeListBuilder.create().texOffs(65, 147).mirror().addBox(-0.99F, -1.01F, -1.01F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 0.0F, 0.0F));
 
         PartDefinition topLegAnchor = knees.addOrReplaceChild("topLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.01F, -1.0F, -0.99F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.0F, 0.0F));
 
         PartDefinition bottomLegAnchor = knees.addOrReplaceChild("bottomLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.01F, -1.01F, -0.99F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, 0.0F));
 
-        return LayerDefinition.create(meshdefinition, 1024, 1024);
+        return LayerDefinition.create(meshdefinition, 128, 160);
 	}
 
 	@Override
@@ -62,5 +67,12 @@ public class knees extends MultipartKneeModel<GeneticHorseEntity> {
         registerAnchorPath("topLegAnchor", root, knees, this.topLegAnchor);
         registerAnchorPath("bottomLegAnchor", root, knees, this.bottomLegAnchor);
 
+    }
+    @Override
+    public Part getCubeDimensions() {
+        return new Part("knees", new ArrayList<>(
+                List.of(
+                        new Block(2, 2, 2))
+        ));
     }
 }

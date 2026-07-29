@@ -6,10 +6,15 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartWithersModel;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Block;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Part;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class withers_lean extends MultipartWithersModel<GeneticHorseEntity> {
 	private final ModelPart root;
@@ -30,17 +35,17 @@ public class withers_lean extends MultipartWithersModel<GeneticHorseEntity> {
 
 		PartDefinition withers_lean_upper = withers_lean.addOrReplaceChild("withers_lean_upper", CubeListBuilder.create(), PartPose.offset(0.0F, 5.05F, 7.412F));
 
-		PartDefinition cube_r1 = withers_lean_upper.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(712, 26).addBox(-4.0792F, -6.9812F, -4.4648F, 3.0F, 9.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.53F, -3.5896F, -1.0729F, 1.2654F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = withers_lean_upper.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(24, 75).addBox(-4.0792F, -6.9812F, -4.4648F, 3.0F, 6.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.53F, -3.5896F, -1.0729F, 1.2654F, 0.0F, 0.0F));
 
 		PartDefinition withers_lean__lower = withers_lean.addOrReplaceChild("withers_lean__lower", CubeListBuilder.create(), PartPose.offset(0.0F, 5.05F, 7.412F));
 
-		PartDefinition cube_r2 = withers_lean__lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(733, 26).addBox(-3.08F, -6.88F, -4.52F, 4.0F, 9.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.016F, -2.9604F, -1.0801F, 1.2654F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = withers_lean__lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(19, 63).addBox(-3.08F, -6.88F, -4.52F, 4.0F, 6.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.016F, -2.9604F, -1.0801F, 1.2654F, 0.0F, 0.0F));
 
 		PartDefinition neckAnchor = withers_lean.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(-0.1F, 0.0F, 0.0F));
 
 		PartDefinition cube_r3 = neckAnchor.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0F, 0.0F, -0.3054F, 0.0F, 0.0F));
 
-		return LayerDefinition.create(meshdefinition, 1024, 1024);
+		return LayerDefinition.create(meshdefinition, 128, 160);
 	}
 
 	@Override
@@ -63,5 +68,13 @@ public class withers_lean extends MultipartWithersModel<GeneticHorseEntity> {
 		ModelPart withers = this.withers_lean;
 
 		registerAnchorPath("neckAnchor", root, withers, this.neckAnchor);
+	}
+	@Override
+	public Part getCubeDimensions() {
+		return new Part("withers_lean", new ArrayList<>(
+				Arrays.asList(
+						new Block(3, 6, 5),
+						new Block(4, 6, 5))
+		));
 	}
 }

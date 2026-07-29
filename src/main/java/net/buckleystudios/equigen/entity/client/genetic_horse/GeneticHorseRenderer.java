@@ -90,27 +90,31 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
     }
 
     public ResourceLocation getTextureLocation(GeneticHorseEntity entity, int selectedTexture) {
-        if (selectedTexture == 1) {
-            return ResourceLocation.fromNamespaceAndPath(
+        return ResourceLocation.fromNamespaceAndPath(
                     EquigenMod.MODID,
-                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_chestnut.png"
-            );
-        } else if (selectedTexture == 2) {
-            return ResourceLocation.fromNamespaceAndPath(
-                    EquigenMod.MODID,
-                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_black.png"
-            );
-        } else if (selectedTexture == 3) {
-            return ResourceLocation.fromNamespaceAndPath(
-                    EquigenMod.MODID,
-                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_bay.png"
-            );
-        } else {
-            return ResourceLocation.fromNamespaceAndPath(
-                    EquigenMod.MODID,
-                    "textures/entity/genetic_horse/genetic_horse_old" + (entity.isSaddled() ? "_saddled" : "")
-            );
-        }
+                    "textures/entity/genetic_horse/final_texture.png");
+
+//        if (selectedTexture == 1) {
+//            return ResourceLocation.fromNamespaceAndPath(
+//                    EquigenMod.MODID,
+//                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_chestnut.png"
+//            );
+//        } else if (selectedTexture == 2) {
+//            return ResourceLocation.fromNamespaceAndPath(
+//                    EquigenMod.MODID,
+//                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_black.png"
+//            );
+//        } else if (selectedTexture == 3) {
+//            return ResourceLocation.fromNamespaceAndPath(
+//                    EquigenMod.MODID,
+//                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_bay.png"
+//            );
+//        } else {
+//            return ResourceLocation.fromNamespaceAndPath(
+//                    EquigenMod.MODID,
+//                    "textures/entity/genetic_horse/genetic_horse_old" + (entity.isSaddled() ? "_saddled" : "")
+//            );
+//        }
     }
 
     public int getSelectedTexture(GeneticHorseEntity entity) {

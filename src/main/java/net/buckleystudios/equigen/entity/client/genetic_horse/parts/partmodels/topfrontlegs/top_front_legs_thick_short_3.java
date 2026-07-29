@@ -6,10 +6,15 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartFrontTopLegModel;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Block;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Part;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class top_front_legs_thick_short_3 extends MultipartFrontTopLegModel<GeneticHorseEntity> {
 	private final ModelPart root;
@@ -32,19 +37,19 @@ public class top_front_legs_thick_short_3 extends MultipartFrontTopLegModel<Gene
 
 		PartDefinition top_front_legs_thick_short_3_top_front_front = top_front_legs_thick_short_3.addOrReplaceChild("top_front_legs_thick_short_3_top_front_front", CubeListBuilder.create(), PartPose.offset(-0.0165F, 2.422F, -0.5472F));
 
-		PartDefinition cube_r1 = top_front_legs_thick_short_3_top_front_front.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(250, 215).addBox(-0.4165F, -2.0F, -2.02F, 2.0F, 2.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.5835F, 1.2285F, 1.2966F, 1.789F, 0.0F, 0.0F));
-
-		PartDefinition top_front_legs_thick_short_3_top_front_middle = top_front_legs_thick_short_3.addOrReplaceChild("top_front_legs_thick_short_3_top_front_middle", CubeListBuilder.create(), PartPose.offset(-0.6F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = top_front_legs_thick_short_3_top_front_front.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(42, 68).addBox(-0.4165F, -2.0F, -2.02F, 2.0F, 2.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.5835F, 1.2285F, 1.2966F, 1.789F, 0.0F, 0.0F));
 
 		PartDefinition top_front_legs_thick_short_3_top_front_back = top_front_legs_thick_short_3.addOrReplaceChild("top_front_legs_thick_short_3_top_front_back", CubeListBuilder.create(), PartPose.offset(0.3145F, 2.3475F, 0.6804F));
 
-		PartDefinition cube_r2 = top_front_legs_thick_short_3_top_front_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(251, 205).addBox(-0.0855F, -3.0F, -1.84F, 2.0F, 3.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.9145F, 1.3459F, 1.3357F, 1.4399F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = top_front_legs_thick_short_3_top_front_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(23, 114).addBox(-0.0855F, -3.0F, -1.84F, 2.0F, 3.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.9145F, 1.3459F, 1.3357F, 1.4399F, 0.0F, 0.0F));
+
+		PartDefinition top_front_legs_thick_short_3_top_front_middle = top_front_legs_thick_short_3.addOrReplaceChild("top_front_legs_thick_short_3_top_front_middle", CubeListBuilder.create(), PartPose.offset(-0.6F, 0.0F, 0.0F));
 
 		PartDefinition chestAnchor = top_front_legs_thick_short_3.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.5F, -1.8F));
 
 		PartDefinition kneeAnchor = top_front_legs_thick_short_3.addOrReplaceChild("kneeAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 5.15F, 0.3F));
 
-		return LayerDefinition.create(meshdefinition, 1024, 1024);
+		return LayerDefinition.create(meshdefinition, 128, 160);
 	}
 
 	@Override
@@ -70,5 +75,13 @@ public class top_front_legs_thick_short_3 extends MultipartFrontTopLegModel<Gene
 		registerAnchorPath("chestAnchor", root, top_front_legs, this.chestAnchor);
 		registerAnchorPath("kneeAnchor", root, top_front_legs, this.kneeAnchor);
 
+	}
+	@Override
+	public Part getCubeDimensions() {
+		return new Part("top_front_legs_thick_short_3", new ArrayList<>(
+				Arrays.asList(
+						new Block(2, 2, 7),
+						new Block(2, 3, 6))
+		));
 	}
 }

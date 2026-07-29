@@ -6,10 +6,15 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartBackModel;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Block;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Part;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class back_average_long_average extends MultipartBackModel<GeneticHorseEntity> {
 	private final ModelPart root;
@@ -36,17 +41,17 @@ public class back_average_long_average extends MultipartBackModel<GeneticHorseEn
 
 		PartDefinition back_average_long_average = partdefinition.addOrReplaceChild("back_average_long_average", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition back_average_long_average_back_ribs = back_average_long_average.addOrReplaceChild("back_average_long_average_back_ribs", CubeListBuilder.create().texOffs(230, 519).addBox(-3.5F, -3.475F, -6.5F, 7.0F, 7.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.0828F, 0.0F, -0.0347F));
+		PartDefinition back_average_long_average_back_ribs = back_average_long_average.addOrReplaceChild("back_average_long_average_back_ribs", CubeListBuilder.create().texOffs(33, 3).addBox(-3.5F, -3.475F, -6.5F, 7.0F, 7.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.0828F, 0.0F, -0.0347F));
 
 		PartDefinition back_average_long_average_back_top_lower = back_average_long_average.addOrReplaceChild("back_average_long_average_back_top_lower", CubeListBuilder.create(), PartPose.offset(0.0F, 0.1788F, -0.3575F));
 
 		PartDefinition back_average_long_average_back_top_lower_individual = back_average_long_average_back_top_lower.addOrReplaceChild("back_average_long_average_back_top_lower_individual", CubeListBuilder.create(), PartPose.offset(-0.0597F, -0.7589F, 2.112F));
 
-		PartDefinition cube_r1 = back_average_long_average_back_top_lower_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(257, 516).addBox(-5.08F, -7.13F, -5.52F, 6.0F, 10.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.7056F, 2.0118F, 1.6581F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = back_average_long_average_back_top_lower_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(64, 0).addBox(-5.08F, -7.13F, -5.52F, 6.0F, 10.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.7056F, 2.0118F, 1.6581F, 0.0F, 0.0F));
 
 		PartDefinition back_average_long_average_back_top_upper = back_average_long_average_back_top_lower.addOrReplaceChild("back_average_long_average_back_top_upper", CubeListBuilder.create(), PartPose.offset(0.0297F, -0.9759F, 2.1556F));
 
-		PartDefinition cube_r2 = back_average_long_average_back_top_upper.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(221, 515).addBox(-4.08F, -7.13F, -6.52F, 4.0F, 10.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -3.2037F, 1.9683F, 1.6581F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = back_average_long_average_back_top_upper.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(70, 17).addBox(-4.08F, -7.13F, -6.52F, 4.0F, 10.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -3.2037F, 1.9683F, 1.6581F, 0.0F, 0.0F));
 
 		PartDefinition chestAnchor = back_average_long_average.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -0.775F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -3.475F, -6.25F));
 
@@ -58,7 +63,7 @@ public class back_average_long_average extends MultipartBackModel<GeneticHorseEn
 
 		PartDefinition playerAnchor = back_average_long_average.addOrReplaceChild("playerAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -4.0F, 0.0F));
 
-		return LayerDefinition.create(meshdefinition, 1024, 1024);
+		return LayerDefinition.create(meshdefinition, 128, 160);
 	}
 
 
@@ -86,5 +91,15 @@ public class back_average_long_average extends MultipartBackModel<GeneticHorseEn
 		registerAnchorPath("stomachAnchor", root, back, this.stomachAnchor);
 		registerAnchorPath("withersAnchor", root, back, this.withersAnchor);
 		registerAnchorPath("playerAnchor",  root, back, this.playerAnchor);
+	}
+
+	@Override
+	public Part getCubeDimensions() {
+		return new Part("back_average_long_average", new ArrayList<>(
+				Arrays.asList(
+						new Block(7, 7, 13),
+						new Block(6, 10, 6),
+						new Block(4, 10, 7))
+		));
 	}
 }

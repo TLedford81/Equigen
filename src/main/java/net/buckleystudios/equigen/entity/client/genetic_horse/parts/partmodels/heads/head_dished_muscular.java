@@ -7,10 +7,15 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartHeadModel;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Block;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Part;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class head_dished_muscular extends MultipartHeadModel<GeneticHorseEntity> {
 	private final ModelPart root;
@@ -33,37 +38,37 @@ public class head_dished_muscular extends MultipartHeadModel<GeneticHorseEntity>
 
 		PartDefinition head_dished_muscular = partdefinition.addOrReplaceChild("head_dished_muscular", CubeListBuilder.create(), PartPose.offset(0.15F, 24.0F, 0.0F));
 
-		PartDefinition head_dished_muscular_forehead = head_dished_muscular.addOrReplaceChild("head_dished_muscular_forehead", CubeListBuilder.create(), PartPose.offset(-0.057F, -0.4084F, -1.4273F));
-
-		PartDefinition cube_r1 = head_dished_muscular_forehead.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(1005, 120).addBox(-3.08F, -4.0F, -1.92F, 6.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.08F, -1.7583F, 1.0415F, 2.3998F, 0.0F, 0.0F));
-
-		PartDefinition head_dished_muscular_nose_bridge = head_dished_muscular.addOrReplaceChild("head_dished_muscular_nose_bridge", CubeListBuilder.create(), PartPose.offset(-0.0738F, 1.8254F, -2.0903F));
-
-		PartDefinition cube_r2 = head_dished_muscular_nose_bridge.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(987, 111).addBox(-3.08F, -3.24F, -1.84F, 4.0F, 5.0F, 3.0F, new CubeDeformation(0.02F)), PartPose.offsetAndRotation(1.08F, -0.8028F, -0.1369F, 2.8798F, 0.0F, 0.0F));
-
 		PartDefinition head_dished_muscular_jaw = head_dished_muscular.addOrReplaceChild("head_dished_muscular_jaw", CubeListBuilder.create(), PartPose.offset(0.0F, 1.9665F, -0.1788F));
 
 		PartDefinition head_dished_muscular_jaw_individual = head_dished_muscular_jaw.addOrReplaceChild("head_dished_muscular_jaw_individual", CubeListBuilder.create(), PartPose.offset(-0.0995F, -0.1382F, -0.2329F));
 
-		PartDefinition cube_r3 = head_dished_muscular_jaw_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(983, 119).addBox(-3.9554F, -0.7109F, -1.1891F, 6.0F, 3.0F, 5.0F, new CubeDeformation(0.09F)), PartPose.offsetAndRotation(0.9554F, 0.0154F, -1.1314F, 0.7854F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = head_dished_muscular_jaw_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(105, 91).addBox(-3.9554F, -0.7109F, -1.1891F, 6.0F, 3.0F, 5.0F, new CubeDeformation(0.09F)), PartPose.offsetAndRotation(0.9554F, 0.0154F, -1.1314F, 0.7854F, 0.0F, 0.0F));
 
 		PartDefinition head_dished_muscular_jaw_branch = head_dished_muscular_jaw.addOrReplaceChild("head_dished_muscular_jaw_branch", CubeListBuilder.create(), PartPose.offset(-0.0754F, 1.5639F, -1.4318F));
 
-		PartDefinition cube_r4 = head_dished_muscular_jaw_branch.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(1005, 113).addBox(-3.0799F, -3.2418F, -1.8382F, 4.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0799F, -1.1189F, 0.1295F, 2.2689F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = head_dished_muscular_jaw_branch.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(91, 102).addBox(-3.0799F, -3.2418F, -1.8382F, 4.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0799F, -1.1189F, 0.1295F, 2.2689F, 0.0F, 0.0F));
+
+		PartDefinition head_dished_muscular_nose_bridge = head_dished_muscular.addOrReplaceChild("head_dished_muscular_nose_bridge", CubeListBuilder.create(), PartPose.offset(-0.0738F, 1.8254F, -2.0903F));
+
+		PartDefinition cube_r3 = head_dished_muscular_nose_bridge.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(62, 101).addBox(-3.08F, -3.24F, -1.84F, 4.0F, 5.0F, 3.0F, new CubeDeformation(0.02F)), PartPose.offsetAndRotation(1.08F, -0.8028F, -0.1369F, 2.8798F, 0.0F, 0.0F));
+
+		PartDefinition head_dished_muscular_forehead = head_dished_muscular.addOrReplaceChild("head_dished_muscular_forehead", CubeListBuilder.create(), PartPose.offset(-0.057F, -0.4084F, -1.4273F));
+
+		PartDefinition cube_r4 = head_dished_muscular_forehead.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(73, 97).addBox(-3.08F, -4.0F, -1.92F, 6.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.08F, -1.7583F, 1.0415F, 2.3998F, 0.0F, 0.0F));
 
 		PartDefinition head_dished_muscular_muzzle = head_dished_muscular.addOrReplaceChild("head_dished_muscular_muzzle", CubeListBuilder.create(), PartPose.offset(0.0F, 4.4693F, -3.1821F));
 
 		PartDefinition head_dished_muscular_muzzle_individual = head_dished_muscular_muzzle.addOrReplaceChild("head_dished_muscular_muzzle_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition cube_r5 = head_dished_muscular_muzzle_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(990, 127).addBox(-1.4469F, -0.7862F, -2.7184F, 4.0F, 2.0F, 2.0F, new CubeDeformation(0.06F)), PartPose.offsetAndRotation(-0.6379F, -0.7151F, 0.104F, 0.7418F, 0.0F, 0.0F));
+		PartDefinition cube_r5 = head_dished_muscular_muzzle_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(110, 101).addBox(-1.4469F, -0.7862F, -2.7184F, 4.0F, 2.0F, 2.0F, new CubeDeformation(0.06F)), PartPose.offsetAndRotation(-0.6379F, -0.7151F, 0.104F, 0.7418F, 0.0F, 0.0F));
 
 		PartDefinition head_dished_muscular_mouth = head_dished_muscular_muzzle.addOrReplaceChild("head_dished_muscular_mouth", CubeListBuilder.create(), PartPose.offset(0.0894F, 0.8045F, 0.5363F));
 
-		PartDefinition cube_r6 = head_dished_muscular_mouth.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(1004, 127).addBox(-2.9934F, -0.6134F, -2.1275F, 4.0F, 1.0F, 2.0F, new CubeDeformation(0.04F)), PartPose.offsetAndRotation(0.8052F, -0.1135F, 0.0665F, 0.7418F, 0.0F, 0.0F));
+		PartDefinition cube_r6 = head_dished_muscular_mouth.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(93, 98).addBox(-2.9934F, -0.6134F, -2.1275F, 4.0F, 1.0F, 2.0F, new CubeDeformation(0.04F)), PartPose.offsetAndRotation(0.8052F, -0.1135F, 0.0665F, 0.7418F, 0.0F, 0.0F));
 
 		PartDefinition head_dished_muscular_fringe = head_dished_muscular.addOrReplaceChild("head_dished_muscular_fringe", CubeListBuilder.create(), PartPose.offset(0.0F, -2.6816F, -1.2514F));
 
-		PartDefinition cube_r7 = head_dished_muscular_fringe.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(1000, 19).addBox(-3.08F, -3.0F, 0.08F, 3.0F, 3.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.5425F, -0.0215F, 0.4187F, 2.3998F, 0.0F, 0.0F));
+		PartDefinition cube_r7 = head_dished_muscular_fringe.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(86, 131).addBox(-3.08F, -3.0F, 0.08F, 3.0F, 3.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.5425F, -0.0215F, 0.4187F, 2.3998F, 0.0F, 0.0F));
 
 		PartDefinition neckAnchor = head_dished_muscular.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(-0.15F, -2.1756F, -0.4873F));
 
@@ -71,13 +76,13 @@ public class head_dished_muscular extends MultipartHeadModel<GeneticHorseEntity>
 
 		PartDefinition leftEarAnchor = head_dished_muscular.addOrReplaceChild("leftEarAnchor", CubeListBuilder.create(), PartPose.offset(-2.0F, -2.5442F, -1.3995F));
 
-		PartDefinition cube_r9 = leftEarAnchor.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(1, 1).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0442F, 0.3995F, 0.829F, 0.0F, 0.0F));
+		PartDefinition cube_r9 = leftEarAnchor.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0442F, 0.3995F, 0.829F, 0.0F, 0.0F));
 
 		PartDefinition rightEarAnchor = head_dished_muscular.addOrReplaceChild("rightEarAnchor", CubeListBuilder.create(), PartPose.offset(2.0F, -2.5442F, -1.3995F));
 
-		PartDefinition cube_r10 = rightEarAnchor.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(1, 1).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0442F, 0.3995F, 0.829F, 0.0F, 0.0F));
+		PartDefinition cube_r10 = rightEarAnchor.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0442F, 0.3995F, 0.829F, 0.0F, 0.0F));
 
-		return LayerDefinition.create(meshdefinition, 1024, 1024);
+		return LayerDefinition.create(meshdefinition, 128, 160);
 	}
 
 	@Override
@@ -110,4 +115,17 @@ public class head_dished_muscular extends MultipartHeadModel<GeneticHorseEntity>
 		return asTransform(neckAnchor);
 	}
 
+	@Override
+	public Part getCubeDimensions() {
+		return new Part("head_dished_muscular", new ArrayList<>(
+				Arrays.asList(
+						new Block(6, 3, 5),
+						new Block(4, 5, 2),
+						new Block(4, 5, 3),
+						new Block(6, 4, 3),
+						new Block(4, 2, 2),
+						new Block(4, 1, 2),
+						new Block(3, 3, 1))
+		));
+	}
 }

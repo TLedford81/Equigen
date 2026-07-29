@@ -4,6 +4,7 @@ import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.effect.ModEffects;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.ModEntityAttributes;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.GeneticHorseTexturer;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticBreeds;
 import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
@@ -47,6 +48,9 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.entity.living.BabyEntitySpawnEvent;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJumping, Heritable {
@@ -1349,6 +1353,53 @@ private float difference = 0;
                 }
 
                 if (this.isJumping()) {
+                    GeneticHorseTexturer texturer = new GeneticHorseTexturer(this);
+                    Path outputPath = Paths.get("testing.png");
+                    Path inputPath = Paths.get(
+                            "..",
+                            "..",
+                            "src",
+                            "main",
+                            "resources",
+                            "assets",
+                            EquigenMod.MODID,
+                            "textures",
+                            "entity",
+                            "genetic_horse",
+                            "test.png"
+                    ).normalize();
+                    Path inputPath2 = Paths.get(
+                            "..",
+                            "..",
+                            "src",
+                            "main",
+                            "resources",
+                            "assets",
+                            EquigenMod.MODID,
+                            "textures",
+                            "entity",
+                            "genetic_horse",
+                            "test2.png"
+                    ).normalize();
+                    Path inputPath3 = Paths.get(
+                            "..",
+                            "..",
+                            "src",
+                            "main",
+                            "resources",
+                            "assets",
+                            EquigenMod.MODID,
+                            "textures",
+                            "entity",
+                            "genetic_horse",
+                            "test3.png"
+                    ).normalize();
+
+                    try {
+                        texturer.textureGeneration(this,outputPath, new ArrayList<>(List.of(inputPath, inputPath2, inputPath3)));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                     jumpStaminaDrain = 0.2f;
                     jumpStaminaDrain = jumpStaminaDrain - (jumpStaminaDrain * enduranceModifier);
                     if (SpeedXPGainAmount != 0.0f) {
@@ -1398,6 +1449,7 @@ private float difference = 0;
         } else {
             HandleConstantTickTimers();
             this.HandleProficiencies();
+
 
             //Stat Drop Over Time
             if (careTickTimer >= 200 + randomTickModifier) {

@@ -6,10 +6,15 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartStomachModel;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Block;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Part;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class stomach_lean_average_high extends MultipartStomachModel<GeneticHorseEntity> {
 	private final ModelPart root;
@@ -32,25 +37,25 @@ public class stomach_lean_average_high extends MultipartStomachModel<GeneticHors
 
 		PartDefinition stomach_lean_average_high_stomach_front_upper_individual = stomach_lean_average_high_stomach_front_upper.addOrReplaceChild("stomach_lean_average_high_stomach_front_upper_individual", CubeListBuilder.create(), PartPose.offset(0.0241F, -0.3856F, -0.79F));
 
-		PartDefinition cube_r1 = stomach_lean_average_high_stomach_front_upper_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(434, 350).addBox(-4.0892F, -2.2676F, -5.4648F, 5.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.5892F, -3.4648F, -3.2324F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = stomach_lean_average_high_stomach_front_upper_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(60, 79).addBox(-4.0892F, -2.2676F, -5.4648F, 5.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.5892F, -3.4648F, -3.2324F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition stomach_lean_average_high_stomach_front_lower = stomach_lean_average_high_stomach_front_upper.addOrReplaceChild("stomach_lean_average_high_stomach_front_lower", CubeListBuilder.create(), PartPose.offset(0.0026F, -0.0018F, -0.711F));
 
-		PartDefinition cube_r2 = stomach_lean_average_high_stomach_front_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(452, 350).addBox(-4.08F, -3.24F, -5.52F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -3.52F, -2.26F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = stomach_lean_average_high_stomach_front_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(84, 79).addBox(-4.08F, -3.24F, -5.52F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -3.52F, -2.26F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition stomach_lean_average_high_stomach_back_upper = stomach_lean_average_high.addOrReplaceChild("stomach_lean_average_high_stomach_back_upper", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 1.5196F));
 
 		PartDefinition stomach_lean_average_high_stomach_back_upper_individual = stomach_lean_average_high_stomach_back_upper.addOrReplaceChild("stomach_lean_average_high_stomach_back_upper_individual", CubeListBuilder.create(), PartPose.offset(-0.0241F, -0.9993F, 3.2557F));
 
-		PartDefinition cube_r3 = stomach_lean_average_high_stomach_back_upper_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(451, 339).addBox(-5.0984F, -0.2952F, -5.4096F, 5.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5984F, -2.8013F, -3.7482F, 1.7453F, 0.0F, 0.0F));
+		PartDefinition cube_r3 = stomach_lean_average_high_stomach_back_upper_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(40, 101).addBox(-5.0984F, -0.2952F, -5.4096F, 5.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5984F, -2.8013F, -3.7482F, 1.7453F, 0.0F, 0.0F));
 
 		PartDefinition stomach_lean_average_high_stomach_back_lower = stomach_lean_average_high_stomach_back_upper.addOrReplaceChild("stomach_lean_average_high_stomach_back_lower", CubeListBuilder.create(), PartPose.offset(0.0026F, -0.5713F, 3.2928F));
 
-		PartDefinition cube_r4 = stomach_lean_average_high_stomach_back_lower.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(435, 339).addBox(-4.08F, -0.24F, -5.52F, 4.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.9004F, -3.8217F, 1.7453F, 0.0F, 0.0F));
+		PartDefinition cube_r4 = stomach_lean_average_high_stomach_back_lower.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(42, 84).addBox(-4.08F, -0.24F, -5.52F, 4.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.9004F, -3.8217F, 1.7453F, 0.0F, 0.0F));
 
 		PartDefinition backAnchor = stomach_lean_average_high.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.25F, 6.6927F));
 
-		return LayerDefinition.create(meshdefinition, 1024, 1024);
+		return LayerDefinition.create(meshdefinition, 128, 160);
 	}
 
 	@Override
@@ -75,5 +80,14 @@ public class stomach_lean_average_high extends MultipartStomachModel<GeneticHors
 
 		registerAnchorPath("backAnchor", root, stomach, this.backAnchor);
 	}
-
+	@Override
+	public Part getCubeDimensions() {
+		return new Part("stomach_lean_average_high", new ArrayList<>(
+				Arrays.asList(
+						new Block(5, 12, 4),
+						new Block(4, 12, 4),
+						new Block(5, 7, 4),
+						new Block(4, 7, 4))
+		));
+	}
 }

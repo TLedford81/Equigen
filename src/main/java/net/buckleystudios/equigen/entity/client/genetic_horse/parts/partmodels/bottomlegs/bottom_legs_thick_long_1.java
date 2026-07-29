@@ -6,10 +6,15 @@ package net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartBottomLegModel;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Block;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Part;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class bottom_legs_thick_long_1 extends MultipartBottomLegModel<GeneticHorseEntity> {
 	private final ModelPart root;
@@ -30,19 +35,19 @@ public class bottom_legs_thick_long_1 extends MultipartBottomLegModel<GeneticHor
 
 		PartDefinition bottom_legs_thick_long_1 = partdefinition.addOrReplaceChild("bottom_legs_thick_long_1", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition bottom_legs_thick_long_1_bottom_individual = bottom_legs_thick_long_1.addOrReplaceChild("bottom_legs_thick_long_1_bottom_individual", CubeListBuilder.create(), PartPose.offset(-0.0189F, 1.9098F, 0.0541F));
+		PartDefinition bottom_legs_thick_long_1_bottom_individual = bottom_legs_thick_long_1.addOrReplaceChild("bottom_legs_thick_long_1_bottom_individual", CubeListBuilder.create(), PartPose.offset(-0.0188F, 1.9098F, 0.0541F));
 
-		PartDefinition cube_r1 = bottom_legs_thick_long_1_bottom_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(27, 370).addBox(-1.0189F, -1.0221F, -3.8535F, 2.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0189F, -1.8535F, 0.0221F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = bottom_legs_thick_long_1_bottom_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(0, 154).addBox(-1.0189F, -1.0221F, -3.8535F, 2.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0188F, -1.8535F, 0.0221F, 1.5708F, 0.0F, 0.0F));
 
-		PartDefinition bottom_legs_thick_long_1_bottom_lower_individual = bottom_legs_thick_long_1.addOrReplaceChild("bottom_legs_thick_long_1_bottom_lower_individual", CubeListBuilder.create(), PartPose.offset(0.0189F, 5.0961F, -0.7692F));
+		PartDefinition bottom_legs_thick_long_1_bottom_lower_individual = bottom_legs_thick_long_1.addOrReplaceChild("bottom_legs_thick_long_1_bottom_lower_individual", CubeListBuilder.create(), PartPose.offset(0.0188F, 5.0961F, -0.7692F));
 
-		PartDefinition cube_r2 = bottom_legs_thick_long_1_bottom_lower_individual.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(27, 376).addBox(-0.9811F, -1.0674F, -3.609F, 2.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.0189F, -1.3961F, 0.8027F, 1.0908F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = bottom_legs_thick_long_1_bottom_lower_individual.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(18, 137).addBox(-0.9811F, -1.0674F, -3.609F, 2.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.0188F, -1.3961F, 0.8027F, 1.0908F, 0.0F, 0.0F));
 
 		PartDefinition kneeAnchor = bottom_legs_thick_long_1.addOrReplaceChild("kneeAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.15F, 0.1F));
 
 		PartDefinition hoofAnchor = bottom_legs_thick_long_1.addOrReplaceChild("hoofAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 7.4F, -1.8F));
 
-		return LayerDefinition.create(meshdefinition, 1024, 1024);
+		return LayerDefinition.create(meshdefinition, 128, 160);
 	}
 
 	@Override
@@ -67,5 +72,14 @@ public class bottom_legs_thick_long_1 extends MultipartBottomLegModel<GeneticHor
 
 		registerAnchorPath("kneeAnchor", root, bottom_legs, this.kneeAnchor);
 		registerAnchorPath("hoofAnchor", root, bottom_legs, this.hoofAnchor);
+	}
+
+	@Override
+	public Part getCubeDimensions() {
+		return new Part("bottom_legs_thick_long_1", new ArrayList<>(
+				Arrays.asList(
+						new Block(2, 2, 4),
+						new Block(2, 2, 4))
+		));
 	}
 }
