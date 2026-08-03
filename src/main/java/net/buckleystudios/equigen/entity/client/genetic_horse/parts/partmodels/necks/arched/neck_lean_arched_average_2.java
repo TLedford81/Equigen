@@ -165,8 +165,8 @@ public class neck_lean_arched_average_2 extends MultipartNeckModel<GeneticHorseE
 						new Block(4, 4, 4),
 						new Block(4, 10, 2),
 						new Block(4, 10, 4),
-						new Block(4, 7, 4),
-						new Block(4, 9, 4))
+						new Block(4, 9, 4),
+						new Block(4, 7, 4))
 		));
 	}
 }

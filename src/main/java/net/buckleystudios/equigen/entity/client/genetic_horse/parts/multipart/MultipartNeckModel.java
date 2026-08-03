@@ -1,6 +1,8 @@
 package net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Block;
+import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Part;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
@@ -9,6 +11,8 @@ import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
@@ -374,5 +378,333 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
         zPos /= 16;
 
         pose.translate(0, yPos, zPos);
+    }
+
+    public Part returnManeCubeDimensions(String name) {
+        switch (name) {
+            //ARCHED
+            case "mane_arched_short_1" -> {
+                return new Part("mane_arched_short_1", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 5),
+                                new Block(2, 1, 5),
+                                new Block(1, 7, 5),
+                                new Block(1, 7, 5),
+                                new Block(2, 2, 7),
+                                new Block(2, 1, 7),
+                                new Block(1, 7, 7),
+                                new Block(1, 7, 7))
+                ));
+            }
+            case "mane_arched_short_2" -> {
+                return new Part("mane_arched_short_2", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 5),
+                                new Block(2, 1, 5),
+                                new Block(1, 7, 5),
+                                new Block(1, 7, 5),
+                                new Block(2, 2, 8),
+                                new Block(2, 1, 8),
+                                new Block(1, 7, 8),
+                                new Block(1, 7, 8))
+                ));
+            }
+            case "mane_arched_average_1" -> {
+                return new Part("mane_arched_average_1", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 5),
+                                new Block(2, 1, 5),
+                                new Block(1, 7, 5),
+                                new Block(1, 7, 5),
+                                new Block(2, 2, 9),
+                                new Block(2, 1, 9),
+                                new Block(1, 7, 9),
+                                new Block(1, 7, 9))
+                ));
+            }
+            case "mane_arched_average_2" -> {
+                return new Part("mane_arched_average_2", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 5),
+                                new Block(2, 1, 5),
+                                new Block(1, 7, 5),
+                                new Block(1, 7, 5),
+                                new Block(2, 2, 10),
+                                new Block(2, 1, 10),
+                                new Block(1, 7, 10),
+                                new Block(1, 7, 10))
+                ));
+            }
+            case "mane_arched_long_1" -> {
+                return new Part("mane_arched_long_1", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 5),
+                                new Block(2, 1, 5),
+                                new Block(1, 7, 5),
+                                new Block(1, 7, 5),
+                                new Block(2, 2, 12),
+                                new Block(2, 1, 12),
+                                new Block(1, 7, 12),
+                                new Block(1, 7, 12))
+                ));
+            }
+            case "mane_arched_long_2" -> {
+                return new Part("mane_arched_long_2", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 5),
+                                new Block(2, 1, 5),
+                                new Block(1, 7, 5),
+                                new Block(1, 7, 5),
+                                new Block(2, 2, 13),
+                                new Block(2, 1, 13),
+                                new Block(1, 7, 13),
+                                new Block(1, 7, 13))
+                ));
+            }
+            //EWED
+            case "mane_ewed_short_1" -> {
+                return new Part("mane_ewed_short_1", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 4),
+                                new Block(2, 1, 4),
+                                new Block(1, 7, 4),
+                                new Block(1, 7, 4),
+                                new Block(2, 2, 7),
+                                new Block(2, 1, 7),
+                                new Block(1, 7, 7),
+                                new Block(1, 7, 7))
+                ));
+            }
+            case "mane_ewed_short_2" -> {
+                return new Part("mane_ewed_short_2", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 4),
+                                new Block(2, 1, 4),
+                                new Block(1, 7, 4),
+                                new Block(1, 7, 4),
+                                new Block(2, 2, 8),
+                                new Block(2, 1, 8),
+                                new Block(1, 7, 8),
+                                new Block(1, 7, 8))
+                ));
+            }
+            case "mane_ewed_average_1" -> {
+                return new Part("mane_ewed_average_1", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 4),
+                                new Block(2, 1, 4),
+                                new Block(1, 7, 4),
+                                new Block(1, 7, 4),
+                                new Block(2, 2, 9),
+                                new Block(2, 1, 9),
+                                new Block(1, 7, 9),
+                                new Block(1, 7, 9))
+                ));
+            }
+            case "mane_ewed_average_2" -> {
+                return new Part("mane_ewed_average_2", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 4),
+                                new Block(2, 1, 4),
+                                new Block(1, 7, 4),
+                                new Block(1, 7, 4),
+                                new Block(2, 2, 10),
+                                new Block(2, 1, 10),
+                                new Block(1, 7, 10),
+                                new Block(1, 7, 10))
+                ));
+            }
+            case "mane_ewed_long_1" -> {
+                return new Part("mane_ewed_long_1", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 4),
+                                new Block(2, 1, 4),
+                                new Block(1, 7, 4),
+                                new Block(1, 7, 4),
+                                new Block(2, 2, 11),
+                                new Block(2, 1, 11),
+                                new Block(1, 7, 11),
+                                new Block(1, 7, 11))
+                ));
+            }
+            case "mane_ewed_long_2" -> {
+                return new Part("mane_ewed_long_1", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 4),
+                                new Block(2, 1, 4),
+                                new Block(1, 7, 4),
+                                new Block(1, 7, 4),
+                                new Block(2, 2, 12),
+                                new Block(2, 1, 12),
+                                new Block(1, 7, 12),
+                                new Block(1, 7, 12))
+                ));
+            }
+            //STRAIGHT
+            case "mane_straight_short_1" -> {
+                return new Part("mane_straight_short_1", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 5),
+                                new Block(3, 1, 5),
+                                new Block(1, 7, 5),
+                                new Block(1, 7, 5),
+                                new Block(2, 2, 6),
+                                new Block(3, 1, 6),
+                                new Block(1, 7, 6),
+                                new Block(1, 7, 6))
+                ));
+            }
+            case "mane_straight_short_2" -> {
+                return new Part("mane_straight_short_2", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 5),
+                                new Block(3, 1, 5),
+                                new Block(1, 7, 5),
+                                new Block(1, 7, 5),
+                                new Block(2, 2, 7),
+                                new Block(3, 1, 7),
+                                new Block(1, 7, 7),
+                                new Block(1, 7, 7))
+                ));
+            }
+            case "mane_straight_average_1" -> {
+                return new Part("mane_straight_average_1", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 5),
+                                new Block(3, 1, 5),
+                                new Block(1, 7, 5),
+                                new Block(1, 7, 5),
+                                new Block(2, 2, 8),
+                                new Block(3, 1, 8),
+                                new Block(1, 7, 8),
+                                new Block(1, 7, 8))
+                ));
+            }
+            case "mane_straight_average_2" -> {
+                return new Part("mane_straight_average_2", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 5),
+                                new Block(3, 1, 5),
+                                new Block(1, 7, 5),
+                                new Block(1, 7, 5),
+                                new Block(2, 2, 9),
+                                new Block(3, 1, 9),
+                                new Block(1, 7, 9),
+                                new Block(1, 7, 9))
+                ));
+            }
+            case "mane_straight_long_1" -> {
+                return new Part("mane_straight_long_1", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 5),
+                                new Block(3, 1, 5),
+                                new Block(1, 7, 5),
+                                new Block(1, 7, 5),
+                                new Block(2, 2, 10),
+                                new Block(3, 1, 10),
+                                new Block(1, 7, 10),
+                                new Block(1, 7, 10))
+                ));
+            }
+            case "mane_straight_long_2" -> {
+                return new Part("mane_straight_long_2", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 5),
+                                new Block(3, 1, 5),
+                                new Block(1, 7, 5),
+                                new Block(1, 7, 5),
+                                new Block(2, 2, 11),
+                                new Block(3, 1, 11),
+                                new Block(1, 7, 11),
+                                new Block(1, 7, 11))
+                ));
+            }
+            //SWAN
+            case "mane_swan_short_1" -> {
+                return new Part("mane_swan_short_1", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 6),
+                                new Block(2, 1, 6),
+                                new Block(1, 7, 6),
+                                new Block(1, 7, 6),
+                                new Block(2, 2, 7),
+                                new Block(2, 1, 7),
+                                new Block(1, 7, 7),
+                                new Block(1, 7, 7))
+                ));
+            }
+            case "mane_swan_short_2" -> {
+                return new Part("mane_swan_short_2", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 6),
+                                new Block(2, 1, 6),
+                                new Block(1, 7, 6),
+                                new Block(1, 7, 6),
+                                new Block(2, 2, 8),
+                                new Block(2, 1, 8),
+                                new Block(1, 7, 8),
+                                new Block(1, 7, 8))
+                ));
+            }
+            case "mane_swan_average_1" -> {
+                return new Part("mane_swan_average_1", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 6),
+                                new Block(2, 1, 6),
+                                new Block(1, 7, 6),
+                                new Block(1, 7, 6),
+                                new Block(2, 2, 9),
+                                new Block(2, 1, 9),
+                                new Block(1, 7, 9),
+                                new Block(1, 7, 9))
+                ));
+            }
+            case "mane_swan_average_2" -> {
+                return new Part("mane_swan_average_2", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 6),
+                                new Block(2, 1, 6),
+                                new Block(1, 7, 6),
+                                new Block(1, 7, 6),
+                                new Block(2, 2, 10),
+                                new Block(2, 1, 10),
+                                new Block(1, 7, 10),
+                                new Block(1, 7, 10))
+                ));
+            }
+            case "mane_swan_long_1" -> {
+                return new Part("mane_swan_long_1", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 6),
+                                new Block(2, 1, 6),
+                                new Block(1, 7, 6),
+                                new Block(1, 7, 6),
+                                new Block(2, 2, 11),
+                                new Block(2, 1, 11),
+                                new Block(1, 7, 11),
+                                new Block(1, 7, 11))
+                ));
+            }
+            case "mane_swan_long_2" -> {
+                return new Part("mane_swan_long_2", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(2, 2, 6),
+                                new Block(2, 1, 6),
+                                new Block(1, 7, 6),
+                                new Block(1, 7, 6),
+                                new Block(2, 2, 12),
+                                new Block(2, 1, 12),
+                                new Block(1, 7, 12),
+                                new Block(1, 7, 12))
+                ));
+            }
+            default -> {
+                return new Part("NULL", new ArrayList<>(
+                        Arrays.asList(
+                                new Block(0, 0, 0))
+                ));
+            }
+
+        }
     }
 }

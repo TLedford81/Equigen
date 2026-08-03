@@ -164,8 +164,8 @@ public class neck_average_arched_average_2 extends MultipartNeckModel<GeneticHor
 						new Block(4, 4, 4),
 						new Block(4, 10, 2),
 						new Block(5, 10, 4),
-						new Block(4, 7, 4),
-						new Block(5, 9, 4))
+						new Block(5, 9, 4),
+						new Block(4, 7, 4))
 		));
 	}
 

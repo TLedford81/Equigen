@@ -163,8 +163,8 @@ public class neck_average_arched_short_2 extends MultipartNeckModel<GeneticHorse
 						new Block(4, 4, 4),
 						new Block(4, 8, 2),
 						new Block(5, 8, 4),
-						new Block(4, 5, 4),
-						new Block(5, 7, 4))
+						new Block(5, 7, 4),
+						new Block(4, 5, 4))
 		));
 	}
 }

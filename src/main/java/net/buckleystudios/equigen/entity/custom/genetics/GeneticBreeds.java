@@ -83,8 +83,6 @@ public enum GeneticBreeds {
                 custom.put("JUMP_MAX_LEVEL", new BreedValues(5.5F, 7, 6.1F, 35, 40, 20));
                 custom.put("ENDURANCE_MAX_LEVEL", new BreedValues(6.5F, 8.5F, 7, 45, 45, 10));
                 custom.put("AGILITY_MAX_LEVEL", new BreedValues(4.5F, 6.5F, 5.25F, 35, 45, 20));
-
-
             }
             case CHARGER -> {
                 custom.put("MUSCLE_MASS", new BreedValues(1, 3, 2, 0, 35, 65));

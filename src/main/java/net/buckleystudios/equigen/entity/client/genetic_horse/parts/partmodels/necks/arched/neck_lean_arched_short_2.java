@@ -163,8 +163,8 @@ public class neck_lean_arched_short_2 extends MultipartNeckModel<GeneticHorseEnt
 						new Block(4, 4, 4),
 						new Block(4, 8, 2),
 						new Block(4, 8, 4),
-						new Block(4, 5, 4),
-						new Block(4, 7, 4))
+						new Block(4, 7, 4),
+						new Block(4, 5, 4))
 		));
 	}
 }

@@ -10,6 +10,7 @@ import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
 import net.buckleystudios.equigen.entity.custom.genetics.util.GeneticPartNameBuilder;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -25,20 +26,11 @@ public class GeneticHorseTexturer {
 
     public ArrayList<String> getLayerList(GeneticHorseEntity entity) {
         ArrayList<String> imageLayers = new ArrayList<>();
-        //Base Coat
-        float blackModifier = GeneticsHandler.getEntityGenetic(entity, Genetics.BLACK_MODIFIER);
-        float redModifier = GeneticsHandler.getEntityGenetic(entity, Genetics.RED_MODIFIER);
-        if (blackModifier == 1.0f) {
-            imageLayers.add("base_coat_chestnut"); //Chestnut e/e _/_
-        } else if (redModifier == 1.0f && blackModifier >= 2.0f) {
-            imageLayers.add("base_coat_chestnut"); //Black E/_ a/a
-        } else {
-            imageLayers.add("base_coat_chestnut"); //Bay E/_ A_
-        }
-        //TODO Need to have it make the
-        //Black Point (if applicable)
-
+        //Base Coat is handled in the TextureGeneration code.
         //Modifiers
+        //Have modifiers just add numbers to the Hue/Sat/Brightness? Therefore would be handled in base coat generation. If not, then have it be a semi-transparent layer to be placed over the base layer.
+
+        //Black Point (if applicable)
 
         //Leg Markings
 
@@ -67,35 +59,67 @@ public class GeneticHorseTexturer {
         PartList Parts = new PartList();
 
         // Draw Base Color
+
 //        for (String part : partsList) {
 ////            canvas.drawImage()
 //        }
         // For Loop Draw Layers
         for (Path l : referenceLayers) {
             List<Part> referenceParts = findReferenceParts(l);
-            canvas.updateCanvasImage(l); // updates the image stored in the canvas. Do for each layer
-            for (String s : partsList) {
-                String partType = builder.returnPartType(s);
-                List<Part> relevantReferenceParts = new ArrayList<>(List.of());
-                for (Part p : referenceParts) {
-                    EquigenMod.LOGGER.info("P = {}, PARTTYPE = {}", p.modelName, partType);
-                    if (p.modelName.contains(partType)) {
-                        relevantReferenceParts.add(p);
-                        EquigenMod.LOGGER.info("THEY MATCH!! ADDING PART");
-                    }
-                }
-                Part bestPart = findBestMatch(relevantReferenceParts, s);
-                if (bestPart != null) {
-                    canvas.drawImage(bestPart, Parts.returnPart(s));
-                    EquigenMod.LOGGER.info("DRAWING!!!");
-
-                } else {
-                    EquigenMod.LOGGER.info("BEST PART IS EQUAL TO NULL! MOVING ON");
-                }
-            }
+//            canvas.updateCanvasImage(l); // updates the image stored in the canvas. Do for each layer
+//            for (String s : partsList) {
+//                String partType = builder.returnPartType(s);
+//                List<Part> relevantReferenceParts = new ArrayList<>(List.of());
+//                for (Part p : referenceParts) {
+//                    EquigenMod.LOGGER.info("P = {}, PARTTYPE = {}", p.modelName, partType);
+//                    if (p.modelName.contains(partType)) {
+//                        relevantReferenceParts.add(p);
+//                        EquigenMod.LOGGER.info("THEY MATCH!! ADDING PART");
+//                    }
+//                }
+//                Part bestPart = findBestMatch(relevantReferenceParts, s);
+//                if (bestPart != null) {
+//                    canvas.drawImage(bestPart, Parts.returnPart(s));
+//                    EquigenMod.LOGGER.info("DRAWING!!!");
+//
+//                } else {
+//                    EquigenMod.LOGGER.info("BEST PART IS EQUAL TO NULL! MOVING ON");
+//                }
+//            }
         }
         // Finalize Image
         canvas.finalizeImage(destination);
+    }
+
+    public int getBaseColor(GeneticHorseEntity entity) {
+        float warmth = GeneticsHandler.getEntityGenetic(entity, Genetics.WARMTH);
+        float darkness = GeneticsHandler.getEntityGenetic(entity, Genetics.DARKNESS);
+        float richness = GeneticsHandler.getEntityGenetic(entity, Genetics.RICHNESS);
+
+        float blackModifier = GeneticsHandler.getEntityGenetic(entity, Genetics.BLACK_MODIFIER);
+        float redModifier = GeneticsHandler.getEntityGenetic(entity, Genetics.RED_MODIFIER);
+
+        float hue;
+        float saturation;
+        float brightness;
+
+        if (blackModifier == 1.0f) {
+            //Chestnut e/e _/_
+            hue = 15 + (warmth * 0.1F);
+            saturation = 55 + (richness * 0.35F);
+            brightness = 45 + (darkness * 0.40F);
+        } else if (redModifier == 1.0f && blackModifier >= 2.0f) {
+            //Black E/_ a/a
+            hue = 18 + (warmth * 0.12F);
+            saturation = 2 + (richness * 0.12F);
+            brightness = 20 + (darkness * 0.15F);
+        } else {
+            //Bay E/_ A_
+            hue = 24 + (warmth * 0.1F);
+            saturation = 40 + (richness * 0.35F);
+            brightness = 60 + (darkness * 0.35F);
+        }
+        return Color.HSBtoRGB(hue, saturation, brightness);
     }
 
     public BufferedImage tintTexture(BufferedImage image, int rgbColor) {
@@ -132,6 +156,11 @@ public class GeneticHorseTexturer {
         return null;
     }
     public List<Part> findReferenceParts(Path sourceFile) throws IOException {
+        EquigenMod.LOGGER.info(
+                "findReferenceParts called on {}",
+                Thread.currentThread().getName()
+        );
+       EquigenMod.LOGGER.info("IMAGE LOCATION = " + sourceFile.toString());
         BufferedImage img = ImageIO.read(sourceFile.toFile());
         List<Part> finalPartList = new ArrayList<>(List.of());
 
@@ -141,8 +170,6 @@ public class GeneticHorseTexturer {
                 img.getHeight(),
                 sourceFile.toAbsolutePath()
         );
-         // Use image here
-
             for (int x = 0; x < img.getWidth(); x++) {
                 for (int y = 0; y < img.getHeight(); y++) {
                     int pixel = img.getRGB(x, y);
@@ -166,93 +193,69 @@ public class GeneticHorseTexturer {
                             case 130 -> modelName = "stomach";
                             case 140 -> modelName = "tail";
                             case 150 -> modelName = "withers";
+                            case 160 -> modelName = "right_ear"; //Yes this isn't next to the left ear in order. I didn't notice this until i had placed indicators for everything
                             default -> modelName = "";
                         }
                         EquigenMod.LOGGER.info("PIXEL INDICATES REFERENCE IS A " + modelName);
                         if (!modelName.isEmpty()) {
                             int rPixel = img.getRGB(x + 1, y);
                             int bPixel = img.getRGB(x, y + 1);
-                            int muscleMass;
-                            int type; // Neck curve, leg width, etc
-                            int lengthOrSize;
-                            int blockNum;
-                            switch (getR(rPixel)) {
-                                case 75 -> muscleMass = 1;
-                                case 150 -> muscleMass = 2;
-                                case 225 -> muscleMass = 3;
-                                default -> muscleMass = 0;
-                            }
-                            switch (getG(rPixel)) {
-                                case 10 -> type = 1;
-                                case 20 -> type = 2;
-                                case 30 -> type = 3;
-                                case 40 -> type = 4;
-                                case 50 -> type = 5;
-                                default -> type = 0;
-                            }
-                            switch (getB(rPixel)) {
-                                case 10 -> lengthOrSize = 1;
-                                case 20 -> lengthOrSize = 2;
-                                case 30 -> lengthOrSize = 3;
-                                case 40 -> lengthOrSize = 4;
-                                case 50 -> lengthOrSize = 5;
-                                case 60 -> lengthOrSize = 6;
-                                case 70 -> lengthOrSize = 7;
-                                case 80 -> lengthOrSize = 8;
-                                case 90 -> lengthOrSize = 9;
-                                default -> lengthOrSize = 0;
-                            }
-                            switch (getAlpha(rPixel)) {
-                                case 13 -> blockNum = 1; // In photoshop this scales by 5 percent on the Opacity slider
-                                case 26 -> blockNum = 2;
-                                case 38 -> blockNum = 3;
-                                case 51 -> blockNum = 4;
-                                case 64 -> blockNum = 5;
-                                case 77 -> blockNum = 6;
-                                case 89 -> blockNum = 7;
-                                case 102 -> blockNum = 8;
-                                case 115 -> blockNum = 9;
-                                case 128 -> blockNum = 10;
-                                case 140 -> blockNum = 11;
-                                case 153 -> blockNum = 12;
-                                case 166 -> blockNum = 13;
-                                case 179 -> blockNum = 14;
-                                case 191 -> blockNum = 15;
-                                default -> blockNum = 0;
-                            }
+                            int muscleMass = decodeMuscleMass(rPixel);
+                            int type = decodeType(rPixel); // Neck curve, leg width, etc
+                            int lengthOrSize = decodeLengthOrSize(rPixel);
+                            int blockNum = decodeAlpha(rPixel);
+                            int reusedBlock;
 
-                            GeneticPartNameBuilder builder = new GeneticPartNameBuilder(entity);
+                            switch (getR(bPixel)) {
+                                case 10 -> reusedBlock = 1; // Apply this block to ALL of the same part.
+                                case 20 -> reusedBlock = 2; // Apply this block to ALL of the same TYPE of part.
+                                case 30 -> reusedBlock = 3; // Apply this block to ALL different musclemasses of the same LENGTH and TYPE
+                                case 40 -> reusedBlock = 4; // Apply this block to both lean and average musclemasses of the same length.
+                                case 50 -> reusedBlock = 5; // Apply this block to both lean and muscular musclemasses of the same length.
+                                case 60 -> reusedBlock = 6; // Apply this block to both average and muscular musclemasses of the same length.
+                                default -> reusedBlock = 0;
+                            }
+                            //TODO Make a way to indicate one block location is used for multiple different muscle masses.
+                            EquigenMod.LOGGER.info("PIXEL INDICATES REFERENCE IS {} muscle_mass, {} type, {} length_or_size, and {} block number.", muscleMass, type, lengthOrSize, blockNum);
                             EquigenMod.LOGGER.info("FOUND!! INDICATOR PIXEL AT {} + {}", x, y);
                             EquigenMod.LOGGER.info("R = {}, G = {}, B = {} ALPHA = {}", getR(rPixel), getG(rPixel), getB(rPixel), getAlpha(rPixel));
-                            String part = builder.PartStringGenerator(modelName, List.of(muscleMass, type, lengthOrSize));
-                            PartList pList = new PartList();
-                            Part p = null;
-                            boolean alreadyInList = false;
-                            for (Part p1 : finalPartList) {
-                                if (p1.modelName.equals(part)) {
-                                    alreadyInList = true;
-                                    p = p1;
-                                    EquigenMod.LOGGER.info("ALREADY IN LIST!");
-                                    break;
+
+                            switch (reusedBlock) {
+                                case 1 ->{
+                                //Implement only if needed in the future. Right now we dont need a block to be applied to ALL of the same part.
+                                }
+                                case 2 -> {
+                                    for(int m = 1; m <= 3; m++) {
+                                        for (int t = 1; t <= 4; t++) { //TODO for future compatability need to change 4 to the max number possible of part. Only need it up to 4 right now.
+                                            updatePartList(finalPartList, modelName, m, t, lengthOrSize, x, y, blockNum);
+                                        }
+                                    }
+                                }
+                                case 3 -> {
+                                    for(int m = 1; m <= 3; m++) {
+                                        updatePartList(finalPartList, modelName, m, type, lengthOrSize, x, y, blockNum);
+                                    }
+                                }
+                                case 4 -> {
+                                    updatePartList(finalPartList, modelName, 1, type, lengthOrSize, x, y, blockNum);
+                                    updatePartList(finalPartList, modelName, 2, type, lengthOrSize, x, y, blockNum);
+                                }
+                                case 5 -> {
+                                    updatePartList(finalPartList, modelName, 1, type, lengthOrSize, x, y, blockNum);
+                                    updatePartList(finalPartList, modelName, 3, type, lengthOrSize, x, y, blockNum);
+                                }
+                                case 6 -> {
+                                    updatePartList(finalPartList, modelName, 2, type, lengthOrSize, x, y, blockNum);
+                                    updatePartList(finalPartList, modelName, 3, type, lengthOrSize, x, y, blockNum);
+                                }
+                                default -> {
+                                    updatePartList(finalPartList, modelName, muscleMass, type, lengthOrSize, x, y, blockNum);
                                 }
                             }
-                            if (!alreadyInList) {
-                                p = pList.returnPart(part);
-                                finalPartList.add(p);
-                                EquigenMod.LOGGER.info("NOT ALREADY IN LIST");
-                            }
-                            if (p == null) {
-                                EquigenMod.LOGGER.warn("Part was null for part name: {}", part);
-                                continue;
-                            }
-                            EquigenMod.LOGGER.info(part);
-                            p.printBlockStats();
-                            p.updateBlocks(blockNum - 1, x + 1, y + 1, true);  //TODO there might be a bug here with duplicate block nums for the same part. Unsure
-                            EquigenMod.LOGGER.info("EDITED");
-                            p.printBlockStats();
+
                         }
                     }
-                    EquigenMod.LOGGER.info("NO INDICATOR PIXEL FOUND, MOVING ON, R = {} G = {}", getR(pixel), getG(pixel));
+//                    EquigenMod.LOGGER.info("NO INDICATOR PIXEL FOUND, MOVING ON, R = {} G = {}, X = {}, Y = {}", getR(pixel), getG(pixel), x, y);
                 }
             }
 
@@ -261,7 +264,86 @@ public class GeneticHorseTexturer {
             }
             return finalPartList;
     }
+    private void updatePartList(List<Part> partList, String modelName, int x, int y, int muscleMass, int type, int lengthOrSize, int blockNum) {
+        GeneticPartNameBuilder builder = new GeneticPartNameBuilder(entity);
+        String part = builder.PartStringGenerator(modelName, List.of(muscleMass, type, lengthOrSize));
+        PartList pList = new PartList(); //TODO Change this to a hash map so it doesn't look through every part.
+        Part p = null;
+        for (Part existing : partList) {
+            if (existing.modelName.equals(part)) {
+                p = existing;
+                break;
+            }
+        }
 
+        if (p == null) {
+            p = pList.returnPart(part);
+            partList.add(p);
+            EquigenMod.LOGGER.info("NOT ALREADY IN LIST");
+        } else {
+            EquigenMod.LOGGER.info(part);
+            p.printBlockStats();
+            p.updateBlocks(blockNum - 1, x + 1, y + 1, true);  //TODO there might be a bug here with duplicate block nums for the same part. Unsure
+            EquigenMod.LOGGER.info("EDITED");
+            p.printBlockStats();
+        }
+    }
+
+    private int decodeMuscleMass(int pixel) {
+        return switch (getR(pixel)) {
+            case 75 -> 1;
+            case 150 -> 2;
+            case 225 -> 3;
+            default -> 0;
+        };
+    }
+
+    private int decodeType(int pixel) {
+        return switch (getG(pixel)) {
+            case 10 -> 1;
+            case 20 -> 2;
+            case 30 -> 3;
+            case 40 -> 4;
+            case 50 -> 5;
+            default -> 0;
+        };
+    }
+
+    private int decodeAlpha(int pixel) {
+        return switch (getAlpha(pixel)) {
+            case 13 -> 1; // In photoshop this scales by 5 percent on the Opacity slider
+            case 26 -> 2;
+            case 38 -> 3;
+            case 51 -> 4;
+            case 64 -> 5;
+            case 77 -> 6;
+            case 89 -> 7;
+            case 102 -> 8;
+            case 115 -> 9;
+            case 128 -> 10;
+            case 140 -> 11;
+            case 153 -> 12;
+            case 166 -> 13;
+            case 179 -> 14;
+            case 191 -> 15;
+            default -> 0;
+        };
+    }
+
+    private int decodeLengthOrSize (int pixel) {
+        return switch (getB(pixel)) {
+            case 10 -> 1;
+            case 20 -> 2;
+            case 30 -> 3;
+            case 40 -> 4;
+            case 50 -> 5;
+            case 60 -> 6;
+            case 70 -> 7;
+            case 80 -> 8;
+            case 90 -> 9;
+            default -> 0;
+        };
+    }
     public Part findBestMatch(List<Part> partReference, String currentPart) { //TODO Make it so that the neck only applies to the same curve
         EquigenMod.LOGGER.info("CURRENT PART = " + currentPart);
         GeneticPartNameBuilder builder = new GeneticPartNameBuilder(entity);

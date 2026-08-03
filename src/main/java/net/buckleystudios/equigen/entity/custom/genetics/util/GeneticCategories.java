@@ -2,7 +2,9 @@ package net.buckleystudios.equigen.entity.custom.genetics.util;
 
 public enum GeneticCategories {
     CONFORMATION_GENETICS,
+    HSV_GENETICS,
     COAT_GENETICS,
+    COAT_MODIFIERS,
     COAT_VARIATION_GENETICS,
     PATTERN_GENETICS,
     PATTERN_VARIATION_GENETICS,

@@ -47,6 +47,10 @@ public class ModData {
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> HEAD_TYPE = RegisterGeneticDataType("head_type");
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> EAR_SIZE = RegisterGeneticDataType("ear_size");
 
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> WARMTH = RegisterGeneticDataType("warmth");
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> DARKNESS = RegisterGeneticDataType("darkness");
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> RICHNESS = RegisterGeneticDataType("richness");
+
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> BLACK_MODIFIER = RegisterGeneticDataType("black_modifier");
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> BLACK_VARIATION = RegisterGeneticDataType("black_variation");
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> RED_MODIFIER = RegisterGeneticDataType("red_modifier");

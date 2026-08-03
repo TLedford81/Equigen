@@ -165,8 +165,8 @@ public class neck_muscular_arched_average_2 extends MultipartNeckModel<GeneticHo
 						new Block(5, 4, 4),
 						new Block(5, 10, 2),
 						new Block(6, 10, 4),
-						new Block(4, 7, 4),
-						new Block(6, 9, 4))
+						new Block(6, 9, 4),
+						new Block(4, 7, 4))
 		));
 	}
 }

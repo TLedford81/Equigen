@@ -108,14 +108,14 @@ public class GeneticPartNameBuilder {
                 nameThird = "BACK_GIRTH";
             }
             case "chest" -> {
-                nameSecond = "CHEST_SIZE";
+                nameThird = "CHEST_SIZE"; //Idk if this is gonna work tbh.
             }
             case "head" -> {
                 String HEAD_TYPE = GeneticIdentifier("HEAD_TYPE", genetics.get(1), PART);
                 return GeneValueNameBuilder(List.of(PART, HEAD_TYPE, MUSCLE_MASS));
             }
             case "hips" -> {
-                nameSecond = "HIP_SIZE";
+                nameThird = "HIP_SIZE"; //Idk if this is gonna work tbh.
             }
             case "hoof" -> {
                 nameSecond = "HOOF_SIZE";

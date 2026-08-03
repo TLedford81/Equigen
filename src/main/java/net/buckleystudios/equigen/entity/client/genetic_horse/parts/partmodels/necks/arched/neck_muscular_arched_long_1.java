@@ -163,8 +163,8 @@ public class neck_muscular_arched_long_1 extends MultipartNeckModel<GeneticHorse
 						new Block(5, 4, 4),
 						new Block(5, 12, 2),
 						new Block(6, 12, 4),
-						new Block(4, 9, 4),
-						new Block(6, 11, 4))
+						new Block(6, 11, 4),
+						new Block(4, 9, 4))
 		));
 	}
 }

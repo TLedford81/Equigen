@@ -17,6 +17,7 @@ public class PartList {
 
 
     public Part returnPart(String partName) {
+        //TODO Remove this once incorporated into the registry
         switch (partName) {
             case "neck_lean_arched_short_1" -> {
                 return new Part("neck_lean_arched_short_1", new ArrayList<Block>(
