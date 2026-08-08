@@ -116,15 +116,20 @@ public class Part {
     }
 
     public void printBlockStats() {
+        EquigenMod.LOGGER.info(this.modelName);
+        EquigenMod.LOGGER.info("BLOCK STATS");
+        EquigenMod.LOGGER.info("-----------");
         for (int i = 0; i < blocks.size(); i++) {
-            System.out.println("BLOCK " + i);
-            blocks.get(i).print();
+            EquigenMod.LOGGER.info("BLOCK {}", i);
+            blocks.get(i).printBlock();
         }
+        EquigenMod.LOGGER.info("-----------");
     }
     public void updateBlocks(int index, int x, int y, boolean modified) {
         if (index > blocks.size()) {
             EquigenMod.LOGGER.info("INDEX IS OUT OF RANGE OF BLOCK LIST. Moving on...");
         } else {
+            EquigenMod.LOGGER.info("{} :: SETTING BLOCK {} TO {} X AND {} Y", this.modelName, index, x, y);
             blocks.get(index).setXandY(x, y);
             blocks.get(index).setModified(modified);
         }

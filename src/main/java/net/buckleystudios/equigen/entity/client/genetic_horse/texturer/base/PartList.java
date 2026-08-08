@@ -19,6 +19,12 @@ public class PartList {
     public Part returnPart(String partName) {
         //TODO Remove this once incorporated into the registry
         switch (partName) {
+            case "knees" -> {
+                return new Part("knees", new ArrayList<Block>(
+                        Arrays.asList(new Block(2, 2, 2))
+                )
+                );
+            }
             case "neck_lean_arched_short_1" -> {
                 return new Part("neck_lean_arched_short_1", new ArrayList<Block>(
                         Arrays.asList(new Block(4, 7, 4),
@@ -538,12 +544,13 @@ public class PartList {
             case "head_dished_lean" -> {
                 return new Part("head_dished_lean", new ArrayList<Block>(
                         Arrays.asList(
-                                new Block(1980, 82, 3, 5, 3),
-                                new Block(2014, 84, 3, 5, 2),
-                                new Block(1974, 102, 4, 3, 5),
-                                new Block(2010, 100, 4, 4, 3),
-                                new Block(1984, 112, 3, 2, 2),
-                                new Block(2014, 112, 3, 1, 2))
+                                new Block(4, 3, 5),
+                                new Block(3, 5, 2),
+                                new Block(3, 5, 3),
+                                new Block(4, 4, 3),
+                                new Block(3, 2, 2),
+                                new Block(3, 1, 2),
+                                new Block(2, 3, 1))
                 )
                 );
             }
@@ -667,6 +674,9 @@ public class PartList {
                 partList2.add(returnPart("head_dished_lean"));
                 partList2.add(returnPart("head_dished_average"));
                 partList2.add(returnPart("head_dished_muscular"));
+            }
+            case "knees" -> {
+                partList2.add(returnPart("knees"));
             }
             default -> {
                 return new ArrayList<Part>();

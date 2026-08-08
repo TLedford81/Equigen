@@ -1,7 +1,5 @@
 package net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base;
 
-import net.buckleystudios.equigen.EquigenMod;
-
 import java.util.ArrayList;
 
 public class Block extends Face {
@@ -17,8 +15,8 @@ public class Block extends Face {
 
 
     public Block(int x, int y, int sizeX, int sizeY, int sizeZ) {
-        this.x = x;
-        this.y = y;
+        this.x = 0;
+        this.y = 0;
 
         sizeX *= 2;
         sizeY *= 2;
@@ -38,11 +36,13 @@ public class Block extends Face {
     public static void main(String[] args) {
     }
 
-    public void print() {
-        EquigenMod.LOGGER.info("BLOCK STATS");
+    public void printFaces() {
         for (int i = 0; i < faces.size(); i++) {
             faces.get(i).printStats();
         }
+    }
+    public void printBlock() {
+        faces.get(0).printStats();
     }
 
     public void setXandY(int x, int y) {

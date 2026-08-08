@@ -1,5 +1,7 @@
 package net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base;
 
+import net.buckleystudios.equigen.EquigenMod;
+
 public class Face {
     protected int width;
     protected int height;
@@ -45,6 +47,6 @@ public class Face {
     }
 
     public void printStats() {
-        System.out.println("X = " + this.getX() + " Y = " + this.getY() + " WIDTH = " + this.getWidth() + " HEIGHT = " + this.getHeight());
+        EquigenMod.LOGGER.info("X = {} Y = {} WIDTH = {} HEIGHT = {}", this.getX(), this.getY(), this.getWidth(), this.getHeight());
     }
 }

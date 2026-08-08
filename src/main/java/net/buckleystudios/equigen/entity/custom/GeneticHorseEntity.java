@@ -1602,7 +1602,7 @@ private float difference = 0;
                 ).normalize();
 
                 try {
-                    texturer.textureGeneration(this,outputPath, new ArrayList<>(List.of(inputPath3)));
+                    texturer.textureGeneration(this,outputPath, texturer.getLayerList(this));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

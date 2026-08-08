@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 
 public class Canvas {
     BufferedImage img;
@@ -46,18 +47,20 @@ public class Canvas {
         this.img = img;
     }
 
-    public void initializeCanvas() {
+    public void initializeCanvas() throws IOException {
+//        background = ImageIO.read((Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
+//                "entity", "genetic_horse", "final_texture.png")).toFile());
         this.canvas =
                 new BufferedImage(256,
-                        256,
+                        320,
                         BufferedImage.TYPE_4BYTE_ABGR);
         g = canvas.createGraphics();
-        g.setColor(Color.MAGENTA);
-        g.fillRect(0, 0, 256, 256);
+//        g.drawImage(background, 0, 0, null);
+
     }
 
-    public void updateCanvasImage(Path filePath) throws IOException {
-        this.img = ImageIO.read(filePath.toFile());
+    public void updateCanvasImage(BufferedImage file) throws IOException {
+        this.img = file;
 
         if (img == null) {
             System.out.println("One or more images could not be loaded.");
@@ -93,6 +96,24 @@ public class Canvas {
                             " SOURCE X = " +  modifiedPart.blocks.get(i).faces.get(f).x +
                             " SOURCE Y = " + modifiedPart.blocks.get(i).faces.get(f).y);
                 }
+            }
+        }
+    }
+
+    public void drawColor (ArrayList<Part> pList, int hexCode) {
+        //TODO fix!
+        Color color = new Color(hexCode);
+        for (Part p : pList) {
+            for(int i = 0; i < p.blocks.size(); i++) {
+                for (int f = 0; f < p.blocks.get(i).faces.size(); f++) {
+                    g.drawImage(img,
+                            // destination (where it goes on the canvas)
+                            p.blocks.get(i).faces.get(f).x,
+                            p.blocks.get(i).faces.get(f).y,
+                            p.blocks.get(i).faces.get(f).x + p.blocks.get(i).faces.get(f).width,
+                            p.blocks.get(i).faces.get(f).y + p.blocks.get(i).faces.get(f).height,
+                            color, null);
+                } System.out.println("DRAWING COLOR!");
             }
         }
     }

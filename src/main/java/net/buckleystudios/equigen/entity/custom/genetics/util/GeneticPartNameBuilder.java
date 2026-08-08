@@ -137,10 +137,12 @@ public class GeneticPartNameBuilder {
                 return GeneValueNameBuilder(List.of(PART, MUSCLE_MASS));
             }
         }
-        EquigenMod.LOGGER.info("SECOND GENETIC = {}, THIRD GENETIC = {}", genetics.get(1), genetics.get(2));
+        EquigenMod.LOGGER.info("PART = {} SECOND GENETIC = {}, THIRD GENETIC = {}", PART, genetics.get(1), genetics.get(2));
         String SECOND_GENETIC = GeneticIdentifier(nameSecond, genetics.get(1), PART);
         String THIRD_GENETIC = GeneticIdentifier(nameThird, genetics.get(2), PART);
-        return GeneValueNameBuilder(List.of(PART, MUSCLE_MASS, SECOND_GENETIC, THIRD_GENETIC));
+        String p = GeneValueNameBuilder(List.of(PART, MUSCLE_MASS, SECOND_GENETIC, THIRD_GENETIC));
+        EquigenMod.LOGGER.info("PART STRING = {}", p);
+        return p;
     }
 
     private String GeneticIdentifier(String name, Float value, String part) {
@@ -289,13 +291,16 @@ public class GeneticPartNameBuilder {
     public String GeneValueNameBuilder(List<String> parts) {
             StringBuilder name = new StringBuilder();
             for (String part : parts) {
-                name.append(part);
-                name.append("_");
+
+                if (!part.isEmpty()) {
+                    name.append(part);
+                    name.append("_");
+                }
             }
-            if (!name.isEmpty()) {
-                name.deleteCharAt(name.length() - 1);
-            }
-            return String.valueOf(name);
+        name.deleteCharAt(name.length() - 1);
+
+
+        return String.valueOf(name);
     }
 
     public String returnPartType(String partName) {
