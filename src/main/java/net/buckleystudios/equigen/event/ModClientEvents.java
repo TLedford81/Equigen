@@ -5,12 +5,14 @@ import net.buckleystudios.equigen.block.ModBlocks;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.client.egret.EgretRenderer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.GeneticHorseRenderer;
+import net.buckleystudios.equigen.entity.client.genetic_horse.parts.registry.ModelPartRegistries.ModelPartRegistry;
 import net.buckleystudios.equigen.entity.client.pillager_king.PillagerKingRenderer;
 import net.buckleystudios.equigen.entity.client.projectile.LassoProjectileRenderer;
 import net.buckleystudios.equigen.entity.client.projectile.SodiumGrenadeProjectileRenderer;
 import net.buckleystudios.equigen.entity.client.test_entity.TestEntityRenderer;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.buckleystudios.equigen.network.ClientGeneticSync;
+import net.buckleystudios.equigen.screen.GeneticHorse.GeneticHorseEntityScreen;
 import net.buckleystudios.equigen.screen.Infusion_Table.InfusionTableScreen;
 import net.buckleystudios.equigen.screen.ModMenuTypes;
 import net.buckleystudios.equigen.screen.Stall_Nameplate.StallNameplateScreen;
@@ -45,12 +47,14 @@ public class ModClientEvents {
         EntityRenderers.register(ModEntities.SODIUM_GRENADE.get(), SodiumGrenadeProjectileRenderer::new);
         EntityRenderers.register(ModEntities.LASSO.get(), LassoProjectileRenderer::new);
 
+        ModelPartRegistry.registerAllModels();
     }
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent event){
         event.register(ModMenuTypes.INFUSION_TABLE_MENU.get(), InfusionTableScreen::new);
         event.register(ModMenuTypes.TEST_ENTITY_MENU.get(), TestEntityScreen::new);
         event.register(ModMenuTypes.STALL_NAMEPLATE_MENU.get(), StallNameplateScreen::new);
+        event.register(ModMenuTypes.GENETIC_HORSE_MENU.get(), GeneticHorseEntityScreen::new);
     }
 
     private static final List<ResourceLocation> gaitIndicators = List.of(

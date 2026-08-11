@@ -2,6 +2,7 @@ package net.buckleystudios.equigen.event;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.buckleystudios.equigen.EquigenMod;
+import net.buckleystudios.equigen.command.GeneticHorseRegistryCommand;
 import net.buckleystudios.equigen.command.GeneticHorseSummonCommand;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
@@ -35,6 +36,7 @@ public class ModEvents {
     @SubscribeEvent
     public static void onCommandsRegister(RegisterCommandsEvent event){
         new GeneticHorseSummonCommand(event.getDispatcher());
+        new GeneticHorseRegistryCommand(event.getDispatcher());
         ConfigCommand.register(event.getDispatcher());
     }
 

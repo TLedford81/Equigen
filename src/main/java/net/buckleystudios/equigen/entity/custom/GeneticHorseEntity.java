@@ -9,24 +9,24 @@ import net.buckleystudios.equigen.entity.custom.genetics.GeneticBreeds;
 import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
 import net.buckleystudios.equigen.entity.custom.genetics.util.*;
-import net.buckleystudios.equigen.entity.custom.goals.EatGoal;
-import net.buckleystudios.equigen.item.HorseConsumables;
 import net.buckleystudios.equigen.item.ModItems;
+import net.buckleystudios.equigen.screen.GeneticHorse.GeneticHorseEntityMenu;
 import net.buckleystudios.equigen.sound.ModSounds;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.ComponentUtils;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.*;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -53,7 +53,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJumping, Heritable {
+public class GeneticHorseEntity extends AbstractHorse implements
+        PlayerRideableJumping, Heritable, ContainerListener, HasCustomInventoryScreen {
     public final AnimationState idleAnimationState = new AnimationState();
 
     public static final EntityDataAccessor<Float> HUNGER = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
@@ -79,7 +80,15 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     public static final EntityDataAccessor<Float> SKILL_ENDURANCE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> SKILL_AGILITY = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
 
-    private static final EntityDataAccessor<Boolean> PREGNANT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.BOOLEAN);
+    public static final EntityDataAccessor<String> REGISTERED_NAME = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> BREEDER = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> SIRE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> MARE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<Boolean> PREGNANT = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.BOOLEAN);
+    public static final EntityDataAccessor<Integer> PREGNANCY_LENGTH = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Integer> PREGNANCY_TIMER = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Integer> BREEDING_COOLDOWN = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Integer> MAX_BREEDING_COOLDOWN = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.INT);
 
     public GeneticBreeds breed;
 //    public static final int geneticCount = GeneticValues.values().length;
@@ -120,18 +129,13 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
     private boolean isTurnClutched;
     private boolean isJumpReady = true;
 
-    public int pregnancyTickTimer;
-    public int PregnancyLength = 200; //In Ticks
-    public Animal RecentMate;
-
-    private int var1PercentileResult = -1;
-    private int var2PercentileResult = -2;
-    private int var3PercentileResult = -3;
+    public Pregnancy currentPregnancy;
 
 
     // SPAWNING //
     public GeneticHorseEntity(EntityType<? extends AbstractHorse> entityType, Level level) {
         super(entityType, level);
+        this.createInventory();
     }
 
     @Override
@@ -158,7 +162,7 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         if (child instanceof GeneticHorseEntity) {
             GeneticHorseEntity geneticHorseChild = (GeneticHorseEntity) child;
 
-            geneticHorseChild.HandleNewSpawnWithParentalGenetics(this);
+            geneticHorseChild.ApplyNewSpawnParentalGenetics(this);
             geneticHorseChild.HandleNewSpawnSkillsAndProficiencies();
         }
         super.onOffspringSpawnedFromEgg(player, child);
@@ -173,14 +177,16 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
 
         if (gender == 1) {
             geneticHorseMate.setPregnant(true, this);
-            geneticHorseMate.pregnancyTickTimer = PregnancyLength;
+            geneticHorseMate.entityData.set(PREGNANCY_TIMER, geneticHorseMate.entityData.get(PREGNANCY_LENGTH));
+            geneticHorseMate.setBreedingCooldown(this.entityData.get(MAX_BREEDING_COOLDOWN) + this.entityData.get(PREGNANCY_LENGTH));
+            this.setBreedingCooldown(this.entityData.get(MAX_BREEDING_COOLDOWN));
         } else if (gender == 2){
             this.setPregnant(true, mate);
-            this.pregnancyTickTimer = PregnancyLength;
+            this.entityData.set(PREGNANCY_TIMER, this.entityData.get(PREGNANCY_LENGTH));
+            this.setBreedingCooldown(this.entityData.get(MAX_BREEDING_COOLDOWN) + this.entityData.get(PREGNANCY_LENGTH));
+            ((GeneticHorseEntity) mate).setBreedingCooldown(this.entityData.get(MAX_BREEDING_COOLDOWN));
         }
         EquigenMod.LOGGER.info("IM PREGNANT!");
-        this.setAge(20);
-        mate.setAge(20);
         this.resetLove();
         mate.resetLove();
     }
@@ -189,37 +195,122 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         return this.entityData.get(PREGNANT);
     }
 
+
+    //TODO: Add way to tell if parents are registered or not, and apply that to the Registry
     public void setPregnant(boolean pregnant, Animal mate) {
-        EquigenMod.LOGGER.info("{} is pregnant with {}'s child", this.getName(), mate.getName());
-        this.entityData.set(PREGNANT, pregnant);
-        this.RecentMate = mate;
+        if (mate instanceof GeneticHorseEntity ghe) {
+            this.currentPregnancy = pregnant ? new Pregnancy(
+                    mate.getUUID(),
+                    this.GenerateNewSpawnParentalGenetics(this, ghe),
+                    this.ConcatenateBreederNames(this.getLoveCause().getName(), mate.getLoveCause().getName()),
+                    this.isRegistered() ? this.getRegisteredName() : this.getName(),
+                    ghe.isRegistered() ? ghe.getRegisteredName() : ghe.getName())
+                    : null;
+            if(pregnant) EquigenMod.LOGGER.info("Pregnancy Begun, Breeder: {}, Horse ID = {}", this.currentPregnancy.breederName(), this.getId());
+            if (!this.level().isClientSide) {
+                this.entityData.set(PREGNANT, pregnant);
+            }
+        } else {
+            EquigenMod.LOGGER.error("Tried to make Non-GHE pregnant.");
+        }
+    }
+    private void GiveBirth() {
+        EquigenMod.LOGGER.info("I GAVE BIRTH");
+        ServerLevel level = this.getServer().getLevel(this.level().dimension());
+        if(level.getEntity(this.currentPregnancy.mate()) instanceof Animal mate) {
+            AgeableMob ageablemob = this.getBreedOffspring(level, mate);
+            final BabyEntitySpawnEvent event = new BabyEntitySpawnEvent(this, mate, ageablemob);
+            ageablemob = event.getChild();
+            if (ageablemob != null) {
+                ageablemob.setBaby(true);
+                ageablemob.moveTo(this.getX(), this.getY(), this.getZ(), 0.0F, 0.0F);
+                level.addFreshEntityWithPassengers(ageablemob);
+            }
+
+            level.broadcastEntityEvent(this, (byte) 18); // hearts particles
+            GeneticHorseEntity ghe = (GeneticHorseEntity) ageablemob;
+
+            ghe.HandleNewSpawnSkillsAndProficiencies();
+            ghe.ApplyNewSpawnParentalGenetics(this.currentPregnancy.babyGenes());
+            ghe.setBreederName(this.currentPregnancy.breederName());
+            ghe.setSireName(this.currentPregnancy.sireName());
+            ghe.setMareName(this.currentPregnancy.mareName());
+
+            this.setPregnant(false, mate);
+            this.currentPregnancy = null;
+        }
     }
 
-    private void GiveBirth(ServerLevel level, Animal mate) {
-        this.setPregnant(false, mate);
-        EquigenMod.LOGGER.info("I GAVE BIRTH");
-        AgeableMob ageablemob = this.getBreedOffspring(level, mate);
-        final BabyEntitySpawnEvent event = new BabyEntitySpawnEvent(this, mate, ageablemob);
-        ageablemob = event.getChild();
-        if (ageablemob != null) {
-            ageablemob.setBaby(true);
-            ageablemob.moveTo(this.getX(), this.getY(), this.getZ(), 0.0F, 0.0F);
-            level.addFreshEntityWithPassengers(ageablemob);
+    public int getPregnancyTickTimer() {
+        return this.entityData.get(PREGNANCY_TIMER);
+    }
+
+    public void setPregnancyTickTimer(int value) {
+        this.entityData.set(PREGNANCY_TIMER, value);
+    }
+
+    public int getPregnancyLength() {
+        return this.entityData.get(PREGNANCY_LENGTH);
+    }
+
+    public int getBreedingCooldown() {
+        return this.entityData.get(BREEDING_COOLDOWN);
+    }
+    public void setBreedingCooldown(int ticks) {
+        this.entityData.set(BREEDING_COOLDOWN, ticks);
+    }
+
+    public int getMaxBreedingCooldown() {
+        return this.entityData.get(MAX_BREEDING_COOLDOWN);
+    }
+    public void setMaxBreedingCooldown(int ticks) {
+        this.entityData.set(MAX_BREEDING_COOLDOWN, ticks);
+    }
+    public boolean hasBreedingCooldown() {
+        return getBreedingCooldown() > 0;
+    }
+    @Override
+    public boolean canFallInLove() {
+        return super.canFallInLove() && !hasBreedingCooldown();
+    }
+
+    @Override
+    public void setInLove(@Nullable Player player) {
+        if (hasBreedingCooldown()) {
+            return;
         }
 
-        level.broadcastEntityEvent(this, (byte)18); // hearts particles
-        GeneticHorseEntity ghe = (GeneticHorseEntity) ageablemob;
-        ghe.HandleNewSpawnSkillsAndProficiencies();
-        ghe.HandleNewSpawnWithParentalGenetics(this, (GeneticHorseEntity) mate);
-        this.RecentMate = null;
+        super.setInLove(player);
     }
 
+    public Component ConcatenateBreederNames(Component breederName1, Component breederName2){
+        Component breeder1 = breederName1 != null ? breederName1 : Component.translatable("equigen.genetic_horse.unknown_breeder");
+        Component breeder2 = breederName2 != null ? breederName2 : Component.translatable("equigen.genetic_horse.unknown_breeder");
+
+        if (breeder1.getString().equals(breeder2.getString())) { return breeder1; }
+        else { return ComponentUtils.formatList(List.of(breeder1, breeder2),
+                Component.translatable("equigen.ui.separator")); }
+    }
+
+    public void setRegisteredName(Component name){ this.entityData.set(REGISTERED_NAME, name.getString()); }
+    public void setBreederName(Component name){ this.entityData.set(BREEDER, name.getString()); }
+    public void setSireName(Component name){ this.entityData.set(SIRE, name.getString()); }
+    public void setMareName(Component name){ this.entityData.set(MARE, name.getString()); }
+
+    public Component getRegisteredName(){ return Component.literal(this.entityData.get(REGISTERED_NAME)); }
+    public Component getBreederName(){ return Component.literal(this.entityData.get(BREEDER)); }
+    public Component getSireName(){ return Component.literal(this.entityData.get(SIRE)); }
+    public Component getMareName(){ return Component.literal(this.entityData.get(MARE)); }
+
+    public boolean isRegistered(){ return !this.getRegisteredName().equals(Component.empty()); }
     // BASIC SETTINGS //
     @Override
     public boolean canMate(Animal otherAnimal) {
+
         if (!(otherAnimal instanceof GeneticHorseEntity geneticHorseEntity)) return false;
 
         if (!this.isInLove() || !geneticHorseEntity.isInLove()) return false;
+        if (this.isPregnant() || geneticHorseEntity.isPregnant()) return false;
 
         float thisGender = GeneticsHandler.getEntityGenetic(this, Genetics.GENDER);
         float otherGender = GeneticsHandler.getEntityGenetic(geneticHorseEntity, Genetics.GENDER);
@@ -305,16 +396,43 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         //Genetics
         this.setBreed(GeneticBreeds.valueOf(tag.getString("Breed")));
 
-//        StringBuilder genString = new StringBuilder(tag.getString("GeneticCode"));
-//        while(genString.length() < geneticCount * 2){
-//            genString.append("00");
-//        }
+        //Breeder
+        this.setBreederName(Component.literal(tag.getString("breeder_1")));
+
+        //Pregnancy
+        Map<Genetics, Float> loadedGenes = new HashMap<>();
+        for(Genetics gene : Genetics.values()){
+            if(tag.contains("pregnancy_gene_" + gene.name())){
+                loadedGenes.put(gene, tag.getFloat("pregnancy_gene_" + gene.name()));
+            }
+        }
+
+        if(tag.hasUUID("pregnancy_mate")) {
+            this.currentPregnancy = new Pregnancy(
+                    tag.getUUID("pregnancy_mate"),
+                    loadedGenes,
+                    Component.literal(tag.getString("pregnancy_breeder")),
+                    Component.literal(tag.getString("pregnancy_mare")),
+                    Component.literal(tag.getString("pregnancy_sire"))
+            );
+        }
+
+        //Inventory
+        this.createInventory();
+        ListTag listtag = tag.getList("Items", 10);
+
+        for (int x = 0; x < listtag.size(); x++) {
+            CompoundTag compoundtag = listtag.getCompound(x);
+            int j = compoundtag.getByte("Slot") & 255;
+            if (j < this.inventory.getContainerSize()) {
+                this.inventory.setItem(j, ItemStack.parse(this.registryAccess(), compoundtag).orElse(ItemStack.EMPTY));
+            }
+        }
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
-
         //Genetics
         tag.putString("Breed", this.getBreed().name());
 
@@ -354,6 +472,36 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         tag.putInt("StrengthProficiency", this.entityData.get(STRENGTH_PROFICIENCY));
         tag.putInt("EnduranceProficiency", this.entityData.get(ENDURANCE_PROFICIENCY));
         tag.putInt("AgilityProficiency", this.entityData.get(AGILITY_PROFICIENCY));
+
+        //Inventory
+        ListTag listtag = new ListTag();
+        for (int x = 0; x < this.inventory.getContainerSize(); x++) {
+            ItemStack itemstack = this.inventory.getItem(x);
+            if (!itemstack.isEmpty()) {
+                CompoundTag compoundtag = new CompoundTag();
+                compoundtag.putByte("Slot", (byte)(x));
+                listtag.add(itemstack.save(this.registryAccess(), compoundtag));
+            }
+        }
+        tag.put("Items", listtag);
+
+        //Breeder
+        if(!this.entityData.get(BREEDER).isEmpty()) {
+            tag.putString("breeder", this.getBreederName().getString());
+        }
+
+        //Pregnancy
+        if(this.currentPregnancy != null) {
+            for(Genetics gene : Genetics.values()){
+                if(this.currentPregnancy.babyGenes().containsKey(gene)){
+                    tag.putFloat("pregnancy_gene_" + gene.name(), this.currentPregnancy.babyGenes().get(gene));
+                }
+            }
+            tag.putUUID("pregnancy_mate", this.currentPregnancy.mate());
+            tag.putString("pregnancy_breeder1", this.currentPregnancy.breederName().getString());
+            tag.putString("pregnancy_mare", this.currentPregnancy.mareName().getString());
+            tag.putString("pregnancy_sire", this.currentPregnancy.sireName().getString());
+        }
     }
 
     @Override
@@ -382,7 +530,16 @@ public class GeneticHorseEntity extends AbstractHorse implements PlayerRideableJ
         builder.define(ENDURANCE_PROFICIENCY, 0);
         builder.define(AGILITY_PROFICIENCY, 0);
 
+        builder.define(REGISTERED_NAME, "");
+        builder.define(BREEDER, "");
+        builder.define(SIRE, "");
+        builder.define(MARE, "");
         builder.define(PREGNANT, false);
+        builder.define(PREGNANCY_LENGTH, 200);
+        builder.define(PREGNANCY_TIMER, 0);
+        builder.define(BREEDING_COOLDOWN, 0);
+        builder.define(MAX_BREEDING_COOLDOWN, 200);
+
     }
 
 
@@ -1441,8 +1598,9 @@ private float difference = 0;
                 this.removeEffect(ModEffects.STRESSED_EFFECT);
             }
 
-            if(pregnancyTickTimer <= 0 && this.isPregnant()){
-                GiveBirth(this.getServer().getLevel(this.level().dimension()), RecentMate);
+            if(this.isPregnant()) EquigenMod.LOGGER.info("IM PREGNANT: " + this.entityData.get(PREGNANCY_TIMER));
+            if(this.entityData.get(PREGNANCY_TIMER) <= 0 && this.isPregnant()){
+                GiveBirth();
             }
         }
     }
@@ -1450,8 +1608,11 @@ private float difference = 0;
     private void HandleConstantTickTimers(){
         careTickTimer++;
 
-        if(this.isPregnant()){
-            pregnancyTickTimer--;
+        if(!this.level().isClientSide && this.isPregnant() && this.getPregnancyTickTimer() > 0){
+            this.setPregnancyTickTimer(this.getPregnancyTickTimer() - 1);
+        }
+        if (!this.level().isClientSide && this.getBreedingCooldown() > 0) {
+            this.setBreedingCooldown(this.getBreedingCooldown() - 1);
         }
     }
 
@@ -1520,6 +1681,7 @@ private float difference = 0;
     public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
         boolean flag = !this.isBaby() && this.isTamed() && pPlayer.isSecondaryUseActive();
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
+        //SERVER
         if (!this.level().isClientSide()) {
             CompoundTag data = this.getPersistentData();
 
@@ -1530,8 +1692,14 @@ private float difference = 0;
                 );
                 return InteractionResult.CONSUME;
             }
+
+            if (itemstack.is(Items.PAPER)){
+                this.registerHorse((ServerPlayer) pPlayer);
+                return InteractionResult.CONSUME;
+            }
         }
 
+        //CLIENT
         if (!this.isVehicle() && !flag) {
             if(itemstack.is(ModItems.HORSE_BRUSH)){
                 this.alterCleanliness("hair", 1.0f);
@@ -1627,6 +1795,36 @@ private float difference = 0;
         }
     }
 
+    private void registerHorse(ServerPlayer player) {
+        if(!this.level().isClientSide()) {
+            if (this.getOwner() != player) {
+                player.displayClientMessage(
+                        Component.translatable("equigen.genetic_horse.registering.invalid_owner"), true);
+            } else if (this.isRegistered()) {
+                player.displayClientMessage(
+                        Component.translatable("equigen.genetic_horse.registering.already_registered"), true);
+            } else if (!this.hasCustomName()) {
+                player.displayClientMessage(
+                        Component.translatable("equigen.genetic_horse.registering.unnamed"), true);
+            } else {
+                RegistrySavedData registry =
+                        RegistrySavedData.get(player.server);
+
+                if(registry.RegisterHorse(this.getCustomName().getString(), this.getUUID(), this.getBreedPercentages(),
+                        this.getMareName().toString(), this.getSireName().toString())){
+                    this.setRegisteredName(this.getCustomName());
+                    player.displayClientMessage(
+                            Component.translatable("equigen.genetic_horse.registering.success",
+                                    this.getRegisteredName()),true);
+                } else {
+                    player.displayClientMessage(
+                            Component.translatable("equigen.genetic_horse.registering.name_taken",
+                                    this.getRegisteredName()),true);
+                }
+            }
+        }
+    }
+
     @Override
     public void remove(RemovalReason reason) {
         super.remove(reason);
@@ -1669,6 +1867,12 @@ private float difference = 0;
         }
     }
 
+    public Map<GeneticBreeds, Float> getBreedPercentages(){
+        return Map.of(
+                this.getBreed(), 1f
+        );
+    }
+
     public void HandleNewSpawnWithCustomGenetics(GeneticBreeds breed, Map<Genetics, Float> customGenes){
         this.hasCustomSpawn = true;
         this.setBreed(breed);
@@ -1678,15 +1882,25 @@ private float difference = 0;
         }
     }
 
-    public void HandleNewSpawnWithParentalGenetics(GeneticHorseEntity parent){
-        EquigenMod.LOGGER.info("I WAS CALLED");
-        this.HandleNewSpawnWithParentalGenetics(parent, parent);
+    public void ApplyNewSpawnParentalGenetics(Map<Genetics, Float> genetics){
+        for (Genetics gene : genetics.keySet()){
+            GeneticsHandler.setEntityGenetic(this, gene, genetics.get(gene));
+        }
     }
 
-    public void HandleNewSpawnWithParentalGenetics(GeneticHorseEntity mother, GeneticHorseEntity father) {
+    public void ApplyNewSpawnParentalGenetics(GeneticHorseEntity parent){
+        this.ApplyNewSpawnParentalGenetics(GenerateNewSpawnParentalGenetics(this));
+    }
+
+    public Map<Genetics, Float> GenerateNewSpawnParentalGenetics(GeneticHorseEntity parent){
+        return this.GenerateNewSpawnParentalGenetics(parent, parent);
+    }
+
+    public Map<Genetics, Float> GenerateNewSpawnParentalGenetics(GeneticHorseEntity mother, GeneticHorseEntity father) {
         Random random = new Random();
         GeneticsCalculator calculator = new GeneticsCalculator();
         int rolls = 0;
+        Map<Genetics, Float> map = new HashMap<>();
         for (int i = 0; i < Genetics.values().length; i++) {
             Genetics value = Genetics.values()[i];
             EquigenMod.LOGGER.info("Deciding the " + value.name() + " genetic....");
@@ -1847,6 +2061,7 @@ private float difference = 0;
                 calculator.reroll = "";
             }
         }
+        return map;
     }
 
     // MULTIPART MODEL //
@@ -1884,5 +2099,60 @@ private float difference = 0;
         parts.add(partNameBuilder.PartStringGenerator("withers"));
 //        parts.add("withers_average");
         return parts;
+    }
+
+    @Override
+    protected void createInventory() {
+        SimpleContainer oldInventory = this.inventory;
+
+        this.inventory = new SimpleContainer(this.getCustomInventorySize());
+
+        if (oldInventory != null) {
+            oldInventory.removeListener(this);
+
+            int size = Math.min(oldInventory.getContainerSize(), this.inventory.getContainerSize());
+
+            for (int i = 0; i < size; i++) {
+                ItemStack stack = oldInventory.getItem(i);
+                if (!stack.isEmpty()) {
+                    this.inventory.setItem(i, stack.copy());
+                }
+            }
+        }
+
+        this.inventory.addListener(this);
+    }
+
+    public final int getCustomInventorySize() {
+        return getCustomInventorySize(4);
+    }
+
+    public static int getCustomInventorySize(int columns) {
+        return columns * 3 + 5;
+
+    }
+
+    public boolean hasInventoryChanged(Container inventory) {
+        return this.inventory != inventory;
+    }
+
+    @Override
+    public void containerChanged(Container container) {
+        super.containerChanged(container);
+    }
+
+    @Override
+    public void openCustomInventoryScreen(Player player) {
+        if (!this.level().isClientSide && (!this.isVehicle() || this.hasPassenger(player)) && this.isTamed()) {
+            ServerPlayer serverPlayer = (ServerPlayer) player;
+            if (player.containerMenu != player.inventoryMenu) {
+                player.closeContainer();
+            }
+
+            serverPlayer.openMenu(new SimpleMenuProvider((ix, playerInventory, playerEntityx) ->
+                    new GeneticHorseEntityMenu(ix, playerInventory, this.inventory, this, 4), this.getDisplayName()), buf -> {
+                buf.writeUUID(getUUID());
+            });
+        }
     }
 }

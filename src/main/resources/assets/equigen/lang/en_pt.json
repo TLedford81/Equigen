@@ -62,7 +62,7 @@
   "block.equigen.apricot_fence_gate": "Apricot Fence Gate",
   "block.equigen.apricot_door": "Apricot Door",
   "block.equigen.apricot_trapdoor": "Apricot Trapdoor",
-  
+
   "block.equigen.mulberry_sapling": "Mulberry Sapling",
   "block.equigen.mulberry_log": "Mulberry Log",
   "block.equigen.mulberry_stripped_log": "Stripped Mulberry Log",
@@ -118,19 +118,8 @@
   "block.equigen.stall_nameplate": "Stall Nameplate",
   "block.equigen.horse_spawn_marker": "Horse Trader Spawn Marker",
 
-  "block.equigen.acacia_hay_rack": "Acacia Hay Rack",
-  "block.equigen.birch_hay_rack": "Birch Hay Rack",
-  "block.equigen.oak_hay_rack": "Oak Hay Rack",
-  "block.equigen.spruce_hay_rack": "Spruce Hay Rack",
-
-
   "block.equigen.folirite_block": "Block of Folirite",
   "block.equigen.raw_folirite_block": "Block of Raw Folirite",
-
-  "block.equigen.alfalfa_bale": "Alfalfa Bale",
-  "block.equigen.timothy_bale": "Timothy Bale",
-  "block.equigen.barley_bale": "Barley Bale",
-  "block.equigen.oat_bale": "Oat Bale",
 
   "item.equigen.folirite_ingot": "Folirite Ingot",
   "item.equigen.raw_folirite": "Raw Folirite",
@@ -165,9 +154,6 @@
   "item.equigen.corn_seeds": "Corn Seeds",
   "item.equigen.oat_seeds": "Oat Seeds",
   "item.equigen.timothy_hay_seeds": "Timothy Hay Seeds",
-
-  "item.equigen.standard_feed": "Standard Feed",
-  "item.equigen.fertility_feed": "Fertility Feed",
 
   "item.equigen.horse_brush": "Horse Brush",
   "item.equigen.hoof_pick": "Hoof Pick",
@@ -213,38 +199,10 @@
   "key.gait.gaittyup": "Gait Up",
   "key.gait.gaittydown": "Gait Down",
 
-  "equigen.gui.genetic_horse.stat.hunger": "HUNGER",
-  "equigen.gui.genetic_horse.stat.thirst": "THIRST",
-  "equigen.gui.genetic_horse.stat.cleanliness": "CLEANLINESS",
-  "equigen.gui.genetic_horse.stat.happiness": "HAPPINESS",
-  "equigen.gui.genetic_horse.stat.stress": "STRESS",
-  "equigen.gui.genetic_horse.tack": "TACK",
-  "equigen.gui.genetic_horse.inventory": "INVENTORY",
-  "equigen.gui.genetic_horse.saddlebag_required": "SADDLEBAG REQUIRED (Coming Soon)",
-
-  "equigen.gui.genetic_horse.skill.speed": "SPEED",
-  "equigen.gui.genetic_horse.skill.strength": "STRENGTH",
-  "equigen.gui.genetic_horse.skill.jump": "JUMP",
-  "equigen.gui.genetic_horse.skill.endurance": "ENDURANCE",
-  "equigen.gui.genetic_horse.skill.agility": "AGILITY",
-
-
-  "equigen.genetic_horse.registering.invalid_owner": "You do not own this horse!",
-  "equigen.genetic_horse.registering.unnamed": "This horse is not named!",
-  "equigen.genetic_horse.registering.already_registered": "This horse is already registered!",
-  "equigen.genetic_horse.registering.name_taken": "Another horse is already registered under this name!",
-  "equigen.genetic_horse.registering.success": "Successfully registered %s!",
-
-  "equigen.genetic_horse.unregistered": "Unregistered",
-  "equigen.genetic_horse.unowned": "Unowned",
-  "equigen.genetic_horse.measurement.format": "%s Hands",
-  "equigen.gui.genetic_horse.breed": "BREED",
-  "equigen.gui.genetic_horse.actions": "ACTIONS",
-  "equigen.gui.genetic_horse.skills": "SKILLS",
-  "equigen.gui.genetic_horse.stats":"STATS",
-  "equigen.gui.genetic_horse.breeding_cooldown": "Breeding Cooldown",
-  "equigen.gui.genetic_horse.pregnancy_timer": "Pregnancy Timer",
-
-  "equigen.ui.separator": " / ",
-  "equigen.genetic_horse.unknown_breeder": "Unknown"
+  "equigen.gui.genetic_horse.stat.hunger": "BELLY RUMBLIN'",
+  "equigen.gui.genetic_horse.stat.thirst": "PARCHED GULLET",
+  "equigen.gui.genetic_horse.stat.cleanliness": "FILTH LEVEL",
+  "equigen.gui.genetic_horse.stat.happiness": "CREW SPIRITS",
+  "equigen.gui.genetic_horse.stat.stress": "SEA NERVES",
+  "equigen.gui.genetic_horse.tack": "GEAR 'N TACK"
 }

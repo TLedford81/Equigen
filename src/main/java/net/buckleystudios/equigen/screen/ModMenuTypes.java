@@ -1,6 +1,7 @@
 package net.buckleystudios.equigen.screen;
 
 import net.buckleystudios.equigen.EquigenMod;
+import net.buckleystudios.equigen.screen.GeneticHorse.GeneticHorseEntityMenu;
 import net.buckleystudios.equigen.screen.Infusion_Table.InfusionTableMenu;
 import net.buckleystudios.equigen.screen.Stall_Nameplate.StallNameplateMenu;
 import net.buckleystudios.equigen.screen.Test_Entity.TestEntityMenu;
@@ -21,6 +22,8 @@ public class ModMenuTypes {
             registerMenuType(TestEntityMenu::create, "test_entity_menu");
     public static final DeferredHolder<MenuType<?>, MenuType<StallNameplateMenu>> STALL_NAMEPLATE_MENU =
             registerMenuType(StallNameplateMenu::new, "stall_nameplate_menu");
+    public static final DeferredHolder<MenuType<?>, MenuType<GeneticHorseEntityMenu>> GENETIC_HORSE_MENU =
+            registerMenuType(GeneticHorseEntityMenu::create, "genetic_horse_menu");
 
     private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(IContainerFactory<T> factory, String name) {
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));
