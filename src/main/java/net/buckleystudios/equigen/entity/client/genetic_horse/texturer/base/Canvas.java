@@ -1,6 +1,7 @@
 package net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base;
 
 import net.buckleystudios.equigen.EquigenMod;
+import net.buckleystudios.equigen.entity.custom.genetics.util.GeneticPartNameBuilder;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -100,20 +101,35 @@ public class Canvas {
         }
     }
 
-    public void drawColor (ArrayList<Part> pList, int hexCode) {
-        //TODO fix!
+    public void drawColor (ArrayList<String> pList, int hexCode) {
         Color color = new Color(hexCode);
-        for (Part p : pList) {
-            for(int i = 0; i < p.blocks.size(); i++) {
-                for (int f = 0; f < p.blocks.get(i).faces.size(); f++) {
-                    g.drawImage(img,
-                            // destination (where it goes on the canvas)
-                            p.blocks.get(i).faces.get(f).x,
-                            p.blocks.get(i).faces.get(f).y,
-                            p.blocks.get(i).faces.get(f).x + p.blocks.get(i).faces.get(f).width,
-                            p.blocks.get(i).faces.get(f).y + p.blocks.get(i).faces.get(f).height,
-                            color, null);
-                } System.out.println("DRAWING COLOR!");
+        PartList Parts = new PartList();
+
+
+        for (String s : pList) {
+            Part p = Parts.returnPart(s);
+            GeneticPartNameBuilder builder = new GeneticPartNameBuilder();
+            String partType = builder.returnPartType(s);
+            p.applyBaseUVCoords(partType);
+            if (p.modelName.equals("NULL") || p.blocks == null) {
+                EquigenMod.LOGGER.info("NULL PART WHEN DRAWING COLOR! MOVING ON: {}" ,p.modelName);
+            } else {
+                EquigenMod.LOGGER.info("DRAWING {} !", p.modelName);
+                for(int i = 0; i < p.blocks.size(); i++) {
+                    for (int f = 0; f < p.blocks.get(i).faces.size(); f++) {
+                        Face face = p.blocks.get(i).faces.get(f);
+
+                        EquigenMod.LOGGER.info("DRAWING COLOR!");
+
+                        g.setColor(color);
+                        g.fillRect(
+                                face.x,
+                                face.y,
+                                face.width,
+                                face.height
+                        );
+                    }
+                }
             }
         }
     }

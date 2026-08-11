@@ -108,8 +108,12 @@ public enum Genetics {
     BACK_LEFT_LEG_MARKING (ModData.BACK_LEFT_LEG_MARKING, GeneticCategories.MARKING_GENETICS, 19, true, true, true),
     BACK_RIGHT_LEG_MARKING (ModData.BACK_RIGHT_LEG_MARKING, GeneticCategories.MARKING_GENETICS, 19, true, true, true),
     LEG_MARKING_COLOR (ModData.LEG_MARKING_COLOR, GeneticCategories.NONE, 0, false, true, false),
-    LEFT_EYE_COLOR (ModData.LEFT_EYE_COLOR, GeneticCategories.NONE, 0, false, true, false),
-    RIGHT_EYE_COLOR (ModData.RIGHT_EYE_COLOR, GeneticCategories.NONE, 0, false, true, false),
+    EYE_BASE_COLOR (ModData.EYE_BASE_COLOR, GeneticCategories.NONE, 3, true, true, false),
+    EYE_BASE_COLOR_2 (ModData.EYE_BASE_COLOR_2, GeneticCategories.NONE, 3, true, true, false),
+    EYE_HUE (ModData.EYE_HUE, GeneticCategories.NONE, 100, true, true, false),
+    EYE_SATURATION (ModData.EYE_SATURATION, GeneticCategories.NONE, 100, true, true, false),
+    EYE_BRIGHTNESS (ModData.EYE_BRIGHTNESS, GeneticCategories.NONE, 100, true, true, false),
+    HETEROCHROMIA (ModData.HETEROCHROMIA, GeneticCategories.NONE, 3, true, true, false),
     HOOF_COLOR (ModData.HOOF_COLOR, GeneticCategories.NONE, 0, false, true, false),
     MANE_LENGTH (ModData.MANE_LENGTH, GeneticCategories.NONE, 0, false, true, true),
 
@@ -230,16 +234,16 @@ public enum Genetics {
             SHORT_1, SHORT_2, SHORT_3, AVERAGE_1, AVERAGE_2, AVERAGE_3, LONG_1, LONG_2, LONG_3
         }
         public enum TOP_LEG{
-            SHORT_1, SHORT_2, AVERAGE_1, AVERAGE_2, LONG_1, LONG_2
+            SHORT_1, SHORT_2, SHORT_3, AVERAGE_1, AVERAGE_2, AVERAGE_3, LONG_1, LONG_2, LONG_3
         }
         public enum TOP_HIND_LEG_WIDTH{
             THIN, AVERAGE, THICK
         }
         public enum CHEST_SIZE{
-            SMALL_1, SMALL_2, AVERAGE_1, AVERAGE_2, LONG_1, LONG_2
+            SMALL_1, SMALL_2, AVERAGE_1, AVERAGE_2, LARGE_1, LARGE_2
         }
         public enum HIP_SIZE{
-            SMALL_1, SMALL_2, AVERAGE_1, AVERAGE_2, LONG_1, LONG_2
+            SMALL_1, SMALL_2, AVERAGE_1, AVERAGE_2, LARGE_1, LARGE_2
         }
 
         public enum BACK_LENGTH{

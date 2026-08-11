@@ -7,6 +7,7 @@ import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Part
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
+import net.buckleystudios.equigen.entity.custom.genetics.util.GeneticCategories;
 import net.buckleystudios.equigen.entity.custom.genetics.util.GeneticPartNameBuilder;
 
 import javax.imageio.ImageIO;
@@ -17,6 +18,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class GeneticHorseTexturer {
     GeneticHorseEntity entity;
@@ -37,6 +39,9 @@ public class GeneticHorseTexturer {
         //Leg Markings
 
         //Face Markings
+        if (GeneticsHandler.getEntityGenetic(entity, Genetics.FACE_MARKING) > 0) {
+            imageLayers.add(returnImage(Objects.requireNonNull(getFaceMarking(entity))));
+        }
 
         //Patterns
 
@@ -54,9 +59,9 @@ public class GeneticHorseTexturer {
         imageLayers.add(returnImage(Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
                 "entity", "genetic_horse", "markings", "head_markings", "eyes.png")));
         imageLayers.add(tintTexture(returnImage(Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
-                "entity", "genetic_horse", "markings", "head_markings", "eyes_pupils.png")), 0x09e6a7
-
-                /*(int) GeneticsHandler.getEntityGenetic(entity, Genetics.LEFT_EYE_COLOR*/)); //TODO Impement Heterochromia
+                "entity", "genetic_horse", "markings", "head_markings", "eyes_right_pupil.png")), getEyeColor(entity, false)));
+        imageLayers.add(tintTexture(returnImage(Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
+                        "entity", "genetic_horse", "markings", "head_markings", "eyes_left_pupil.png")), getEyeColor(entity, true))); //TODO Impement Heterochromia
 
         //Nostrils
 
@@ -73,10 +78,8 @@ public class GeneticHorseTexturer {
         PartList Parts = new PartList();
 
         // Draw Base Color
-//        canvas.drawColor(Parts.createPartList(partsList), getBaseColor(entity));
-//        for (String part : partsList) {
-////            canvas.drawImage()
-//        }
+        canvas.drawColor((ArrayList<String>) partsList, getBaseColor(entity));
+
         // For Loop Draw Layers
         int i = 0;
         EquigenMod.LOGGER.info("REFERENCE LAYER SIZE = {}", referenceLayers.size());
@@ -118,7 +121,7 @@ public class GeneticHorseTexturer {
         canvas.finalizeImage(destination);
     }
 
-    public int getBaseColor(GeneticHorseEntity entity) {
+    private int getBaseColor(GeneticHorseEntity entity) {
         float warmth = GeneticsHandler.getEntityGenetic(entity, Genetics.WARMTH);
         float darkness = GeneticsHandler.getEntityGenetic(entity, Genetics.DARKNESS);
         float richness = GeneticsHandler.getEntityGenetic(entity, Genetics.RICHNESS);
@@ -146,7 +149,186 @@ public class GeneticHorseTexturer {
             saturation = 40 + (richness * 0.35F);
             brightness = 60 + (darkness * 0.35F);
         }
+
+        hue /= 360f;
+        saturation /= 100f;
+        brightness /= 100f;
+
         return Color.HSBtoRGB(hue, saturation, brightness);
+    }
+
+    private int applyModifiers(GeneticHorseEntity entity, int RGB, String baseColor) {
+        List<Genetics> genetics = Genetics.getTextureGenetics();
+        List<Genetics> presentModifiers = new ArrayList<>(List.of());
+        for (Genetics g : genetics) {
+            if (g.getCategory().equals(GeneticCategories.COAT_MODIFIERS)) {
+                float gene = GeneticsHandler.getEntityGenetic(entity, g.name());
+                if (gene >= 2.0F) { // E/e or above
+                    presentModifiers.add(g);
+                    EquigenMod.LOGGER.info("ADDING {} GENETIC TO PRESENT MODIFIERS WITH A VALUE OF {}", g.name(), gene);
+                }
+            }
+        }
+        float hue;
+        float saturation;
+        float brightness;
+        return 0;
+    }
+
+    private int findModifierValues(GeneticHorseEntity entity, Genetics gene, String type) {
+        switch (gene.name()) {
+
+        }
+        return 0;
+    }
+    private int getEyeColor(GeneticHorseEntity entity, boolean secondaryEyeColor) {
+        float gHue = GeneticsHandler.getEntityGenetic(entity, Genetics.EYE_HUE);
+        float gSaturation = GeneticsHandler.getEntityGenetic(entity, Genetics.EYE_SATURATION);
+        float gBrightness = GeneticsHandler.getEntityGenetic(entity, Genetics.EYE_BRIGHTNESS);
+        float heterochromia = GeneticsHandler.getEntityGenetic(entity, Genetics.HETEROCHROMIA);
+
+        float hue;
+        float saturation;
+        float brightness;
+        float bb;
+        float aa;
+
+        if (secondaryEyeColor && heterochromia == 3.0F) {
+            //Reverses the Genetics
+            bb = GeneticsHandler.getEntityGenetic(entity, Genetics.EYE_BASE_COLOR_2);
+            aa = GeneticsHandler.getEntityGenetic(entity, Genetics.EYE_BASE_COLOR);
+        } else {
+            bb = GeneticsHandler.getEntityGenetic(entity, Genetics.EYE_BASE_COLOR); //Brown/Blue Gene b/b
+            aa = GeneticsHandler.getEntityGenetic(entity, Genetics.EYE_BASE_COLOR_2); //Amber/Hazel Gene a/a
+        }
+
+        // B = brown b = blue
+        // A = amber a = hazel
+
+        // bb 1 aa 1 - BLUE
+        // bb 1 Aa 2 - PALE BLUE
+        // bb 1 AA 3 - GRAY
+
+        //Bb 2 aa 1 - GREEN
+        //Bb 2 Aa 2 - HAZEL
+        //Bb 2 AA 3 - AMBER
+
+        //BB 3 aa 1 - DARK BROWN
+        //BB 3 aA 2 - BROWN
+        //BB 3 AA 3 - WARM BROWN
+
+
+        if (bb == 1.0f && aa == 1.0f) {
+            // Blue - b/b
+            // hue 190-225 S 40-80 B 45-85
+            hue = 190 + (gHue * 0.35F);
+            saturation = 40 + (gSaturation * 0.4F);
+            brightness = 45 + (gBrightness * 0.4F);
+
+            EquigenMod.LOGGER.info("EYES - BLUE: H = {} S = {} B = {}", hue, saturation, brightness);
+
+        } else if (bb == 1.0f && aa == 2.0f) {
+            // Pale blue - b/b A/a
+            // hue 200-230 S 15-45 B 65-90
+            hue = 200 + (gHue * 0.3F);
+            saturation = 15 + (gSaturation * 0.3F);
+            brightness = 65 + (gBrightness * 0.25F);
+
+            EquigenMod.LOGGER.info("EYES - PALE BLUE: H = {} S = {} B = {}", hue, saturation, brightness);
+
+        } else if (bb == 1.0f && aa == 3.0f) {
+            // Gray - b/b A/A
+            // hue 190-230 S 0-15 B 35-75
+            hue = 190 + (gHue * 0.4F);
+            saturation = 0 + (gSaturation * 0.15F);
+            brightness = 35 + (gBrightness * 0.4F);
+
+            EquigenMod.LOGGER.info("EYES - GRAY: H = {} S = {} B = {}", hue, saturation, brightness);
+
+        } else if (bb == 2.0F && aa == 1.0F) {
+            // Green - b/b A/a
+            // hue 70–90 S 25-65 B 30-65
+            hue = 70 + (gHue * 0.2F);
+            saturation = 25 + (gSaturation * 0.4F);
+            brightness = 30 + (gBrightness * 0.35F);
+            EquigenMod.LOGGER.info("EYES - GREEN: H = {} S = {} B = {}", hue, saturation, brightness);
+
+        } else if (bb == 2.0F && aa == 2.0F) {
+            // Hazel - B/b A/A
+            // hue 50-70 S 30-70 B 35-70
+            hue = 50 + (gHue * 0.2F);
+            saturation = 30 + (gSaturation * 0.4F);
+            brightness = 35 + (gBrightness * 0.4F);
+            EquigenMod.LOGGER.info("EYES - HAZEL: H = {} S = {} B = {}", hue, saturation, brightness);
+
+        } else if (bb == 2.0F && aa == 3.0F) {
+            // Amber - b/b A/A
+            // hue 30-50 S 50-90 B 45-80
+            hue = 30 + (gHue * 0.2F);
+            saturation = 50 + (gSaturation * 0.4F);
+            brightness = 45 + (gBrightness * 0.35F);
+            EquigenMod.LOGGER.info("EYES - AMBER: H = {} S = {} B = {}", hue, saturation, brightness);
+
+        } else if (bb == 3.0F && aa == 1.0F) {
+            // DARK BROWN - B/B a/a
+            // hue 15-30 S 45-80 B 15-40
+            hue = 15 + (gHue * 0.15F);
+            saturation = 45 + (gSaturation * 0.35F);
+            brightness = 15 + (gBrightness * 0.25F);
+            EquigenMod.LOGGER.info("EYES - DARK BROWN: H = {} S = {} B = {}", hue, saturation, brightness);
+        } else if (bb == 3.0F && aa == 2.0F){
+            // Brown - B/B or B/b
+            // hue 15-30 S 40-80 B 30-55
+            hue = 15 + (gHue * 0.15F);
+            saturation = 40 + (gSaturation * 0.4F);
+            brightness = 30 + (gBrightness * 0.25F);
+            EquigenMod.LOGGER.info("EYES - BROWN: H = {} S = {} B = {}", hue, saturation, brightness);
+        } else {
+            // Warm Brown - B/A
+            // hue 20-40 S 45-85 B 35-65
+            hue = 20 + (gHue * 0.2F);
+            saturation = 45 + (gSaturation * 0.4F);
+            brightness = 35 + (gBrightness * 0.3F);
+            EquigenMod.LOGGER.info("EYES - WARM BROWN: H = {} S = {} B = {}", hue, saturation, brightness);
+        }
+
+        hue /= 360f;
+        saturation /= 100f;
+        brightness /= 100f;
+
+        return Color.HSBtoRGB(hue, saturation, brightness);
+    }
+
+    private Path getFaceMarking(GeneticHorseEntity entity) {
+        int gene = (int) GeneticsHandler.getEntityGenetic(entity, Genetics.EYE_BASE_COLOR);
+        return switch (gene) {
+            case 1 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
+                    "entity", "genetic_horse", "markings", "head_markings", "blaze.png"); //blaze
+            case 2 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
+                    "entity", "genetic_horse", "markings", "head_markings", "faint_star.png"); //faint_star
+            case 3 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
+                    "entity", "genetic_horse", "markings", "head_markings", "interrupted_stripe.png"); //interrupted_stripe
+            case 4 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
+                    "entity", "genetic_horse", "markings", "head_markings", "stripe_and_snip.png"); //stripe_and_snip
+            case 5 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
+                    "entity", "genetic_horse", "markings", "head_markings", "stripe.png"); //stripe
+            case 6 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
+                    "entity", "genetic_horse", "markings", "head_markings", "irregular_blaze.png"); //irregular_blaze
+            case 7 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
+                    "entity", "genetic_horse", "markings", "head_markings", "bald_face.png"); //bald_face
+            case 8 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
+                    "entity", "genetic_horse", "markings", "head_markings", "star.png"); //star
+            case 9 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
+                    "entity", "genetic_horse", "markings", "head_markings", "star_and_strip.png"); //star_and_strip
+            case 10 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
+                    "entity", "genetic_horse", "markings", "head_markings", "irregular_star.png"); //irregular_star
+            case 11 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
+                    "entity", "genetic_horse", "markings", "head_markings", "snip.png"); //snip
+            case 12 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
+                    "entity", "genetic_horse", "markings", "head_markings", "lip_marking.png"); //lip_marking
+            default -> null;
+        };
+
     }
 
     public BufferedImage tintTexture(BufferedImage image, int rgbColor) {

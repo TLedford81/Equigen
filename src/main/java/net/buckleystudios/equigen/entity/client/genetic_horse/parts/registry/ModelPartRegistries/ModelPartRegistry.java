@@ -33,6 +33,18 @@ public class ModelPartRegistry {
     public static void registerAllModels(){
         BackModelPartRegistry.registerModels();
         BottomLegModelPartRegistry.registerModels();
+        ChestModelPartRegistry.registerModels();
+        EarModelPartRegistry.registerModels();
+        HeadModelPartRegistry.registerModels();
+        HipModelPartRegistry.registerModels();
+        HoovesModelPartRegistry.registerModels();
+        KneesModelPartRegistry.registerModels();
+        NeckModelPartRegistry.registerModels();
+        StomachModelPartRegistry.registerModels();
+        TailModelPartRegistry.registerModels();
+        TopBackLegModelPartRegistry.registerModels();
+        TopFrontLegModelPartRegistry.registerModels();
+        WithersModelPartRegistry.registerModels();
     }
 
     public static void register(ModelPartRegistryKeys.Back key, ModelLayerLocation layer,
@@ -40,6 +52,72 @@ public class ModelPartRegistry {
     ) {
         BACK_MODELS.put(key, new RegisteredModelPart(layer, factory));
     }
+    public static void register(ModelPartRegistryKeys.Bottom_Legs key, ModelLayerLocation layer,
+                                Function<ModelPart, MultipartModel<GeneticHorseEntity>> factory
+    ) {
+        BOTTOM_LEGS_MODELS.put(key, new RegisteredModelPart(layer, factory));
+    }
+    public static void register(ModelPartRegistryKeys.Chest key, ModelLayerLocation layer,
+                                Function<ModelPart, MultipartModel<GeneticHorseEntity>> factory
+    ) {
+        CHEST_MODELS.put(key, new RegisteredModelPart(layer, factory));
+    }
+    public static void register(ModelPartRegistryKeys.Ears key, ModelLayerLocation layer,
+                                Function<ModelPart, MultipartModel<GeneticHorseEntity>> factory
+    ) {
+        EARS_MODELS.put(key, new RegisteredModelPart(layer, factory));
+    }
+    public static void register(ModelPartRegistryKeys.Head key, ModelLayerLocation layer,
+                                Function<ModelPart, MultipartModel<GeneticHorseEntity>> factory
+    ) {
+        HEAD_MODELS.put(key, new RegisteredModelPart(layer, factory));
+    }
+    public static void register(ModelPartRegistryKeys.Hips key, ModelLayerLocation layer,
+                                Function<ModelPart, MultipartModel<GeneticHorseEntity>> factory
+    ) {
+        HIPS_MODELS.put(key, new RegisteredModelPart(layer, factory));
+    }
+    public static void register(ModelPartRegistryKeys.Hoof key, ModelLayerLocation layer,
+                                Function<ModelPart, MultipartModel<GeneticHorseEntity>> factory
+    ) {
+        HOOF_MODELS.put(key, new RegisteredModelPart(layer, factory));
+    }
+    public static void register(ModelPartRegistryKeys.Knees key, ModelLayerLocation layer,
+                                Function<ModelPart, MultipartModel<GeneticHorseEntity>> factory
+    ) {
+        KNEES_MODELS.put(key, new RegisteredModelPart(layer, factory));
+    }
+    public static void register(ModelPartRegistryKeys.Neck key, ModelLayerLocation layer,
+                                Function<ModelPart, MultipartModel<GeneticHorseEntity>> factory
+    ) {
+        NECK_MODELS.put(key, new RegisteredModelPart(layer, factory));
+    }
+    public static void register(ModelPartRegistryKeys.Stomach key, ModelLayerLocation layer,
+                                Function<ModelPart, MultipartModel<GeneticHorseEntity>> factory
+    ) {
+        STOMACH_MODELS.put(key, new RegisteredModelPart(layer, factory));
+    }
+    public static void register(ModelPartRegistryKeys.Tail key, ModelLayerLocation layer,
+                                Function<ModelPart, MultipartModel<GeneticHorseEntity>> factory
+    ) {
+        TAIL_MODELS.put(key, new RegisteredModelPart(layer, factory));
+    }
+    public static void register(ModelPartRegistryKeys.Top_Back_Legs key, ModelLayerLocation layer,
+                                Function<ModelPart, MultipartModel<GeneticHorseEntity>> factory
+    ) {
+        TOP_BACK_LEGS_MODELS.put(key, new RegisteredModelPart(layer, factory));
+    }
+    public static void register(ModelPartRegistryKeys.Top_Front_Legs key, ModelLayerLocation layer,
+                                Function<ModelPart, MultipartModel<GeneticHorseEntity>> factory
+    ) {
+        TOP_FRONT_LEGS_MODELS.put(key, new RegisteredModelPart(layer, factory));
+    }
+    public static void register(ModelPartRegistryKeys.Withers key, ModelLayerLocation layer,
+                                Function<ModelPart, MultipartModel<GeneticHorseEntity>> factory
+    ) {
+        WITHERS_MODELS.put(key, new RegisteredModelPart(layer, factory));
+    }
+
 
     public static EntityModel<GeneticHorseEntity> create(ModelPartRegistryKeys.Back key, EntityModelSet modelSet) {
         RegisteredModelPart model = BACK_MODELS.get(key);

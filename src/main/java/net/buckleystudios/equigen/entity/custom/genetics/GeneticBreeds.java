@@ -35,6 +35,11 @@ public enum GeneticBreeds {
         disabledGenetics.remove("BLACK_MODIFIER");
         disabledGenetics.remove("BLACK_VARIATION");
         disabledGenetics.remove("FRAME_OVERO");
+        disabledGenetics.remove("EYE_BASE_COLOR");
+        disabledGenetics.remove("EYE_BASE_COLOR_2");
+        disabledGenetics.remove("EYE_HUE");
+        disabledGenetics.remove("EYE_SATURATION");
+        disabledGenetics.remove("EYE_BRIGHTNESS");
         disabledGenetics.remove("FRAME_OVERO_VARIATION_1");
         disabledGenetics.remove("FRAME_OVERO_VARIATION_2");
         disabledGenetics.remove("FRAME_OVERO_VARIATION_3");
