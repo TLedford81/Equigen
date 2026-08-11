@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "equigen:oat_bale"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "equigen:oats"
+  }
+}

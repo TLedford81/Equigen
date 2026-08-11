@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "equigen:block/oat_bale_top",
+    "side": "equigen:block/oat_bale",
+    "top": "equigen:block/oat_bale_top"
+  }
+}

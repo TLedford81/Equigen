@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "f": {
+      "item": "equigen:standard_feed"
+    },
+    "g": {
+      "item": "minecraft:gold_nugget"
+    },
+    "s": {
+      "item": "equigen:sweet_pea_petals"
+    }
+  },
+  "pattern": [
+    "gsg",
+    "gfg",
+    "gsg"
+  ],
+  "result": {
+    "count": 1,
+    "id": "equigen:fertility_feed"
+  }
+}

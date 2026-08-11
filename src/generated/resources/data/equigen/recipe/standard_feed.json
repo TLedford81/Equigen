@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "b": {
+      "item": "equigen:barley"
+    },
+    "c": {
+      "item": "equigen:corn"
+    },
+    "o": {
+      "item": "equigen:oats"
+    }
+  },
+  "pattern": [
+    "ooo",
+    "bc "
+  ],
+  "result": {
+    "count": 1,
+    "id": "equigen:standard_feed"
+  }
+}

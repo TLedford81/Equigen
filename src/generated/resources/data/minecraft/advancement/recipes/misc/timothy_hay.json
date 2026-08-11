@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:timothy_hay"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_timothy_bale": {
+      "conditions": {
+        "items": [
+          {
+            "items": "equigen:timothy_bale"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_timothy_bale"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:timothy_hay"
+    ]
+  }
+}

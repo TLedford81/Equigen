@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "l": {
+      "item": "minecraft:acacia_log"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "l l",
+    " l ",
+    "s s"
+  ],
+  "result": {
+    "count": 1,
+    "id": "equigen:acacia_hay_rack"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "l": {
+      "item": "minecraft:spruce_log"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "l l",
+    " l ",
+    "s s"
+  ],
+  "result": {
+    "count": 1,
+    "id": "equigen:spruce_hay_rack"
+  }
+}
