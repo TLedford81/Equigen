@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_alfalfa": {
+      "conditions": {
+        "items": [
+          {
+            "items": "equigen:alfalfa"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:alfalfa_bale"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_alfalfa"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:alfalfa_bale"
+    ]
+  }
+}

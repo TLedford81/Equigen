@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "equigen:block/timothy_hay_bale_top",
+    "side": "equigen:block/timothy_hay_bale",
+    "top": "equigen:block/timothy_hay_bale_top"
+  }
+}

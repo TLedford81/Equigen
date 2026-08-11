@@ -1,0 +1,555 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/birch_hay_rack"
+      },
+      "when": {
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/birch_hay_rack",
+        "y": 90
+      },
+      "when": {
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/birch_hay_rack",
+        "y": 180
+      },
+      "when": {
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/birch_hay_rack",
+        "y": 270
+      },
+      "when": {
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/timothy_1"
+      },
+      "when": {
+        "facing": "north",
+        "fill": "1",
+        "hay_type": "timothy"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/timothy_1",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "fill": "1",
+        "hay_type": "timothy"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/timothy_1",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "fill": "1",
+        "hay_type": "timothy"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/timothy_1",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "fill": "1",
+        "hay_type": "timothy"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/timothy_2"
+      },
+      "when": {
+        "facing": "north",
+        "fill": "2",
+        "hay_type": "timothy"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/timothy_2",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "fill": "2",
+        "hay_type": "timothy"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/timothy_2",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "fill": "2",
+        "hay_type": "timothy"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/timothy_2",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "fill": "2",
+        "hay_type": "timothy"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/timothy_3"
+      },
+      "when": {
+        "facing": "north",
+        "fill": "3",
+        "hay_type": "timothy"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/timothy_3",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "fill": "3",
+        "hay_type": "timothy"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/timothy_3",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "fill": "3",
+        "hay_type": "timothy"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/timothy_3",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "fill": "3",
+        "hay_type": "timothy"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/alfalfa_1"
+      },
+      "when": {
+        "facing": "north",
+        "fill": "1",
+        "hay_type": "alfalfa"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/alfalfa_1",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "fill": "1",
+        "hay_type": "alfalfa"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/alfalfa_1",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "fill": "1",
+        "hay_type": "alfalfa"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/alfalfa_1",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "fill": "1",
+        "hay_type": "alfalfa"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/alfalfa_2"
+      },
+      "when": {
+        "facing": "north",
+        "fill": "2",
+        "hay_type": "alfalfa"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/alfalfa_2",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "fill": "2",
+        "hay_type": "alfalfa"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/alfalfa_2",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "fill": "2",
+        "hay_type": "alfalfa"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/alfalfa_2",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "fill": "2",
+        "hay_type": "alfalfa"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/alfalfa_3"
+      },
+      "when": {
+        "facing": "north",
+        "fill": "3",
+        "hay_type": "alfalfa"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/alfalfa_3",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "fill": "3",
+        "hay_type": "alfalfa"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/alfalfa_3",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "fill": "3",
+        "hay_type": "alfalfa"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/alfalfa_3",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "fill": "3",
+        "hay_type": "alfalfa"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/barley_1"
+      },
+      "when": {
+        "facing": "north",
+        "fill": "1",
+        "hay_type": "barley"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/barley_1",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "fill": "1",
+        "hay_type": "barley"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/barley_1",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "fill": "1",
+        "hay_type": "barley"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/barley_1",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "fill": "1",
+        "hay_type": "barley"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/barley_2"
+      },
+      "when": {
+        "facing": "north",
+        "fill": "2",
+        "hay_type": "barley"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/barley_2",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "fill": "2",
+        "hay_type": "barley"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/barley_2",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "fill": "2",
+        "hay_type": "barley"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/barley_2",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "fill": "2",
+        "hay_type": "barley"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/barley_3"
+      },
+      "when": {
+        "facing": "north",
+        "fill": "3",
+        "hay_type": "barley"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/barley_3",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "fill": "3",
+        "hay_type": "barley"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/barley_3",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "fill": "3",
+        "hay_type": "barley"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/barley_3",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "fill": "3",
+        "hay_type": "barley"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/oat_1"
+      },
+      "when": {
+        "facing": "north",
+        "fill": "1",
+        "hay_type": "oat"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/oat_1",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "fill": "1",
+        "hay_type": "oat"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/oat_1",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "fill": "1",
+        "hay_type": "oat"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/oat_1",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "fill": "1",
+        "hay_type": "oat"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/oat_2"
+      },
+      "when": {
+        "facing": "north",
+        "fill": "2",
+        "hay_type": "oat"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/oat_2",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "fill": "2",
+        "hay_type": "oat"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/oat_2",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "fill": "2",
+        "hay_type": "oat"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/oat_2",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "fill": "2",
+        "hay_type": "oat"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/oat_3"
+      },
+      "when": {
+        "facing": "north",
+        "fill": "3",
+        "hay_type": "oat"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/oat_3",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "fill": "3",
+        "hay_type": "oat"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/oat_3",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "fill": "3",
+        "hay_type": "oat"
+      }
+    },
+    {
+      "apply": {
+        "model": "equigen:block/hay_rack/oat_3",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "fill": "3",
+        "hay_type": "oat"
+      }
+    }
+  ]
+}
