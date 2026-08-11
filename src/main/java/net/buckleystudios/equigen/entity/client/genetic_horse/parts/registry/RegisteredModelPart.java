@@ -8,7 +8,7 @@ import net.minecraft.client.model.geom.ModelPart;
 
 import java.util.function.Function;
 
-public record GH_RegisteredModelPart(
+public record RegisteredModelPart(
         ModelLayerLocation layer,
         Function<ModelPart, MultipartModel<GeneticHorseEntity>> factory) {
     public MultipartModel<GeneticHorseEntity> create(EntityModelSet modelSet) {

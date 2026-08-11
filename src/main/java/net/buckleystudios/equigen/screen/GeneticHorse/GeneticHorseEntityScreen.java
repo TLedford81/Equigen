@@ -34,11 +34,12 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
     private float yMouse;
     private GHE_ScreenPages currentPage = GHE_ScreenPages.MAIN;
     private int debugTabCurrentPage;
-    private ImageButton debugTabPageLeft, debugTabPageRight;
+    private ImageButton debugTabPageLeftButton, debugTabPageRightButton,
+            sellHorseButton, renameHorseButton, breedButton;
     private static final WidgetSprites TAB_BUTTON_SPRITES = new WidgetSprites(
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "genetic_horse/tab"),
             ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "genetic_horse/tab_selected"),
-            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "genetic_horse/tab_highlighted"));
+            ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "genetic_horse/tab_hover"));
     private Map<GHE_ScreenPages, ImageButton> tabs = new HashMap<>();
 
     private int nextTabHeight;
@@ -62,8 +63,27 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
         this.addTab(GHE_ScreenPages.INVENTORY);
         this.addTab(GHE_ScreenPages.DEBUG);
 
+        //Main Tab
+        renameHorseButton = this.addRenderableWidget(new ImageButton(
+                leftPos + 10, topPos + 10,
+                20, 20,
+                new WidgetSprites(
+                        ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "genetic_horse/rename_icon"),
+                        ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "genetic_horse/rename_icon_hover")),
+                button -> this.openHorseRenamingPopup()
+        ));
+
+        sellHorseButton = this.addRenderableWidget(new ImageButton(
+                leftPos + 40, topPos + 10,
+                20, 20,
+                new WidgetSprites(
+                        ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "genetic_horse/sell_icon"),
+                        ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "genetic_horse/sell_icon_hover")),
+                button -> this.openHorseSellingPopup()
+        ));
+
         //Debug Tab
-        debugTabPageRight = this.addRenderableWidget(new ImageButton(
+        debugTabPageRightButton = this.addRenderableWidget(new ImageButton(
                 leftPos + (this.imageWidth - 15), topPos + (this.imageHeight - 20),
                 10, 10,
                 new WidgetSprites(
@@ -72,7 +92,7 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
                 button -> this.debugTabCurrentPage++
         ));
 
-        debugTabPageLeft = this.addRenderableWidget(new ImageButton(
+        debugTabPageLeftButton = this.addRenderableWidget(new ImageButton(
                 leftPos + 5, topPos + (this.imageHeight - 20),
                 10, 10,
                 new WidgetSprites(
@@ -81,6 +101,14 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
                 button -> this.debugTabCurrentPage--
         ));
         updateTabsAndButtons();
+    }
+
+    private void openHorseSellingPopup() {
+        this.onClose();
+    }
+
+    private void openHorseRenamingPopup() {
+        //I AM GREEN BUTTON'S CODE
     }
 
     private void addTab(GHE_ScreenPages page){
@@ -113,8 +141,10 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
 
     private void drawMainScreen(GuiGraphics pGuiGraphics, int x, int y){
         LivingEntity owner = geneticHorse.getOwner();
-        drawTextBoundingBox(pGuiGraphics, geneticHorse.getName(), x + 56, y + 5, 140, 10, 0x412417,0.7f, false);
-        drawTextBoundingBox(pGuiGraphics, "(Nicknames Coming Soon)", x + 66, y + 15, 124, 10, 0x412417, 0.7F, false);
+        Component text = geneticHorse.isRegistered() ? geneticHorse.getRegisteredName() : Component.translatable("equigen.genetic_horse.unregistered");
+        drawTextBoundingBox(pGuiGraphics,
+                text, x + 56, y + 5, 140, 10, 0x412417,0.7f, false);
+        drawTextBoundingBox(pGuiGraphics, geneticHorse.getName(), x + 66, y + 15, 124, 10, 0x412417, 0.7F, false);
         drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.breed"), x + 45, y + 55, 0.75f, 0xe5c7a8, true);
         drawTextBoundingBox(pGuiGraphics, geneticHorse.getBreed().name(), x + 5, y + 62, 79, 16, 0x412417, 0.7F, false);
         float horseHeight = (float) Math.round((geneticHorse.calculateHorseHeight() * 9.842519685f) * 100) / 100; // Convert meters to hands
@@ -179,8 +209,8 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
 
         drawPagedWordWrap(guiGraphics, this.debugTabCurrentPage, font, text, x + 3, y + 3, 250, 0x412417);
 
-        debugTabPageRight.visible = this.currentPage == GHE_ScreenPages.DEBUG && this.debugTabCurrentPage < lastPage;
-        debugTabPageLeft.visible = this.currentPage == GHE_ScreenPages.DEBUG && this.debugTabCurrentPage > 0;
+        debugTabPageRightButton.visible = this.currentPage == GHE_ScreenPages.DEBUG && this.debugTabCurrentPage < lastPage;
+        debugTabPageLeftButton.visible = this.currentPage == GHE_ScreenPages.DEBUG && this.debugTabCurrentPage > 0;
     }
 
     private List<List<FormattedCharSequence>> getPagedLines(Font font, FormattedText text, int lineWidth) {
@@ -253,8 +283,8 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
 
     private void updateDebugMenuButtons(){
         if(this.currentPage != GHE_ScreenPages.DEBUG){
-            this.debugTabPageLeft.visible = false;
-            this.debugTabPageRight.visible = false;
+            this.debugTabPageLeftButton.visible = false;
+            this.debugTabPageRightButton.visible = false;
         }
     }
     private void updateTabButtons(){
@@ -371,41 +401,20 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
         float f = (float)(p_275688_ + p_275535_) / 2.0F;
         float f1 = (float)(p_275245_ + p_294406_) / 2.0F;
         graphics.enableScissor(p_275688_, p_275245_, p_275535_, p_294406_);
-        float f2 = angleXComponent;
-        float f3 = angleYComponent;
 
         Quaternionf quaternionf = new Quaternionf()
                 .rotateZ((float) Math.PI)
                 .rotateY((float) Math.PI);
 
         Quaternionf quaternionf1 = new Quaternionf()
-                .rotateX(-f3 * 20.0F * (float)(Math.PI / 180.0))
-                .rotateY(-f2 * 20.0F * (float)(Math.PI / 180.0));
+                .rotateX(-angleYComponent * 20.0F * (float)(Math.PI / 180.0))
+                .rotateY(-angleXComponent * 20.0F * (float)(Math.PI / 180.0));
 
         quaternionf.mul(quaternionf1);
-        float f4 = p_275689_.yBodyRot;
-        float f5 = p_275689_.getYRot();
-        float f6 = p_275689_.getXRot();
-        float f7 = p_275689_.yHeadRotO;
-        float f8 = p_275689_.yHeadRot;
-        p_275689_.yBodyRot = 180.0F + f2 * 20.0F;
-        p_275689_.setYRot(180.0F + f2 * 40.0F);
-        p_275689_.setXRot(-f3 * 20.0F);
-        p_275689_.yHeadRot = p_275689_.getYRot();
-        p_275689_.yHeadRotO = p_275689_.getYRot();
-        float f9 = p_275689_.getScale();
-        Vector3f vector3f = new Vector3f(0.0F, p_275689_.getBbHeight() / 2.0F + p_275604_ * f9, 0.0F);
-        float f10 = (float)p_294663_ / f9;
-        InventoryScreen.renderEntityInInventory(graphics, f, f1, f10, vector3f, quaternionf, quaternionf1, p_275689_);
-        float yaw = f2 * 40.0F;
-        float pitch = -f3 * 20.0F;
-
-        p_275689_.setYRot(yaw);
-        p_275689_.yBodyRot = yaw;
-        p_275689_.yHeadRot = yaw;
-        p_275689_.yHeadRotO = yaw;
-
-        p_275689_.setXRot(pitch);
+        float f2 = p_275689_.getScale();
+        Vector3f vector3f = new Vector3f(0.0F, p_275689_.getBbHeight() / 2.0F + p_275604_ * f2, 0.0F);
+        float f3 = (float)p_294663_ / f2;
+        InventoryScreen.renderEntityInInventory(graphics, f, f1, f3, vector3f, quaternionf, quaternionf1, p_275689_);
         graphics.disableScissor();
     }
 

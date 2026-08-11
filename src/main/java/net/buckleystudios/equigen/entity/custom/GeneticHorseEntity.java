@@ -8,6 +8,7 @@ import net.buckleystudios.equigen.entity.custom.genetics.GeneticBreeds;
 import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
 import net.buckleystudios.equigen.entity.custom.genetics.util.*;
+import net.buckleystudios.equigen.entity.custom.genetics.util.Registry.RegistrySavedData;
 import net.buckleystudios.equigen.item.ModItems;
 import net.buckleystudios.equigen.screen.GeneticHorse.GeneticHorseEntityMenu;
 import net.buckleystudios.equigen.sound.ModSounds;
@@ -77,6 +78,7 @@ public class GeneticHorseEntity extends AbstractHorse implements
     public static final EntityDataAccessor<Float> SKILL_ENDURANCE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> SKILL_AGILITY = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.FLOAT);
 
+    public static final EntityDataAccessor<String> REGISTERED_NAME = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
     public static final EntityDataAccessor<String> BREEDER = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
     public static final EntityDataAccessor<String> SIRE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
     public static final EntityDataAccessor<String> MARE = SynchedEntityData.defineId(GeneticHorseEntity.class, EntityDataSerializers.STRING);
@@ -187,14 +189,16 @@ public class GeneticHorseEntity extends AbstractHorse implements
         return this.entityData.get(PREGNANT);
     }
 
+
+    //TODO: Add way to tell if parents are registered or not, and apply that to the Registry
     public void setPregnant(boolean pregnant, Animal mate) {
         if (mate instanceof GeneticHorseEntity ghe) {
             this.currentPregnancy = pregnant ? new Pregnancy(
                     mate.getUUID(),
                     this.GenerateNewSpawnParentalGenetics(this, ghe),
                     this.ConcatenateBreederNames(this.getLoveCause().getName(), mate.getLoveCause().getName()),
-                    this.getName(),
-                    mate.getName())
+                    this.isRegistered() ? this.getRegisteredName() : this.getName(),
+                    ghe.isRegistered() ? ghe.getRegisteredName() : ghe.getName())
                     : null;
             if(pregnant) EquigenMod.LOGGER.info("Pregnancy Begun, Breeder: {}, Horse ID = {}", this.currentPregnancy.breederName(), this.getId());
             if (!this.level().isClientSide) {
@@ -240,14 +244,17 @@ public class GeneticHorseEntity extends AbstractHorse implements
                 Component.translatable("equigen.ui.separator")); }
     }
 
+    public void setRegisteredName(Component name){ this.entityData.set(REGISTERED_NAME, name.getString()); }
     public void setBreederName(Component name){ this.entityData.set(BREEDER, name.getString()); }
     public void setSireName(Component name){ this.entityData.set(SIRE, name.getString()); }
     public void setMareName(Component name){ this.entityData.set(MARE, name.getString()); }
 
+    public Component getRegisteredName(){ return Component.literal(this.entityData.get(REGISTERED_NAME)); }
     public Component getBreederName(){ return Component.literal(this.entityData.get(BREEDER)); }
     public Component getSireName(){ return Component.literal(this.entityData.get(SIRE)); }
     public Component getMareName(){ return Component.literal(this.entityData.get(MARE)); }
 
+    public boolean isRegistered(){ return !this.getRegisteredName().equals(Component.empty()); }
     // BASIC SETTINGS //
     @Override
     public boolean canMate(Animal otherAnimal) {
@@ -379,7 +386,6 @@ public class GeneticHorseEntity extends AbstractHorse implements
     @Override
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
-
         //Genetics
         tag.putString("Breed", this.getBreed().name());
 
@@ -478,6 +484,7 @@ public class GeneticHorseEntity extends AbstractHorse implements
         builder.define(ENDURANCE_PROFICIENCY, 0);
         builder.define(AGILITY_PROFICIENCY, 0);
 
+        builder.define(REGISTERED_NAME, "");
         builder.define(BREEDER, "");
         builder.define(SIRE, "");
         builder.define(MARE, "");
@@ -1618,6 +1625,7 @@ private float difference = 0;
     public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
         boolean flag = !this.isBaby() && this.isTamed() && pPlayer.isSecondaryUseActive();
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
+        //SERVER
         if (!this.level().isClientSide()) {
             CompoundTag data = this.getPersistentData();
 
@@ -1628,8 +1636,14 @@ private float difference = 0;
                 );
                 return InteractionResult.CONSUME;
             }
+
+            if (itemstack.is(Items.PAPER)){
+                this.registerHorse((ServerPlayer) pPlayer);
+                return InteractionResult.CONSUME;
+            }
         }
 
+        //CLIENT
         if (!this.isVehicle() && !flag) {
             if(itemstack.is(ModItems.HORSE_BRUSH)){
                 this.alterCleanliness("hair", 1.0f);
@@ -1674,6 +1688,36 @@ private float difference = 0;
         }
     }
 
+    private void registerHorse(ServerPlayer player) {
+        if(!this.level().isClientSide()) {
+            if (this.getOwner() != player) {
+                player.displayClientMessage(
+                        Component.translatable("equigen.genetic_horse.registering.invalid_owner"), true);
+            } else if (this.isRegistered()) {
+                player.displayClientMessage(
+                        Component.translatable("equigen.genetic_horse.registering.already_registered"), true);
+            } else if (!this.hasCustomName()) {
+                player.displayClientMessage(
+                        Component.translatable("equigen.genetic_horse.registering.unnamed"), true);
+            } else {
+                RegistrySavedData registry =
+                        RegistrySavedData.get(player.server);
+
+                if(registry.RegisterHorse(this.getCustomName().getString(), this.getUUID(), this.getBreedPercentages(),
+                        this.getMareName().toString(), this.getSireName().toString())){
+                    this.setRegisteredName(this.getCustomName());
+                    player.displayClientMessage(
+                            Component.translatable("equigen.genetic_horse.registering.success",
+                                    this.getRegisteredName()),true);
+                } else {
+                    player.displayClientMessage(
+                            Component.translatable("equigen.genetic_horse.registering.name_taken",
+                                    this.getRegisteredName()),true);
+                }
+            }
+        }
+    }
+
     @Override
     public void remove(RemovalReason reason) {
         super.remove(reason);
@@ -1714,6 +1758,12 @@ private float difference = 0;
         } else {
             return GeneticBreeds.CUSTOM;
         }
+    }
+
+    public Map<GeneticBreeds, Float> getBreedPercentages(){
+        return Map.of(
+                this.getBreed(), 1f
+        );
     }
 
     public void HandleNewSpawnWithCustomGenetics(GeneticBreeds breed, Map<Genetics, Float> customGenes){

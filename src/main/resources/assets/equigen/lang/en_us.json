@@ -213,6 +213,13 @@
   "equigen.gui.genetic_horse.skill.agility": "AGILITY",
 
 
+  "equigen.genetic_horse.registering.invalid_owner": "You do not own this horse!",
+  "equigen.genetic_horse.registering.unnamed": "This horse is not named!",
+  "equigen.genetic_horse.registering.already_registered": "This horse is already registered!",
+  "equigen.genetic_horse.registering.name_taken": "Another horse is already registered under this name!",
+  "equigen.genetic_horse.registering.success": "Successfully registered %s!",
+
+  "equigen.genetic_horse.unregistered": "Unregistered",
   "equigen.genetic_horse.unowned": "Unowned",
   "equigen.genetic_horse.measurement.format": "%s Hands",
   "equigen.gui.genetic_horse.breed": "BREED",

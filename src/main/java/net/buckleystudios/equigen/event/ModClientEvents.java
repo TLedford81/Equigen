@@ -5,6 +5,7 @@ import net.buckleystudios.equigen.block.ModBlocks;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.client.egret.EgretRenderer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.GeneticHorseRenderer;
+import net.buckleystudios.equigen.entity.client.genetic_horse.parts.registry.ModelPartRegistries.ModelPartRegistry;
 import net.buckleystudios.equigen.entity.client.pillager_king.PillagerKingRenderer;
 import net.buckleystudios.equigen.entity.client.projectile.LassoProjectileRenderer;
 import net.buckleystudios.equigen.entity.client.projectile.SodiumGrenadeProjectileRenderer;
@@ -46,6 +47,7 @@ public class ModClientEvents {
         EntityRenderers.register(ModEntities.SODIUM_GRENADE.get(), SodiumGrenadeProjectileRenderer::new);
         EntityRenderers.register(ModEntities.LASSO.get(), LassoProjectileRenderer::new);
 
+        ModelPartRegistry.registerAllModels();
     }
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent event){
