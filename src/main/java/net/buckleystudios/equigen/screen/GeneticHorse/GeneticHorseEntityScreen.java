@@ -5,6 +5,7 @@ import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.custom.genetics.util.GeneticDebugTools;
 import net.buckleystudios.equigen.screen.util.ToggleableSlot;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ImageButton;
@@ -12,11 +13,17 @@ import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.MobEffectTextureManager;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
@@ -190,13 +197,28 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
                 x + 128, y + 116, 0.6F, 0x412417, false);
         pGuiGraphics.renderComponentHoverEffect(this.font, null, 100, 100);
 
+        if (this.geneticHorse.getBreedingCooldown() > 0) {
+            EquigenMod.LOGGER.info("HORSE AGE = " + this.geneticHorse.getBreedingCooldown());
+            drawBreedingCooldown(pGuiGraphics, x + 90, y + 122, 75, 2, this.geneticHorse.getBreedingCooldown(), this.geneticHorse.getMaxBreedingCooldown(), 0xffbb1313);
+        }
+        if (this.geneticHorse.isPregnant()) {
+            drawPregnancyTimer(pGuiGraphics, x + 90, y + 122, 75, 2, this.geneticHorse.getPregnancyTickTimer(), this.geneticHorse.getPregnancyLength(), 0xffad1fd0);
+        }
+        if (!geneticHorse.getActiveEffects().isEmpty()) {
+            drawStatusEffects(pGuiGraphics, x + 91, y + 27, 74, 12, 12, 12);
+        }
+
         renderGHEInInventoryFollowsMouse(pGuiGraphics, x + 92, y + 45, x + 165, y + 113, 20, 0.05F,
                 this.xMouse, this.yMouse, this.geneticHorse);
     }
 
-    //TODO: Add elements to Inventory Screen?
-    private void drawInventoryScreen(GuiGraphics pGuiGraphics, int x, int y) {
-
+    private void drawInventoryScreen(GuiGraphics pGuiGraphics, int x, int y){
+        drawTextBoundingBox(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.tack")
+                .append(Component.translatable("equigen.ui.separator"))
+                .append(Component.translatable("equigen.gui.genetic_horse.inventory")),
+                x + 52, y + 10, 152, 18, 0x412417, 0.7F, 1.8F,false);
+        drawTextBoundingBox(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.saddlebag_required"),
+                x + 109, y + 50, 121, 52, 0xe5c7a8, 0.7F, 1.8F,true);
     }
 
     private void drawDebugScreen(GuiGraphics guiGraphics, int x, int y){
@@ -319,33 +341,59 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
     }
 
 
-    private void drawTextBoundingBox(GuiGraphics g, String text, int x, int y, int width, int height, int color, float minScale, boolean dropShadow) {
+    private void drawTextBoundingBox(GuiGraphics g, String text, int x, int y, int width, int height, int color, float minScale, float maxScale, boolean dropShadow) {
 //        //Text cannot go outside the bounds of this box. Use for names.
-        float scale = 1.0f;
-        while (!text.isEmpty() && scale > minScale && (font.width(text) * scale > width || font.lineHeight * scale > height)) {
-                scale -= 0.05f;
+        while (!text.isEmpty() && maxScale > minScale && (font.width(text) * maxScale > width || font.lineHeight * maxScale > height)) {
+                maxScale -= 0.05f;
         }
-        while ((font.width(text) * scale > width || font.lineHeight * scale > height)) {
+        while ((font.width(text) * maxScale > width || font.lineHeight * maxScale > height)) {
             text = text.substring(0, text.length() - 1);
         }
 
         g.pose().pushPose();
 
         g.pose().translate(x, y, 0);
-        g.pose().scale(scale, scale, 1.0F);
+        g.pose().scale(maxScale, maxScale, 1.0F);
 
-        int scaledCenterX = (int) (((width / 2F) / scale));
-        int scaledY = (int) (height / (2F * scale) - font.lineHeight / 2F);
+        int scaledCenterX = (int) (((width / 2F) / maxScale));
+        int scaledY = (int) (height / (2F * maxScale) - font.lineHeight / 2F);
 
         drawCenteredStringNoDropShadow(g, font, text, scaledCenterX, scaledY, color, dropShadow);
 
         g.pose().popPose();
     }
+    private void drawTextBoundingBox(GuiGraphics g, Component text, int x, int y, int width, int height, int color, float minScale, float maxScale, boolean dropShadow) {
+        drawTextBoundingBox(g, text.getString(), x, y, width, height, color, minScale, maxScale, dropShadow);
+    }
+    private void drawTextBoundingBox(GuiGraphics g, String text, int x, int y, int width, int height, int color, float minScale, boolean dropShadow) {
+        drawTextBoundingBox(g, text, x, y, width, height, color, minScale, 1.0f, dropShadow);
+    }
     private void drawTextBoundingBox(GuiGraphics g, Component text, int x, int y, int width, int height, int color, float minScale, boolean dropShadow) {
-    drawTextBoundingBox(g, text.getString(), x, y, width, height, color, minScale, dropShadow);
+    drawTextBoundingBox(g, text.getString(), x, y, width, height, color, minScale, 1.0f, dropShadow);
     }
 
     private void drawProgressBar(GuiGraphics graphics, int x, int y, int barWidth, int barHeight, float currentValue, float maxValue, float maxPossible, boolean skill){
+        float max = Mth.clamp(maxValue / maxPossible, 0f, 1f);
+        int maxFilled = (int)(max * barWidth);
+
+        if (skill) {
+            graphics.fill(x, y, x + maxFilled, y + barHeight, 0xffe0bd93); // Use ARGB code not hex.
+        }
+        drawPercentageBar(graphics, x, y, barWidth, barHeight, currentValue, maxValue, maxPossible, "textures/gui/stamina_bar_fill.png");
+
+    }
+    public void drawBreedingCooldown(GuiGraphics graphics, int x, int y, int barWidth, int barHeight, float currentValue, float maxValue, int barColor) {
+        drawPercentageBar(graphics, x, y, barWidth, barHeight, currentValue, maxValue, maxValue, barColor);
+    }
+    public void drawPregnancyTimer(GuiGraphics graphics, int x, int y, int barWidth, int barHeight, float currentValue, float maxValue, int barColor) {
+        float max = Mth.clamp(maxValue, 0f, 1f);
+        int maxFilled = (int)(max * barWidth);
+
+        graphics.fill(x, y, x + maxFilled, y + barHeight, 0xffbb1313); // Use ARGB code not hex.
+        drawPercentageBar(graphics, x, y, barWidth, barHeight, currentValue, maxValue, maxValue, barColor);
+    }
+
+    public void drawPercentageBar(GuiGraphics graphics, int x, int y, int barWidth, int barHeight, float currentValue, float maxValue, float maxPossible, String resourceLocation, int barColor) {
         if (maxPossible <= 0) return;
 
         float percentage = Mth.clamp(currentValue / maxPossible, 0f, 1f);
@@ -354,16 +402,24 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
         int filled = (int)(percentage * barWidth);
         int maxFilled = (int)(max * barWidth);
 
-        if (maxValue != maxPossible || skill) {
-            graphics.fill(x, y, x + maxFilled, y + barHeight, 0xffe0bd93); // Use ARGB code not hex.
+        if (!resourceLocation.isEmpty()) {
+            graphics.blit(
+                    ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, resourceLocation),
+                    x, y,
+                    0, 0,
+                    filled, barHeight,
+                    barWidth, barHeight
+            );
+        } else {
+            EquigenMod.LOGGER.info("ELSE ACTIVATED!!");
+            graphics.fill(x, y, x + filled, y + barHeight, barColor); // Use ARGB code not hex.
         }
-        graphics.blit(
-                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/gui/stamina_bar_fill.png"),
-                x, y,
-                0, 0,
-                filled, barHeight,
-                barWidth, barHeight
-        );
+    }
+    public void drawPercentageBar(GuiGraphics graphics, int x, int y, int barWidth, int barHeight, float currentValue, float maxValue, float maxPossible, String resourceLocation) {
+        drawPercentageBar(graphics, x, y, barWidth, barHeight, currentValue, maxValue, maxPossible, resourceLocation, 0xFFFFFF);
+    }
+    public void drawPercentageBar(GuiGraphics graphics, int x, int y, int barWidth, int barHeight, float currentValue, float maxValue, float maxPossible, int barColor) {
+        drawPercentageBar(graphics, x, y, barWidth, barHeight, currentValue, maxValue, maxPossible,  "", barColor);
     }
 
     public static void renderGHEInInventoryFollowsMouse(
@@ -427,5 +483,44 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
     }
     public void drawCenteredStringNoDropShadow(GuiGraphics graphics, Font font, FormattedCharSequence text, int x, int y, int color, boolean dropShadow) {
         graphics.drawString(font, text, x - font.width(text) / 2, y, color, dropShadow);
+    }
+
+    public void drawStatusEffects(GuiGraphics graphics, int x, int y, int width, int height, int iconWidth, int iconHeight) {
+        Minecraft minecraft = Minecraft.getInstance();
+        MobEffectTextureManager textureManager = minecraft.getMobEffectTextures();
+
+        int index = 0;
+        int spacing = 2;
+        int effectNumber = geneticHorse.getActiveEffects().size();
+        if (effectNumber > 5) {
+            effectNumber = 5;
+        }
+        int effectWidth = (iconWidth * effectNumber) + (spacing * (Math.max(0, effectNumber -1)));
+
+        int centeredX = (x + (width/2)) - (effectWidth / 2);
+
+
+        for(MobEffectInstance effectTexture : geneticHorse.getActiveEffects()) {
+            if (index >= 5) {
+                break;
+            }
+            Holder<MobEffect> effect = effectTexture.getEffect();
+
+            TextureAtlasSprite sprite = textureManager.get(effect);
+            if (sprite.contents().name().equals(MissingTextureAtlasSprite.getLocation())) {
+                continue;
+            }
+            //TODO Make it so that if effects dont have an icon texture they dont show up.
+            graphics.blit(
+                    centeredX + (index * (iconWidth + spacing)),
+                    y,
+                    0,
+                    iconWidth,
+                    iconHeight,
+                    sprite
+            );
+
+            index++;
+        }
     }
 }
