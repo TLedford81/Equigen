@@ -1174,7 +1174,7 @@ public class GeneticHorseEntity extends AbstractHorse implements
         float width = 1f;
         float scale = ((GeneticsHandler.getEntityGenetic(this, Genetics.SCALE) / 2.0f) + 0.75F);
 //        EquigenMod.LOGGER.info("Scale: {}, Genetic Value: {}", scale, GeneticsHandler.getGenetic(this, Genetics.SCALE));
-        return EntityDimensions.scalable(width * scale, (height * scale) + (backOffset()/ 16));
+        return EntityDimensions.scalable(width * scale, ((height + (backOffset() / 16)) * scale));
     }
     //TODO Height is almost completely flush, figure out why it isn't exactly flush.
 private float difference = 0;
@@ -1194,8 +1194,8 @@ private float difference = 0;
             backHeight += getBackHeightModifier(gene, renderGenetics.get(gene));
 //            EquigenMod.LOGGER.info("BACK HEIGHT = {} with {} added", backHeight, gene);
         }
-//        EquigenMod.LOGGER.info("Bottom legs = {} knee height = {} hoofheight = {} offset = {}", bottomLegs, kneeHeight, hoofHeight, offset);
         float backOffset = backOffset();
+//        EquigenMod.LOGGER.info("Bottom legs = {} knee height = {} hoofheight = {} offset = {}", bottomLegs, kneeHeight, hoofHeight,backOffset);
         frontHeight += bottomLegs + kneeHeight + hoofHeight - backOffset;
         backHeight += bottomLegs + kneeHeight + hoofHeight - backOffset;
 //        EquigenMod.LOGGER.info("UNCONVERTED: FrontHeight = {} BackHeight = {}", frontHeight, backHeight);
@@ -1215,6 +1215,16 @@ private float difference = 0;
             tallerHalf = "FRONT";
             return backHeight;
         }
+    }
+    public float getHorseHeightUnmodified() {
+        float horseHeight = calculateHorseHeight();
+        float offset = backOffset() / 16;
+        float scale = ((GeneticsHandler.getEntityGenetic(this, Genetics.SCALE) / 2.0f) + 0.75F);
+        return (horseHeight + offset) * scale;
+    }
+
+    public float getHorseHeightHands() {
+        return (float) Math.round((getHorseHeightUnmodified() * 9.842519685f) * 100) / 100;
     }
     public float getFrontHeightModifier(Genetics gene, Float value){
         if(gene.is(Genetics.TOP_LEG)){
@@ -1364,8 +1374,7 @@ private float difference = 0;
     }
 
     public float backOffset () {
-        Map<Genetics, Float> renderGenetics = GeneticsHandler.getRenderGenetics(this);
-        return (getBackGirthModifier("BACK", renderGenetics.get(Genetics.BACK_GIRTH)) / 2);
+        return (getBackGirthModifier("BACK", GeneticsHandler.getEntityGenetic(this, Genetics.BACK_GIRTH) ) / 2);
     }
 
     public float getDifference() {
@@ -1404,7 +1413,7 @@ private float difference = 0;
     }
     @Override
     protected Vec3 getPassengerAttachmentPoint(Entity entity, EntityDimensions dimensions, float partialTick) {
-        double y = calculateHorseHeight() + (backOffset() / 16);
+        double y = getHorseHeightUnmodified();
         return new Vec3(0.0D, y , 0.0D);
         // This code disables playerJumpPendingScale. Implement when we have a jump animation.
         //TODO Implement a player anchor on back models and have it use that y instead. Currently some horses you are floating above when sitting and I believe it's from this calcuation.

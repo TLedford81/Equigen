@@ -107,7 +107,7 @@ public enum Genetics {
     FRONT_RIGHT_LEG_MARKING (ModData.FRONT_RIGHT_LEG_MARKING, GeneticCategories.MARKING_GENETICS, 19, true, true, true),
     BACK_LEFT_LEG_MARKING (ModData.BACK_LEFT_LEG_MARKING, GeneticCategories.MARKING_GENETICS, 19, true, true, true),
     BACK_RIGHT_LEG_MARKING (ModData.BACK_RIGHT_LEG_MARKING, GeneticCategories.MARKING_GENETICS, 19, true, true, true),
-    LEG_MARKING_COLOR (ModData.LEG_MARKING_COLOR, GeneticCategories.NONE, 0, false, true, false),
+    BLACK_POINT_HEIGHT (ModData.BLACK_POINT_HEIGHT, GeneticCategories.NONE, 0, false, true, false),
     EYE_BASE_COLOR (ModData.EYE_BASE_COLOR, GeneticCategories.NONE, 3, true, true, false),
     EYE_BASE_COLOR_2 (ModData.EYE_BASE_COLOR_2, GeneticCategories.NONE, 3, true, true, false),
     EYE_HUE (ModData.EYE_HUE, GeneticCategories.NONE, 100, true, true, false),

@@ -110,7 +110,7 @@ public class ModData {
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> FRONT_RIGHT_LEG_MARKING = RegisterGeneticDataType("front_right_leg_marking");
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> BACK_LEFT_LEG_MARKING = RegisterGeneticDataType("back_left_leg_marking");
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> BACK_RIGHT_LEG_MARKING = RegisterGeneticDataType("back_right_leg_marking");
-    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> LEG_MARKING_COLOR = RegisterGeneticDataType("leg_marking_color");
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> BLACK_POINT_HEIGHT = RegisterGeneticDataType("black_point_height");
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> EYE_BASE_COLOR = RegisterGeneticDataType("eye_base_color");
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> EYE_BASE_COLOR_2 = RegisterGeneticDataType("eye_base_color_2");
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> EYE_HUE = RegisterGeneticDataType("eye_hue");

@@ -72,7 +72,7 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
 
         //Main Tab
         renameHorseButton = this.addRenderableWidget(new ImageButton(
-                leftPos + 10, topPos + 10,
+                leftPos + 10, topPos + 40,
                 20, 20,
                 new WidgetSprites(
                         ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "genetic_horse/rename_icon"),
@@ -81,7 +81,7 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
         ));
 
         sellHorseButton = this.addRenderableWidget(new ImageButton(
-                leftPos + 40, topPos + 10,
+                leftPos + 40, topPos + 40,
                 20, 20,
                 new WidgetSprites(
                         ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "genetic_horse/sell_icon"),
@@ -154,7 +154,7 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
         drawTextBoundingBox(pGuiGraphics, geneticHorse.getName(), x + 66, y + 15, 124, 10, 0x412417, 0.7F, false);
         drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.breed"), x + 45, y + 55, 0.75f, 0xe5c7a8, true);
         drawTextBoundingBox(pGuiGraphics, geneticHorse.getBreed().name(), x + 5, y + 62, 79, 16, 0x412417, 0.7F, false);
-        float horseHeight = (float) Math.round((geneticHorse.calculateHorseHeight() * 9.842519685f) * 100) / 100; // Convert meters to hands
+        float horseHeight = geneticHorse.getHorseHeightHands(); // Convert meters to hands
         drawTextBoundingBox(pGuiGraphics, Component.translatable("equigen.genetic_horse.measurement.format", horseHeight), x + 7, y + 5, 50, 10, 0x412417, 0.7F, false);
         drawTextBoundingBox(pGuiGraphics,
                 (owner != null) ? geneticHorse.getOwner().getName() : Component.translatable("equigen.genetic_horse.unowned"),

@@ -176,9 +176,9 @@ public class GeneticHorseTexturer {
     }
 
     private int findModifierValues(GeneticHorseEntity entity, Genetics gene, String type) {
-        switch (gene.name()) {
-
-        }
+//        switch (gene.name()) {
+//            case
+//        }
         return 0;
     }
     private int getEyeColor(GeneticHorseEntity entity, boolean secondaryEyeColor) {
