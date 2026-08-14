@@ -175,21 +175,55 @@ public class GeneticHorseEntity extends AbstractHorse implements
     @Override
     public void spawnChildFromBreeding(ServerLevel level, Animal mate) {
         EquigenMod.LOGGER.info("{} MATE IS {}", this.getName(), mate.getName());
-        GeneticHorseEntity geneticHorseMate = (GeneticHorseEntity) mate;
-        float gender = GeneticsHandler.getEntityGenetic(this, Genetics.GENDER);
+        GeneticHorseEntity other = (GeneticHorseEntity) mate;
+
+        float gender = GeneticsHandler.getEntityGenetic(
+                this,
+                Genetics.GENDER
+        );
+
+        GeneticHorseEntity mare;
+        GeneticHorseEntity sire;
 
         if (gender == 1) {
-            geneticHorseMate.setPregnant(true, this);
-            geneticHorseMate.entityData.set(PREGNANCY_TIMER, geneticHorseMate.entityData.get(PREGNANCY_LENGTH));
-            geneticHorseMate.setBreedingCooldown(this.entityData.get(MAX_BREEDING_COOLDOWN) + this.entityData.get(PREGNANCY_LENGTH));
-            this.setBreedingCooldown(this.entityData.get(MAX_BREEDING_COOLDOWN));
-        } else if (gender == 2){
-            this.setPregnant(true, mate);
-            this.entityData.set(PREGNANCY_TIMER, this.entityData.get(PREGNANCY_LENGTH));
-            this.setBreedingCooldown(this.entityData.get(MAX_BREEDING_COOLDOWN) + this.entityData.get(PREGNANCY_LENGTH));
-            ((GeneticHorseEntity) mate).setBreedingCooldown(this.entityData.get(MAX_BREEDING_COOLDOWN));
+            sire = this;
+            mare = other;
+        } else if (gender == 2) {
+            mare = this;
+            sire = other;
+        } else {
+            EquigenMod.LOGGER.error(
+                    "Invalid gender {} for {}",
+                    gender,
+                    this.getName()
+            );
+            return;
         }
-        EquigenMod.LOGGER.info("IM PREGNANT!");
+
+        EquigenMod.LOGGER.info(
+                "BREEDING: Mare={} UUID={}, Sire={} UUID={}",
+                mare.getName(),
+                mare.getUUID(),
+                sire.getName(),
+                sire.getUUID()
+        );
+
+        mare.setPregnant(true, sire);
+
+        mare.entityData.set(
+                PREGNANCY_TIMER,
+                mare.entityData.get(PREGNANCY_LENGTH)
+        );
+
+        mare.setBreedingCooldown(
+                mare.entityData.get(MAX_BREEDING_COOLDOWN)
+                        + mare.entityData.get(PREGNANCY_LENGTH)
+        );
+
+        sire.setBreedingCooldown(
+                sire.entityData.get(MAX_BREEDING_COOLDOWN)
+        );
+
         this.resetLove();
         mate.resetLove();
     }
@@ -202,6 +236,16 @@ public class GeneticHorseEntity extends AbstractHorse implements
     //TODO: Add way to tell if parents are registered or not, and apply that to the Registry
     public void setPregnant(boolean pregnant, Animal mate) {
         if (mate instanceof GeneticHorseEntity ghe) {
+//            EquigenMod.LOGGER.info(
+//                    "setPregnant called: THIS = {} (ID {}, UUID {}), MATE = {} (ID {}, UUID {}), pregnant = {}",
+//                    this.getName(),
+//                    this.getId(),
+//                    this.getUUID(),
+//                    mate.getName(),
+//                    mate.getId(),
+//                    mate.getUUID(),
+//                    pregnant
+//            );
             this.currentPregnancy = pregnant ? new Pregnancy(
                     mate.getUUID(),
                     this.GenerateNewSpawnParentalGenetics(this, ghe),
@@ -209,7 +253,7 @@ public class GeneticHorseEntity extends AbstractHorse implements
                     this.isRegistered() ? this.getRegisteredName() : this.getName(),
                     ghe.isRegistered() ? ghe.getRegisteredName() : ghe.getName())
                     : null;
-            if(pregnant) EquigenMod.LOGGER.info("Pregnancy Begun, Breeder: {}, Horse ID = {}", this.currentPregnancy.breederName(), this.getId());
+//            if(pregnant) EquigenMod.LOGGER.info("Pregnancy Begun, Breeder: {}, Horse ID = {}, babyGenes = {}", this.currentPregnancy.breederName(), this.getId(), this.currentPregnancy.babyGenes().size());
             if (!this.level().isClientSide) {
                 this.entityData.set(PREGNANT, pregnant);
             }
@@ -220,7 +264,7 @@ public class GeneticHorseEntity extends AbstractHorse implements
     private void GiveBirth() {
         EquigenMod.LOGGER.info("I GAVE BIRTH");
         ServerLevel level = this.getServer().getLevel(this.level().dimension());
-        if(level.getEntity(this.currentPregnancy.mate()) instanceof Animal mate) {
+        if(level.getEntity(this.currentPregnancy.sireUUID()) instanceof Animal mate) {
             AgeableMob ageablemob = this.getBreedOffspring(level, mate);
             final BabyEntitySpawnEvent event = new BabyEntitySpawnEvent(this, mate, ageablemob);
             ageablemob = event.getChild();
@@ -500,8 +544,8 @@ public class GeneticHorseEntity extends AbstractHorse implements
                     tag.putFloat("pregnancy_gene_" + gene.name(), this.currentPregnancy.babyGenes().get(gene));
                 }
             }
-            tag.putUUID("pregnancy_mate", this.currentPregnancy.mate());
-            tag.putString("pregnancy_breeder1", this.currentPregnancy.breederName().getString());
+            tag.putUUID("pregnancy_mate", this.currentPregnancy.sireUUID());
+            tag.putString("pregnancy_breeder", this.currentPregnancy.breederName().getString());
             tag.putString("pregnancy_mare", this.currentPregnancy.mareName().getString());
             tag.putString("pregnancy_sire", this.currentPregnancy.sireName().getString());
         }
@@ -2064,8 +2108,13 @@ private float difference = 0;
                         }
 
                     }
-                    newGeneticValue = Math.clamp(newGeneticValue, 0, value.getDefaultMaxSize());
-                    GeneticsHandler.setEntityGenetic(this, value, newGeneticValue);
+                    newGeneticValue = Math.clamp(
+                            newGeneticValue,
+                            0,
+                            value.getDefaultMaxSize()
+                    );
+
+                    map.put(value, newGeneticValue);
                 }
             } else {
                 EquigenMod.LOGGER.info("Rerolling " + calculator.reroll);
