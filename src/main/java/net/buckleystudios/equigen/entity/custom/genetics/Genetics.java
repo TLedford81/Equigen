@@ -11,7 +11,7 @@ import java.util.function.Supplier;
 public enum Genetics {
 
     /* Gender */
-    GENDER (ModData.GENDER, GeneticCategories.RANDOM_GENETICS, 2, false, false, true),
+    GENDER (ModData.GENDER, GeneticCategories.RANDOM_GENETICS, 2, true, false, true),
 
     /* Scale */
     SCALE (ModData.SCALE, GeneticCategories.PERCENTAGE_GENETICS, 1, true, false, true),

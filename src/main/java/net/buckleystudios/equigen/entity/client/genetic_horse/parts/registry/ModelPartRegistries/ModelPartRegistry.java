@@ -1,6 +1,5 @@
 package net.buckleystudios.equigen.entity.client.genetic_horse.parts.registry.ModelPartRegistries;
 
-import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartModel;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.registry.ModelPartRegistryKeys;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.registry.RegisteredModelPart;
@@ -121,8 +120,8 @@ public class ModelPartRegistry {
 
     public static MultipartModel<GeneticHorseEntity> getModel(ModelPartRegistryKeys.Back key, EntityModelSet modelSet) {
         RegisteredModelPart model = BACK_MODELS.get(key);
-        EquigenMod.LOGGER.error("Requested back key: {}", key);
-        EquigenMod.LOGGER.error("Registered back keys: {}", BACK_MODELS.keySet());
+//        EquigenMod.LOGGER.error("Requested back key: {}", key);
+//        EquigenMod.LOGGER.error("Registered back keys: {}", BACK_MODELS.keySet());
         return model == null ? null : model.create(modelSet);
 
     }
