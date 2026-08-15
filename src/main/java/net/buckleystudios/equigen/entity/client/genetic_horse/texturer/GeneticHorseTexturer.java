@@ -39,7 +39,7 @@ public class GeneticHorseTexturer {
         //Leg Markings
 
         //Face Markings
-        if (GeneticsHandler.getEntityGenetic(entity, Genetics.FACE_MARKING) > 0) {
+        if (GeneticsHandler.getGeneticFloat(entity, Genetics.FACE_MARKING) > 0) {
             imageLayers.add(returnImage(Objects.requireNonNull(getFaceMarking(entity))));
         }
 
@@ -122,12 +122,12 @@ public class GeneticHorseTexturer {
     }
 
     private int getBaseColor(GeneticHorseEntity entity) {
-        float warmth = GeneticsHandler.getEntityGenetic(entity, Genetics.WARMTH);
-        float darkness = GeneticsHandler.getEntityGenetic(entity, Genetics.DARKNESS);
-        float richness = GeneticsHandler.getEntityGenetic(entity, Genetics.RICHNESS);
+        float warmth = GeneticsHandler.getGeneticFloat(entity, Genetics.WARMTH);
+        float darkness = GeneticsHandler.getGeneticFloat(entity, Genetics.DARKNESS);
+        float richness = GeneticsHandler.getGeneticFloat(entity, Genetics.RICHNESS);
 
-        float blackModifier = GeneticsHandler.getEntityGenetic(entity, Genetics.BLACK_MODIFIER);
-        float redModifier = GeneticsHandler.getEntityGenetic(entity, Genetics.RED_MODIFIER);
+        float blackModifier = GeneticsHandler.getGeneticFloat(entity, Genetics.BLACK_MODIFIER);
+        float redModifier = GeneticsHandler.getGeneticFloat(entity, Genetics.RED_MODIFIER);
 
         float hue;
         float saturation;
@@ -162,7 +162,7 @@ public class GeneticHorseTexturer {
         List<Genetics> presentModifiers = new ArrayList<>(List.of());
         for (Genetics g : genetics) {
             if (g.getCategory().equals(GeneticCategories.COAT_MODIFIERS)) {
-                float gene = GeneticsHandler.getEntityGenetic(entity, g.name());
+                float gene = GeneticsHandler.getGeneticFloat(entity, g.name());
                 if (gene >= 2.0F) { // E/e or above
                     presentModifiers.add(g);
                     EquigenMod.LOGGER.info("ADDING {} GENETIC TO PRESENT MODIFIERS WITH A VALUE OF {}", g.name(), gene);
@@ -182,10 +182,10 @@ public class GeneticHorseTexturer {
         return 0;
     }
     private int getEyeColor(GeneticHorseEntity entity, boolean secondaryEyeColor) {
-        float gHue = GeneticsHandler.getEntityGenetic(entity, Genetics.EYE_HUE);
-        float gSaturation = GeneticsHandler.getEntityGenetic(entity, Genetics.EYE_SATURATION);
-        float gBrightness = GeneticsHandler.getEntityGenetic(entity, Genetics.EYE_BRIGHTNESS);
-        float heterochromia = GeneticsHandler.getEntityGenetic(entity, Genetics.HETEROCHROMIA);
+        float gHue = GeneticsHandler.getGeneticFloat(entity, Genetics.EYE_HUE);
+        float gSaturation = GeneticsHandler.getGeneticFloat(entity, Genetics.EYE_SATURATION);
+        float gBrightness = GeneticsHandler.getGeneticFloat(entity, Genetics.EYE_BRIGHTNESS);
+        float heterochromia = GeneticsHandler.getGeneticFloat(entity, Genetics.HETEROCHROMIA);
 
         float hue;
         float saturation;
@@ -195,11 +195,11 @@ public class GeneticHorseTexturer {
 
         if (secondaryEyeColor && heterochromia == 3.0F) {
             //Reverses the Genetics
-            bb = GeneticsHandler.getEntityGenetic(entity, Genetics.EYE_BASE_COLOR_2);
-            aa = GeneticsHandler.getEntityGenetic(entity, Genetics.EYE_BASE_COLOR);
+            bb = GeneticsHandler.getGeneticFloat(entity, Genetics.EYE_BASE_COLOR_2);
+            aa = GeneticsHandler.getGeneticFloat(entity, Genetics.EYE_BASE_COLOR);
         } else {
-            bb = GeneticsHandler.getEntityGenetic(entity, Genetics.EYE_BASE_COLOR); //Brown/Blue Gene b/b
-            aa = GeneticsHandler.getEntityGenetic(entity, Genetics.EYE_BASE_COLOR_2); //Amber/Hazel Gene a/a
+            bb = GeneticsHandler.getGeneticFloat(entity, Genetics.EYE_BASE_COLOR); //Brown/Blue Gene b/b
+            aa = GeneticsHandler.getGeneticFloat(entity, Genetics.EYE_BASE_COLOR_2); //Amber/Hazel Gene a/a
         }
 
         // B = brown b = blue
@@ -300,7 +300,7 @@ public class GeneticHorseTexturer {
     }
 
     private Path getFaceMarking(GeneticHorseEntity entity) {
-        int gene = (int) GeneticsHandler.getEntityGenetic(entity, Genetics.EYE_BASE_COLOR);
+        int gene = (int) GeneticsHandler.getGeneticFloat(entity, Genetics.EYE_BASE_COLOR);
         return switch (gene) {
             case 1 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
                     "entity", "genetic_horse", "markings", "head_markings", "blaze.png"); //blaze

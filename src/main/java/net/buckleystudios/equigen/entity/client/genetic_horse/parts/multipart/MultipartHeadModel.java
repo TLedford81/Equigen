@@ -19,13 +19,13 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
 //        Map<String,Float> renderGenetics = e.getRenderGenetics();
         for(String part : partsToRender){
             if(part.startsWith("head")){
-                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_POS))) {
+                switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_POS))) {
                     case 1 -> {
-                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
+                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_CURVE))) {
                             case 1 -> {
-                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.HEAD_TYPE))) {
+                                switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.HEAD_TYPE))) {
                                     case 1 -> {
-                                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                             case 1 ->
                                             {
                                                 zPos = 0.1F;
@@ -58,7 +58,7 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                                         }
                                     } // Dished ADJUSTED AND FINISHED
                                     case 2 -> {
-                                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                             case 1 ->
                                             {
                                                 zPos = 0.0F;
@@ -87,7 +87,7 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                                         }
                                     } // Roman ADJUSTED AND FINISHED
                                     case 3 -> {
-                                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                             case 1 ->
                                             {
                                                 zPos = 0.4F;
@@ -120,7 +120,7 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                                         }
                                     } // Stocky ADJUSTED AND FINISHED
                                     case 4 -> {
-                                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                             case 1, 2, 4, 5, 6 ->
                                             {
                                                 yPos = -0.8f;
@@ -140,9 +140,9 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                                 }
                             } // Swan
                             case 2 -> {
-                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.HEAD_TYPE))) {
+                                switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.HEAD_TYPE))) {
                                     case 1 -> {
-                                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                             case 1 -> {
                                                 zPos = 0.55F;
                                                 yPos = -0.35f;
@@ -170,7 +170,7 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                                         }
                                     } // Dished TODO Fix Dished Head shading + highlight map due to changes made for this
                                     case 2 -> {
-                                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                             case 1 ->
                                             {
                                                 zPos = -0.2F;
@@ -203,7 +203,7 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                                         }
                                     } // Roman
                                     case 3 -> {
-                                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                             case 1 ->
                                             {
                                                 zPos = 0.45F;
@@ -236,7 +236,7 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                                         }
                                     } // Stocky Adjusted and Finished
                                     case 4 -> {
-                                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                             case 1 -> {
                                                 yPos = -0.4f;
                                                 zPos = 0.2f;
@@ -264,13 +264,13 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                                 }
                             } // Straight
                             case 3 -> {
-                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.HEAD_TYPE))) {
+                                switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.HEAD_TYPE))) {
                                     case 1 -> {
                                         zPos = 0.7F;
                                         yPos = -0.4f;
                                     } // Dished ADJUSTED AND FINISHED
                                     case 2 -> {
-                                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                             case 1 ->
                                             {
                                                 zPos = -0.0F;
@@ -299,7 +299,7 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                                         }
                                     } // Roman ADJUSTED AND FINISHED
                                     case 3 -> {
-                                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                             case 1 ->
                                             {
                                                 zPos = 1.1F;
@@ -332,7 +332,7 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                                         }
                                     } // Stocky FINSIHED AND ADJUSTED (slightly off)
                                     case 4 -> {
-                                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                             case 1, 3 -> {
                                                 yPos = -0.8f;
                                                 zPos = 0.6F;
@@ -355,9 +355,9 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                                 }
                             } // Ewed
                             case 4 -> {
-                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.HEAD_TYPE))) {
+                                switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.HEAD_TYPE))) {
                                     case 1 -> {
-                                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                             case 1 -> {
                                                 zPos = 0.8F;
                                                 yPos = -1.0f;
@@ -385,7 +385,7 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                                         }
                                     } // Dished ADJUSTED TODO I hate how this turned out. Experiment with ways to fix?
                                     case 2 -> {
-                                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                             case 1 ->
                                             {
                                                 zPos = 0.5F;
@@ -414,7 +414,7 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                                         }
                                     } // Roman ADJUSTED AND FINISHED
                                     case 3 -> {
-                                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                             case 1, 2, 3, 4 ->
                                             {
                                                 zPos = 0.7F;
@@ -431,7 +431,7 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                                         }
                                     } // Stocky ADJUSTED
                                     case 4 -> {
-                                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                             case 1, 4 -> {
                                                 yPos = -0.6f;
                                                 zPos = 0.9F;
@@ -457,15 +457,15 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                         }
                     }
                     case 2 -> {
-                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
+                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_CURVE))) {
                             case 1 -> {
                                 zPos = 0.5F;
                                 yPos = -0.5f;
                             } // Swan
                             case 2 -> {
-                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.HEAD_TYPE))) {
+                                switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.HEAD_TYPE))) {
                                     case 1 -> {
-                                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                             case 2 -> {
                                                 zPos = 0.2F;
                                             }
@@ -496,7 +496,7 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                                         yPos = 0.5f;
                                     } // Roman FINISHED
                                     case 3 -> {
-                                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                             case 1, 5 -> {
                                                 zPos = 0.1F;
                                                 yPos = 0.3f;
@@ -526,13 +526,13 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                                 }
                             } // Straight FINISHED
                             case 3 -> {
-                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.HEAD_TYPE))) {
+                                switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.HEAD_TYPE))) {
                                     case 1 -> {
                                         zPos = 1.0F;
                                         yPos = -0.3f;
                                     } // Dished FINSIHED
                                     case 2 -> {
-                                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                             case 1, 3, 4, 5, 6 -> {
                                                 zPos = 0.0F;
                                                 yPos = 0.5f;
@@ -548,7 +548,7 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                                         }
                                     } // Roman FINISHED
                                     case 3 -> {
-                                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                             case 1, 4 -> {
                                                 zPos = 0.8F;
                                                 yPos = 0.4f;
@@ -574,7 +574,7 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                                 }
                             } // Ewed FINISHED
                             case 4 -> {
-                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.HEAD_TYPE))) {
+                                switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.HEAD_TYPE))) {
                                     case 1 -> {
                                         zPos = 0.5F;
                                         yPos = -0.5f;
@@ -584,7 +584,7 @@ public abstract class MultipartHeadModel <E extends GeneticHorseEntity> extends 
                                         yPos = 0.0f;
                                     } // Roman FINISHED, might need some adjusting
                                     case 3 -> {
-                                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                            case 4 -> {
                                                zPos = 0.5F;
                                                yPos = 0.35f;

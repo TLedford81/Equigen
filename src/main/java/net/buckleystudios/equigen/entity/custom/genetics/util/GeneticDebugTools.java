@@ -65,7 +65,7 @@ public class GeneticDebugTools {
         int pageLineCount = 0;
         int totalLineCount = 0;
         for (Genetics genetic : Genetics.values()) {
-            page.append("§3§l" + genetic.name() + ": §0" + GeneticsHandler.getEntityGenetic(entity, genetic) + "\n");
+            page.append("§3§l" + genetic.name() + ": §0" + GeneticsHandler.getGeneticFloat(entity, genetic) + "\n");
             pageLineCount += 1;
             totalLineCount += 1;
 
@@ -157,7 +157,7 @@ public class GeneticDebugTools {
         //Genetics
         information.append("{P}§b§l---GENETICS---\n\n");
         for (Genetics genetic : Genetics.values()) {
-            information.append("§3§l" + genetic.name() + ": §0" + GeneticsHandler.getEntityGenetic(entity, genetic) + "\n");
+            information.append("§3§l" + genetic.name() + ": §0" + GeneticsHandler.getGeneticFloat(entity, genetic) + "\n");
         }
 
         //Genetic Names

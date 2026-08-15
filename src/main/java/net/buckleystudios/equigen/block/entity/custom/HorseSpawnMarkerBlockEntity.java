@@ -55,7 +55,7 @@ public class HorseSpawnMarkerBlockEntity extends BlockEntity {
                     null
             );
 
-            float gender = GeneticsHandler.getEntityGenetic(entity, Genetics.GENDER);
+            float gender = GeneticsHandler.getGeneticFloat(entity, Genetics.GENDER);
 
             List<String> maleNames = List.of(
                     "Hoover",

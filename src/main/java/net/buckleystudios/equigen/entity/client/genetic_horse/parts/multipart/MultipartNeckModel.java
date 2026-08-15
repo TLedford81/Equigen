@@ -30,9 +30,9 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
             if(part.startsWith("neck")){
                 partName = part;
             }
-            switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_POS))) {
+            switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_POS))) {
                 case 1 -> {
-                    switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
+                    switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_CURVE))) {
                         case 1 -> pitch = -15.0F; // Swan
                         case 2 -> pitch = 0.0F; // Straight
                         case 3 -> pitch = -10.0F; // Ewed
@@ -41,7 +41,7 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
                 }
                 }
                 case 2 -> {
-                    switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
+                    switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_CURVE))) {
                         case 1 -> pitch = -2.5F; // Swan
                         case 2 -> pitch = 0.0F; // Straight
                         case 3 -> pitch = -5.0F; // Ewed
@@ -52,7 +52,7 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
                 default ->  pitch = 0.0f;
             }
         }
-        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
+        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_CURVE))) {
             case 1 -> manePitch = 5.0F; // Swan
             case 2 -> manePitch = -32.5f; // Straight
             case 3 -> manePitch = 0.0F; // Ewed
@@ -94,11 +94,11 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
 //        Map<String,Float> renderGenetics = e.getRenderGenetics();
         for(String part : partsToRender){
             if(part.startsWith("neck")){
-                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_POS))) {
+                switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_POS))) {
                     case 1 -> {
-                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
+                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_CURVE))) {
                             case 1 -> {
-                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                     case 1 ->
                                      {
                                          yPos = 1.7F;
@@ -131,7 +131,7 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
                                 }
                             } // Swan TESTED AND FINISHED
                             case 2 -> {
-                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                     case 1 ->
                                     {
                                         yPos = 1.5F;
@@ -164,7 +164,7 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
                                 }
                             } // Straight TESTED AND FINISHED
                             case 3 -> {
-                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                     case 1 ->
                                     {
                                         yPos = 0.75F;
@@ -197,7 +197,7 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
                                 }
                             } // Ewed TESTED AND FINISHED
                             case 4 -> {
-                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                     case 1 ->
                                     {
                                         yPos = 1.0F;
@@ -233,9 +233,9 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
                         }
                     }
                     case 2 -> {
-                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
+                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_CURVE))) {
                             case 1 -> {
-                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                     case 1 ->
                                     {
                                         yPos = 1.0F;
@@ -268,7 +268,7 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
                                 }
                             } // Swan
                             case 2 -> {
-                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                     case 1 ->
                                     {
                                         yPos = 1.0F;
@@ -301,7 +301,7 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
                                 }
                             } // Straight TESTED AND FINISHED
                             case 3 -> {
-                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                     case 1 ->
                                     {
                                         yPos = 1.0F;
@@ -334,7 +334,7 @@ public abstract class MultipartNeckModel <E extends GeneticHorseEntity> extends 
                                 }
                             } // Ewed TESTED AND FINISHED
                             case 4 -> {
-                                switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_LENGTH))) {
+                                switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_LENGTH))) {
                                     case 1 ->
                                     {
                                         yPos = 0.8F;

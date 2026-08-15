@@ -6,7 +6,8 @@ import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.client.ModModelLayers;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.PartTransform;
 import net.buckleystudios.equigen.entity.client.genetic_horse.parts.multipart.MultipartModel;
-import net.buckleystudios.equigen.entity.client.genetic_horse.parts.partmodels.PartModelCache;
+import net.buckleystudios.equigen.entity.client.genetic_horse.parts.registry.ModelPartRegistries.ModelPartRegistry;
+import net.buckleystudios.equigen.entity.client.genetic_horse.parts.registry.RegistryKeyFactory;
 import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
@@ -118,8 +119,8 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
     }
 
     public int getSelectedTexture(GeneticHorseEntity entity) {
-        float blackModifier = GeneticsHandler.getEntityGenetic(entity, Genetics.BLACK_MODIFIER);
-        float redModifier = GeneticsHandler.getEntityGenetic(entity, Genetics.RED_MODIFIER);
+        float blackModifier = GeneticsHandler.getGeneticFloat(entity, Genetics.BLACK_MODIFIER);
+        float redModifier = GeneticsHandler.getGeneticFloat(entity, Genetics.RED_MODIFIER);
         if (blackModifier == 1.0f) {
             return 1; //Chestnut e/e _/_
         } else if (redModifier == 1.0f && blackModifier >= 2.0f) {
@@ -149,12 +150,12 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
         List<ResourceLocation> BACK_LEFT_LEG_MARKINGS = new ArrayList<>();
         List<ResourceLocation> BACK_RIGHT_LEG_MARKINGS = new ArrayList<>();
 
-        ResourceLocation front_left_leg = getLegWhiteMarking((int) GeneticsHandler.getEntityGenetic(e, Genetics.FRONT_LEFT_LEG_MARKING));
-        ResourceLocation front_right_leg = getLegWhiteMarking((int) GeneticsHandler.getEntityGenetic(e, Genetics.FRONT_RIGHT_LEG_MARKING));
-        ResourceLocation back_left_leg = getLegWhiteMarking((int) GeneticsHandler.getEntityGenetic(e, Genetics.BACK_LEFT_LEG_MARKING));
-        ResourceLocation back_right_leg = getLegWhiteMarking((int) GeneticsHandler.getEntityGenetic(e, Genetics.BACK_RIGHT_LEG_MARKING));
+        ResourceLocation front_left_leg = getLegWhiteMarking((int) GeneticsHandler.getGeneticFloat(e, Genetics.FRONT_LEFT_LEG_MARKING));
+        ResourceLocation front_right_leg = getLegWhiteMarking((int) GeneticsHandler.getGeneticFloat(e, Genetics.FRONT_RIGHT_LEG_MARKING));
+        ResourceLocation back_left_leg = getLegWhiteMarking((int) GeneticsHandler.getGeneticFloat(e, Genetics.BACK_LEFT_LEG_MARKING));
+        ResourceLocation back_right_leg = getLegWhiteMarking((int) GeneticsHandler.getGeneticFloat(e, Genetics.BACK_RIGHT_LEG_MARKING));
 
-        ResourceLocation face_marking = getFaceMarking((int) GeneticsHandler.getEntityGenetic(e, Genetics.FACE_MARKING));
+        ResourceLocation face_marking = getFaceMarking((int) GeneticsHandler.getGeneticFloat(e, Genetics.FACE_MARKING));
 
         if (face_marking != null) BODY_MARKINGS.add(face_marking);
         if (front_left_leg != null) FRONT_LEFT_LEG_MARKINGS.add(front_left_leg);
@@ -233,7 +234,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
         poseStack.pushPose();
         try {
 //            Map<GeneticValues, Float> renderGenetics = GeneticsHandler.getRenderGenetics(entity);
-            float scaleGenetic = ((GeneticsHandler.getEntityGenetic(entity, Genetics.SCALE) / 2.0F) + 0.75F);
+            float scaleGenetic = ((GeneticsHandler.getGeneticFloat(entity, Genetics.SCALE) / 2.0F) + 0.75F);
             poseStack.scale(scaleGenetic, scaleGenetic, scaleGenetic);
 
             if (entity.isBaby()) poseStack.scale(0.5f, 0.6f, 0.5f);
@@ -249,34 +250,35 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
     }
 
     private Map<String, MultipartModel<GeneticHorseEntity>> createModelMap(GeneticHorseEntity entity) {
-        List<String> partsToRender = entity.getPartsToRender();
         Map<String, MultipartModel<GeneticHorseEntity>> modelMap = new HashMap<>();
-        modelMap.put("chestModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "chest"));
-        modelMap.put("backModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "back"));
-        modelMap.put("headModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "head"));
-        modelMap.put("neckModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "neck"));
-        modelMap.put("leftEarModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "left_ear"));
-        modelMap.put("rightEarModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "right_ear"));
-        modelMap.put("topFrontLeftLegModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "top_front_legs"));
-        modelMap.put("kneeFrontLeftLegModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "knees"));
-        modelMap.put("bottomFrontLeftLegModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "bottom_legs"));
-        modelMap.put("hoofFrontLeftLegModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "hoof"));
-        modelMap.put("topFrontRightLegModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "top_front_legs"));
-        modelMap.put("kneeFrontRightLegModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "knees"));
-        modelMap.put("bottomFrontRightLegModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "bottom_legs"));
-        modelMap.put("hoofFrontRightLegModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "hoof"));
-        modelMap.put("hipsModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "hips"));
-        modelMap.put("tailModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "tail"));
-        modelMap.put("topBackLeftLegModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "top_back_legs"));
-        modelMap.put("kneeBackLeftLegModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "knees"));
-        modelMap.put("bottomBackLeftLegModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "bottom_legs"));
-        modelMap.put("hoofBackLeftLegModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "hoof"));
-        modelMap.put("topBackRightLegModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "top_back_legs"));
-        modelMap.put("kneeBackRightLegModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "knees"));
-        modelMap.put("bottomBackRightLegModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "bottom_legs"));
-        modelMap.put("hoofBackRightLegModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "hoof"));
-        modelMap.put("withersModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "withers"));
-        modelMap.put("stomachModel", PartModelCache.getMultipartModel(modelSet, partsToRender, "stomach"));
+
+        modelMap.put("chestModel", ModelPartRegistry.getModel(RegistryKeyFactory.getChestKey(entity), modelSet));
+        modelMap.put("backModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
+        modelMap.put("neckModel", ModelPartRegistry.getModel(RegistryKeyFactory.getNeckKey(entity), modelSet));
+
+        modelMap.put("headModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
+        modelMap.put("leftEarModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
+        modelMap.put("rightEarModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
+        modelMap.put("topFrontLeftLegModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
+        modelMap.put("kneeFrontLeftLegModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
+        modelMap.put("bottomFrontLeftLegModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
+        modelMap.put("hoofFrontLeftLegModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
+        modelMap.put("topFrontRightLegModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
+        modelMap.put("kneeFrontRightLegModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
+        modelMap.put("bottomFrontRightLegModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
+        modelMap.put("hoofFrontRightLegModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
+        modelMap.put("hipsModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
+        modelMap.put("tailModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
+        modelMap.put("topBackLeftLegModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
+        modelMap.put("kneeBackLeftLegModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
+        modelMap.put("bottomBackLeftLegModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
+        modelMap.put("hoofBackLeftLegModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
+        modelMap.put("topBackRightLegModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
+        modelMap.put("kneeBackRightLegModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
+        modelMap.put("bottomBackRightLegModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
+        modelMap.put("hoofBackRightLegModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
+        modelMap.put("withersModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
+        modelMap.put("stomachModel", ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet));
         return modelMap;
     }
 
@@ -289,8 +291,22 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
     private void renderParts(GeneticHorseEntity entity, float entityYaw, float partialTicks,
                              PoseStack poseStack, MultiBufferSource modelBuffer, MultiBufferSource hoofBuffer, int packedLight,
                              Map<String, MultipartModel<GeneticHorseEntity>> modelMap) {
+//        MultipartModel<GeneticHorseEntity> back = modelMap.get("backModel");
+//        if (back == null) return;
         MultipartModel<GeneticHorseEntity> back = modelMap.get("backModel");
-        if (back == null) return;
+
+        if (back == null) {
+            EquigenMod.LOGGER.error(
+                    "BACK MODEL IS NULL! Key = {}",
+                    RegistryKeyFactory.getBackKey(entity)
+            );
+            return;
+        }
+
+        EquigenMod.LOGGER.info(
+                "FOUND BACK MODEL: {}",
+                back.getClass().getSimpleName()
+        );
 
         // Root
         renderRootPart(poseStack, modelBuffer, packedLight, partialTicks, entity, back);
@@ -537,7 +553,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                 fullPartName = part;
                 if (partType.equals("neck")) {
                     int muscleMass;
-                    switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.MUSCLE_MASS))) {
+                    switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.MUSCLE_MASS))) {
                         case 1 -> muscleMass = 5;
                         case 2 -> muscleMass = 8;
                         case 3 -> muscleMass = 9;
@@ -556,7 +572,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                     Vector3f neckRot = getRotationForPart("neck", e);
                     // Neck Curves: 1 = Swan, 2 = Straight, 3 = Ewed, 4 = Arched
                     if (partInfo.startsWith("dished")) {
-                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
+                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_CURVE))) {
                             case 1 -> pitch = -20.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 2 -> pitch = -29.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 3 -> pitch = -28.0F; // Roughly adjusted, need to test w/ varying lengths.
@@ -566,7 +582,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                         // minus the neck rotation here
                         pitch -= neckRot.x;
                     } else if (partInfo.startsWith("roman")) {
-                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
+                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_CURVE))) {
                             case 1 -> pitch = -20.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 2 -> pitch = -25.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 3 -> pitch = -30.0F; // Roughly adjusted, need to test w/ varying lengths.
@@ -576,7 +592,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                         // minus the neck rotation here
                         pitch -= neckRot.x;
                     } else if (partInfo.startsWith("stocky")) {
-                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
+                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_CURVE))) {
                             case 1 -> pitch = -25.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 2 -> pitch = -20.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 3 -> pitch = -25.0F; // Roughly adjusted, need to test w/ varying lengths.
@@ -585,7 +601,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                         }
                         pitch -= neckRot.x;
                     } else if (partInfo.startsWith("straight")) {
-                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_CURVE))) {
+                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_CURVE))) {
                             case 1 -> pitch = -13.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 2 -> pitch = -10.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 3 -> pitch = -15.0F; // Roughly adjusted, need to test w/ varying lengths.
@@ -600,28 +616,28 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                 case "neck" -> {
                     // Calculate Neck Rotation
                     if (partInfo.startsWith("swan")) {
-                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_POS))) {
+                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_POS))) {
                             case 1 -> pitch = 35.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                             case 2 -> pitch = 20.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                             case 3 -> pitch = 5.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                             default -> pitch = 0.0F;
                         }
                     } else if (partInfo.startsWith("straight")) {
-                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_POS))) {
+                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_POS))) {
                             case 1 -> pitch = 40.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                             case 2 -> pitch = 20.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                             case 3 -> pitch = 5.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                             default -> pitch = 0.0F;
                         }
                     } else if (partInfo.startsWith("ewed")) {
-                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_POS))) {
+                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_POS))) {
                             case 1 -> pitch = 40.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 2 -> pitch = 20.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 3 -> pitch = 5.0F; // Roughly adjusted, need to test w/ varying lengths.
                             default -> pitch = 0.0F;
                         }
                     } else if (partInfo.startsWith("arched")) {
-                        switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.NECK_POS))) {
+                        switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.NECK_POS))) {
                             case 1 -> pitch = 40.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 2 -> pitch = 20.0F; // Roughly adjusted, need to test w/ varying lengths.
                             case 3 -> pitch = 5.0F; // Roughly adjusted, need to test w/ varying lengths.
@@ -633,7 +649,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                 }
                 case "withers" -> {
                     //TODO Fix the withers sticking through the body
-                    switch (Math.round(GeneticsHandler.getEntityGenetic(e, Genetics.WITHERS))) {
+                    switch (Math.round(GeneticsHandler.getGeneticFloat(e, Genetics.WITHERS))) {
                         case 1 -> pitch = 0.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                         case 2 -> pitch = -10.0F; // VERY Roughly adjusted, need to test w/ varying lengths.
                         case 3 -> pitch = -20.0F; // VERY Roughly adjusted, need to test w/ varying lengths.

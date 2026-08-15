@@ -39,7 +39,7 @@ public class GeneticsHandler {
 
     public static void syncGeneticsToClient(LivingEntity entity, List<Genetics> geneList){
         for (Genetics gene : geneList){
-            PacketDistributor.sendToPlayersTrackingEntity(entity, new GeneticData(entity.getId(), gene.name(), getEntityGenetic(entity, gene)));
+            PacketDistributor.sendToPlayersTrackingEntity(entity, new GeneticData(entity.getId(), gene.name(), getGeneticFloat(entity, gene)));
         }
     }
 
@@ -47,21 +47,21 @@ public class GeneticsHandler {
         syncGeneticsToClient(entity, Genetics.getGeneticsToRender());
     }
 
-    public static float getEntityGenetic(LivingEntity entity, Genetics value) {
+    public static float getGeneticFloat(LivingEntity entity, Genetics value) {
         if(entity.hasData(value.getDataAttachment())){
             return entity.getData(value.getDataAttachment());
         }
         else return 0;
     }
 
-    public static float getEntityGenetic(LivingEntity entity, String value) {
-        return getEntityGenetic(entity, Genetics.valueOf(value));
+    public static float getGeneticFloat(LivingEntity entity, String value) {
+        return getGeneticFloat(entity, Genetics.valueOf(value));
     }
 
     public static Map<Genetics, Float> getRenderGenetics(LivingEntity entity){
         Map<Genetics, Float> output = new HashMap<>();
         for(Genetics value : Genetics.getGeneticsToRender()){
-            output.put(value, getEntityGenetic(entity, value));
+            output.put(value, getGeneticFloat(entity, value));
         }
         return output;
     }
@@ -155,6 +155,36 @@ public class GeneticsHandler {
                 }
             }
         }
+    }
+
+    public static GeneticValues.MUSCLE_MASS getMuscleMassValue(GeneticHorseEntity entity) {
+        return getGeneticValue(entity, Genetics.MUSCLE_MASS, GeneticValues.MUSCLE_MASS.class);
+    }
+
+    public static GeneticValues.BACK_LENGTH getBackLengthValue(GeneticHorseEntity entity) {
+        return getGeneticValue(entity, Genetics.BACK_LENGTH, GeneticValues.BACK_LENGTH.class);
+    }
+
+    public static GeneticValues.BACK_GIRTH getBackGirthValue(GeneticHorseEntity entity) {
+        return getGeneticValue(entity, Genetics.BACK_GIRTH, GeneticValues.BACK_GIRTH.class);
+    }
+
+    public static GeneticValues.CHEST_SIZE getChestSizeValue(GeneticHorseEntity entity) {
+        return getGeneticValue(entity, Genetics.CHEST_SIZE, GeneticValues.CHEST_SIZE.class);
+    }
+
+    public static GeneticValues.NECK_CURVE getNeckCurveValue(GeneticHorseEntity entity) {
+        return getGeneticValue(entity, Genetics.NECK_CURVE, GeneticValues.NECK_CURVE.class);
+    }
+
+    public static GeneticValues.NECK_LENGTH getNeckLengthValue(GeneticHorseEntity entity) {
+        return getGeneticValue(entity, Genetics.NECK_LENGTH, GeneticValues.NECK_LENGTH.class);
+    }
+
+    private static <E extends Enum<E>> E getGeneticValue(GeneticHorseEntity entity, Genetics gene, Class<E> valueType){
+        return GeneticValues.fromInt(
+                valueType,
+                (int) GeneticsHandler.getGeneticFloat(entity, gene));
     }
 
 }
