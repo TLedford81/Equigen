@@ -1,6 +1,6 @@
 package net.buckleystudios.equigen.item.custom;
 
-import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.custom.HorseTraderEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;

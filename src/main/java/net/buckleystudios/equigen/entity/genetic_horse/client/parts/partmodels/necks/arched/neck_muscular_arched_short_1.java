@@ -1,0 +1,170 @@
+package net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.necks.arched;// Made with Blockbench 4.12.1
+// Exported for Minecraft version 1.17 or later with Mojang mappings
+// Paste this class into your mod and generate all required imports
+
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.genetic_horse.client.parts.multipart.MultipartNeckModel;
+import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Block;
+import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Part;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class neck_muscular_arched_short_1 extends MultipartNeckModel<GeneticHorseEntity> {
+	private final ModelPart root;
+	private final ModelPart neck_muscular_arched_short_1;
+	private final ModelPart neck_muscular_arched_short_1_individual;
+	private final ModelPart neck_muscular_arched_short_1_crest;
+	private final ModelPart neck_muscular_arched_short_1_crest_upper;
+	private final ModelPart neck_muscular_arched_short_1_crest_upper_individual;
+	private final ModelPart neck_muscular_arched_short_1_crest_lower;
+	private final ModelPart headAnchor;
+	private final ModelPart chestAnchor;
+	private final ModelPart withersAnchor;
+
+	public neck_muscular_arched_short_1(ModelPart root) {
+		this.root = root;
+		this.neck_muscular_arched_short_1 = root.getChild("neck_muscular_arched_short_1");
+		this.neck_muscular_arched_short_1_individual = neck_muscular_arched_short_1.getChild("neck_muscular_arched_short_1_individual");
+		this.neck_muscular_arched_short_1_crest = neck_muscular_arched_short_1_individual.getChild("neck_muscular_arched_short_1_crest");
+		this.neck_muscular_arched_short_1_crest_upper = neck_muscular_arched_short_1_crest.getChild("neck_muscular_arched_short_1_crest_upper");
+		this.neck_muscular_arched_short_1_crest_upper_individual = neck_muscular_arched_short_1_crest_upper.getChild("neck_muscular_arched_short_1_crest_upper_individual");
+		this.neck_muscular_arched_short_1_crest_lower = neck_muscular_arched_short_1_crest.getChild("neck_muscular_arched_short_1_crest_lower");
+		this.headAnchor = this.neck_muscular_arched_short_1_crest_upper_individual.getChild("headAnchor");
+		this.chestAnchor = this.neck_muscular_arched_short_1.getChild("chestAnchor");
+		this.withersAnchor = this.neck_muscular_arched_short_1_crest_lower.getChild("withersAnchor");
+	}
+
+	public static LayerDefinition createBodyLayer() {
+		MeshDefinition meshdefinition = new MeshDefinition();
+		PartDefinition partdefinition = meshdefinition.getRoot();
+
+		PartDefinition neck_muscular_arched_short_1 = partdefinition.addOrReplaceChild("neck_muscular_arched_short_1", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
+
+		PartDefinition neck_muscular_arched_short_1_individual = neck_muscular_arched_short_1.addOrReplaceChild("neck_muscular_arched_short_1_individual", CubeListBuilder.create(), PartPose.offsetAndRotation(0.2927F, 2.6458F, -0.5718F, -0.1309F, 0.0F, 0.0F));
+
+		PartDefinition neck_muscular_arched_short_1_crest = neck_muscular_arched_short_1_individual.addOrReplaceChild("neck_muscular_arched_short_1_crest", CubeListBuilder.create(), PartPose.offset(-0.2927F, -6.3106F, -2.0204F));
+
+		PartDefinition neck_muscular_arched_short_1_crest_upper = neck_muscular_arched_short_1_crest.addOrReplaceChild("neck_muscular_arched_short_1_crest_upper", CubeListBuilder.create(), PartPose.offset(0.2642F, -1.809F, -0.9589F));
+
+		PartDefinition neck_muscular_arched_short_1_crest_upper_individual = neck_muscular_arched_short_1_crest_upper.addOrReplaceChild("neck_muscular_arched_short_1_crest_upper_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+
+		PartDefinition cube_r1 = neck_muscular_arched_short_1_crest_upper_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(105, 80).addBox(-4.1434F, -5.8622F, -2.7188F, 5.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.6434F, 0.3357F, 2.6108F, 1.5708F, 0.0F, 0.0F));
+
+		PartDefinition headAnchor = neck_muscular_arched_short_1_crest_upper_individual.addOrReplaceChild("headAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.0142F, 0.0911F, -3.1228F));
+
+		PartDefinition neck_muscular_arched_short_1_top_mane = neck_muscular_arched_short_1_crest_upper.addOrReplaceChild("neck_muscular_arched_short_1_top_mane", CubeListBuilder.create(), PartPose.offsetAndRotation(0.5347F, -1.5932F, 1.218F, 0.1309F, 0.0F, 0.0F));
+
+		PartDefinition neck_muscular_arched_short_1_top_mane_connector = neck_muscular_arched_short_1_top_mane.addOrReplaceChild("neck_muscular_arched_short_1_top_mane_connector", CubeListBuilder.create(), PartPose.offset(-0.7151F, -0.3136F, -1.1888F));
+
+		PartDefinition neck_muscular_arched_short_1_top_mane_connector_individual = neck_muscular_arched_short_1_top_mane_connector.addOrReplaceChild("neck_muscular_arched_short_1_top_mane_connector_individual", CubeListBuilder.create(), PartPose.offset(0.0726F, 0.731F, -0.9015F));
+
+		PartDefinition cube_r2 = neck_muscular_arched_short_1_top_mane_connector_individual.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(96, 71).addBox(-2.0F, -2.0F, -3.0F, 2.0F, 2.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 1.0567F, 0.3652F, -0.1309F, 0.0F, 0.0F));
+
+		PartDefinition neck_muscular_arched_short_1_top_mane_connector2 = neck_muscular_arched_short_1_top_mane_connector.addOrReplaceChild("neck_muscular_arched_short_1_top_mane_connector2", CubeListBuilder.create(), PartPose.offset(0.8045F, -0.3575F, -0.4469F));
+
+		PartDefinition neck_muscular_arched_short_1_top_mane_connector2_individual = neck_muscular_arched_short_1_top_mane_connector2.addOrReplaceChild("neck_muscular_arched_short_1_top_mane_connector2_individual", CubeListBuilder.create(), PartPose.offset(1.6452F, 0.5034F, -0.3893F));
+
+		PartDefinition cube_r3 = neck_muscular_arched_short_1_top_mane_connector2_individual.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(93, 53).addBox(-2.0F, -2.0F, -3.0F, 3.0F, 1.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5F, 1.5524F, 0.2999F, -0.1309F, 0.0F, 0.0F));
+
+		PartDefinition neck_muscular_arched_short_1_top_mane_flow = neck_muscular_arched_short_1_top_mane_connector2.addOrReplaceChild("neck_muscular_arched_short_1_top_mane_flow", CubeListBuilder.create(), PartPose.offsetAndRotation(2.771F, 0.0F, 0.2681F, -0.1745F, 0.0F, 0.0F));
+
+		PartDefinition cube_r4 = neck_muscular_arched_short_1_top_mane_flow.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(112, 108).addBox(-1.0707F, -0.1476F, -2.1526F, 1.0F, 7.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.0256F, -1.0516F, 0.0323F, 0.0399F, -0.3352F));
+
+		PartDefinition neck_muscular_arched_short_1_top_mane_flow_lower = neck_muscular_arched_short_1_top_mane_flow.addOrReplaceChild("neck_muscular_arched_short_1_top_mane_flow_lower", CubeListBuilder.create(), PartPose.offset(2.2743F, 6.3236F, 0.3074F));
+
+		PartDefinition cube_r5 = neck_muscular_arched_short_1_top_mane_flow_lower.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(83, 108).addBox(-1.0707F, -0.1476F, -2.1526F, 1.0F, 7.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8045F, 0.0256F, -1.0516F, 0.0388F, 0.0337F, -0.1607F));
+
+		PartDefinition neck_muscular_arched_short_1_crest_lower = neck_muscular_arched_short_1_crest.addOrReplaceChild("neck_muscular_arched_short_1_crest_lower", CubeListBuilder.create(), PartPose.offset(0.2119F, 0.4136F, 1.546F));
+
+		PartDefinition cube_r6 = neck_muscular_arched_short_1_crest_lower.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(108, 60).addBox(-5.08F, -10.0F, -0.92F, 5.0F, 7.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.58F, 4.6528F, 4.5396F, 0.7854F, 0.0F, 0.0F));
+
+		PartDefinition withersAnchor = neck_muscular_arched_short_1_crest_lower.addOrReplaceChild("withersAnchor", CubeListBuilder.create(), PartPose.offset(-0.0119F, 2.4166F, 2.349F));
+
+		PartDefinition cube_r7 = withersAnchor.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.7854F, 0.0F, 0.0F));
+
+		PartDefinition neck_muscular_arched_short_1_bottom_mane = neck_muscular_arched_short_1_crest_lower.addOrReplaceChild("neck_muscular_arched_short_1_bottom_mane", CubeListBuilder.create(), PartPose.offsetAndRotation(0.587F, 1.0233F, 3.5704F, 0.1309F, 0.0F, 0.0F));
+
+		PartDefinition neck_muscular_arched_short_1_bottom_mane_connector = neck_muscular_arched_short_1_bottom_mane.addOrReplaceChild("neck_muscular_arched_short_1_bottom_mane_connector", CubeListBuilder.create(), PartPose.offset(0.0F, -0.1486F, -0.7506F));
+
+		PartDefinition neck_muscular_arched_short_1_bottom_mane_connector_individual = neck_muscular_arched_short_1_bottom_mane_connector.addOrReplaceChild("neck_muscular_arched_short_1_bottom_mane_connector_individual", CubeListBuilder.create(), PartPose.offset(-0.6326F, -2.1016F, -1.5962F));
+
+		PartDefinition cube_r8 = neck_muscular_arched_short_1_bottom_mane_connector_individual.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(87, 32).addBox(-2.0F, -2.0F, -2.01F, 2.0F, 2.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, -0.5733F, -1.7004F, -0.9163F, 0.0F, 0.0F));
+
+		PartDefinition neck_muscular_arched_short_1_bottom_mane_connector2 = neck_muscular_arched_short_1_bottom_mane_connector.addOrReplaceChild("neck_muscular_arched_short_1_bottom_mane_connector2", CubeListBuilder.create(), PartPose.offset(0.1788F, -2.4134F, -0.8045F));
+
+		PartDefinition neck_muscular_arched_short_1_bottom_mane_connector2_individual = neck_muscular_arched_short_1_bottom_mane_connector2.addOrReplaceChild("neck_muscular_arched_short_1_bottom_mane_connector2_individual", CubeListBuilder.create(), PartPose.offset(1.6453F, -0.0807F, -0.3996F));
+
+		PartDefinition cube_r9 = neck_muscular_arched_short_1_bottom_mane_connector2_individual.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(85, 12).addBox(-2.0F, -2.0F, -2.0F, 3.0F, 1.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5F, -0.2769F, -2.1032F, -0.9163F, 0.0F, 0.0F));
+
+		PartDefinition neck_muscular_arched_short_1_bottom_mane_flow = neck_muscular_arched_short_1_bottom_mane_connector2.addOrReplaceChild("neck_muscular_arched_short_1_bottom_mane_flow", CubeListBuilder.create(), PartPose.offset(2.4134F, -0.1788F, 0.0F));
+
+		PartDefinition cube_r10 = neck_muscular_arched_short_1_bottom_mane_flow.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(96, 114).addBox(-0.8139F, -0.0002F, -5.3921F, 1.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0726F, 1.4302F, 1.2514F, -0.8937F, -0.1201F, -0.1036F));
+
+		PartDefinition neck_lean_arched_short_1_bottom_mane_flow_lower = neck_muscular_arched_short_1_bottom_mane_flow.addOrReplaceChild("neck_lean_arched_short_1_bottom_mane_flow_lower", CubeListBuilder.create(), PartPose.offset(1.1243F, 4.2265F, -5.2591F));
+
+		PartDefinition cube_r11 = neck_lean_arched_short_1_bottom_mane_flow_lower.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(67, 114).addBox(-0.8139F, -0.0002F, -5.3921F, 1.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0726F, 1.4302F, 1.2514F, -0.8985F, 0.0505F, 0.0326F));
+
+		PartDefinition neck_muscular_arched_short_1_middle_individual = neck_muscular_arched_short_1_individual.addOrReplaceChild("neck_muscular_arched_short_1_middle_individual", CubeListBuilder.create(), PartPose.offset(-0.1467F, -3.9183F, -1.5772F));
+
+		PartDefinition cube_r12 = neck_muscular_arched_short_1_middle_individual.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(107, 43).addBox(-5.0784F, -8.0F, -0.9017F, 4.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.982F, 6.9822F, 0.7481F, 0.2618F, 0.0F, 0.0F));
+
+		PartDefinition cube_r13 = neck_muscular_arched_short_1_middle_individual.addOrReplaceChild("cube_r13", CubeListBuilder.create().texOffs(105, 21).addBox(-6.0F, -10.0F, -1.0F, 6.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.0964F, 4.401F, 3.6331F, 0.7854F, 0.0F, 0.0F));
+
+		PartDefinition neck_muscular_arched_short_1_lower_individual = neck_muscular_arched_short_1_individual.addOrReplaceChild("neck_muscular_arched_short_1_lower_individual", CubeListBuilder.create(), PartPose.offset(-0.0445F, -2.0903F, -1.5243F));
+
+		PartDefinition cube_r14 = neck_muscular_arched_short_1_lower_individual.addOrReplaceChild("cube_r14", CubeListBuilder.create().texOffs(105, 2).addBox(-6.08F, -11.0F, -0.92F, 6.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.08F, 8.0069F, 1.0273F, 0.2618F, 0.0F, 0.0F));
+
+		PartDefinition chestAnchor = neck_muscular_arched_short_1.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.1F, -1.0F, -1.75F));
+
+		return LayerDefinition.create(meshdefinition, 128, 160);
+	}
+
+	@Override
+	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
+		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+	}
+
+    @Override
+    public ModelPart root() {
+        return root;
+    }
+
+	@Override
+	public String animationRoot() {
+		return "neck_muscular_arched_short_1";
+	}
+
+	@Override
+	protected void defineAnchorPaths() {
+		ModelPart root = this.root();
+		ModelPart neck = this.neck_muscular_arched_short_1;
+		ModelPart individual = neck_muscular_arched_short_1_individual;
+		ModelPart crest = neck_muscular_arched_short_1_crest;
+		ModelPart crest_upper = neck_muscular_arched_short_1_crest_upper;
+		ModelPart crest_upper_individual = neck_muscular_arched_short_1_crest_upper_individual;
+		ModelPart crest_lower = neck_muscular_arched_short_1_crest_lower;
+
+
+		registerAnchorPath("headAnchor", root, neck, individual, crest, crest_upper, crest_upper_individual, this.headAnchor);
+		registerAnchorPath("chestAnchor", root, neck, this.chestAnchor);
+		registerAnchorPath("withersAnchor", root, neck, individual, crest, crest_lower, this.withersAnchor);
+	}
+	@Override
+	public Part getCubeDimensions() {
+		return new Part("neck_muscular_arched_short_1", new ArrayList<>(
+				Arrays.asList(
+						new Block(5, 4, 4),
+						new Block(5, 7, 2),
+						new Block(6, 7, 4),
+						new Block(6, 6, 4),
+						new Block(4, 4, 4))
+		));
+	}
+}

@@ -2,7 +2,7 @@ package net.buckleystudios.equigen.block.custom;
 
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.block.ModBlocks;
-import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
 import net.buckleystudios.equigen.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

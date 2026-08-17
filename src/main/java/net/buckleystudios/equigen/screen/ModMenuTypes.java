@@ -1,7 +1,7 @@
 package net.buckleystudios.equigen.screen;
 
 import net.buckleystudios.equigen.EquigenMod;
-import net.buckleystudios.equigen.screen.GeneticHorse.GeneticHorseEntityMenu;
+import net.buckleystudios.equigen.entity.genetic_horse.screen.GeneticHorseEntityMenu;
 import net.buckleystudios.equigen.screen.Infusion_Table.InfusionTableMenu;
 import net.buckleystudios.equigen.screen.Stall_Nameplate.StallNameplateMenu;
 import net.buckleystudios.equigen.screen.Test_Entity.TestEntityMenu;

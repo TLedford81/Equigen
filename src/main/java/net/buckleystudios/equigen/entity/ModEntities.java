@@ -2,6 +2,7 @@ package net.buckleystudios.equigen.entity;
 
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.custom.*;
+import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;

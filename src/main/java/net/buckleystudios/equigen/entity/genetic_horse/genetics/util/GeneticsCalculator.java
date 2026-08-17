@@ -1,0 +1,275 @@
+package net.buckleystudios.equigen.entity.genetic_horse.genetics.util;
+
+import net.buckleystudios.equigen.EquigenMod;
+import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.Genetics;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticsHandler;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+public class GeneticsCalculator {
+    public String reroll = "";
+
+    public GeneticsCalculator() {
+
+    }
+
+    public float standardInheritance(int percentileResult, List<Float> arrs) {
+        float geneticValue;
+        for (int i = 0 ; i < arrs.size(); i++) {
+            if (percentileResult == i) {
+                geneticValue = arrs.get(i);
+                EquigenMod.LOGGER.info("Percentile Result = " + percentileResult + ", setting genetic to " + geneticValue);
+                return geneticValue;
+            } else {
+                EquigenMod.LOGGER.info(percentileResult + " DOESNT EQUAL " + i + ", MOVING ON");
+            }
+
+        }
+        EquigenMod.LOGGER.info("Something went wrong");
+        return -1;
+    }
+    public float punnettInheritance(float gen1, float gen2) {
+        Random random = new Random();
+        List<Integer> mGenotypes = getAlleles(gen1);
+        List<Integer> dGenotypes = getAlleles(gen2);
+
+        EquigenMod.LOGGER.info("Mother's Genetic = " + gen1 + " Father's Genetic = " + gen2);
+
+        List<Integer> possibleChildren = new ArrayList<>();
+        int counter = 0;
+        for (int m1 : mGenotypes) {
+            for (int d1 : dGenotypes) {
+                possibleChildren.add(getGenotypeFromAlleles(m1, d1));
+                EquigenMod.LOGGER.info("Possible child added = " + possibleChildren.get(counter));
+                counter++;
+            }
+        }
+        int percentileResult = random.nextInt(0, 4);
+        EquigenMod.LOGGER.info("Punnet Square Percentile Result = " + percentileResult + ". Setting genetic to " + possibleChildren.get(percentileResult));
+        return (float) possibleChildren.get(percentileResult);
+    }
+
+    //Splits up the genetic code into Alleles
+    public List<Integer> getAlleles(float genetic) {
+        List<Integer> genotypes = new ArrayList<>();
+        switch ((int) genetic) {
+            case 1:
+                genotypes.add(0);
+                genotypes.add(0);
+                break;
+            case 2:
+                genotypes.add(0);
+                genotypes.add(1);
+                break;
+            case 3:
+                genotypes.add(1);
+                genotypes.add(1);
+                break;
+            default:
+                EquigenMod.LOGGER.error("Invalid genotype " + genetic);
+        }
+        return genotypes;
+    }
+
+    //Gets the genetic code from alleles. Ex: aa = 0, aA = 1, and AA = 2
+    private int getGenotypeFromAlleles(int a1, int a2) {
+        int sum = a1 + a2;
+        if (sum == 0) {
+            return 1;
+        } else if (sum == 1) {
+            return 2;
+        } else {
+            return 3;
+        }
+    }
+
+
+    int rolls = 0;
+
+    public float ladderInheritance(GeneticHorseEntity entity, String geneticType, Genetics value, int percentileResult, List<Float> arrs) {
+        //This is an inheritance method where the genetic cannot be repeated, and will therefore be rerolled if it matches other genetics.
+        //In coding 1 = genetic not present. 0 = genetic not implemented.
+        char variation = 0;
+        int variationNum = -1;
+        String type = "";
+        EquigenMod.LOGGER.info("Percentile Result (Ladder) = " + percentileResult);
+        if (geneticType.equals("PATTERN")) {
+            variation = value.name().charAt(value.name().length() - 1);
+            variationNum = Character.getNumericValue(variation);
+            type = value.name().replace(variation, ' ');
+        } else if (geneticType.equals("PERSONALITY") || geneticType.equals("TRAIT")) {
+            variation = value.name().charAt(0);
+            switch (variation) {
+                case 'M' -> {
+                    variationNum = 0;
+                    type = value.name().replace("MAIN", " ");
+                }
+                case 'F' -> {
+                    variationNum = 1;
+                    type = value.name().replace("FIRST", " ");
+                }
+                case 'S' -> {
+                    variationNum = 2;
+                    type = value.name().replace("SECOND", " ");
+                }
+                case 'T' -> {
+                    variationNum = 3;
+                    type = value.name().replace("THIRD", " ");
+                }
+            }
+
+        }
+        float genetic;
+
+        if (rolls == 2) {
+            genetic = 1.0f;
+            EquigenMod.LOGGER.info("ROLLS = 2. Times up..... genetic = " + genetic);
+            rolls = 0;
+            return genetic;
+        } else {
+            genetic = standardInheritance(percentileResult, arrs);
+            // genetic = entity.getGenetic(type.replace(' ', '1'));
+            EquigenMod.LOGGER.info("Genetic = " + genetic);
+        }
+        // Set it so that after a certain number of rolls it sets the genetic to 1, except for in the case of Variation 3, so that people cant get horses with the same pattern variations and breed them to get better chance of randoms.
+
+        EquigenMod.LOGGER.info("Genetic (ladder) = " + genetic);
+        if (variationNum >= 2) {
+            EquigenMod.LOGGER.info("Variation = " + variation + ". Variation Num = " + variationNum);
+            float var1 = 0.0F;
+            if (geneticType.equals("PATTERN")) {
+                var1 = GeneticsHandler.getGeneticFloat(entity, type.replace(' ', '1'));
+            } else {
+                var1 = GeneticsHandler.getGeneticFloat(entity, type.replace(" ", "FIRST"));
+            }
+            float var2 = genetic;
+
+            if (var1 == var2) {
+                if (genetic == 1.0F) {
+                    rolls++;
+                } // Makes it so that if the variation isn't present they only get 1 reroll, instead of 2.
+                reroll = value.name();
+                rolls++;
+                EquigenMod.LOGGER.info(value.name() + " is equal to variation 1, rerolling.");
+            }
+            if (variationNum == 3) {
+                if (geneticType.equals("PATTERN")) {
+                    var2 = GeneticsHandler.getGeneticFloat(entity, type.replace(' ', '2'));
+                } else {
+                    var2 = GeneticsHandler.getGeneticFloat(entity, type.replace(" ", "SECOND"));
+                }
+
+                if (var1 == genetic || var2 == genetic) {
+                    if (genetic == 1.0F) {
+                        rolls++;
+                    } // Makes it so that if the variation isn't present they only get 1 reroll, instead of 2.
+                    reroll = value.name();
+                    rolls++;
+                    EquigenMod.LOGGER.info(value.name() + " is equal to the other variations, rerolling.");
+                }
+            }
+        }
+        return genetic;
+    }
+    Random RNG = new Random();
+    public int percentileGenerator(List<Float> arrs) {
+        List<Float> maxArrs = new ArrayList<>();
+        float cumulativeArrs = 0;
+
+        for (Float r : arrs) {
+            cumulativeArrs += r;
+            maxArrs.add(cumulativeArrs);
+        }
+        if (cumulativeArrs != 100.0F) {
+            EquigenMod.LOGGER.error("Percentile Generator: The percentage chances of the selected genetics don't add up to 100");
+        }
+        int GeneratedNumber = RNG.nextInt(100) + 1;
+        EquigenMod.LOGGER.info("Random Generated Number = " + GeneratedNumber);
+        for (int i = 0; i < maxArrs.size(); i++) {
+            EquigenMod.LOGGER.info("i = " + i);
+            if (GeneratedNumber <= maxArrs.get(i)) {
+                EquigenMod.LOGGER.info("Percentile Result " + i + " Selected!");
+                return i;
+            }
+        }
+        EquigenMod.LOGGER.error("Percentile Generator: Somehow, The Random number between 1-100 isn't actually between 1-100");
+        return 0;
+
+    }
+
+
+    public float random(float minValue, float maxValue, float valueMin, float valueCap, float variation, int roundTo) {
+        //Variation = percentage variation (in form of decimal) above and below the minValue and maxValue that the number can be. For example,
+        //if maxValue is 0.5 and variation is 0.10, then the actual max is 0.55.
+
+        //roundTo is the amount of decimal places that you want it to be rounded to. If you want it to be 2 decimal places you would put 100.
+//        if (variation > 1.0f) {
+//            EquigenMod.LOGGER.error("ERROR! Random number varation is greater than 1.0 Variation is " + variation);
+//            return -1;
+//        }
+        if (minValue < valueMin) {
+            minValue = valueMin;
+            EquigenMod.LOGGER.info("MIN VALUE LOWER THAN VALUE MIN");
+        }
+        if (maxValue > valueCap) {
+            maxValue = valueCap;
+            EquigenMod.LOGGER.info("MAX VALUE LARGER THAN VALUE CAP");
+        }
+//        float newMin = findMin(minValue, maxValue, valueMin, variation);
+//        float newMax = findMax(minValue, maxValue, valueCap, variation);
+//        maxValue = maxValue + 0.01f;
+//
+//        if (newMin == newMax) {
+//            EquigenMod.LOGGER.info("MINVALUE = MAXVALUE");
+//            return newMin;
+//        }
+//      I have literally no idea why I did this. Looking at my genetics code I haven't used the variation thing once. I just handle that per genetic.
+        // This thing was just causing bugs so disabling for now. Probably will remove in the future.
+//        EquigenMod.LOGGER.info("New Min = " + newMin + ". New Max = " + newMax);
+
+        if (minValue > maxValue) {
+            EquigenMod.LOGGER.error("ERROR! Min (" + minValue + ") is larger than  (" + maxValue + ")");
+            return maxValue;
+        }
+        int rounded = (int)((RNG.nextFloat((maxValue - minValue) + 0.01F) + minValue) * roundTo);
+        EquigenMod.LOGGER.info("ROUNDED RANDOM = {}, MAX VALUE = {}, MIN VALUE = {}", rounded/roundTo, maxValue, minValue);
+
+        return ((float) rounded / roundTo);
+    }
+
+    public float random (float minValue, float maxValue, float valueMin, float valueCap, float variation) {
+        return random(minValue, maxValue, valueMin, valueCap, variation, 100);
+    }
+    public float random (float minValue, float maxValue, float valueMin, float valueCap, int roundTo) {
+        return random(minValue, maxValue, valueMin, valueCap, 0.00f, roundTo);
+    }
+    public float random (float minValue, float maxValue, float valueMin, float valueCap) {
+        return random(minValue, maxValue, valueMin, valueCap, 0.00f, 100);
+    }
+
+    public float findMin (float minValue, float maxValue, float valueMin, float variation) {
+        float averagedNum = (minValue + maxValue) / 2.0f;
+        float difference = ((averagedNum * (1 + variation)) - (averagedNum));
+        float newMin = (minValue - difference);
+        if (newMin < valueMin) {
+            EquigenMod.LOGGER.info("NEWMIN (" + newMin + ") WAS LESS THAN " + valueMin);
+            newMin = valueMin;
+        }
+        return newMin;
+    }
+    public float findMax (float minValue, float maxValue, float valueCap, float variation) {
+        float averagedNum = (minValue + maxValue) / 2.0f;
+        float difference = ((averagedNum * (1 + variation)) - (averagedNum));
+        float newMax = (maxValue + difference);
+        if (newMax > valueCap) {
+            newMax = valueCap;
+            EquigenMod.LOGGER.info("NEWMAX WAS GREATER THAN " + valueCap);
+
+        }
+        return newMax;
+    }
+
+}

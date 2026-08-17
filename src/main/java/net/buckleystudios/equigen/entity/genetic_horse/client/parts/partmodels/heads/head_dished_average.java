@@ -1,0 +1,131 @@
+package net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.heads;// Made with Blockbench 4.12.1
+// Exported for Minecraft version 1.17 or later with Mojang mappings
+// Paste this class into your mod and generate all required imports
+
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.buckleystudios.equigen.entity.genetic_horse.client.parts.PartTransform;
+import net.buckleystudios.equigen.entity.genetic_horse.client.parts.multipart.MultipartHeadModel;
+import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Block;
+import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Part;
+import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class head_dished_average extends MultipartHeadModel<GeneticHorseEntity> {
+	private final ModelPart root;
+	private final ModelPart head_dished_average;
+	private final ModelPart neckAnchor;
+	private final ModelPart leftEarAnchor;
+	private final ModelPart rightEarAnchor;
+
+	public head_dished_average(ModelPart root) {
+		this.root = root;
+		this.head_dished_average = root.getChild("head_dished_average");
+		this.neckAnchor = this.head_dished_average.getChild("neckAnchor");
+		this.leftEarAnchor = this.head_dished_average.getChild("leftEarAnchor");
+		this.rightEarAnchor = this.head_dished_average.getChild("rightEarAnchor");
+	}
+
+	public static LayerDefinition createBodyLayer() {
+		MeshDefinition meshdefinition = new MeshDefinition();
+		PartDefinition partdefinition = meshdefinition.getRoot();
+
+		PartDefinition head_dished_average = partdefinition.addOrReplaceChild("head_dished_average", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
+
+		PartDefinition head_dished_average_jaw = head_dished_average.addOrReplaceChild("head_dished_average_jaw", CubeListBuilder.create(), PartPose.offset(0.0F, 1.8771F, 0.0F));
+
+		PartDefinition head_dished_average_jaw_individual = head_dished_average_jaw.addOrReplaceChild("head_dished_average_jaw_individual", CubeListBuilder.create(), PartPose.offset(0.0262F, -0.0488F, -0.4117F));
+
+		PartDefinition cube_r1 = head_dished_average_jaw_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(105, 91).addBox(-3.9554F, -0.7109F, -1.1891F, 5.0F, 3.0F, 5.0F, new CubeDeformation(0.07F)), PartPose.offsetAndRotation(1.4304F, 0.0154F, -1.1314F, 0.7854F, 0.0F, 0.0F));
+
+		PartDefinition head_dished_average_jaw_branch = head_dished_average_jaw.addOrReplaceChild("head_dished_average_jaw_branch", CubeListBuilder.create(), PartPose.offset(-0.0754F, 1.6533F, -1.6106F));
+
+		PartDefinition cube_r2 = head_dished_average_jaw_branch.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(91, 102).addBox(-3.0799F, -3.2418F, -1.8382F, 3.0F, 5.0F, 2.0F, new CubeDeformation(-0.01F)), PartPose.offsetAndRotation(1.6299F, -1.1189F, 0.0295F, 2.2689F, 0.0F, 0.0F));
+
+		PartDefinition head_dished_average_nose_bridge = head_dished_average.addOrReplaceChild("head_dished_average_nose_bridge", CubeListBuilder.create(), PartPose.offset(-0.0738F, 1.8254F, -2.0903F));
+
+		PartDefinition cube_r3 = head_dished_average_nose_bridge.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(62, 101).addBox(-2.08F, -3.24F, -1.84F, 3.0F, 5.0F, 3.0F, new CubeDeformation(0.02F)), PartPose.offsetAndRotation(0.63F, -0.6528F, -0.4619F, 2.8798F, 0.0F, 0.0F));
+
+		PartDefinition head_dished_average_forehead = head_dished_average.addOrReplaceChild("head_dished_average_forehead", CubeListBuilder.create(), PartPose.offset(-0.0207F, -0.4084F, -1.4273F));
+
+		PartDefinition cube_r4 = head_dished_average_forehead.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(73, 97).addBox(-3.08F, -4.0F, -1.92F, 5.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.58F, -1.8583F, 0.9915F, 2.3998F, 0.0F, 0.0F));
+
+		PartDefinition head_dished_average_muzzle = head_dished_average.addOrReplaceChild("head_dished_average_muzzle", CubeListBuilder.create(), PartPose.offset(0.0F, 4.5229F, -3.1285F));
+
+		PartDefinition head_dished_average_muzzle_individual = head_dished_average_muzzle.addOrReplaceChild("head_dished_average_muzzle_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+
+		PartDefinition cube_r5 = head_dished_average_muzzle_individual.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(110, 101).addBox(-1.4469F, -0.7862F, -2.7184F, 3.0F, 2.0F, 2.0F, new CubeDeformation(0.06F)), PartPose.offsetAndRotation(-0.0629F, -0.7151F, 0.104F, 0.7418F, 0.0F, 0.0F));
+
+		PartDefinition head_dished_average_mouth = head_dished_average_muzzle.addOrReplaceChild("head_dished_average_mouth", CubeListBuilder.create(), PartPose.offset(0.0F, 0.7151F, 0.4469F));
+
+		PartDefinition cube_r6 = head_dished_average_mouth.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(93, 98).addBox(-1.9934F, -0.6134F, -2.1275F, 3.0F, 1.0F, 2.0F, new CubeDeformation(0.04F)), PartPose.offsetAndRotation(0.4696F, -0.1385F, 0.0665F, 0.7418F, 0.0F, 0.0F));
+
+		PartDefinition head_dished_average_fringe = head_dished_average.addOrReplaceChild("head_dished_average_fringe", CubeListBuilder.create(), PartPose.offset(0.0F, -2.6816F, -1.5195F));
+
+		PartDefinition cube_r7 = head_dished_average_fringe.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(86, 131).addBox(-3.08F, -3.0F, 0.08F, 3.0F, 3.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.5425F, -0.0215F, 0.4187F, 2.3998F, 0.0F, 0.0F));
+
+		PartDefinition neckAnchor = head_dished_average.addOrReplaceChild("neckAnchor", CubeListBuilder.create(), PartPose.offset(0.0F, -2.1756F, -0.4873F));
+
+		PartDefinition cube_r8 = neckAnchor.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.1F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.25F, 1.1756F, 0.9873F, 1.6581F, 0.0F, 0.0F));
+
+		PartDefinition leftEarAnchor = head_dished_average.addOrReplaceChild("leftEarAnchor", CubeListBuilder.create(), PartPose.offset(-1.5F, -2.5442F, -1.3995F));
+
+		PartDefinition cube_r9 = leftEarAnchor.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0442F, 0.3995F, 0.829F, 0.0F, 0.0F));
+
+		PartDefinition rightEarAnchor = head_dished_average.addOrReplaceChild("rightEarAnchor", CubeListBuilder.create(), PartPose.offset(1.5F, -2.5442F, -1.3995F));
+
+		PartDefinition cube_r10 = rightEarAnchor.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0442F, 0.3995F, 0.829F, 0.0F, 0.0F));
+
+		return LayerDefinition.create(meshdefinition, 128, 160);
+	}
+
+	@Override
+	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
+		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+	}
+
+    @Override
+    public ModelPart root() {
+        return root;
+    }
+
+	@Override
+	public String animationRoot() {
+		return "head_dished_average";
+	}
+
+	@Override
+	protected void defineAnchorPaths() {
+		ModelPart root = this.root();
+		ModelPart head = this.head_dished_average;
+
+		registerAnchorPath("neckAnchor", root, head, this.neckAnchor);
+		registerAnchorPath("leftEarAnchor", root, head, this.leftEarAnchor);
+		registerAnchorPath("rightEarAnchor", root, head, this.rightEarAnchor);
+	}
+
+	@Override
+	public PartTransform getAnchorForParent() {
+		return asTransform(neckAnchor);
+	}
+
+	@Override
+	public Part getCubeDimensions() {
+		return new Part("head_dished_average", new ArrayList<>(
+				Arrays.asList(
+						new Block(5, 3, 5),
+						new Block(3, 5, 2),
+						new Block(3, 5, 3),
+						new Block(5, 4, 3),
+						new Block(3, 2, 2),
+						new Block(3, 1, 2),
+						new Block(3, 3, 1))
+		));
+	}
+}

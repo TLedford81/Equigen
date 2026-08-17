@@ -1,8 +1,8 @@
 package net.buckleystudios.equigen.network;
 
 import net.buckleystudios.equigen.EquigenMod;
-import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
-import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.Genetics;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticsHandler;
 import net.buckleystudios.equigen.network.packets.GeneticData;
 import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
