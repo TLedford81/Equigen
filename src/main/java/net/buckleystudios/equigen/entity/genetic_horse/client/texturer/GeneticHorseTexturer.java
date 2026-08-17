@@ -1,14 +1,18 @@
 package net.buckleystudios.equigen.entity.genetic_horse.client.texturer;
 
+
 import net.buckleystudios.equigen.EquigenMod;
-import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Canvas;
-import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Part;
-import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.PartList;
-import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
-import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
-import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
-import net.buckleystudios.equigen.entity.custom.genetics.util.GeneticCategories;
-import net.buckleystudios.equigen.entity.custom.genetics.util.GeneticPartNameBuilder;
+import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.genetic_horse.client.parts.registry.ModelPartRegistries.ModelPartRegistry;
+import net.buckleystudios.equigen.entity.genetic_horse.client.parts.registry.RegistryKeyFactory;
+import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Canvas;
+import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Part;
+import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.PartList;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.Genetics;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticsHandler;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.util.GeneticCategories;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.util.GeneticPartNameBuilder;
+import net.minecraft.client.model.geom.EntityModelSet;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

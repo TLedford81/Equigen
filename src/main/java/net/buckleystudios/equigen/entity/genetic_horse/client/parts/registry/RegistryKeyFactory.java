@@ -1,7 +1,9 @@
 package net.buckleystudios.equigen.entity.genetic_horse.client.parts.registry;
 
-import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
-import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
+
+import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticValues;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticsHandler;
 
 public class RegistryKeyFactory
 {

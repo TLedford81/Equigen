@@ -1,17 +1,20 @@
 package net.buckleystudios.equigen.entity.genetic_horse;
 
+
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.effect.ModEffects;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.ModEntityAttributes;
-import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.GeneticHorseTexturer;
-import net.buckleystudios.equigen.entity.custom.genetics.GeneticBreeds;
-import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
-import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
-import net.buckleystudios.equigen.entity.custom.genetics.util.*;
-import net.buckleystudios.equigen.entity.custom.genetics.util.Registry.RegistrySavedData;
-import net.buckleystudios.equigen.entity.custom.goals.EatGoal;
-import net.buckleystudios.equigen.item.HorseConsumables;
+import net.buckleystudios.equigen.entity.custom.HorseTraderEntity;
+import net.buckleystudios.equigen.entity.genetic_horse.client.GeneticHorseRenderer;
+import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.GeneticHorseTexturer;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticBreeds;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.Genetics;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticsHandler;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.util.*;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.util.Registry.RegistrySavedData;
+import net.buckleystudios.equigen.entity.genetic_horse.goals.EatGoal;
+import net.buckleystudios.equigen.entity.genetic_horse.screen.GeneticHorseEntityMenu;
 import net.buckleystudios.equigen.item.ModItems;
 import net.buckleystudios.equigen.item.util.HorseConsumables;
 import net.buckleystudios.equigen.item.util.HorseConsumablesData;
@@ -52,8 +55,8 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.entity.living.BabyEntitySpawnEvent;
-import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
