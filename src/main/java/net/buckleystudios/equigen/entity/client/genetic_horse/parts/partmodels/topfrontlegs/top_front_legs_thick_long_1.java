@@ -81,7 +81,8 @@ public class top_front_legs_thick_long_1 extends MultipartFrontTopLegModel<Genet
 		return new Part("top_front_legs_average_long_1", new ArrayList<>(
 				Arrays.asList(
 						new Block(2, 3, 9),
-						new Block(2, 3, 8))
+						new Block(2, 3, 8),
+						new Block(0, 0, 0))
 		));
 	}
 }

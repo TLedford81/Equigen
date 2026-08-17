@@ -171,4 +171,7 @@ public class neck_muscular_straight_long_2 extends MultipartNeckModel<GeneticHor
 						new Block(4, 7, 4))
 		));
 	}
+	public Part returnManeCubeDimensions() {
+		return returnManeCubeDimensions("mane_straight_long_2");
+	}
 }

@@ -169,4 +169,7 @@ public class neck_muscular_straight_short_2 extends MultipartNeckModel<GeneticHo
 						new Block(4, 5, 4))
 		));
 	}
+	public Part returnManeCubeDimensions() {
+		return returnManeCubeDimensions("mane_straight_short_2");
+	}
 }

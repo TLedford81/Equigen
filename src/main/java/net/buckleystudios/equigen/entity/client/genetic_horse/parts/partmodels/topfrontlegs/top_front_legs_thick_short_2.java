@@ -81,7 +81,8 @@ public class top_front_legs_thick_short_2 extends MultipartFrontTopLegModel<Gene
 		return new Part("top_front_legs_thick_short_2", new ArrayList<>(
 				Arrays.asList(
 						new Block(2, 2, 6),
-						new Block(2, 3, 6))
+						new Block(2, 3, 6),
+						new Block(0, 0, 0))
 		));
 	}
 }

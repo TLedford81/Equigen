@@ -81,7 +81,8 @@ public class top_front_legs_average_short_3 extends MultipartFrontTopLegModel<Ge
 		return new Part("top_front_legs_average_short_3", new ArrayList<>(
 				Arrays.asList(
 						new Block(2, 2, 7),
-						new Block(2, 2, 6))
+						new Block(2, 2, 6),
+						new Block(0, 0, 0))
 		));
 	}
 }

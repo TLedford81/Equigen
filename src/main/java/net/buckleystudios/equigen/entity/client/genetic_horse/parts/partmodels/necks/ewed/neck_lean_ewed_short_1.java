@@ -166,4 +166,7 @@ public class neck_lean_ewed_short_1 extends MultipartNeckModel<GeneticHorseEntit
 						new Block(3, 7, 4))
 		));
 	}
+	public Part returnManeCubeDimensions() {
+		return returnManeCubeDimensions("mane_ewed_short_1");
+	}
 }

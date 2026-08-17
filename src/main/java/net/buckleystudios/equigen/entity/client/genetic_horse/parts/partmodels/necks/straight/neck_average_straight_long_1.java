@@ -170,4 +170,7 @@ public class neck_average_straight_long_1 extends MultipartNeckModel<GeneticHors
 						new Block(4, 7, 4))
 		));
 	}
+	public Part returnManeCubeDimensions() {
+		return returnManeCubeDimensions("mane_straight_long_1");
+	}
 }

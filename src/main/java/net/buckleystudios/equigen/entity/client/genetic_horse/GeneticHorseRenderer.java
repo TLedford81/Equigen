@@ -79,6 +79,10 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
         this.modelSet = context.getModelSet();
     }
 
+    public EntityModelSet getModelSet() {
+        return modelSet;
+    }
+
     @Override
     public ResourceLocation getTextureLocation(GeneticHorseEntity entity) {
         try {
@@ -303,10 +307,10 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
             return;
         }
 
-        EquigenMod.LOGGER.info(
-                "FOUND BACK MODEL: {}",
-                back.getClass().getSimpleName()
-        );
+//        EquigenMod.LOGGER.info(
+//                "FOUND BACK MODEL: {}",
+//                back.getClass().getSimpleName()
+//        );
 
         // Root
         renderRootPart(poseStack, modelBuffer, packedLight, partialTicks, entity, back);

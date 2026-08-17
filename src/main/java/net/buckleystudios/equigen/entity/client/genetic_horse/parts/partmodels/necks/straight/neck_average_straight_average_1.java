@@ -169,4 +169,7 @@ public class neck_average_straight_average_1 extends MultipartNeckModel<GeneticH
 						new Block(3, 6, 4))
 		));
 	}
+	public Part returnManeCubeDimensions() {
+		return returnManeCubeDimensions("mane_straight_average_1");
+	}
 }

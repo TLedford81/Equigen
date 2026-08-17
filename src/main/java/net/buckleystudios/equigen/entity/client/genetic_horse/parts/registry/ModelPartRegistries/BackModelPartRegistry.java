@@ -179,7 +179,7 @@ public final class BackModelPartRegistry {
                         GeneticValues.BACK_GIRTH.THICK
                 ),
                 ModModelLayers.BACK_MUSCULAR_AVERAGE_THICK,
-                back_muscular_average_average::new);
+                back_muscular_average_thick::new);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.BACK_LENGTH.LONG,

@@ -1,6 +1,8 @@
 package net.buckleystudios.equigen.entity.client.genetic_horse.texturer;
 
 import net.buckleystudios.equigen.EquigenMod;
+import net.buckleystudios.equigen.entity.client.genetic_horse.parts.registry.ModelPartRegistries.ModelPartRegistry;
+import net.buckleystudios.equigen.entity.client.genetic_horse.parts.registry.RegistryKeyFactory;
 import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Canvas;
 import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.Part;
 import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.base.PartList;
@@ -9,6 +11,7 @@ import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
 import net.buckleystudios.equigen.entity.custom.genetics.util.GeneticCategories;
 import net.buckleystudios.equigen.entity.custom.genetics.util.GeneticPartNameBuilder;
+import net.minecraft.client.model.geom.EntityModelSet;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -22,9 +25,11 @@ import java.util.Objects;
 
 public class GeneticHorseTexturer {
     GeneticHorseEntity entity;
+    private final EntityModelSet modelSet;
 
-    public GeneticHorseTexturer(GeneticHorseEntity entity) {
+    public GeneticHorseTexturer(GeneticHorseEntity entity, EntityModelSet modelSet) {
         this.entity = entity;
+        this.modelSet = modelSet;
     }
 
     public ArrayList<BufferedImage> getLayerList(GeneticHorseEntity entity) throws IOException {
@@ -75,10 +80,12 @@ public class GeneticHorseTexturer {
         GeneticPartNameBuilder builder = new GeneticPartNameBuilder(entity);
         canvas.initializeCanvas();
         List<String> partsList = entity.getPartsToRender();
+        List<Part> partsList2 = getRenderedParts(entity);
         PartList Parts = new PartList();
 
         // Draw Base Color
-        canvas.drawColor((ArrayList<String>) partsList, getBaseColor(entity));
+        EquigenMod.LOGGER.info("DRAWING BASE COLOR");
+        canvas.drawColor((ArrayList<Part>) partsList2, getBaseColor(entity));
 
         // For Loop Draw Layers
         int i = 0;
@@ -500,34 +507,71 @@ public class GeneticHorseTexturer {
             }
             return finalPartList;
     }
+    public List<Part> getRenderedParts(GeneticHorseEntity entity) {
+        List<Part> partList = new ArrayList<>(List.of());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet)).getCubeDimensions());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getTopBackLegKey(entity), modelSet)).getCubeDimensions());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getBottomLegKey(entity), modelSet)).getCubeDimensions());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getChestKey(entity), modelSet)).getCubeDimensions());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getLeftEarKey(entity), modelSet)).getCubeDimensions());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getRightEarKey(entity), modelSet)).getCubeDimensions());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getTopFrontLegKey(entity), modelSet)).getCubeDimensions());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getHeadKey(entity), modelSet)).getCubeDimensions());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getHipKey(entity), modelSet)).getCubeDimensions());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getHoofKey(entity), modelSet)).getCubeDimensions());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getKneeKey(entity), modelSet)).getCubeDimensions());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getNeckKey(entity), modelSet)).getCubeDimensions());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getNeckKey(entity), modelSet)).returnManeCubeDimensions());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getStomachKey(entity), modelSet)).getCubeDimensions());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getTailKey(entity), modelSet)).getCubeDimensions());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getWitherKey(entity), modelSet)).getCubeDimensions());
+        return partList;
+    }
     private void updatePartList(List<Part> partList, String modelName, int x, int y, int muscleMass, int type, int lengthOrSize, int blockNum) {
         EquigenMod.LOGGER.info("X = {} Y = {}", x, y);
-        GeneticPartNameBuilder builder = new GeneticPartNameBuilder(entity);
-        String part = builder.PartStringGenerator(modelName, List.of(muscleMass, type, lengthOrSize));
-        PartList pList = new PartList(); //TODO Change this to a hash map so it doesn't look through every part.
-        Part p = null;
+        EquigenMod.LOGGER.info("PART!, MODELNAME = {}, MUSCLEMASS = {}, TYPE = {}, LENGTHORSIZE = {}, BLOCKNUM = {}", modelName, muscleMass, type, lengthOrSize, blockNum);
+        Part part = null;
+        switch (modelName) {
+            case "back" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(muscleMass, type, lengthOrSize), modelSet)).getCubeDimensions();
+            case "top_back_legs" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getTopBackLegKey(type, lengthOrSize), modelSet)).getCubeDimensions();
+            case "bottom_legs" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getBottomLegKey(type, lengthOrSize), modelSet)).getCubeDimensions();
+            case "chest" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getChestKey(muscleMass, lengthOrSize), modelSet)).getCubeDimensions();
+            case "left_ear" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getLeftEarKey(entity), modelSet)).getCubeDimensions();
+            case "right_ear" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getRightEarKey(entity), modelSet)).getCubeDimensions();
+            case "top_front_legs" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getTopFrontLegKey(type, lengthOrSize), modelSet)).getCubeDimensions();
+            case "head" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getHeadKey(type, muscleMass), modelSet)).getCubeDimensions();
+            case "hips" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getHipKey(muscleMass, lengthOrSize), modelSet)).getCubeDimensions();
+            case "hoof" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getHoofKey(lengthOrSize), modelSet)).getCubeDimensions();
+            case "knees" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getKneeKey(entity), modelSet)).getCubeDimensions();
+            case "neck" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getNeckKey(muscleMass, type, lengthOrSize), modelSet)).getCubeDimensions();
+            case "mane" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getNeckKey(muscleMass, type, lengthOrSize), modelSet)).returnManeCubeDimensions();
+            case "stomach" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getStomachKey(muscleMass, type, lengthOrSize), modelSet)).getCubeDimensions();
+            case "tail" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getTailKey(type, lengthOrSize), modelSet)).getCubeDimensions();
+            case "withers" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getWitherKey(muscleMass), modelSet)).getCubeDimensions();
+            default -> EquigenMod.LOGGER.info("NULL PART");
+        }
+        boolean alreadyInList = false;
+
         for (Part existing : partList) {
-            if (existing.modelName.equals(part)) {
-                p = existing;
+            assert part != null;
+            if (existing.modelName.equals(part.modelName)) {
+                alreadyInList = true;
                 break;
             }
         }
 
-        if (p == null) {
-            p = pList.returnPart(part);
-
-            if (p.modelName.equals("NULL")) {
-                EquigenMod.LOGGER.warn("Couldn't find part {}", part);
-                return;
-            }
-
-            partList.add(p);
+        if (!alreadyInList) {
+            partList.add(part);
             EquigenMod.LOGGER.info("NOT ALREADY IN LIST");
         }
+        if (part != null) {
+            EquigenMod.LOGGER.info(part.modelName);
+            part.updateBlocks(blockNum - 1, x + 1, y + 1, true);
+            EquigenMod.LOGGER.info("EDITED");
+        } else {
+            EquigenMod.LOGGER.info("NULL PART!, MODELNAME = {}, MUSCLEMASS = {}, TYPE = {}, LENGTHORSIZE = {}, BLOCKNUM = {}", modelName, muscleMass, type, lengthOrSize, blockNum);
+        }
 
-        EquigenMod.LOGGER.info(part);
-        p.updateBlocks(blockNum - 1, x + 1, y + 1, true);
-        EquigenMod.LOGGER.info("EDITED");
     }
 
     private int decodeMuscleMass(int pixel) {

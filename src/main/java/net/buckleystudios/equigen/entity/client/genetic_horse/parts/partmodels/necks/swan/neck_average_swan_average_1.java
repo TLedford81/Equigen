@@ -169,4 +169,7 @@ public class neck_average_swan_average_1 extends MultipartNeckModel<GeneticHorse
 						new Block(3, 9, 4))
 		));
 	}
+	public Part returnManeCubeDimensions() {
+		return returnManeCubeDimensions("mane_swan_average_1");
+	}
 }

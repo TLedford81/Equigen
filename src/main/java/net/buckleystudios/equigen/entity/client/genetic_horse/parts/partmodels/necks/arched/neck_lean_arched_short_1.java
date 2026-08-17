@@ -167,4 +167,7 @@ public class neck_lean_arched_short_1 extends MultipartNeckModel<GeneticHorseEnt
 						new Block(4, 4, 4))
 		));
 	}
+	public Part returnManeCubeDimensions() {
+		return returnManeCubeDimensions("mane_arched_short_1");
+	}
 }

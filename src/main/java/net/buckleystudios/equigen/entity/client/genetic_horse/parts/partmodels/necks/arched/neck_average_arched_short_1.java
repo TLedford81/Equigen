@@ -168,4 +168,8 @@ public class neck_average_arched_short_1 extends MultipartNeckModel<GeneticHorse
 		));
 	}
 
+	public Part returnManeCubeDimensions() {
+		return returnManeCubeDimensions("mane_arched_short_1");
+	}
+
 }

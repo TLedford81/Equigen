@@ -101,15 +101,15 @@ public class Canvas {
         }
     }
 
-    public void drawColor (ArrayList<String> pList, int hexCode) {
+    public void drawColor (ArrayList<Part> pList, int hexCode) {
+
         Color color = new Color(hexCode);
         PartList Parts = new PartList();
 
 
-        for (String s : pList) {
-            Part p = Parts.returnPart(s);
+        for (Part p : pList) {
             GeneticPartNameBuilder builder = new GeneticPartNameBuilder();
-            String partType = builder.returnPartType(s);
+            String partType = builder.returnPartType(p.modelName);
             p.applyBaseUVCoords(partType);
             if (p.modelName.equals("NULL") || p.blocks == null) {
                 EquigenMod.LOGGER.info("NULL PART WHEN DRAWING COLOR! MOVING ON: {}" ,p.modelName);

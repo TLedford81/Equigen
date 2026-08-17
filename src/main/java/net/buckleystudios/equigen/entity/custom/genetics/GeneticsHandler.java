@@ -160,68 +160,121 @@ public class GeneticsHandler {
     public static GeneticValues.MUSCLE_MASS getMuscleMassValue(GeneticHorseEntity entity) {
         return getGeneticValue(entity, Genetics.MUSCLE_MASS, GeneticValues.MUSCLE_MASS.class);
     }
+    public static GeneticValues.MUSCLE_MASS getMuscleMassValue(float value) {
+        return getGeneticValue((int) value, GeneticValues.MUSCLE_MASS.class);
+    }
 
     public static GeneticValues.BACK_LENGTH getBackLengthValue(GeneticHorseEntity entity) {
         return getGeneticValue(entity, Genetics.BACK_LENGTH, GeneticValues.BACK_LENGTH.class);
+    }
+    public static GeneticValues.BACK_LENGTH getBackLengthValue(float value) {
+        return getGeneticValue((int) value, GeneticValues.BACK_LENGTH.class);
     }
 
     public static GeneticValues.BACK_GIRTH getBackGirthValue(GeneticHorseEntity entity) {
         return getGeneticValue(entity, Genetics.BACK_GIRTH, GeneticValues.BACK_GIRTH.class);
     }
+    public static GeneticValues.BACK_GIRTH getBackGirthValue(float value) {
+        return getGeneticValue((int) value, GeneticValues.BACK_GIRTH.class);
+    }
 
     public static GeneticValues.CHEST_SIZE getChestSizeValue(GeneticHorseEntity entity) {
         return getGeneticValue(entity, Genetics.CHEST_SIZE, GeneticValues.CHEST_SIZE.class);
+    }
+    public static GeneticValues.CHEST_SIZE getChestSizeValue(float value) {
+        return getGeneticValue((int) value, GeneticValues.CHEST_SIZE.class);
     }
 
     public static GeneticValues.NECK_CURVE getNeckCurveValue(GeneticHorseEntity entity) {
         return getGeneticValue(entity, Genetics.NECK_CURVE, GeneticValues.NECK_CURVE.class);
     }
+    public static GeneticValues.NECK_CURVE getNeckCurveValue(float value) {
+        return getGeneticValue((int) value, GeneticValues.NECK_CURVE.class);
+    }
 
     public static GeneticValues.NECK_LENGTH getNeckLengthValue(GeneticHorseEntity entity) {
         return getGeneticValue(entity, Genetics.NECK_LENGTH, GeneticValues.NECK_LENGTH.class);
+    }
+    public static GeneticValues.NECK_LENGTH getNeckLengthValue(float value) {
+        return getGeneticValue((int) value, GeneticValues.NECK_LENGTH.class);
     }
 
     public static GeneticValues.HEAD_TYPE getHeadTypeValue(GeneticHorseEntity entity) {
         return getGeneticValue(entity, Genetics.HEAD_TYPE, GeneticValues.HEAD_TYPE.class);
     }
+    public static GeneticValues.HEAD_TYPE getHeadTypeValue(float value) {
+        return getGeneticValue((int) value, GeneticValues.HEAD_TYPE.class);
+    }
 
     public static GeneticValues.LEG_WIDTH getLegWidthValue(GeneticHorseEntity entity) {
         return getGeneticValue(entity, Genetics.LEG_WIDTH, GeneticValues.LEG_WIDTH.class);
+    }
+    public static GeneticValues.LEG_WIDTH getLegWidthValue(float value) {
+        return getGeneticValue((int) value, GeneticValues.LEG_WIDTH.class);
     }
 
     public static GeneticValues.TOP_LEG getTopLegValue(GeneticHorseEntity entity) {
         return getGeneticValue(entity, Genetics.TOP_LEG, GeneticValues.TOP_LEG.class);
     }
+    public static GeneticValues.TOP_LEG getTopLegValue(float value) {
+        return getGeneticValue((int) value, GeneticValues.TOP_LEG.class);
+    }
 
     public static GeneticValues.BOTTOM_LEG getBottomLegValue(GeneticHorseEntity entity) {
         return getGeneticValue(entity, Genetics.BOTTOM_LEG, GeneticValues.BOTTOM_LEG.class);
+    }
+    public static GeneticValues.BOTTOM_LEG getBottomLegValue(float value) {
+        return getGeneticValue((int) value, GeneticValues.BOTTOM_LEG.class);
     }
 
     public static GeneticValues.HOOF_SIZE getHoofSizeValue(GeneticHorseEntity entity) {
         return getGeneticValue(entity, Genetics.HOOF_SIZE, GeneticValues.HOOF_SIZE.class);
     }
+    public static GeneticValues.HOOF_SIZE getHoofSizeValue(float value) {
+        return getGeneticValue((int) value, GeneticValues.HOOF_SIZE.class);
+    }
 
     public static GeneticValues.HIP_SIZE getHipSizeValue(GeneticHorseEntity entity) {
         return getGeneticValue(entity, Genetics.HIP_SIZE, GeneticValues.HIP_SIZE.class);
+    }
+    public static GeneticValues.HIP_SIZE getHipSizeValue(float value) {
+        return getGeneticValue((int) value, GeneticValues.HIP_SIZE.class);
     }
 
     public static GeneticValues.TAIL_THICKNESS getTailThicknessValue(GeneticHorseEntity entity) {
         return getGeneticValue(entity, Genetics.TAIL_THICKNESS, GeneticValues.TAIL_THICKNESS.class);
     }
+    public static GeneticValues.TAIL_THICKNESS getTailThicknessValue(float value) {
+        return getGeneticValue((int) value, GeneticValues.TAIL_THICKNESS.class);
+    }
+
     public static GeneticValues.TAIL_LENGTH getTailLengthValue(GeneticHorseEntity entity) {
         return getGeneticValue(entity, Genetics.TAIL_LENGTH, GeneticValues.TAIL_LENGTH.class);
+    }
+    public static GeneticValues.TAIL_LENGTH getTailLengthValue(float value) {
+        return getGeneticValue((int) value, GeneticValues.TAIL_LENGTH.class);
     }
 
     public static GeneticValues.TOP_HIND_LEG_WIDTH getTopHindLegWidthValue(GeneticHorseEntity entity) {
         return getGeneticValue(entity, Genetics.TOP_HIND_LEG_WIDTH, GeneticValues.TOP_HIND_LEG_WIDTH.class);
     }
+    public static GeneticValues.TOP_HIND_LEG_WIDTH getTopHindLegWidthValue(float value) {
+        return getGeneticValue((int) value, GeneticValues.TOP_HIND_LEG_WIDTH.class);
+    }
+
 
     public static GeneticValues.STOMACH_LENGTH getStomachLengthValue(GeneticHorseEntity entity) {
         return getGeneticValue(entity, Genetics.STOMACH_LENGTH, GeneticValues.STOMACH_LENGTH.class);
     }
+    public static GeneticValues.STOMACH_LENGTH getStomachLengthValue(float value) {
+        return getGeneticValue((int) value, GeneticValues.STOMACH_LENGTH.class);
+    }
 
     public static GeneticValues.STOMACH_CURVE getStomachCurveValue(GeneticHorseEntity entity) {
         return getGeneticValue(entity, Genetics.STOMACH_CURVE, GeneticValues.STOMACH_CURVE.class);
+    }
+    public static GeneticValues.STOMACH_CURVE getStomachCurveValue(float value) {
+        return getGeneticValue((int) value, GeneticValues.STOMACH_CURVE.class);
     }
 
 
@@ -231,6 +284,12 @@ public class GeneticsHandler {
         return GeneticValues.fromInt(
                 valueType,
                 (int) GeneticsHandler.getGeneticFloat(entity, gene));
+    }
+
+    private static <E extends Enum<E>> E getGeneticValue(int value, Class<E> valueType){
+        return GeneticValues.fromInt(
+                valueType,
+                value);
     }
 
 }

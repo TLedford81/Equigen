@@ -82,7 +82,8 @@ public class top_front_legs_thick_average_1 extends MultipartFrontTopLegModel<Ge
 		return new Part("top_front_legs_thick_average_1", new ArrayList<>(
 				Arrays.asList(
 						new Block(2, 2, 7),
-						new Block(2, 3, 6))
+						new Block(2, 3, 6),
+						new Block(0, 0, 0))
 		));
 	}
 }

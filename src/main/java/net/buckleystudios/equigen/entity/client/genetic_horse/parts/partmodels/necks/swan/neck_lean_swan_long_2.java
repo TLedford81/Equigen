@@ -169,5 +169,7 @@ public class neck_lean_swan_long_2 extends MultipartNeckModel<GeneticHorseEntity
 						new Block(3, 9, 4))
 		));
 	}
-
+	public Part returnManeCubeDimensions() {
+		return returnManeCubeDimensions("mane_swan_long_2");
+	}
 }

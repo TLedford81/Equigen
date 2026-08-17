@@ -166,4 +166,7 @@ public class neck_muscular_ewed_average_2 extends MultipartNeckModel<GeneticHors
 						new Block(5, 10, 4))
 		));
 	}
+	public Part returnManeCubeDimensions() {
+		return returnManeCubeDimensions("mane_ewed_average_2");
+	}
 }

@@ -169,4 +169,7 @@ public class neck_muscular_arched_average_2 extends MultipartNeckModel<GeneticHo
 						new Block(4, 7, 4))
 		));
 	}
+	public Part returnManeCubeDimensions() {
+		return returnManeCubeDimensions("mane_arched_average_2");
+	}
 }

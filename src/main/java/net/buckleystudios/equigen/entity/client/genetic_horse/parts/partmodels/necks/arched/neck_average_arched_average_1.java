@@ -171,4 +171,7 @@ public class neck_average_arched_average_1 extends MultipartNeckModel<GeneticHor
 						new Block(4, 6, 4))
 		));
 	}
+	public Part returnManeCubeDimensions() {
+		return returnManeCubeDimensions("mane_arched_average_1");
+	}
 }

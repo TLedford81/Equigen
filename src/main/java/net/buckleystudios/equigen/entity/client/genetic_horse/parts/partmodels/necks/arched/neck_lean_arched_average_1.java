@@ -169,4 +169,7 @@ public class neck_lean_arched_average_1 extends MultipartNeckModel<GeneticHorseE
 						new Block(4, 6, 4))
 		));
 	}
+	public Part returnManeCubeDimensions() {
+		return returnManeCubeDimensions("mane_arched_average_1");
+	}
 }

@@ -4,6 +4,7 @@ import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.effect.ModEffects;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.ModEntityAttributes;
+import net.buckleystudios.equigen.entity.client.genetic_horse.GeneticHorseRenderer;
 import net.buckleystudios.equigen.entity.client.genetic_horse.texturer.GeneticHorseTexturer;
 import net.buckleystudios.equigen.entity.custom.genetics.GeneticBreeds;
 import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
@@ -15,6 +16,8 @@ import net.buckleystudios.equigen.item.HorseConsumables;
 import net.buckleystudios.equigen.item.ModItems;
 import net.buckleystudios.equigen.screen.GeneticHorse.GeneticHorseEntityMenu;
 import net.buckleystudios.equigen.sound.ModSounds;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
@@ -1781,7 +1784,8 @@ private float difference = 0;
                 GeneticDebugTools.GenerateDebugBook(this, pPlayer, pHand);
             }
             if (itemstack.is(Items.AMETHYST_BLOCK)) {
-                GeneticHorseTexturer texturer = new GeneticHorseTexturer(this);
+                GeneticHorseRenderer renderer = getRenderer(this); //TODO See tims disclaimer. "Bad practice" or whatever.
+                GeneticHorseTexturer texturer = new GeneticHorseTexturer(this, renderer.getModelSet());
                 Path outputPath = Paths.get("testing.png");
                 Path inputPath = Paths.get(
                         "..",
@@ -1849,6 +1853,25 @@ private float difference = 0;
                 return super.mobInteract(pPlayer, pHand);
             }
         }
+    }
+
+    // TODO: REMOVE BEFORE RELEASE
+    // DISCLAIMER:
+    // THIS IS PURELY FOR DEBUG PURPOSES AND IS VERY BAD PRACTICE TO USE IN CODE
+    // PLEASE REMOVE BEFORE RELEASE
+    // THE ENTITY CLASS WAS NEVER MEANT TO WORK WITH THE RENDERER
+    // USE WITH CAUTION
+    public static GeneticHorseRenderer getRenderer(GeneticHorseEntity entity) {
+        EntityRenderer<? super GeneticHorseEntity> renderer =
+                Minecraft.getInstance()
+                        .getEntityRenderDispatcher()
+                        .getRenderer(entity);
+
+        if (renderer instanceof GeneticHorseRenderer horseRenderer) {
+            return horseRenderer;
+        }
+        EquigenMod.LOGGER.error("Renderer not found!");
+        return null;
     }
 
     private void registerHorse(ServerPlayer player) {

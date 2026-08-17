@@ -167,4 +167,7 @@ public class neck_muscular_arched_long_1 extends MultipartNeckModel<GeneticHorse
 						new Block(4, 9, 4))
 		));
 	}
+	public Part returnManeCubeDimensions() {
+		return returnManeCubeDimensions("mane_arched_long_1");
+	}
 }

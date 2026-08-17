@@ -169,5 +169,8 @@ public class neck_muscular_swan_short_2 extends MultipartNeckModel<GeneticHorseE
 						new Block(4, 8, 4))
 		));
 	}
+	public Part returnManeCubeDimensions() {
+		return returnManeCubeDimensions("mane_swan_short_2");
+	}
 	//TODO Rearrange the blocks in the model files to match the textures printer.
 }

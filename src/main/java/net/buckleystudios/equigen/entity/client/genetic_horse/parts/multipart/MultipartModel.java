@@ -152,4 +152,8 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
     public void beforeAttached(E entity, float partialTicks, PoseStack pose) { }
 
     public abstract Part getCubeDimensions();
+
+    public Part returnManeCubeDimensions() {
+        return null;
+    }
 }
