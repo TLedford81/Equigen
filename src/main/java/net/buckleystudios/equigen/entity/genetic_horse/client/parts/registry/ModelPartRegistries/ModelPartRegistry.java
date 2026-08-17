@@ -1,10 +1,9 @@
 package net.buckleystudios.equigen.entity.genetic_horse.client.parts.registry.ModelPartRegistries;
 
-import net.buckleystudios.equigen.EquigenMod;
+import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.multipart.MultipartModel;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.registry.ModelPartRegistryKeys;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.registry.RegisteredModelPart;
-import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -121,8 +120,8 @@ public class ModelPartRegistry {
 
     public static MultipartModel<GeneticHorseEntity> getModel(ModelPartRegistryKeys.Back key, EntityModelSet modelSet) {
         RegisteredModelPart model = BACK_MODELS.get(key);
-        EquigenMod.LOGGER.error("Requested back key: {}", key);
-        EquigenMod.LOGGER.error("Registered back keys: {}", BACK_MODELS.keySet());
+//        EquigenMod.LOGGER.error("Requested back key: {}", key);
+//        EquigenMod.LOGGER.error("Registered back keys: {}", BACK_MODELS.keySet());
         return model == null ? null : model.create(modelSet);
 
     }

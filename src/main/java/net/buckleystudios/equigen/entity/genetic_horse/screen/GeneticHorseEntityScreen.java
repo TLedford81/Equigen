@@ -1,8 +1,11 @@
 package net.buckleystudios.equigen.entity.genetic_horse.screen;
 
+
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.Genetics;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticsHandler;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.util.GeneticDebugTools;
 import net.buckleystudios.equigen.screen.util.ToggleableSlot;
 import net.minecraft.client.Minecraft;
@@ -152,6 +155,7 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
         drawTextBoundingBox(pGuiGraphics,
                 text, x + 56, y + 5, 140, 10, 0x412417,0.7f, false);
         drawTextBoundingBox(pGuiGraphics, geneticHorse.getName(), x + 66, y + 15, 124, 10, 0x412417, 0.7F, false);
+        drawGenderIndicator(pGuiGraphics, x + 190, y + 10);
         drawCenteredText(pGuiGraphics, Component.translatable("equigen.gui.genetic_horse.breed"), x + 45, y + 55, 0.75f, 0xe5c7a8, true);
         drawTextBoundingBox(pGuiGraphics, geneticHorse.getBreed().name(), x + 5, y + 62, 79, 16, 0x412417, 0.7F, false);
         float horseHeight = geneticHorse.getHorseHeightHands(); // Convert meters to hands
@@ -522,5 +526,22 @@ public class GeneticHorseEntityScreen extends AbstractContainerScreen<GeneticHor
 
             index++;
         }
+    }
+    public void drawGenderIndicator(GuiGraphics graphics, int x, int y) {
+        float gender = GeneticsHandler.getGeneticFloat(geneticHorse, Genetics.GENDER);
+        String indicator = "";
+
+        if (gender == 1.0F) {
+            indicator = "textures/gui/male.png";
+        } else if (gender == 2.0F){
+            indicator = "textures/gui/female.png";
+        }
+        graphics.blit(
+                ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, indicator),
+                x, y,
+                0, 0,
+                7, 11,
+                7, 11
+        );
     }
 }
