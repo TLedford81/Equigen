@@ -1,7 +1,7 @@
 package net.buckleystudios.equigen.network;
 
-import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
-import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.Genetics;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticsHandler;
 import net.minecraft.world.entity.LivingEntity;
 
 import java.util.ArrayList;

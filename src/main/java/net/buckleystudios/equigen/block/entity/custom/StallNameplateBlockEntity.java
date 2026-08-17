@@ -2,7 +2,7 @@ package net.buckleystudios.equigen.block.entity.custom;
 
 import net.buckleystudios.equigen.block.ModBlocks;
 import net.buckleystudios.equigen.block.entity.ModBlockEntities;
-import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
 import net.buckleystudios.equigen.screen.Stall_Nameplate.StallNameplateMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;

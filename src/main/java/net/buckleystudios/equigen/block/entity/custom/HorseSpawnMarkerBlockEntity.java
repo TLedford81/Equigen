@@ -3,10 +3,10 @@ package net.buckleystudios.equigen.block.entity.custom;
 
 import net.buckleystudios.equigen.block.entity.ModBlockEntities;
 import net.buckleystudios.equigen.entity.ModEntities;
-import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
-import net.buckleystudios.equigen.entity.custom.genetics.GeneticBreeds;
-import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
-import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
+import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticBreeds;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.Genetics;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticsHandler;
 import net.buckleystudios.equigen.util.SpawnMarkerIndex;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;

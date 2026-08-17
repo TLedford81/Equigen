@@ -1,8 +1,9 @@
 package net.buckleystudios.equigen.entity.custom;
 
 import net.buckleystudios.equigen.block.entity.custom.HorseSpawnMarkerBlockEntity;
-import net.buckleystudios.equigen.entity.custom.genetics.Genetics;
-import net.buckleystudios.equigen.entity.custom.genetics.GeneticsHandler;
+import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.Genetics;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticsHandler;
 import net.buckleystudios.equigen.item.ModItems;
 import net.buckleystudios.equigen.util.SpawnMarkerIndex;
 import net.minecraft.ChatFormatting;

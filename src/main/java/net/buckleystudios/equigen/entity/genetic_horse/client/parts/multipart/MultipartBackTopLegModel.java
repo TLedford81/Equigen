@@ -1,0 +1,20 @@
+package net.buckleystudios.equigen.entity.genetic_horse.client.parts.multipart;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+
+@OnlyIn(Dist.CLIENT)
+public abstract class MultipartBackTopLegModel <E extends GeneticHorseEntity> extends MultipartModel<GeneticHorseEntity> {
+    float x;
+    @Override
+    public void handlePartChildPosition(GeneticHorseEntity e, PoseStack pose, float partialTicks, int LegID) {
+        float difference = e.getDifference();
+        String tallerPart = e.getTallerHalf();
+        if (tallerPart.equals("BACK")) {
+            pose.translate(0, -difference, 0);
+        }
+    }
+}
+

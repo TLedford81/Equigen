@@ -1,6 +1,6 @@
 package net.buckleystudios.equigen.effect.GeneticHorse;
 
-import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;

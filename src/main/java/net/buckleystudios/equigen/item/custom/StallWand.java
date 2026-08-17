@@ -1,7 +1,7 @@
 package net.buckleystudios.equigen.item.custom;
 
 import net.buckleystudios.equigen.block.entity.custom.StallNameplateBlockEntity;
-import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;

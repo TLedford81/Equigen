@@ -4,6 +4,8 @@ import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.block.ModBlocks;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.item.custom.*;
+import net.buckleystudios.equigen.item.util.ModFoodProperties;
+import net.buckleystudios.equigen.item.util.ModToolTiers;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;

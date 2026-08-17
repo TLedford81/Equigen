@@ -1,7 +1,7 @@
 package net.buckleystudios.equigen.util;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import net.buckleystudios.equigen.entity.custom.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
 import net.buckleystudios.equigen.network.packets.KeybindData;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
