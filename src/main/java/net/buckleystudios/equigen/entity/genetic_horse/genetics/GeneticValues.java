@@ -17,6 +17,9 @@ public class GeneticValues {
 
         return values[value - 1];
     }
+    public enum LEG{
+        FRONT_LEFT, FRONT_RIGHT, BACK_LEFT, BACK_RIGHT
+    }
 
     public enum MUSCLE_MASS{
         LEAN, AVERAGE, MUSCULAR;

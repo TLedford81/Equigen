@@ -9,6 +9,7 @@ import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.multipart.MultipartFrontTopLegModel;
 import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Block;
 import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Part;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticValues;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
@@ -29,7 +30,10 @@ public class top_front_legs_thick_short_1 extends MultipartFrontTopLegModel<Gene
 		this.kneeAnchor = this.top_front_legs_thick_short_1.getChild("kneeAnchor");
 	}
 
-	public static LayerDefinition createBodyLayer() {
+	public static LayerDefinition createBodyLayer(GeneticValues.LEG leg) {
+		final int uvXOffset = getUVXOffset(leg);
+		final int uvYOffset = getUVYOffset(leg);
+
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
@@ -37,11 +41,11 @@ public class top_front_legs_thick_short_1 extends MultipartFrontTopLegModel<Gene
 
 		PartDefinition top_front_legs_thick_short_1_top_front_right_front = top_front_legs_thick_short_1.addOrReplaceChild("top_front_legs_thick_short_1_top_front_right_front", CubeListBuilder.create(), PartPose.offset(-0.2152F, 1.9371F, -0.7464F));
 
-		PartDefinition cube_r1 = top_front_legs_thick_short_1_top_front_right_front.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(42, 70).mirror().addBox(-1.2152F, -1.0771F, -5.6637F, 2.0F, 2.0F, 5.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.2152F, -3.1054F, -0.6095F, 1.789F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = top_front_legs_thick_short_1_top_front_right_front.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(uvXOffset, uvYOffset).mirror().addBox(-1.2152F, -1.0771F, -5.6637F, 2.0F, 2.0F, 5.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.2152F, -3.1054F, -0.6095F, 1.789F, 0.0F, 0.0F));
 
 		PartDefinition top_front_legs_thick_short_1_top_front_right_back = top_front_legs_thick_short_1.addOrReplaceChild("top_front_legs_thick_short_1_top_front_right_back", CubeListBuilder.create(), PartPose.offset(-0.058F, 1.9412F, 0.5618F));
 
-		PartDefinition cube_r2 = top_front_legs_thick_short_1_top_front_right_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(23, 115).mirror().addBox(-1.058F, -2.0808F, -5.7678F, 2.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.058F, -3.164F, 1.0023F, 1.4399F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = top_front_legs_thick_short_1_top_front_right_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(uvXOffset, uvYOffset).mirror().addBox(-1.058F, -2.0808F, -5.7678F, 2.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.058F, -3.164F, 1.0023F, 1.4399F, 0.0F, 0.0F));
 
 		PartDefinition top_front_legs_thick_short_1_top_front_right_middle = top_front_legs_thick_short_1.addOrReplaceChild("top_front_legs_thick_short_1_top_front_right_middle", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 

@@ -9,6 +9,7 @@ import net.buckleystudios.equigen.entity.genetic_horse.client.parts.multipart.Mu
 import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Block;
 import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Part;
 import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticValues;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
@@ -29,13 +30,16 @@ public class knees extends MultipartKneeModel<GeneticHorseEntity> {
         this.bottomLegAnchor = this.knees.getChild("bottomLegAnchor");
     }
 
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer(GeneticValues.LEG leg) {
+        final int uvXOffset = getUVXOffset(leg);
+        final int uvYOffset = getUVYOffset(leg);
+
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
 
         PartDefinition knees = partdefinition.addOrReplaceChild("knees", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-        PartDefinition knee_individual = knees.addOrReplaceChild("knee_individual", CubeListBuilder.create().texOffs(65, 147).mirror().addBox(-0.99F, -1.01F, -1.01F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 0.0F, 0.0F));
+        PartDefinition knee_individual = knees.addOrReplaceChild("knee_individual", CubeListBuilder.create().texOffs(uvXOffset, uvYOffset).mirror().addBox(-0.99F, -1.01F, -1.01F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 0.0F, 0.0F));
 
         PartDefinition topLegAnchor = knees.addOrReplaceChild("topLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.01F, -1.0F, -0.99F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.0F, 0.0F));
 

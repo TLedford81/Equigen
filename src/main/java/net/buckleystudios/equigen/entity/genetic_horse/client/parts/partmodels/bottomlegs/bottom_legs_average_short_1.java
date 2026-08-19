@@ -9,6 +9,7 @@ import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.multipart.MultipartBottomLegModel;
 import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Block;
 import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Part;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticValues;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
@@ -29,7 +30,10 @@ public class bottom_legs_average_short_1 extends MultipartBottomLegModel<Genetic
 		this.hoofAnchor = this.bottom_legs_average_short_1.getChild("hoofAnchor");
 	}
 
-	public static LayerDefinition createBodyLayer() {
+	public static LayerDefinition createBodyLayer(GeneticValues.LEG leg) {
+		final int uvXOffset = getUVXOffset(leg);
+		final int uvYOffset = getUVYOffset(leg);
+
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
@@ -37,11 +41,11 @@ public class bottom_legs_average_short_1 extends MultipartBottomLegModel<Genetic
 
 		PartDefinition bottom_legs_average_short_1_bottom_individual = bottom_legs_average_short_1.addOrReplaceChild("bottom_legs_average_short_1_bottom_individual", CubeListBuilder.create(), PartPose.offset(-0.0188F, 0.8468F, -0.1072F));
 
-		PartDefinition cube_r1 = bottom_legs_average_short_1_bottom_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(0, 156).addBox(-1.0189F, -0.469F, -1.7976F, 2.0F, 1.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0188F, -0.7977F, -0.031F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = bottom_legs_average_short_1_bottom_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(uvXOffset, uvYOffset).addBox(-1.0189F, -0.469F, -1.7976F, 2.0F, 1.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0188F, -0.7977F, -0.031F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition bottom_legs_average_short_1_bottom_lower_individual = bottom_legs_average_short_1.addOrReplaceChild("bottom_legs_average_short_1_bottom_lower_individual", CubeListBuilder.create(), PartPose.offset(0.0188F, 2.2252F, -0.6079F));
 
-		PartDefinition cube_r2 = bottom_legs_average_short_1_bottom_lower_individual.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(18, 139).addBox(-0.9811F, -0.4237F, -1.9046F, 2.0F, 1.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.0188F, -0.804F, 0.4217F, 1.0036F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = bottom_legs_average_short_1_bottom_lower_individual.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(uvXOffset, uvYOffset).addBox(-0.9811F, -0.4237F, -1.9046F, 2.0F, 1.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.0188F, -0.804F, 0.4217F, 1.0036F, 0.0F, 0.0F));
 
 		PartDefinition kneeAnchor = bottom_legs_average_short_1.addOrReplaceChild("kneeAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.05F, 0.0F));
 

@@ -9,6 +9,7 @@ import net.buckleystudios.equigen.entity.genetic_horse.client.parts.multipart.Mu
 import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Block;
 import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Part;
 import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticValues;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
@@ -27,13 +28,16 @@ public class hoof_average extends MultipartHoofModel<GeneticHorseEntity> {
         this.bottomLegAnchor = this.hoof_average.getChild("bottomLegAnchor");
     }
 
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer(GeneticValues.LEG leg) {
+        final int uvXOffset = getUVXOffset(leg);
+        final int uvYOffset = getUVYOffset(leg);
+
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
 
         PartDefinition hoof_average = partdefinition.addOrReplaceChild("hoof_average", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-        PartDefinition hoof_average_individual = hoof_average.addOrReplaceChild("hoof_average_individual", CubeListBuilder.create().texOffs(102, 131).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, 0.0F));
+        PartDefinition hoof_average_individual = hoof_average.addOrReplaceChild("hoof_average_individual", CubeListBuilder.create().texOffs(uvXOffset, uvYOffset).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, 0.0F));
 
         PartDefinition bottomLegAnchor = hoof_average.addOrReplaceChild("bottomLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, 0.0F));
 

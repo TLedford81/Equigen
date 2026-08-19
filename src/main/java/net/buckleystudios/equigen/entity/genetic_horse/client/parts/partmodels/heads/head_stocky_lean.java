@@ -16,7 +16,7 @@ import net.minecraft.client.model.geom.builders.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
+//TODO THIS HEAD NOT TEXTURED!
 public class head_stocky_lean extends MultipartHeadModel<GeneticHorseEntity> {
 	private final ModelPart root;
 	private final ModelPart head_stocky_lean;
@@ -82,7 +82,7 @@ public class head_stocky_lean extends MultipartHeadModel<GeneticHorseEntity> {
 
 		PartDefinition cube_r10 = rightEarAnchor.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0977F, 0.2121F, 0.6545F, 0.0F, 0.0F));
 
-		return LayerDefinition.create(meshdefinition, 1024, 1024);
+		return LayerDefinition.create(meshdefinition, 128, 160);
 	}
 
 	@Override

@@ -4,33 +4,31 @@ import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.client.ModModelLayers;
 import net.buckleystudios.equigen.entity.client.egret.EgretModel;
+import net.buckleystudios.equigen.entity.client.pillager_king.PillagerKingModel;
+import net.buckleystudios.equigen.entity.client.projectile.SodiumGrenadeProjectileModel;
+import net.buckleystudios.equigen.entity.client.test_entity.TestEntityModel;
+import net.buckleystudios.equigen.entity.custom.EgretEntity;
+import net.buckleystudios.equigen.entity.custom.HorseTraderEntity;
+import net.buckleystudios.equigen.entity.custom.PillagerKingEntity;
+import net.buckleystudios.equigen.entity.custom.TestEntityEntity;
+import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.genetic_horse.client.GH_ModelBase;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.backs.*;
-import net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.bottomlegs.*;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.chests.*;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.ears.left_ear;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.ears.right_ear;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.heads.*;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.hips.*;
-import net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.hooves.hoof_average;
-import net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.hooves.hoof_large;
-import net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.knees.knees;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.necks.arched.*;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.necks.ewed.*;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.necks.straight.*;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.necks.swan.*;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.stomachs.*;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.tails.*;
-import net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.topbacklegs.*;
-import net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.topfrontlegs.*;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.withers.withers_average;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.withers.withers_lean;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.withers.withers_muscular;
-import net.buckleystudios.equigen.entity.client.pillager_king.PillagerKingModel;
-import net.buckleystudios.equigen.entity.client.projectile.SodiumGrenadeProjectileModel;
-import net.buckleystudios.equigen.entity.client.test_entity.TestEntityModel;
-import net.buckleystudios.equigen.entity.custom.*;
-import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.genetic_horse.client.parts.registry.ModelPartRegistries.ModelPartRegistry;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -82,45 +80,6 @@ public class ModEventBusEvents {
         event.registerLayerDefinition(ModModelLayers.BACK_MUSCULAR_LONG_THIN, back_muscular_long_thin::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.BACK_MUSCULAR_LONG_AVERAGE, back_muscular_long_average::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.BACK_MUSCULAR_LONG_THICK, back_muscular_long_thick::createBodyLayer);
-// Back Top Legs
-        event.registerLayerDefinition(ModModelLayers.TOP_BACK_LEGS_THIN_SHORT_1, top_back_legs_thin_short_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_BACK_LEGS_THIN_SHORT_2, top_back_legs_thin_short_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_BACK_LEGS_THIN_AVERAGE_1, top_back_legs_thin_average_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_BACK_LEGS_THIN_AVERAGE_2, top_back_legs_thin_average_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_BACK_LEGS_THIN_LONG_1, top_back_legs_thin_long_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_BACK_LEGS_THIN_LONG_2, top_back_legs_thin_long_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_BACK_LEGS_AVERAGE_SHORT_1, top_back_legs_average_short_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_BACK_LEGS_AVERAGE_SHORT_2, top_back_legs_average_short_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_BACK_LEGS_AVERAGE_AVERAGE_1, top_back_legs_average_average_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_BACK_LEGS_AVERAGE_AVERAGE_2, top_back_legs_average_average_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_BACK_LEGS_AVERAGE_LONG_1, top_back_legs_average_long_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_BACK_LEGS_AVERAGE_LONG_2, top_back_legs_average_long_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_BACK_LEGS_THICK_SHORT_1, top_back_legs_thick_short_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_BACK_LEGS_THICK_SHORT_2, top_back_legs_thick_short_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_BACK_LEGS_THICK_AVERAGE_1, top_back_legs_thick_average_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_BACK_LEGS_THICK_AVERAGE_2, top_back_legs_thick_average_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_BACK_LEGS_THICK_LONG_1, top_back_legs_thick_long_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_BACK_LEGS_THICK_LONG_2, top_back_legs_thick_long_2::createBodyLayer);
-        
-        // Front Top Legs
-        event.registerLayerDefinition(ModModelLayers.TOP_FRONT_LEGS_AVERAGE_SHORT_1, top_front_legs_average_short_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_FRONT_LEGS_AVERAGE_SHORT_2, top_front_legs_average_short_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_FRONT_LEGS_AVERAGE_SHORT_3, top_front_legs_average_short_3::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_FRONT_LEGS_AVERAGE_AVERAGE_1, top_front_legs_average_average_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_FRONT_LEGS_AVERAGE_AVERAGE_2, top_front_legs_average_average_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_FRONT_LEGS_AVERAGE_AVERAGE_3, top_front_legs_average_average_3::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_FRONT_LEGS_AVERAGE_LONG_1, top_front_legs_average_long_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_FRONT_LEGS_AVERAGE_LONG_2, top_front_legs_average_long_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_FRONT_LEGS_AVERAGE_LONG_3, top_front_legs_average_long_3::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_FRONT_LEGS_THICK_SHORT_1, top_front_legs_thick_short_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_FRONT_LEGS_THICK_SHORT_2, top_front_legs_thick_short_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_FRONT_LEGS_THICK_SHORT_3, top_front_legs_thick_short_3::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_FRONT_LEGS_THICK_AVERAGE_1, top_front_legs_thick_average_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_FRONT_LEGS_THICK_AVERAGE_2, top_front_legs_thick_average_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_FRONT_LEGS_THICK_AVERAGE_3, top_front_legs_thick_average_3::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_FRONT_LEGS_THICK_LONG_1, top_front_legs_thick_long_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_FRONT_LEGS_THICK_LONG_2, top_front_legs_thick_long_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.TOP_FRONT_LEGS_THICK_LONG_3, top_front_legs_thick_long_3::createBodyLayer);
 
         //Chests
         event.registerLayerDefinition(ModModelLayers.CHEST_LEAN_SMALL_1 , chest_lean_small_1::createBodyLayer);
@@ -301,42 +260,10 @@ public class ModEventBusEvents {
         event.registerLayerDefinition(ModModelLayers.WITHERS_LEAN, withers_lean::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.WITHERS_MUSCULAR, withers_muscular::createBodyLayer);
 
-        //Hooves
-        event.registerLayerDefinition(ModModelLayers.HOOF_AVERAGE, hoof_average::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.HOOF_LARGE, hoof_large::createBodyLayer);
 
+        //Leg Layers
+        ModelPartRegistry.registerLegLayers(event);
 
-        //Knees
-        event.registerLayerDefinition(ModModelLayers.KNEES, knees::createBodyLayer);
-
-        //Bottom Legs
-//        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_SHORT_1, bottom_legs_thin_short_1::createBodyLayer);
-//        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_SHORT_2, bottom_legs_thin_short_2::createBodyLayer);
-//        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_SHORT_3, bottom_legs_thin_short_3::createBodyLayer);
-//        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_AVERAGE_1, bottom_legs_thin_average_1::createBodyLayer);
-//        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_AVERAGE_2, bottom_legs_thin_average_2::createBodyLayer);
-//        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_AVERAGE_3, bottom_legs_thin_average_3::createBodyLayer);
-//        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_LONG_1, bottom_legs_thin_long_1::createBodyLayer);
-//        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_LONG_2, bottom_legs_thin_long_2::createBodyLayer);
-//        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THIN_LONG_3, bottom_legs_thin_long_3::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_AVERAGE_SHORT_1, bottom_legs_average_short_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_AVERAGE_SHORT_2, bottom_legs_average_short_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_AVERAGE_SHORT_3, bottom_legs_average_short_3::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_AVERAGE_AVERAGE_1, bottom_legs_average_average_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_AVERAGE_AVERAGE_2, bottom_legs_average_average_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_AVERAGE_AVERAGE_3, bottom_legs_average_average_3::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_AVERAGE_LONG_1, bottom_legs_average_long_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_AVERAGE_LONG_2, bottom_legs_average_long_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_AVERAGE_LONG_3, bottom_legs_average_long_3::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THICK_SHORT_1, bottom_legs_thick_short_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THICK_SHORT_2, bottom_legs_thick_short_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THICK_SHORT_3, bottom_legs_thick_short_3::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THICK_AVERAGE_1, bottom_legs_thick_average_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THICK_AVERAGE_2, bottom_legs_thick_average_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THICK_AVERAGE_3, bottom_legs_thick_average_3::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THICK_LONG_1, bottom_legs_thick_long_1::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THICK_LONG_2, bottom_legs_thick_long_2::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOTTOM_LEGS_THICK_LONG_3, bottom_legs_thick_long_3::createBodyLayer);
     }
 
     @SubscribeEvent
