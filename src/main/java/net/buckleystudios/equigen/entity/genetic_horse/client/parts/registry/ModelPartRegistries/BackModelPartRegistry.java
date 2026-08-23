@@ -50,7 +50,7 @@ public final class BackModelPartRegistry {
                         GeneticValues.BACK_GIRTH.THICK
                 ),
                 ModModelLayers.BACK_LEAN_AVERAGE_THICK,
-                back_lean_average_average::new);
+                back_lean_average_thick::new);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.BACK_LENGTH.LONG,
@@ -71,7 +71,7 @@ public final class BackModelPartRegistry {
                         GeneticValues.BACK_GIRTH.THICK
                 ),
                 ModModelLayers.BACK_LEAN_LONG_THICK,
-                back_lean_long_average::new);
+                back_lean_long_thick::new);
         
        //AVERAGE
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
@@ -115,7 +115,7 @@ public final class BackModelPartRegistry {
                         GeneticValues.BACK_GIRTH.THICK
                 ),
                 ModModelLayers.BACK_AVERAGE_AVERAGE_THICK,
-                back_average_average_average::new);
+                back_average_average_thick::new);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.BACK_LENGTH.LONG,
@@ -136,7 +136,7 @@ public final class BackModelPartRegistry {
                         GeneticValues.BACK_GIRTH.THICK
                 ),
                 ModModelLayers.BACK_AVERAGE_LONG_THICK,
-                back_average_long_average::new);
+                back_average_long_thick::new);
         //MUSCULAR
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
@@ -200,7 +200,7 @@ public final class BackModelPartRegistry {
                         GeneticValues.BACK_GIRTH.THICK
                 ),
                 ModModelLayers.BACK_MUSCULAR_LONG_THICK,
-                back_muscular_long_average::new);
+                back_muscular_long_thick::new);
     }
 }
 

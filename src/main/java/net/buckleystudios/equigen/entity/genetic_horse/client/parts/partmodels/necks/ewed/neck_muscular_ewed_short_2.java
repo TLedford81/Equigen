@@ -163,7 +163,8 @@ public class neck_muscular_ewed_short_2 extends MultipartNeckModel<GeneticHorseE
 						new Block(5, 4, 4),
 						new Block(5, 7, 2),
 						new Block(6, 8, 4),
-						new Block(5, 8, 4))
+						new Block(5, 8, 4),
+						new Block(0, 0, 0))
 		));
 	}
 	public Part returnManeCubeDimensions() {

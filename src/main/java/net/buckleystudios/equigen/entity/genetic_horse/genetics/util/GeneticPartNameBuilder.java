@@ -2,6 +2,7 @@ package net.buckleystudios.equigen.entity.genetic_horse.genetics.util;
 
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticValues;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.Genetics;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticsHandler;
 
@@ -303,20 +304,20 @@ public class GeneticPartNameBuilder {
         return String.valueOf(name);
     }
 
-    public String returnPartType(String partName) {
+    public String returnPartType(String partName, GeneticValues.LEG leg) {
         String cutS = partName.substring(0, 5);
         return switch(cutS) {
             case "left_" -> "left_ear";
             case "right" -> "right_ear";
-            case "knees" -> "knees";
-            case "top_f" -> "top_front_legs";
-            case "top_b" -> "top_back_legs";
-            case "botto" -> "bottom_legs";
+            case "knees" -> (leg != null) ? "knees" + "_" + leg.name().toLowerCase() : "knees";
+            case "top_f" -> (leg != null) ? "top_front_legs" + "_" + leg.name().toLowerCase() : "top_front_legs";
+            case "top_b" -> (leg != null) ? "top_back_legs" + "_" + leg.name().toLowerCase() : "top_back_legs";
+            case "botto" -> (leg != null) ? "bottom_legs" + "_" + leg.name().toLowerCase() : "bottom_legs";
             case "back_" -> "back";
             case "chest" -> "chest";
             case "head_" -> "head";
             case "hips_" -> "hips";
-            case "hoof_" -> "hoof";
+            case "hoof_" -> (leg != null) ? "hoof" + "_" + leg.name().toLowerCase() : "hoof";
             case "neck_" -> "neck";
             case "stoma" -> "stomach";
             case "tail_" -> "tail";

@@ -10,35 +10,50 @@ public abstract class MultipartHoofModel <E extends GeneticHorseEntity> extends 
     protected static int getUVXOffset(GeneticValues.LEG leg) {
         switch (leg) {
             case GeneticValues.LEG.FRONT_LEFT -> {
-                return 20;
+                return 45;
             }
             case GeneticValues.LEG.FRONT_RIGHT -> {
-                return 50;
+                return 54;
             }
             case GeneticValues.LEG.BACK_LEFT -> {
-                return 100;
+                return 44;
             }
             case GeneticValues.LEG.BACK_RIGHT -> {
-                return 150;
+                return 53;
             }
             default -> {
                 return 0;
             }
         }
     }
-    protected static int getUVYOffset(GeneticValues.LEG leg) {
+    protected static int getUVYOffset(GeneticValues.LEG leg, int size) {
         switch (leg) {
             case GeneticValues.LEG.FRONT_LEFT -> {
-                return 10;
+                return switch (size) {
+                    case 0 -> 69;
+                    case 1 -> 68;
+                    default -> 0;
+                };
             }
             case GeneticValues.LEG.FRONT_RIGHT -> {
-                return 20;
-            }
+                return switch (size) {
+                    case 0 -> 72;
+                    case 1 -> 71;
+                    default -> 0;
+                };            }
             case GeneticValues.LEG.BACK_LEFT -> {
-                return 30;
+                return switch (size) {
+                    case 0 -> 75;
+                    case 1 -> 74;
+                    default -> 0;
+                };
             }
             case GeneticValues.LEG.BACK_RIGHT -> {
-                return 40;
+                return switch (size) {
+                    case 0 -> 78;
+                    case 1 -> 77;
+                    default -> 0;
+                };
             }
             default -> {
                 return 0;

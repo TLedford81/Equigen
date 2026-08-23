@@ -5,10 +5,10 @@ package net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.multipart.MultipartFrontTopLegModel;
 import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Block;
 import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Part;
-import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticValues;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -31,9 +31,8 @@ public class top_front_legs_average_long_2 extends MultipartFrontTopLegModel<Gen
 	}
 
 	public static LayerDefinition createBodyLayer(GeneticValues.LEG leg) {
-		final int uvXOffset = getUVXOffset(leg);
-		final int uvYOffset = getUVYOffset(leg);
-
+//		EquigenMod.LOGGER.info("TOP FRONT LEG LEG = {}, BLOCK 1: X = {} Y = {} BLOCK 2: X = {} Y = {} BLOCK 3: X = {} Y = {}", leg, getUVXOffset(leg, 0), getUVYOffset(leg, 0, 2, 10),
+//				getUVXOffset(leg, 1),  getUVYOffset(leg, 1, 2, 9), getUVXOffset(leg, 2),getUVYOffset(leg, 2, 2, 9) );
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
@@ -41,15 +40,15 @@ public class top_front_legs_average_long_2 extends MultipartFrontTopLegModel<Gen
 
 		PartDefinition top_front_legs_average_long_2_top_front_front = top_front_legs_average_long_2.addOrReplaceChild("top_front_legs_average_long_2_top_front_front", CubeListBuilder.create(), PartPose.offset(-0.1442F, 4.1755F, -0.6303F));
 
-		PartDefinition cube_r1 = top_front_legs_average_long_2_top_front_front.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(uvXOffset, uvYOffset).addBox(-1.1442F, -2.0F, -2.02F, 2.0F, 2.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.1442F, 2.6929F, 1.6213F, 1.789F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = top_front_legs_average_long_2_top_front_front.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(getUVXOffset(leg, 0), getUVYOffset(leg, 0, 10)).addBox(-1.1442F, -2.0F, -2.02F, 2.0F, 2.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.1442F, 2.6929F, 1.6213F, 1.789F, 0.0F, 0.0F));
 
 		PartDefinition top_front_legs_average_long_2_top_front_back = top_front_legs_average_long_2.addOrReplaceChild("top_front_legs_average_long_2_top_front_back", CubeListBuilder.create(), PartPose.offset(0.1868F, 3.6966F, 0.809F));
 
-		PartDefinition cube_r2 = top_front_legs_average_long_2_top_front_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(uvXOffset, uvYOffset).mirror().addBox(-0.8132F, -2.0F, -1.84F, 2.0F, 2.0F, 9.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-0.1868F, 2.7678F, 0.6442F, 1.4399F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = top_front_legs_average_long_2_top_front_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(getUVXOffset(leg, 1), getUVYOffset(leg, 1,  9)).mirror().addBox(-0.8132F, -2.0F, -1.84F, 2.0F, 2.0F, 9.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-0.1868F, 2.7678F, 0.6442F, 1.4399F, 0.0F, 0.0F));
 
 		PartDefinition top_front_legs_average_long_2_top_front_middle = top_front_legs_average_long_2.addOrReplaceChild("top_front_legs_average_long_2_top_front_middle", CubeListBuilder.create(), PartPose.offset(-0.1949F, 3.5349F, 0.3026F));
 
-		PartDefinition cube_r3 = top_front_legs_average_long_2_top_front_middle.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(uvXOffset, uvYOffset).addBox(-1.1949F, -2.0F, -0.8316F, 2.0F, 2.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.1949F, 3.6684F, 1.0F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r3 = top_front_legs_average_long_2_top_front_middle.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(getUVXOffset(leg, 2), getUVYOffset(leg, 2, 9)).addBox(-1.1949F, -2.0F, -0.8316F, 2.0F, 2.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.1949F, 3.6684F, 1.0F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition chestAnchor = top_front_legs_average_long_2.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -0.75F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.35F, -2.35F));
 

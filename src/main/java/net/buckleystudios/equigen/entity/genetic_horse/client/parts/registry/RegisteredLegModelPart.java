@@ -49,25 +49,31 @@ public record RegisteredLegModelPart(
         );
         ModelPartRegistry.registerAllModels();
 
+        if (frontLeftLayer != null) {
+            event.registerLayerDefinition(
+                    frontLeftLayer,
+                    () -> layerFactory.apply(GeneticValues.LEG.FRONT_LEFT)
+            );
+        }
+        if (frontRightLayer != null) {
+            event.registerLayerDefinition(
+                    frontRightLayer,
+                    () -> layerFactory.apply(GeneticValues.LEG.FRONT_RIGHT)
+            );
+        }
 
-        event.registerLayerDefinition(
-                frontLeftLayer,
-                () -> layerFactory.apply(GeneticValues.LEG.FRONT_LEFT)
-        );
+        if (backLeftLayer != null) {
+            event.registerLayerDefinition(
+                    backLeftLayer,
+                    () -> layerFactory.apply(GeneticValues.LEG.BACK_LEFT)
+            );
+        }
 
-        event.registerLayerDefinition(
-                frontRightLayer,
-                () -> layerFactory.apply(GeneticValues.LEG.FRONT_RIGHT)
-        );
-
-        event.registerLayerDefinition(
-                backLeftLayer,
-                () -> layerFactory.apply(GeneticValues.LEG.BACK_LEFT)
-        );
-
-        event.registerLayerDefinition(
-                backRightLayer,
-                () -> layerFactory.apply(GeneticValues.LEG.BACK_RIGHT)
-        );
+        if (backRightLayer != null) {
+            event.registerLayerDefinition(
+                    backRightLayer,
+                    () -> layerFactory.apply(GeneticValues.LEG.BACK_RIGHT)
+            );
+        }
     }
 }

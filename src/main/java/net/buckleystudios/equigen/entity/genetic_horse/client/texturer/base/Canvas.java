@@ -1,6 +1,7 @@
 package net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base;
 
 import net.buckleystudios.equigen.EquigenMod;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticValues;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.util.GeneticPartNameBuilder;
 
 import javax.imageio.ImageIO;
@@ -109,26 +110,53 @@ public class Canvas {
 
         for (Part p : pList) {
             GeneticPartNameBuilder builder = new GeneticPartNameBuilder();
-            String partType = builder.returnPartType(p.modelName);
-            p.applyBaseUVCoords(partType);
-            if (p.modelName.equals("NULL") || p.blocks == null) {
-                EquigenMod.LOGGER.info("NULL PART WHEN DRAWING COLOR! MOVING ON: {}" ,p.modelName);
-            } else {
-                EquigenMod.LOGGER.info("DRAWING {} !", p.modelName);
-                for(int i = 0; i < p.blocks.size(); i++) {
-                    for (int f = 0; f < p.blocks.get(i).faces.size(); f++) {
-                        Face face = p.blocks.get(i).faces.get(f);
+            String partType = builder.returnPartType(p.modelName, null);
+            EquigenMod.LOGGER.info("MODEL NAME = {} PART TYPE = {}", p.modelName, partType);
+            if (partType.equals("top_front_legs") || partType.equals("top_back_legs") || partType.equals("bottom_legs")
+                    || partType.equals("knees") || partType.equals("hoof")) {
 
-                        EquigenMod.LOGGER.info("DRAWING COLOR!");
-
-                        g.setColor(color);
-                        g.fillRect(
-                                face.x,
-                                face.y,
-                                face.width,
-                                face.height
-                        );
+                for (GeneticValues.LEG leg : GeneticValues.LEG.values()) {
+                    if (partType.equals("top_front_legs")) {
+                        if (leg.equals(GeneticValues.LEG.BACK_LEFT) || leg.equals(GeneticValues.LEG.BACK_RIGHT)) {
+                            continue;
+                        }
                     }
+                    if (partType.equals("top_back_legs")) {
+                        if (leg.equals(GeneticValues.LEG.FRONT_LEFT) || leg.equals(GeneticValues.LEG.FRONT_RIGHT)) {
+                            continue;
+                        }
+                    }
+                        partType = builder.returnPartType(p.modelName, leg);
+                        p.applyBaseUVCoords(partType);
+                        draw(p, color);
+                }
+            } else {
+                p.applyBaseUVCoords(partType);
+                draw(p, color);
+            }
+            }
+        }
+
+
+    public void draw(Part p, Color color) {
+        if (p.modelName.equals("NULL") || p.blocks == null) {
+            EquigenMod.LOGGER.info("NULL PART WHEN DRAWING COLOR! MOVING ON: {}" ,p.modelName);
+        } else {
+            EquigenMod.LOGGER.info("DRAWING {} !", p.modelName);
+            for(int i = 0; i < p.blocks.size(); i++) {
+                EquigenMod.LOGGER.info("BLOCK COORDS X: {} Y: {}!", p.blocks.get(i).x, p.blocks.get(i).y);
+                for (int f = 0; f < p.blocks.get(i).faces.size(); f++) {
+                    Face face = p.blocks.get(i).faces.get(f);
+
+                    EquigenMod.LOGGER.info("DRAWING COLOR!");
+
+                    g.setColor(color);
+                    g.fillRect(
+                            face.x,
+                            face.y,
+                            face.width,
+                            face.height
+                    );
                 }
             }
         }

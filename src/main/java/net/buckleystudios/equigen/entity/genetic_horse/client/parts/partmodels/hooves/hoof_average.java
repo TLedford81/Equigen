@@ -30,7 +30,7 @@ public class hoof_average extends MultipartHoofModel<GeneticHorseEntity> {
 
     public static LayerDefinition createBodyLayer(GeneticValues.LEG leg) {
         final int uvXOffset = getUVXOffset(leg);
-        final int uvYOffset = getUVYOffset(leg);
+        final int uvYOffset = getUVYOffset(leg, 0);
 
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();

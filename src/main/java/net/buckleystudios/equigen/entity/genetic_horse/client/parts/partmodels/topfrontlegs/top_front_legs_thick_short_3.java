@@ -31,8 +31,6 @@ public class top_front_legs_thick_short_3 extends MultipartFrontTopLegModel<Gene
 	}
 
 	public static LayerDefinition createBodyLayer(GeneticValues.LEG leg) {
-		final int uvXOffset = getUVXOffset(leg);
-		final int uvYOffset = getUVYOffset(leg);
 
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
@@ -41,11 +39,11 @@ public class top_front_legs_thick_short_3 extends MultipartFrontTopLegModel<Gene
 
 		PartDefinition top_front_legs_thick_short_3_top_front_front = top_front_legs_thick_short_3.addOrReplaceChild("top_front_legs_thick_short_3_top_front_front", CubeListBuilder.create(), PartPose.offset(-0.0165F, 2.422F, -0.5472F));
 
-		PartDefinition cube_r1 = top_front_legs_thick_short_3_top_front_front.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(uvXOffset, uvYOffset).addBox(-0.4165F, -2.0F, -2.02F, 2.0F, 2.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.5835F, 1.2285F, 1.2966F, 1.789F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = top_front_legs_thick_short_3_top_front_front.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(getUVXOffset(leg, 0), getUVYOffset(leg, 0, 7)).addBox(-0.4165F, -2.0F, -2.02F, 2.0F, 2.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.5835F, 1.2285F, 1.2966F, 1.789F, 0.0F, 0.0F));
 
 		PartDefinition top_front_legs_thick_short_3_top_front_back = top_front_legs_thick_short_3.addOrReplaceChild("top_front_legs_thick_short_3_top_front_back", CubeListBuilder.create(), PartPose.offset(0.3145F, 2.3475F, 0.6804F));
 
-		PartDefinition cube_r2 = top_front_legs_thick_short_3_top_front_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(uvXOffset, uvYOffset).addBox(-0.0855F, -3.0F, -1.84F, 2.0F, 3.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.9145F, 1.3459F, 1.3357F, 1.4399F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = top_front_legs_thick_short_3_top_front_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(getUVXOffset(leg, 1), getUVYOffset(leg, 1, 6)).addBox(-0.0855F, -3.0F, -1.84F, 2.0F, 3.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.9145F, 1.3459F, 1.3357F, 1.4399F, 0.0F, 0.0F));
 
 		PartDefinition top_front_legs_thick_short_3_top_front_middle = top_front_legs_thick_short_3.addOrReplaceChild("top_front_legs_thick_short_3_top_front_middle", CubeListBuilder.create(), PartPose.offset(-0.6F, 0.0F, 0.0F));
 

@@ -30,7 +30,7 @@ public class hoof_large extends MultipartHoofModel<GeneticHorseEntity> {
 
     public static LayerDefinition createBodyLayer(GeneticValues.LEG leg) {
         final int uvXOffset = getUVXOffset(leg);
-        final int uvYOffset = getUVYOffset(leg);
+        final int uvYOffset = getUVYOffset(leg, 1);
 
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();

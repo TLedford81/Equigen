@@ -206,8 +206,6 @@ public class ModelPartRegistry {
     }
     public static void register(
             ModelPartRegistryKeys.Top_Back_Legs key,
-            ModelLayerLocation frontLeftLayer,
-            ModelLayerLocation frontRightLayer,
             ModelLayerLocation backLeftLayer,
             ModelLayerLocation backRightLayer,
             Function<ModelPart, MultipartModel<GeneticHorseEntity>> factory,
@@ -216,8 +214,8 @@ public class ModelPartRegistry {
         TOP_BACK_LEGS_MODELS.put(
                 key,
                 new RegisteredLegModelPart(
-                        frontLeftLayer,
-                        frontRightLayer,
+                        null,
+                        null,
                         backLeftLayer,
                         backRightLayer,
                         factory,
@@ -229,8 +227,6 @@ public class ModelPartRegistry {
             ModelPartRegistryKeys.Top_Front_Legs key,
             ModelLayerLocation frontLeftLayer,
             ModelLayerLocation frontRightLayer,
-            ModelLayerLocation backLeftLayer,
-            ModelLayerLocation backRightLayer,
             Function<ModelPart, MultipartModel<GeneticHorseEntity>> factory,
             Function<GeneticValues.LEG, LayerDefinition> layerFactory
     ) {
@@ -239,8 +235,8 @@ public class ModelPartRegistry {
                 new RegisteredLegModelPart(
                         frontLeftLayer,
                         frontRightLayer,
-                        backLeftLayer,
-                        backRightLayer,
+                        null,
+                        null,
                         factory,
                         layerFactory
                 )
@@ -401,6 +397,9 @@ public class ModelPartRegistry {
 
     public static MultipartModel<GeneticHorseEntity> getModel(ModelPartRegistryKeys.Top_Back_Legs key, EntityModelSet modelSet, GeneticValues.LEG leg) {
         RegisteredLegModelPart model = TOP_BACK_LEGS_MODELS.get(key);
+        if (leg == GeneticValues.LEG.FRONT_RIGHT || leg == GeneticValues.LEG.FRONT_LEFT) {
+            return null;
+        }
         return model == null ? null : model.create(modelSet, leg);
     }
 
@@ -414,6 +413,9 @@ public class ModelPartRegistry {
 
     public static MultipartModel<GeneticHorseEntity> getModel(ModelPartRegistryKeys.Top_Front_Legs key, EntityModelSet modelSet, GeneticValues.LEG leg) {
         RegisteredLegModelPart model = TOP_FRONT_LEGS_MODELS.get(key);
+        if (leg == GeneticValues.LEG.BACK_RIGHT || leg == GeneticValues.LEG.BACK_LEFT) {
+            return null;
+        }
         return model == null ? null : model.create(modelSet, leg);
     }
 

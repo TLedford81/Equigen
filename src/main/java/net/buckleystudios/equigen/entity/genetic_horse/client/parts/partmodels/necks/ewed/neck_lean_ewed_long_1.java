@@ -163,7 +163,8 @@ public class neck_lean_ewed_long_1 extends MultipartNeckModel<GeneticHorseEntity
 						new Block(3, 4, 4),
 						new Block(4, 10, 2),
 						new Block(4, 11, 4),
-						new Block(3, 11, 4))
+						new Block(3, 11, 4),
+						new Block(0, 0, 0))
 		));
 	}
 	public Part returnManeCubeDimensions() {

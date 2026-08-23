@@ -5,6 +5,7 @@ package net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.multipart.MultipartBottomLegModel;
 import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Block;
@@ -32,9 +33,7 @@ public class bottom_legs_thick_long_2 extends MultipartBottomLegModel<GeneticHor
 	}
 
 	public static LayerDefinition createBodyLayer(GeneticValues.LEG leg) {
-		final int uvXOffset = getUVXOffset(leg);
-		final int uvYOffset = getUVYOffset(leg);
-
+		EquigenMod.LOGGER.info("BOTTOM LEG {} - BLOCK 0: X = {} Y = {} BLOCK 1: X = {} Y = {}", leg ,getUVXOffset(leg, 0), getUVYOffset(leg, 0, 8), getUVXOffset(leg, 0), getUVYOffset(leg, 1, 8));
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
@@ -42,11 +41,11 @@ public class bottom_legs_thick_long_2 extends MultipartBottomLegModel<GeneticHor
 
 		PartDefinition bottom_legs_thick_long_2_bottom_individual = bottom_legs_thick_long_2.addOrReplaceChild("bottom_legs_thick_long_2_bottom_individual", CubeListBuilder.create(), PartPose.offset(0.0F, 2.8018F, -0.0072F));
 
-		PartDefinition cube_r1 = bottom_legs_thick_long_2_bottom_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(uvXOffset, uvYOffset).addBox(-1.0F, -0.9944F, -5.8912F, 2.0F, 2.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -2.8912F, -0.0056F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = bottom_legs_thick_long_2_bottom_individual.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(getUVXOffset(leg, 0), getUVYOffset(leg,0, 8)).addBox(-1.0F, -0.9944F, -5.8912F, 2.0F, 2.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -2.8912F, -0.0056F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition bottom_legs_thick_long_2_bottom_lower_individual = bottom_legs_thick_long_2.addOrReplaceChild("bottom_legs_thick_long_2_bottom_lower_individual", CubeListBuilder.create(), PartPose.offset(-0.01F, 6.7012F, -0.5292F));
 
-		PartDefinition cube_r2 = bottom_legs_thick_long_2_bottom_lower_individual.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(uvXOffset, uvYOffset).addBox(-1.01F, -1.0168F, -2.6796F, 2.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.01F, -1.062F, 0.5138F, 1.1345F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = bottom_legs_thick_long_2_bottom_lower_individual.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(getUVXOffset(leg, 1), getUVYOffset(leg,1, 8)).addBox(-1.01F, -1.0168F, -2.6796F, 2.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.01F, -1.062F, 0.5138F, 1.1345F, 0.0F, 0.0F));
 
 		PartDefinition kneeAnchor = bottom_legs_thick_long_2.addOrReplaceChild("kneeAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.25F, 0.0F));
 

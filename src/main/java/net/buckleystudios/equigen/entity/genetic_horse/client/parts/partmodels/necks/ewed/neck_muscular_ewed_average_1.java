@@ -163,7 +163,8 @@ public class neck_muscular_ewed_average_1 extends MultipartNeckModel<GeneticHors
 						new Block(5, 4, 4),
 						new Block(5, 8, 2),
 						new Block(6, 9, 4),
-						new Block(5, 9, 4))
+						new Block(5, 9, 4),
+						new Block(0, 0, 0))
 		));
 	}
 	public Part returnManeCubeDimensions() {

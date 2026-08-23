@@ -31,8 +31,6 @@ public class top_back_legs_thin_long_2 extends MultipartBackTopLegModel<GeneticH
 	}
 
 	public static LayerDefinition createBodyLayer(GeneticValues.LEG leg) {
-		final int uvXOffset = getUVXOffset(leg);
-		final int uvYOffset = getUVYOffset(leg);
 
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
@@ -41,11 +39,11 @@ public class top_back_legs_thin_long_2 extends MultipartBackTopLegModel<GeneticH
 
 		PartDefinition top_back_legs_thin_long_2_top_back_front = top_back_legs_thin_long_2.addOrReplaceChild("top_back_legs_thin_long_2_top_back_front", CubeListBuilder.create(), PartPose.offset(-0.1444F, 4.2949F, 0.4225F));
 
-		PartDefinition cube_r1 = top_back_legs_thin_long_2_top_back_front.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(uvXOffset, uvYOffset).mirror().addBox(-1.1444F, -3.0F, -1.0F, 2.0F, 2.0F, 10.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.1444F, 3.2135F, 3.1103F, 1.8762F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = top_back_legs_thin_long_2_top_back_front.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(getUVXOffset(leg, 0), getUVYOffset(leg, 0, 10)).mirror().addBox(-1.1444F, -3.0F, -1.0F, 2.0F, 2.0F, 10.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.1444F, 3.2135F, 3.1103F, 1.8762F, 0.0F, 0.0F));
 
 		PartDefinition top_back_legs_thin_long_2_top_back_back = top_back_legs_thin_long_2.addOrReplaceChild("top_back_legs_thin_long_2_top_back_back", CubeListBuilder.create(), PartPose.offset(0.1444F, 4.2632F, 1.6975F));
 
-		PartDefinition cube_r2 = top_back_legs_thin_long_2_top_back_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(uvXOffset, uvYOffset).mirror().addBox(-0.8556F, -1.0F, -2.92F, 2.0F, 2.0F, 11.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-0.1444F, 2.5408F, 0.448F, 1.7453F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = top_back_legs_thin_long_2_top_back_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(getUVXOffset(leg, 1), getUVYOffset(leg, 1, 11)).mirror().addBox(-0.8556F, -1.0F, -2.92F, 2.0F, 2.0F, 11.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-0.1444F, 2.5408F, 0.448F, 1.7453F, 0.0F, 0.0F));
 
 		PartDefinition hipsAnchor = top_back_legs_thin_long_2.addOrReplaceChild("hipsAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.3F, 0.0F));
 

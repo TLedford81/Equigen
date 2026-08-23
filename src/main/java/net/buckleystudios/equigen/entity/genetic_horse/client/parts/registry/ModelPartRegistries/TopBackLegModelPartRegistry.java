@@ -18,8 +18,6 @@ public class TopBackLegModelPartRegistry {
                         GeneticValues.TOP_LEG.SHORT_1
                 ),
 
-                ModModelLayers.TOP_BACK_LEGS_THIN_SHORT_1_FRONT_LEFT,
-                ModModelLayers.TOP_BACK_LEGS_THIN_SHORT_1_FRONT_RIGHT,
                 ModModelLayers.TOP_BACK_LEGS_THIN_SHORT_1_BACK_LEFT,
                 ModModelLayers.TOP_BACK_LEGS_THIN_SHORT_1_BACK_RIGHT,
 
@@ -31,8 +29,6 @@ public class TopBackLegModelPartRegistry {
                         GeneticValues.TOP_LEG.SHORT_2
                 ),
 
-                ModModelLayers.TOP_BACK_LEGS_THIN_SHORT_2_FRONT_LEFT,
-                ModModelLayers.TOP_BACK_LEGS_THIN_SHORT_2_FRONT_RIGHT,
                 ModModelLayers.TOP_BACK_LEGS_THIN_SHORT_2_BACK_LEFT,
                 ModModelLayers.TOP_BACK_LEGS_THIN_SHORT_2_BACK_RIGHT,
 
@@ -44,8 +40,6 @@ public class TopBackLegModelPartRegistry {
                         GeneticValues.TOP_LEG.AVERAGE_1
                 ),
 
-                ModModelLayers.TOP_BACK_LEGS_THIN_AVERAGE_1_FRONT_LEFT,
-                ModModelLayers.TOP_BACK_LEGS_THIN_AVERAGE_1_FRONT_RIGHT,
                 ModModelLayers.TOP_BACK_LEGS_THIN_AVERAGE_1_BACK_LEFT,
                 ModModelLayers.TOP_BACK_LEGS_THIN_AVERAGE_1_BACK_RIGHT,
 
@@ -57,8 +51,6 @@ public class TopBackLegModelPartRegistry {
                         GeneticValues.TOP_LEG.AVERAGE_2
                 ),
 
-                ModModelLayers.TOP_BACK_LEGS_THIN_AVERAGE_2_FRONT_LEFT,
-                ModModelLayers.TOP_BACK_LEGS_THIN_AVERAGE_2_FRONT_RIGHT,
                 ModModelLayers.TOP_BACK_LEGS_THIN_AVERAGE_2_BACK_LEFT,
                 ModModelLayers.TOP_BACK_LEGS_THIN_AVERAGE_2_BACK_RIGHT,
 
@@ -70,8 +62,6 @@ public class TopBackLegModelPartRegistry {
                         GeneticValues.TOP_LEG.LONG_1
                 ),
 
-                ModModelLayers.TOP_BACK_LEGS_THIN_LONG_1_FRONT_LEFT,
-                ModModelLayers.TOP_BACK_LEGS_THIN_LONG_1_FRONT_RIGHT,
                 ModModelLayers.TOP_BACK_LEGS_THIN_LONG_1_BACK_LEFT,
                 ModModelLayers.TOP_BACK_LEGS_THIN_LONG_1_BACK_RIGHT,
 
@@ -83,8 +73,6 @@ public class TopBackLegModelPartRegistry {
                         GeneticValues.TOP_LEG.LONG_2
                 ),
 
-                ModModelLayers.TOP_BACK_LEGS_THIN_LONG_2_FRONT_LEFT,
-                ModModelLayers.TOP_BACK_LEGS_THIN_LONG_2_FRONT_RIGHT,
                 ModModelLayers.TOP_BACK_LEGS_THIN_LONG_2_BACK_LEFT,
                 ModModelLayers.TOP_BACK_LEGS_THIN_LONG_2_BACK_RIGHT,
 
@@ -98,8 +86,6 @@ public class TopBackLegModelPartRegistry {
                         GeneticValues.TOP_LEG.SHORT_1
                 ),
 
-                ModModelLayers.TOP_BACK_LEGS_AVERAGE_SHORT_1_FRONT_LEFT,
-                ModModelLayers.TOP_BACK_LEGS_AVERAGE_SHORT_1_FRONT_RIGHT,
                 ModModelLayers.TOP_BACK_LEGS_AVERAGE_SHORT_1_BACK_LEFT,
                 ModModelLayers.TOP_BACK_LEGS_AVERAGE_SHORT_1_BACK_RIGHT,
 
@@ -111,8 +97,6 @@ public class TopBackLegModelPartRegistry {
                         GeneticValues.TOP_LEG.SHORT_2
                 ),
 
-                ModModelLayers.TOP_BACK_LEGS_AVERAGE_SHORT_2_FRONT_LEFT,
-                ModModelLayers.TOP_BACK_LEGS_AVERAGE_SHORT_2_FRONT_RIGHT,
                 ModModelLayers.TOP_BACK_LEGS_AVERAGE_SHORT_2_BACK_LEFT,
                 ModModelLayers.TOP_BACK_LEGS_AVERAGE_SHORT_2_BACK_RIGHT,
 
@@ -124,8 +108,6 @@ public class TopBackLegModelPartRegistry {
                         GeneticValues.TOP_LEG.AVERAGE_1
                 ),
 
-                ModModelLayers.TOP_BACK_LEGS_AVERAGE_AVERAGE_1_FRONT_LEFT,
-                ModModelLayers.TOP_BACK_LEGS_AVERAGE_AVERAGE_1_FRONT_RIGHT,
                 ModModelLayers.TOP_BACK_LEGS_AVERAGE_AVERAGE_1_BACK_LEFT,
                 ModModelLayers.TOP_BACK_LEGS_AVERAGE_AVERAGE_1_BACK_RIGHT,
 
@@ -137,8 +119,6 @@ public class TopBackLegModelPartRegistry {
                         GeneticValues.TOP_LEG.AVERAGE_2
                 ),
 
-                ModModelLayers.TOP_BACK_LEGS_AVERAGE_AVERAGE_2_FRONT_LEFT,
-                ModModelLayers.TOP_BACK_LEGS_AVERAGE_AVERAGE_2_FRONT_RIGHT,
                 ModModelLayers.TOP_BACK_LEGS_AVERAGE_AVERAGE_2_BACK_LEFT,
                 ModModelLayers.TOP_BACK_LEGS_AVERAGE_AVERAGE_2_BACK_RIGHT,
 
@@ -150,8 +130,6 @@ public class TopBackLegModelPartRegistry {
                         GeneticValues.TOP_LEG.LONG_1
                 ),
 
-                ModModelLayers.TOP_BACK_LEGS_AVERAGE_LONG_1_FRONT_LEFT,
-                ModModelLayers.TOP_BACK_LEGS_AVERAGE_LONG_1_FRONT_RIGHT,
                 ModModelLayers.TOP_BACK_LEGS_AVERAGE_LONG_1_BACK_LEFT,
                 ModModelLayers.TOP_BACK_LEGS_AVERAGE_LONG_1_BACK_RIGHT,
 
@@ -163,8 +141,6 @@ public class TopBackLegModelPartRegistry {
                         GeneticValues.TOP_LEG.LONG_2
                 ),
 
-                ModModelLayers.TOP_BACK_LEGS_AVERAGE_LONG_2_FRONT_LEFT,
-                ModModelLayers.TOP_BACK_LEGS_AVERAGE_LONG_2_FRONT_RIGHT,
                 ModModelLayers.TOP_BACK_LEGS_AVERAGE_LONG_2_BACK_LEFT,
                 ModModelLayers.TOP_BACK_LEGS_AVERAGE_LONG_2_BACK_RIGHT,
 
@@ -178,8 +154,6 @@ public class TopBackLegModelPartRegistry {
                         GeneticValues.TOP_LEG.SHORT_1
                 ),
 
-                ModModelLayers.TOP_BACK_LEGS_THICK_SHORT_1_FRONT_LEFT,
-                ModModelLayers.TOP_BACK_LEGS_THICK_SHORT_1_FRONT_RIGHT,
                 ModModelLayers.TOP_BACK_LEGS_THICK_SHORT_1_BACK_LEFT,
                 ModModelLayers.TOP_BACK_LEGS_THICK_SHORT_1_BACK_RIGHT,
 
@@ -191,8 +165,6 @@ public class TopBackLegModelPartRegistry {
                         GeneticValues.TOP_LEG.SHORT_2
                 ),
 
-                ModModelLayers.TOP_BACK_LEGS_THICK_SHORT_2_FRONT_LEFT,
-                ModModelLayers.TOP_BACK_LEGS_THICK_SHORT_2_FRONT_RIGHT,
                 ModModelLayers.TOP_BACK_LEGS_THICK_SHORT_2_BACK_LEFT,
                 ModModelLayers.TOP_BACK_LEGS_THICK_SHORT_2_BACK_RIGHT,
 
@@ -204,8 +176,6 @@ public class TopBackLegModelPartRegistry {
                         GeneticValues.TOP_LEG.AVERAGE_1
                 ),
 
-                ModModelLayers.TOP_BACK_LEGS_THICK_AVERAGE_1_FRONT_LEFT,
-                ModModelLayers.TOP_BACK_LEGS_THICK_AVERAGE_1_FRONT_RIGHT,
                 ModModelLayers.TOP_BACK_LEGS_THICK_AVERAGE_1_BACK_LEFT,
                 ModModelLayers.TOP_BACK_LEGS_THICK_AVERAGE_1_BACK_RIGHT,
 
@@ -217,8 +187,6 @@ public class TopBackLegModelPartRegistry {
                         GeneticValues.TOP_LEG.AVERAGE_2
                 ),
 
-                ModModelLayers.TOP_BACK_LEGS_THICK_AVERAGE_2_FRONT_LEFT,
-                ModModelLayers.TOP_BACK_LEGS_THICK_AVERAGE_2_FRONT_RIGHT,
                 ModModelLayers.TOP_BACK_LEGS_THICK_AVERAGE_2_BACK_LEFT,
                 ModModelLayers.TOP_BACK_LEGS_THICK_AVERAGE_2_BACK_RIGHT,
 
@@ -230,8 +198,6 @@ public class TopBackLegModelPartRegistry {
                         GeneticValues.TOP_LEG.LONG_1
                 ),
 
-                ModModelLayers.TOP_BACK_LEGS_THICK_LONG_1_FRONT_LEFT,
-                ModModelLayers.TOP_BACK_LEGS_THICK_LONG_1_FRONT_RIGHT,
                 ModModelLayers.TOP_BACK_LEGS_THICK_LONG_1_BACK_LEFT,
                 ModModelLayers.TOP_BACK_LEGS_THICK_LONG_1_BACK_RIGHT,
 
@@ -243,8 +209,6 @@ public class TopBackLegModelPartRegistry {
                         GeneticValues.TOP_LEG.LONG_2
                 ),
 
-                ModModelLayers.TOP_BACK_LEGS_THICK_LONG_2_FRONT_LEFT,
-                ModModelLayers.TOP_BACK_LEGS_THICK_LONG_2_FRONT_RIGHT,
                 ModModelLayers.TOP_BACK_LEGS_THICK_LONG_2_BACK_LEFT,
                 ModModelLayers.TOP_BACK_LEGS_THICK_LONG_2_BACK_RIGHT,
 

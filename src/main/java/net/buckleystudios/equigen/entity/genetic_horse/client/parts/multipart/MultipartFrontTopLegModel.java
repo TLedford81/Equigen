@@ -17,43 +17,51 @@ public abstract class MultipartFrontTopLegModel <E extends GeneticHorseEntity> e
         }
     }
 
-    protected static int getUVXOffset(GeneticValues.LEG leg) {
+    protected static int getUVXOffset(GeneticValues.LEG leg, int blockNum) {
+        int offset;
         switch (leg) {
             case GeneticValues.LEG.FRONT_LEFT -> {
-                return 20;
+                switch (blockNum) {
+                    case 0 -> offset = 82 / 2;
+                    case 1 -> offset = 48 / 2;
+                    case 2 -> offset = 22 / 2;
+                    default -> offset = 0;
+                }
             }
             case GeneticValues.LEG.FRONT_RIGHT -> {
-                return 50;
+                switch (blockNum) {
+                    case 0 -> offset = 144 / 2;
+                    case 1 -> offset = 110 / 2;
+                    case 2 -> offset = 76 / 2;
+                    default -> offset = 0;
+                }
             }
-            case GeneticValues.LEG.BACK_LEFT -> {
-                return 100;
-            }
-            case GeneticValues.LEG.BACK_RIGHT -> {
-                return 150;
-            }
-            default -> {
-                return 0;
-            }
+            default -> offset = 0;
         }
+            return offset;
     }
-    protected static int getUVYOffset(GeneticValues.LEG leg) {
+    protected static int getUVYOffset(GeneticValues.LEG leg, int blockNum, int zLength) {
+        int offset;
         switch (leg) {
             case GeneticValues.LEG.FRONT_LEFT -> {
-                return 10;
+                switch (blockNum) {
+                    case 0, 2 -> offset = 90 / 2;
+                    case 1 -> offset = 84 / 2;
+                    default -> offset = 0;
+                }
             }
             case GeneticValues.LEG.FRONT_RIGHT -> {
-                return 20;
+                switch (blockNum) {
+                    case 0 -> offset = 108 / 2;
+                    case 1 -> offset = 84 / 2;
+                    case 2 -> offset = 66 / 2;
+                    default -> offset = 0;
+                }
             }
-            case GeneticValues.LEG.BACK_LEFT -> {
-                return 30;
-            }
-            case GeneticValues.LEG.BACK_RIGHT -> {
-                return 40;
-            }
-            default -> {
-                return 0;
-            }
+            default -> offset = 0;
         }
-    }
 
+        return offset - zLength;
+
+        }
 }

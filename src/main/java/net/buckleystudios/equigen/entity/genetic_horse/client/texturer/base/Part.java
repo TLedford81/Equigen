@@ -10,19 +10,36 @@ public class Part {
 
     public void applyBaseUVCoords(String type) {
         //Applies the base TARGET coords for the final texture file to the blocks.
+        EquigenMod.LOGGER.info("APPLYING COORDS TO {}", type);
         switch (type) {
             case "back" -> {
                 updateBlocks(0, 66, 32, false);
                 updateBlocks(1, 128, 12, false);
                 updateBlocks(2, 140, 48, false);
             }
-            case "top_back_legs" -> {
-                updateBlocks(0, 70, 264, false);
-                updateBlocks(1, 98, 258, false);
+            case "top_back_legs_back_left" -> {
+                updateBlocks(0, 52, 114, false);
+                updateBlocks(1, 22, 120, false);
             }
-            case "bottom_leg" -> {
-                updateBlocks(0, 0, 316, false);
-                updateBlocks(1, 36, 282, false);
+            case "top_back_legs_back_right" -> {
+                updateBlocks(0, 116, 114, false);
+                updateBlocks(1, 86, 120, false);
+            }
+            case "bottom_legs_front_left" -> {
+                updateBlocks(0, 16, 52, false);
+                updateBlocks(1, 0, 42, false);
+            }
+            case "bottom_legs_front_right" -> {
+                updateBlocks(0, 0, 72, false);
+                updateBlocks(1, 0, 56, false);
+            }
+            case "bottom_legs_back_left" -> {
+                updateBlocks(0, 0, 100, false);
+                updateBlocks(1, 0, 84, false);
+            }
+            case "bottom_legs_back_right" -> {
+                updateBlocks(0, 0, 128, false);
+                updateBlocks(1, 0, 112, false);
             }
             case "chest" -> {
                 updateBlocks(0, 60, 284, false);
@@ -46,10 +63,15 @@ public class Part {
                 updateBlocks(0, 244, 269, false);
                 updateBlocks(1, 246, 260, false);
             }
-            case "top_front_legs" -> {
-                updateBlocks(0, 84, 150, false);
-                updateBlocks(1, 46, 240, false);
-                updateBlocks(2, 36, 218, false);
+            case "top_front_legs_front_left" -> {
+                updateBlocks(0, 82, 90, false);
+                updateBlocks(1, 48, 84, false);
+                updateBlocks(2, 22, 90, false);
+            }
+            case "top_front_legs_front_right" -> {
+                updateBlocks(0, 144, 108, false);
+                updateBlocks(1, 110, 84, false);
+                updateBlocks(2, 76, 66, false);
             }
             case "head" -> {
                 updateBlocks(0, 210, 192, false);
@@ -68,11 +90,29 @@ public class Part {
                 updateBlocks(4, 0, 150, false);
                 updateBlocks(5, 0, 174, false);
             }
-            case "hoof" -> {
-                updateBlocks(0, 204, 266, false);
+            case "hoof_front_left" -> {
+                updateBlocks(0, 90, 142, false);
             }
-            case "knees" -> {
-                updateBlocks(0, 130, 298, false);
+            case "hoof_front_right" -> {
+                updateBlocks(0, 108, 148, false);
+            }
+            case "hoof_back_left" -> {
+                updateBlocks(0, 88, 154, false);
+            }
+            case "hoof_back_right" -> {
+                updateBlocks(0, 106, 160, false);
+            }
+            case "knees_front_left" -> {
+                updateBlocks(0, 50, 6, false);
+            }
+            case "knees_front_right" -> {
+                updateBlocks(0, 68, 6, false);
+            }
+            case "knees_back_left" -> {
+                updateBlocks(0, 50, 16, false);
+            }
+            case "knees_back_right" -> {
+                updateBlocks(0, 68, 16, false);
             }
             case "neck" -> {
                 updateBlocks(0, 210, 168, false);

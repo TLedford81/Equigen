@@ -18,43 +18,42 @@ public abstract class MultipartBackTopLegModel <E extends GeneticHorseEntity> ex
         }
     }
 
-    protected static int getUVXOffset(GeneticValues.LEG leg) {
+    protected static int getUVXOffset(GeneticValues.LEG leg, int blockNum) {
+        int offset;
         switch (leg) {
-            case GeneticValues.LEG.FRONT_LEFT -> {
-                return 20;
-            }
-            case GeneticValues.LEG.FRONT_RIGHT -> {
-                return 50;
-            }
             case GeneticValues.LEG.BACK_LEFT -> {
-                return 100;
+                switch (blockNum) {
+                    case 0 -> offset = 52 / 2;
+                    case 1 -> offset = 22 / 2;
+                    default -> offset = 0;
+                }
             }
             case GeneticValues.LEG.BACK_RIGHT -> {
-                return 150;
+                switch (blockNum) {
+                    case 0 -> offset = 116 / 2;
+                    case 1 -> offset = 86 / 2;
+                    default -> offset = 0;
+                }
             }
-            default -> {
-                return 0;
-            }
+            default -> offset = 0;
         }
+        return offset;
     }
-    protected static int getUVYOffset(GeneticValues.LEG leg) {
+    protected static int getUVYOffset(GeneticValues.LEG leg, int blockNum, int zLength) {
+        int offset;
         switch (leg) {
-            case GeneticValues.LEG.FRONT_LEFT -> {
-                return 10;
+            case GeneticValues.LEG.BACK_LEFT, GeneticValues.LEG.BACK_RIGHT -> {
+                switch (blockNum) {
+                    case 0 -> offset = 114 / 2;
+                    case 1 -> offset = 120 / 2;
+                    default -> offset = 0;
+                }
             }
-            case GeneticValues.LEG.FRONT_RIGHT -> {
-                return 20;
-            }
-            case GeneticValues.LEG.BACK_LEFT -> {
-                return 30;
-            }
-            case GeneticValues.LEG.BACK_RIGHT -> {
-                return 40;
-            }
-            default -> {
-                return 0;
-            }
+            default -> offset = 0;
         }
+
+        return offset - zLength;
+
     }
 }
 

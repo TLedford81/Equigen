@@ -2,7 +2,6 @@ package net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class PartList {
     ArrayList<Part> partList = new ArrayList<>();
@@ -599,112 +598,5 @@ public class PartList {
         }
     }
 
-    public ArrayList<Part> returnPartList(String partType) {
-        partType = partType.toLowerCase();
-        ArrayList<Part> partList2 = new ArrayList<>();
-        switch(partType) {
-            case "neck" -> {
-                partList2.add(returnPart("neck_lean_ewed_short_1"));
-                partList2.add(returnPart("neck_lean_ewed_short_2"));
-                partList2.add(returnPart("neck_lean_ewed_average_1"));
-                partList2.add(returnPart("neck_lean_ewed_average_2"));
-                partList2.add(returnPart("neck_lean_ewed_long_1"));
-                partList2.add(returnPart("neck_lean_ewed_long_2"));
 
-                partList2.add(returnPart("neck_average_ewed_short_1"));
-                partList2.add(returnPart("neck_average_ewed_short_2"));
-                partList2.add(returnPart("neck_average_ewed_average_1"));
-                partList2.add(returnPart("neck_average_ewed_average_2"));
-                partList2.add(returnPart("neck_average_ewed_long_1"));
-                partList2.add(returnPart("neck_average_ewed_long_2"));
-
-                partList2.add(returnPart("neck_muscular_ewed_short_1"));
-                partList2.add(returnPart("neck_muscular_ewed_short_2"));
-                partList2.add(returnPart("neck_muscular_ewed_average_1"));
-                partList2.add(returnPart("neck_muscular_ewed_average_2"));
-                partList2.add(returnPart("neck_muscular_ewed_long_1"));
-                partList2.add(returnPart("neck_muscular_ewed_long_2"));
-            }
-            case "arched_mane" -> {
-                partList2.add(returnPart("mane_flow_arched_short_1"));
-                partList2.add(returnPart("mane_flow_arched_short_2"));
-                partList2.add(returnPart("mane_flow_arched_average_1"));
-                partList2.add(returnPart("mane_flow_arched_average_2"));
-                partList2.add(returnPart("mane_flow_arched_long_1"));
-                partList2.add(returnPart("mane_flow_arched_long_2"));
-            }
-            case "ewed_mane" -> {
-                partList2.add(returnPart("mane_flow_ewed_short_1"));
-                partList2.add(returnPart("mane_flow_ewed_short_2"));
-                partList2.add(returnPart("mane_flow_ewed_average_1"));
-                partList2.add(returnPart("mane_flow_ewed_average_2"));
-                partList2.add(returnPart("mane_flow_ewed_long_1"));
-                partList2.add(returnPart("mane_flow_ewed_long_2"));
-            }
-            case "straight_mane" -> {
-                partList2.add(returnPart("mane_flow_straight_short_1"));
-                partList2.add(returnPart("mane_flow_straight_short_2"));
-                partList2.add(returnPart("mane_flow_straight_average_1"));
-                partList2.add(returnPart("mane_flow_straight_average_2"));
-                partList2.add(returnPart("mane_flow_straight_long_1"));
-                partList2.add(returnPart("mane_flow_straight_long_2"));
-            }
-            case "swan_mane" -> {
-                partList2.add(returnPart("mane_flow_swan_short_1"));
-                partList2.add(returnPart("mane_flow_swan_short_2"));
-                partList2.add(returnPart("mane_flow_swan_average_1"));
-                partList2.add(returnPart("mane_flow_swan_average_2"));
-                partList2.add(returnPart("mane_flow_swan_long_1"));
-                partList2.add(returnPart("mane_flow_swan_long_2"));
-            }
-            case "mane_top" -> {
-                partList2.add(returnPart("mane_top_swan"));
-                partList2.add(returnPart("mane_top_ewed"));
-                partList2.add(returnPart("mane_top_straight"));
-
-            }
-            case "arched_mane_top" -> {
-                partList2.add(returnPart("mane_top_arched"));
-            }
-            case "head_straight" -> {
-                partList2.add(returnPart("head_straight_lean"));
-                partList2.add(returnPart("head_straight_average"));
-                partList2.add(returnPart("head_straight_muscular"));
-            }
-            case "head_stocky" -> {
-                partList2.add(returnPart("head_stocky_lean"));
-                partList2.add(returnPart("head_stocky_average"));
-                partList2.add(returnPart("head_stocky_muscular"));
-            }
-            case "head_roman" -> {
-                partList2.add(returnPart("head_roman_lean"));
-                partList2.add(returnPart("head_roman_average"));
-                partList2.add(returnPart("head_roman_muscular"));
-            }
-            case "head_dished" -> {
-                partList2.add(returnPart("head_dished_lean"));
-                partList2.add(returnPart("head_dished_average"));
-                partList2.add(returnPart("head_dished_muscular"));
-            }
-            case "knees" -> {
-                partList2.add(returnPart("knees"));
-            }
-            default -> {
-                return new ArrayList<Part>();
-            }
-        }
-        return partList2;
-    }
-
-    public ArrayList<Part> createPartList(List<String> partTypeNames) {
-        ArrayList<Part> partList = new ArrayList<>();
-        PartList Parts = new PartList();
-
-        for (String s: partTypeNames) {
-            ArrayList<Part> partList2 = Parts.returnPartList(s);
-            partList.addAll(partList2);
-            System.out.println("ADDED " + s);
-        }
-        return partList;
-    }
 }
