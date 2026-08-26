@@ -7,21 +7,20 @@ import net.buckleystudios.equigen.entity.genetic_horse.client.parts.registry.Mod
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.registry.RegistryKeyFactory;
 import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Canvas;
 import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Part;
+import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.PartList;
+import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.TextureCalculator;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticValues;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.Genetics;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticsHandler;
-import net.buckleystudios.equigen.entity.genetic_horse.genetics.util.GeneticCategories;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.util.GeneticPartNameBuilder;
 import net.minecraft.client.model.geom.EntityModelSet;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.List;
 
 public class GeneticHorseTexturer {
     GeneticHorseEntity entity;
@@ -34,6 +33,7 @@ public class GeneticHorseTexturer {
 
     public Map<BufferedImage, GeneticValues.LEG> getLayerList(GeneticHorseEntity entity) throws IOException {
         EquigenMod.LOGGER.info("CALLING GETLAYERLIST");
+        TextureCalculator calculator = new TextureCalculator();
         Map<BufferedImage, GeneticValues.LEG> imageLayers = new HashMap<>();
         //Base Coat is handled in the TextureGeneration code.
         //Modifiers
@@ -42,11 +42,25 @@ public class GeneticHorseTexturer {
         //Black Point (if applicable)
 
         //Leg Markings
-        imageLayers.put(returnImage(Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
-                "entity", "genetic_horse", "markings", "leg_markings", "socks" ,"sock_3.png")), GeneticValues.LEG.FRONT_LEFT);
+        if (GeneticsHandler.getGeneticFloat(entity, Genetics.FRONT_LEFT_LEG_MARKING) > 0) {
+            imageLayers.put(returnImage(Objects.requireNonNull(calculator.getLegWhiteMarking
+                    ((int) GeneticsHandler.getGeneticFloat(entity, Genetics.FRONT_LEFT_LEG_MARKING)))), GeneticValues.LEG.FRONT_LEFT);
+        }
+        if (GeneticsHandler.getGeneticFloat(entity, Genetics.FRONT_RIGHT_LEG_MARKING) > 0) {
+            imageLayers.put(returnImage(Objects.requireNonNull(calculator.getLegWhiteMarking
+                    ((int) GeneticsHandler.getGeneticFloat(entity, Genetics.FRONT_RIGHT_LEG_MARKING)))), GeneticValues.LEG.FRONT_RIGHT);
+        }
+        if (GeneticsHandler.getGeneticFloat(entity, Genetics.BACK_LEFT_LEG_MARKING) > 0) {
+            imageLayers.put(returnImage(Objects.requireNonNull(calculator.getLegWhiteMarking
+                    ((int) GeneticsHandler.getGeneticFloat(entity, Genetics.BACK_LEFT_LEG_MARKING)))), GeneticValues.LEG.BACK_LEFT);
+        }
+        if (GeneticsHandler.getGeneticFloat(entity, Genetics.BACK_RIGHT_LEG_MARKING) > 0) {
+            imageLayers.put(returnImage(Objects.requireNonNull(calculator.getLegWhiteMarking
+                    ((int) GeneticsHandler.getGeneticFloat(entity, Genetics.BACK_RIGHT_LEG_MARKING)))), GeneticValues.LEG.BACK_RIGHT);
+        }
         //Face Markings
         if (GeneticsHandler.getGeneticFloat(entity, Genetics.FACE_MARKING) > 0) {
-            imageLayers.put(returnImage(Objects.requireNonNull(getFaceMarking(entity))), null);
+            imageLayers.put(returnImage(Objects.requireNonNull(calculator.getFaceMarking(entity))), null);
         }
 
         //Patterns
@@ -54,7 +68,8 @@ public class GeneticHorseTexturer {
         //Mane Base
 
         //Tail Base
-
+        imageLayers.put(tintTexture(returnImage(Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
+                "entity", "genetic_horse", "base", "tail.png")), calculator.getTailColor(entity)), null);
         //Hooves Base
 
         //Shading Layer
@@ -65,9 +80,9 @@ public class GeneticHorseTexturer {
         imageLayers.put(returnImage(Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
                 "entity", "genetic_horse", "markings", "head_markings", "eyes.png")), null);
         imageLayers.put(tintTexture(returnImage(Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
-                "entity", "genetic_horse", "markings", "head_markings", "eyes_right_pupil.png")), getEyeColor(entity, false)), null);
+                "entity", "genetic_horse", "markings", "head_markings", "eyes_right_pupil.png")), calculator.getEyeColor(entity, false)), null);
         imageLayers.put(tintTexture(returnImage(Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
-                        "entity", "genetic_horse", "markings", "head_markings", "eyes_left_pupil.png")), getEyeColor(entity, true)), null);
+                        "entity", "genetic_horse", "markings", "head_markings", "eyes_left_pupil.png")), calculator.getEyeColor(entity, true)), null);
 
         //Nostrils
 
@@ -78,13 +93,14 @@ public class GeneticHorseTexturer {
 
     public void textureGeneration(GeneticHorseEntity entity, Path destination, Map<BufferedImage, GeneticValues.LEG>  referenceLayers) throws IOException {
         Canvas canvas = new Canvas();
+        TextureCalculator calculator = new TextureCalculator();
         GeneticPartNameBuilder builder = new GeneticPartNameBuilder(entity);
         canvas.initializeCanvas();
         List<Part> partsList = getRenderedParts(entity);
 
         // Draw Base Color
         EquigenMod.LOGGER.info("DRAWING BASE COLOR");
-        canvas.drawColor((ArrayList<Part>) partsList, getBaseColor(entity));
+        canvas.drawColor((ArrayList<Part>) partsList, calculator.getBaseColor(entity));
 
         // For Loop Draw Layers
         int i = 0;
@@ -99,7 +115,7 @@ public class GeneticHorseTexturer {
             } else {
                 referenceParts = findReferenceParts(l);
                 for (Part p: referenceParts) {
-                    EquigenMod.LOGGER.info("MODEL NAME = {}", p.modelName);
+                    EquigenMod.LOGGER.info("REFERENCE PARTS: MODEL NAME = {}", p.modelName);
                     p.printBlockStats();
                 }
             }
@@ -109,10 +125,12 @@ public class GeneticHorseTexturer {
                 String partType = builder.returnPartType(p2.modelName, leg);
                 List<Part> relevantReferenceParts = new ArrayList<>(List.of());
                 for (Part p : referenceParts) {
-                    EquigenMod.LOGGER.info("P = {}, PARTTYPE = {}", p.modelName, partType);
-                    if (p.modelName.contains(partType)) {
+                    if (p.modelName.contains(builder.returnPartTypeNoLegs(p2.modelName))) {
                         relevantReferenceParts.add(p);
                         EquigenMod.LOGGER.info("THEY MATCH!! ADDING PART");
+                        EquigenMod.LOGGER.info("P = {}, PARTTYPE = {}", p.modelName, partType);
+                    } else {
+//                        EquigenMod.LOGGER.info("THEY DONT MATCH!! MOVING ON!");
                     }
                 }
                 Part bestPart = findBestMatch(relevantReferenceParts, p2);
@@ -128,220 +146,6 @@ public class GeneticHorseTexturer {
         }
         // Finalize Image
         canvas.finalizeImage(destination);
-    }
-
-    private int getBaseColor(GeneticHorseEntity entity) {
-        float warmth = GeneticsHandler.getGeneticFloat(entity, Genetics.WARMTH);
-        float darkness = GeneticsHandler.getGeneticFloat(entity, Genetics.DARKNESS);
-        float richness = GeneticsHandler.getGeneticFloat(entity, Genetics.RICHNESS);
-        EquigenMod.LOGGER.info("WARMTH = {}, DARKNESS = {}, RICHNESS = {}", warmth, darkness, richness);
-
-
-        float blackModifier = GeneticsHandler.getGeneticFloat(entity, Genetics.BLACK_MODIFIER);
-        float redModifier = GeneticsHandler.getGeneticFloat(entity, Genetics.RED_MODIFIER);
-
-        float hue;
-        float saturation;
-        float brightness;
-
-        if (blackModifier == 1.0f) {
-            //Chestnut e/e _/_
-            hue = 15 + (warmth * 0.1F);
-            saturation = 55 + (richness * 0.35F);
-            brightness = 45 + (darkness * 0.40F);
-        } else if (redModifier == 1.0f && blackModifier >= 2.0f) {
-            //Black E/_ a/a
-            hue = 18 + (warmth * 0.12F);
-            saturation = 2 + (richness * 0.12F);
-            brightness = 20 + (darkness * 0.15F);
-        } else {
-            //Bay E/_ A_
-            hue = 24 + (warmth * 0.1F);
-            saturation = 40 + (richness * 0.35F);
-            brightness = 60 + (darkness * 0.35F);
-        }
-
-        hue /= 360f;
-        saturation /= 100f;
-        brightness /= 100f;
-
-        EquigenMod.LOGGER.info("HUE = {}, SATURATION = {}, BRIGHTNESS = {}", hue, saturation, brightness);
-
-        return Color.HSBtoRGB(hue, saturation, brightness);
-    }
-
-    private int applyModifiers(GeneticHorseEntity entity, int RGB, String baseColor) {
-        List<Genetics> genetics = Genetics.getTextureGenetics();
-        List<Genetics> presentModifiers = new ArrayList<>(List.of());
-        for (Genetics g : genetics) {
-            if (g.getCategory().equals(GeneticCategories.COAT_MODIFIERS)) {
-                float gene = GeneticsHandler.getGeneticFloat(entity, g.name());
-                if (gene >= 2.0F) { // E/e or above
-                    presentModifiers.add(g);
-                    EquigenMod.LOGGER.info("ADDING {} GENETIC TO PRESENT MODIFIERS WITH A VALUE OF {}", g.name(), gene);
-                }
-            }
-        }
-        float hue;
-        float saturation;
-        float brightness;
-        return 0;
-    }
-
-    private int findModifierValues(GeneticHorseEntity entity, Genetics gene, String type) {
-//        switch (gene.name()) {
-//            case
-//        }
-        return 0;
-    }
-    private int getEyeColor(GeneticHorseEntity entity, boolean secondaryEyeColor) {
-        float gHue = GeneticsHandler.getGeneticFloat(entity, Genetics.EYE_HUE);
-        float gSaturation = GeneticsHandler.getGeneticFloat(entity, Genetics.EYE_SATURATION);
-        float gBrightness = GeneticsHandler.getGeneticFloat(entity, Genetics.EYE_BRIGHTNESS);
-        float heterochromia = GeneticsHandler.getGeneticFloat(entity, Genetics.HETEROCHROMIA);
-
-        float hue;
-        float saturation;
-        float brightness;
-        float bb;
-        float aa;
-
-        if (secondaryEyeColor && heterochromia == 3.0F) {
-            //Reverses the Genetics
-            bb = GeneticsHandler.getGeneticFloat(entity, Genetics.EYE_BASE_COLOR_2);
-            aa = GeneticsHandler.getGeneticFloat(entity, Genetics.EYE_BASE_COLOR);
-        } else {
-            bb = GeneticsHandler.getGeneticFloat(entity, Genetics.EYE_BASE_COLOR); //Brown/Blue Gene b/b
-            aa = GeneticsHandler.getGeneticFloat(entity, Genetics.EYE_BASE_COLOR_2); //Amber/Hazel Gene a/a
-        }
-
-        // B = brown b = blue
-        // A = amber a = hazel
-
-        // bb 1 aa 1 - BLUE
-        // bb 1 Aa 2 - PALE BLUE
-        // bb 1 AA 3 - GRAY
-
-        //Bb 2 aa 1 - GREEN
-        //Bb 2 Aa 2 - HAZEL
-        //Bb 2 AA 3 - AMBER
-
-        //BB 3 aa 1 - DARK BROWN
-        //BB 3 aA 2 - BROWN
-        //BB 3 AA 3 - WARM BROWN
-
-
-        if (bb == 1.0f && aa == 1.0f) {
-            // Blue - b/b
-            // hue 190-225 S 40-80 B 45-85
-            hue = 190 + (gHue * 0.35F);
-            saturation = 40 + (gSaturation * 0.4F);
-            brightness = 45 + (gBrightness * 0.4F);
-
-            EquigenMod.LOGGER.info("EYES - BLUE: H = {} S = {} B = {}", hue, saturation, brightness);
-
-        } else if (bb == 1.0f && aa == 2.0f) {
-            // Pale blue - b/b A/a
-            // hue 200-230 S 15-45 B 65-90
-            hue = 200 + (gHue * 0.3F);
-            saturation = 15 + (gSaturation * 0.3F);
-            brightness = 65 + (gBrightness * 0.25F);
-
-            EquigenMod.LOGGER.info("EYES - PALE BLUE: H = {} S = {} B = {}", hue, saturation, brightness);
-
-        } else if (bb == 1.0f && aa == 3.0f) {
-            // Gray - b/b A/A
-            // hue 190-230 S 0-15 B 35-75
-            hue = 190 + (gHue * 0.4F);
-            saturation = 0 + (gSaturation * 0.15F);
-            brightness = 35 + (gBrightness * 0.4F);
-
-            EquigenMod.LOGGER.info("EYES - GRAY: H = {} S = {} B = {}", hue, saturation, brightness);
-
-        } else if (bb == 2.0F && aa == 1.0F) {
-            // Green - b/b A/a
-            // hue 70–90 S 25-65 B 30-65
-            hue = 70 + (gHue * 0.2F);
-            saturation = 25 + (gSaturation * 0.4F);
-            brightness = 30 + (gBrightness * 0.35F);
-            EquigenMod.LOGGER.info("EYES - GREEN: H = {} S = {} B = {}", hue, saturation, brightness);
-
-        } else if (bb == 2.0F && aa == 2.0F) {
-            // Hazel - B/b A/A
-            // hue 50-70 S 30-70 B 35-70
-            hue = 50 + (gHue * 0.2F);
-            saturation = 30 + (gSaturation * 0.4F);
-            brightness = 35 + (gBrightness * 0.4F);
-            EquigenMod.LOGGER.info("EYES - HAZEL: H = {} S = {} B = {}", hue, saturation, brightness);
-
-        } else if (bb == 2.0F && aa == 3.0F) {
-            // Amber - b/b A/A
-            // hue 30-50 S 50-90 B 45-80
-            hue = 30 + (gHue * 0.2F);
-            saturation = 50 + (gSaturation * 0.4F);
-            brightness = 45 + (gBrightness * 0.35F);
-            EquigenMod.LOGGER.info("EYES - AMBER: H = {} S = {} B = {}", hue, saturation, brightness);
-
-        } else if (bb == 3.0F && aa == 1.0F) {
-            // DARK BROWN - B/B a/a
-            // hue 15-30 S 45-80 B 15-40
-            hue = 15 + (gHue * 0.15F);
-            saturation = 45 + (gSaturation * 0.35F);
-            brightness = 15 + (gBrightness * 0.25F);
-            EquigenMod.LOGGER.info("EYES - DARK BROWN: H = {} S = {} B = {}", hue, saturation, brightness);
-        } else if (bb == 3.0F && aa == 2.0F){
-            // Brown - B/B or B/b
-            // hue 15-30 S 40-80 B 30-55
-            hue = 15 + (gHue * 0.15F);
-            saturation = 40 + (gSaturation * 0.4F);
-            brightness = 30 + (gBrightness * 0.25F);
-            EquigenMod.LOGGER.info("EYES - BROWN: H = {} S = {} B = {}", hue, saturation, brightness);
-        } else {
-            // Warm Brown - B/A
-            // hue 20-40 S 45-85 B 35-65
-            hue = 20 + (gHue * 0.2F);
-            saturation = 45 + (gSaturation * 0.4F);
-            brightness = 35 + (gBrightness * 0.3F);
-            EquigenMod.LOGGER.info("EYES - WARM BROWN: H = {} S = {} B = {}", hue, saturation, brightness);
-        }
-
-        hue /= 360f;
-        saturation /= 100f;
-        brightness /= 100f;
-
-        return Color.HSBtoRGB(hue, saturation, brightness);
-    }
-
-    private Path getFaceMarking(GeneticHorseEntity entity) {
-        int gene = (int) GeneticsHandler.getGeneticFloat(entity, Genetics.EYE_BASE_COLOR);
-        return switch (gene) {
-            case 1 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
-                    "entity", "genetic_horse", "markings", "head_markings", "blaze.png"); //blaze
-            case 2 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
-                    "entity", "genetic_horse", "markings", "head_markings", "faint_star.png"); //faint_star
-            case 3 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
-                    "entity", "genetic_horse", "markings", "head_markings", "interrupted_stripe.png"); //interrupted_stripe
-            case 4 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
-                    "entity", "genetic_horse", "markings", "head_markings", "stripe_and_snip.png"); //stripe_and_snip
-            case 5 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
-                    "entity", "genetic_horse", "markings", "head_markings", "stripe.png"); //stripe
-            case 6 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
-                    "entity", "genetic_horse", "markings", "head_markings", "irregular_blaze.png"); //irregular_blaze
-            case 7 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
-                    "entity", "genetic_horse", "markings", "head_markings", "bald_face.png"); //bald_face
-            case 8 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
-                    "entity", "genetic_horse", "markings", "head_markings", "star.png"); //star
-            case 9 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
-                    "entity", "genetic_horse", "markings", "head_markings", "star_and_strip.png"); //star_and_strip
-            case 10 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
-                    "entity", "genetic_horse", "markings", "head_markings", "irregular_star.png"); //irregular_star
-            case 11 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
-                    "entity", "genetic_horse", "markings", "head_markings", "snip.png"); //snip
-            case 12 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
-                    "entity", "genetic_horse", "markings", "head_markings", "lip_marking.png"); //lip_marking
-            default -> null;
-        };
-
     }
 
     public BufferedImage tintTexture(BufferedImage image, int rgbColor) {
@@ -396,12 +200,12 @@ public class GeneticHorseTexturer {
         return output;
     }
     public List<Part> findReferenceParts(BufferedImage sourceFile) {
+        PartList pList = new PartList(entity, modelSet);
         EquigenMod.LOGGER.info(
                 "findReferenceParts called on {}",
                 Thread.currentThread().getName()
         );
        EquigenMod.LOGGER.info("IMAGE LOCATION = " + sourceFile.toString());
-        List<Part> finalPartList = new ArrayList<>(List.of());
 
         EquigenMod.LOGGER.info(
                 "LOADED IMAGE {}x{}",
@@ -412,7 +216,7 @@ public class GeneticHorseTexturer {
                 for (int y = 0; y < sourceFile.getHeight(); y++) {
                     int pixel = sourceFile.getRGB(x, y);
                     if (getR(pixel) == 200) {
-                            EquigenMod.LOGGER.info("INDICATOR PIXEL FOUND!");
+                        EquigenMod.LOGGER.info("FOUND!! INDICATOR PIXEL AT {} + {}", x, y);
 
                         String modelName = "";
                         // R 200 Specifies that this is a part
@@ -465,7 +269,6 @@ public class GeneticHorseTexturer {
                             }
                             //TODO Make a way to indicate one block location is used for multiple different muscle masses.
                                 EquigenMod.LOGGER.info("PIXEL INDICATES REFERENCE IS {} muscle_mass, {} type, {} length_or_size, and {} block number.", muscleMass, type, lengthOrSize, blockNum);
-                                EquigenMod.LOGGER.info("FOUND!! INDICATOR PIXEL AT {} + {}", x, y);
                                 EquigenMod.LOGGER.info("R = {}, G = {}, B = {} ALPHA = {}", getR(rPixel), getG(rPixel), getB(rPixel), getAlpha(rPixel));
 
 
@@ -479,34 +282,34 @@ public class GeneticHorseTexturer {
                                         switch (modelName) {
                                             case "neck" -> {
                                                 for (int l = 1; l <= 6; l++) { //TODO for future compatability need to change 4 to the max number possible of part. Only need it up to 4 right now.
-                                                    updatePartList(finalPartList, modelName, x, y, m, type, l, blockNum); //This part ONLY applies to the different types. Only used for the forelocks on the heads right now. No logic to do different lengths/sizes!
+                                                    pList.updatePartList(modelName, x, y, m, type, l, blockNum); //This part ONLY applies to the different types. Only used for the forelocks on the heads right now. No logic to do different lengths/sizes!
                                                 }
                                             }
                                             case "head" -> {
-                                                    updatePartList(finalPartList, modelName, x, y, m, type, lengthOrSize, blockNum); //This part ONLY applies to the different types. Only used for the forelocks on the heads right now. No logic to do different lengths/sizes!
+                                                pList.updatePartList(modelName, x, y, m, type, lengthOrSize, blockNum); //This part ONLY applies to the different types. Only used for the forelocks on the heads right now. No logic to do different lengths/sizes!
                                             }
                                         }
                                     }
                                 }
                                 case 3 -> {
                                     for(int m = 1; m <= 3; m++) {
-                                            updatePartList(finalPartList, modelName, x, y, m, type, lengthOrSize, blockNum);
+                                        pList.updatePartList(modelName, x, y, m, type, lengthOrSize, blockNum);
                                     }
                                 }
                                 case 4 -> {
-                                    updatePartList(finalPartList, modelName, x, y, 1, type, lengthOrSize, blockNum);
-                                    updatePartList(finalPartList, modelName, x, y, 2, type, lengthOrSize, blockNum);
+                                    pList.updatePartList(modelName, x, y, 1, type, lengthOrSize, blockNum);
+                                    pList.updatePartList(modelName, x, y, 2, type, lengthOrSize, blockNum);
                                 }
                                 case 5 -> {
-                                    updatePartList(finalPartList, modelName, x, y, 1, type, lengthOrSize, blockNum);
-                                    updatePartList(finalPartList, modelName, x, y, 3, type, lengthOrSize, blockNum);
+                                    pList.updatePartList(modelName, x, y, 1, type, lengthOrSize, blockNum);
+                                    pList.updatePartList(modelName, x, y, 3, type, lengthOrSize, blockNum);
                                 }
                                 case 6 -> {
-                                    updatePartList(finalPartList, modelName, x, y, 2, type, lengthOrSize, blockNum);
-                                    updatePartList(finalPartList, modelName, x, y, 3, type, lengthOrSize, blockNum);
+                                    pList.updatePartList(modelName, x, y, 2, type, lengthOrSize, blockNum);
+                                    pList.updatePartList(modelName, x, y, 3, type, lengthOrSize, blockNum);
                                 }
                                 default -> {
-                                    updatePartList(finalPartList, modelName, x, y, muscleMass, type, lengthOrSize, blockNum);
+                                    pList.updatePartList(modelName, x, y, muscleMass, type, lengthOrSize, blockNum);
                                 }
                             }
 
@@ -516,10 +319,10 @@ public class GeneticHorseTexturer {
                 }
             }
 
-            if (finalPartList.isEmpty()) {
+            if (pList.getPartList().isEmpty()) {
                 EquigenMod.LOGGER.info("FINALPARTLIST IS EMPTY!!");
             }
-            return finalPartList;
+            return pList.getPartList();
     }
     public List<Part> getRenderedParts(GeneticHorseEntity entity) {
         List<Part> partList = new ArrayList<>(List.of());
@@ -558,53 +361,6 @@ public class GeneticHorseTexturer {
         partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getTailKey(entity), modelSet)).getCubeDimensions());
         partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getWitherKey(entity), modelSet)).getCubeDimensions());
         return partList;
-    }
-    private void updatePartList(List<Part> partList, String modelName, int x, int y, int muscleMass, int type, int lengthOrSize, int blockNum) {
-        EquigenMod.LOGGER.info("X = {} Y = {}", x, y);
-        EquigenMod.LOGGER.info("PART!, MODELNAME = {}, MUSCLEMASS = {}, TYPE = {}, LENGTHORSIZE = {}, BLOCKNUM = {}", modelName, muscleMass, type, lengthOrSize, blockNum);
-        Part part = null;
-        switch (modelName) {
-            //TODO fix this to work with the different legs
-            case "back" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(muscleMass, type, lengthOrSize), modelSet)).getCubeDimensions();
-            case "top_back_legs" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getTopBackLegKey(type, lengthOrSize), modelSet, GeneticValues.LEG.FRONT_LEFT)).getCubeDimensions();
-            case "bottom_legs" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getBottomLegKey(type, lengthOrSize), modelSet, GeneticValues.LEG.FRONT_LEFT)).getCubeDimensions();
-            case "chest" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getChestKey(muscleMass, lengthOrSize), modelSet)).getCubeDimensions();
-            case "left_ear" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getLeftEarKey(entity), modelSet)).getCubeDimensions();
-            case "right_ear" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getRightEarKey(entity), modelSet)).getCubeDimensions();
-            case "top_front_legs" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getTopFrontLegKey(type, lengthOrSize), modelSet, GeneticValues.LEG.FRONT_LEFT)).getCubeDimensions();
-            case "head" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getHeadKey(type, muscleMass), modelSet)).getCubeDimensions();
-            case "hips" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getHipKey(muscleMass, lengthOrSize), modelSet)).getCubeDimensions();
-            case "hoof" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getHoofKey(lengthOrSize), modelSet, GeneticValues.LEG.FRONT_LEFT)).getCubeDimensions();
-            case "knees" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getKneeKey(entity), modelSet, GeneticValues.LEG.FRONT_LEFT)).getCubeDimensions();
-            case "neck" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getNeckKey(muscleMass, type, lengthOrSize), modelSet)).getCubeDimensions();
-            case "mane" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getNeckKey(muscleMass, type, lengthOrSize), modelSet)).returnManeCubeDimensions();
-            case "stomach" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getStomachKey(muscleMass, type, lengthOrSize), modelSet)).getCubeDimensions();
-            case "tail" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getTailKey(type, lengthOrSize), modelSet)).getCubeDimensions();
-            case "withers" -> part = Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getWitherKey(muscleMass), modelSet)).getCubeDimensions();
-            default -> EquigenMod.LOGGER.info("NULL PART");
-        }
-        boolean alreadyInList = false;
-
-        for (Part existing : partList) {
-            assert part != null;
-            if (existing.modelName.equals(part.modelName)) {
-                alreadyInList = true;
-                break;
-            }
-        }
-
-        if (!alreadyInList) {
-            partList.add(part);
-            EquigenMod.LOGGER.info("NOT ALREADY IN LIST");
-        }
-        if (part != null) {
-            EquigenMod.LOGGER.info(part.modelName);
-            part.updateBlocks(blockNum - 1, x + 1, y + 1, true);
-            EquigenMod.LOGGER.info("EDITED");
-        } else {
-            EquigenMod.LOGGER.info("NULL PART!, MODELNAME = {}, MUSCLEMASS = {}, TYPE = {}, LENGTHORSIZE = {}, BLOCKNUM = {}", modelName, muscleMass, type, lengthOrSize, blockNum);
-        }
-
     }
 
     private int decodeMuscleMass(int pixel) {
@@ -668,16 +424,25 @@ public class GeneticHorseTexturer {
         GeneticPartNameBuilder builder = new GeneticPartNameBuilder(entity);
         String currPart = builder.returnPartType(currentPart.modelName, null); //Part name
         EquigenMod.LOGGER.info("PART TYPE = " + currPart);
+        for (Part p : partReference) {
+            EquigenMod.LOGGER.info("PART REFERENCE: {}", p.modelName);
+        }
         List<String> currPartList = builder.PartStringListGenerator(currPart, true);
+        //TODO make this link to the registry instead of PartNameBuilder
+        if (partReference.isEmpty()) {
+            EquigenMod.LOGGER.info("PART REFERENCE IS EMPTY!!!");
+            return null;
+        }
+        if (currPartList.getFirst().equals("knees") || currPartList.getFirst().equals("left_ear") || currPartList.getFirst().equals("right_ear")) {
+            EquigenMod.LOGGER.info("SINGLE MODEL NAME!!");
+            return partReference.getFirst();
+        }
         currPartList.removeFirst();
         EquigenMod.LOGGER.info("CURRPARTLIST = " + currPartList);
 
         List<Part> relevantParts = new ArrayList<>(List.of());
         List<Integer> scores = new ArrayList<>(List.of());
-        if (partReference.isEmpty()) {
-            EquigenMod.LOGGER.info("PART REFERENCE IS EMPTY!!!");
-            return null;
-        }
+
         for (Part p : partReference) {
             EquigenMod.LOGGER.info("P = {}, PART = {}", p.modelName, currPart);
             if (p.modelName.contains(currPart)) {
@@ -686,11 +451,12 @@ public class GeneticHorseTexturer {
         }
         if (relevantParts.isEmpty()) {
             EquigenMod.LOGGER.info("IS EMPTY!!!");
+            return null;
         }
         for (Part ref : relevantParts) {
             String refModelName = ref.modelName;
             int score = 0;
-            if (!refModelName.equals(currentPart)) {
+            if (!refModelName.equals(currentPart.modelName)) {
                 score += 100;
             }
             EquigenMod.LOGGER.info("REFERENCE_PART = {}, CURR_PART_LIST_FIRST = {}",refModelName, currPartList.getFirst());

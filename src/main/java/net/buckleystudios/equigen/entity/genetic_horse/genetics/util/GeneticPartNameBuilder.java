@@ -326,6 +326,28 @@ public class GeneticPartNameBuilder {
         };
     }
 
+    public String returnPartTypeNoLegs(String partName) {
+        String cutS = partName.substring(0, 5);
+        return switch(cutS) {
+            case "left_" -> "left_ear";
+            case "right" -> "right_ear";
+            case "knees" -> "knees";
+            case "top_f" -> "top_front_legs";
+            case "top_b" -> "top_back_legs";
+            case "botto" -> "bottom_legs";
+            case "back_" -> "back";
+            case "chest" -> "chest";
+            case "head_" -> "head";
+            case "hips_" -> "hips";
+            case "hoof_" -> "hoof";
+            case "neck_" -> "neck";
+            case "stoma" -> "stomach";
+            case "tail_" -> "tail";
+            case "withe" -> "withers";
+            default -> "";
+        };
+    }
+
 
     public String extractWord(String baseString, int wordIndex) {
         String currWord = "";
