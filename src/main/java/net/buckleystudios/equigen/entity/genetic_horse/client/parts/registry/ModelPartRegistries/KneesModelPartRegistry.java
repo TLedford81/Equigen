@@ -21,6 +21,7 @@ public class KneesModelPartRegistry {
                 ModModelLayers.KNEE_BACK_RIGHT,
 
                 knees::new,
-                knees::createBodyLayer);
+                knees::createBodyLayer,
+                knees.class);
     }
 }

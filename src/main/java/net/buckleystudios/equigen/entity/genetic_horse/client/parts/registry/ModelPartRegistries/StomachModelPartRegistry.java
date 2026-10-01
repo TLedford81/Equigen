@@ -15,63 +15,72 @@ public class StomachModelPartRegistry {
                         GeneticValues.STOMACH_CURVE.LOW
                 ),
                 ModModelLayers.STOMACH_LEAN_SHORT_LOW,
-                stomach_lean_short_low::new);
+                stomach_lean_short_low::new,
+                stomach_lean_short_low.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.STOMACH_LENGTH.SHORT,
                         GeneticValues.STOMACH_CURVE.MEDIUM
                 ),
                 ModModelLayers.STOMACH_LEAN_SHORT_MEDIUM,
-                stomach_lean_short_medium::new);
+                stomach_lean_short_medium::new,
+                stomach_lean_short_medium.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.STOMACH_LENGTH.SHORT,
                         GeneticValues.STOMACH_CURVE.HIGH
                 ),
                 ModModelLayers.STOMACH_LEAN_SHORT_HIGH,
-                stomach_lean_short_high::new);
+                stomach_lean_short_high::new,
+                stomach_lean_short_high.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.STOMACH_LENGTH.AVERAGE,
                         GeneticValues.STOMACH_CURVE.LOW
                 ),
                 ModModelLayers.STOMACH_LEAN_AVERAGE_LOW,
-                stomach_lean_average_low::new);
+                stomach_lean_average_low::new,
+                stomach_lean_average_low.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.STOMACH_LENGTH.AVERAGE,
                         GeneticValues.STOMACH_CURVE.MEDIUM
                 ),
                 ModModelLayers.STOMACH_LEAN_AVERAGE_MEDIUM,
-                stomach_lean_average_medium::new);
+                stomach_lean_average_medium::new,
+                stomach_lean_average_medium.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.STOMACH_LENGTH.AVERAGE,
                         GeneticValues.STOMACH_CURVE.HIGH
                 ),
                 ModModelLayers.STOMACH_LEAN_AVERAGE_HIGH,
-                stomach_lean_average_high::new);
+                stomach_lean_average_high::new,
+                stomach_lean_average_high.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.STOMACH_LENGTH.LONG,
                         GeneticValues.STOMACH_CURVE.LOW
                 ),
                 ModModelLayers.STOMACH_LEAN_LONG_LOW,
-                stomach_lean_long_low::new);
+                stomach_lean_long_low::new,
+                stomach_lean_long_low.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.STOMACH_LENGTH.LONG,
                         GeneticValues.STOMACH_CURVE.MEDIUM
                 ),
                 ModModelLayers.STOMACH_LEAN_LONG_MEDIUM,
-                stomach_lean_long_medium::new);
+                stomach_lean_long_medium::new,
+                stomach_lean_long_medium.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.STOMACH_LENGTH.LONG,
                         GeneticValues.STOMACH_CURVE.HIGH
                 ),
                 ModModelLayers.STOMACH_LEAN_LONG_HIGH,
-                stomach_lean_long_high::new);
+                stomach_lean_long_high::new,
+                stomach_lean_long_high.class);
         //AVERAGE
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
@@ -79,63 +88,72 @@ public class StomachModelPartRegistry {
                         GeneticValues.STOMACH_CURVE.LOW
                 ),
                 ModModelLayers.STOMACH_AVERAGE_SHORT_LOW,
-                stomach_average_short_low::new);
+                stomach_average_short_low::new,
+                stomach_average_short_low.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.STOMACH_LENGTH.SHORT,
                         GeneticValues.STOMACH_CURVE.MEDIUM
                 ),
                 ModModelLayers.STOMACH_AVERAGE_SHORT_MEDIUM,
-                stomach_average_short_medium::new);
+                stomach_average_short_medium::new,
+                stomach_average_short_medium.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.STOMACH_LENGTH.SHORT,
                         GeneticValues.STOMACH_CURVE.HIGH
                 ),
                 ModModelLayers.STOMACH_AVERAGE_SHORT_HIGH,
-                stomach_average_short_high::new);
+                stomach_average_short_high::new,
+                stomach_average_short_high.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.STOMACH_LENGTH.AVERAGE,
                         GeneticValues.STOMACH_CURVE.LOW
                 ),
                 ModModelLayers.STOMACH_AVERAGE_AVERAGE_LOW,
-                stomach_average_average_low::new);
+                stomach_average_average_low::new,
+                stomach_average_average_low.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.STOMACH_LENGTH.AVERAGE,
                         GeneticValues.STOMACH_CURVE.MEDIUM
                 ),
                 ModModelLayers.STOMACH_AVERAGE_AVERAGE_MEDIUM,
-                stomach_average_average_medium::new);
+                stomach_average_average_medium::new,
+                stomach_average_average_medium.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.STOMACH_LENGTH.AVERAGE,
                         GeneticValues.STOMACH_CURVE.HIGH
                 ),
                 ModModelLayers.STOMACH_AVERAGE_AVERAGE_HIGH,
-                stomach_average_average_high::new);
+                stomach_average_average_high::new,
+                stomach_average_average_high.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.STOMACH_LENGTH.LONG,
                         GeneticValues.STOMACH_CURVE.LOW
                 ),
                 ModModelLayers.STOMACH_AVERAGE_LONG_LOW,
-                stomach_average_long_low::new);
+                stomach_average_long_low::new,
+                stomach_average_long_low.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.STOMACH_LENGTH.LONG,
                         GeneticValues.STOMACH_CURVE.MEDIUM
                 ),
                 ModModelLayers.STOMACH_AVERAGE_LONG_MEDIUM,
-                stomach_average_long_medium::new);
+                stomach_average_long_medium::new,
+                stomach_average_long_medium.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.STOMACH_LENGTH.LONG,
                         GeneticValues.STOMACH_CURVE.HIGH
                 ),
                 ModModelLayers.STOMACH_AVERAGE_LONG_HIGH,
-                stomach_average_long_high::new);
+                stomach_average_long_high::new,
+                stomach_average_long_high.class);
         
         //MUSCULAR
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
@@ -144,62 +162,71 @@ public class StomachModelPartRegistry {
                         GeneticValues.STOMACH_CURVE.LOW
                 ),
                 ModModelLayers.STOMACH_MUSCULAR_SHORT_LOW,
-                stomach_muscular_short_low::new);
+                stomach_muscular_short_low::new,
+                stomach_muscular_short_low.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.STOMACH_LENGTH.SHORT,
                         GeneticValues.STOMACH_CURVE.MEDIUM
                 ),
                 ModModelLayers.STOMACH_MUSCULAR_SHORT_MEDIUM,
-                stomach_muscular_short_medium::new);
+                stomach_muscular_short_medium::new,
+                stomach_muscular_short_medium.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.STOMACH_LENGTH.SHORT,
                         GeneticValues.STOMACH_CURVE.HIGH
                 ),
                 ModModelLayers.STOMACH_MUSCULAR_SHORT_HIGH,
-                stomach_muscular_short_high::new);
+                stomach_muscular_short_high::new,
+                stomach_muscular_short_high.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.STOMACH_LENGTH.AVERAGE,
                         GeneticValues.STOMACH_CURVE.LOW
                 ),
                 ModModelLayers.STOMACH_MUSCULAR_AVERAGE_LOW,
-                stomach_muscular_average_low::new);
+                stomach_muscular_average_low::new,
+                stomach_muscular_average_low.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.STOMACH_LENGTH.AVERAGE,
                         GeneticValues.STOMACH_CURVE.MEDIUM
                 ),
                 ModModelLayers.STOMACH_MUSCULAR_AVERAGE_MEDIUM,
-                stomach_muscular_average_medium::new);
+                stomach_muscular_average_medium::new,
+                stomach_muscular_average_medium.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.STOMACH_LENGTH.AVERAGE,
                         GeneticValues.STOMACH_CURVE.HIGH
                 ),
                 ModModelLayers.STOMACH_MUSCULAR_AVERAGE_HIGH,
-                stomach_muscular_average_high::new);
+                stomach_muscular_average_high::new,
+                stomach_muscular_average_high.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.STOMACH_LENGTH.LONG,
                         GeneticValues.STOMACH_CURVE.LOW
                 ),
                 ModModelLayers.STOMACH_MUSCULAR_LONG_LOW,
-                stomach_muscular_long_low::new);
+                stomach_muscular_long_low::new,
+                stomach_muscular_long_low.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.STOMACH_LENGTH.LONG,
                         GeneticValues.STOMACH_CURVE.MEDIUM
                 ),
                 ModModelLayers.STOMACH_MUSCULAR_LONG_MEDIUM,
-                stomach_muscular_long_medium::new);
+                stomach_muscular_long_medium::new,
+                stomach_muscular_long_medium.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Stomach(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.STOMACH_LENGTH.LONG,
                         GeneticValues.STOMACH_CURVE.HIGH
                 ),
                 ModModelLayers.STOMACH_MUSCULAR_LONG_HIGH,
-                stomach_muscular_long_high::new);
+                stomach_muscular_long_high::new,
+                stomach_muscular_long_high.class);
     }
 }

@@ -23,7 +23,8 @@ public class BottomLegModelPartRegistry {
                 ModModelLayers.BOTTOM_LEGS_AVERAGE_SHORT_1_BACK_RIGHT,
 
                 bottom_legs_average_short_1::new,
-                bottom_legs_average_short_1::createBodyLayer);
+                bottom_legs_average_short_1::createBodyLayer,
+                bottom_legs_average_short_1.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Bottom_Legs(
                         GeneticValues.LEG_WIDTH.AVERAGE,
@@ -36,7 +37,8 @@ public class BottomLegModelPartRegistry {
                 ModModelLayers.BOTTOM_LEGS_AVERAGE_SHORT_2_BACK_RIGHT,
 
                 bottom_legs_average_short_2::new,
-                bottom_legs_average_short_2::createBodyLayer);
+                bottom_legs_average_short_2::createBodyLayer,
+                bottom_legs_average_short_2.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Bottom_Legs(
                         GeneticValues.LEG_WIDTH.AVERAGE,
@@ -49,7 +51,8 @@ public class BottomLegModelPartRegistry {
                 ModModelLayers.BOTTOM_LEGS_AVERAGE_SHORT_3_BACK_RIGHT,
 
                 bottom_legs_average_short_3::new,
-                bottom_legs_average_short_3::createBodyLayer);
+                bottom_legs_average_short_3::createBodyLayer,
+                bottom_legs_average_short_3.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Bottom_Legs(
                         GeneticValues.LEG_WIDTH.AVERAGE,
@@ -62,7 +65,8 @@ public class BottomLegModelPartRegistry {
                 ModModelLayers.BOTTOM_LEGS_AVERAGE_AVERAGE_1_BACK_RIGHT,
 
                 bottom_legs_average_average_1::new,
-                bottom_legs_average_average_1::createBodyLayer);
+                bottom_legs_average_average_1::createBodyLayer,
+                bottom_legs_average_average_1.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Bottom_Legs(
                         GeneticValues.LEG_WIDTH.AVERAGE,
@@ -75,7 +79,8 @@ public class BottomLegModelPartRegistry {
                 ModModelLayers.BOTTOM_LEGS_AVERAGE_AVERAGE_2_BACK_RIGHT,
 
                 bottom_legs_average_average_2::new,
-                bottom_legs_average_average_2::createBodyLayer);
+                bottom_legs_average_average_2::createBodyLayer,
+                bottom_legs_average_average_2.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Bottom_Legs(
                         GeneticValues.LEG_WIDTH.AVERAGE,
@@ -88,7 +93,8 @@ public class BottomLegModelPartRegistry {
                 ModModelLayers.BOTTOM_LEGS_AVERAGE_AVERAGE_3_BACK_RIGHT,
 
                 bottom_legs_average_average_3::new,
-                bottom_legs_average_average_3::createBodyLayer);
+                bottom_legs_average_average_3::createBodyLayer,
+                bottom_legs_average_average_3.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Bottom_Legs(
                         GeneticValues.LEG_WIDTH.AVERAGE,
@@ -101,7 +107,8 @@ public class BottomLegModelPartRegistry {
                 ModModelLayers.BOTTOM_LEGS_AVERAGE_LONG_1_BACK_RIGHT,
 
                 bottom_legs_average_long_1::new,
-                bottom_legs_average_long_1::createBodyLayer);
+                bottom_legs_average_long_1::createBodyLayer,
+                bottom_legs_average_long_1.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Bottom_Legs(
                         GeneticValues.LEG_WIDTH.AVERAGE,
@@ -114,7 +121,8 @@ public class BottomLegModelPartRegistry {
                 ModModelLayers.BOTTOM_LEGS_AVERAGE_LONG_2_BACK_RIGHT,
 
                 bottom_legs_average_long_2::new,
-                bottom_legs_average_long_2::createBodyLayer);
+                bottom_legs_average_long_2::createBodyLayer,
+                bottom_legs_average_long_2.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Bottom_Legs(
                         GeneticValues.LEG_WIDTH.AVERAGE,
@@ -127,7 +135,8 @@ public class BottomLegModelPartRegistry {
                 ModModelLayers.BOTTOM_LEGS_AVERAGE_LONG_3_BACK_RIGHT,
 
                 bottom_legs_average_long_3::new,
-                bottom_legs_average_long_3::createBodyLayer);
+                bottom_legs_average_long_3::createBodyLayer,
+                bottom_legs_average_long_3.class);
         //THICK
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Bottom_Legs(
@@ -141,7 +150,8 @@ public class BottomLegModelPartRegistry {
                 ModModelLayers.BOTTOM_LEGS_THICK_SHORT_1_BACK_RIGHT,
 
                 bottom_legs_thick_short_1::new,
-                bottom_legs_thick_short_1::createBodyLayer);
+                bottom_legs_thick_short_1::createBodyLayer,
+                bottom_legs_thick_short_1.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Bottom_Legs(
                         GeneticValues.LEG_WIDTH.THICK,
@@ -154,7 +164,8 @@ public class BottomLegModelPartRegistry {
                 ModModelLayers.BOTTOM_LEGS_THICK_SHORT_2_BACK_RIGHT,
 
                 bottom_legs_thick_short_2::new,
-                bottom_legs_thick_short_2::createBodyLayer);
+                bottom_legs_thick_short_2::createBodyLayer,
+                bottom_legs_thick_short_2.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Bottom_Legs(
                         GeneticValues.LEG_WIDTH.THICK,
@@ -167,7 +178,8 @@ public class BottomLegModelPartRegistry {
                 ModModelLayers.BOTTOM_LEGS_THICK_SHORT_3_BACK_RIGHT,
 
                 bottom_legs_thick_short_3::new,
-                bottom_legs_thick_short_3::createBodyLayer);
+                bottom_legs_thick_short_3::createBodyLayer,
+                bottom_legs_thick_short_3.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Bottom_Legs(
                         GeneticValues.LEG_WIDTH.THICK,
@@ -180,7 +192,8 @@ public class BottomLegModelPartRegistry {
                 ModModelLayers.BOTTOM_LEGS_THICK_AVERAGE_1_BACK_RIGHT,
 
                 bottom_legs_thick_average_1::new,
-                bottom_legs_thick_average_1::createBodyLayer);
+                bottom_legs_thick_average_1::createBodyLayer,
+                bottom_legs_thick_average_1.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Bottom_Legs(
                         GeneticValues.LEG_WIDTH.THICK,
@@ -193,7 +206,8 @@ public class BottomLegModelPartRegistry {
                 ModModelLayers.BOTTOM_LEGS_THICK_AVERAGE_2_BACK_RIGHT,
 
                 bottom_legs_thick_average_2::new,
-                bottom_legs_thick_average_2::createBodyLayer);
+                bottom_legs_thick_average_2::createBodyLayer,
+                bottom_legs_thick_average_2.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Bottom_Legs(
                         GeneticValues.LEG_WIDTH.THICK,
@@ -206,7 +220,8 @@ public class BottomLegModelPartRegistry {
                 ModModelLayers.BOTTOM_LEGS_THICK_AVERAGE_3_BACK_RIGHT,
 
                 bottom_legs_thick_average_3::new,
-                bottom_legs_thick_average_3::createBodyLayer);
+                bottom_legs_thick_average_3::createBodyLayer,
+                bottom_legs_thick_average_3.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Bottom_Legs(
                         GeneticValues.LEG_WIDTH.THICK,
@@ -219,7 +234,8 @@ public class BottomLegModelPartRegistry {
                 ModModelLayers.BOTTOM_LEGS_THICK_LONG_1_BACK_RIGHT,
 
                 bottom_legs_thick_long_1::new,
-                bottom_legs_thick_long_1::createBodyLayer);
+                bottom_legs_thick_long_1::createBodyLayer,
+                bottom_legs_thick_long_1.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Bottom_Legs(
                         GeneticValues.LEG_WIDTH.THICK,
@@ -232,7 +248,8 @@ public class BottomLegModelPartRegistry {
                 ModModelLayers.BOTTOM_LEGS_THICK_LONG_2_BACK_RIGHT,
 
                 bottom_legs_thick_long_2::new,
-                bottom_legs_thick_long_2::createBodyLayer);
+                bottom_legs_thick_long_2::createBodyLayer,
+                bottom_legs_thick_long_2.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Bottom_Legs(
                         GeneticValues.LEG_WIDTH.THICK,
@@ -245,7 +262,8 @@ public class BottomLegModelPartRegistry {
                 ModModelLayers.BOTTOM_LEGS_THICK_LONG_3_BACK_RIGHT,
 
                 bottom_legs_thick_long_3::new,
-                bottom_legs_thick_long_3::createBodyLayer);
+                bottom_legs_thick_long_3::createBodyLayer,
+                bottom_legs_thick_long_3.class);
     }
     
     

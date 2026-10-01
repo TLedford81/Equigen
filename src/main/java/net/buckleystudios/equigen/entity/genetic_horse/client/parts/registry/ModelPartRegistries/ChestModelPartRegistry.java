@@ -22,104 +22,121 @@ public class ChestModelPartRegistry {
                         GeneticValues.CHEST_SIZE.SMALL_2
                 ),
                 ModModelLayers.CHEST_LEAN_SMALL_2,
-                chest_lean_small_2::new);
+                chest_lean_small_2::new,
+                chest_lean_small_2.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Chest(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.CHEST_SIZE.AVERAGE_1
                 ),
                 ModModelLayers.CHEST_LEAN_AVERAGE_1,
-                chest_lean_average_1::new);
+                chest_lean_average_1::new,
+                chest_lean_average_1.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Chest(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.CHEST_SIZE.AVERAGE_2
                 ),
                 ModModelLayers.CHEST_LEAN_AVERAGE_2,
-                chest_lean_average_2::new);
+                chest_lean_average_2::new,
+                chest_lean_average_2.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Chest(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.CHEST_SIZE.LARGE_1
                 ),
                 ModModelLayers.CHEST_LEAN_LARGE_1,
-                chest_lean_large_1::new);
+                chest_lean_large_1::new,
+                chest_lean_large_1.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Chest(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.CHEST_SIZE.LARGE_2
                 ),
                 ModModelLayers.CHEST_LEAN_LARGE_2,
-                chest_lean_large_2::new);
+                chest_lean_large_2::new,
+                chest_lean_large_2.class);
         //Average
         ModelPartRegistry.register(new ModelPartRegistryKeys.Chest(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.CHEST_SIZE.SMALL_1
                 ),
                 ModModelLayers.CHEST_AVERAGE_SMALL_1,
-                chest_average_small_1::new);
+                chest_average_small_1::new,
+                chest_average_small_1.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Chest(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.CHEST_SIZE.SMALL_2
                 ),
                 ModModelLayers.CHEST_AVERAGE_SMALL_2,
-                chest_average_small_2::new);
+                chest_average_small_2::new,
+                chest_average_small_2.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Chest(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.CHEST_SIZE.AVERAGE_1
                 ),
                 ModModelLayers.CHEST_AVERAGE_AVERAGE_1,
-                chest_average_average_1::new);
+                chest_average_average_1::new,
+                chest_average_average_1.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Chest(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.CHEST_SIZE.AVERAGE_2
                 ),
                 ModModelLayers.CHEST_AVERAGE_AVERAGE_2,
-                chest_average_average_2::new);
+                chest_average_average_2::new,
+                chest_average_average_2.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Chest(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.CHEST_SIZE.LARGE_1
                 ),
                 ModModelLayers.CHEST_AVERAGE_LARGE_1,
-                chest_average_large_1::new);
+                chest_average_large_1::new,
+                chest_average_large_1.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Chest(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.CHEST_SIZE.LARGE_2
                 ),
                 ModModelLayers.CHEST_AVERAGE_LARGE_2,
-                chest_average_large_2::new);
+                chest_average_large_2::new,
+                chest_average_large_2.class);
         //Muscular
         ModelPartRegistry.register(new ModelPartRegistryKeys.Chest(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.CHEST_SIZE.SMALL_1
                 ),
                 ModModelLayers.CHEST_MUSCULAR_SMALL_1,
-                chest_muscular_small_1::new);
+                chest_muscular_small_1::new,
+                chest_muscular_small_1.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Chest(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.CHEST_SIZE.SMALL_2
                 ),
                 ModModelLayers.CHEST_MUSCULAR_SMALL_2,
-                chest_muscular_small_2::new);
+                chest_muscular_small_2::new,
+                chest_muscular_small_2.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Chest(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.CHEST_SIZE.AVERAGE_1
                 ),
                 ModModelLayers.CHEST_MUSCULAR_AVERAGE_1,
-                chest_muscular_average_1::new);
+                chest_muscular_average_1::new,
+                chest_muscular_average_1.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Chest(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.CHEST_SIZE.AVERAGE_2
                 ),
                 ModModelLayers.CHEST_MUSCULAR_AVERAGE_2,
-                chest_muscular_average_2::new);
+                chest_muscular_average_2::new,
+                chest_muscular_average_2.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Chest(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.CHEST_SIZE.LARGE_1
                 ),
                 ModModelLayers.CHEST_MUSCULAR_LARGE_1,
-                chest_muscular_large_1::new);
+                chest_muscular_large_1::new,
+                chest_muscular_large_1.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Chest(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.CHEST_SIZE.LARGE_2
                 ),
                 ModModelLayers.CHEST_MUSCULAR_LARGE_2,
-                chest_muscular_large_2::new);
+                chest_muscular_large_2::new,
+                chest_muscular_large_2.class);
     }
 }

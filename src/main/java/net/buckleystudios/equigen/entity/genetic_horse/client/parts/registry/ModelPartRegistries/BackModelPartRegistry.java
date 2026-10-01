@@ -15,63 +15,72 @@ public final class BackModelPartRegistry {
                         GeneticValues.BACK_GIRTH.THIN
                 ),
                 ModModelLayers.BACK_LEAN_SHORT_THIN,
-                back_lean_short_thin::new);
+                back_lean_short_thin::new,
+                back_lean_short_thin.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.BACK_LENGTH.SHORT,
                         GeneticValues.BACK_GIRTH.AVERAGE
                 ),
                 ModModelLayers.BACK_LEAN_SHORT_AVERAGE,
-                back_lean_short_average::new);
+                back_lean_short_average::new,
+                back_lean_short_average.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.BACK_LENGTH.SHORT,
                         GeneticValues.BACK_GIRTH.THICK
                 ),
                 ModModelLayers.BACK_LEAN_SHORT_THICK,
-                back_lean_short_thick::new);
+                back_lean_short_thick::new,
+                back_lean_short_thick.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.BACK_LENGTH.AVERAGE,
                         GeneticValues.BACK_GIRTH.THIN
                 ),
                 ModModelLayers.BACK_LEAN_AVERAGE_THIN,
-                back_lean_average_thin::new);
+                back_lean_average_thin::new,
+                back_lean_average_thin.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.BACK_LENGTH.AVERAGE,
                         GeneticValues.BACK_GIRTH.AVERAGE
                 ),
                 ModModelLayers.BACK_LEAN_AVERAGE_AVERAGE,
-                back_lean_average_average::new);
+                back_lean_average_average::new,
+                back_lean_average_average.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.BACK_LENGTH.AVERAGE,
                         GeneticValues.BACK_GIRTH.THICK
                 ),
                 ModModelLayers.BACK_LEAN_AVERAGE_THICK,
-                back_lean_average_thick::new);
+                back_lean_average_thick::new,
+                back_lean_average_thick.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.BACK_LENGTH.LONG,
                         GeneticValues.BACK_GIRTH.THIN
                 ),
                 ModModelLayers.BACK_LEAN_LONG_THIN,
-                back_lean_long_thin::new);
+                back_lean_long_thin::new,
+                back_lean_long_thin.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.BACK_LENGTH.LONG,
                         GeneticValues.BACK_GIRTH.AVERAGE
                 ),
                 ModModelLayers.BACK_LEAN_LONG_AVERAGE,
-                back_lean_long_average::new);
+                back_lean_long_average::new,
+                back_lean_long_average.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.BACK_LENGTH.LONG,
                         GeneticValues.BACK_GIRTH.THICK
                 ),
                 ModModelLayers.BACK_LEAN_LONG_THICK,
-                back_lean_long_thick::new);
+                back_lean_long_thick::new,
+                back_lean_long_thick.class);
         
        //AVERAGE
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
@@ -80,63 +89,72 @@ public final class BackModelPartRegistry {
                         GeneticValues.BACK_GIRTH.THIN
                 ),
                 ModModelLayers.BACK_AVERAGE_SHORT_THIN,
-                back_average_short_thin::new);
+                back_average_short_thin::new,
+                back_average_short_thin.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.BACK_LENGTH.SHORT,
                         GeneticValues.BACK_GIRTH.AVERAGE
                 ),
                 ModModelLayers.BACK_AVERAGE_SHORT_AVERAGE,
-                back_average_short_average::new);
+                back_average_short_average::new,
+                back_average_short_average.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.BACK_LENGTH.SHORT,
                         GeneticValues.BACK_GIRTH.THICK
                 ),
                 ModModelLayers.BACK_AVERAGE_SHORT_THICK,
-                back_average_short_thick::new);
+                back_average_short_thick::new,
+                back_average_short_thick.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.BACK_LENGTH.AVERAGE,
                         GeneticValues.BACK_GIRTH.THIN
                 ),
                 ModModelLayers.BACK_AVERAGE_AVERAGE_THIN,
-                back_average_average_thin::new);
+                back_average_average_thin::new,
+                back_average_average_thin.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.BACK_LENGTH.AVERAGE,
                         GeneticValues.BACK_GIRTH.AVERAGE
                 ),
                 ModModelLayers.BACK_AVERAGE_AVERAGE_AVERAGE,
-                back_average_average_average::new);
+                back_average_average_average::new,
+                back_average_average_average.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.BACK_LENGTH.AVERAGE,
                         GeneticValues.BACK_GIRTH.THICK
                 ),
                 ModModelLayers.BACK_AVERAGE_AVERAGE_THICK,
-                back_average_average_thick::new);
+                back_average_average_thick::new,
+                back_average_average_thick.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.BACK_LENGTH.LONG,
                         GeneticValues.BACK_GIRTH.THIN
                 ),
                 ModModelLayers.BACK_AVERAGE_LONG_THIN,
-                back_average_long_thin::new);
+                back_average_long_thin::new,
+                back_average_long_thin.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.BACK_LENGTH.LONG,
                         GeneticValues.BACK_GIRTH.AVERAGE
                 ),
                 ModModelLayers.BACK_AVERAGE_LONG_AVERAGE,
-                back_average_long_average::new);
+                back_average_long_average::new,
+                back_average_long_average.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.BACK_LENGTH.LONG,
                         GeneticValues.BACK_GIRTH.THICK
                 ),
                 ModModelLayers.BACK_AVERAGE_LONG_THICK,
-                back_average_long_thick::new);
+                back_average_long_thick::new,
+                back_average_long_thick.class);
         //MUSCULAR
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
@@ -144,63 +162,72 @@ public final class BackModelPartRegistry {
                         GeneticValues.BACK_GIRTH.THIN
                 ),
                 ModModelLayers.BACK_MUSCULAR_SHORT_THIN,
-                back_muscular_short_thin::new);
+                back_muscular_short_thin::new,
+                back_muscular_short_thin.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.BACK_LENGTH.SHORT,
                         GeneticValues.BACK_GIRTH.AVERAGE
                 ),
                 ModModelLayers.BACK_MUSCULAR_SHORT_AVERAGE,
-                back_muscular_short_average::new);
+                back_muscular_short_average::new,
+                back_muscular_short_average.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.BACK_LENGTH.SHORT,
                         GeneticValues.BACK_GIRTH.THICK
                 ),
                 ModModelLayers.BACK_MUSCULAR_SHORT_THICK,
-                back_muscular_short_thick::new);
+                back_muscular_short_thick::new,
+                back_muscular_short_thick.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.BACK_LENGTH.AVERAGE,
                         GeneticValues.BACK_GIRTH.THIN
                 ),
                 ModModelLayers.BACK_MUSCULAR_AVERAGE_THIN,
-                back_muscular_average_thin::new);
+                back_muscular_average_thin::new,
+                back_muscular_average_thin.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.BACK_LENGTH.AVERAGE,
                         GeneticValues.BACK_GIRTH.AVERAGE
                 ),
                 ModModelLayers.BACK_MUSCULAR_AVERAGE_AVERAGE,
-                back_muscular_average_average::new);
+                back_muscular_average_average::new,
+                back_muscular_average_average.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.BACK_LENGTH.AVERAGE,
                         GeneticValues.BACK_GIRTH.THICK
                 ),
                 ModModelLayers.BACK_MUSCULAR_AVERAGE_THICK,
-                back_muscular_average_thick::new);
+                back_muscular_average_thick::new,
+                back_muscular_average_thick.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.BACK_LENGTH.LONG,
                         GeneticValues.BACK_GIRTH.THIN
                 ),
                 ModModelLayers.BACK_MUSCULAR_LONG_THIN,
-                back_muscular_long_thin::new);
+                back_muscular_long_thin::new,
+                back_muscular_long_thin.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.BACK_LENGTH.LONG,
                         GeneticValues.BACK_GIRTH.AVERAGE
                 ),
                 ModModelLayers.BACK_MUSCULAR_LONG_AVERAGE,
-                back_muscular_long_average::new);
+                back_muscular_long_average::new,
+                back_muscular_long_average.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Back(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.BACK_LENGTH.LONG,
                         GeneticValues.BACK_GIRTH.THICK
                 ),
                 ModModelLayers.BACK_MUSCULAR_LONG_THICK,
-                back_muscular_long_thick::new);
+                back_muscular_long_thick::new,
+                back_muscular_long_thick.class);
     }
 }
 
@@ -216,6 +243,6 @@ public final class BackModelPartRegistry {
                 GeneticValues.BACK_GIRTH.THICK
                 ),
                 ModModelLayers.BACK_LEAN_LONG_THICK,
-                back_lean_long_thick::new);
+                back_lean_long_thick::new,
     }
  */

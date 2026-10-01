@@ -12,10 +12,12 @@ public class EarModelPartRegistry {
         ModelPartRegistry.register(new ModelPartRegistryKeys.Ears(
                 ),
                 ModModelLayers.LEFT_EAR,
-                left_ear::new);
+                left_ear::new,
+                left_ear.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Ears(
                 ),
                 ModModelLayers.RIGHT_EAR,
-                right_ear::new);
+                right_ear::new,
+                right_ear.class);
     }
 }

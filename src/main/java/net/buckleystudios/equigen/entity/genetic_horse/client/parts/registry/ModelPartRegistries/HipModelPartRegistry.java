@@ -14,110 +14,128 @@ public class HipModelPartRegistry {
                         GeneticValues.HIP_SIZE.SMALL_1
                 ),
                 ModModelLayers.HIPS_LEAN_SMALL_1,
-                hips_lean_small_1::new);
+                hips_lean_small_1::new,
+                hips_lean_small_1.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Hips(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.HIP_SIZE.SMALL_2
                 ),
                 ModModelLayers.HIPS_LEAN_SMALL_2,
-                hips_lean_small_2::new);
+                hips_lean_small_2::new,
+                hips_lean_small_2.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Hips(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.HIP_SIZE.AVERAGE_1
                 ),
                 ModModelLayers.HIPS_LEAN_AVERAGE_1,
-                hips_lean_average_1::new);
+                hips_lean_average_1::new,
+                hips_lean_average_1.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Hips(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.HIP_SIZE.AVERAGE_2
                 ),
                 ModModelLayers.HIPS_LEAN_AVERAGE_2,
-                hips_lean_average_2::new);
+                hips_lean_average_2::new,
+                hips_lean_average_2.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Hips(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.HIP_SIZE.LARGE_1
                 ),
                 ModModelLayers.HIPS_LEAN_LARGE_1,
-                hips_lean_large_1::new);
+                hips_lean_large_1::new,
+                hips_lean_large_1.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Hips(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.HIP_SIZE.LARGE_2
                 ),
                 ModModelLayers.HIPS_LEAN_LARGE_2,
-                hips_lean_large_2::new);
+                hips_lean_large_2::new,
+                hips_lean_large_2.class);
         //Average
         ModelPartRegistry.register(new ModelPartRegistryKeys.Hips(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.HIP_SIZE.SMALL_1
                 ),
                 ModModelLayers.HIPS_AVERAGE_SMALL_1,
-                hips_average_small_1::new);
+                hips_average_small_1::new,
+                hips_average_small_1.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Hips(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.HIP_SIZE.SMALL_2
                 ),
                 ModModelLayers.HIPS_AVERAGE_SMALL_2,
-                hips_average_small_2::new);
+                hips_average_small_2::new,
+                hips_average_small_2.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Hips(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.HIP_SIZE.AVERAGE_1
                 ),
                 ModModelLayers.HIPS_AVERAGE_AVERAGE_1,
-                hips_average_average_1::new);
+                hips_average_average_1::new,
+                hips_average_average_1.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Hips(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.HIP_SIZE.AVERAGE_2
                 ),
                 ModModelLayers.HIPS_AVERAGE_AVERAGE_2,
-                hips_average_average_2::new);
+                hips_average_average_2::new,
+                hips_average_average_2.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Hips(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.HIP_SIZE.LARGE_1
                 ),
                 ModModelLayers.HIPS_AVERAGE_LARGE_1,
-                hips_average_large_1::new);
+                hips_average_large_1::new,
+                hips_average_large_1.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Hips(
                         GeneticValues.MUSCLE_MASS.AVERAGE,
                         GeneticValues.HIP_SIZE.LARGE_2
                 ),
                 ModModelLayers.HIPS_AVERAGE_LARGE_2,
-                hips_average_large_2::new);
+                hips_average_large_2::new,
+                hips_average_large_2.class);
         //Muscular
         ModelPartRegistry.register(new ModelPartRegistryKeys.Hips(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.HIP_SIZE.SMALL_1
                 ),
                 ModModelLayers.HIPS_MUSCULAR_SMALL_1,
-                hips_muscular_small_1::new);
+                hips_muscular_small_1::new,
+                hips_muscular_small_1.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Hips(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.HIP_SIZE.SMALL_2
                 ),
                 ModModelLayers.HIPS_MUSCULAR_SMALL_2,
-                hips_muscular_small_2::new);
+                hips_muscular_small_2::new,
+                hips_muscular_small_2.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Hips(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.HIP_SIZE.AVERAGE_1
                 ),
                 ModModelLayers.HIPS_MUSCULAR_AVERAGE_1,
-                hips_muscular_average_1::new);
+                hips_muscular_average_1::new,
+                hips_muscular_average_1.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Hips(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.HIP_SIZE.AVERAGE_2
                 ),
                 ModModelLayers.HIPS_MUSCULAR_AVERAGE_2,
-                hips_muscular_average_2::new);
+                hips_muscular_average_2::new,
+                hips_muscular_average_2.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Hips(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.HIP_SIZE.LARGE_1
                 ),
                 ModModelLayers.HIPS_MUSCULAR_LARGE_1,
-                hips_muscular_large_1::new);
+                hips_muscular_large_1::new,
+                hips_muscular_large_1.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Hips(
                         GeneticValues.MUSCLE_MASS.MUSCULAR,
                         GeneticValues.HIP_SIZE.LARGE_2
                 ),
                 ModModelLayers.HIPS_MUSCULAR_LARGE_2,
-                hips_muscular_large_2::new);
+                hips_muscular_large_2::new,
+                hips_muscular_large_2.class);
     }
 }

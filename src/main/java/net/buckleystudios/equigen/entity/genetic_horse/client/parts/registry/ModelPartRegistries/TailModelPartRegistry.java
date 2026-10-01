@@ -14,54 +14,63 @@ public class TailModelPartRegistry {
                         GeneticValues.TAIL_LENGTH.SHORT
                 ),
                 ModModelLayers.TAIL_THIN_SHORT,
-                tail_thin_short::new);
+                tail_thin_short::new,
+                tail_thin_short.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Tail(
                         GeneticValues.TAIL_THICKNESS.THIN,
                         GeneticValues.TAIL_LENGTH.AVERAGE
                 ),
                 ModModelLayers.TAIL_THIN_AVERAGE,
-                tail_thin_average::new);
+                tail_thin_average::new,
+                tail_thin_average.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Tail(
                         GeneticValues.TAIL_THICKNESS.THIN,
                         GeneticValues.TAIL_LENGTH.LONG
                 ),
                 ModModelLayers.TAIL_THIN_LONG,
-                tail_thin_long::new);
+                tail_thin_long::new,
+                tail_thin_long.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Tail(
                         GeneticValues.TAIL_THICKNESS.AVERAGE,
                         GeneticValues.TAIL_LENGTH.SHORT
                 ),
                 ModModelLayers.TAIL_AVERAGE_SHORT,
-                tail_average_short::new);
+                tail_average_short::new,
+                tail_average_short.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Tail(
                         GeneticValues.TAIL_THICKNESS.AVERAGE,
                         GeneticValues.TAIL_LENGTH.AVERAGE
                 ),
                 ModModelLayers.TAIL_AVERAGE_AVERAGE,
-                tail_average_average::new);
+                tail_average_average::new,
+                tail_average_average.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Tail(
                         GeneticValues.TAIL_THICKNESS.AVERAGE,
                         GeneticValues.TAIL_LENGTH.LONG
                 ),
                 ModModelLayers.TAIL_AVERAGE_LONG,
-                tail_average_long::new);
+                tail_average_long::new,
+                tail_average_long.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Tail(
                         GeneticValues.TAIL_THICKNESS.THICK,
                         GeneticValues.TAIL_LENGTH.SHORT
                 ),
                 ModModelLayers.TAIL_THICK_SHORT,
-                tail_thick_short::new);
+                tail_thick_short::new,
+                tail_thick_short.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Tail(
                         GeneticValues.TAIL_THICKNESS.THICK,
                         GeneticValues.TAIL_LENGTH.AVERAGE
                 ),
                 ModModelLayers.TAIL_THICK_AVERAGE,
-                tail_thick_average::new);
+                tail_thick_average::new,
+                tail_thick_average.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Tail(
                         GeneticValues.TAIL_THICKNESS.THICK,
                         GeneticValues.TAIL_LENGTH.LONG
                 ),
                 ModModelLayers.TAIL_THICK_LONG,
-                tail_thick_long::new);
+                tail_thick_long::new,
+                tail_thick_long.class);
     }
 }

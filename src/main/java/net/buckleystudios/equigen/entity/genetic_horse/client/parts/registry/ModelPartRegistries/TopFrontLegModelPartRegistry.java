@@ -22,7 +22,8 @@ public class TopFrontLegModelPartRegistry {
                 ModModelLayers.TOP_FRONT_LEGS_AVERAGE_SHORT_1_FRONT_RIGHT,
 
                 top_front_legs_average_short_1::new,
-                top_front_legs_average_short_1::createBodyLayer);
+                top_front_legs_average_short_1::createBodyLayer,
+                top_front_legs_average_short_1.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Top_Front_Legs(
                         GeneticValues.LEG_WIDTH.AVERAGE,
@@ -33,7 +34,8 @@ public class TopFrontLegModelPartRegistry {
                 ModModelLayers.TOP_FRONT_LEGS_AVERAGE_SHORT_2_FRONT_RIGHT,
 
                 top_front_legs_average_short_2::new,
-                top_front_legs_average_short_2::createBodyLayer);
+                top_front_legs_average_short_2::createBodyLayer,
+                top_front_legs_average_short_2.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Top_Front_Legs(
                         GeneticValues.LEG_WIDTH.AVERAGE,
@@ -44,7 +46,8 @@ public class TopFrontLegModelPartRegistry {
                 ModModelLayers.TOP_FRONT_LEGS_AVERAGE_SHORT_3_FRONT_RIGHT,
 
                 top_front_legs_average_short_3::new,
-                top_front_legs_average_short_3::createBodyLayer);
+                top_front_legs_average_short_3::createBodyLayer,
+                top_front_legs_average_short_3.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Top_Front_Legs(
                         GeneticValues.LEG_WIDTH.AVERAGE,
@@ -55,7 +58,8 @@ public class TopFrontLegModelPartRegistry {
                 ModModelLayers.TOP_FRONT_LEGS_AVERAGE_AVERAGE_1_FRONT_RIGHT,
 
                 top_front_legs_average_average_1::new,
-                top_front_legs_average_average_1::createBodyLayer);
+                top_front_legs_average_average_1::createBodyLayer,
+                top_front_legs_average_average_1.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Top_Front_Legs(
                         GeneticValues.LEG_WIDTH.AVERAGE,
@@ -66,7 +70,8 @@ public class TopFrontLegModelPartRegistry {
                 ModModelLayers.TOP_FRONT_LEGS_AVERAGE_AVERAGE_2_FRONT_RIGHT,
 
                 top_front_legs_average_average_2::new,
-                top_front_legs_average_average_2::createBodyLayer);
+                top_front_legs_average_average_2::createBodyLayer,
+                top_front_legs_average_average_2.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Top_Front_Legs(
                         GeneticValues.LEG_WIDTH.AVERAGE,
@@ -77,7 +82,8 @@ public class TopFrontLegModelPartRegistry {
                 ModModelLayers.TOP_FRONT_LEGS_AVERAGE_AVERAGE_3_FRONT_RIGHT,
 
                 top_front_legs_average_average_3::new,
-                top_front_legs_average_average_3::createBodyLayer);
+                top_front_legs_average_average_3::createBodyLayer,
+                top_front_legs_average_average_3.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Top_Front_Legs(
                         GeneticValues.LEG_WIDTH.AVERAGE,
@@ -88,7 +94,8 @@ public class TopFrontLegModelPartRegistry {
                 ModModelLayers.TOP_FRONT_LEGS_AVERAGE_LONG_1_FRONT_RIGHT,
 
                 top_front_legs_average_long_1::new,
-                top_front_legs_average_long_1::createBodyLayer);
+                top_front_legs_average_long_1::createBodyLayer,
+                top_front_legs_average_long_1.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Top_Front_Legs(
                         GeneticValues.LEG_WIDTH.AVERAGE,
@@ -99,7 +106,8 @@ public class TopFrontLegModelPartRegistry {
                 ModModelLayers.TOP_FRONT_LEGS_AVERAGE_LONG_2_FRONT_RIGHT,
 
                 top_front_legs_average_long_2::new,
-                top_front_legs_average_long_2::createBodyLayer);
+                top_front_legs_average_long_2::createBodyLayer,
+                top_front_legs_average_long_2.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Top_Front_Legs(
                         GeneticValues.LEG_WIDTH.AVERAGE,
@@ -110,7 +118,8 @@ public class TopFrontLegModelPartRegistry {
                 ModModelLayers.TOP_FRONT_LEGS_AVERAGE_LONG_3_FRONT_RIGHT,
 
                 top_front_legs_average_long_3::new,
-                top_front_legs_average_long_3::createBodyLayer);
+                top_front_legs_average_long_3::createBodyLayer,
+                top_front_legs_average_long_3.class);
 
 
 
@@ -124,7 +133,8 @@ public class TopFrontLegModelPartRegistry {
                 ModModelLayers.TOP_FRONT_LEGS_THICK_SHORT_1_FRONT_RIGHT,
 
                 top_front_legs_thick_short_1::new,
-                top_front_legs_thick_short_1::createBodyLayer);
+                top_front_legs_thick_short_1::createBodyLayer,
+                top_front_legs_thick_short_1.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Top_Front_Legs(
                         GeneticValues.LEG_WIDTH.THICK,
@@ -135,7 +145,8 @@ public class TopFrontLegModelPartRegistry {
                 ModModelLayers.TOP_FRONT_LEGS_THICK_SHORT_2_FRONT_RIGHT,
 
                 top_front_legs_thick_short_2::new,
-                top_front_legs_thick_short_2::createBodyLayer);
+                top_front_legs_thick_short_2::createBodyLayer,
+                top_front_legs_thick_short_2.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Top_Front_Legs(
                         GeneticValues.LEG_WIDTH.THICK,
@@ -146,7 +157,8 @@ public class TopFrontLegModelPartRegistry {
                 ModModelLayers.TOP_FRONT_LEGS_THICK_SHORT_3_FRONT_RIGHT,
 
                 top_front_legs_thick_short_3::new,
-                top_front_legs_thick_short_3::createBodyLayer);
+                top_front_legs_thick_short_3::createBodyLayer,
+                top_front_legs_thick_short_3.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Top_Front_Legs(
                         GeneticValues.LEG_WIDTH.THICK,
@@ -157,7 +169,8 @@ public class TopFrontLegModelPartRegistry {
                 ModModelLayers.TOP_FRONT_LEGS_THICK_AVERAGE_1_FRONT_RIGHT,
 
                 top_front_legs_thick_average_1::new,
-                top_front_legs_thick_average_1::createBodyLayer);
+                top_front_legs_thick_average_1::createBodyLayer,
+                top_front_legs_thick_average_1.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Top_Front_Legs(
                         GeneticValues.LEG_WIDTH.THICK,
@@ -168,7 +181,8 @@ public class TopFrontLegModelPartRegistry {
                 ModModelLayers.TOP_FRONT_LEGS_THICK_AVERAGE_2_FRONT_RIGHT,
 
                 top_front_legs_thick_average_2::new,
-                top_front_legs_thick_average_2::createBodyLayer);
+                top_front_legs_thick_average_2::createBodyLayer,
+                top_front_legs_thick_average_2.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Top_Front_Legs(
                         GeneticValues.LEG_WIDTH.THICK,
@@ -179,7 +193,8 @@ public class TopFrontLegModelPartRegistry {
                 ModModelLayers.TOP_FRONT_LEGS_THICK_AVERAGE_3_FRONT_RIGHT,
 
                 top_front_legs_thick_average_3::new,
-                top_front_legs_thick_average_3::createBodyLayer);
+                top_front_legs_thick_average_3::createBodyLayer,
+                top_front_legs_thick_average_3.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Top_Front_Legs(
                         GeneticValues.LEG_WIDTH.THICK,
@@ -190,7 +205,8 @@ public class TopFrontLegModelPartRegistry {
                 ModModelLayers.TOP_FRONT_LEGS_THICK_LONG_1_FRONT_RIGHT,
 
                 top_front_legs_thick_long_1::new,
-                top_front_legs_thick_long_1::createBodyLayer);
+                top_front_legs_thick_long_1::createBodyLayer,
+                top_front_legs_thick_long_1.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Top_Front_Legs(
                         GeneticValues.LEG_WIDTH.THICK,
@@ -201,7 +217,8 @@ public class TopFrontLegModelPartRegistry {
                 ModModelLayers.TOP_FRONT_LEGS_THICK_LONG_2_FRONT_RIGHT,
 
                 top_front_legs_thick_long_2::new,
-                top_front_legs_thick_long_2::createBodyLayer);
+                top_front_legs_thick_long_2::createBodyLayer,
+                top_front_legs_thick_long_2.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Top_Front_Legs(
                         GeneticValues.LEG_WIDTH.THICK,
@@ -212,6 +229,7 @@ public class TopFrontLegModelPartRegistry {
                 ModModelLayers.TOP_FRONT_LEGS_THICK_LONG_3_FRONT_RIGHT,
 
                 top_front_legs_thick_long_3::new,
-                top_front_legs_thick_long_3::createBodyLayer);
+                top_front_legs_thick_long_3::createBodyLayer,
+                top_front_legs_thick_long_3.class);
     }
 }

@@ -15,16 +15,19 @@ public class WithersModelPartRegistry {
                         GeneticValues.MUSCLE_MASS.LEAN
                 ),
                 ModModelLayers.WITHERS_LEAN,
-                withers_lean::new);
+                withers_lean::new,
+                withers_lean.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Withers(
                         GeneticValues.MUSCLE_MASS.AVERAGE
                 ),
                 ModModelLayers.WITHERS_AVERAGE,
-                withers_average::new);
+                withers_average::new,
+                withers_average.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Withers(
                         GeneticValues.MUSCLE_MASS.MUSCULAR
                 ),
                 ModModelLayers.WITHERS_MUSCULAR,
-                withers_muscular::new);
+                withers_muscular::new,
+                withers_muscular.class);
     }
 }

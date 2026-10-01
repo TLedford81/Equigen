@@ -14,75 +14,87 @@ public class HeadModelPartRegistry {
                         GeneticValues.MUSCLE_MASS.LEAN
                         ),
                 ModModelLayers.HEAD_DISHED_LEAN,
-                head_dished_lean::new);
+                head_dished_lean::new,
+                head_dished_lean.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Head(
                         GeneticValues.HEAD_TYPE.DISHED,
                         GeneticValues.MUSCLE_MASS.AVERAGE
                 ),
                 ModModelLayers.HEAD_DISHED_AVERAGE,
-                head_dished_average::new);
+                head_dished_average::new,
+                head_dished_average.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Head(
                         GeneticValues.HEAD_TYPE.DISHED,
                         GeneticValues.MUSCLE_MASS.MUSCULAR
                 ),
                 ModModelLayers.HEAD_DISHED_MUSCULAR,
-                head_dished_muscular::new);
+                head_dished_muscular::new,
+                head_dished_muscular.class);
 
         ModelPartRegistry.register(new ModelPartRegistryKeys.Head(
                         GeneticValues.HEAD_TYPE.ROMAN,
                         GeneticValues.MUSCLE_MASS.LEAN
                 ),
                 ModModelLayers.HEAD_ROMAN_LEAN,
-                head_roman_lean::new);
+                head_roman_lean::new,
+                head_roman_lean.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Head(
                         GeneticValues.HEAD_TYPE.ROMAN,
                         GeneticValues.MUSCLE_MASS.AVERAGE
                 ),
                 ModModelLayers.HEAD_ROMAN_AVERAGE,
-                head_roman_average::new);
+                head_roman_average::new,
+                head_roman_average.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Head(
                         GeneticValues.HEAD_TYPE.ROMAN,
                         GeneticValues.MUSCLE_MASS.MUSCULAR
                 ),
                 ModModelLayers.HEAD_ROMAN_MUSCULAR,
-                head_roman_muscular::new);
+                head_roman_muscular::new,
+                head_roman_muscular.class);
 
         ModelPartRegistry.register(new ModelPartRegistryKeys.Head(
                         GeneticValues.HEAD_TYPE.STOCKY,
                         GeneticValues.MUSCLE_MASS.LEAN
                 ),
                 ModModelLayers.HEAD_STOCKY_LEAN,
-                head_stocky_lean::new);
+                head_stocky_lean::new,
+                head_stocky_lean.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Head(
                         GeneticValues.HEAD_TYPE.STOCKY,
                         GeneticValues.MUSCLE_MASS.AVERAGE
                 ),
                 ModModelLayers.HEAD_STOCKY_AVERAGE,
-                head_stocky_average::new);
+                head_stocky_average::new,
+                head_stocky_average.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Head(
                         GeneticValues.HEAD_TYPE.STOCKY,
                         GeneticValues.MUSCLE_MASS.MUSCULAR
                 ),
                 ModModelLayers.HEAD_STOCKY_MUSCULAR,
-                head_stocky_muscular::new);
+                head_stocky_muscular::new,
+                head_stocky_muscular.class);
 
         ModelPartRegistry.register(new ModelPartRegistryKeys.Head(
                         GeneticValues.HEAD_TYPE.STRAIGHT,
                         GeneticValues.MUSCLE_MASS.LEAN
                 ),
                 ModModelLayers.HEAD_STRAIGHT_LEAN,
-                head_straight_lean::new);
+                head_straight_lean::new,
+                head_straight_lean.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Head(
                         GeneticValues.HEAD_TYPE.STRAIGHT,
                         GeneticValues.MUSCLE_MASS.AVERAGE
                 ),
                 ModModelLayers.HEAD_STRAIGHT_AVERAGE,
-                head_straight_average::new);
+                head_straight_average::new,
+                head_straight_average.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Head(
                         GeneticValues.HEAD_TYPE.STRAIGHT,
                         GeneticValues.MUSCLE_MASS.MUSCULAR
                 ),
                 ModModelLayers.HEAD_STRAIGHT_MUSCULAR,
-                head_straight_muscular::new);
+                head_straight_muscular::new,
+                head_straight_muscular.class);
     }
 }

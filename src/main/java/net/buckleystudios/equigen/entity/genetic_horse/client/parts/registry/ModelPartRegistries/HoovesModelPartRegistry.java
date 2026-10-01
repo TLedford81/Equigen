@@ -24,7 +24,8 @@ public class HoovesModelPartRegistry {
                 ModModelLayers.HOOF_AVERAGE_BACK_RIGHT,
 
                 hoof_average::new,
-                hoof_average::createBodyLayer);
+                hoof_average::createBodyLayer,
+                hoof_average.class);
         ModelPartRegistry.register(
                 new ModelPartRegistryKeys.Hoof(
                         GeneticValues.HOOF_SIZE.LARGE
@@ -36,6 +37,7 @@ public class HoovesModelPartRegistry {
                 ModModelLayers.HOOF_LARGE_BACK_RIGHT,
 
                 hoof_large::new,
-                hoof_large::createBodyLayer);
+                hoof_large::createBodyLayer,
+                hoof_large.class);
     }
 }
