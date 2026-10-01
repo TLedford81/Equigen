@@ -15,7 +15,8 @@ public class ChestModelPartRegistry {
                         GeneticValues.CHEST_SIZE.SMALL_1
                 ),
                 ModModelLayers.CHEST_LEAN_SMALL_1,
-                chest_lean_small_1::new);
+                chest_lean_small_1::new,
+                chest_lean_small_1.class);
         ModelPartRegistry.register(new ModelPartRegistryKeys.Chest(
                         GeneticValues.MUSCLE_MASS.LEAN,
                         GeneticValues.CHEST_SIZE.SMALL_2

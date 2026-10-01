@@ -29,6 +29,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -58,6 +59,7 @@ import net.neoforged.neoforge.event.entity.living.BabyEntitySpawnEvent;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -1786,9 +1788,28 @@ private float difference = 0;
                 GeneticDebugTools.GenerateDebugBook(this, pPlayer, pHand);
             }
             if (itemstack.is(Items.AMETHYST_BLOCK)) {
-                GeneticHorseRenderer renderer = getRenderer(this); //TODO See tims disclaimer. "Bad practice" or whatever.
+                GeneticHorseRenderer renderer = getRenderer(this);
+                if (renderer == null) {
+                    EquigenMod.LOGGER.error("Could not generate texture: renderer was null!");
+                    return InteractionResult.FAIL;
+                }
+                //TODO See tims disclaimer. "Bad practice" or whatever.
                 GeneticHorseTexturer texturer = new GeneticHorseTexturer(this, renderer.getModelSet());
-                Path outputPath = Paths.get("testing.png");
+//                Path outputPath = Paths.get("testing.png");
+                MinecraftServer server = Minecraft.getInstance().getSingleplayerServer();
+                if (server == null) {
+                    EquigenMod.LOGGER.error("Could not find integrated server!");
+                    return InteractionResult.FAIL;
+                }
+
+                Path outputPath = Minecraft.getInstance()
+                        .gameDirectory
+                        .toPath()
+                        .resolve("equigen")
+                        .resolve("cache")
+                        .resolve("horse_textures")
+                        .resolve(this.getUUID() + ".png");
+
                 Path inputPath = Paths.get(
                         "..",
                         "..",
@@ -1832,7 +1853,20 @@ private float difference = 0;
                 ).normalize();
 
                 try {
-                    texturer.textureGeneration(this,outputPath, texturer.getLayerList(this));
+                    Files.createDirectories(outputPath.getParent());
+
+                    EquigenMod.LOGGER.info("LAYER LIST = " + texturer.getLayerList(this));
+                    texturer.textureGeneration(
+                            this,
+                            outputPath,
+                            texturer.getLayerList(this)
+                    );
+
+                    EquigenMod.LOGGER.info(
+                            "Generated texture: {}",
+                            outputPath.toAbsolutePath()
+                    );
+
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
