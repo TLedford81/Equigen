@@ -152,9 +152,15 @@ public class RegistryKeyFactory
         );
     }
     public static ModelPartRegistryKeys.Top_Back_Legs getTopBackLegKey(float topHindLegWidth, float topLeg) {
+        GeneticValues.TOP_LEG leg = GeneticsHandler.getTopLegValue(topLeg);
+
+        if (leg.equals(GeneticValues.TOP_LEG.SHORT_3)) leg = GeneticValues.TOP_LEG.SHORT_2;
+        if (leg.equals(GeneticValues.TOP_LEG.AVERAGE_3)) leg = GeneticValues.TOP_LEG.AVERAGE_2;
+        if (leg.equals(GeneticValues.TOP_LEG.LONG_3)) leg = GeneticValues.TOP_LEG.LONG_2;
+
         return new ModelPartRegistryKeys.Top_Back_Legs(
                 GeneticsHandler.getTopHindLegWidthValue(topHindLegWidth),
-                GeneticsHandler.getTopLegValue(topLeg)
+                leg
         );
     }
 

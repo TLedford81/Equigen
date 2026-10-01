@@ -32,48 +32,6 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
 
     private final EntityModelSet modelSet;
 
-    private final ResourceLocation partial_pastern = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/pastern/partial_pastern.png");
-    private final ResourceLocation pastern = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/pastern/pastern.png");
-    private final ResourceLocation small_pastern = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/pastern/small_pastern.png");
-
-
-    private final ResourceLocation sock_1 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/socks/sock_1.png");
-    private final ResourceLocation sock_2 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/socks/sock_2.png");
-    private final ResourceLocation sock_3 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/socks/sock_3.png");
-    private final ResourceLocation sock_4 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/socks/sock_4.png");
-    private final ResourceLocation sock_5 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/socks/sock_5.png");
-    private final ResourceLocation sock_6 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/socks/sock_6.png");
-    private final ResourceLocation sock_7 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/socks/sock_7.png");
-    private final ResourceLocation sock_8 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/socks/sock_8.png");
-
-    private final ResourceLocation stocking_1 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/stockings/stocking_1.png");
-    private final ResourceLocation stocking_2 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/stockings/stocking_2.png");
-    private final ResourceLocation stocking_3 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/stockings/stocking_3.png");
-    private final ResourceLocation stocking_4 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/stockings/stocking_4.png");
-    private final ResourceLocation stocking_5 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/stockings/stocking_5.png");
-    private final ResourceLocation stocking_6 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/stockings/stocking_6.png");
-    private final ResourceLocation stocking_7 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/stockings/stocking_7.png");
-    private final ResourceLocation stocking_8 = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/leg_markings/stockings/stocking_8.png");
-
-
-    private final ResourceLocation blaze = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/head_markings/blaze.png");
-    private final ResourceLocation faint_star = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/head_markings/faint_star.png");
-    private final ResourceLocation interrupted_stripe = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/head_markings/interrupted_stripe.png");
-    private final ResourceLocation stripe_and_snip = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/head_markings/stripe_and_snip.png");
-    private final ResourceLocation stripe = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/head_markings/stripe.png");
-    private final ResourceLocation irregular_blaze = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/head_markings/irregular_blaze.png");
-    private final ResourceLocation bald_face = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/head_markings/bald_face.png");
-    private final ResourceLocation star = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/head_markings/star.png");
-    private final ResourceLocation star_and_strip = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/head_markings/star_and_strip.png");
-    private final ResourceLocation irregular_star = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/head_markings/irregular_star.png");
-    private final ResourceLocation snip = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/head_markings/snip.png");
-    private final ResourceLocation lip_marking = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/head_markings/lip_marking.png");
-
-    private final ResourceLocation nostrils = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/head_markings/nostrils.png");
-
-    private final ResourceLocation eyes = ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/markings/head_markings/eyes.png");
-
-
 
     public GeneticHorseRenderer(EntityRendererProvider.Context context) {
         super(context, new GH_ModelBase<>(context.bakeLayer(ModModelLayers.GENETIC_HORSE)), 1f);
@@ -155,20 +113,20 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
         List<ResourceLocation> BACK_LEFT_LEG_MARKINGS = new ArrayList<>();
         List<ResourceLocation> BACK_RIGHT_LEG_MARKINGS = new ArrayList<>();
 
-        ResourceLocation front_left_leg = getLegWhiteMarking((int) GeneticsHandler.getGeneticFloat(e, Genetics.FRONT_LEFT_LEG_MARKING));
-        ResourceLocation front_right_leg = getLegWhiteMarking((int) GeneticsHandler.getGeneticFloat(e, Genetics.FRONT_RIGHT_LEG_MARKING));
-        ResourceLocation back_left_leg = getLegWhiteMarking((int) GeneticsHandler.getGeneticFloat(e, Genetics.BACK_LEFT_LEG_MARKING));
-        ResourceLocation back_right_leg = getLegWhiteMarking((int) GeneticsHandler.getGeneticFloat(e, Genetics.BACK_RIGHT_LEG_MARKING));
-
-        ResourceLocation face_marking = getFaceMarking((int) GeneticsHandler.getGeneticFloat(e, Genetics.FACE_MARKING));
-
-        if (face_marking != null) BODY_MARKINGS.add(face_marking);
-        if (front_left_leg != null) FRONT_LEFT_LEG_MARKINGS.add(front_left_leg);
-        if (front_right_leg != null) FRONT_RIGHT_LEG_MARKINGS.add(front_right_leg);
-        if (back_left_leg != null) BACK_LEFT_LEG_MARKINGS.add(back_left_leg);
-        if (back_right_leg != null) BACK_RIGHT_LEG_MARKINGS.add(back_right_leg);
-        BODY_MARKINGS.add(nostrils);
-        BODY_MARKINGS.add(eyes);
+//        ResourceLocation front_left_leg = getLegWhiteMarking((int) GeneticsHandler.getGeneticFloat(e, Genetics.FRONT_LEFT_LEG_MARKING));
+//        ResourceLocation front_right_leg = getLegWhiteMarking((int) GeneticsHandler.getGeneticFloat(e, Genetics.FRONT_RIGHT_LEG_MARKING));
+//        ResourceLocation back_left_leg = getLegWhiteMarking((int) GeneticsHandler.getGeneticFloat(e, Genetics.BACK_LEFT_LEG_MARKING));
+//        ResourceLocation back_right_leg = getLegWhiteMarking((int) GeneticsHandler.getGeneticFloat(e, Genetics.BACK_RIGHT_LEG_MARKING));
+//
+//        ResourceLocation face_marking = getFaceMarking((int) GeneticsHandler.getGeneticFloat(e, Genetics.FACE_MARKING));
+//
+//        if (face_marking != null) BODY_MARKINGS.add(face_marking);
+//        if (front_left_leg != null) FRONT_LEFT_LEG_MARKINGS.add(front_left_leg);
+//        if (front_right_leg != null) FRONT_RIGHT_LEG_MARKINGS.add(front_right_leg);
+//        if (back_left_leg != null) BACK_LEFT_LEG_MARKINGS.add(back_left_leg);
+//        if (back_right_leg != null) BACK_RIGHT_LEG_MARKINGS.add(back_right_leg);
+//        BODY_MARKINGS.add(nostrils);
+//        BODY_MARKINGS.add(eyes);
 
 
 
@@ -188,49 +146,6 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
         );
     }
 
-    private ResourceLocation getLegWhiteMarking(int gene) {
-        return switch (gene) {
-            case 1 -> small_pastern;
-            case 2 -> partial_pastern;
-            case 3 -> pastern;
-            case 4 -> sock_1;
-            case 5 -> sock_2;
-            case 6 -> sock_3;
-            case 7 -> sock_4;
-            case 8 -> sock_5;
-            case 9 -> sock_6;
-            case 10 -> sock_7;
-            case 11 -> sock_8;
-            case 12 -> stocking_1;
-            case 13 -> stocking_2;
-            case 14 -> stocking_3;
-            case 15 -> stocking_4;
-            case 16 -> stocking_5;
-            case 17 -> stocking_6;
-            case 18 -> stocking_7;
-            case 19 -> stocking_8;
-            default -> null;
-        };
-
-    }
-    private ResourceLocation getFaceMarking(int gene) {
-        return switch (gene) {
-            case 1 -> blaze;
-            case 2 -> faint_star;
-            case 3 -> interrupted_stripe;
-            case 4 -> stripe_and_snip;
-            case 5 -> stripe;
-            case 6 -> irregular_blaze;
-            case 7 -> bald_face;
-            case 8 -> star;
-            case 9 -> star_and_strip;
-            case 10 -> irregular_star;
-            case 11 -> snip;
-            case 12 -> lip_marking;
-            default -> null;
-        };
-
-    }
 
     @Override
     public void render(GeneticHorseEntity entity, float entityYaw, float partialTicks,

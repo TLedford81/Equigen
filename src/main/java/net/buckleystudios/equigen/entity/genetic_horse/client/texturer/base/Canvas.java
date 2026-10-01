@@ -76,7 +76,7 @@ public class Canvas {
         for(int i = 0; i < modifiedPart.blocks.size(); i++) {
             Block b = modifiedPart.getSingleBlock(i);
             if (!b.isModified()) {
-                EquigenMod.LOGGER.info("UNMODIFIED PART, CONTINUING");
+                EquigenMod.LOGGER.info("UNMODIFIED PART. BLOCK {} X {} Y {}", i, b.x, b.y);
             } else {
                 for (int f = 0; f < modifiedPart.blocks.get(i).faces.size(); f++) {
                     g.drawImage(img,
@@ -92,7 +92,7 @@ public class Canvas {
                             modifiedPart.blocks.get(i).faces.get(f).x + modifiedPart.blocks.get(i).faces.get(f).width,
                             modifiedPart.blocks.get(i).faces.get(f).y + modifiedPart.blocks.get(i).faces.get(f).height,
                             null);
-                    System.out.println("BLOCK " + i + " | FACE " + f +
+                    System.out.println("DRAWING PART: " + modifiedPart.modelName +"BLOCK " + i + " | FACE " + f +
                             "     TARGET X = " + targetPart.blocks.get(i).faces.get(f).x
                             + " TARGET Y = " + targetPart.blocks.get(i).faces.get(f).y +
                             " SOURCE X = " +  modifiedPart.blocks.get(i).faces.get(f).x +
