@@ -1,5 +1,6 @@
 package net.buckleystudios.equigen.entity.genetic_horse.client;
 
+import com.mojang.blaze3d.platform.NativeImage;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.buckleystudios.equigen.EquigenMod;
@@ -9,28 +10,32 @@ import net.buckleystudios.equigen.entity.genetic_horse.client.parts.PartTransfor
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.multipart.MultipartModel;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.registry.ModelPartRegistries.ModelPartRegistry;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.registry.RegistryKeyFactory;
+import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.GeneticHorseTexturer;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticValues;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.Genetics;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticsHandler;
 import net.buckleystudios.equigen.util.BoundsTracker;
 import net.buckleystudios.equigen.util.MeasuringBufferSource;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import org.joml.Vector3f;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.*;
 
 public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_ModelBase<GeneticHorseEntity>> {
 
     private final EntityModelSet modelSet;
+    private final Map<UUID, ResourceLocation> textures = new HashMap<>();
 
 
     public GeneticHorseRenderer(EntityRendererProvider.Context context) {
@@ -44,41 +49,79 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
 
     @Override
     public ResourceLocation getTextureLocation(GeneticHorseEntity entity) {
+        return textures.computeIfAbsent(
+                entity.getUUID(),
+                uuid -> getOrCreateTexture(entity)
+        );
+    }
+    private ResourceLocation getOrCreateTexture(GeneticHorseEntity entity) {
+        Path outputPath = Minecraft.getInstance()
+                .gameDirectory
+                .toPath()
+                .resolve("equigen")
+                .resolve("cache")
+                .resolve("horse_textures")
+                .resolve(entity.getUUID() + ".png");
+
         try {
-            int sel = getSelectedTexture(entity);
-            sel = Math.max(1, Math.min(3, sel));
-            return getTextureLocation(entity, sel);
-        } catch (Exception ignored) {
-            return ResourceLocation.fromNamespaceAndPath(EquigenMod.MODID, "textures/entity/genetic_horse/genetic_horse.png");
+            if (!Files.exists(outputPath)) {
+                generateTexture(entity, outputPath);
+            }
+            return loadTexture(entity, outputPath);
+
+        } catch (IOException e) {
+            EquigenMod.LOGGER.error(
+                    "Failed to create/load texture for horse {}",
+                    entity.getUUID(),
+                    e
+            );
+
+            return ResourceLocation.fromNamespaceAndPath(
+                    EquigenMod.MODID,
+                    "textures/entity/genetic_horse/final_texture.png"
+            );
         }
     }
 
-    public ResourceLocation getTextureLocation(GeneticHorseEntity entity, int selectedTexture) {
-        return ResourceLocation.fromNamespaceAndPath(
-                    EquigenMod.MODID,
-                    "textures/entity/genetic_horse/final_texture.png");
+    private ResourceLocation loadTexture(GeneticHorseEntity entity, Path path) throws IOException {
+        ResourceLocation location = ResourceLocation.fromNamespaceAndPath(
+                EquigenMod.MODID,
+                "horse/" + entity.getUUID()
+        );
 
-//        if (selectedTexture == 1) {
-//            return ResourceLocation.fromNamespaceAndPath(
-//                    EquigenMod.MODID,
-//                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_chestnut.png"
-//            );
-//        } else if (selectedTexture == 2) {
-//            return ResourceLocation.fromNamespaceAndPath(
-//                    EquigenMod.MODID,
-//                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_black.png"
-//            );
-//        } else if (selectedTexture == 3) {
-//            return ResourceLocation.fromNamespaceAndPath(
-//                    EquigenMod.MODID,
-//                    "textures/entity/genetic_horse/genetic_horse" + (entity.isSaddled() ? "_saddled" : "") + "_bay.png"
-//            );
-//        } else {
-//            return ResourceLocation.fromNamespaceAndPath(
-//                    EquigenMod.MODID,
-//                    "textures/entity/genetic_horse/genetic_horse_old" + (entity.isSaddled() ? "_saddled" : "")
-//            );
-//        }
+        try (var inputStream = Files.newInputStream(path)) {
+            NativeImage image = NativeImage.read(inputStream);
+            DynamicTexture dynamicTexture = new DynamicTexture(image);
+
+            Minecraft.getInstance()
+                    .getTextureManager()
+                    .register(location, dynamicTexture);
+        }
+
+        return location;
+    }
+
+    private void generateTexture(GeneticHorseEntity entity, Path outputPath) throws IOException {
+        GeneticHorseTexturer texturer =
+                new GeneticHorseTexturer(entity, this.getModelSet());
+
+        Files.createDirectories(outputPath.getParent());
+
+        EquigenMod.LOGGER.info(
+                "LAYER LIST = {}",
+                texturer.getLayerList(entity)
+        );
+
+        texturer.textureGeneration(
+                entity,
+                outputPath,
+                texturer.getLayerList(entity)
+        );
+
+        EquigenMod.LOGGER.info(
+                "Generated texture: {}",
+                outputPath.toAbsolutePath()
+        );
     }
 
     public int getSelectedTexture(GeneticHorseEntity entity) {
@@ -367,7 +410,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
         model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, 0f, 0f);
         model.renderToBuffer(
                 pose,
-                buffer.getBuffer(RenderType.entityCutout(getTextureLocation(entity, this.getSelectedTexture(entity)))),
+                buffer.getBuffer(RenderType.entityCutout(getTextureLocation(entity))),
                 packedLight,
                 OverlayTexture.NO_OVERLAY
         );
@@ -441,7 +484,7 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
 
         child.renderToBuffer(
                 pose,
-                buffer.getBuffer(RenderType.entityCutout(getTextureLocation(entity, this.getSelectedTexture(entity)))),
+                buffer.getBuffer(RenderType.entityCutout(getTextureLocation(entity))),
                 packedLight,
                 OverlayTexture.NO_OVERLAY
         );
