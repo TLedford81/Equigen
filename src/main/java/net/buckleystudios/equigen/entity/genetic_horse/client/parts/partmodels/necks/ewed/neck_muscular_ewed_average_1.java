@@ -168,6 +168,15 @@ public class neck_muscular_ewed_average_1 extends MultipartNeckModel<GeneticHors
 		));
 	}
 	public Part returnManeCubeDimensions() {
-		return returnManeCubeDimensions("mane_ewed_average_1");
-	}
+		return new Part("mane_ewed_average_1", new ArrayList<>(
+				Arrays.asList(
+						new Block(2, 2, 4),
+						new Block(3, 1, 4),
+						new Block(1, 7, 4),
+						new Block(1, 7, 4),
+						new Block(2, 2, 9),
+						new Block(3, 1, 9),
+						new Block(1, 7, 9),
+						new Block(1, 7, 9))
+		));	}
 }

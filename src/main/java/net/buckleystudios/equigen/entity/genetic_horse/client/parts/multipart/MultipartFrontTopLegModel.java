@@ -62,6 +62,32 @@ public abstract class MultipartFrontTopLegModel <E extends GeneticHorseEntity> e
         }
 
         return offset - zLength;
+    }
 
+
+        //LEFT LEGS FLIP
+
+    protected static float getLegReflection(
+            float baseTransform,
+            GeneticValues.LEG leg,
+            float xSize) {
+
+        return leg == GeneticValues.LEG.FRONT_LEFT
+                ? -baseTransform - xSize
+                : baseTransform;
+    }
+
+    protected static float getLegPivot(float baseTransform, GeneticValues.LEG leg) {
+        switch (leg) {
+            case GeneticValues.LEG.FRONT_LEFT -> {
+                return baseTransform * -1;
+            }
+            case GeneticValues.LEG.FRONT_RIGHT -> {
+                return baseTransform;
+            }
+            default -> {
+                return 0;
+            }
         }
+    }
 }

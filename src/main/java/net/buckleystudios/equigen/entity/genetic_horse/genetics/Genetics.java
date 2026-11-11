@@ -5,6 +5,7 @@ import net.buckleystudios.equigen.entity.genetic_horse.genetics.util.GeneticCate
 import net.neoforged.neoforge.attachment.AttachmentType;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.function.Supplier;
@@ -13,7 +14,7 @@ public enum Genetics {
 
     /* Gender */
     GENDER (ModData.GENDER, GeneticCategories.RANDOM_GENETICS, 2,
-            flags.COMPLEX_INHERITANCE),
+            flags.COMPLEX_INHERITANCE, flags.SYNC_TO_CLIENT),
 
     /* Scale */
     SCALE (ModData.SCALE, GeneticCategories.PERCENTAGE_GENETICS, 1,
@@ -77,19 +78,19 @@ public enum Genetics {
             flags.SYNC_TO_CLIENT, flags.TEXTURE_GENE, flags.COMPLEX_INHERITANCE),
     RICHNESS (ModData.RICHNESS, GeneticCategories.HSV_GENETICS, 100,
             flags.SYNC_TO_CLIENT, flags.TEXTURE_GENE, flags.COMPLEX_INHERITANCE),
-    BLACK_MODIFIER (ModData.BLACK_MODIFIER, GeneticCategories.COAT_GENETICS, 3,
+    AGOUTI(ModData.AGOUTI, GeneticCategories.COAT_GENETICS, 3,
             flags.SYNC_TO_CLIENT, flags.TEXTURE_GENE, flags.COMPLEX_INHERITANCE),
-    BLACK_VARIATION(ModData.BLACK_VARIATION, GeneticCategories.COAT_VARIATION_GENETICS, 10,
+    AGOUTI_VARIATION(ModData.AGOUTI_VARIATION, GeneticCategories.COAT_VARIATION_GENETICS, 10,
             flags.TEXTURE_GENE, flags.COMPLEX_INHERITANCE),
-    RED_MODIFIER (ModData.RED_MODIFIER, GeneticCategories.COAT_GENETICS, 3,
+    EXTENSION(ModData.EXTENSION, GeneticCategories.COAT_GENETICS, 3,
             flags.SYNC_TO_CLIENT, flags.TEXTURE_GENE, flags.COMPLEX_INHERITANCE),
-    RED_VARIATION (ModData.RED_VARIATION, GeneticCategories.COAT_VARIATION_GENETICS, 10,
+    EXTENSION_VARIATION(ModData.EXTENSION_VARIATION, GeneticCategories.COAT_VARIATION_GENETICS, 10,
             flags.TEXTURE_GENE, flags.COMPLEX_INHERITANCE),
-    CREAM (ModData.CREAM, GeneticCategories.COAT_MODIFIERS, 0,
+    CREAM (ModData.CREAM, GeneticCategories.COAT_MODIFIERS, 3,
             flags.TEXTURE_GENE, flags.COMPLEX_INHERITANCE),
     CREAM_VARIATION (ModData.CREAM_VARIATION, GeneticCategories.COAT_VARIATION_GENETICS, 0,
             flags.TEXTURE_GENE, flags.COMPLEX_INHERITANCE),
-    DUN (ModData.DUN, GeneticCategories.COAT_MODIFIERS, 0,
+    DUN (ModData.DUN, GeneticCategories.COAT_MODIFIERS, 3,
             flags.TEXTURE_GENE, flags.COMPLEX_INHERITANCE),
     DUN_VARIATION (ModData.DUN_VARIATION, GeneticCategories.COAT_VARIATION_GENETICS, 0,
             flags.TEXTURE_GENE, flags.COMPLEX_INHERITANCE),
@@ -190,19 +191,19 @@ public enum Genetics {
             flags.SYNC_TO_CLIENT, flags.TEXTURE_GENE, flags.COMPLEX_INHERITANCE),
     BACK_RIGHT_LEG_MARKING (ModData.BACK_RIGHT_LEG_MARKING, GeneticCategories.MARKING_GENETICS, 19,
             flags.SYNC_TO_CLIENT, flags.TEXTURE_GENE, flags.COMPLEX_INHERITANCE),
-    BLACK_POINT_HEIGHT (ModData.BLACK_POINT_HEIGHT, GeneticCategories.NONE, 0,
-            flags.TEXTURE_GENE),
-    EYE_BASE_COLOR (ModData.EYE_BASE_COLOR, GeneticCategories.NONE, 3,
+    BLACK_POINT_HEIGHT (ModData.BLACK_POINT_HEIGHT, GeneticCategories.MARKING_GENETICS, 19,
             flags.SYNC_TO_CLIENT, flags.TEXTURE_GENE),
-    EYE_BASE_COLOR_2 (ModData.EYE_BASE_COLOR_2, GeneticCategories.NONE, 3,
+    EYE_BASE_COLOR (ModData.EYE_BASE_COLOR, GeneticCategories.EYE_COLOR_GENETICS, 3,
             flags.SYNC_TO_CLIENT, flags.TEXTURE_GENE),
-    EYE_HUE (ModData.EYE_HUE, GeneticCategories.NONE, 100,
+    EYE_BASE_COLOR_2 (ModData.EYE_BASE_COLOR_2, GeneticCategories.EYE_COLOR_GENETICS, 3,
             flags.SYNC_TO_CLIENT, flags.TEXTURE_GENE),
-    EYE_SATURATION (ModData.EYE_SATURATION, GeneticCategories.NONE, 100,
+    EYE_HUE (ModData.EYE_HUE, GeneticCategories.EYE_COLOR_GENETICS, 100,
             flags.SYNC_TO_CLIENT, flags.TEXTURE_GENE),
-    EYE_BRIGHTNESS (ModData.EYE_BRIGHTNESS, GeneticCategories.NONE, 100,
+    EYE_SATURATION (ModData.EYE_SATURATION, GeneticCategories.EYE_COLOR_GENETICS, 100,
             flags.SYNC_TO_CLIENT, flags.TEXTURE_GENE),
-    HETEROCHROMIA (ModData.HETEROCHROMIA, GeneticCategories.NONE, 3,
+    EYE_BRIGHTNESS (ModData.EYE_BRIGHTNESS, GeneticCategories.EYE_COLOR_GENETICS, 100,
+            flags.SYNC_TO_CLIENT, flags.TEXTURE_GENE),
+    HETEROCHROMIA (ModData.HETEROCHROMIA, GeneticCategories.EYE_COLOR_GENETICS, 3,
             flags.SYNC_TO_CLIENT, flags.TEXTURE_GENE),
     HOOF_COLOR (ModData.HOOF_COLOR, GeneticCategories.NONE, 0,
             flags.TEXTURE_GENE),
@@ -288,6 +289,7 @@ public enum Genetics {
     public boolean isSyncToClient(){return flagList.contains(flags.SYNC_TO_CLIENT);}
     public boolean isTextureGene(){return flagList.contains(flags.TEXTURE_GENE);}
 
+
     public static List<Genetics> getGeneticsToRender(){
         List<Genetics> output = new ArrayList<>();
         for(Genetics value : Genetics.values()){
@@ -296,6 +298,9 @@ public enum Genetics {
             }
         }
         return output;
+    }
+    public static List<Genetics> getAllGenetics(){
+        return new ArrayList<>(Arrays.asList(Genetics.values()));
     }
     public static List<Genetics> getTextureGenetics(){
         List<Genetics> output = new ArrayList<>();

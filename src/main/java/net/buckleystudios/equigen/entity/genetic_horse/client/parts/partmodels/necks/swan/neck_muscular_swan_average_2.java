@@ -171,6 +171,15 @@ public class neck_muscular_swan_average_2 extends MultipartNeckModel<GeneticHors
 		));
 	}
 	public Part returnManeCubeDimensions() {
-		return returnManeCubeDimensions("mane_swan_average_2");
-	}
+		return new Part("mane_swan_average_2", new ArrayList<>(
+				Arrays.asList(
+						new Block(2, 2, 6),
+						new Block(3, 1, 6),
+						new Block(1, 7, 6),
+						new Block(1, 7, 6),
+						new Block(2, 2, 10),
+						new Block(3, 1, 10),
+						new Block(1, 7, 10),
+						new Block(1, 7, 10))
+		));	}
 }

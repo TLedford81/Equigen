@@ -41,17 +41,17 @@ public class chest_average_small_1 extends MultipartChestModel<GeneticHorseEntit
 
 		PartDefinition chest_average_small_1_chest_front = chest_average_small_1.addOrReplaceChild("chest_average_small_1_chest_front", CubeListBuilder.create(), PartPose.offset(0.0F, 2.4134F, -4.7374F));
 
-		PartDefinition chest_average_small_1_chest_front_upper = chest_average_small_1_chest_front.addOrReplaceChild("chest_average_small_1_chest_front_upper", CubeListBuilder.create(), PartPose.offset(0.0F, -2.2419F, 1.9732F));
+		PartDefinition chest_average_small_1_chest_front_upper = chest_average_small_1_chest_front.addOrReplaceChild("chest_average_small_1_chest_front_upper", CubeListBuilder.create(), PartPose.offset(0.125F, -2.2419F, 1.9732F));
 
 		PartDefinition cube_r1 = chest_average_small_1_chest_front_upper.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(30, 137).addBox(-4.08F, -7.68F, -4.52F, 4.0F, 4.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.08F, -2.02F, 5.68F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition chest_average_small_1_chest_front_lower = chest_average_small_1_chest_front.addOrReplaceChild("chest_average_small_1_chest_front_lower", CubeListBuilder.create(), PartPose.offset(0.0F, 0.5748F, 2.5557F));
 
-		PartDefinition cube_r2 = chest_average_small_1_chest_front_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(59, 133).addBox(-4.0792F, -7.6432F, -3.4848F, 4.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.0792F, -3.7952F, 4.624F, 1.9199F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = chest_average_small_1_chest_front_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(59, 133).addBox(-4.0792F, -7.6432F, -3.4848F, 4.0F, 4.0F, 3.0F, new CubeDeformation(-0.1F)), PartPose.offsetAndRotation(2.2042F, -3.5702F, 4.374F, 1.9199F, 0.0F, 0.0F));
 
 		PartDefinition chest_average_small_1_chest_left = chest_average_small_1.addOrReplaceChild("chest_average_small_1_chest_left", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition chest_average_small_1_chest_left_pectoral = chest_average_small_1_chest_left.addOrReplaceChild("chest_average_small_1_chest_left_pectoral", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -2.771F));
+		PartDefinition chest_average_small_1_chest_left_pectoral = chest_average_small_1_chest_left.addOrReplaceChild("chest_average_small_1_chest_left_pectoral", CubeListBuilder.create(), PartPose.offset(0.1F, 0.0F, -2.771F));
 
 		PartDefinition chest_average_small_1_chest_left_pectoral_top = chest_average_small_1_chest_left_pectoral.addOrReplaceChild("chest_average_small_1_chest_left_pectoral_top", CubeListBuilder.create(), PartPose.offset(1.5378F, -1.4279F, 0.4741F));
 
@@ -63,7 +63,7 @@ public class chest_average_small_1 extends MultipartChestModel<GeneticHorseEntit
 
 		PartDefinition chest_average_small_1_chest_left_pectoral_bottom = chest_average_small_1_chest_left_pectoral.addOrReplaceChild("chest_average_small_1_chest_left_pectoral_bottom", CubeListBuilder.create(), PartPose.offset(1.5378F, 2.7733F, 0.9037F));
 
-		PartDefinition cube_r5 = chest_average_small_1_chest_left_pectoral_bottom.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(75, 133).addBox(-2.08F, -7.68F, -4.52F, 3.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.58F, -4.3107F, 4.4756F, 1.9199F, 0.0F, 0.0F));
+		PartDefinition cube_r5 = chest_average_small_1_chest_left_pectoral_bottom.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(75, 133).addBox(-2.08F, -7.68F, -4.52F, 3.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.58F, -3.5107F, 4.5256F, 1.9199F, 0.0F, 0.0F));
 
 		PartDefinition chest_average_small_1_chest_left_deltoid = chest_average_small_1_chest_left.addOrReplaceChild("chest_average_small_1_chest_left_deltoid", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
@@ -73,7 +73,7 @@ public class chest_average_small_1 extends MultipartChestModel<GeneticHorseEntit
 
 		PartDefinition chest_average_small_1_chest_right = chest_average_small_1.addOrReplaceChild("chest_average_small_1_chest_right", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition chest_average_small_1_chest_right_pectoral = chest_average_small_1_chest_right.addOrReplaceChild("chest_average_small_1_chest_right_pectoral", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -2.5922F));
+		PartDefinition chest_average_small_1_chest_right_pectoral = chest_average_small_1_chest_right.addOrReplaceChild("chest_average_small_1_chest_right_pectoral", CubeListBuilder.create(), PartPose.offset(0.125F, 0.0F, -2.5922F));
 
 		PartDefinition chest_average_small_1_chest_right_pectoral_top = chest_average_small_1_chest_right_pectoral.addOrReplaceChild("chest_average_small_1_chest_right_pectoral_top", CubeListBuilder.create(), PartPose.offset(-1.4622F, -1.4279F, 0.2953F));
 
@@ -85,7 +85,7 @@ public class chest_average_small_1 extends MultipartChestModel<GeneticHorseEntit
 
 		PartDefinition chest_average_small_1_chest_right_pectoral_bottom = chest_average_small_1_chest_right_pectoral.addOrReplaceChild("chest_average_small_1_chest_right_pectoral_bottom", CubeListBuilder.create(), PartPose.offset(-1.4622F, 2.7733F, 0.7249F));
 
-		PartDefinition cube_r8 = chest_average_small_1_chest_right_pectoral_bottom.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(48, 138).addBox(-5.08F, -7.68F, -4.52F, 3.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.58F, -4.3107F, 4.4756F, 1.9199F, 0.0F, 0.0F));
+		PartDefinition cube_r8 = chest_average_small_1_chest_right_pectoral_bottom.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(48, 138).addBox(-5.08F, -7.68F, -4.52F, 3.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.68F, -3.5107F, 4.5506F, 1.9199F, 0.0F, 0.0F));
 
 		PartDefinition chest_average_small_1_chest_right_deltoid = chest_average_small_1_chest_right.addOrReplaceChild("chest_average_small_1_chest_right_deltoid", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
@@ -97,9 +97,9 @@ public class chest_average_small_1 extends MultipartChestModel<GeneticHorseEntit
 
 		PartDefinition backAnchor = chest_average_small_1.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.25F, -3.5F, 3.5F));
 
-		PartDefinition frontLeftLegAnchor = chest_average_small_1.addOrReplaceChild("frontLeftLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(3.5F, 3.5F, -2.25F));
+		PartDefinition frontLeftLegAnchor = chest_average_small_1.addOrReplaceChild("frontLeftLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(2.7F, 3.5F, -2.25F));
 
-		PartDefinition frontRightLegAnchor = chest_average_small_1.addOrReplaceChild("frontRightLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-3.25F, 3.5F, -2.25F));
+		PartDefinition frontRightLegAnchor = chest_average_small_1.addOrReplaceChild("frontRightLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.325F, 3.5F, -2.25F));
 
 		return LayerDefinition.create(meshdefinition, 128, 160);
 	}

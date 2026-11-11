@@ -168,6 +168,15 @@ public class neck_muscular_ewed_long_1 extends MultipartNeckModel<GeneticHorseEn
 		));
 	}
 	public Part returnManeCubeDimensions() {
-		return returnManeCubeDimensions("mane_ewed_long_1");
-	}
+		return new Part("mane_ewed_long_1", new ArrayList<>(
+				Arrays.asList(
+						new Block(2, 2, 4),
+						new Block(3, 1, 4),
+						new Block(1, 7, 4),
+						new Block(1, 7, 4),
+						new Block(2, 2, 11),
+						new Block(3, 1, 11),
+						new Block(1, 7, 11),
+						new Block(1, 7, 11))
+		));	}
 }

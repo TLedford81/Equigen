@@ -125,8 +125,8 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
     }
 
     public int getSelectedTexture(GeneticHorseEntity entity) {
-        float blackModifier = GeneticsHandler.getGeneticFloat(entity, Genetics.BLACK_MODIFIER);
-        float redModifier = GeneticsHandler.getGeneticFloat(entity, Genetics.RED_MODIFIER);
+        float blackModifier = GeneticsHandler.getGeneticFloat(entity, Genetics.AGOUTI);
+        float redModifier = GeneticsHandler.getGeneticFloat(entity, Genetics.EXTENSION);
         if (blackModifier == 1.0f) {
             return 1; //Chestnut e/e _/_
         } else if (redModifier == 1.0f && blackModifier >= 2.0f) {

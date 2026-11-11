@@ -5,10 +5,10 @@ package net.buckleystudios.equigen.entity.genetic_horse.client.parts.partmodels.
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.multipart.MultipartKneeModel;
 import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Block;
 import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Part;
-import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticValues;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -41,9 +41,9 @@ public class knees extends MultipartKneeModel<GeneticHorseEntity> {
 
         PartDefinition knee_individual = knees.addOrReplaceChild("knee_individual", CubeListBuilder.create().texOffs(uvXOffset, uvYOffset).mirror().addBox(-0.99F, -1.01F, -1.01F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-        PartDefinition topLegAnchor = knees.addOrReplaceChild("topLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.01F, -1.0F, -0.99F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.0F, 0.0F));
+        PartDefinition topLegAnchor = knees.addOrReplaceChild("topLegAnchor", CubeListBuilder.create().texOffs(uvXOffset, uvYOffset).addBox(-1.01F, -1.0F, -0.99F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.0F, 0.0F));
 
-        PartDefinition bottomLegAnchor = knees.addOrReplaceChild("bottomLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.01F, -1.01F, -0.99F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, 0.0F));
+        PartDefinition bottomLegAnchor = knees.addOrReplaceChild("bottomLegAnchor", CubeListBuilder.create().texOffs(uvXOffset, uvYOffset).addBox(-1.01F, -1.01F, -0.99F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, 0.0F));
 
         return LayerDefinition.create(meshdefinition, 128, 160);
 	}

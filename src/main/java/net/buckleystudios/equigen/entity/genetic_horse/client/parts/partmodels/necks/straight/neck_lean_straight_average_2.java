@@ -170,6 +170,15 @@ public class neck_lean_straight_average_2 extends MultipartNeckModel<GeneticHors
 		));
 	}
 	public Part returnManeCubeDimensions() {
-		return returnManeCubeDimensions("mane_straight_average_2");
-	}
+		return new Part("mane_straight_average_2", new ArrayList<>(
+				Arrays.asList(
+						new Block(2, 2, 5),
+						new Block(2, 1, 5),
+						new Block(1, 7, 5),
+						new Block(1, 7, 5),
+						new Block(2, 2, 9),
+						new Block(2, 1, 9),
+						new Block(1, 7, 9),
+						new Block(1, 7, 9))
+		));	}
 }

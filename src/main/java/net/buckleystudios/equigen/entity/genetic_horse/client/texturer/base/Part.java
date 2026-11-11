@@ -26,20 +26,20 @@ public class Part {
                 updateBlocks(1, 86, 120);
             }
             case "bottom_legs_front_left" -> {
-                updateBlocks(0, 16, 52);
-                updateBlocks(1, 0, 42);
+                updateBlocks(0, 16, 52); //
+                updateBlocks(1, 0, 42); //
             }
             case "bottom_legs_front_right" -> {
-                updateBlocks(0, 0, 72);
-                updateBlocks(1, 0, 56);
+                updateBlocks(0, 0, 72); //
+                updateBlocks(1, 0, 56); //
             }
             case "bottom_legs_back_left" -> {
-                updateBlocks(0, 0, 100);
-                updateBlocks(1, 0, 84);
+                updateBlocks(0, 0, 100); //
+                updateBlocks(1, 0, 84);//
             }
             case "bottom_legs_back_right" -> {
-                updateBlocks(0, 0, 128);
-                updateBlocks(1, 0, 112);
+                updateBlocks(0, 0, 128); //
+                updateBlocks(1, 0, 112); //
             }
             case "chest" -> {
                 updateBlocks(0, 60, 284);
@@ -64,14 +64,14 @@ public class Part {
                 updateBlocks(1, 246, 260);
             }
             case "top_front_legs_front_left" -> {
-                updateBlocks(0, 82, 90);
-                updateBlocks(1, 48, 84);
-                updateBlocks(2, 22, 90);
+                updateBlocks(0, 82, 90); //
+                updateBlocks(1, 48, 84); //
+                updateBlocks(2, 22, 90); //
             }
             case "top_front_legs_front_right" -> {
-                updateBlocks(0, 144, 108);
-                updateBlocks(1, 110, 84);
-                updateBlocks(2, 76, 66, false);
+                updateBlocks(0, 144, 108); //
+                updateBlocks(1, 110, 84); //
+                updateBlocks(2, 76, 66); //
             }
             case "head" -> {
                 updateBlocks(0, 210, 192);
@@ -103,16 +103,16 @@ public class Part {
                 updateBlocks(0, 106, 160);
             }
             case "knees_front_left" -> {
-                updateBlocks(0, 50, 6);
+                updateBlocks(0, 50, 10);
             }
             case "knees_front_right" -> {
-                updateBlocks(0, 68, 6);
+                updateBlocks(0, 68, 10);
             }
             case "knees_back_left" -> {
-                updateBlocks(0, 50, 16);
+                updateBlocks(0, 50, 20);
             }
             case "knees_back_right" -> {
-                updateBlocks(0, 68, 16);
+                updateBlocks(0, 68, 20);
             }
             case "neck" -> {
                 updateBlocks(0, 210, 168);
@@ -146,6 +146,9 @@ public class Part {
             case "withers" -> {
                 updateBlocks(0, 48, 160);
                 updateBlocks(1, 38, 136);
+            }
+            default -> {
+                EquigenMod.LOGGER.info("ERROR! CAN'T FIND {} PART COORDS", type);
             }
         }
     }

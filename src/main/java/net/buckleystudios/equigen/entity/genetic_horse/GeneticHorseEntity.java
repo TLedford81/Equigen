@@ -7,7 +7,6 @@ import net.buckleystudios.equigen.entity.ModEntities;
 import net.buckleystudios.equigen.entity.ModEntityAttributes;
 import net.buckleystudios.equigen.entity.custom.HorseTraderEntity;
 import net.buckleystudios.equigen.entity.genetic_horse.client.GeneticHorseRenderer;
-import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.GeneticHorseTexturer;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticBreeds;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.Genetics;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticsHandler;
@@ -29,7 +28,6 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -58,10 +56,6 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.entity.living.BabyEntitySpawnEvent;
 
 import javax.annotation.Nullable;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 
 public class GeneticHorseEntity extends AbstractHorse implements
@@ -1786,90 +1780,6 @@ private float difference = 0;
             }
             if (itemstack.is(Items.WRITTEN_BOOK) || itemstack.is(Items.WRITABLE_BOOK)){
                 GeneticDebugTools.GenerateDebugBook(this, pPlayer, pHand);
-            }
-            if (itemstack.is(Items.AMETHYST_BLOCK)) {
-                GeneticHorseRenderer renderer = getRenderer(this);
-                if (renderer == null) {
-                    EquigenMod.LOGGER.error("Could not generate texture: renderer was null!");
-                    return InteractionResult.FAIL;
-                }
-                //TODO See tims disclaimer. "Bad practice" or whatever.
-                GeneticHorseTexturer texturer = new GeneticHorseTexturer(this, renderer.getModelSet());
-//                Path outputPath = Paths.get("testing.png");
-                MinecraftServer server = Minecraft.getInstance().getSingleplayerServer();
-                if (server == null) {
-                    EquigenMod.LOGGER.error("Could not find integrated server!");
-                    return InteractionResult.FAIL;
-                }
-
-                Path outputPath = Minecraft.getInstance()
-                        .gameDirectory
-                        .toPath()
-                        .resolve("equigen")
-                        .resolve("cache")
-                        .resolve("horse_textures")
-                        .resolve(this.getUUID() + ".png");
-
-                Path inputPath = Paths.get(
-                        "..",
-                        "..",
-                        "src",
-                        "main",
-                        "resources",
-                        "assets",
-                        EquigenMod.MODID,
-                        "textures",
-                        "entity",
-                        "genetic_horse",
-                        "test.png"
-                ).normalize();
-                Path inputPath2 = Paths.get(
-                        "..",
-                        "..",
-                        "src",
-                        "main",
-                        "resources",
-                        "assets",
-                        EquigenMod.MODID,
-                        "textures",
-                        "entity",
-                        "genetic_horse",
-                        "test2.png"
-                ).normalize();
-                Path inputPath3 = Paths.get(
-                        "..",
-                        "..",
-                        "src",
-                        "main",
-                        "resources",
-                        "assets",
-                        EquigenMod.MODID,
-                        "textures",
-                        "entity",
-                        "genetic_horse",
-                        "markings",
-                        "head_markings",
-                        "irregular_star.png"
-                ).normalize();
-
-                try {
-                    Files.createDirectories(outputPath.getParent());
-
-                    EquigenMod.LOGGER.info("LAYER LIST = " + texturer.getLayerList(this));
-                    texturer.textureGeneration(
-                            this,
-                            outputPath,
-                            texturer.getLayerList(this)
-                    );
-
-                    EquigenMod.LOGGER.info(
-                            "Generated texture: {}",
-                            outputPath.toAbsolutePath()
-                    );
-
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
             }
             if (!itemstack.isEmpty()) {
                 if (this.isFood(itemstack)) {

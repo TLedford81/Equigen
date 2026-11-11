@@ -20,7 +20,7 @@ protected static int getUVXOffset(GeneticValues.LEG leg, int blockNum) {
     }
     return 0;
 }
-    protected static int getUVYOffset(GeneticValues.LEG leg, int blockNum, int legLength) {
+    protected static int getUVYOffset(GeneticValues.LEG leg, int blockNum, int zLength) {
         int offset;
         switch (leg) {
             case GeneticValues.LEG.FRONT_LEFT -> {
@@ -55,70 +55,7 @@ protected static int getUVXOffset(GeneticValues.LEG leg, int blockNum) {
                 return 0;
             }
         }
-        return offset - getLegLengthOffset(blockNum, legLength) + 1;
+        return offset - zLength;
     }
 
-    private static int getLegLengthOffset(int blockNum, int legLength) {
-        switch (legLength) {
-            case 1 -> {
-                return switch (blockNum) {
-                    case 0 -> 4;
-                    case 1 -> 4;
-                    default -> 0;
-                };
-            }
-            case 2 -> {
-                return switch (blockNum) {
-                    case 0 -> 3;
-                    case 1 -> 4;
-                    default -> 0;
-                };
-            }
-            case 3 -> {
-                return switch (blockNum) {
-                    case 0 -> 3;
-                    case 1 -> 3;
-                    default -> 0;
-                };
-            }
-            case 4 -> {
-                return switch (blockNum) {
-                    case 0 -> 5;
-                    case 1 -> 4;
-                    default -> 0;
-                };
-            }
-            case 5, 7 -> {
-                return switch (blockNum) {
-                    case 0 -> 5;
-                    case 1 -> 5;
-                    default -> 0;
-                };
-            }
-            case 6 -> {
-                return switch (blockNum) {
-                    case 0 -> 6;
-                    case 1 -> 4;
-                    default -> 0;
-                };
-            }
-            case 8 -> {
-                return switch (blockNum) {
-                    case 0 -> 7;
-                    case 1 -> 4;
-                    default -> 0;
-                };
-            }
-            case 9 -> {
-                return switch (blockNum) {
-                    case 0 -> 6;
-                    case 1 -> 5;
-                    default -> 0;
-                };
-            }
-            default -> {
-                return 0;
-            }
-        }
     }
-}

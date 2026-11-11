@@ -47,7 +47,7 @@ public class chest_lean_large_2 extends MultipartChestModel<GeneticHorseEntity> 
 
 		PartDefinition chest_lean_large_2_chest_front_lower = chest_lean_large_2_chest_front.addOrReplaceChild("chest_lean_large_2_chest_front_lower", CubeListBuilder.create(), PartPose.offset(-0.1749F, 1.2831F, 0.3437F));
 
-		PartDefinition cube_r2 = chest_lean_large_2_chest_front_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(59, 132).addBox(-3.0792F, -7.6432F, -3.4848F, 3.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.5792F, -3.3253F, 4.795F, 1.9199F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = chest_lean_large_2_chest_front_lower.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(59, 132).addBox(-3.0792F, -7.6432F, -3.4848F, 3.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.5792F, -3.3503F, 4.645F, 1.9199F, 0.0F, 0.0F));
 
 		PartDefinition chest_lean_large_2_chest_left = chest_lean_large_2.addOrReplaceChild("chest_lean_large_2_chest_left", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
@@ -55,7 +55,7 @@ public class chest_lean_large_2 extends MultipartChestModel<GeneticHorseEntity> 
 
 		PartDefinition chest_lean_large_2_chest_left_pectoral_top = chest_lean_large_2_chest_left_pectoral.addOrReplaceChild("chest_lean_large_2_chest_left_pectoral_top", CubeListBuilder.create(), PartPose.offset(0.7572F, -1.696F, -0.073F));
 
-		PartDefinition cube_r3 = chest_lean_large_2_chest_left_pectoral_top.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(91, 141).addBox(-2.08F, -4.0F, -0.92F, 3.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.58F, 1.2305F, -2.9415F, -0.829F, 0.0F, 0.0F));
+		PartDefinition cube_r3 = chest_lean_large_2_chest_left_pectoral_top.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(91, 141).addBox(-2.08F, -4.0F, -0.92F, 3.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.58F, 1.2305F, -2.5415F, -0.829F, 0.0F, 0.0F));
 
 		PartDefinition chest_lean_large_2_chest_left_pectoral_middle = chest_lean_large_2_chest_left_pectoral.addOrReplaceChild("chest_lean_large_2_chest_left_pectoral_middle", CubeListBuilder.create(), PartPose.offset(0.7887F, -0.1942F, 0.2001F));
 
@@ -73,11 +73,11 @@ public class chest_lean_large_2 extends MultipartChestModel<GeneticHorseEntity> 
 
 		PartDefinition chest_lean_large_2_chest_right = chest_lean_large_2.addOrReplaceChild("chest_lean_large_2_chest_right", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition chest_lean_large_2_chest_right_pectoral = chest_lean_large_2_chest_right.addOrReplaceChild("chest_lean_large_2_chest_right_pectoral", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -3.8436F));
+		PartDefinition chest_lean_large_2_chest_right_pectoral = chest_lean_large_2_chest_right.addOrReplaceChild("chest_lean_large_2_chest_right_pectoral", CubeListBuilder.create(), PartPose.offset(0.05F, 0.0F, -3.8436F));
 
 		PartDefinition chest_lean_large_2_chest_right_pectoral_top = chest_lean_large_2_chest_right_pectoral.addOrReplaceChild("chest_lean_large_2_chest_right_pectoral_top", CubeListBuilder.create(), PartPose.offset(-1.2454F, -1.6711F, -0.1014F));
 
-		PartDefinition cube_r6 = chest_lean_large_2_chest_right_pectoral_top.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(64, 140).addBox(-4.0692F, -3.98F, -0.9108F, 3.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5692F, 1.2102F, -2.9329F, -0.829F, 0.0F, 0.0F));
+		PartDefinition cube_r6 = chest_lean_large_2_chest_right_pectoral_top.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(64, 140).addBox(-4.0692F, -3.98F, -0.9108F, 3.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5692F, 1.2102F, -2.5329F, -0.829F, 0.0F, 0.0F));
 
 		PartDefinition chest_lean_large_2_chest_right_pectoral_middle = chest_lean_large_2_chest_right_pectoral.addOrReplaceChild("chest_lean_large_2_chest_right_pectoral_middle", CubeListBuilder.create(), PartPose.offset(-1.2142F, -0.2172F, 0.128F));
 
@@ -97,10 +97,10 @@ public class chest_lean_large_2 extends MultipartChestModel<GeneticHorseEntity> 
 
 		PartDefinition backAnchor = chest_lean_large_2.addOrReplaceChild("backAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.25F, -4.5F, 4.5F));
 
-		PartDefinition frontLeftLegAnchor = chest_lean_large_2.addOrReplaceChild("frontLeftLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(2.5F, 4.5F, -3.5F));
+		PartDefinition frontLeftLegAnchor = chest_lean_large_2.addOrReplaceChild("frontLeftLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(1.875F, 4.5F, -3.5F));
 
-		PartDefinition frontRightLegAnchor = chest_lean_large_2.addOrReplaceChild("frontRightLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.75F, 4.5F, -3.5F));
-		
+		PartDefinition frontRightLegAnchor = chest_lean_large_2.addOrReplaceChild("frontRightLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.175F, 4.5F, -3.5F));
+
 		return LayerDefinition.create(meshdefinition, 128, 160);
 	}
 

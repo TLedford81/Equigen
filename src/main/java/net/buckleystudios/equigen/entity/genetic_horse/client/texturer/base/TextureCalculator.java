@@ -2,6 +2,7 @@ package net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base;
 
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.CoatColors;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.Genetics;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticsHandler;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.util.GeneticCategories;
@@ -19,30 +20,27 @@ public class TextureCalculator {
         float darkness = GeneticsHandler.getGeneticFloat(entity, Genetics.DARKNESS);
         float richness = GeneticsHandler.getGeneticFloat(entity, Genetics.RICHNESS);
         EquigenMod.LOGGER.info("WARMTH = {}, DARKNESS = {}, RICHNESS = {}", warmth, darkness, richness);
-
-
-        float blackModifier = GeneticsHandler.getGeneticFloat(entity, Genetics.BLACK_MODIFIER);
-        float redModifier = GeneticsHandler.getGeneticFloat(entity, Genetics.RED_MODIFIER);
+        CoatColors.baseCoat coat = CoatColors.findBaseCoat(entity);
 
         float hue;
         float saturation;
         float brightness;
 
-        if (blackModifier == 1.0f) {
+        if (coat.equals(CoatColors.baseCoat.CHESTNUT)) {
             //Chestnut e/e _/_
-            hue = 15 + (warmth * 0.1F);
-            saturation = 55 + (richness * 0.35F);
-            brightness = 45 + (darkness * 0.40F);
-        } else if (redModifier == 1.0f && blackModifier >= 2.0f) {
+            hue = 19 + (warmth * 0.08F);
+            saturation = 45 + (richness * 0.33F);
+            brightness = 20 + (darkness * 0.6F);
+        } else if (coat.equals(CoatColors.baseCoat.BLACK)) {
             //Black E/_ a/a
             hue = 18 + (warmth * 0.12F);
-            saturation = 2 + (richness * 0.12F);
-            brightness = 20 + (darkness * 0.15F);
+            saturation = 20 + (richness * 0.12F);
+            brightness = 8 + (darkness * 0.15F);
         } else {
             //Bay E/_ A_
-            hue = 24 + (warmth * 0.1F);
+            hue = 18 + (warmth * 0.16F);
             saturation = 40 + (richness * 0.35F);
-            brightness = 60 + (darkness * 0.35F);
+            brightness = 15 + (darkness * 0.65F);
         }
 
         hue /= 360f;
@@ -56,8 +54,8 @@ public class TextureCalculator {
 
 
     private int applyModifiers(GeneticHorseEntity entity, int RGB, String baseColor) {
-        java.util.List<Genetics> genetics = Genetics.getTextureGenetics();
-        java.util.List<Genetics> presentModifiers = new ArrayList<>(List.of());
+        List<Genetics> genetics = Genetics.getTextureGenetics();
+        List<Genetics> presentModifiers = new ArrayList<>(List.of());
         for (Genetics g : genetics) {
             if (g.getCategory().equals(GeneticCategories.COAT_MODIFIERS)) {
                 float gene = GeneticsHandler.getGeneticFloat(entity, g.name());
@@ -117,7 +115,7 @@ public class TextureCalculator {
             saturation = 40 + (gSaturation * 0.4F);
             brightness = 45 + (gBrightness * 0.4F);
 
-            EquigenMod.LOGGER.info("EYES - BLUE: H = {} S = {} B = {}", hue, saturation, brightness);
+//            EquigenMod.LOGGER.info("EYES - BLUE: H = {} S = {} B = {}", hue, saturation, brightness);
 
         } else if (bb == 1.0f && aa == 2.0f) {
             // Pale blue - b/b A/a
@@ -126,7 +124,7 @@ public class TextureCalculator {
             saturation = 15 + (gSaturation * 0.3F);
             brightness = 65 + (gBrightness * 0.25F);
 
-            EquigenMod.LOGGER.info("EYES - PALE BLUE: H = {} S = {} B = {}", hue, saturation, brightness);
+//            EquigenMod.LOGGER.info("EYES - PALE BLUE: H = {} S = {} B = {}", hue, saturation, brightness);
 
         } else if (bb == 1.0f && aa == 3.0f) {
             // Gray - b/b A/A
@@ -135,7 +133,7 @@ public class TextureCalculator {
             saturation = 0 + (gSaturation * 0.15F);
             brightness = 35 + (gBrightness * 0.4F);
 
-            EquigenMod.LOGGER.info("EYES - GRAY: H = {} S = {} B = {}", hue, saturation, brightness);
+//            EquigenMod.LOGGER.info("EYES - GRAY: H = {} S = {} B = {}", hue, saturation, brightness);
 
         } else if (bb == 2.0F && aa == 1.0F) {
             // Green - b/b A/a
@@ -143,7 +141,7 @@ public class TextureCalculator {
             hue = 70 + (gHue * 0.2F);
             saturation = 25 + (gSaturation * 0.4F);
             brightness = 30 + (gBrightness * 0.35F);
-            EquigenMod.LOGGER.info("EYES - GREEN: H = {} S = {} B = {}", hue, saturation, brightness);
+//            EquigenMod.LOGGER.info("EYES - GREEN: H = {} S = {} B = {}", hue, saturation, brightness);
 
         } else if (bb == 2.0F && aa == 2.0F) {
             // Hazel - B/b A/A
@@ -151,7 +149,7 @@ public class TextureCalculator {
             hue = 50 + (gHue * 0.2F);
             saturation = 30 + (gSaturation * 0.4F);
             brightness = 35 + (gBrightness * 0.4F);
-            EquigenMod.LOGGER.info("EYES - HAZEL: H = {} S = {} B = {}", hue, saturation, brightness);
+//            EquigenMod.LOGGER.info("EYES - HAZEL: H = {} S = {} B = {}", hue, saturation, brightness);
 
         } else if (bb == 2.0F && aa == 3.0F) {
             // Amber - b/b A/A
@@ -159,7 +157,7 @@ public class TextureCalculator {
             hue = 30 + (gHue * 0.2F);
             saturation = 50 + (gSaturation * 0.4F);
             brightness = 45 + (gBrightness * 0.35F);
-            EquigenMod.LOGGER.info("EYES - AMBER: H = {} S = {} B = {}", hue, saturation, brightness);
+//            EquigenMod.LOGGER.info("EYES - AMBER: H = {} S = {} B = {}", hue, saturation, brightness);
 
         } else if (bb == 3.0F && aa == 1.0F) {
             // DARK BROWN - B/B a/a
@@ -167,21 +165,21 @@ public class TextureCalculator {
             hue = 15 + (gHue * 0.15F);
             saturation = 45 + (gSaturation * 0.35F);
             brightness = 15 + (gBrightness * 0.25F);
-            EquigenMod.LOGGER.info("EYES - DARK BROWN: H = {} S = {} B = {}", hue, saturation, brightness);
+//            EquigenMod.LOGGER.info("EYES - DARK BROWN: H = {} S = {} B = {}", hue, saturation, brightness);
         } else if (bb == 3.0F && aa == 2.0F){
             // Brown - B/B or B/b
             // hue 15-30 S 40-80 B 30-55
             hue = 15 + (gHue * 0.15F);
             saturation = 40 + (gSaturation * 0.4F);
             brightness = 30 + (gBrightness * 0.25F);
-            EquigenMod.LOGGER.info("EYES - BROWN: H = {} S = {} B = {}", hue, saturation, brightness);
+//            EquigenMod.LOGGER.info("EYES - BROWN: H = {} S = {} B = {}", hue, saturation, brightness);
         } else {
             // Warm Brown - B/A
             // hue 20-40 S 45-85 B 35-65
             hue = 20 + (gHue * 0.2F);
             saturation = 45 + (gSaturation * 0.4F);
             brightness = 35 + (gBrightness * 0.3F);
-            EquigenMod.LOGGER.info("EYES - WARM BROWN: H = {} S = {} B = {}", hue, saturation, brightness);
+//            EquigenMod.LOGGER.info("EYES - WARM BROWN: H = {} S = {} B = {}", hue, saturation, brightness);
         }
 
         hue /= 360f;
@@ -192,7 +190,7 @@ public class TextureCalculator {
     }
 
     public Path getFaceMarking(GeneticHorseEntity entity) {
-        int gene = (int) GeneticsHandler.getGeneticFloat(entity, Genetics.EYE_BASE_COLOR);
+        int gene = (int) GeneticsHandler.getGeneticFloat(entity, Genetics.FACE_MARKING);
         return switch (gene) {
             case 1 -> Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
                     "entity", "genetic_horse", "markings", "head_markings", "blaze.png"); //blaze
@@ -269,8 +267,38 @@ public class TextureCalculator {
 
     }
 
-    public int getTailColor(GeneticHorseEntity entity) {
-        return getBaseColor(entity);
+    public int getMainAndTailColor(GeneticHorseEntity entity) {
+        CoatColors.baseCoat coat = CoatColors.findBaseCoat(entity);
+        if (coat.equals(CoatColors.baseCoat.BAY)) {
+            return getBlackPointColor(entity);
+        } else {
+            return getBaseColor(entity);
+        }
+    }
+
+    public int getBlackPointColor (GeneticHorseEntity entity) {
+        int baseColor = getBaseColor(entity);
+        float[] hsb = Color.RGBtoHSB(getR(baseColor), getG(baseColor), getB(baseColor), null);
+        float hue = hsb[0];
+        float saturation = hsb[1];
+        float brightness = hsb[2];
+
+        return Color.HSBtoRGB(hue, saturation, (float) (brightness * 0.3));
+    }
+
+    // Code below extracts uses bits to extract the specific color from the RGB code.
+    public int getR (int colorCode) {
+        return (colorCode >> 16) & 0xFF;
+    }
+    public int getG (int colorCode) {
+        return (colorCode >> 8) & 0xFF;
+    }
+    public int getB (int colorCode) {
+        return colorCode & 0xFF;
+    }
+
+    public int getAlpha (int colorCode) {
+        return (colorCode >> 24) & 0xFF;
     }
 
 }

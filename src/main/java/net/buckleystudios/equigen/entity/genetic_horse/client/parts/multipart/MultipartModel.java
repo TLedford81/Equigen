@@ -1,13 +1,14 @@
 package net.buckleystudios.equigen.entity.genetic_horse.client.parts.multipart;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.genetic_horse.client.animations.GH_Animation;
 import net.buckleystudios.equigen.entity.genetic_horse.client.animations.GH_GallopAnimation;
 import net.buckleystudios.equigen.entity.genetic_horse.client.animations.GH_IdleAnimation;
 import net.buckleystudios.equigen.entity.genetic_horse.client.animations.GH_WalkAnimation;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.PartTransform;
 import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Part;
-import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticValues;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -26,6 +27,7 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
     protected Vector3f baseRotation;
     private PoseStack pose;
     private float partialTicks;
+    private GeneticValues.LEG leg = null;
 
     private boolean anchorPathsInitialized = false;
 
@@ -143,6 +145,14 @@ public abstract class MultipartModel<E extends GeneticHorseEntity> extends Hiera
                 new Vec3(Math.toRadians(part.xRot), Math.toRadians(part.yRot), Math.toRadians(part.zRot)),
                 new Vec3(1, 1, 1)
         );
+    }
+
+    public void setLeg(GeneticValues.LEG leg) {
+        this.leg = leg;
+    }
+
+    public GeneticValues.LEG getLeg() {
+        return leg;
     }
 
     public void setBaseRotation(Vector3f rotation){ this.baseRotation = rotation; }

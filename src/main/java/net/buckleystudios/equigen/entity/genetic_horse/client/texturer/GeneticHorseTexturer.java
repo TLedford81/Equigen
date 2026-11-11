@@ -3,7 +3,10 @@ package net.buckleystudios.equigen.entity.genetic_horse.client.texturer;
 
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.genetic_horse.client.parts.multipart.MultipartModel;
+import net.buckleystudios.equigen.entity.genetic_horse.client.parts.registry.ModelPartKey;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.registry.ModelPartRegistries.ModelPartRegistry;
+import net.buckleystudios.equigen.entity.genetic_horse.client.parts.registry.ModelPartRegistryKeys;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.registry.RegistryKeyFactory;
 import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Canvas;
 import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Part;
@@ -12,7 +15,6 @@ import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base.Text
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticValues;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.Genetics;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticsHandler;
-import net.buckleystudios.equigen.entity.genetic_horse.genetics.util.GeneticPartNameBuilder;
 import net.minecraft.client.model.geom.EntityModelSet;
 
 import javax.imageio.ImageIO;
@@ -25,6 +27,10 @@ import java.util.*;
 public class GeneticHorseTexturer {
     GeneticHorseEntity entity;
     private final EntityModelSet modelSet;
+    private List<Part> referenceParts = new ArrayList<>();
+    private List<MultipartModel<GeneticHorseEntity>> referenceModels = new ArrayList<>();
+
+    private final TextureCalculator textureCalculator = new TextureCalculator();
 
     public GeneticHorseTexturer(GeneticHorseEntity entity, EntityModelSet modelSet) {
         this.entity = entity;
@@ -33,43 +39,52 @@ public class GeneticHorseTexturer {
 
     public Map<BufferedImage, GeneticValues.LEG> getLayerList(GeneticHorseEntity entity) throws IOException {
         EquigenMod.LOGGER.info("CALLING GETLAYERLIST");
-        TextureCalculator calculator = new TextureCalculator();
-        Map<BufferedImage, GeneticValues.LEG> imageLayers = new HashMap<>();
+        Map<BufferedImage, GeneticValues.LEG> imageLayers = new LinkedHashMap<>();
+        CoatColors.baseCoat coat = CoatColors.findBaseCoat(entity);
+
         //Base Coat is handled in the TextureGeneration code.
         //Modifiers
         //Have modifiers just add numbers to the Hue/Sat/Brightness? Therefore would be handled in base coat generation. If not, then have it be a semi-transparent layer to be placed over the base layer.
 
         //Black Point (if applicable)
+        EquigenMod.LOGGER.info("BLACK POINT HEIGHT = {}", GeneticsHandler.getGeneticFloat(entity, Genetics.BLACK_POINT_HEIGHT));
+        EquigenMod.LOGGER.info("COAT BASE COLOR = " + coat.name());
+
+        if (coat.equals(CoatColors.baseCoat.BAY) && GeneticsHandler.getGeneticFloat(entity, Genetics.BLACK_POINT_HEIGHT) > 0) {
+            imageLayers.put(tintTexture(returnImage(Objects.requireNonNull(textureCalculator.getLegWhiteMarking
+                    ((int) GeneticsHandler.getGeneticFloat(entity, Genetics.BLACK_POINT_HEIGHT)))), textureCalculator.getBlackPointColor(entity)), GeneticValues.LEG.ALL);
+        }
 
         //Leg Markings
         if (GeneticsHandler.getGeneticFloat(entity, Genetics.FRONT_LEFT_LEG_MARKING) > 0) {
-            imageLayers.put(returnImage(Objects.requireNonNull(calculator.getLegWhiteMarking
+            imageLayers.put(returnImage(Objects.requireNonNull(textureCalculator.getLegWhiteMarking
                     ((int) GeneticsHandler.getGeneticFloat(entity, Genetics.FRONT_LEFT_LEG_MARKING)))), GeneticValues.LEG.FRONT_LEFT);
         }
         if (GeneticsHandler.getGeneticFloat(entity, Genetics.FRONT_RIGHT_LEG_MARKING) > 0) {
-            imageLayers.put(returnImage(Objects.requireNonNull(calculator.getLegWhiteMarking
+            imageLayers.put(returnImage(Objects.requireNonNull(textureCalculator.getLegWhiteMarking
                     ((int) GeneticsHandler.getGeneticFloat(entity, Genetics.FRONT_RIGHT_LEG_MARKING)))), GeneticValues.LEG.FRONT_RIGHT);
         }
         if (GeneticsHandler.getGeneticFloat(entity, Genetics.BACK_LEFT_LEG_MARKING) > 0) {
-            imageLayers.put(returnImage(Objects.requireNonNull(calculator.getLegWhiteMarking
+            imageLayers.put(returnImage(Objects.requireNonNull(textureCalculator.getLegWhiteMarking
                     ((int) GeneticsHandler.getGeneticFloat(entity, Genetics.BACK_LEFT_LEG_MARKING)))), GeneticValues.LEG.BACK_LEFT);
         }
         if (GeneticsHandler.getGeneticFloat(entity, Genetics.BACK_RIGHT_LEG_MARKING) > 0) {
-            imageLayers.put(returnImage(Objects.requireNonNull(calculator.getLegWhiteMarking
+            imageLayers.put(returnImage(Objects.requireNonNull(textureCalculator.getLegWhiteMarking
                     ((int) GeneticsHandler.getGeneticFloat(entity, Genetics.BACK_RIGHT_LEG_MARKING)))), GeneticValues.LEG.BACK_RIGHT);
         }
         //Face Markings
         if (GeneticsHandler.getGeneticFloat(entity, Genetics.FACE_MARKING) > 0) {
-            imageLayers.put(returnImage(Objects.requireNonNull(calculator.getFaceMarking(entity))), null);
+            imageLayers.put(returnImage(Objects.requireNonNull(textureCalculator.getFaceMarking(entity))), null);
         }
 
         //Patterns
 
         //Mane Base
-
+        imageLayers.put(tintTexture(returnImage(Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
+                "entity", "genetic_horse", "base", "mane", "mane_14.png")), textureCalculator.getMainAndTailColor(entity)), null);
         //Tail Base
         imageLayers.put(tintTexture(returnImage(Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
-                "entity", "genetic_horse", "base", "tail.png")), calculator.getTailColor(entity)), null);
+                "entity", "genetic_horse", "base", "tail.png")), textureCalculator.getMainAndTailColor(entity)), null);
         //Hooves Base
 
         //Shading Layer
@@ -80,12 +95,16 @@ public class GeneticHorseTexturer {
         imageLayers.put(returnImage(Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
                 "entity", "genetic_horse", "markings", "head_markings", "eyes.png")), null);
         imageLayers.put(tintTexture(returnImage(Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
-                "entity", "genetic_horse", "markings", "head_markings", "eyes_right_pupil.png")), calculator.getEyeColor(entity, false)), null);
+                "entity", "genetic_horse", "markings", "head_markings", "eyes_right_pupil.png")), textureCalculator.getEyeColor(entity, false)), null);
         imageLayers.put(tintTexture(returnImage(Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
-                        "entity", "genetic_horse", "markings", "head_markings", "eyes_left_pupil.png")), calculator.getEyeColor(entity, true)), null);
+                        "entity", "genetic_horse", "markings", "head_markings", "eyes_left_pupil.png")), textureCalculator.getEyeColor(entity, true)), null);
 
         //Nostrils
+        imageLayers.put(returnImage(Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
+                "entity", "genetic_horse", "markings", "head_markings", "nostrils.png")), null);
 
+        imageLayers.put(returnImage(Paths.get("..", "..", "src", "main", "resources", "assets", EquigenMod.MODID, "textures",
+                "entity", "genetic_horse", "shading_layer.png")), GeneticValues.LEG.ALL);
         EquigenMod.LOGGER.info("IMAGER LAYERS SIZE = {}", imageLayers.size());
 
         return imageLayers;
@@ -94,53 +113,45 @@ public class GeneticHorseTexturer {
     public void textureGeneration(GeneticHorseEntity entity, Path destination, Map<BufferedImage, GeneticValues.LEG>  referenceLayers) throws IOException {
         Canvas canvas = new Canvas();
         TextureCalculator calculator = new TextureCalculator();
-        GeneticPartNameBuilder builder = new GeneticPartNameBuilder(entity);
         canvas.initializeCanvas();
-        List<Part> partsList = getRenderedParts(entity);
+        List<MultipartModel<GeneticHorseEntity>> partsList = getRenderedParts(entity);
 
         // Draw Base Color
         EquigenMod.LOGGER.info("DRAWING BASE COLOR");
-        canvas.drawColor((ArrayList<Part>) partsList, calculator.getBaseColor(entity));
+        canvas.drawColor((ArrayList<MultipartModel<GeneticHorseEntity>>) partsList, calculator.getBaseColor(entity));
 
         // For Loop Draw Layers
         int i = 0;
         EquigenMod.LOGGER.info("REFERENCE LAYER SIZE = {}", referenceLayers.size());
         for (Map.Entry<BufferedImage, GeneticValues.LEG> entry : referenceLayers.entrySet()) {
             BufferedImage l = entry.getKey();
-            GeneticValues.LEG leg = entry.getValue();
-            EquigenMod.LOGGER.info("Iteration {}: image = {}", i++, l);
-            List<Part> referenceParts = List.of();
+            GeneticValues.LEG referenceLeg = entry.getValue();
+            EquigenMod.LOGGER.info("Iteration {}: image width = {}", i++, l.getWidth());
             if (l == null) {
                 EquigenMod.LOGGER.info("LAYER IS NULL!!!");
             } else {
-                referenceParts = findReferenceParts(l);
-                for (Part p: referenceParts) {
-                    EquigenMod.LOGGER.info("REFERENCE PARTS: MODEL NAME = {}", p.modelName);
-                    p.printBlockStats();
-                }
+                updateReferenceParts(l);
             }
 
             canvas.updateCanvasImage(l); // updates the image stored in the canvas. Do for each layer
-            for (Part p2 : partsList) {
-                String partType = builder.returnPartType(p2.modelName, leg);
-                List<Part> relevantReferenceParts = new ArrayList<>(List.of());
-                for (Part p : referenceParts) {
-                    if (p.modelName.contains(builder.returnPartTypeNoLegs(p2.modelName))) {
-                        relevantReferenceParts.add(p);
-                        EquigenMod.LOGGER.info("THEY MATCH!! ADDING PART");
-                        EquigenMod.LOGGER.info("P = {}, PARTTYPE = {}", p.modelName, partType);
+            for (MultipartModel<GeneticHorseEntity> p : partsList) {
+                ModelPartKey key = ModelPartRegistry.getKeyFromModel(p);
+                String partType = key.getPartName(referenceLeg);
+                    EquigenMod.LOGGER.info("PART TYPE = {}", partType);
+                    if (partType.contains("legs") || partType.contains("knees") || partType.contains("hoof")) {
+                        if (referenceLeg == GeneticValues.LEG.ALL) {
+                            for (GeneticValues.LEG leg : GeneticValues.LEG.values()) {
+                                if (leg.equals(GeneticValues.LEG.ALL)) {
+                                    break;
+                                } else {
+                                    applyImage(canvas, leg, p);
+                                }
+                            }
+                        } else {
+                            applyImage(canvas, referenceLeg, p);
+                        }
                     } else {
-//                        EquigenMod.LOGGER.info("THEY DONT MATCH!! MOVING ON!");
-                    }
-                }
-                Part bestPart = findBestMatch(relevantReferenceParts, p2);
-                if (bestPart != null) {
-                    p2.applyBaseUVCoords(partType);
-                    canvas.drawImage(bestPart, p2);
-                    EquigenMod.LOGGER.info("DRAWING!!!");
-
-                } else {
-                    EquigenMod.LOGGER.info("BEST PART IS EQUAL TO NULL! MOVING ON");
+                    applyImage(canvas, null, p);
                 }
             }
         }
@@ -148,38 +159,96 @@ public class GeneticHorseTexturer {
         canvas.finalizeImage(destination);
     }
 
+    public void applyImage(Canvas canvas, GeneticValues.LEG referenceLeg,
+                           MultipartModel<GeneticHorseEntity> p) {
+
+        GeneticValues.LEG modelLeg = p.getLeg();
+
+        ModelPartKey key = ModelPartRegistry.getKeyFromModel(p);
+        String partType = key.getPartName(referenceLeg);
+
+        if (modelLeg != referenceLeg) {
+            return;
+        }
+
+        // Apply regular neck/body texture
+        Part bestPart = findBestMatch(p, referenceLeg, false);
+
+        if (bestPart != null) {
+
+            Part cubeDimensions = p.getCubeDimensions();
+
+            cubeDimensions.applyBaseUVCoords(partType);
+
+            canvas.drawImage(bestPart, cubeDimensions);
+        }
+
+        // Apply mane separately
+        if (partType.equals("neck")) {
+            applyManeImage(canvas, p, referenceLeg);
+        }
+    }
+
+    private void applyManeImage(Canvas canvas, MultipartModel<GeneticHorseEntity> p, GeneticValues.LEG referenceLeg) {
+
+    Part maneBestPart = findBestMatch(p, referenceLeg, true);
+
+    if (maneBestPart == null) {
+        EquigenMod.LOGGER.warn("NO MANE REFERENCE PART FOUND");
+        return;
+    }
+
+    Part maneDimensions = p.returnManeCubeDimensions();
+    EquigenMod.LOGGER.info("MANE PART NAME = {}", maneDimensions.modelName);
+
+    if (maneDimensions == null) {
+        EquigenMod.LOGGER.error("MANE DIMENSIONS ARE NULL");
+        return;
+    }
+
+    EquigenMod.LOGGER.info(
+            "MANE SOURCE = {}, TARGET = {}",
+            maneBestPart.modelName,
+            maneDimensions.modelName
+    );
+
+    maneDimensions.applyBaseUVCoords("mane");
+
+    canvas.drawImage(maneBestPart, maneDimensions);
+}
+
     public BufferedImage tintTexture(BufferedImage image, int rgbColor) {
         int width = image.getWidth();
         int height = image.getHeight();
 
         BufferedImage output = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
-        int tintR = getR(rgbColor);
-        int tintG = getG(rgbColor);
-        int tintB = getB(rgbColor);
+        int tintR = textureCalculator.getR(rgbColor);
+        int tintG = textureCalculator.getG(rgbColor);
+        int tintB = textureCalculator.getB(rgbColor);
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
 
                 int pixel = image.getRGB(x, y);
 
-                boolean isIndicator = getR(pixel) == 200;
+                boolean isIndicator = textureCalculator.getR(pixel) == 200;
 
                 boolean isRightOfIndicator =
-                        x > 0 && getR(image.getRGB(x - 1, y)) == 200;
+                        x > 0 && textureCalculator.getR(image.getRGB(x - 1, y)) == 200;
 
                 boolean isBelowIndicator =
-                        y > 0 && getR(image.getRGB(x, y - 1)) == 200;
+                        y > 0 && textureCalculator.getR(image.getRGB(x, y - 1)) == 200;
 
                 if (isIndicator || isRightOfIndicator || isBelowIndicator) {
                     output.setRGB(x, y, pixel);
                     continue;
                 }
 
-                int alpha = getAlpha(pixel);
-                int r = getR(pixel);
-                int g = getG(pixel);
-                int b = getB(pixel);
+                int alpha = textureCalculator.getAlpha(pixel);
+                int r = textureCalculator.getR(pixel);
+                int g = textureCalculator.getG(pixel);
+                int b = textureCalculator.getB(pixel);
 
                 int brightness = (r + g + b) / 3;
 
@@ -199,8 +268,11 @@ public class GeneticHorseTexturer {
 
         return output;
     }
-    public List<Part> findReferenceParts(BufferedImage sourceFile) {
+    public void updateReferenceParts(BufferedImage sourceFile) {
         PartList pList = new PartList(entity, modelSet);
+        referenceParts.clear();
+        referenceModels.clear();
+
         EquigenMod.LOGGER.info(
                 "findReferenceParts called on {}",
                 Thread.currentThread().getName()
@@ -215,12 +287,12 @@ public class GeneticHorseTexturer {
             for (int x = 0; x < sourceFile.getWidth(); x++) {
                 for (int y = 0; y < sourceFile.getHeight(); y++) {
                     int pixel = sourceFile.getRGB(x, y);
-                    if (getR(pixel) == 200) {
-                        EquigenMod.LOGGER.info("FOUND!! INDICATOR PIXEL AT {} + {}", x, y);
+                    if (textureCalculator.getR(pixel) == 200) {
+//                        EquigenMod.LOGGER.info("FOUND!! INDICATOR PIXEL AT {} + {}", x, y);
 
                         String modelName = "";
                         // R 200 Specifies that this is a part
-                        switch (getG(pixel)) {
+                        switch (textureCalculator.getG(pixel)) {
                             case 10 -> modelName = "back";
                             case 20 -> modelName = "top_back_legs";
                             case 30 -> modelName = "bottom_legs";
@@ -239,7 +311,7 @@ public class GeneticHorseTexturer {
                             case 160 -> modelName = "right_ear"; //Yes this isn't next to the left ear in order. I didn't notice this until i had placed indicators for everything
                             default -> modelName = "";
                         }
-                            EquigenMod.LOGGER.info("PIXEL INDICATES REFERENCE IS A " + modelName);
+//                            EquigenMod.LOGGER.info("PIXEL INDICATES REFERENCE IS A " + modelName);
 
                         if (!modelName.isEmpty()) {
                             int rPixel = sourceFile.getRGB(x + 1, y);
@@ -247,18 +319,10 @@ public class GeneticHorseTexturer {
                             int muscleMass = decodeMuscleMass(rPixel);
                             int type = decodeType(rPixel); // Neck curve, leg width, etc
                             int lengthOrSize = decodeLengthOrSize(rPixel);
-                            EquigenMod.LOGGER.info(
-                                    "PIXEL = {}, A = {}, R = {}, G = {}, B = {}",
-                                    rPixel,
-                                    (rPixel >> 24) & 0xFF,
-                                    (rPixel >> 16) & 0xFF,
-                                    (rPixel >> 8) & 0xFF,
-                                    rPixel & 0xFF
-                            );
                             int blockNum = decodeAlpha(rPixel);
                             int reusedBlock;
 
-                            switch (getR(bPixel)) {
+                            switch (textureCalculator.getR(bPixel)) {
                                 case 10 -> reusedBlock = 1; // Apply this block to ALL of the same TYPE of part.
                                 case 20 -> reusedBlock = 2; // Apply this block to ALL of the same TYPE and LENGTH of part.
                                 case 30 -> reusedBlock = 3; // Apply this block to ALL different musclemasses of the same LENGTH and TYPE
@@ -268,8 +332,8 @@ public class GeneticHorseTexturer {
                                 default -> reusedBlock = 0;
                             }
                             //TODO Make a way to indicate one block location is used for multiple different muscle masses.
-                                EquigenMod.LOGGER.info("PIXEL INDICATES REFERENCE IS {} muscle_mass, {} type, {} length_or_size, and {} block number.", muscleMass, type, lengthOrSize, blockNum);
-                                EquigenMod.LOGGER.info("R = {}, G = {}, B = {} ALPHA = {}", getR(rPixel), getG(rPixel), getB(rPixel), getAlpha(rPixel));
+//                                EquigenMod.LOGGER.info("PIXEL INDICATES REFERENCE IS {} muscle_mass, {} type, {} length_or_size, and {} block number.", muscleMass, type, lengthOrSize, blockNum);
+//                                EquigenMod.LOGGER.info("R = {}, G = {}, B = {} ALPHA = {}", getR(rPixel), getG(rPixel), getB(rPixel), getAlpha(rPixel));
 
 
 
@@ -280,7 +344,7 @@ public class GeneticHorseTexturer {
                                 case 2 -> {
                                     for(int m = 1; m <= 3; m++) {
                                         switch (modelName) {
-                                            case "neck" -> {
+                                            case "neck", "mane" -> {
                                                 for (int l = 1; l <= 6; l++) { //TODO for future compatability need to change 4 to the max number possible of part. Only need it up to 4 right now.
                                                     pList.updatePartList(modelName, x, y, m, type, l, blockNum); //This part ONLY applies to the different types. Only used for the forelocks on the heads right now. No logic to do different lengths/sizes!
                                                 }
@@ -322,49 +386,50 @@ public class GeneticHorseTexturer {
             if (pList.getPartList().isEmpty()) {
                 EquigenMod.LOGGER.info("FINALPARTLIST IS EMPTY!!");
             }
-            return pList.getPartList();
+            referenceParts = pList.getPartList();
+            referenceModels = pList.getPartModelList();
     }
-    public List<Part> getRenderedParts(GeneticHorseEntity entity) {
-        List<Part> partList = new ArrayList<>(List.of());
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet)).getCubeDimensions());
+    public List<MultipartModel<GeneticHorseEntity>> getRenderedParts(GeneticHorseEntity entity) {
+        List<MultipartModel<GeneticHorseEntity>> partList = new ArrayList<>(List.of());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getBackKey(entity), modelSet)));
 
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getTopBackLegKey(entity), modelSet, GeneticValues.LEG.BACK_LEFT)).getCubeDimensions());
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getTopBackLegKey(entity), modelSet, GeneticValues.LEG.BACK_RIGHT)).getCubeDimensions());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getTopBackLegKey(entity), modelSet, GeneticValues.LEG.BACK_LEFT)));
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getTopBackLegKey(entity), modelSet, GeneticValues.LEG.BACK_RIGHT)));
 
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getBottomLegKey(entity), modelSet, GeneticValues.LEG.FRONT_LEFT)).getCubeDimensions());
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getBottomLegKey(entity), modelSet, GeneticValues.LEG.FRONT_RIGHT)).getCubeDimensions());
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getBottomLegKey(entity), modelSet, GeneticValues.LEG.BACK_LEFT)).getCubeDimensions());
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getBottomLegKey(entity), modelSet, GeneticValues.LEG.BACK_RIGHT)).getCubeDimensions());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getBottomLegKey(entity), modelSet, GeneticValues.LEG.FRONT_LEFT)));
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getBottomLegKey(entity), modelSet, GeneticValues.LEG.FRONT_RIGHT)));
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getBottomLegKey(entity), modelSet, GeneticValues.LEG.BACK_LEFT)));
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getBottomLegKey(entity), modelSet, GeneticValues.LEG.BACK_RIGHT)));
 
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getChestKey(entity), modelSet)).getCubeDimensions());
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getLeftEarKey(entity), modelSet)).getCubeDimensions());
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getRightEarKey(entity), modelSet)).getCubeDimensions());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getChestKey(entity), modelSet)));
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getLeftEarKey(entity), modelSet)));
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getRightEarKey(entity), modelSet)));
 
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getTopFrontLegKey(entity), modelSet, GeneticValues.LEG.FRONT_LEFT)).getCubeDimensions());
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getTopFrontLegKey(entity), modelSet, GeneticValues.LEG.FRONT_RIGHT)).getCubeDimensions());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getTopFrontLegKey(entity), modelSet, GeneticValues.LEG.FRONT_LEFT)));
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getTopFrontLegKey(entity), modelSet, GeneticValues.LEG.FRONT_RIGHT)));
 
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getHeadKey(entity), modelSet)).getCubeDimensions());
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getHipKey(entity), modelSet)).getCubeDimensions());
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getHoofKey(entity), modelSet, GeneticValues.LEG.FRONT_LEFT)).getCubeDimensions());
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getHoofKey(entity), modelSet, GeneticValues.LEG.FRONT_RIGHT)).getCubeDimensions());
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getHoofKey(entity), modelSet, GeneticValues.LEG.BACK_LEFT)).getCubeDimensions());
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getHoofKey(entity), modelSet, GeneticValues.LEG.BACK_RIGHT)).getCubeDimensions());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getHeadKey(entity), modelSet)));
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getHipKey(entity), modelSet)));
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getHoofKey(entity), modelSet, GeneticValues.LEG.FRONT_LEFT)));
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getHoofKey(entity), modelSet, GeneticValues.LEG.FRONT_RIGHT)));
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getHoofKey(entity), modelSet, GeneticValues.LEG.BACK_LEFT)));
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getHoofKey(entity), modelSet, GeneticValues.LEG.BACK_RIGHT)));
 
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getKneeKey(entity), modelSet, GeneticValues.LEG.FRONT_LEFT)).getCubeDimensions());
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getKneeKey(entity), modelSet, GeneticValues.LEG.FRONT_RIGHT)).getCubeDimensions());
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getKneeKey(entity), modelSet, GeneticValues.LEG.BACK_LEFT)).getCubeDimensions());
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getKneeKey(entity), modelSet, GeneticValues.LEG.BACK_RIGHT)).getCubeDimensions());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getKneeKey(entity), modelSet, GeneticValues.LEG.FRONT_LEFT)));
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getKneeKey(entity), modelSet, GeneticValues.LEG.FRONT_RIGHT)));
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getKneeKey(entity), modelSet, GeneticValues.LEG.BACK_LEFT)));
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getKneeKey(entity), modelSet, GeneticValues.LEG.BACK_RIGHT)));
 
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getNeckKey(entity), modelSet)).getCubeDimensions());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getNeckKey(entity), modelSet)));
         // Mane is not in here since this method is only used to draw base color, and we dont want the mane drawn with that.
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getStomachKey(entity), modelSet)).getCubeDimensions());
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getTailKey(entity), modelSet)).getCubeDimensions());
-        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getWitherKey(entity), modelSet)).getCubeDimensions());
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getStomachKey(entity), modelSet)));
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getTailKey(entity), modelSet)));
+        partList.add(Objects.requireNonNull(ModelPartRegistry.getModel(RegistryKeyFactory.getWitherKey(entity), modelSet)));
         return partList;
     }
 
     private int decodeMuscleMass(int pixel) {
-        return switch (getR(pixel)) {
+        return switch (textureCalculator.getR(pixel)) {
             case 75 -> 1;
             case 150 -> 2;
             case 225 -> 3;
@@ -373,7 +438,7 @@ public class GeneticHorseTexturer {
     }
 
     private int decodeType(int pixel) {
-        return switch (getG(pixel)) {
+        return switch (textureCalculator.getG(pixel)) {
             case 10 -> 1;
             case 20 -> 2;
             case 30 -> 3;
@@ -384,12 +449,12 @@ public class GeneticHorseTexturer {
     }
 
     private int decodeAlpha(int pixel) {
-        EquigenMod.LOGGER.info("LOGGING ALPHA {}", getAlpha(pixel));
-        return switch (getAlpha(pixel)) {
+        EquigenMod.LOGGER.info("LOGGING ALPHA {}", textureCalculator.getAlpha(pixel));
+        return switch (textureCalculator.getAlpha(pixel)) {
             case 13 -> 1; // In photoshop this scales by 5 percent on the Opacity slider
             case 25, 26 -> 2;
-            case 38 -> 3;
-            case 51 -> 4;
+            case 38, 39, 40, 37, 36 -> 3;
+            case 51, 52, 50, 49 -> 4;
             case 64 -> 5;
             case 77 -> 6;
             case 89 -> 7;
@@ -406,7 +471,7 @@ public class GeneticHorseTexturer {
     }
 
     private int decodeLengthOrSize (int pixel) {
-        return switch (getB(pixel)) {
+        return switch (textureCalculator.getB(pixel)) {
             case 10 -> 1;
             case 20 -> 2;
             case 30 -> 3;
@@ -419,59 +484,100 @@ public class GeneticHorseTexturer {
             default -> 0;
         };
     }
-    public Part findBestMatch(List<Part> partReference, Part currentPart) { //TODO Make it so that the neck only applies to the same curve
-        EquigenMod.LOGGER.info("CURRENT PART = " + currentPart);
-        GeneticPartNameBuilder builder = new GeneticPartNameBuilder(entity);
-        String currPart = builder.returnPartType(currentPart.modelName, null); //Part name
-        EquigenMod.LOGGER.info("PART TYPE = " + currPart);
-        for (Part p : partReference) {
-            EquigenMod.LOGGER.info("PART REFERENCE: {}", p.modelName);
-        }
-        List<String> currPartList = builder.PartStringListGenerator(currPart, true);
+    public Part findBestMatch( MultipartModel<GeneticHorseEntity> currentPart, GeneticValues.LEG leg, boolean isMane) { //TODO Make it so that the neck only applies to the same curve
+        ModelPartKey key = ModelPartRegistry.getKeyFromModel(currentPart);
+        EquigenMod.LOGGER.info("referenceModels size = {}", referenceModels.size());
+        EquigenMod.LOGGER.info("referenceParts size = {}", referenceParts.size());
+
+        String currPart = key.getPartName(leg); //Part name
+        EquigenMod.LOGGER.info("FIND BEST MATCH, HANDLING THE {}. IS MANE = {}", currPart, isMane);
+
         //TODO make this link to the registry instead of PartNameBuilder
-        if (partReference.isEmpty()) {
-            EquigenMod.LOGGER.info("PART REFERENCE IS EMPTY!!!");
+        if (referenceModels.isEmpty() || referenceParts.isEmpty()) {
             return null;
         }
-        if (currPartList.getFirst().equals("knees") || currPartList.getFirst().equals("left_ear") || currPartList.getFirst().equals("right_ear")) {
-            EquigenMod.LOGGER.info("SINGLE MODEL NAME!!");
-            return partReference.getFirst();
-        }
-        currPartList.removeFirst();
-        EquigenMod.LOGGER.info("CURRPARTLIST = " + currPartList);
 
+        List<MultipartModel<GeneticHorseEntity>> relevantModels = new ArrayList<>(List.of());
         List<Part> relevantParts = new ArrayList<>(List.of());
         List<Integer> scores = new ArrayList<>(List.of());
 
-        for (Part p : partReference) {
-            EquigenMod.LOGGER.info("P = {}, PART = {}", p.modelName, currPart);
-            if (p.modelName.contains(currPart)) {
-                relevantParts.add(p);
+
+        if (isMane) {
+            currPart = "mane";
+        }
+        int index = 0;
+        for (MultipartModel<GeneticHorseEntity> p : referenceModels) {
+            ModelPartKey refKey = ModelPartRegistry.getKeyFromModel(p);
+
+            String refPart = refKey.getPartName(leg);
+
+            if (isMane && refPart.equals("neck")) {
+                refPart = "mane";
+            }
+            Part referencePart = referenceParts.get(index);
+
+            if (isMane) {
+                // Only include mane texture parts
+                if (refPart.equals("mane") &&
+                        referencePart.modelName.startsWith("mane_")) {
+
+                    relevantModels.add(p);
+                    relevantParts.add(referencePart);
+                    EquigenMod.LOGGER.info("MATCHES!! ADDING TO RELEVANT PARTS");
+                }
+            } else {
+                // Only include regular neck texture parts
+                if (refPart.equals(currPart) &&
+                        !referencePart.modelName.startsWith("mane_")) {
+
+                    relevantModels.add(p);
+                    relevantParts.add(referencePart);
+                }
+            }
+
+                index++;
+        }
+        if (isMane) {
+            for (Part p : relevantParts) {
+                EquigenMod.LOGGER.info(p.modelName);
+            }
+            EquigenMod.LOGGER.info("==========================");
+            for (MultipartModel<GeneticHorseEntity> m : relevantModels) {
+                EquigenMod.LOGGER.info(m.returnManeCubeDimensions().modelName);
             }
         }
-        if (relevantParts.isEmpty()) {
+        if (relevantParts.isEmpty() || relevantModels.isEmpty()) {
             EquigenMod.LOGGER.info("IS EMPTY!!!");
             return null;
         }
-        for (Part ref : relevantParts) {
-            String refModelName = ref.modelName;
-            int score = 0;
-            if (!refModelName.equals(currentPart.modelName)) {
-                score += 100;
+        for (MultipartModel<GeneticHorseEntity> ref : relevantModels) {
+            String refModelName = ref.getCubeDimensions().modelName;
+            String currModelName = currentPart.getCubeDimensions().modelName;
+            if (isMane) {
+                refModelName = refModelName.replace("neck", "mane");
+                currModelName = currModelName.replace("neck", "mane");
             }
-            EquigenMod.LOGGER.info("REFERENCE_PART = {}, CURR_PART_LIST_FIRST = {}",refModelName, currPartList.getFirst());
-            refModelName = refModelName.substring(currPart.length()+1);
-            int index = 0;
-            for (String part : currPartList) {
-                String r = builder.extractWord(refModelName, index);
-                EquigenMod.LOGGER.info("REFERENCE_PART = {}, CURRENT_PART = {}", part, refModelName);
-                EquigenMod.LOGGER.info("R = {}, PART = {}", r, part);
-                if (!r.equals(part)) {
-                    score += 80 / (index + 1);
+            List<Object> currRefPartGenetics = ModelPartRegistryKeys.getRecordComponents(ModelPartRegistry.getKeyFromModel(ref));
+            List<Object> currPartGenetics = ModelPartRegistryKeys.getRecordComponents(ModelPartRegistry.getKeyFromModel(currentPart));
+            int score = 0;
+            EquigenMod.LOGGER.info("REF MODEL NAME = {}, CURRENT PART NAME = {}", refModelName, currModelName);
+            if (!currModelName.endsWith(returnPartName(refModelName, currPart))) {
+                score += 100;
+                EquigenMod.LOGGER.info("CURR MODEL {} NAME DOESNT END WITH CURRENT PART NAME {}, SCORE IS NOW {}", currModelName, returnPartName(refModelName, currPart), score);
+            } else {
+                EquigenMod.LOGGER.info("CURR MODEL {} NAME DOES END IN CURRENT PART NAME {}!!!!", currModelName, returnPartName(refModelName, currPart));
+            }
+            int index2 = 0;
+            for (Object part : currPartGenetics) {
+                Object refPart = currRefPartGenetics.get(index2);
+                EquigenMod.LOGGER.info("PART!! = {}, REF PART = {}" + part, refPart);
+                if (!part.equals(refPart)) {
+                    score += 80 / (index2 + 1);
+                    EquigenMod.LOGGER.info("THEY DONT MATCH!! SCORE IS NOW {}", score);
                 } else {
                     EquigenMod.LOGGER.info("THEY MATCH!!! NO SCORE ADDED");
                 }
-                index++;
+                index2++;
             }
             EquigenMod.LOGGER.info("SCORE = " + score);
             scores.add(score);
@@ -484,27 +590,34 @@ public class GeneticHorseTexturer {
             if (s < lowestScore) {
                 lowestScore = s;
                 referenceIndex = currentIndex;
+                EquigenMod.LOGGER.info("SCORE LOWERED, NEW LOWEST IS {}, which coordinates with the {}", lowestScore, relevantParts.get(referenceIndex).modelName);
             }
             currentIndex++;
         }
+        if (isMane) {
+            String currModelName = currentPart.getCubeDimensions().modelName;
+            currModelName = currModelName.replace("neck", "mane");
 
+            EquigenMod.LOGGER.info("MANE: FIND BEST MATCH RETURNED THE {}, CURRENT PART IS {}!!", relevantParts.get(referenceIndex).modelName, currModelName);
+        }
         return relevantParts.get(referenceIndex);
     }
 
-// Code below extracts uses bits to extract the specific color from the RGB code.
-    public int getR (int colorCode) {
-        return (colorCode >> 16) & 0xFF;
-    }
-    public int getG (int colorCode) {
-        return (colorCode >> 8) & 0xFF;
-    }
-    public int getB (int colorCode) {
-         return colorCode & 0xFF;
+    public String returnPartName(String modelName, String partType) { //USE THIS ONLY FOR MANES, USED TO MATCH THE MANE NAMES.
+        if (partType.equals("mane")) {
+            modelName = modelName.replace("mane_", "");
+            if (modelName.contains("lean_")) {
+                modelName = modelName.replace("lean_", "");
+            } else if (modelName.startsWith("average_")){
+                modelName = modelName.substring(9);
+            } else if (modelName.contains("muscular_")){
+                modelName = modelName.replace("muscular_", "");
+            }
+        }
+        return modelName;
     }
 
-    public int getAlpha (int colorCode) {
-        return (colorCode >> 24) & 0xFF;
-    }
+
 
     public List<Part> removePart (List<Part> pList, String remove) {
         int i = 0;

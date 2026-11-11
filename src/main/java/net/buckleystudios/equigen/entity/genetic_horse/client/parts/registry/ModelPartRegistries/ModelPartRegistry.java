@@ -3,6 +3,7 @@ package net.buckleystudios.equigen.entity.genetic_horse.client.parts.registry.Mo
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.multipart.MultipartModel;
+import net.buckleystudios.equigen.entity.genetic_horse.client.parts.registry.ModelPartKey;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.registry.ModelPartRegistryKeys;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.registry.RegisteredLegModelPart;
 import net.buckleystudios.equigen.entity.genetic_horse.client.parts.registry.RegisteredModelPart;
@@ -33,8 +34,7 @@ public class ModelPartRegistry {
     private static final Map<ModelPartRegistryKeys.Top_Front_Legs, RegisteredLegModelPart> TOP_FRONT_LEGS_MODELS = new HashMap<>();
     private static final Map<ModelPartRegistryKeys.Withers, RegisteredModelPart> WITHERS_MODELS = new HashMap<>();
 
-    private static final Map<Class<? extends MultipartModel<GeneticHorseEntity>>, Object> MODEL_KEYS = new HashMap<>();
-
+    private static final Map<Class<? extends MultipartModel<GeneticHorseEntity>>, ModelPartKey> MODEL_KEYS = new HashMap<>();
     private static boolean modelsRegistered = false;
 
     private ModelPartRegistry() {}
@@ -363,4 +363,5 @@ public class ModelPartRegistry {
     public static <KEY> KEY getKeyFromModel(MultipartModel<GeneticHorseEntity> model) {
         return (KEY) MODEL_KEYS.get(model.getClass());
     }
+
 }

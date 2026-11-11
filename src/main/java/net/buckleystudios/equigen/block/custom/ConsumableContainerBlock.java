@@ -17,6 +17,7 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -53,7 +54,8 @@ public class ConsumableContainerBlock extends Block {
         TIMOTHY,
         ALFALFA,
         BARLEY,
-        OAT;
+        OAT,
+        WATER;
 
 
         public static ConsumableType fromType(Item item) {
@@ -65,6 +67,7 @@ public class ConsumableContainerBlock extends Block {
             if (item == ModItems.TIMOTHY_HAY.get().asItem()) return TIMOTHY;
             if (item == ModItems.BARLEY.get().asItem()) return BARLEY;
             if (item == ModItems.OATS.get().asItem()) return OAT;
+            if (item == Items.WATER_BUCKET) return WATER;
 
 
             return null;

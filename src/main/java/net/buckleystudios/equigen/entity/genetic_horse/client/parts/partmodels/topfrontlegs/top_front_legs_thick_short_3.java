@@ -37,19 +37,19 @@ public class top_front_legs_thick_short_3 extends MultipartFrontTopLegModel<Gene
 
 		PartDefinition top_front_legs_thick_short_3 = partdefinition.addOrReplaceChild("top_front_legs_thick_short_3", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition top_front_legs_thick_short_3_top_front_front = top_front_legs_thick_short_3.addOrReplaceChild("top_front_legs_thick_short_3_top_front_front", CubeListBuilder.create(), PartPose.offset(-0.0165F, 2.422F, -0.5472F));
+		PartDefinition top_front_legs_thick_short_3_top_front_front = top_front_legs_thick_short_3.addOrReplaceChild("top_front_legs_thick_short_3_top_front_front", CubeListBuilder.create(), PartPose.offset(-0.2152F, 2.3428F, -1.1228F));
 
-		PartDefinition cube_r1 = top_front_legs_thick_short_3_top_front_front.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(getUVXOffset(leg, 0), getUVYOffset(leg, 0, 7)).addBox(-0.4165F, -2.0F, -2.02F, 2.0F, 2.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.5835F, 1.2285F, 1.2966F, 1.789F, 0.0F, 0.0F));
+		PartDefinition cube_r1 = top_front_legs_thick_short_3_top_front_front.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(getUVXOffset(leg, 0), getUVYOffset(leg, 0, 7)).mirror().addBox(getLegReflection(-1.2152F, leg, 2f), -1.0771F, -6.6637F, 2.0F, 2.0F, 7.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.2152F, -3.2923F, -0.5013F, 1.789F, 0.0F, 0.0F));
 
-		PartDefinition top_front_legs_thick_short_3_top_front_back = top_front_legs_thick_short_3.addOrReplaceChild("top_front_legs_thick_short_3_top_front_back", CubeListBuilder.create(), PartPose.offset(0.3145F, 2.3475F, 0.6804F));
+		PartDefinition top_front_legs_thick_short_3_top_front_back = top_front_legs_thick_short_3.addOrReplaceChild("top_front_legs_thick_short_3_top_front_back", CubeListBuilder.create(), PartPose.offset(-0.058F, 2.0712F, 0.3589F));
 
-		PartDefinition cube_r2 = top_front_legs_thick_short_3_top_front_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(getUVXOffset(leg, 1), getUVYOffset(leg, 1, 6)).addBox(-0.0855F, -3.0F, -1.84F, 2.0F, 3.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.9145F, 1.3459F, 1.3357F, 1.4399F, 0.0F, 0.0F));
+		PartDefinition cube_r2 = top_front_legs_thick_short_3_top_front_back.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(getUVXOffset(leg, 1), getUVYOffset(leg, 1, 6)).mirror().addBox(getLegReflection(-1.058F, leg, 2f), -2.0808F, -5.7678F, 2.0F, 3.0F, 6.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.058F, -2.6683F, 0.9371F, 1.4399F, 0.0F, 0.0F));
 
-		PartDefinition top_front_legs_thick_short_3_top_front_middle = top_front_legs_thick_short_3.addOrReplaceChild("top_front_legs_thick_short_3_top_front_middle", CubeListBuilder.create(), PartPose.offset(-0.6F, 0.0F, 0.0F));
+		PartDefinition top_front_legs_thick_short_3_top_front_middle = top_front_legs_thick_short_3.addOrReplaceChild("top_front_legs_thick_short_3_top_front_middle", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition chestAnchor = top_front_legs_thick_short_3.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.5F, -1.8F));
+		PartDefinition chestAnchor = top_front_legs_thick_short_3.addOrReplaceChild("chestAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.625F, -2.25F));
 
-		PartDefinition kneeAnchor = top_front_legs_thick_short_3.addOrReplaceChild("kneeAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 5.15F, 0.3F));
+		PartDefinition kneeAnchor = top_front_legs_thick_short_3.addOrReplaceChild("kneeAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 4.75F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 128, 160);
 	}

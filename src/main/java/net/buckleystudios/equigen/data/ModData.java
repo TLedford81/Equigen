@@ -51,10 +51,10 @@ public class ModData {
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> DARKNESS = RegisterGeneticDataType("darkness");
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> RICHNESS = RegisterGeneticDataType("richness");
 
-    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> BLACK_MODIFIER = RegisterGeneticDataType("black_modifier");
-    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> BLACK_VARIATION = RegisterGeneticDataType("black_variation");
-    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> RED_MODIFIER = RegisterGeneticDataType("red_modifier");
-    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> RED_VARIATION = RegisterGeneticDataType("red_variation");
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> AGOUTI = RegisterGeneticDataType("agouti");
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> AGOUTI_VARIATION = RegisterGeneticDataType("agouti_variation");
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> EXTENSION = RegisterGeneticDataType("extension");
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> EXTENSION_VARIATION = RegisterGeneticDataType("extension_variation");
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> CREAM = RegisterGeneticDataType("cream");
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> CREAM_VARIATION = RegisterGeneticDataType("cream_variation");
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> DUN = RegisterGeneticDataType("dun");

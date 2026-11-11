@@ -18,7 +18,7 @@ public class GeneticValues {
         return values[value - 1];
     }
     public enum LEG{
-        FRONT_LEFT, FRONT_RIGHT, BACK_LEFT, BACK_RIGHT;
+        FRONT_LEFT, FRONT_RIGHT, BACK_LEFT, BACK_RIGHT, ALL;
         public static Object GeneticValues;
     }
 

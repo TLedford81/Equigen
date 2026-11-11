@@ -69,9 +69,9 @@ public class hips_average_large_1 extends MultipartHipModel<GeneticHorseEntity> 
 
 		PartDefinition tailAnchor = hips_average_large_1.addOrReplaceChild("tailAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.1F, -3.0F, 3.5F));
 
-		PartDefinition backLeftLegAnchor = hips_average_large_1.addOrReplaceChild("backLeftLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(3.25F, 3.675F, 1.0F));
+		PartDefinition backLeftLegAnchor = hips_average_large_1.addOrReplaceChild("backLeftLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(2.525F, 3.675F, 1.0F));
 
-		PartDefinition backRightLegAnchor = hips_average_large_1.addOrReplaceChild("backRightLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-3.25F, 3.675F, 1.0F));
+		PartDefinition backRightLegAnchor = hips_average_large_1.addOrReplaceChild("backRightLegAnchor", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.425F, 3.675F, 1.0F));
 
 		return LayerDefinition.create(meshdefinition, 128, 160);
 	}

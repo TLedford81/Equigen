@@ -171,6 +171,15 @@ public class neck_muscular_swan_short_1 extends MultipartNeckModel<GeneticHorseE
 		));
 	}
 	public Part returnManeCubeDimensions() {
-		return returnManeCubeDimensions("mane_swan_short_1");
-	}
+		return new Part("mane_swan_short_1", new ArrayList<>(
+				Arrays.asList(
+						new Block(2, 2, 6),
+						new Block(3, 1, 6),
+						new Block(1, 7, 6),
+						new Block(1, 7, 6),
+						new Block(2, 2, 7),
+						new Block(3, 1, 7),
+						new Block(1, 7, 7),
+						new Block(1, 7, 7))
+		));	}
 }

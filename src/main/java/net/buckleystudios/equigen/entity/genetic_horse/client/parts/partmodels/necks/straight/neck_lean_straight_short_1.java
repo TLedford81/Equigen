@@ -170,6 +170,15 @@ public class neck_lean_straight_short_1 extends MultipartNeckModel<GeneticHorseE
 		));
 	}
 	public Part returnManeCubeDimensions() {
-		return returnManeCubeDimensions("mane_straight_short_1");
-	}
+		return new Part("mane_straight_short_1", new ArrayList<>(
+				Arrays.asList(
+						new Block(2, 2, 5),
+						new Block(2, 1, 5),
+						new Block(1, 7, 5),
+						new Block(1, 7, 5),
+						new Block(2, 2, 6),
+						new Block(2, 1, 6),
+						new Block(1, 7, 6),
+						new Block(1, 7, 6))
+		));	}
 }

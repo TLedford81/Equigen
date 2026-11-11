@@ -1,6 +1,7 @@
 package net.buckleystudios.equigen.entity.genetic_horse.genetics;
 
 import net.buckleystudios.equigen.EquigenMod;
+import net.buckleystudios.equigen.entity.genetic_horse.client.texturer.CoatColors;
 
 import java.util.*;
 
@@ -21,183 +22,227 @@ public enum GeneticBreeds {
         return list;
     }
 
-    public Map<String, BreedValues> getLimits() {
-        Map<String, BreedValues> custom = new HashMap<>();
-        List<String> disabledGenetics = new ArrayList<>();
+    public Map<CoatColors, Integer> getCoatColors() {
+        Map<CoatColors, Integer> coatColors = new HashMap<>(); //Integer is the percentage chance that the horse will have the coat color. Must equal 100!
+        switch (this) {
+            case ARABIAN -> {
+                coatColors.put(CoatColors.BLOOD_BAY, 60);
+                coatColors.put(CoatColors.SANDY_BAY, 20);
+                coatColors.put(CoatColors.BROWN, 20);
+            }
+            case CHARGER -> {
+                coatColors.put(CoatColors.STANDARD_BAY, 100);
+            }
+            case TURKOMAN -> {
+                coatColors.put(CoatColors.LIGHT_CHESTNUT, 20);
+                coatColors.put(CoatColors.STANDARD_CHESTNUT, 20);
+                coatColors.put(CoatColors.LIVER_CHESTNUT, 20);
+                coatColors.put(CoatColors.DARK_CHESTNUT, 20);
+                coatColors.put(CoatColors.RED_CHESTNUT, 20);
+
+
+            }
+            case MONGOLIAN_WILD -> {
+                coatColors.put(CoatColors.STANDARD_DUN, 100);
+            }
+            case CUSTOM -> {
+                coatColors.put(CoatColors.MAHOGANY_BAY, 100);
+            }
+        }
+        return coatColors;
+    }
+//    public Map<Genetics, Vec2> getCoatGenetics(List<CoatColors> coat) {
+//        Map<Genetics, Vec2> map = new HashMap<>();
+//        for (CoatColors c : coat) {
+//            Map<Genetics, CoatColors.valueFlags> relatedGenetics = c.getRelatedGenetics();
+//            for ()
+//        }
+//    }
+
+    public Map<Genetics, BreedValues> getLimits() {
+        Map<Genetics, BreedValues> custom = new HashMap<>();
+        List<Genetics> disabledGenetics = new ArrayList<>();
 
         for(Genetics gene : Genetics.values()){
             if(gene.isTextureGene()){
-                disabledGenetics.add(gene.name());
+                disabledGenetics.add(gene);
             }
         }
-        disabledGenetics.remove("RED_MODIFIER");
-        disabledGenetics.remove("RED_VARIATION");
-        disabledGenetics.remove("BLACK_MODIFIER");
-        disabledGenetics.remove("BLACK_VARIATION");
-        disabledGenetics.remove("FRAME_OVERO");
-        disabledGenetics.remove("EYE_BASE_COLOR");
-        disabledGenetics.remove("EYE_BASE_COLOR_2");
-        disabledGenetics.remove("EYE_HUE");
-        disabledGenetics.remove("EYE_SATURATION");
-        disabledGenetics.remove("EYE_BRIGHTNESS");
-        disabledGenetics.remove("FRAME_OVERO_VARIATION_1");
-        disabledGenetics.remove("FRAME_OVERO_VARIATION_2");
-        disabledGenetics.remove("FRAME_OVERO_VARIATION_3");
-        disabledGenetics.remove("FACE_MARKING");
+        disabledGenetics.remove(Genetics.AGOUTI);
+        disabledGenetics.remove(Genetics.AGOUTI_VARIATION);
+        disabledGenetics.remove(Genetics.EXTENSION);
+        disabledGenetics.remove(Genetics.EXTENSION_VARIATION);
+        disabledGenetics.remove(Genetics.FRAME_OVERO);
+        disabledGenetics.remove(Genetics.EYE_BASE_COLOR);
+        disabledGenetics.remove(Genetics.EYE_BASE_COLOR_2);
+        disabledGenetics.remove(Genetics.EYE_HUE);
+        disabledGenetics.remove(Genetics.EYE_SATURATION);
+        disabledGenetics.remove(Genetics.EYE_BRIGHTNESS);
+        disabledGenetics.remove(Genetics.HETEROCHROMIA);
+        disabledGenetics.remove(Genetics.WARMTH);
+        disabledGenetics.remove(Genetics.DARKNESS);
+        disabledGenetics.remove(Genetics.RICHNESS);
+        disabledGenetics.remove(Genetics.FACE_MARKING);
+        disabledGenetics.remove(Genetics.DUN);
+        disabledGenetics.remove(Genetics.CREAM);
+        disabledGenetics.remove(Genetics.BLACK_POINT_HEIGHT);
 
 
 
-        for(String gene : disabledGenetics){
+
+        for(Genetics gene : disabledGenetics){
             custom.put(gene, new BreedValues(0, 0));
+
         }
         // Float List Order: Min, Max, Average, chanceLow, chanceAverage, chanceHigh
         switch (this){
             case ARABIAN -> {
-                custom.put("MUSCLE_MASS", new BreedValues(0, 2, 1, 0, 65, 35)); // 65% average
-                custom.put("HEAD_TYPE", new BreedValues(0, 1));
-                custom.put("NECK_LENGTH", new BreedValues(2, 5, 4, 35, 40, 25)); // 40% average
-                custom.put("NECK_CURVE", new BreedValues(3, 4));
-                custom.put("NECK_POS", new BreedValues(3, 4));
-                custom.put("BACK_LENGTH", new BreedValues(1, 3, 2, 20, 45, 35)); // 45% average
-                custom.put("BACK_GIRTH", new BreedValues(0, 2));
-//                custom.put("BACK_HEIGHT", new BreedValues(0, 2, 0, 0, 0, 0));
-                custom.put("STOMACH_CURVE", new BreedValues(0, 2));
-//                custom.put("STOMACH_HEIGHT", new BreedValues(0, 2, 0, 0, 0, 0));
-                custom.put("STOMACH_LENGTH", new BreedValues(1, 3));
-                custom.put("CHEST_SIZE", new BreedValues(2, 4));
-                custom.put("HIP_SIZE", new BreedValues(2, 4));
-//                custom.put("HIP_PLACEMENT", new BreedValues(0, 2, 0, 0, 0, 0));
-//                custom.put("WITHERS", new BreedValues(0, 2, 0, 0, 0, 0));
-                custom.put("LEG_WIDTH", new BreedValues(1, 3, 2, 0, 70, 30));
-                custom.put("BOTTOM_LEG", new BreedValues(4, 7, 6, 35, 50, 25));
-                custom.put("TOP_LEG", new BreedValues(2, 4, 3, 0, 70, 30));
-                custom.put("TOP_HIND_LEG_WIDTH", new BreedValues(0, 2));
-                custom.put("TAIL_SET", new BreedValues(1, 3, 2, 0, 30, 70));
-                custom.put("TAIL_LENGTH", new BreedValues(1, 3));
-                custom.put("TAIL_THICKNESS", new BreedValues(0, 3));
-                custom.put("HOOF_SIZE", new BreedValues(0, 2));
-                custom.put("SCALE", new BreedValues(0.25f, 0.55f, 0.375F, 35, 40, 35));
-                custom.put("FRONT_LEFT_LEG_MARKING", new BreedValues(0, 20));
-                custom.put("FRONT_RIGHT_LEG_MARKING", new BreedValues(0, 20));
-                custom.put("BACK_LEFT_LEG_MARKING", new BreedValues(0, 20));
-                custom.put("BACK_RIGHT_LEG_MARKING", new BreedValues(0, 20));
+                custom.put(Genetics.MUSCLE_MASS, new BreedValues(0, 2, 1, 0, 65, 35)); // 65% average
+                custom.put(Genetics.HEAD_TYPE, new BreedValues(0, 1));
+                custom.put(Genetics.NECK_LENGTH, new BreedValues(2, 5, 4, 35, 40, 25)); // 40% average
+                custom.put(Genetics.NECK_CURVE, new BreedValues(3, 4));
+                custom.put(Genetics.NECK_POS, new BreedValues(3, 4));
+                custom.put(Genetics.BACK_LENGTH, new BreedValues(1, 3, 2, 20, 45, 35)); // 45% average
+                custom.put(Genetics.BACK_GIRTH, new BreedValues(0, 2));
+//                custom.put(Genetics.BACK_HEIGHT, new BreedValues(0, 2, 0, 0, 0, 0));
+                custom.put(Genetics.STOMACH_CURVE, new BreedValues(0, 2));
+//                custom.put(Genetics.STOMACH_HEIGHT, new BreedValues(0, 2, 0, 0, 0, 0));
+                custom.put(Genetics.STOMACH_LENGTH, new BreedValues(1, 3));
+                custom.put(Genetics.CHEST_SIZE, new BreedValues(2, 4));
+                custom.put(Genetics.HIP_SIZE, new BreedValues(2, 4));
+//                custom.put(Genetics.HIP_PLACEMENT, new BreedValues(0, 2, 0, 0, 0, 0));
+//                custom.put(Genetics.WITHERS, new BreedValues(0, 2, 0, 0, 0, 0));
+                custom.put(Genetics.LEG_WIDTH, new BreedValues(1, 3, 2, 0, 70, 30));
+                custom.put(Genetics.BOTTOM_LEG, new BreedValues(4, 7, 6, 35, 50, 25));
+                custom.put(Genetics.TOP_LEG, new BreedValues(2, 4, 3, 0, 70, 30));
+                custom.put(Genetics.TOP_HIND_LEG_WIDTH, new BreedValues(0, 2));
+                custom.put(Genetics.TAIL_SET, new BreedValues(1, 3, 2, 0, 30, 70));
+                custom.put(Genetics.TAIL_LENGTH, new BreedValues(1, 3));
+                custom.put(Genetics.TAIL_THICKNESS, new BreedValues(0, 3));
+                custom.put(Genetics.HOOF_SIZE, new BreedValues(0, 2));
+                custom.put(Genetics.SCALE, new BreedValues(0.25f, 0.55f, 0.375F, 35, 40, 35));
+                custom.put(Genetics.FRONT_LEFT_LEG_MARKING, new BreedValues(0, 20));
+                custom.put(Genetics.FRONT_RIGHT_LEG_MARKING, new BreedValues(0, 20));
+                custom.put(Genetics.BACK_LEFT_LEG_MARKING, new BreedValues(0, 20));
+                custom.put(Genetics.BACK_RIGHT_LEG_MARKING, new BreedValues(0, 20));
 
                 /* SKILLS SUBJECT TO BALANCING */
-                custom.put("SPEED_MAX_LEVEL", new BreedValues(4.5f, 6.5f, 5.25F, 35, 45, 20));
-                custom.put("STRENGTH_MAX_LEVEL", new BreedValues(3.5F, 4.5F, 4, 25, 55, 20));
-                custom.put("JUMP_MAX_LEVEL", new BreedValues(5.5F, 7, 6.1F, 35, 40, 20));
-                custom.put("ENDURANCE_MAX_LEVEL", new BreedValues(6.5F, 8.5F, 7, 45, 45, 10));
-                custom.put("AGILITY_MAX_LEVEL", new BreedValues(4.5F, 6.5F, 5.25F, 35, 45, 20));
+                custom.put(Genetics.SPEED_MAX_LEVEL, new BreedValues(4.5f, 6.5f, 5.25F, 35, 45, 20));
+                custom.put(Genetics.STRENGTH_MAX_LEVEL, new BreedValues(3.5F, 4.5F, 4, 25, 55, 20));
+                custom.put(Genetics.JUMP_MAX_LEVEL, new BreedValues(5.5F, 7, 6.1F, 35, 40, 20));
+                custom.put(Genetics.ENDURANCE_MAX_LEVEL, new BreedValues(6.5F, 8.5F, 7, 45, 45, 10));
+                custom.put(Genetics.AGILITY_MAX_LEVEL, new BreedValues(4.5F, 6.5F, 5.25F, 35, 45, 20));
             }
             case CHARGER -> {
-                custom.put("MUSCLE_MASS", new BreedValues(1, 3, 2, 0, 35, 65));
-                custom.put("HEAD_TYPE", new BreedValues(1, 2)); // Roman
-                custom.put("NECK_LENGTH", new BreedValues(3, 6, 5, 25, 40, 35));
-                custom.put("NECK_CURVE", new BreedValues(0, 1)); //Swan
-                custom.put("NECK_POS", new BreedValues(2, 4));
-                custom.put("BACK_LENGTH", new BreedValues(1, 3));
-                custom.put("BACK_GIRTH", new BreedValues(1, 3));
-//                custom.put("BACK_HEIGHT", new BreedValues(0, 2, 0, 0, 0, 0));
-                custom.put("STOMACH_CURVE", new BreedValues(1, 3));
-//                custom.put("STOMACH_HEIGHT", new BreedValues(0, 2, 0, 0, 0, 0));
-                custom.put("STOMACH_LENGTH", new BreedValues(1, 3));
-                custom.put("CHEST_SIZE", new BreedValues(4, 6));
-                custom.put("HIP_SIZE", new BreedValues(4, 6));
-//                custom.put("HIP_PLACEMENT", new BreedValues(0, 2, 0, 0, 0, 0));
-//                custom.put("WITHERS", new BreedValues(0, 2, 0, 0, 0, 0));
-                custom.put("LEG_WIDTH", new BreedValues(2, 3));
-                custom.put("BOTTOM_LEG", new BreedValues(6, 9, 8, 25, 50, 25));
-                custom.put("TOP_LEG", new BreedValues(4, 6, 5, 0, 65, 35));
-                custom.put("TOP_HIND_LEG_WIDTH", new BreedValues(1, 3));
-                custom.put("TAIL_SET", new BreedValues(0, 2));
-                custom.put("TAIL_LENGTH", new BreedValues(1, 3));
-                custom.put("TAIL_THICKNESS", new BreedValues(0, 3));
-                custom.put("HOOF_SIZE", new BreedValues(1, 2));
-                custom.put("SCALE", new BreedValues(0.40f, 0.75f, 0.575F, 20, 45, 35));
-                custom.put("FRONT_LEFT_LEG_MARKING", new BreedValues(0, 20));
-                custom.put("FRONT_RIGHT_LEG_MARKING", new BreedValues(0, 20));
-                custom.put("BACK_LEFT_LEG_MARKING", new BreedValues(0, 20));
-                custom.put("BACK_RIGHT_LEG_MARKING", new BreedValues(0, 20));
+                custom.put(Genetics.MUSCLE_MASS, new BreedValues(1, 3, 2, 0, 35, 65));
+                custom.put(Genetics.HEAD_TYPE, new BreedValues(1, 2)); // Roman
+                custom.put(Genetics.NECK_LENGTH, new BreedValues(3, 6, 5, 25, 40, 35));
+                custom.put(Genetics.NECK_CURVE, new BreedValues(0, 1)); //Swan
+                custom.put(Genetics.NECK_POS, new BreedValues(2, 4));
+                custom.put(Genetics.BACK_LENGTH, new BreedValues(1, 3));
+                custom.put(Genetics.BACK_GIRTH, new BreedValues(1, 3));
+//                custom.put(Genetics.BACK_HEIGHT, new BreedValues(0, 2, 0, 0, 0, 0));
+                custom.put(Genetics.STOMACH_CURVE, new BreedValues(1, 3));
+//                custom.put(Genetics.STOMACH_HEIGHT, new BreedValues(0, 2, 0, 0, 0, 0));
+                custom.put(Genetics.STOMACH_LENGTH, new BreedValues(1, 3));
+                custom.put(Genetics.CHEST_SIZE, new BreedValues(4, 6));
+                custom.put(Genetics.HIP_SIZE, new BreedValues(4, 6));
+//                custom.put(Genetics.HIP_PLACEMENT, new BreedValues(0, 2, 0, 0, 0, 0));
+//                custom.put(Genetics.WITHERS, new BreedValues(0, 2, 0, 0, 0, 0));
+                custom.put(Genetics.LEG_WIDTH, new BreedValues(2, 3));
+                custom.put(Genetics.BOTTOM_LEG, new BreedValues(6, 9, 8, 25, 50, 25));
+                custom.put(Genetics.TOP_LEG, new BreedValues(4, 6, 5, 0, 65, 35));
+                custom.put(Genetics.TOP_HIND_LEG_WIDTH, new BreedValues(1, 3));
+                custom.put(Genetics.TAIL_SET, new BreedValues(0, 2));
+                custom.put(Genetics.TAIL_LENGTH, new BreedValues(1, 3));
+                custom.put(Genetics.TAIL_THICKNESS, new BreedValues(0, 3));
+                custom.put(Genetics.HOOF_SIZE, new BreedValues(1, 2));
+                custom.put(Genetics.SCALE, new BreedValues(0.40f, 0.75f, 0.575F, 20, 45, 35));
+                custom.put(Genetics.FRONT_LEFT_LEG_MARKING, new BreedValues(0, 20));
+                custom.put(Genetics.FRONT_RIGHT_LEG_MARKING, new BreedValues(0, 20));
+                custom.put(Genetics.BACK_LEFT_LEG_MARKING, new BreedValues(0, 20));
+                custom.put(Genetics.BACK_RIGHT_LEG_MARKING, new BreedValues(0, 20));
 
                 /* SKILLS SUBJECT TO BALANCING */
-                custom.put("SPEED_MAX_LEVEL", new BreedValues(4.5f, 6.5f, 5, 35, 45, 20));
-                custom.put("STRENGTH_MAX_LEVEL", new BreedValues(6.5F, 8.5F, 7.25F, 35, 55, 20));
-                custom.put("JUMP_MAX_LEVEL", new BreedValues(3.5F, 4.5F, 4, 25, 55, 20));
-                custom.put("ENDURANCE_MAX_LEVEL", new BreedValues(4.5F, 6.5F, 5.25F, 30, 50, 20));
-                custom.put("AGILITY_MAX_LEVEL", new BreedValues(3.5F, 4.5F, 4, 25, 55, 20));
+                custom.put(Genetics.SPEED_MAX_LEVEL, new BreedValues(4.5f, 6.5f, 5, 35, 45, 20));
+                custom.put(Genetics.STRENGTH_MAX_LEVEL, new BreedValues(6.5F, 8.5F, 7.25F, 35, 55, 20));
+                custom.put(Genetics.JUMP_MAX_LEVEL, new BreedValues(3.5F, 4.5F, 4, 25, 55, 20));
+                custom.put(Genetics.ENDURANCE_MAX_LEVEL, new BreedValues(4.5F, 6.5F, 5.25F, 30, 50, 20));
+                custom.put(Genetics.AGILITY_MAX_LEVEL, new BreedValues(3.5F, 4.5F, 4, 25, 55, 20));
             }
             case TURKOMAN -> {
-                custom.put("MUSCLE_MASS", new BreedValues(0, 2, 1, 0, 35, 65));
-                custom.put("HEAD_TYPE", new BreedValues(3, 4)); // Straight
-                custom.put("NECK_LENGTH", new BreedValues(2, 4));
-                custom.put("NECK_CURVE", new BreedValues(2, 3)); // Ewed
-                custom.put("NECK_POS", new BreedValues(1, 3));
-                custom.put("BACK_LENGTH", new BreedValues(1, 3));
-                custom.put("BACK_GIRTH", new BreedValues(1, 3));
-//                custom.put("BACK_HEIGHT", new BreedValues(0, 2, 0, 0, 0, 0));
-                custom.put("STOMACH_CURVE", new BreedValues(0, 2));
-//                custom.put("STOMACH_HEIGHT", new BreedValues(0, 2, 0, 0, 0, 0));
-                custom.put("STOMACH_LENGTH", new BreedValues(1, 3));
-                custom.put("CHEST_SIZE", new BreedValues(3, 6));
-                custom.put("HIP_SIZE", new BreedValues(3, 6));
-//                custom.put("HIP_PLACEMENT", new BreedValues(0, 2, 0, 0, 0, 0));
-//                custom.put("WITHERS", new BreedValues(0, 2, 0, 0, 0, 0));
-                custom.put("LEG_WIDTH", new BreedValues(1, 3, 2, 0, 30, 70));
-                custom.put("BOTTOM_LEG", new BreedValues(5, 8, 7, 30, 40, 30));
-                custom.put("TOP_LEG", new BreedValues(6, 9, 8, 40, 40, 20));
-                custom.put("TOP_HIND_LEG_WIDTH", new BreedValues(1, 3));
-                custom.put("TAIL_SET", new BreedValues(0, 2));
-                custom.put("TAIL_LENGTH", new BreedValues(1, 3));
-                custom.put("TAIL_THICKNESS", new BreedValues(0, 3));
-                custom.put("HOOF_SIZE", new BreedValues(0, 2));
-                custom.put("SCALE", new BreedValues(0.20f, 0.5f, 0.35F, 15, 50, 35));
-                custom.put("FRONT_LEFT_LEG_MARKING", new BreedValues(0, 20));
-                custom.put("FRONT_RIGHT_LEG_MARKING", new BreedValues(0, 20));
-                custom.put("BACK_LEFT_LEG_MARKING", new BreedValues(0, 20));
-                custom.put("BACK_RIGHT_LEG_MARKING", new BreedValues(0, 20));
+                custom.put(Genetics.MUSCLE_MASS, new BreedValues(0, 2, 1, 0, 35, 65));
+                custom.put(Genetics.HEAD_TYPE, new BreedValues(3, 4)); // Straight
+                custom.put(Genetics.NECK_LENGTH, new BreedValues(3, 5));
+                custom.put(Genetics.NECK_CURVE, new BreedValues(2, 3)); // Ewed
+                custom.put(Genetics.NECK_POS, new BreedValues(1, 3));
+                custom.put(Genetics.BACK_LENGTH, new BreedValues(1, 3));
+                custom.put(Genetics.BACK_GIRTH, new BreedValues(1, 3));
+//                custom.put(Genetics.BACK_HEIGHT, new BreedValues(0, 2, 0, 0, 0, 0));
+                custom.put(Genetics.STOMACH_CURVE, new BreedValues(0, 2));
+//                custom.put(Genetics.STOMACH_HEIGHT, new BreedValues(0, 2, 0, 0, 0, 0));
+                custom.put(Genetics.STOMACH_LENGTH, new BreedValues(1, 3));
+                custom.put(Genetics.CHEST_SIZE, new BreedValues(3, 6));
+                custom.put(Genetics.HIP_SIZE, new BreedValues(3, 6));
+//                custom.put(Genetics.HIP_PLACEMENT, new BreedValues(0, 2, 0, 0, 0, 0));
+//                custom.put(Genetics.WITHERS, new BreedValues(0, 2, 0, 0, 0, 0));
+                custom.put(Genetics.LEG_WIDTH, new BreedValues(1, 3, 2, 0, 30, 70));
+                custom.put(Genetics.BOTTOM_LEG, new BreedValues(5, 8, 7, 30, 40, 30));
+                custom.put(Genetics.TOP_LEG, new BreedValues(6, 9, 8, 40, 40, 20));
+                custom.put(Genetics.TOP_HIND_LEG_WIDTH, new BreedValues(1, 3));
+                custom.put(Genetics.TAIL_SET, new BreedValues(0, 2));
+                custom.put(Genetics.TAIL_LENGTH, new BreedValues(1, 3));
+                custom.put(Genetics.TAIL_THICKNESS, new BreedValues(0, 3));
+                custom.put(Genetics.HOOF_SIZE, new BreedValues(0, 2));
+                custom.put(Genetics.SCALE, new BreedValues(0.20f, 0.5f, 0.35F, 15, 50, 35));
+                custom.put(Genetics.FRONT_LEFT_LEG_MARKING, new BreedValues(0, 20));
+                custom.put(Genetics.FRONT_RIGHT_LEG_MARKING, new BreedValues(0, 20));
+                custom.put(Genetics.BACK_LEFT_LEG_MARKING, new BreedValues(0, 20));
+                custom.put(Genetics.BACK_RIGHT_LEG_MARKING, new BreedValues(0, 20));
+                custom.put(Genetics.BLACK_POINT_HEIGHT, new BreedValues(0, 20));
 
                 /* SKILLS SUBJECT TO BALANCING */
-                custom.put("SPEED_MAX_LEVEL", new BreedValues(6.5f, 8.5f, 7, 45, 45, 10));
-                custom.put("STRENGTH_MAX_LEVEL", new BreedValues(4.5f, 6.5f, 5.25F, 35, 45, 20));
-                custom.put("JUMP_MAX_LEVEL", new BreedValues(4.5f, 6.5f, 5.25F, 35, 45, 20));
-                custom.put("ENDURANCE_MAX_LEVEL", new BreedValues(4.5f, 6.5f, 5.25F, 35, 45, 20));
-                custom.put("AGILITY_MAX_LEVEL", new BreedValues(4.5F, 6.5F, 5.25F, 35, 45, 20));
+                custom.put(Genetics.SPEED_MAX_LEVEL, new BreedValues(6.5f, 8.5f, 7, 45, 45, 10));
+                custom.put(Genetics.STRENGTH_MAX_LEVEL, new BreedValues(4.5f, 6.5f, 5.25F, 35, 45, 20));
+                custom.put(Genetics.JUMP_MAX_LEVEL, new BreedValues(4.5f, 6.5f, 5.25F, 35, 45, 20));
+                custom.put(Genetics.ENDURANCE_MAX_LEVEL, new BreedValues(4.5f, 6.5f, 5.25F, 35, 45, 20));
+                custom.put(Genetics.AGILITY_MAX_LEVEL, new BreedValues(4.5F, 6.5F, 5.25F, 35, 45, 20));
             }
             case MONGOLIAN_WILD -> {
-                custom.put("MUSCLE_MASS", new BreedValues(0, 2, 1, 0, 40, 60));
-                custom.put("HEAD_TYPE", new BreedValues(2, 3)); // Stocky
-                custom.put("NECK_LENGTH", new BreedValues(0, 4, 2, 40, 50, 20));
-                custom.put("NECK_CURVE", new BreedValues(1, 2)); // Straight
-                custom.put("NECK_POS", new BreedValues(2, 4));
-                custom.put("BACK_LENGTH", new BreedValues(0, 2));
-                custom.put("BACK_GIRTH", new BreedValues(0, 2));
-//                custom.put("BACK_HEIGHT", new BreedValues(0, 2, 0, 0, 0, 0));
-                custom.put("STOMACH_CURVE", new BreedValues(0, 2));
-//                custom.put("STOMACH_HEIGHT", new BreedValues(0, 2, 0, 0, 0, 0));
-                custom.put("STOMACH_LENGTH", new BreedValues(0, 2));
-                custom.put("CHEST_SIZE", new BreedValues(0, 3));
-                custom.put("HIP_SIZE", new BreedValues(0, 3));
-//                custom.put("HIP_PLACEMENT", new BreedValues(0, 2, 0, 0, 0, 0));
-//                custom.put("WITHERS", new BreedValues(0, 2, 0, 0, 0, 0));
-                custom.put("LEG_WIDTH", new BreedValues(1, 2));
-                custom.put("BOTTOM_LEG", new BreedValues(0, 3));
-                custom.put("TOP_LEG", new BreedValues(0, 3));
-                custom.put("TOP_HIND_LEG_WIDTH", new BreedValues(0, 2));
-                custom.put("TAIL_SET", new BreedValues(0, 2));
-                custom.put("TAIL_LENGTH", new BreedValues(0, 2));
-                custom.put("TAIL_THICKNESS", new BreedValues(0, 3));
-                custom.put("HOOF_SIZE", new BreedValues(0, 1));
-                custom.put("SCALE", new BreedValues(0.10f, 0.30f, 0.2F, 35, 45, 20));
+                custom.put(Genetics.MUSCLE_MASS, new BreedValues(0, 2, 1, 0, 40, 60));
+                custom.put(Genetics.HEAD_TYPE, new BreedValues(2, 3)); // Stocky
+                custom.put(Genetics.NECK_LENGTH, new BreedValues(0, 4, 2, 40, 50, 20));
+                custom.put(Genetics.NECK_CURVE, new BreedValues(1, 2)); // Straight
+                custom.put(Genetics.NECK_POS, new BreedValues(2, 4));
+                custom.put(Genetics.BACK_LENGTH, new BreedValues(0, 2));
+                custom.put(Genetics.BACK_GIRTH, new BreedValues(0, 2));
+//                custom.put(Genetics.BACK_HEIGHT, new BreedValues(0, 2, 0, 0, 0, 0));
+                custom.put(Genetics.STOMACH_CURVE, new BreedValues(0, 2));
+//                custom.put(Genetics.STOMACH_HEIGHT, new BreedValues(0, 2, 0, 0, 0, 0));
+                custom.put(Genetics.STOMACH_LENGTH, new BreedValues(0, 2));
+                custom.put(Genetics.CHEST_SIZE, new BreedValues(0, 3));
+                custom.put(Genetics.HIP_SIZE, new BreedValues(0, 3));
+//                custom.put(Genetics.HIP_PLACEMENT, new BreedValues(0, 2, 0, 0, 0, 0));
+//                custom.put(Genetics.WITHERS, new BreedValues(0, 2, 0, 0, 0, 0));
+                custom.put(Genetics.LEG_WIDTH, new BreedValues(1, 2));
+                custom.put(Genetics.BOTTOM_LEG, new BreedValues(0, 3));
+                custom.put(Genetics.TOP_LEG, new BreedValues(0, 3));
+                custom.put(Genetics.TOP_HIND_LEG_WIDTH, new BreedValues(0, 2));
+                custom.put(Genetics.TAIL_SET, new BreedValues(0, 2));
+                custom.put(Genetics.TAIL_LENGTH, new BreedValues(0, 2));
+                custom.put(Genetics.TAIL_THICKNESS, new BreedValues(0, 3));
+                custom.put(Genetics.HOOF_SIZE, new BreedValues(0, 1));
+                custom.put(Genetics.SCALE, new BreedValues(0.10f, 0.30f, 0.2F, 35, 45, 20));
 
                 /* SKILLS SUBJECT TO BALANCING */
-                custom.put("SPEED_MAX_LEVEL", new BreedValues(3.5F, 4.5F, 4, 25, 55, 20));
-                custom.put("STRENGTH_MAX_LEVEL", new BreedValues(5.25f, 6.5f, 5.75F, 35, 45, 20));
-                custom.put("JUMP_MAX_LEVEL", new BreedValues(4.5F, 6.5F, 5.25F, 35, 45, 20));
-                custom.put("ENDURANCE_MAX_LEVEL", new BreedValues(3.5F, 4.5F, 4, 25, 55, 20));
-                custom.put("AGILITY_MAX_LEVEL", new BreedValues(4.5F, 6.5F, 5.25F, 35, 45, 20));
+                custom.put(Genetics.SPEED_MAX_LEVEL, new BreedValues(3.5F, 4.5F, 4, 25, 55, 20));
+                custom.put(Genetics.STRENGTH_MAX_LEVEL, new BreedValues(5.25f, 6.5f, 5.75F, 35, 45, 20));
+                custom.put(Genetics.JUMP_MAX_LEVEL, new BreedValues(4.5F, 6.5F, 5.25F, 35, 45, 20));
+                custom.put(Genetics.ENDURANCE_MAX_LEVEL, new BreedValues(3.5F, 4.5F, 4, 25, 55, 20));
+                custom.put(Genetics.AGILITY_MAX_LEVEL, new BreedValues(4.5F, 6.5F, 5.25F, 35, 45, 20));
             }
             case CUSTOM -> {
-                custom.put("BLACK_VARIATION", new BreedValues(1, 4));
+                custom.put(Genetics.AGOUTI_VARIATION, new BreedValues(1, 4));
             }
         };
 

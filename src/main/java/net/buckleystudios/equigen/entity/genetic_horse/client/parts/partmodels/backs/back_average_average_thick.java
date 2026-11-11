@@ -41,7 +41,7 @@ public class back_average_average_thick extends MultipartBackModel<GeneticHorseE
 
 		PartDefinition back_average_average_thick = partdefinition.addOrReplaceChild("back_average_average_thick", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition back_average_average_thick_back_ribs = back_average_average_thick.addOrReplaceChild("back_average_average_thick_back_ribs", CubeListBuilder.create().texOffs(35, 4).addBox(-3.5F, -3.9777F, -6.0F, 7.0F, 8.0F, 12.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0066F, -0.0223F, -0.071F));
+		PartDefinition back_average_average_thick_back_ribs = back_average_average_thick.addOrReplaceChild("back_average_average_thick_back_ribs", CubeListBuilder.create().texOffs(33, 4).addBox(-3.5F, -3.9777F, -6.0F, 7.0F, 8.0F, 12.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0066F, -0.0223F, -0.071F));
 
 		PartDefinition back_average_average_thick_back_top_lower = back_average_average_thick.addOrReplaceChild("back_average_average_thick_back_top_lower", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0894F));
 

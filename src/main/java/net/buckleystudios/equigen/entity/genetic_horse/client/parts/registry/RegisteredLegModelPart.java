@@ -31,11 +31,15 @@ public record RegisteredLegModelPart(
             case FRONT_RIGHT -> frontRightLayer;
             case BACK_LEFT -> backLeftLayer;
             case BACK_RIGHT -> backRightLayer;
+            case ALL -> null;
         };
 
+        assert layer != null;
         ModelPart root = modelSet.bakeLayer(layer);
+        MultipartModel<GeneticHorseEntity> model = factory.apply(root);
+        model.setLeg(leg);
 
-        return factory.apply(root);
+        return model;
     }
 
     public void registerLayers(

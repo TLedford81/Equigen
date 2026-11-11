@@ -55,5 +55,19 @@ public abstract class MultipartBackTopLegModel <E extends GeneticHorseEntity> ex
         return offset - zLength;
 
     }
+
+    protected static float getLegReflection(float baseTransform, GeneticValues.LEG leg, float xSize) {
+        switch (leg) {
+            case GeneticValues.LEG.BACK_LEFT -> {
+                return baseTransform;
+            }
+            case GeneticValues.LEG.BACK_RIGHT -> {
+                return (-(baseTransform)) - xSize;
+            }
+            default -> {
+                return 0;
+            }
+        }
+    }
 }
 

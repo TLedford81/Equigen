@@ -1,6 +1,8 @@
 package net.buckleystudios.equigen.entity.genetic_horse.client.texturer.base;
 
 import net.buckleystudios.equigen.EquigenMod;
+import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
+import net.buckleystudios.equigen.entity.genetic_horse.client.parts.multipart.MultipartModel;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticValues;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.util.GeneticPartNameBuilder;
 
@@ -76,39 +78,47 @@ public class Canvas {
         for(int i = 0; i < modifiedPart.blocks.size(); i++) {
             Block b = modifiedPart.getSingleBlock(i);
             if (!b.isModified()) {
-                EquigenMod.LOGGER.info("UNMODIFIED PART. BLOCK {} X {} Y {}", i, b.x, b.y);
+//                EquigenMod.LOGGER.info("UNMODIFIED PART. BLOCK {} X {} Y {}", i, b.x, b.y);
             } else {
+                if (b.x == 0 && b.y == 0) {
+                    EquigenMod.LOGGER.info("X AND Y COORDS AT 0! MODIFIED PART = {}, TARGET PART = {}", modifiedPart.modelName, targetPart.modelName);
+                } else {
+                    EquigenMod.LOGGER.info("DRAW IMAGE: X = {} Y = {} MODIFIED PART = {}, TARGET PART = {}", b.x, b.y, modifiedPart.modelName, targetPart.modelName);
+                }
                 for (int f = 0; f < modifiedPart.blocks.get(i).faces.size(); f++) {
+                    int x = targetPart.blocks.get(i).faces.get(f).getX();
+                    int y = targetPart.blocks.get(i).faces.get(f).getY();
+                    int width = targetPart.blocks.get(i).faces.get(f).getWidth();
+                    int height = targetPart.blocks.get(i).faces.get(f).getHeight();
+
+                    int modX =modifiedPart.blocks.get(i).faces.get(f).getX();
+                    int modY = modifiedPart.blocks.get(i).faces.get(f).getY();
+                    int modWidth = modifiedPart.blocks.get(i).faces.get(f).getWidth();
+                    int modHeight = modifiedPart.blocks.get(i).faces.get(f).getHeight();
                     g.drawImage(img,
                             // destination (where it goes on the canvas)
-                            targetPart.blocks.get(i).faces.get(f).x,
-                            targetPart.blocks.get(i).faces.get(f).y,
-                            targetPart.blocks.get(i).faces.get(f).x + targetPart.blocks.get(i).faces.get(f).width,
-                            targetPart.blocks.get(i).faces.get(f).y + targetPart.blocks.get(i).faces.get(f).height,
+                            x,
+                            y,
+                            x + width,
+                            y + height,
 
                             // source (what part of the original image to use)
-                            modifiedPart.blocks.get(i).faces.get(f).x,
-                            modifiedPart.blocks.get(i).faces.get(f).y,
-                            modifiedPart.blocks.get(i).faces.get(f).x + modifiedPart.blocks.get(i).faces.get(f).width,
-                            modifiedPart.blocks.get(i).faces.get(f).y + modifiedPart.blocks.get(i).faces.get(f).height,
+                            modX,
+                            modY,
+                            modX + modWidth,
+                            modY + modHeight,
                             null);
-                    System.out.println("DRAWING PART: " + modifiedPart.modelName +"BLOCK " + i + " | FACE " + f +
-                            "     TARGET X = " + targetPart.blocks.get(i).faces.get(f).x
-                            + " TARGET Y = " + targetPart.blocks.get(i).faces.get(f).y +
-                            " SOURCE X = " +  modifiedPart.blocks.get(i).faces.get(f).x +
-                            " SOURCE Y = " + modifiedPart.blocks.get(i).faces.get(f).y);
                 }
             }
         }
     }
 
-    public void drawColor (ArrayList<Part> pList, int hexCode) {
+    public void drawColor (ArrayList<MultipartModel<GeneticHorseEntity>> pList, int hexCode) {
 
         Color color = new Color(hexCode);
-        PartList Parts = new PartList();
 
-
-        for (Part p : pList) {
+        for (MultipartModel<GeneticHorseEntity> m : pList) {
+            Part p = m.getCubeDimensions();
             GeneticPartNameBuilder builder = new GeneticPartNameBuilder();
             String partType = builder.returnPartType(p.modelName, null);
             EquigenMod.LOGGER.info("MODEL NAME = {} PART TYPE = {}", p.modelName, partType);
@@ -126,7 +136,7 @@ public class Canvas {
                             continue;
                         }
                     }
-                        partType = builder.returnPartType(p.modelName, leg);
+                        partType = builder.returnPartType(p.modelName, leg); //TODO Find a way to switch this over from the part name builder to the reverse lookup
                         p.applyBaseUVCoords(partType);
                         draw(p, color);
                 }
@@ -147,15 +157,20 @@ public class Canvas {
                 EquigenMod.LOGGER.info("BLOCK COORDS X: {} Y: {}!", p.blocks.get(i).x, p.blocks.get(i).y);
                 for (int f = 0; f < p.blocks.get(i).faces.size(); f++) {
                     Face face = p.blocks.get(i).faces.get(f);
+                    int x = face.getX();
+                    int y = face.getY();
+                    int width = face.getWidth();
+                    int height = face.getHeight();
+                    EquigenMod.LOGGER.info("FACE INFO: X: {} Y: {} WIDTH: {} HEIGHT: {}", x, y, width, height);
 
                     EquigenMod.LOGGER.info("DRAWING COLOR!");
 
                     g.setColor(color);
                     g.fillRect(
-                            face.x,
-                            face.y,
-                            face.width,
-                            face.height
+                            x,
+                            y,
+                            width,
+                            height
                     );
                 }
             }
