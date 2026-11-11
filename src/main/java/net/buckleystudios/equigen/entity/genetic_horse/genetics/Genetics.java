@@ -285,13 +285,13 @@ public enum Genetics {
 
     public AttachmentType<Float> getDataAttachment() {return attachment.get();}
     public GeneticCategories getCategory(){return category;}
-    public boolean isSyncToClient(){return flagList.contains(flags.SYNC_TO_CLIENT);}
+    public boolean isSyncedToClient(){return flagList.contains(flags.SYNC_TO_CLIENT);}
     public boolean isTextureGene(){return flagList.contains(flags.TEXTURE_GENE);}
 
     public static List<Genetics> getGeneticsToRender(){
         List<Genetics> output = new ArrayList<>();
         for(Genetics value : Genetics.values()){
-            if(value.isSyncToClient()){
+            if(value.isSyncedToClient()){
                 output.add(value);
             }
         }

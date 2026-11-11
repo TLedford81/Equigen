@@ -77,7 +77,6 @@ public class ModCreativeModeTabs{
                         pOutput.accept(ModItems.STALL_WAND);
 
                         //Spawn Eggs
-                        pOutput.accept(ModItems.GENETIC_HORSE_SPAWNER);
                         pOutput.accept(ModItems.PILLAGER_KING_SPAWN_EGG);
                         pOutput.accept(ModItems.EGRET_SPAWN_EGG);
                         pOutput.accept(ModItems.GENETIC_HORSE_SPAWN_EGG);

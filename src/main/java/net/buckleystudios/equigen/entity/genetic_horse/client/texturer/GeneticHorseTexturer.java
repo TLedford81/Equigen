@@ -32,7 +32,7 @@ public class GeneticHorseTexturer {
     }
 
     public Map<BufferedImage, GeneticValues.LEG> getLayerList(GeneticHorseEntity entity) throws IOException {
-        EquigenMod.LOGGER.info("CALLING GETLAYERLIST");
+        // EquigenMod.LOGGER.info("CALLING GETLAYERLIST");
         TextureCalculator calculator = new TextureCalculator();
         Map<BufferedImage, GeneticValues.LEG> imageLayers = new HashMap<>();
         //Base Coat is handled in the TextureGeneration code.
@@ -86,7 +86,7 @@ public class GeneticHorseTexturer {
 
         //Nostrils
 
-        EquigenMod.LOGGER.info("IMAGER LAYERS SIZE = {}", imageLayers.size());
+        // EquigenMod.LOGGER.info("IMAGER LAYERS SIZE = {}", imageLayers.size());
 
         return imageLayers;
     }
@@ -99,23 +99,23 @@ public class GeneticHorseTexturer {
         List<Part> partsList = getRenderedParts(entity);
 
         // Draw Base Color
-        EquigenMod.LOGGER.info("DRAWING BASE COLOR");
+        // EquigenMod.LOGGER.info("DRAWING BASE COLOR");
         canvas.drawColor((ArrayList<Part>) partsList, calculator.getBaseColor(entity));
 
         // For Loop Draw Layers
         int i = 0;
-        EquigenMod.LOGGER.info("REFERENCE LAYER SIZE = {}", referenceLayers.size());
+        // EquigenMod.LOGGER.info("REFERENCE LAYER SIZE = {}", referenceLayers.size());
         for (Map.Entry<BufferedImage, GeneticValues.LEG> entry : referenceLayers.entrySet()) {
             BufferedImage l = entry.getKey();
             GeneticValues.LEG leg = entry.getValue();
-            EquigenMod.LOGGER.info("Iteration {}: image = {}", i++, l);
+            // EquigenMod.LOGGER.info("Iteration {}: image = {}", i++, l);
             List<Part> referenceParts = List.of();
             if (l == null) {
-                EquigenMod.LOGGER.info("LAYER IS NULL!!!");
+                // EquigenMod.LOGGER.info("LAYER IS NULL!!!");
             } else {
                 referenceParts = findReferenceParts(l);
                 for (Part p: referenceParts) {
-                    EquigenMod.LOGGER.info("REFERENCE PARTS: MODEL NAME = {}", p.modelName);
+                    // EquigenMod.LOGGER.info("REFERENCE PARTS: MODEL NAME = {}", p.modelName);
                     p.printBlockStats();
                 }
             }
@@ -127,20 +127,20 @@ public class GeneticHorseTexturer {
                 for (Part p : referenceParts) {
                     if (p.modelName.contains(builder.returnPartTypeNoLegs(p2.modelName))) {
                         relevantReferenceParts.add(p);
-                        EquigenMod.LOGGER.info("THEY MATCH!! ADDING PART");
-                        EquigenMod.LOGGER.info("P = {}, PARTTYPE = {}", p.modelName, partType);
+                        // EquigenMod.LOGGER.info("THEY MATCH!! ADDING PART");
+                        // EquigenMod.LOGGER.info("P = {}, PARTTYPE = {}", p.modelName, partType);
                     } else {
-//                        EquigenMod.LOGGER.info("THEY DONT MATCH!! MOVING ON!");
+//                        // EquigenMod.LOGGER.info("THEY DONT MATCH!! MOVING ON!");
                     }
                 }
                 Part bestPart = findBestMatch(relevantReferenceParts, p2);
                 if (bestPart != null) {
                     p2.applyBaseUVCoords(partType);
                     canvas.drawImage(bestPart, p2);
-                    EquigenMod.LOGGER.info("DRAWING!!!");
+                    // EquigenMod.LOGGER.info("DRAWING!!!");
 
                 } else {
-                    EquigenMod.LOGGER.info("BEST PART IS EQUAL TO NULL! MOVING ON");
+                    // EquigenMod.LOGGER.info("BEST PART IS EQUAL TO NULL! MOVING ON");
                 }
             }
         }
@@ -201,22 +201,22 @@ public class GeneticHorseTexturer {
     }
     public List<Part> findReferenceParts(BufferedImage sourceFile) {
         PartList pList = new PartList(entity, modelSet);
-        EquigenMod.LOGGER.info(
-                "findReferenceParts called on {}",
-                Thread.currentThread().getName()
-        );
-       EquigenMod.LOGGER.info("IMAGE LOCATION = " + sourceFile.toString());
+        // EquigenMod.LOGGER.info(
+//                "findReferenceParts called on {}",
+//                Thread.currentThread().getName()
+//        );
+       // EquigenMod.LOGGER.info("IMAGE LOCATION = " + sourceFile.toString());
 
-        EquigenMod.LOGGER.info(
-                "LOADED IMAGE {}x{}",
-                sourceFile.getWidth(),
-                sourceFile.getHeight()
-        );
+        // EquigenMod.LOGGER.info(
+//                "LOADED IMAGE {}x{}",
+//                sourceFile.getWidth(),
+//                sourceFile.getHeight()
+//        );
             for (int x = 0; x < sourceFile.getWidth(); x++) {
                 for (int y = 0; y < sourceFile.getHeight(); y++) {
                     int pixel = sourceFile.getRGB(x, y);
                     if (getR(pixel) == 200) {
-                        EquigenMod.LOGGER.info("FOUND!! INDICATOR PIXEL AT {} + {}", x, y);
+                        // EquigenMod.LOGGER.info("FOUND!! INDICATOR PIXEL AT {} + {}", x, y);
 
                         String modelName = "";
                         // R 200 Specifies that this is a part
@@ -239,7 +239,7 @@ public class GeneticHorseTexturer {
                             case 160 -> modelName = "right_ear"; //Yes this isn't next to the left ear in order. I didn't notice this until i had placed indicators for everything
                             default -> modelName = "";
                         }
-                            EquigenMod.LOGGER.info("PIXEL INDICATES REFERENCE IS A " + modelName);
+                            // EquigenMod.LOGGER.info("PIXEL INDICATES REFERENCE IS A " + modelName);
 
                         if (!modelName.isEmpty()) {
                             int rPixel = sourceFile.getRGB(x + 1, y);
@@ -247,14 +247,14 @@ public class GeneticHorseTexturer {
                             int muscleMass = decodeMuscleMass(rPixel);
                             int type = decodeType(rPixel); // Neck curve, leg width, etc
                             int lengthOrSize = decodeLengthOrSize(rPixel);
-                            EquigenMod.LOGGER.info(
-                                    "PIXEL = {}, A = {}, R = {}, G = {}, B = {}",
-                                    rPixel,
-                                    (rPixel >> 24) & 0xFF,
-                                    (rPixel >> 16) & 0xFF,
-                                    (rPixel >> 8) & 0xFF,
-                                    rPixel & 0xFF
-                            );
+                            // EquigenMod.LOGGER.info(
+//                                    "PIXEL = {}, A = {}, R = {}, G = {}, B = {}",
+//                                    rPixel,
+//                                    (rPixel >> 24) & 0xFF,
+//                                    (rPixel >> 16) & 0xFF,
+//                                    (rPixel >> 8) & 0xFF,
+//                                    rPixel & 0xFF
+//                            );
                             int blockNum = decodeAlpha(rPixel);
                             int reusedBlock;
 
@@ -268,8 +268,8 @@ public class GeneticHorseTexturer {
                                 default -> reusedBlock = 0;
                             }
                             //TODO Make a way to indicate one block location is used for multiple different muscle masses.
-                                EquigenMod.LOGGER.info("PIXEL INDICATES REFERENCE IS {} muscle_mass, {} type, {} length_or_size, and {} block number.", muscleMass, type, lengthOrSize, blockNum);
-                                EquigenMod.LOGGER.info("R = {}, G = {}, B = {} ALPHA = {}", getR(rPixel), getG(rPixel), getB(rPixel), getAlpha(rPixel));
+                                // EquigenMod.LOGGER.info("PIXEL INDICATES REFERENCE IS {} muscle_mass, {} type, {} length_or_size, and {} block number.", muscleMass, type, lengthOrSize, blockNum);
+                                // EquigenMod.LOGGER.info("R = {}, G = {}, B = {} ALPHA = {}", getR(rPixel), getG(rPixel), getB(rPixel), getAlpha(rPixel));
 
 
 
@@ -315,12 +315,12 @@ public class GeneticHorseTexturer {
 
                         }
                     }
-//                    EquigenMod.LOGGER.info("NO INDICATOR PIXEL FOUND, MOVING ON, R = {} G = {}, X = {}, Y = {}", getR(pixel), getG(pixel), x, y);
+//                    // EquigenMod.LOGGER.info("NO INDICATOR PIXEL FOUND, MOVING ON, R = {} G = {}, X = {}, Y = {}", getR(pixel), getG(pixel), x, y);
                 }
             }
 
             if (pList.getPartList().isEmpty()) {
-                EquigenMod.LOGGER.info("FINALPARTLIST IS EMPTY!!");
+                // EquigenMod.LOGGER.info("FINALPARTLIST IS EMPTY!!");
             }
             return pList.getPartList();
     }
@@ -384,7 +384,7 @@ public class GeneticHorseTexturer {
     }
 
     private int decodeAlpha(int pixel) {
-        EquigenMod.LOGGER.info("LOGGING ALPHA {}", getAlpha(pixel));
+        // EquigenMod.LOGGER.info("LOGGING ALPHA {}", getAlpha(pixel));
         return switch (getAlpha(pixel)) {
             case 13 -> 1; // In photoshop this scales by 5 percent on the Opacity slider
             case 25, 26 -> 2;
@@ -420,37 +420,37 @@ public class GeneticHorseTexturer {
         };
     }
     public Part findBestMatch(List<Part> partReference, Part currentPart) { //TODO Make it so that the neck only applies to the same curve
-        EquigenMod.LOGGER.info("CURRENT PART = " + currentPart);
+        // EquigenMod.LOGGER.info("CURRENT PART = " + currentPart);
         GeneticPartNameBuilder builder = new GeneticPartNameBuilder(entity);
         String currPart = builder.returnPartType(currentPart.modelName, null); //Part name
-        EquigenMod.LOGGER.info("PART TYPE = " + currPart);
+        // EquigenMod.LOGGER.info("PART TYPE = " + currPart);
         for (Part p : partReference) {
-            EquigenMod.LOGGER.info("PART REFERENCE: {}", p.modelName);
+            // EquigenMod.LOGGER.info("PART REFERENCE: {}", p.modelName);
         }
         List<String> currPartList = builder.PartStringListGenerator(currPart, true);
         //TODO make this link to the registry instead of PartNameBuilder
         if (partReference.isEmpty()) {
-            EquigenMod.LOGGER.info("PART REFERENCE IS EMPTY!!!");
+            // EquigenMod.LOGGER.info("PART REFERENCE IS EMPTY!!!");
             return null;
         }
         if (currPartList.getFirst().equals("knees") || currPartList.getFirst().equals("left_ear") || currPartList.getFirst().equals("right_ear")) {
-            EquigenMod.LOGGER.info("SINGLE MODEL NAME!!");
+            // EquigenMod.LOGGER.info("SINGLE MODEL NAME!!");
             return partReference.getFirst();
         }
         currPartList.removeFirst();
-        EquigenMod.LOGGER.info("CURRPARTLIST = " + currPartList);
+        // EquigenMod.LOGGER.info("CURRPARTLIST = " + currPartList);
 
         List<Part> relevantParts = new ArrayList<>(List.of());
         List<Integer> scores = new ArrayList<>(List.of());
 
         for (Part p : partReference) {
-            EquigenMod.LOGGER.info("P = {}, PART = {}", p.modelName, currPart);
+            // EquigenMod.LOGGER.info("P = {}, PART = {}", p.modelName, currPart);
             if (p.modelName.contains(currPart)) {
                 relevantParts.add(p);
             }
         }
         if (relevantParts.isEmpty()) {
-            EquigenMod.LOGGER.info("IS EMPTY!!!");
+            // EquigenMod.LOGGER.info("IS EMPTY!!!");
             return null;
         }
         for (Part ref : relevantParts) {
@@ -459,28 +459,28 @@ public class GeneticHorseTexturer {
             if (!refModelName.equals(currentPart.modelName)) {
                 score += 100;
             }
-            EquigenMod.LOGGER.info("REFERENCE_PART = {}, CURR_PART_LIST_FIRST = {}",refModelName, currPartList.getFirst());
+            // EquigenMod.LOGGER.info("REFERENCE_PART = {}, CURR_PART_LIST_FIRST = {}",refModelName, currPartList.getFirst());
             refModelName = refModelName.substring(currPart.length()+1);
             int index = 0;
             for (String part : currPartList) {
                 String r = builder.extractWord(refModelName, index);
-                EquigenMod.LOGGER.info("REFERENCE_PART = {}, CURRENT_PART = {}", part, refModelName);
-                EquigenMod.LOGGER.info("R = {}, PART = {}", r, part);
+                // EquigenMod.LOGGER.info("REFERENCE_PART = {}, CURRENT_PART = {}", part, refModelName);
+                // EquigenMod.LOGGER.info("R = {}, PART = {}", r, part);
                 if (!r.equals(part)) {
                     score += 80 / (index + 1);
                 } else {
-                    EquigenMod.LOGGER.info("THEY MATCH!!! NO SCORE ADDED");
+                    // EquigenMod.LOGGER.info("THEY MATCH!!! NO SCORE ADDED");
                 }
                 index++;
             }
-            EquigenMod.LOGGER.info("SCORE = " + score);
+            // EquigenMod.LOGGER.info("SCORE = " + score);
             scores.add(score);
         }
         int currentIndex = 0;
         int referenceIndex = -1;
         int lowestScore = 5000;
         for (int s : scores) { // Find Lowest Score
-            EquigenMod.LOGGER.info("LOWEST SCORE = {} S SCORE {}", lowestScore, s);
+            // EquigenMod.LOGGER.info("LOWEST SCORE = {} S SCORE {}", lowestScore, s);
             if (s < lowestScore) {
                 lowestScore = s;
                 referenceIndex = currentIndex;
@@ -520,12 +520,12 @@ public class GeneticHorseTexturer {
     public BufferedImage returnImage (Path sourceLocation) throws IOException {
         BufferedImage img = ImageIO.read(sourceLocation.toFile());
 
-        EquigenMod.LOGGER.info(
-                "LOADED IMAGE {}x{} FROM {}",
-                img.getWidth(),
-                img.getHeight(),
-                sourceLocation.toAbsolutePath()
-        );
+        // EquigenMod.LOGGER.info(
+//                "LOADED IMAGE {}x{} FROM {}",
+//                img.getWidth(),
+//                img.getHeight(),
+//                sourceLocation.toAbsolutePath()
+//        );
 
         return img;
     }

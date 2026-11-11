@@ -71,7 +71,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.STALL_WAND.get());
 
         //Spawn Eggs
-        basicItem(ModItems.GENETIC_HORSE_SPAWNER.get());
+//        basicItem(ModItems.GENETIC_HORSE_SPAWN_EGG.get());
         withExistingParent(ModItems.PILLAGER_KING_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.EGRET_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.GENETIC_HORSE_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
