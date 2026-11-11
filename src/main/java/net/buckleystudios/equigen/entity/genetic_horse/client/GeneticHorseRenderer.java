@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_ModelBase<GeneticHorseEntity>> {
 
@@ -122,6 +123,47 @@ public class GeneticHorseRenderer extends MobRenderer<GeneticHorseEntity, GH_Mod
                 "Generated texture: {}",
                 outputPath.toAbsolutePath()
         );
+    }
+
+    public static void removeTextureFromCache(UUID horseUUID) {
+        Path texturePath = Minecraft.getInstance()
+                .gameDirectory
+                .toPath()
+                .resolve("equigen")
+                .resolve("cache")
+                .resolve("horse_textures")
+                .resolve(horseUUID + ".png");
+
+        try {
+            Files.deleteIfExists(texturePath);
+        } catch (IOException e) {
+            EquigenMod.LOGGER.error("Failed to delete cached texture for horse {}", horseUUID, e);
+        }
+    }
+
+    public static void clearTextureCache() {
+        Path cacheFolder = Minecraft.getInstance()
+                .gameDirectory
+                .toPath()
+                .resolve("equigen")
+                .resolve("cache")
+                .resolve("horse_textures");
+
+        if (!Files.exists(cacheFolder)) {
+            return;
+        }
+
+        try (Stream<Path> files = Files.list(cacheFolder)) {
+            files.forEach(path -> {
+                try {
+                    Files.deleteIfExists(path);
+                } catch (IOException e) {
+                    EquigenMod.LOGGER.error("Failed to delete cached texture {}", path, e);
+                }
+            });
+        } catch (IOException e) {
+            EquigenMod.LOGGER.error("Failed to clear horse texture cache", e);
+        }
     }
 
     public int getSelectedTexture(GeneticHorseEntity entity) {

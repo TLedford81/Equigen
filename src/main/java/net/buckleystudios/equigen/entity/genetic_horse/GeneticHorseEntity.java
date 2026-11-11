@@ -18,8 +18,6 @@ import net.buckleystudios.equigen.item.ModItems;
 import net.buckleystudios.equigen.item.util.HorseConsumables;
 import net.buckleystudios.equigen.item.util.HorseConsumablesData;
 import net.buckleystudios.equigen.sound.ModSounds;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
@@ -52,6 +50,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.entity.living.BabyEntitySpawnEvent;
 
@@ -159,18 +158,10 @@ public class GeneticHorseEntity extends AbstractHorse implements
 
         //I HATE TAMING
         this.setTemper(100);
-        return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
-    }
 
-    @Override
-    protected void onOffspringSpawnedFromEgg(Player player, Mob child) {
-        if (child instanceof GeneticHorseEntity) {
-            GeneticHorseEntity geneticHorseChild = (GeneticHorseEntity) child;
-
-            geneticHorseChild.ApplyNewSpawnParentalGenetics(this);
-            geneticHorseChild.HandleNewSpawnSkillsAndProficiencies();
-        }
-        super.onOffspringSpawnedFromEgg(player, child);
+        SpawnGroupData result = super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
+        this.refreshDimensions();
+        return result;
     }
 
     // BREEDING & PREGNANCY //
@@ -210,17 +201,7 @@ public class GeneticHorseEntity extends AbstractHorse implements
                 sire.getUUID()
         );
 
-        mare.setPregnant(true, sire);
-
-        mare.entityData.set(
-                PREGNANCY_TIMER,
-                mare.entityData.get(PREGNANCY_LENGTH)
-        );
-
-        mare.setBreedingCooldown(
-                mare.entityData.get(MAX_BREEDING_COOLDOWN)
-                        + mare.entityData.get(PREGNANCY_LENGTH)
-        );
+        mare.impregnate(sire);
 
         sire.setBreedingCooldown(
                 sire.entityData.get(MAX_BREEDING_COOLDOWN)
@@ -234,10 +215,13 @@ public class GeneticHorseEntity extends AbstractHorse implements
         return this.entityData.get(PREGNANT);
     }
 
+    public void impregnate(Animal mate){
+        this.impregnate(mate, this.getLoveCause(), mate.getLoveCause());
+    }
 
-    //TODO: Add way to tell if parents are registered or not, and apply that to the Registry
-    public void setPregnant(boolean pregnant, Animal mate) {
-        if (mate instanceof GeneticHorseEntity ghe) {
+    public void impregnate(Animal mate, Player breeder1, Player breeder2){
+        if(GeneticsHandler.getGeneticFloat(this, Genetics.GENDER) != 2) {
+            if (mate instanceof GeneticHorseEntity ghe) {
 //            EquigenMod.LOGGER.info(
 //                    "setPregnant called: THIS = {} (ID {}, UUID {}), MATE = {} (ID {}, UUID {}), pregnant = {}",
 //                    this.getName(),
@@ -248,21 +232,73 @@ public class GeneticHorseEntity extends AbstractHorse implements
 //                    mate.getUUID(),
 //                    pregnant
 //            );
-            this.currentPregnancy = pregnant ? new Pregnancy(
-                    mate.getUUID(),
-                    this.GenerateNewSpawnParentalGenetics(this, ghe),
-                    this.ConcatenateBreederNames(this.getLoveCause().getName(), mate.getLoveCause().getName()),
-                    this.isRegistered() ? this.getRegisteredName() : this.getName(),
-                    ghe.isRegistered() ? ghe.getRegisteredName() : ghe.getName())
-                    : null;
-//            if(pregnant) EquigenMod.LOGGER.info("Pregnancy Begun, Breeder: {}, Horse ID = {}, babyGenes = {}", this.currentPregnancy.breederName(), this.getId(), this.currentPregnancy.babyGenes().size());
-            if (!this.level().isClientSide) {
-                this.entityData.set(PREGNANT, pregnant);
+                this.currentPregnancy = new Pregnancy(
+                        mate.getUUID(),
+                        this.GenerateNewSpawnParentalGenetics(this, ghe),
+                        this.ConcatenateBreederNames(breeder1.getName(), breeder2.getName()),
+                        this.isRegistered() ? this.getRegisteredName() : this.getName(),
+                        ghe.isRegistered() ? ghe.getRegisteredName() : ghe.getName());
+//            EquigenMod.LOGGER.info("Pregnancy Begun, Breeder: {}, Horse ID = {}, babyGenes = {}", this.currentPregnancy.breederName(), this.getId(), this.currentPregnancy.babyGenes().size());
+                this.entityData.set(
+                        PREGNANCY_TIMER,
+                        this.entityData.get(PREGNANCY_LENGTH)
+                );
+
+                this.setBreedingCooldown(
+                        this.entityData.get(MAX_BREEDING_COOLDOWN)
+                                + this.entityData.get(PREGNANCY_LENGTH)
+                );
+
+                if (!this.level().isClientSide) {
+                    this.entityData.set(PREGNANT, true);
+                }
+            } else {
+                EquigenMod.LOGGER.error("Tried to make Non-GHE pregnant.");
             }
         } else {
-            EquigenMod.LOGGER.error("Tried to make Non-GHE pregnant.");
+            EquigenMod.LOGGER.error("Tried to make non-mare horse pregnant!");
         }
     }
+
+    public void clearPregnancy(){
+        this.currentPregnancy = null;
+        this.entityData.set(
+                PREGNANCY_TIMER, 0
+        );
+
+        if (!this.level().isClientSide) {
+            this.entityData.set(PREGNANT, false);
+        }
+    }
+
+    public GeneticHorseEntity spawnDuplicateHorse(boolean child){
+        ServerLevel level = this.getServer().getLevel(this.level().dimension());
+        GeneticHorseEntity ghe = new GeneticHorseEntity(ModEntities.GENETIC_HORSE.get(), level);
+        ghe.moveTo(this.getX(), this.getY(), this.getZ(), 0.0F, 0.0F);
+
+        Map<Genetics, Float> genes = new HashMap<>();
+        for(Genetics gene : Genetics.values()){
+            genes.put(gene, GeneticsHandler.getGeneticFloat(this, gene));
+            EquigenMod.LOGGER.info(gene.name() + " | " + genes.get(gene));
+        }
+        ghe.HandleNewSpawnWithCustomGenetics(this.getBreed(), genes);
+        ghe.setBreederName(this.getBreederName());
+        ghe.setSireName(this.getSireName());
+        ghe.setMareName(this.getMareName());
+
+        ghe.finalizeSpawn(
+                level,
+                level.getCurrentDifficultyAt(ghe.blockPosition()),
+                MobSpawnType.SPAWN_EGG,
+                null
+        );
+        if (child) ghe.setBaby(true);
+        level.addFreshEntityWithPassengers(ghe);
+        return ghe;
+    }
+
+    //TODO: Add way to tell if parents are registered or not, and apply that to the Registry
+    //TODO: Fix possible bug where mother cant give birth if father is killed during pregnancy
     private void GiveBirth() {
         EquigenMod.LOGGER.info("I GAVE BIRTH");
         ServerLevel level = this.getServer().getLevel(this.level().dimension());
@@ -285,8 +321,7 @@ public class GeneticHorseEntity extends AbstractHorse implements
             ghe.setSireName(this.currentPregnancy.sireName());
             ghe.setMareName(this.currentPregnancy.mareName());
 
-            this.setPregnant(false, mate);
-            this.currentPregnancy = null;
+            this.clearPregnancy();
         }
     }
 
@@ -1182,36 +1217,63 @@ public class GeneticHorseEntity extends AbstractHorse implements
     protected @Nullable SoundEvent getEatingSound() {
         return ModSounds.TEST_SOUND.get();
     }
+    protected void clampRotation(Entity entityToUpdate) {
+        entityToUpdate.setYBodyRot(this.getYRot());
+        float f = Mth.wrapDegrees(entityToUpdate.getYRot() - this.getYRot());
+        float f1 = Mth.clamp(f, -105.0F, 105.0F);
+        entityToUpdate.yRotO += f1 - f;
+        entityToUpdate.setYRot(entityToUpdate.getYRot() + f1 - f);
+        entityToUpdate.setYHeadRot(entityToUpdate.getYRot());
+    }
 
-    private float headNudge;
+    @Override
+    protected void tickRidden(Player player, Vec3 travelVector) {
+        super.tickRidden(player, travelVector);
+        this.yBodyRot = this.yHeadRot = this.getYRot();
+        if (this.isControlledByLocalInstance()) {
+            if (travelVector.z <= 0.0) {
+                this.gallopSoundCounter = 0;
+            }
+            if (this.onGround()) {
+                this.setIsJumping(false);
+                if (this.playerJumpPendingScale > 0.0F && !this.isJumping()) {
+                    this.executeRidersJump(this.playerJumpPendingScale, travelVector);
+                }
+                // FOR FUTURE MADELEINE!!! PlayerJumpPendingScale makes the player move backwards when jumping to sync with animations. Might be useful once we actually have a jumping animation.
+                this.playerJumpPendingScale = 0.0F;
+            }
+        }
+
+        if (player.xxa != 0.0F) {
+            float turnSpeed = this.getTurnSpeed();
+            if (player.xxa > 0.0F) turnSpeed = -turnSpeed;
+
+            this.setYRot(this.getYRot() + turnSpeed);
+            this.setYBodyRot(this.getYRot());
+
+            agilitySkillXPGainTickTimer++;
+        }
+
+        if (!this.level().isClientSide
+                && agilitySkillXPGainTickTimer >= AgilityXPToLevelUp) {
+            agilitySkillXPGainTickTimer = 0;
+            this.LevelUpSkill("Agility", 0.01f);
+        }
+    }
+
+    @Override
+    protected Vec2 getRiddenRotation(LivingEntity rider) {
+        return new Vec2(this.getXRot(), this.getYRot());
+    }
+
+    @Override
+    protected Vec3 getRiddenInput(Player player, Vec3 travelVector) {
+        return new Vec3(0.0, 0.0, player.zza);
+    }
+
     @Override
     public void travel(Vec3 travelVector) {
-        if (this.isVehicle() && this.getControllingPassenger() instanceof LivingEntity living) {
-            if(travelVector.x > 0.0){
-                this.setRot(this.getYRot() - this.getTurnSpeed(), this.getXRot());
-                headNudge = -this.getTurnSpeed();
-                this.agilitySkillXPGainTickTimer++;
-            } else if(travelVector.x < 0.0) {
-                this.setRot(this.getYRot() + this.getTurnSpeed(), this.getXRot());
-                headNudge = this.getTurnSpeed();
-                this.agilitySkillXPGainTickTimer++;
-            } else {
-                headNudge = 0;
-            }
-
-            if(agilitySkillXPGainTickTimer >= AgilityXPToLevelUp){
-                agilitySkillXPGainTickTimer = 0;
-                this.LevelUpSkill("Agility", 0.01f);
-            }
-
-            float forward = living.zza; // W/S
-            float strafe = 0.0F; // disable A/D
-            float vertical = 0.0F;
-
-            super.travel(new Vec3(strafe, vertical, forward));
-        } else {
-            super.travel(travelVector);
-        }
+        super.travel(travelVector);
     }
 
     @Override
@@ -1222,6 +1284,7 @@ public class GeneticHorseEntity extends AbstractHorse implements
 //        EquigenMod.LOGGER.info("Scale: {}, Genetic Value: {}", scale, GeneticsHandler.getGenetic(this, Genetics.SCALE));
         return EntityDimensions.scalable(width * scale, ((height + (backOffset() / 16)) * scale));
     }
+
     //TODO Height is almost completely flush, figure out why it isn't exactly flush.
 private float difference = 0;
     private String tallerHalf;
@@ -1383,7 +1446,8 @@ private float difference = 0;
                     case 9 -> 8.55f; //
                     default -> 0;
                 };
-            } else if (legWidth == 2) { //TODO These values probably shouldn't be different. Change pivot points in average leg width to match the thick?
+            } else if (legWidth == 2) {
+                //TODO These values probably shouldn't be different. Change pivot points in average leg width to match the thick?
                 return switch (Math.round(value)){ // NUMBERS CONFIRMED
                     case 1 -> 3.45f; //
                     case 2 -> 4.25f; //
@@ -1431,32 +1495,6 @@ private float difference = 0;
         return this.tallerHalf;
     }
 
-    protected void clampRotation(Entity entityToUpdate) {
-        entityToUpdate.setYBodyRot(this.getYRot());
-        float f = Mth.wrapDegrees(entityToUpdate.getYRot() - this.getYRot());
-        float f1 = Mth.clamp(f, -105.0F, 105.0F);
-        entityToUpdate.yRotO += f1 - f;
-        entityToUpdate.setYRot(entityToUpdate.getYRot() + f1 - f);
-        entityToUpdate.setYHeadRot(entityToUpdate.getYRot());
-    }
-
-    @Override
-    protected void tickRidden(Player player, Vec3 travelVector) {
-        this.yRotO = this.yBodyRot = this.yHeadRot = this.getYRot();
-        if (this.isControlledByLocalInstance()) {
-            if (travelVector.z <= 0.0) {
-                this.gallopSoundCounter = 0;
-            }
-            if (this.onGround()) {
-                this.setIsJumping(false);
-                if (this.playerJumpPendingScale > 0.0F && !this.isJumping()) {
-                    this.executeRidersJump(this.playerJumpPendingScale, travelVector);
-                } // FOR FUTURE MADELEINE!!! PlayerJumpPendingScale makes the player move backwards when jumping to sync with animations. Might be useful once we actually have a jumping animation.
-
-                this.playerJumpPendingScale = 0.0F;
-            }
-        }
-    }
     @Override
     protected Vec3 getPassengerAttachmentPoint(Entity entity, EntityDimensions dimensions, float partialTick) {
         double y = getHorseHeightUnmodified();
@@ -1487,21 +1525,19 @@ private float difference = 0;
         super.aiStep();
 
         if (this.level().isClientSide) {
-            // vanilla-style movement delta
             double dx = this.getX() - this.xo;
             double dz = this.getZ() - this.zo;
             float dist = (float) Math.sqrt(dx * dx + dz * dz);
-
-            // scale a bit (vanilla multiplies by ~4 for animation speed feel)
             float target = dist * 4.0F;
 
-            ghAnimSpeed += (target - ghAnimSpeed) * 0.4F; // low-pass filter
+            ghAnimSpeed += (target - ghAnimSpeed) * 0.4F;
             this.walkAnimation.update(ghAnimSpeed, 1.0F);
 
             if (target > 0.01F) locomotionState.startIfStopped(this.tickCount);
-            else               locomotionState.stop();
+            else locomotionState.stop();
         }
     }
+
 
 
     // TICKING AND INTERACTIONS //
@@ -1509,7 +1545,6 @@ private float difference = 0;
     public void tick() {
         super.tick();
         if (this.level().isClientSide) {
-            this.refreshDimensions();
             this.setupAnimationStates();
             float gaitStaminaDrain = 0f;
             float jumpStaminaDrain = 0f;
@@ -1576,8 +1611,11 @@ private float difference = 0;
                         }
                     }
                 } else {
-                    this.jumpCooldownTickTimer--;
-                    if(this.jumpCooldownTickTimer <= 0){
+                    if (this.jumpCooldownTickTimer > 0) {
+                        this.jumpCooldownTickTimer--;
+                    }
+
+                    if (this.jumpCooldownTickTimer <= 0) {
                         this.isJumpReady = true;
                     }
                 }
@@ -1660,6 +1698,17 @@ private float difference = 0;
                 GiveBirth();
             }
         }
+    }
+
+    public float getJumpCooldownProgress(){
+        float jump = this.getCurrentSkillLevel("Jump");
+        int jumpCooldownModifier = Math.round(jump * 5);
+        int maxCooldown = Math.max(1, 100 - jumpCooldownModifier);
+        return Mth.clamp(
+                (float) this.jumpCooldownTickTimer / maxCooldown,
+                0.0F,
+                1.0F
+        );
     }
 
     private void HandleConstantTickTimers(){
@@ -1754,6 +1803,14 @@ private float difference = 0;
                 this.registerHorse((ServerPlayer) pPlayer);
                 return InteractionResult.CONSUME;
             }
+            if(itemstack.is(ModItems.GENETIC_HORSE_SPAWN_EGG)){
+                if (!this.isPregnant()) {
+                    this.impregnate(this);
+                } else {
+                    pPlayer.sendSystemMessage(Component.translatable("equigen.genetic_horse.breeding.already_pregnant"));
+                }
+                return InteractionResult.sidedSuccess(level().isClientSide());
+            }
         }
 
         //CLIENT
@@ -1799,25 +1856,6 @@ private float difference = 0;
                 return super.mobInteract(pPlayer, pHand);
             }
         }
-    }
-
-    // TODO: REMOVE BEFORE RELEASE
-    // DISCLAIMER:
-    // THIS IS PURELY FOR DEBUG PURPOSES AND IS VERY BAD PRACTICE TO USE IN CODE
-    // PLEASE REMOVE BEFORE RELEASE
-    // THE ENTITY CLASS WAS NEVER MEANT TO WORK WITH THE RENDERER
-    // USE WITH CAUTION
-    public static GeneticHorseRenderer getRenderer(GeneticHorseEntity entity) {
-        EntityRenderer<? super GeneticHorseEntity> renderer =
-                Minecraft.getInstance()
-                        .getEntityRenderDispatcher()
-                        .getRenderer(entity);
-
-        if (renderer instanceof GeneticHorseRenderer horseRenderer) {
-            return horseRenderer;
-        }
-        EquigenMod.LOGGER.error("Renderer not found!");
-        return null;
     }
 
     private void registerHorse(ServerPlayer player) {
@@ -1904,6 +1942,7 @@ private float difference = 0;
         GeneticsHandler.RandomizeHorseGenetics(this);
         for (Genetics gene : customGenes.keySet()){
             GeneticsHandler.setEntityGenetic(this, gene, customGenes.get(gene));
+            EquigenMod.LOGGER.info("Overwriting {} genetic to {}", gene, customGenes.get(gene));
         }
     }
 
@@ -1914,7 +1953,7 @@ private float difference = 0;
     }
 
     public void ApplyNewSpawnParentalGenetics(GeneticHorseEntity parent){
-        this.ApplyNewSpawnParentalGenetics(GenerateNewSpawnParentalGenetics(this));
+        this.ApplyNewSpawnParentalGenetics(GenerateNewSpawnParentalGenetics(parent));
     }
 
     public Map<Genetics, Float> GenerateNewSpawnParentalGenetics(GeneticHorseEntity parent){

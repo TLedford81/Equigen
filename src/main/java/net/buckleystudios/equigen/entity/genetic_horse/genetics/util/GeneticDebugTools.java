@@ -43,10 +43,8 @@ public class GeneticDebugTools {
         )));
 
         generatedPages.add(Filterable.passThrough(Component.literal(
-                "§2Age:§r\n" + entity.getAge() + " (" + growthStage + ")" +
-                        "\n§2Texture:§r\n" + "Not Yet Implemented"
+                "§2Age:§r\n" + entity.getAge() + " (" + growthStage + ")"
         )));
-        //TODO: FIX TEXTURE SPOT IN DEBUG BOOK
 
         generatedPages.add(Filterable.passThrough(Component.literal(
                 "§2Hunger:§r\n" + entity.getHunger() +

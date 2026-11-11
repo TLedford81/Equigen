@@ -18,6 +18,8 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -41,6 +43,7 @@ public class EquigenMod {
         ModEffects.MOB_EFFECTS.register(modEventBus);
         ModData.ATTACHMENT_TYPES.register(modEventBus);
         container.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
 
         modEventBus.addListener(this::commonSetup);
 //        NeoForge.EVENT_BUS.register(this);

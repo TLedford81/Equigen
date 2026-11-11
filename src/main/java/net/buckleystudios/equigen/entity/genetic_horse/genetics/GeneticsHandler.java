@@ -37,7 +37,7 @@ public class GeneticsHandler {
             EquigenMod.LOGGER.info("Setting " + genetic.name() + " to " + clampedNumber);
         }
 
-        if (!entity.level().isClientSide() && genetic.isSyncToClient()) {
+        if (!entity.level().isClientSide() && genetic.isSyncedToClient()) {
             syncGeneticsToClient(entity, List.of(genetic));
         }
     }

@@ -280,7 +280,8 @@ public class ConsumableContainerBlock extends Block {
 
                 if (!hayStack.isEmpty()) {
                     Block.popResource(level, pos, hayStack);
-                }            }
+                }
+            }
         }
 
         return super.playerWillDestroy(level, pos, state, player);

@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.buckleystudios.equigen.EquigenMod;
 import net.buckleystudios.equigen.command.GeneticHorseRegistryCommand;
 import net.buckleystudios.equigen.command.GeneticHorseSummonCommand;
+import net.buckleystudios.equigen.command.GeneticHorseTextureCacheCommands;
 import net.buckleystudios.equigen.entity.genetic_horse.GeneticHorseEntity;
 import net.buckleystudios.equigen.entity.genetic_horse.genetics.GeneticsHandler;
 import net.buckleystudios.equigen.item.ModItems;
@@ -37,6 +38,7 @@ public class ModEvents {
     public static void onCommandsRegister(RegisterCommandsEvent event){
         new GeneticHorseSummonCommand(event.getDispatcher());
         new GeneticHorseRegistryCommand(event.getDispatcher());
+        new GeneticHorseTextureCacheCommands(event.getDispatcher());
         ConfigCommand.register(event.getDispatcher());
     }
 

@@ -246,5 +246,6 @@
   "equigen.gui.genetic_horse.pregnancy_timer": "Pregnancy Timer",
 
   "equigen.ui.separator": " / ",
-  "equigen.genetic_horse.unknown_breeder": "Unknown"
+  "equigen.genetic_horse.unknown_breeder": "Unknown",
+  "equigen.genetic_horse.breeding.already_pregnant": "This horse is already pregnant!"
 }
